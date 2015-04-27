@@ -1,0 +1,9 @@
+﻿#BotonImp,
+#botonServicioExtra{
+    width:120px;
+    height:30px;
+    font-size: 1em;
+    border:2px groove gray;
+    float:right;
+    margin:6px;
+}

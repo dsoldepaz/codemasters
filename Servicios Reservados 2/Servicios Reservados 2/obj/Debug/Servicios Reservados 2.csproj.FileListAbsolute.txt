@@ -1,0 +1,102 @@
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.csprojResolveAssemblyReference.cache
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Servicios Reservados 2.dll.config
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Servicios Reservados 2.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Servicios Reservados 2.pdb
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Antlr3.Runtime.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\AspNet.ScriptManager.jQuery.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.AspNet.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.Core.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OAuth.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OpenId.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\EntityFramework.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.ScriptManager.WebForms.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.Web.Infrastructure.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Newtonsoft.Json.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Oracle.DataAccess.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\System.Net.Http.Formatting.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Http.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Http.WebHost.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Optimization.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Providers.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\WebGrease.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Newtonsoft.Json.xml
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\System.Net.Http.Formatting.xml
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Http.xml
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Http.WebHost.xml
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\EntityFramework.xml
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.Core.xml
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OAuth.xml
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OpenId.xml
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.AspNet.xml
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\es\System.Net.Http.Formatting.resources.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\es\System.Web.Http.resources.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\es\System.Web.Http.WebHost.resources.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\es\EntityFramework.resources.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\es\System.Web.Optimization.resources.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\es\System.Web.Providers.resources.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\es\Microsoft.AspNet.Membership.OpenAuth.resources.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.dll
+C:\servicios\Sistema de Servicios Reservados\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.pdb
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Servicios Reservados 2.dll.config
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Servicios Reservados 2.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Servicios Reservados 2.pdb
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Antlr3.Runtime.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\AspNet.ScriptManager.jQuery.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.AspNet.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.Core.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OAuth.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OpenId.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\EntityFramework.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.ScriptManager.WebForms.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.Web.Infrastructure.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Newtonsoft.Json.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Oracle.DataAccess.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\System.Net.Http.Formatting.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Http.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Http.WebHost.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Optimization.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Providers.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\WebGrease.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Newtonsoft.Json.xml
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\System.Net.Http.Formatting.xml
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Http.xml
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Http.WebHost.xml
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\EntityFramework.xml
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.Core.xml
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OAuth.xml
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OpenId.xml
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\DotNetOpenAuth.AspNet.xml
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\es\System.Net.Http.Formatting.resources.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\es\System.Web.Http.resources.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\es\System.Web.Http.WebHost.resources.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\es\EntityFramework.resources.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\es\System.Web.Optimization.resources.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\es\System.Web.Providers.resources.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\es\Microsoft.AspNet.Membership.OpenAuth.resources.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.csprojResolveAssemblyReference.cache
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.dll
+C:\serviciosgit\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.pdb
