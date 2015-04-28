@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace Servicios_Reservados_2
 {
-    public partial class ComidaExtra : System.Web.UI.Page
+    public partial class FormComidaExtra : System.Web.UI.Page
     {
         static DataTable tipo;
         static EntidadComidaExtra entidadVieja;
@@ -129,13 +129,7 @@ namespace Servicios_Reservados_2
                 habilitarCampos(false);
             }
         }*/
-        
-        
-        
-        
-        
-        
-        
+
         
         protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
         {
@@ -144,6 +138,7 @@ namespace Servicios_Reservados_2
             labelAlerta.Text = mensaje;
             alertAlerta.Attributes.Remove("hidden");
         }
+        
 
         protected void fechaDeEntrada_ServerClick(object sender, EventArgs e)
         {
@@ -154,8 +149,7 @@ namespace Servicios_Reservados_2
         {
 
         }
-
-
+  
 
 
     }
