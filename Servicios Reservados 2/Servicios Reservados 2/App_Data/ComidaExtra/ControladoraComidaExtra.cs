@@ -34,6 +34,12 @@ namespace Servicios_Reservados_2
           return resultado;
       }
 
+      public String[] modificarServicioExtra(Object[] datos, EntidadComidaExtra entidadVieja)
+      {
+          EntidadComidaExtra entidad = new EntidadComidaExtra(datos);
+          String[] resultado = controladoraBD.modificarServicioExtra(entidad, entidadVieja);//llamado a la controladora de base de datos
+          return resultado;
+      }
 
     }
 
