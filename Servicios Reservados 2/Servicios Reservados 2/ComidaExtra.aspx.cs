@@ -152,7 +152,8 @@ namespace Servicios_Reservados_2
 
         protected void fechaDeEntradaCalendario_SelectionChanged(object sender, EventArgs e)
         {
-
+            textFecha.Value = fechaDeEntradaCalendario.SelectedDate.ToString("dd/MM/yyyy");
+            fechaDeEntradaCalendario.Visible = false;
         }
 
 
