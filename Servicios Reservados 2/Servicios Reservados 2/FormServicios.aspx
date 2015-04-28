@@ -30,7 +30,7 @@
                 </li>
                 <li class="itemContenedor">Fecha De Salida:<input id="fechaFinal" runat="server" />
                 </li>
-                <li class="itemContenedor">Numero de PAX<input id="txtPax" type="number" runat="server" />
+                <li class="itemContenedor">Numero de PAX<input id="txtPax"  runat="server" />
                 </li>
             </ul>
             <section class="contenedor">
@@ -59,7 +59,7 @@
                     <input type="button" class="btn btn-success" value="Elimnar" />
                 </aside>
 
-                <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
+                <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True">
                     <SelectedRowStyle BackColor="#7BC143" />
                 </asp:GridView>
 
