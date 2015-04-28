@@ -356,6 +356,7 @@ aside {
 
 fieldset.open-auth-providers {
     margin-top: 15px;
+    margin-left: 24px;
 }
 
     fieldset.open-auth-providers button {
@@ -379,7 +380,7 @@ fieldset.open-auth-providers {
 /* forms */
 fieldset {
     width:90%;
-    margin: 64px;;
+    margin: 24px;;
     padding: 50px;
 }
 
