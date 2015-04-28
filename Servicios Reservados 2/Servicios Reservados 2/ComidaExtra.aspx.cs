@@ -50,17 +50,36 @@ namespace Servicios_Reservados_2
         {
             Boolean res = true;
             Object[] nuevoServicio = new Object[7];
-            nuevoServicio[0] = idReservacion[0];
+            nuevoServicio[0] = "ANURA0229032005.0142746515";//idReservacion[0];
             int indice = cbxTipo.SelectedIndex-1;
             nuevoServicio[1] = tipo.Rows[indice][0];
-            nuevoServicio[2] = "2015/4/30";
+            nuevoServicio[2] = fechaDeEntradaCalendario.SelectedDate.ToString("dd/MM/yyyy");
             nuevoServicio[3] = "no";
             nuevoServicio[4] = txaNotas.Value;
             nuevoServicio[5] = txtPax.Value;
-            nuevoServicio[5] = txtHora.Value;
+            nuevoServicio[6] = txtHora.Value;
 
  
             String[] error = controladora.agregarServicioExtra(nuevoServicio);// se le pide a la controladora que lo inserte
+            mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+            return res;
+        }
+
+        protected Boolean modificarServicioExtra()
+        {
+            Boolean res = true;
+            Object[] nuevoServicio = new Object[7];
+            nuevoServicio[0] = "ANURA0229032005.0142746515";//idReservacion[0];
+            int indice = cbxTipo.SelectedIndex - 1;
+            nuevoServicio[1] = tipo.Rows[indice][0];
+            nuevoServicio[2] = fechaDeEntradaCalendario.SelectedDate.ToString("dd/MM/yyyy");
+            nuevoServicio[3] = "no";
+            nuevoServicio[4] = txaNotas.Value;
+            nuevoServicio[5] = txtPax.Value;
+            nuevoServicio[6] = txtHora.Value;
+
+
+            String[] error = controladora.modificarServicioExtra(nuevoServicio);// se le pide a la controladora que lo inserte
             mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
             return res;
         }
