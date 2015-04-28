@@ -798,3 +798,10 @@ h1{
 .cancelar-btn{
     background-color:#F26631;
 }
+
+.pager span { 
+    color:#009900;
+    font-weight:bold;
+     font-size:16pt;
+
+}

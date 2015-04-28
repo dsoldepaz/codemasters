@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="Reservaciones" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormReservaciones.aspx.cs" Inherits="Servicios_Reservados_2.FormReservaciones" %>
 
+
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
     <nav>
@@ -51,6 +52,7 @@
                                     <tr>
                                         <td>
                                             <asp:GridView ID="GridViewReservaciones" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarReservacion" AllowPaging="true" AllowSorting="true" PageSize="20" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
+                                                <PagerStyle CssClass="pager" />
                                                 <AlternatingRowStyle BorderStyle="None" />
                                                 <HeaderStyle Font-Size="1.3em" />
                                                 <SelectedRowStyle BackColor="#7BC143"
