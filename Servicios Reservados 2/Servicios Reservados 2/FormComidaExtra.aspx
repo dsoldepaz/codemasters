@@ -18,7 +18,7 @@
         <h2>Comida Extra</h2>
         <section class="principal">
             <ul>
-                <li class="itemContenedor">Fecha:<input id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
+                <li class="itemContenedor">Fecha:<input runat="server" id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
                     <input id="fechaDeEntrada" class="selectorDeFecha" type="button" runat="server" onserverclick="fechaDeEntrada_ServerClick" />
                     <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" BackColor="#CCCCCC" BorderStyle="Dashed" ForeColor="#7BC143" Height="80px" Width="100px" BorderWidth="1px" Visible="false" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged">
                         <DayHeaderStyle ForeColor="#333333" Wrap="True" />
