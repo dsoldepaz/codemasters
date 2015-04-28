@@ -76,7 +76,7 @@
                                 <input type="button" class="btn btn-success" value="Modificar" />
                                 <input type="button" class="btn btn-success" value="Elimnar" />
                             </aside>
-                            <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" >
+                            <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarServicio" >
                                 <SelectedRowStyle BackColor="#7BC143" />
                             </asp:GridView>
                         </div>

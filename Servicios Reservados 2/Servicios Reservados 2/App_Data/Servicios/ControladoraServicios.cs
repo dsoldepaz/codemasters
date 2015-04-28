@@ -48,5 +48,10 @@ namespace Servicios_Reservados_2.Servicios
             return servicios;
 
         }
+
+        internal void seleccionarServicio(String id)
+        {
+            //DataTable servicios = controladora.seleccionarServicio(id);
+        }
     }
 }

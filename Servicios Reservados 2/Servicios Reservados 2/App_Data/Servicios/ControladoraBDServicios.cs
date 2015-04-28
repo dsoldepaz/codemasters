@@ -29,7 +29,7 @@ namespace Servicios_Reservados_2.Servicios
 
         internal DataTable solicitarServicios(String id)
         {
-            String consultaSQL = "select s.idreservacion, e.tipo, s.descripcion, s.hora, s.fecha, s.consumido, s.pax from servicio_especial s JOIN servicios_extras e ON e.idservicio = s.idserviciosextras AND s.idreservacion= '" + id + "'";
+            String consultaSQL = "select s.idreservacion, e.idservicio, e.tipo, s.descripcion, s.hora, s.fecha, s.consumido, s.pax from servicio_especial s JOIN servicios_extras e ON e.idservicio = s.idserviciosextras AND s.idreservacion= '" + id + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
 

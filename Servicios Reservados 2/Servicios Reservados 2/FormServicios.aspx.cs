@@ -15,6 +15,8 @@ namespace Servicios_Reservados_2
         private ControladoraServicios controladora = new ControladoraServicios();
         private static DataTable reservacion = new DataTable();
         private static String[] ids;
+        private static String[] idServ;
+        
         
         
         protected void Page_Load(object sender, EventArgs e)
@@ -62,7 +64,7 @@ namespace Servicios_Reservados_2
                 DataTable servicios = controladora.solicitarServicios(controladora.idSelected());// se consultan todos
                 
                 ids = new String[servicios.Rows.Count]; //crear el vector para ids en el grid
-
+                idServ = new String[servicios.Rows.Count];
                 int i = 0;
                 Debug.WriteLine("what!!");
 
@@ -74,12 +76,13 @@ namespace Servicios_Reservados_2
                     {
                         Debug.WriteLine("UNO");
                         ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
-                        datos[0] = fila[1].ToString();//obtener los datos a mostrar
-                        datos[1] = fila[2].ToString();
-                        datos[2] = fila[3].ToString();
-                        datos[3] = DateTime.Parse(fila[4].ToString());
-                        datos[4] = fila[5].ToString();
-                        datos[5] = fila[6].ToString();
+                        idServ[i] = fila[1].ToString();
+                        datos[0] = fila[2].ToString();//obtener los datos a mostrar
+                        datos[1] = fila[3].ToString();
+                        datos[2] = fila[4].ToString();
+                        datos[3] = DateTime.Parse(fila[5].ToString());
+                        datos[4] = fila[6].ToString();
+                        datos[5] = fila[7].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
                     }
@@ -143,7 +146,10 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
-        
-        
+
+        protected void seleccionarServicio(object sender, EventArgs e)
+        {
+            controladora.seleccionarServicio(ids[GridServicios.SelectedIndex]);
+        }
     }
 }
