@@ -20,7 +20,7 @@
             <ContentTemplate>
                 <fieldset>
                     <div class="well bs-component">
-                        <legend style="color: #7BC143">Filtro de reservación</legend>
+                        <legend  class="titulo">Filtro de reservación</legend>
                             <fieldset>
                                 <table>
                                     <tr>
@@ -47,7 +47,7 @@
                                 </table>                                
                               </div>
                     <div class="well bs-component">
-                        <legend style="color: #7BC143">Listado de reservaciones</legend>
+                        <legend class="titulo">Listado de reservaciones</legend>
                                 <table>
                                     <tr>
                                         <td>

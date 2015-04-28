@@ -172,6 +172,7 @@ fieldset {
 legend {
   padding: 0;
   border: 0;
+  color: #7BC143;
 }
 textarea {
   overflow: auto;
@@ -2497,7 +2498,7 @@ legend {
   line-height: inherit;
   color: #333;
   border: 0;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 2px solid #7BC143;
 }
 label {
   display: inline-block;

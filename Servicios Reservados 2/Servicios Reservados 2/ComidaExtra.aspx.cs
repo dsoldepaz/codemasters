@@ -130,6 +130,11 @@ namespace Servicios_Reservados_2
             fechaDeEntradaCalendario.Visible = !fechaDeEntradaCalendario.Visible;
         }
 
+        protected void fechaDeEntradaCalendario_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 
