@@ -17,7 +17,6 @@ namespace Servicios_Reservados_2
         private static String[] ids;
         
         
-        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
