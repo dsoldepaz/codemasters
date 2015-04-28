@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Comida Extra</title>
     <link rel="stylesheet" href="Content/reset.css"/>
+    <link rel="stylesheet"href="Content/Site.css" />
     <link rel="stylesheet" href="Content/CalendarControl.css" />
     <link rel="stylesheet" href="Content/ComidasExtra.css" />
     
@@ -27,8 +28,13 @@
             <section class="principal">
                 <ul>
                     <li class="itemContenedor">
-                        Fecha: <input id="fechaDeEntrada" class="selectorDeFecha" type="button" runat="server" onserverclick="fechaDeEntrada_ServerClick"/>
-                     <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" BackColor="White" BorderStyle="None" ForeColor="#7BC143" Height="80px" Width="100px"></asp:Calendar>
+                        Fecha:<input id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled /> <input id="fechaDeEntrada" class="selectorDeFecha" type="button" runat="server" onserverclick="fechaDeEntrada_ServerClick"/>
+                     <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" BackColor="#CCCCCC" BorderStyle="Dashed" ForeColor="#7BC143" Height="80px" Width="100px" BorderWidth="1px" Visible="false" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged">
+                         <DayHeaderStyle ForeColor="#333333" Wrap="True" />
+                         <DayStyle ForeColor="Black" />
+                         <NextPrevStyle ForeColor="Black" />
+                         <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
+                        </asp:Calendar>
                     </li>
                     <li class="itemContenedor">Hora:<input id="txtHora" runat="server"/>
                     </li>

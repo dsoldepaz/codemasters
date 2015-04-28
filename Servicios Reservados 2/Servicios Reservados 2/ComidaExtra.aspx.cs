@@ -13,6 +13,7 @@ namespace Servicios_Reservados_2
     public partial class ComidaExtra : System.Web.UI.Page
     {
         static DataTable tipo;
+        static EntidadComidaExtra entidadVieja;
 
         private static String[] idReservacion = FormReservaciones.ids;
         private static ControladoraComidaExtra controladora = new ControladoraComidaExtra();
@@ -79,7 +80,7 @@ namespace Servicios_Reservados_2
             nuevoServicio[6] = txtHora.Value;
 
 
-            String[] error = controladora.modificarServicioExtra(nuevoServicio);// se le pide a la controladora que lo inserte
+            String[] error = controladora.modificarServicioExtra(nuevoServicio, entidadVieja);// se le pide a la controladora que lo inserte
             mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
             return res;
         }
@@ -147,6 +148,11 @@ namespace Servicios_Reservados_2
         protected void fechaDeEntrada_ServerClick(object sender, EventArgs e)
         {
             fechaDeEntradaCalendario.Visible = !fechaDeEntradaCalendario.Visible;
+        }
+
+        protected void fechaDeEntradaCalendario_SelectionChanged(object sender, EventArgs e)
+        {
+
         }
 
 
