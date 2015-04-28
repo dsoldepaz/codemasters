@@ -1,7 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormServirPlatos.aspx.cs" Inherits="Servicios_Reservados_2.FormServirPlatos" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+﻿<%@ Page Title="Servir Platos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormServirPlatos.aspx.cs" Inherits="Servicios_Reservados_2.FormServirPlatos" %>
 
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <nav>
             <ul>
@@ -11,25 +9,37 @@
                 <li class="item-navegacion">Notificaciones <span class="notificacion">0</span></li>
             </ul>
         </nav>
-        <h1>
-            Servir Platos
-        </h1>
-        <section class="principal">
-            <section class="contenedor">
-                <ul>
-                    <li class="itemContenedor">
-                     Tiquete:<input id="tiquete" runat="server" />
-                     </li>
-                     <li class="itemContenedor">
-                     <input type="button" value="Verificar" onserverclick="clickVerificar" runat="server" formmethod="post" />
-                     </li>
-                     <li class="itemContenedor">
-                     <input type="button" value="Servir" />
-                     </li>
-                </ul>
-            </section>
+    <fieldset>
+        <legend>
+            <h2>Servir Platos</h2>
+        </legend>
+         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <div class="well bs-component">
+                    <fieldset>
+                        <legend style="color: #7BC143">Información del PAX</legend>
+
+                         <table>
+                            <tr>
+                                <td>Tiquete:</td>
+                                <td>
+                                    <input id="tiquete" runat="server" />
+                                <td>
+                                    <input id="Button1" runat="server" type="button" class="btn btn-success" value="Verificar" />
+                                </td>
+                                <td>
+                                    <input id="Button2" runat="server" type="button" class="btn btn-success" value="Servir" />
+
+                            </tr>
+                          
+                        </table>
+                        </div>
+
+                        <div class="well bs-component">
+                    <fieldset>
+                        <legend style="color: #7BC143">Información de reservación</legend>
+
                 <table>
-					<caption>Información de reservación</caption>
 					<tr>
 						<th>Cliente</th>
 						<th>Anfitriona</th>
@@ -46,7 +56,20 @@
 						<td class="basura"> <textarea id="notasArea"  runat="server"> </textarea></td>
 					</tr>
 				</table>
-         </section>
-    </form>
+
+                <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
+                                <SelectedRowStyle BackColor="#7BC143" />
+                            </asp:GridView>
+
+                        </div>
+                
+
+               
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+    </fieldset>
+
+               
 
 </asp:Content>

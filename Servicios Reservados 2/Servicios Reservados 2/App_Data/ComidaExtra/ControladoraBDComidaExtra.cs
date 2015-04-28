@@ -31,8 +31,8 @@ namespace Servicios_Reservados_2
             String[] respuesta = new String[3];
             try
             {
-                String consultaSQL = "insert into servicio_especial values('" + entidad.IdReservacionItem + "','" + entidad.IdServiciosExtras + "','" +
-                    entidad.Fecha + "','" + entidad.Consumido + "','" + entidad.Descripcion + "'," + entidad.Pax + ")";
+                String consultaSQL = "insert into servicio_especial values('" + entidad.IdReservacion + "','" + entidad.IdServiciosExtras + "'," + 
+                    entidad.Pax + ",'" + entidad.Fecha + "','" + entidad.Consumido + "','" + entidad.Descripcion + "','" + entidad.Hora + "')";
                 adaptador.insertar(consultaSQL);
                
                 respuesta[0] = "success";
@@ -62,6 +62,42 @@ namespace Servicios_Reservados_2
             return respuesta;
         }
 
+        public String[] modificarServicioExtra(EntidadComidaExtra entidad, EntidadComidaExtra entidadVieja)
+        {
+            String[] respuesta = new String[3];
+            try
+            {
+                String consultaSQL = "update servicio_especial set pax =" + "'" + entidad.Pax + "', fecha = '"+ entidad.Fecha + "', consumido = '" + entidad.Consumido + "', descripcion = '" + entidad.Descripcion + "', hora = '" + entidad.Hora + "'" +
+                                      "where idreservacion = '" + entidadVieja.IdReservacion + "' and idserviciosextras = '" + entidadVieja.IdServiciosExtras + "';"; 
+
+                adaptador.insertar(consultaSQL);
+               
+                respuesta[0] = "success";
+                respuesta[1] = "Exito. ";
+                respuesta[2] = "El usuario se ha insertado exitosamente";
+            }
+            catch (SqlException e)
+            {
+                int r = e.Number;
+
+                if (r == 2627)
+                {
+                    
+                    respuesta[0] = "danger";
+                    respuesta[1] = "Error. ";
+                    respuesta[2] = "Informacion ingresada ya existe";
+                }
+                else
+                {
+                    
+                    respuesta[0] = "danger";
+                    respuesta[1] = "Error. ";
+                    respuesta[2] = "No se pudo agregar el servicio extra";
+                }
+
+            }
+            return respuesta;
+        }
 
     }
 }

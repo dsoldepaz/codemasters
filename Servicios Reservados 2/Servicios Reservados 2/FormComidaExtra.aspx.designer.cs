@@ -10,69 +10,96 @@
 namespace Servicios_Reservados_2 {
     
     
-    public partial class comedor {
+    public partial class FormComidaExtra {
         
         /// <summary>
-        /// Control form1.
+        /// Control alertAlerta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertAlerta;
         
         /// <summary>
-        /// Control tiquete.
+        /// Control labelTipoAlerta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tiquete;
+        protected global::System.Web.UI.WebControls.Label labelTipoAlerta;
         
         /// <summary>
-        /// Control clienteArea.
+        /// Control labelAlerta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea clienteArea;
+        protected global::System.Web.UI.WebControls.Label labelAlerta;
         
         /// <summary>
-        /// Control anfitrionaArea.
+        /// Control textFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell anfitrionaArea;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText textFecha;
         
         /// <summary>
-        /// Control estacionArea.
+        /// Control fechaDeEntrada.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell estacionArea;
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton fechaDeEntrada;
         
         /// <summary>
-        /// Control servidoArea.
+        /// Control fechaDeEntradaCalendario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell servidoArea;
+        protected global::System.Web.UI.WebControls.Calendar fechaDeEntradaCalendario;
         
         /// <summary>
-        /// Control notasArea.
+        /// Control txtHora.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea notasArea;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtHora;
+        
+        /// <summary>
+        /// Control txtPax.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtPax;
+        
+        /// <summary>
+        /// Control cbxTipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect cbxTipo;
+        
+        /// <summary>
+        /// Control txaNotas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txaNotas;
     }
 }
