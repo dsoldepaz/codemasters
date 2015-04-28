@@ -41,6 +41,12 @@ namespace Servicios_Reservados_2
           return resultado;
       }
 
+      public String[] eliminarServicioExtra(String idReservacion, String idComidaExtra) 
+      {
+          String[] resultado = controladoraBD.eliminarServicioExtra(idReservacion, idComidaExtra);
+          return resultado;
+      }
+
     }
 
 }

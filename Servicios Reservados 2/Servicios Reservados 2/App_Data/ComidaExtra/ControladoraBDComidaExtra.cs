@@ -99,5 +99,41 @@ namespace Servicios_Reservados_2
             return respuesta;
         }
 
+        public String[] eliminarServicioExtra(String idReservacion, String idComidaExtra)
+        {
+            String[] respuesta = new String[3];
+            try
+            {
+                String consultaSQL = "delete servicio_especial where idReservacion =" + idReservacion + "and idserviciosextras = " + idComidaExtra;
+
+                adaptador.insertar(consultaSQL);
+
+                respuesta[0] = "success";
+                respuesta[1] = "Exito. ";
+                respuesta[2] = "El usuario se ha insertado exitosamente";
+            }
+            catch (SqlException e)
+            {
+                int r = e.Number;
+
+                if (r == 2627)
+                {
+
+                    respuesta[0] = "danger";
+                    respuesta[1] = "Error. ";
+                    respuesta[2] = "Informacion ingresada ya existe";
+                }
+                else
+                {
+
+                    respuesta[0] = "danger";
+                    respuesta[1] = "Error. ";
+                    respuesta[2] = "No se pudo agregar el servicio extra";
+                }
+
+            }
+            return respuesta;
+        }
+
     }
 }

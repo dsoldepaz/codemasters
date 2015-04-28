@@ -39,7 +39,7 @@ namespace Servicios_Reservados_2
         void llenarComboBoxTipo() {
             tipo = controladora.solicitarTipo();
             cbxTipo.Items.Clear();
-            cbxTipo.Items.Add("Sleccionar");
+            cbxTipo.Items.Add("Seleccionar");
             if (tipo.Rows.Count > 0) {
                 foreach (DataRow fila in tipo.Rows) {
                     cbxTipo.Items.Add(fila[1].ToString());
@@ -81,6 +81,17 @@ namespace Servicios_Reservados_2
 
 
             String[] error = controladora.modificarServicioExtra(nuevoServicio, entidadVieja);// se le pide a la controladora que lo inserte
+            mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+            return res;
+        }
+
+        protected Boolean eliminarServicioExtra()
+        {
+            String idReservacion = "";
+            String idComidaExtra = "";
+
+            Boolean res = true;
+            String[] error = controladora.eliminarServicioExtra(idReservacion, idComidaExtra);// se le pide a la controladora que lo inserte
             mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
             return res;
         }
