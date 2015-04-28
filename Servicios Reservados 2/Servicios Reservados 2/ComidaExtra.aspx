@@ -12,6 +12,22 @@
     <link rel="stylesheet" href="Content/ComidasExtra.css" />
     
 </head>
+ <header style="color: green">
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">
+                        <a runat="server" href="~/">
+                            <img src="/Images/imagenes_OET/logoOETtrans2.png"></a>
+                    </p>
+                </div>
+                <div class="float-right">
+                    <section id="ayuda">
+                        <a href="https://docs.google.com/document/d/1PPBB83dv5V64j8iNPMfEayC5TYZj0PGjs_wwYcnV5zk/edit?usp=sharing" target="_blank" class="btn btn-link" role="button">
+                            <img src="/Images/help.png" height="25px"></a>
+                    </section>
+                </div>
+            </div>
+        </header>
        <a href="/FormUsuario">
             <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -19,12 +35,11 @@
                     <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
             </div>
         </a>
-
 <body>
     <form id="form1" runat="server">
         <fieldset>
 
-            <h3>Comida Extra</h3>
+            <h2>Comida Extra</h2>
             <section class="principal">
                 <ul>
                     <li class="itemContenedor">
