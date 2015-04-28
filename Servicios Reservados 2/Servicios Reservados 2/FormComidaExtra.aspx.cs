@@ -51,7 +51,7 @@ namespace Servicios_Reservados_2
         {
             Boolean res = true;
             Object[] nuevoServicio = new Object[7];
-            nuevoServicio[0] = "ANURA0229032005.0142746515";//idReservacion[0];
+            nuevoServicio[0] = idReservacion[0];
             int indice = cbxTipo.SelectedIndex-1;
             nuevoServicio[1] = tipo.Rows[indice][0];
             nuevoServicio[2] = fechaDeEntradaCalendario.SelectedDate.ToString("dd/MM/yyyy");

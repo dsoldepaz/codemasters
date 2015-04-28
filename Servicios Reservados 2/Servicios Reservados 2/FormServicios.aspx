@@ -55,7 +55,7 @@
                         <legend style="color: #7BC143">Agregar Servicios extra</legend>
                         <table>
                             <tr>
-                                <td><a href="ComidaExtra.aspx">
+                                <td><a href="FormComidaExtra.aspx">
                                     <input type="button" class="btn btn-success" value="Comida Extra" /></a></td>
                                 <td>
                                     <input type="button" class="btn btn-success" value="Comida De Campo" />
