@@ -22,7 +22,7 @@
                         <td>
                             <select style="width: 176px" id="cbxAnfitriona" runat="server" ></select>
                         </td>
-                        <td style="width: 10%">Estación:</td>
+                        <td style="width: 10%; padding-left ="10px;">Estación:</td>
                         <td>
                             <select style="width: 176px" id ="cbxEstacion" runat="server"></select>
                         </td>
@@ -35,7 +35,7 @@
                             <input class="textbox" id="txtSolicitante" runat="server"/>
                         </td>
                         <td>
-                            <button type="button" class="default" id="BotonBuscar" onserverclick="clickBuscar" runat="server">Buscar</button>
+                            <button type="button" class="btn btn-success" id="BotonBuscar" onserverclick="clickBuscar" runat="server">Buscar</button>
                         </td>
                     </tr>
                 </table>
