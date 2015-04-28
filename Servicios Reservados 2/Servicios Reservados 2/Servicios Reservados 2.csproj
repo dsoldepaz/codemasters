@@ -165,7 +165,6 @@
     <Content Include="FormEmpleadoReserva.aspx" />
     <Content Include="FormServirPlatos.aspx" />
     <Content Include="Images\help.png" />
-    <Content Include="servirPlatos.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\comedor.css" />
     <Content Include="Content\ComidasExtra.css" />
@@ -286,10 +285,10 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="lunchbox.aspx" />
+    <Content Include="FormLunchbox.aspx" />
     <Content Include="oet.ico" />
     <Content Include="packages.config" />
-    <Content Include="ComidaExtra.aspx" />
+    <Content Include="FormComidaExtra.aspx" />
     <Content Include="Content\bootstrap-3.3.4-dist\css\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap-3.3.4-dist\css\bootstrap.css.map" />
     <Content Include="Content\bootstrap-3.3.4-dist\fonts\glyphicons-halflings-regular.eot" />
@@ -411,13 +410,6 @@
     <Compile Include="FormServirPlatos.aspx.designer.cs">
       <DependentUpon>FormServirPlatos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="servirPlatos.aspx.cs">
-      <DependentUpon>servirPlatos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="servirPlatos.aspx.designer.cs">
-      <DependentUpon>servirPlatos.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -460,12 +452,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="lunchbox.aspx.cs">
-      <DependentUpon>lunchbox.aspx</DependentUpon>
+    <Compile Include="FormLunchbox.aspx.cs">
+      <DependentUpon>FormLunchbox.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="lunchbox.aspx.designer.cs">
-      <DependentUpon>lunchbox.aspx</DependentUpon>
+    <Compile Include="FormLunchbox.aspx.designer.cs">
+      <DependentUpon>FormLunchbox.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Data\Servicios\ControladoraServicios.cs" />
@@ -491,12 +483,12 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ComidaExtra.aspx.cs">
-      <DependentUpon>ComidaExtra.aspx</DependentUpon>
+    <Compile Include="FormComidaExtra.aspx.cs">
+      <DependentUpon>FormComidaExtra.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ComidaExtra.aspx.designer.cs">
-      <DependentUpon>ComidaExtra.aspx</DependentUpon>
+    <Compile Include="FormComidaExtra.aspx.designer.cs">
+      <DependentUpon>FormComidaExtra.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

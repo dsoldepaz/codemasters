@@ -1,9 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormServicios.aspx.cs" Inherits="Servicios_Reservados_2.FormServicios" %>
+﻿<%@ Page Title="Servicios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormServicios.aspx.cs" Inherits="Servicios_Reservados_2.FormServicios" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <link rel="stylesheet" href="Content/Servicios.css" />
-
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <nav>
         <ul>
@@ -12,65 +8,88 @@
             <li class="item-navegacion">Notificaciones <span class="notificacion">0</span></li>
         </ul>
     </nav>
+    <fieldset>
+        <legend>
+            <h2>Reservaciones del Servicio</h2>
+        </legend>
 
-    <h1>Reservaciones del Servicio
-    </h1>
-    <section class="principal">
-        <section class="contenedor">
-            <h2>Información de la Reserva</h2>
-            <ul>
-                <li class="itemContenedor">Anfitriona:<input id="txtAnfitriona" runat="server" />
-                </li>
-                <li class="itemContenedor">Estacion:<input id="txtEstacion" runat="server" />
-                </li>
-                <li class="itemContenedor">Nombre<input id="txtNombre" runat="server" />
-                </li>
-                <li class="itemContenedor">Fecha De Entrada:<input id="fechaInicio" runat="server" />
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <div class="well bs-component">
+                    <fieldset>
+                        <legend style="color: #7BC143">Información de reservación</legend>
 
-                </li>
-                <li class="itemContenedor">Fecha De Salida:<input id="fechaFinal" runat="server" />
-                </li>
-                <li class="itemContenedor">Numero de PAX<input id="txtPax" type="number" runat="server" />
-                </li>
-            </ul>
-            <section class="contenedor">
-                <h2>Agregar Servicios extra</h2>
-                <ul>
-                    <li class="itemContenedor">
-                        <a href="ComidaExtra.aspx">
-                            <input type="button" class="btn btn-success" value="Comida Extra" />
-                    </li>
-                    <li class="itemContenedor">
-                        <a>
-                            <input type="button" class="btn btn-success" value="Comida De Campo" /></a>
-                    </li>
-                    <li class="itemContenedor">
-                        <a>
-                            <input type="button" class="btn btn-success" value="Servicio de Guías" /></a>
-                    </li>
-                </ul>
+                        <table>
+                            <tr>
+                                <td>Anfitriona:</td>
+                                <td>
+                                    <input id="txtAnfitriona" runat="server" /></td>
+                                <td>Estacion:</td>
+                                <td>
+                                    <input id="txtEstacion" runat="server" />
+                                </td>
+                                <td>Solicitante:</td>
+                                <td>
+                                    <input id="txtNombre" runat="server" /></td>
 
-            </section>
-            <h3>Agregar Servicios extra</h3>
-            <section class="contenedor_tabla">
-                <aside id="botonesLaterales">
-                    <input type="button" class="btn btn-success" value="Consultar" />
-                    <input type="button" class="btn btn-success" value="Modificar" />
-                    <input type="button" class="btn btn-success" value="Elimnar" />
-                </aside>
+                            </tr>
+                            <tr>
+                                <td>Fecha De Entrada:</td>
+                                <td>
+                                    <input id="fechaInicio" runat="server" /></select>
+                                </td>
+                                <td>Fecha De Salida:</td>
+                                <td>
+                                    <input id="fechaFinal" runat="server" /></select>
+                                </td>
+                                <td>Numero de PAX:</td>
+                                <td>
+                                    <input id="txtPax" runat="server" /></select>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </div>
+                <div class="well bs-component">
+                    <fieldset>
+                        <legend style="color: #7BC143">Agregar Servicios extra</legend>
+                        <table>
+                            <tr>
+                                <td><a href="ComidaExtra.aspx">
+                                    <input type="button" class="btn btn-success" value="Comida Extra" /></a></td>
+                                <td>
+                                    <input type="button" class="btn btn-success" value="Comida De Campo" />
+                                </td>
+                                <td>
+                                    <input type="button" class="btn btn-success" value="Servicio de Guías" /></td>
+                            </tr>
+                        </table>
+                </div>
+                <div class="well bs-component">
+                    <fieldset>
 
-                <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
-                    <SelectedRowStyle BackColor="#7BC143" />
-                </asp:GridView>
+                        <legend style="color: #7BC143">Listado de servicios</legend>
+                        <div class="well bs-component">
 
-            </section>
+                            <aside id="botonesLaterales">
+                                <input type="button" class="btn btn-success" value="Consultar" />
+                                <input type="button" class="btn btn-success" value="Modificar" />
+                                <input type="button" class="btn btn-success" value="Elimnar" />
+                            </aside>
+                            <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" >
+                                <SelectedRowStyle BackColor="#7BC143" />
+                            </asp:GridView>
+                        </div>
+                        <input type="button" class="btn btn-danger" value="Cancelar" />
+                        <input type="button" class="btn btn-success" value="Aceptar" />
 
-        </section>
-        <input type="button" class="btn btn-danger" value="Cancelar" />
-        <input type="button" class="btn btn-success" value="Aceptar" />
+                    </fieldset>
+                </div>
 
-    </section>
 
-    <script type="text/javascript" src="Scripts/jquery-2.1.3.min.js"></script>
-    </a>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+    </fieldset>
+        
 </asp:Content>

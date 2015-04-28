@@ -88,6 +88,7 @@ namespace Servicios_Reservados_2
                 {
                     foreach (DataRow fila in reservaciones.Rows)
                     {
+                        
                         ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
                         datos[0] = fila[1].ToString();//obtener los datos a mostrar
                         datos[1] = fila[2].ToString();
@@ -98,6 +99,7 @@ namespace Servicios_Reservados_2
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
                     }
+                   
                 }
 
                 Session["tablaa"] = tabla;
@@ -166,6 +168,7 @@ namespace Servicios_Reservados_2
             controladora.seleccionarReservacion(ids[GridViewReservaciones.SelectedIndex]);
         }
          
+
         protected void clickBuscar(object sender, EventArgs e)
         {
             String anfitriona = "vacio";

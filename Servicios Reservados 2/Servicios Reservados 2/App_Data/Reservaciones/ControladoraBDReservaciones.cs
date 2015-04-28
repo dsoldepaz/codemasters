@@ -21,7 +21,6 @@ namespace Servicios_Reservados_2
         }
         internal DataTable consultarTodasReservaciones() {
             String fechaLocal = fechaHoy.ToString("dd/MM/yyyy");
-            Debug.WriteLine(fechaHoy.ToString("dd/MM/yyyy"));
             String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero, c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE sale >= TO_DATE('"+fechaLocal+"','dd/mm/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id  order by sale asc";
             dt = adaptador.consultar(consultaSQL);
             

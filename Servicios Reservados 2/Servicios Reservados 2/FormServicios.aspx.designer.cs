@@ -13,6 +13,15 @@ namespace Servicios_Reservados_2 {
     public partial class FormServicios {
         
         /// <summary>
+        /// Control UpdatePanel1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
         /// Control txtAnfitriona.
         /// </summary>
         /// <remarks>
@@ -64,7 +73,7 @@ namespace Servicios_Reservados_2 {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtPax;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPax;
         
         /// <summary>
         /// Control GridServicios.

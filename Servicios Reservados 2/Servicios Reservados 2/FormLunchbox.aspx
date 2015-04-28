@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="lunchbox.aspx.cs" Inherits="Servicios_Reservados_2.lunchbox" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FormLunchbox.aspx.cs" Inherits="Servicios_Reservados_2.lunchbox" %>
 
 <!DOCTYPE html>
 
