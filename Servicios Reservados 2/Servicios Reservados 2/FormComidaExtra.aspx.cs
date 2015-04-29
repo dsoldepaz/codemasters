@@ -25,7 +25,7 @@ namespace Servicios_Reservados_2
             if (!IsPostBack)
             {
                 cargarDatos();
-                consultarServicio();
+                //consultarServicio();
             }
         }
 
@@ -114,6 +114,7 @@ namespace Servicios_Reservados_2
         protected void clickAceptar(object sender, EventArgs e)
         {
             agregarServicioExtra();
+            Response.Redirect("FormServiios");
             
         }
 
