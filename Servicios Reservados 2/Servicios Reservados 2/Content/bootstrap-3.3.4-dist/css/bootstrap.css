@@ -61,7 +61,7 @@ dfn {
   font-style: italic;
 }
 h1 {
-  margin: .67em 0;
+  /* margin: .67em 0; */
   font-size: 2em;
 }
 mark {
@@ -114,7 +114,6 @@ input,
 optgroup,
 select,
 textarea {
-  margin: 0;
   font: inherit;
   color: inherit;
 }
@@ -167,7 +166,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 fieldset {
   padding: .35em .625em .75em;
-  margin: 0 2px;
+  /* margin: 0 2px; */
   border: 1px solid #c0c0c0;
 }
 legend {
@@ -1191,7 +1190,7 @@ h6,
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
-  color: inherit;
+  /* color: inherit; */
 }
 h1 small,
 h2 small,
@@ -2486,7 +2485,7 @@ table th[class*="col-"] {
 fieldset {
   min-width: 0;
   padding: 0;
-  margin: 0;
+  /* margin: 0; */
   border: 0;
 }
 legend {

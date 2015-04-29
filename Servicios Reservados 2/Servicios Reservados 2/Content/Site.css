@@ -356,6 +356,7 @@ aside {
 
 fieldset.open-auth-providers {
     margin-top: 15px;
+    margin-left: 24px;
 }
 
     fieldset.open-auth-providers button {
@@ -379,7 +380,7 @@ fieldset.open-auth-providers {
 /* forms */
 fieldset {
     width:90%;
-    margin: 64px;;
+    margin: 24px;;
     padding: 50px;
 }
 
@@ -403,13 +404,13 @@ label {
     }
 
 input, textarea {
-    border: 1px solid #e2e2e2;
-    background: #fff;
-    color: #333;
-    font-size: 1.2em;
-    margin: 5px 0 6px 0;
-    padding: 5px;
-    width: 300px;
+border: 1px solid #e2e2e2;
+  background: #fff;
+  color: #333;
+  font-size: 1.2em;
+  margin: 5px 10px 6px 0;
+  padding: 5px;
+  width: 200px;
 }
 
 textarea {
@@ -766,7 +767,10 @@ li.item-navegacion>a{
 }
 li.item-navegacion>a.seleccionado{
     font-size:1.2em;
+    font-weight:bold;
     word-spacing:0.2em;
+    background-color: #3F8C00;
+    border-radius:3px;
 }
 span.notificacion{
     background-color: #F26631;
