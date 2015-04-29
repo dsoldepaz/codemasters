@@ -10,16 +10,19 @@ namespace Servicios_Reservados_2
 {
     public class ControladoraBDReservaciones
     {
-         
+        private DateTime fechaHoy;         
         private AdaptadorReservaciones adaptador;
         DataTable dt;
         public ControladoraBDReservaciones()
         {
             adaptador = new AdaptadorReservaciones();
             dt = new DataTable();
+            fechaHoy = DateTime.Today;
         }
         internal DataTable consultarTodasReservaciones() {
-            String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero, c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE entra >= TO_DATE('26/JAN/2017','dd/mon/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id  order by entra desc";
+            String fechaLocal = fechaHoy.ToString("dd/MM/yyyy");
+            Debug.WriteLine(fechaHoy.ToString("dd/MM/yyyy"));
+            String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero, c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE sale >= TO_DATE('"+fechaLocal+"','dd/mm/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id  order by sale asc";
             dt = adaptador.consultar(consultaSQL);
             
             return dt;
@@ -47,7 +50,7 @@ namespace Servicios_Reservados_2
         /*veamis*/
         internal DataTable solicitarInfo(String id)
         {
-            String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero, c.nombre, r.entra, r.sale FROM reservacion r, anfitriona a, estacion e,contacto c WHERE r.id = '" + id + "' and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id  order by entra desc";
+            String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero, c.nombre, r.entra, r.sale FROM reservacion r, anfitriona a, estacion e,contacto c WHERE r.id = '" + id + "' and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id  order by sale asc";
             dt = adaptador.consultar(consultaSQL);
             return dt;
 
@@ -55,48 +58,48 @@ namespace Servicios_Reservados_2
 
 
         internal DataTable consultarReservaciones(String anfitriona,String estacion, String solicitante){
-            
+            String fechaLocal = fechaHoy.ToString("dd/MM/yyyy");
             if (anfitriona.CompareTo("vacio") != 0 && estacion.CompareTo("vacio") != 0 && solicitante.CompareTo("vacio") != 0){
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE entra >= TO_DATE('26/JAN/2017','dd/mon/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='"+anfitriona+"' and e.nombre= '"+estacion+"' and c.nombre like '%"+solicitante+"%' order by entra desc";
+                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','dd/mm/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' and e.nombre= '" + estacion + "' and c.nombre like '%" + solicitante + "%' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
             else if (anfitriona.CompareTo("vacio") != 0 && estacion.CompareTo("vacio") != 0 && solicitante.CompareTo("vacio") == 0)
             {
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE entra >= TO_DATE('26/JAN/2017','dd/mon/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' and e.nombre= '" + estacion + "'  order by entra desc";
+                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','dd/mm/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' and e.nombre= '" + estacion + "'  order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             
             }
             else if (anfitriona.CompareTo("vacio") != 0 && estacion.CompareTo("vacio") == 0 && solicitante.CompareTo("vacio") != 0)
             {
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE entra >= TO_DATE('26/JAN/2017','dd/mon/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' and c.nombre like '%" + solicitante + "%' order by entra desc";
+                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','dd/mm/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' and c.nombre like '%" + solicitante + "%' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
             else if (anfitriona.CompareTo("vacio") == 0 && estacion.CompareTo("vacio") != 0 && solicitante.CompareTo("vacio") != 0)
             {
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE entra >= TO_DATE('26/JAN/2017','dd/mon/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and e.nombre= '" + estacion + "' and c.nombre like '%" + solicitante + "%' order by entra desc";
+                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','dd/mm/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and e.nombre= '" + estacion + "' and c.nombre like '%" + solicitante + "%' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
             else if (anfitriona.CompareTo("vacio") != 0 && estacion.CompareTo("vacio") == 0 && solicitante.CompareTo("vacio") == 0)
             {
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE entra >= TO_DATE('26/JAN/2017','dd/mon/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' order by entra desc";
+                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','dd/mm/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
             else if (anfitriona.CompareTo("vacio") == 0 && estacion.CompareTo("vacio") != 0 && solicitante.CompareTo("vacio") == 0)
             {
                 Debug.WriteLine("si calcula bien este paso");
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE entra >= TO_DATE('26/JAN/2017','dd/mon/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and e.nombre= '" + estacion + "' order by entra desc";
+                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','dd/mm/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and e.nombre= '" + estacion + "' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
 
             else if (anfitriona.CompareTo("vacio") == 0 && estacion.CompareTo("vacio") == 0 && solicitante.CompareTo("vacio") != 0)
             {
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE entra >= TO_DATE('26/JAN/2017','dd/mon/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and  c.nombre like '%" + solicitante + "%' order by entra desc";
+                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','dd/mm/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and  c.nombre like '%" + solicitante + "%' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
 
             else if (anfitriona.CompareTo("vacio") != 0 && estacion.CompareTo("vacio") != 0 && solicitante.CompareTo("vacio") == 0)
             {
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE entra >= TO_DATE('26/JAN/2017','dd/mon/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' and e.nombre= '" + estacion + "' order by entra desc";
+                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservacion r, anfitriona a, estacion e,contacto c WHERE sale >= TO_DATE('26/JAN/2017','dd/mon/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' and e.nombre= '" + estacion + "' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
            

@@ -42,7 +42,7 @@
                 <table>
                     <tr>
                         <td>
-                            <asp:GridView ID="GridViewReservaciones" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarReservacion" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
+                            <asp:GridView ID="GridViewReservaciones" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarReservacion" AllowPaging="true"  AllowSorting="true"     PageSize = "20" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
                                 <AlternatingRowStyle BorderStyle="None" />
                                 <HeaderStyle Font-Size="1.3em" />
                                 <SelectedRowStyle BackColor="#7BC143"
