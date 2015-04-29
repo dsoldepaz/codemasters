@@ -150,7 +150,7 @@ namespace Servicios_Reservados_2
         /**
         * Requiere: haber cargado el grid
         * Efectua: cambia la reservacion selecionada.
-        * retorna:  nada.
+        * retorna:  nada. ashdashdahsdhasd
         */
         protected void seleccionarReservacion(object sender, EventArgs e)
         {
