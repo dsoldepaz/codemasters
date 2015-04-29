@@ -13,7 +13,7 @@ namespace Servicios_Reservados_2
     {
         private static ControladoraReservaciones controladora = new ControladoraReservaciones();
         public static String[] ids;
-
+        DataTable tablaP;
         private static Boolean seConsulto = false;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,7 +25,7 @@ namespace Servicios_Reservados_2
 
 
             }
-
+            
 
             // ponerModo();
         }
@@ -40,6 +40,15 @@ namespace Servicios_Reservados_2
             llenarGridReservaciones();
             
         }
+
+        protected void GridViewReservaciones_PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
+
+            GridViewReservaciones.PageIndex = e.NewPageIndex;
+            GridViewReservaciones.DataSource = Session["tablaa"];
+            GridViewReservaciones.DataBind();
+            
+        } 
         void llenarComboboxReservaciones()
         {
             DataTable anfitriones = controladora.solicitarAnfitriones();
@@ -91,7 +100,7 @@ namespace Servicios_Reservados_2
                     }
                 }
 
-
+                Session["tablaa"] = tabla;
                 GridViewReservaciones.DataBind();
                 //Debug.WriteLine("hola");
             }
@@ -150,7 +159,7 @@ namespace Servicios_Reservados_2
         /**
         * Requiere: haber cargado el grid
         * Efectua: cambia la reservacion selecionada.
-        * retorna:  nada. ashdashdahsdhasd
+        * retorna:  nada. 
         */
         protected void seleccionarReservacion(object sender, EventArgs e)
         {
@@ -205,7 +214,7 @@ namespace Servicios_Reservados_2
                           i++;
                       }
                   }
-
+                  Session["tablaa"] = tabla;
                     //GridViewReservaciones.DataSource = tabla;
                   GridViewReservaciones.DataBind();
 

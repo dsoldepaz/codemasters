@@ -10,6 +10,7 @@
         </ul>
     </nav>
     <fieldset>
+
         <legend>
             <h2>Reservaciones</h2>
         </legend>
@@ -19,6 +20,59 @@
                     <fieldset>
                         <div class="well bs-component">
                             <legend style="color: #7BC143">Filtro de reservación</legend>
+
+        <div>
+            <fieldset>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <legend style="color: #7BC143">Información de reservación</legend>
+                <table>
+                    <tr>
+                         <td style="width: 10%">Anfitriona:</td>
+                        <td>
+                            <select style="width: 176px" id="cbxAnfitriona" runat="server" ></select>
+                        </td>
+                        <td style="width: 10%; padding-left ="10px;">Estación:</td>
+                        <td>
+                            <select style="width: 176px" id ="cbxEstacion" runat="server"></select>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td >Solicitante:</td>
+                        <td >
+                            <input class="textbox" id="txtSolicitante" runat="server"/>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-success" id="BotonBuscar" onserverclick="clickBuscar" runat="server">Buscar</button>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:GridView ID="GridViewReservaciones" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarReservacion" AllowPaging="true"  AllowSorting="true"     PageSize = "20" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
+                                <AlternatingRowStyle BorderStyle="None" />
+                                <HeaderStyle Font-Size="1.3em" />
+                                <SelectedRowStyle BackColor="#7BC143"
+                                                ForeColor="Black"
+                                                Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
+                            </asp:GridView>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td >
+                            <button type="button" class="btn btn-danger" id="BotonImp">Activar tiquetes</button>
+                        </td>
+                        <td>
+                            <a href="FormServicios.aspx"><input type="button" class="btn btn-success" id="botonServicioExtra"  value="Agregar Servicios"/></a>
+                        </td>
+                    </tr>
+                </table>
+
 
                             <table>
                                 <tr>
@@ -79,6 +133,5 @@
 
         </div>
     </fieldset>
-
-</asp:Content>
+                </asp:Content>
 
