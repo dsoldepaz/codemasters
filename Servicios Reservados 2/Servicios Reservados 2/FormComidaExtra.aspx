@@ -29,7 +29,7 @@
                         <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                     </asp:Calendar>
                 </li>
-                <li class="itemContenedor">Hora:<input id="txtHora" runat="server" />
+                <li class="itemContenedor">Hora:<input id="txtHora" runat="server" type="text" />
                 </li>
                 <li class="itemContenedor">#PAX:<input id="txtPax" runat="server" type="number" required="required" placeholder="Entre un digito" />
 

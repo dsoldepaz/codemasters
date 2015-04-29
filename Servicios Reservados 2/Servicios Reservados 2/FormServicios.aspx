@@ -81,7 +81,7 @@
                                     <td>
                                         <div class="btn-group-vertical">
                                             <input type="button" class="btn btn-success" value="Consultar" />
-                                            <input type="button" class="btn btn-success" value="Modificar" />
+                                            <input type="button" class="btn btn-success" value="Modificar" runat="server" onserverclick="modificarServicio" />
                                             <input type="button" class="btn btn-success" value="Elimnar" />
 
                                         </div>
