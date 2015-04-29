@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/Site.Master" CodeBehind="FormEmpleado.aspx.cs" Inherits="Servicios_Reservados_2.FormEmpleado" %>
+﻿<%@ Page Language="C#" Title="Empleados" AutoEventWireup="true"  MasterPageFile="~/Site.Master" CodeBehind="FormEmpleado.aspx.cs" Inherits="Servicios_Reservados_2.FormEmpleado" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <link rel="stylesheet" href="Content/empleado.css"/>
@@ -45,16 +45,7 @@
                         </td>
                     </tr>
                 </table>
-                <table>
-                    <tr>
-                        <td style="width: 76%">
-                            <button type="buttonAceptar" class="btn btn-danger" id="BotonComidaCamp">Cancelar</button>
-                        </td>
-                        <td>
-                            <button type="buttonCancelar" class="btn btn-success" id="BotonServicioE">Aceptar</button>
-                        </td>
-                    </tr>
-                </table>
+               
 
             </fieldset>
 

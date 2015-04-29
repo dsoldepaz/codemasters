@@ -25,7 +25,7 @@
                                 <td>
                                     <input id="tiquete" runat="server" />
                                 <td>
-                                    <input id="Button1" runat="server" type="button" class="btn btn-success" value="Verificar" />
+                                    <input id="Button1" runat="server" type="button" class="btn btn-success" value="Verificar"  onserverclick="clickVerificar" formmethod="post" />
                                 </td>
                                 <td>
                                     <input id="Button2" runat="server" type="button" class="btn btn-success" value="Servir" />
@@ -39,7 +39,8 @@
                     <fieldset>
                         <legend style="color: #7BC143">Información de reservación</legend>
 
-                <table>
+              <table>
+					<caption>Información de reservación</caption>
 					<tr>
 						<th>Cliente</th>
 						<th>Anfitriona</th>
@@ -47,12 +48,15 @@
 						<th>Servido</th>
 						<th>Notas</th>
 					</tr>
-
+					<tr>
+						<td class="basura" runat="server">
+                            <textarea id="clienteArea"  runat="server" ></textarea></td>
+						<td id="anfitrionaArea"  runat="server">     </td>
+						<td id="estacionArea"  runat="server"></td>
+						<td id="servidoArea"  runat="server"></td>
+						<td class="basura"> <textarea id="notasArea"  runat="server"> </textarea></td>
+					</tr>
 				</table>
-
-                <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
-                                <SelectedRowStyle BackColor="#7BC143" />
-                            </asp:GridView>
 
                         </div>
                 
