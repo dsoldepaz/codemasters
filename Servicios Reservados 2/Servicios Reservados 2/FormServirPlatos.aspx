@@ -47,14 +47,7 @@
 						<th>Servido</th>
 						<th>Notas</th>
 					</tr>
-					<tr>
-						<td class="basura" runat="server">
-                            <textarea id="clienteArea"  runat="server" ></textarea></td>
-						<td id="anfitrionaArea"  runat="server"></td>
-						<td id="estacionArea"  runat="server"></td>
-						<td id="servidoArea"  runat="server"></td>
-						<td class="basura"> <textarea id="notasArea"  runat="server"> </textarea></td>
-					</tr>
+
 				</table>
 
                 <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
