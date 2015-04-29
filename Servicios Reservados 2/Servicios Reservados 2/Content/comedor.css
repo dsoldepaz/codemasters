@@ -60,7 +60,7 @@ table th{
     background-color:#7BC143;
     color:white;
 }
-textarea{
+.basura{
 	resize: none;
 	border: none;
 	height:100%;
@@ -71,4 +71,16 @@ textarea{
 table,td,th{
 	border:grey solid 4px;
 	border-collapse: collapse;
+}
+
+.peque {
+
+     resize: none;
+	border: none;
+    width:50%;
+	box-sizing: border-box;
+}
+
+#test {
+    max-width: 10px;
 }
