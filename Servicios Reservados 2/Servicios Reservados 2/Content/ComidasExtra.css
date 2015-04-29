@@ -62,12 +62,7 @@ input{
     margin:6px;
     margin-left: 10px;
 }
-[type="button"]{
-    background-color:#7BC143;
-    color:white;
-    font-weight:bold;
-    font-size: 1.1em;
-}
+
 input.selectorDeFecha{
     background-color:rgba(245, 240, 240, 0.00);
     border:none;
