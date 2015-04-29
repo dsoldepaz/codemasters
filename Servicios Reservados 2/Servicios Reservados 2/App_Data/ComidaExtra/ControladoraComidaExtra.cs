@@ -14,11 +14,18 @@ namespace Servicios_Reservados_2
     public class ControladoraComidaExtra
     {
       private ControladoraBDComidaExtra controladoraBD;
-      private ControladoraReservaciones controladoraBDreserv;
+      public static EntidadReservaciones servicios;
+      public static ControladoraReservaciones controladoraReserv;
+      FormComidaExtra formCE;
+
+      public static EntidadComidaExtra servicioSeleccionado;
+      public static Object[] datos;
        
       public ControladoraComidaExtra()
         {
             controladoraBD = new ControladoraBDComidaExtra();
+            controladoraReserv = new ControladoraReservaciones();
+            formCE = new FormComidaExtra();
         }
 
       public DataTable solicitarTipo() {
@@ -47,6 +54,38 @@ namespace Servicios_Reservados_2
           return resultado;
       }
 
-    }
+      public EntidadReservaciones informacionServicio()
+      {
+          servicios = controladoraReserv.getReservacionSeleccionada();
 
+          return servicios;
+
+      }
+      
+        public void guardarServicioSeleccionado(Object[] dato)
+        {
+            servicioSeleccionado = new EntidadComidaExtra(dato);
+            datos = dato;
+        }
+
+        public EntidadComidaExtra servicioSeleccionados()
+        {
+            return servicioSeleccionado;
+        }
+
+        public Object[] objeto()
+        {
+            return datos;
+        }
+
+        public void modificarServicio(){
+            formCE.consultarServicio();
+        }
+
+        public String consultarTipo(String id)
+        {
+            DataTable aux = controladoraBD.consultarTipo(id);
+            return aux.Rows[0][0].ToString();
+        }
+    }
 }

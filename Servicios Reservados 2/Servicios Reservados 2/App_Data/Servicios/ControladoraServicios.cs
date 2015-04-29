@@ -13,11 +13,13 @@ namespace Servicios_Reservados_2.Servicios
         public static EntidadReservaciones servicios;
         private ControladoraBDServicios controladora;
         public static ControladoraReservaciones controladoraReserv;
+        public static ControladoraComidaExtra controladoraCE;
 
         public ControladoraServicios()
         {
             controladora = new ControladoraBDServicios();
             controladoraReserv = new ControladoraReservaciones();
+            controladoraCE = new ControladoraComidaExtra();
 
         }
 
@@ -49,9 +51,27 @@ namespace Servicios_Reservados_2.Servicios
 
         }
 
-        internal void seleccionarServicio(String id)
+        internal void seleccionarServicio(String id, String idServ)
         {
-            //DataTable servicios = controladora.seleccionarServicio(id);
+            DataTable servicios = controladora.seleccionarServicio(id, idServ);
+
+            Object[] nuevoServicio = new Object[7];
+
+            nuevoServicio[0] = servicios.Rows[0][0];
+            nuevoServicio[1] = servicios.Rows[0][1];
+            nuevoServicio[2] = servicios.Rows[0][3];
+            nuevoServicio[3] = servicios.Rows[0][4];
+            nuevoServicio[4] = servicios.Rows[0][5];
+            nuevoServicio[5] = servicios.Rows[0][2];
+            nuevoServicio[6] = servicios.Rows[0][6];
+
+            controladoraCE.guardarServicioSeleccionado(nuevoServicio);
+
+        }
+
+        internal void modificarServicio()
+        {
+            controladoraCE.modificarServicio();
         }
     }
 }

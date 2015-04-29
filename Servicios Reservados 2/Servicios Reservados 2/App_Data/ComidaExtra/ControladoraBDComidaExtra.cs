@@ -25,6 +25,13 @@ namespace Servicios_Reservados_2
             return dt;
         }
 
+        internal DataTable consultarTipo(String id)
+        {
+            String consultaSQL = "select tipo from Servicios_Extras where idServicio = '" + id +"'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
 
         public String[] agregarServicioExtra(EntidadComidaExtra entidad)
         {

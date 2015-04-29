@@ -44,7 +44,7 @@ namespace Servicios_Reservados_2
         protected void llenarCampos()
         {
             DataTable pax = controladora.obtenerPax(controladora.idSelected());
-            txtAnfitriona.Value = controladora.informacionServicio().Id;
+            txtAnfitriona.Value = controladora.informacionServicio().Anfitriona;
             txtEstacion.Value = controladora.informacionServicio().Estacion;
             txtNombre.Value = controladora.informacionServicio().Solicitante;
             fechaInicio.Value = controladora.informacionServicio().FechaInicio.ToString();
@@ -149,7 +149,13 @@ namespace Servicios_Reservados_2
 
         protected void seleccionarServicio(object sender, EventArgs e)
         {
-            controladora.seleccionarServicio(ids[GridServicios.SelectedIndex]);
+            controladora.seleccionarServicio(ids[GridServicios.SelectedIndex], idServ[GridServicios.SelectedIndex]);
+        }
+
+        protected void modificarServicio(object sender, EventArgs e)
+        {
+            controladora.modificarServicio();
+            Response.Redirect("FormComidaExtra");
         }
     }
 }

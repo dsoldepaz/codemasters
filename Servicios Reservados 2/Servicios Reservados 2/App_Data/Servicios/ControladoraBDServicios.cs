@@ -34,5 +34,12 @@ namespace Servicios_Reservados_2.Servicios
             return dt;
 
         }
+
+        internal DataTable seleccionarServicio(String id, String idserv)
+        {
+            String consultaSQL = "select * from servicio_especial where idreservacion = '" + id + "' and idserviciosextras = '" + idserv + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
     }
 }

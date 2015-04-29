@@ -17,6 +17,7 @@ namespace Servicios_Reservados_2
 
         private static String[] idReservacion = FormReservaciones.ids;
         private static ControladoraComidaExtra controladora = new ControladoraComidaExtra();
+        private static FormServicios servicios = new FormServicios();
         int modo;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -24,9 +25,7 @@ namespace Servicios_Reservados_2
             if (!IsPostBack)
             {
                 cargarDatos();
-
-
-
+                consultarServicio();
             }
         }
 
@@ -47,11 +46,27 @@ namespace Servicios_Reservados_2
             }
         }
 
+        public Boolean consultarServicio()
+        {
+            Boolean res = true;
+            EntidadComidaExtra entidad = controladora.servicioSeleccionados();
+            Object[] aux = controladora.objeto();
+            //textFecha.Value = entidad.Fecha;
+            String s = entidad.Pax.ToString();
+            s = entidad.Hora;
+            txtHora.Value = "iudbifusduf";
+            txtPax.Value = controladora.servicioSeleccionados().Pax.ToString();
+            cbxTipo.Value = controladora.consultarTipo(controladora.servicioSeleccionados().IdServiciosExtras);
+            txaNotas.Value = controladora.servicioSeleccionados().Descripcion;
+
+            return res;
+        }
+
         protected Boolean agregarServicioExtra()
         {
             Boolean res = true;
             Object[] nuevoServicio = new Object[7];
-            nuevoServicio[0] = idReservacion[0];
+            nuevoServicio[0] = controladora.informacionServicio().Id;
             int indice = cbxTipo.SelectedIndex-1;
             nuevoServicio[1] = tipo.Rows[indice][0];
             nuevoServicio[2] = fechaDeEntradaCalendario.SelectedDate.ToString("dd/MM/yyyy");
@@ -70,7 +85,7 @@ namespace Servicios_Reservados_2
         {
             Boolean res = true;
             Object[] nuevoServicio = new Object[7];
-            nuevoServicio[0] = idReservacion[0];
+            nuevoServicio[0] = controladora.informacionServicio().Id;
             int indice = cbxTipo.SelectedIndex - 1;
             nuevoServicio[1] = tipo.Rows[indice][0];
             nuevoServicio[2] = fechaDeEntradaCalendario.SelectedDate.ToString("dd/MM/yyyy");
@@ -80,7 +95,7 @@ namespace Servicios_Reservados_2
             nuevoServicio[6] = txtHora.Value;
 
 
-            String[] error = controladora.modificarServicioExtra(nuevoServicio, entidadVieja);// se le pide a la controladora que lo inserte
+            String[] error = controladora.modificarServicioExtra(nuevoServicio, controladora.servicioSeleccionados());// se le pide a la controladora que lo inserte
             mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
             return res;
         }
@@ -99,8 +114,8 @@ namespace Servicios_Reservados_2
         protected void clickAceptar(object sender, EventArgs e)
         {
             agregarServicioExtra();
+            
         }
-
 
         /*protected void cambiarModo()
         {

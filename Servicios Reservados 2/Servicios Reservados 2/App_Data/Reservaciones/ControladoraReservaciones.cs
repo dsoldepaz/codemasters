@@ -56,11 +56,11 @@ namespace Servicios_Reservados_2
             DateTime fechaInicio = DateTime.Parse(reservacion.Rows[0][5].ToString());
             DateTime fechaSalida = DateTime.Parse(reservacion.Rows[0][6].ToString());
 
-          reservacionSeleccionada= new EntidadReservaciones(id, anfitriona, estacion, numero, solicitante, fechaInicio, fechaSalida);
+          reservacionSeleccionada = new EntidadReservaciones(id, anfitriona, estacion, numero, solicitante, fechaInicio, fechaSalida);
         }
+
         public EntidadReservaciones getReservacionSeleccionada() {
             return reservacionSeleccionada;
-
         }
 
         internal DataTable solicitarInfo(String id)

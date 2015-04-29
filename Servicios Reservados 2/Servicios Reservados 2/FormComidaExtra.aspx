@@ -40,9 +40,11 @@
                 <label>Notas:</label>
                 <textarea id="txaNotas" cols="20" name="S1" rows="2" runat="server"></textarea>
             </p>
-            <input type="button" class="cancelar-btn" value="Cancelar" />
+                <input type="button" class="cancelar-btn" value="Cancelar" />
             <input type="button" class="aceptar-btn" onserverclick="clickAceptar" value="Aceptar" runat="server" />
+           
         </section>
+        </a>
     </fieldset>
 
 

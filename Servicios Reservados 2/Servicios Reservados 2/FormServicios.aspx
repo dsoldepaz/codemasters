@@ -73,7 +73,7 @@
 
                             <aside id="botonesLaterales">
                                 <input type="button" class="btn btn-success" value="Consultar" />
-                                <input type="button" class="btn btn-success" value="Modificar" />
+                                <input type="button" class="btn btn-success" value="Modificar" onserverclick="modificarServicio" runat="server"/>
                                 <input type="button" class="btn btn-success" value="Elimnar" />
                             </aside>
                             <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarServicio" >
