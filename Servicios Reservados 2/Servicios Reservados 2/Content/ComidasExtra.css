@@ -34,7 +34,7 @@ label.itemContenedor{
 ul>li.itemContenedor {
     display: inline-block;
     margin:12px;
-    width: 30%;
+    width: 20%;
     padding: 8px;
 }
 select {
@@ -71,3 +71,8 @@ input.selectorDeFecha{
     width:21px;
     height:18px;
 }
+ul>li>input.tiempo{
+    line-height: 12px;
+}
+
+  
