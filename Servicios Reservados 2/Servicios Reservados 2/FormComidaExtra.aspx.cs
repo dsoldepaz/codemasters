@@ -15,11 +15,11 @@ namespace Servicios_Reservados_2
         static DataTable tipo;//contiene los diferentes tipos de comida extra
         static EntidadComidaExtra entidadVieja;//entidad consultada
 
-        private static String[] idReservacion = FormReservaciones.ids;
         private static ControladoraComidaExtra controladora = new ControladoraComidaExtra();//instancia de la controladora de comida extra
-        private static FormServicios servicios = new FormServicios();
-        int modo;
         EntidadComidaExtra entidadConsultada = controladora.servicioSeleccionados();//buscamos el servicio consultado en la controladora
+
+        private static String[] idReservacion = FormReservaciones.ids;
+        private static int modo;//variable para controlar el modo en el que se encuentra el sistema (modificar, consultar, agregar o eliminar)
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,8 +37,9 @@ namespace Servicios_Reservados_2
         */
         void cargarDatos()
         {
+            modo = FormServicios.modo;
             llenarComboBoxTipo();
-            //llenarGridReservaciones();
+            cambiarModo();
         }
 
         /*
@@ -150,8 +151,19 @@ namespace Servicios_Reservados_2
         */
         protected void clickAceptar(object sender, EventArgs e)
         {
-            agregarServicioExtra();
-            Response.Redirect("FormServiios");
+            switch (modo)
+            {
+                case 1:
+                    agregarServicioExtra();
+                    Response.Redirect("FormServicios");
+                    break;
+                case 2:
+                    modificarServicioExtra();
+                    break;
+                case 3:
+                    eliminarServicioExtra();
+                    break;
+            }
         }
 
         /*
@@ -159,9 +171,15 @@ namespace Servicios_Reservados_2
          * Requiere: presionar el botón.
          * Modifica: los estados de los componentes de pantalla y variables locales. 
         */
-        /*protected void cambiarModo()
+        protected void cambiarModo()
         {
-            if (modo == 1)
+            switch (modo)
+            {
+                case 2:
+                    consultarServicio();
+                    break;
+            }
+          /*  if (modo == 1)
             { // se desea insertar
                 txtHora.Disabled = true;
                 btnEliminar.Disabled = true;
@@ -194,8 +212,8 @@ namespace Servicios_Reservados_2
                 btnCancelar.Disabled = false;
                 btnAgregar.Disabled = true;
                 habilitarCampos(false);
-            }
-        }*/
+            }*/
+        }
 
         /*
          * Efecto: mostrar en pantalla los mensajes del sistema, ya sean de error o de éxito.
