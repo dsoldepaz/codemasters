@@ -28,6 +28,7 @@ namespace Servicios_Reservados_2
             formCE = new FormComidaExtra();
         }
 
+
       public DataTable solicitarTipo() {
           DataTable tipos = controladoraBD.solicitarTipos();
           return tipos;

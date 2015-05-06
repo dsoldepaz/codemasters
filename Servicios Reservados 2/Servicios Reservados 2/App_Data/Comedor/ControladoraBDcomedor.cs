@@ -15,7 +15,10 @@ namespace Servicios_Reservados_2
     public class ControladoraBDComedor
     {
 
-
+        /* Requiere: argumento: numero de tiquete 
+          * Efecto: Verifica el numero de tiquete y recoge la información de la reservacion asociada
+          * Modifica: Nada
+          */
         internal Object[] consultarNotasTiquete(string numero)
         {
 

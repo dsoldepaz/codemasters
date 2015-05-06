@@ -14,7 +14,10 @@ namespace Servicios_Reservados_2
 
         }
 
-
+        /* Requiere: La introduccion de un numero de tiquete por parte del usuario
+         * Efecto: Verifica el numero de tiquete y muestra la información de la reservacion asociada
+         * Modifica: Nada
+         */
         protected void clickVerificar(object sender, EventArgs e)
         {
 
