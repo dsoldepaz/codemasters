@@ -156,7 +156,6 @@ namespace Servicios_Reservados_2
         {
             modo = 2; //modificar es 2
             Response.Redirect("FormComidaExtra");
-            controladora.modificarServicio();
         }
     }
 }

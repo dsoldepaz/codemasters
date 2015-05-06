@@ -78,10 +78,6 @@ namespace Servicios_Reservados_2
             return datos;
         }
 
-        public void modificarServicio(){
-            formCE.consultarServicio();
-        }
-
         public String consultarTipo(String id)
         {
             DataTable aux = controladoraBD.consultarTipo(id);
