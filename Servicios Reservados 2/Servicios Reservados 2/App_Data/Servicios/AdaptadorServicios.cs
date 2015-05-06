@@ -18,6 +18,10 @@ namespace Servicios_Reservados_2
 
 
         }
+        /**Efecto: Se comunica con la BD para obtener los datos de la misma 
+         * Requiere: La consulta SQL
+         * Modifica: el dataTable dt
+         */
         internal DataTable consultar(String consultaSQL)
         {
             dt = new DataTable();

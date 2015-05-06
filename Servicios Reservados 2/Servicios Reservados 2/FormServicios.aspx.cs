@@ -40,7 +40,10 @@ namespace Servicios_Reservados_2
         }
 
       
-
+        /*Efecto: Llena los campos con la informacion de la reserva
+         * Requiere: NA
+         * Modifica: el valor de los campos en la interfaz
+         */
         protected void llenarCampos()
         {
             DataTable pax = controladora.obtenerPax(controladora.idSelected());
@@ -52,7 +55,10 @@ namespace Servicios_Reservados_2
             txtPax.Value = pax.Rows[0][0].ToString();
         }
 
-
+        /*Efecto: Crea la tabla de servicios
+         * Requiere: NA
+         * Modifica: la tabla servicios, si la reservacion tiene servicios asociados
+         * */
         void llenarGridServicios()
         {
             DataTable tabla = crearTablaServicios();
@@ -146,12 +152,18 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
-
+        /*Efecto: obtiene el id del servicio seleccionado y de la reservacion a la que pertence el servicio 
+         * Requiere: parametros evento de la interfaz grafica
+         * Modifica: NA
+         */
         protected void seleccionarServicio(object sender, EventArgs e)
         {
             controladora.seleccionarServicio(ids[GridServicios.SelectedIndex], idServ[GridServicios.SelectedIndex]);
         }
-
+       /**Efecto: llama al metodo modificarServicio de la controladora y redirecciona la pagina al formComidaExtra
+        * Requiere: parametros evento de la interfaz grafica
+         * Modifica: NA
+         */
         protected void modificarServicio(object sender, EventArgs e)
         {
             controladora.modificarServicio();
