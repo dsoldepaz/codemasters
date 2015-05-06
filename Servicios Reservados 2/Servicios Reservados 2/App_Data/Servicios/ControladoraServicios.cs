@@ -29,7 +29,10 @@ namespace Servicios_Reservados_2.Servicios
           return servicios;
 
         }
-
+       /**Efecto: retorna el id de la reservacion seleccionada  
+         * Requiere: NA
+         * Modifica: el valor idReserv
+         */
         public String idSelected()
         {
             String idReserv = controladoraReserv.getReservacionSeleccionada().Id;
@@ -37,20 +40,30 @@ namespace Servicios_Reservados_2.Servicios
 
         }
 
+        /**Efecto: retorna un dataTable con el numero de pax de la reservacion seleccionada  
+         * Requiere: id de la reservacion
+         * Modifica: la datatable pax
+         */
         internal DataTable obtenerPax(String id)
         {
             DataTable pax = controladora.obtenerPax(id);
             return pax;
 
         }
-
+        /**Efecto: retorna un dataTable con todos los servicios de una reservacion 
+         * Requiere: id de la reservacion
+         * Modifica: la datable servicios
+         */
         internal DataTable solicitarServicios(String id)
         {
             DataTable servicios = controladora.solicitarServicios(id);
             return servicios;
 
         }
-
+        /**Efecto: Crea un objeto nuevoServicio y le guarda los valores del servicio selecionado  
+         * Requiere: id reservacion, id servicio
+         * Modifica: el objeto nuevoServicio
+         */
         internal void seleccionarServicio(String id, String idServ)
         {
             DataTable servicios = controladora.seleccionarServicio(id, idServ);
@@ -68,7 +81,10 @@ namespace Servicios_Reservados_2.Servicios
             controladoraCE.guardarServicioSeleccionado(nuevoServicio);
 
         }
-
+        /**Efecto: llama al metodo  modificar servicio de la controladora de comidas extra  
+         * Requiere: NA
+         * Modifica: NA
+         */
         internal void modificarServicio()
         {
             controladoraCE.modificarServicio();
