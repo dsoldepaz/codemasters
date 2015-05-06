@@ -16,8 +16,8 @@ namespace Servicios_Reservados_2
         private static DataTable reservacion = new DataTable();
         private static String[] ids;
         private static String[] idServ;
-        
-        
+
+        public static int modo;
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -154,8 +154,9 @@ namespace Servicios_Reservados_2
 
         protected void modificarServicio(object sender, EventArgs e)
         {
-            controladora.modificarServicio();
+            modo = 2; //modificar es 2
             Response.Redirect("FormComidaExtra");
+            controladora.modificarServicio();
         }
     }
 }

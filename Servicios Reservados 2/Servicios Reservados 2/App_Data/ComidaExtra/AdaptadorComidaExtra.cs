@@ -58,8 +58,6 @@ namespace Servicios_Reservados_2
             adaptador.Close();
             return dt;
         }
-
-
     }
 }
 

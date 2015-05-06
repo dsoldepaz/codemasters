@@ -15,17 +15,20 @@ namespace Servicios_Reservados_2
         static DataTable tipo;
         static EntidadComidaExtra entidadVieja;
 
+       
+
         private static String[] idReservacion = FormReservaciones.ids;
         private static ControladoraComidaExtra controladora = new ControladoraComidaExtra();
         private static FormServicios servicios = new FormServicios();
-        int modo;
+        private static int modo;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 cargarDatos();
-                consultarServicio();
+                //consultarServicio();
+                //modo = FormServicios.modo;
             }
         }
 
@@ -50,11 +53,8 @@ namespace Servicios_Reservados_2
         {
             Boolean res = true;
             EntidadComidaExtra entidad = controladora.servicioSeleccionados();
-            Object[] aux = controladora.objeto();
-            //textFecha.Value = entidad.Fecha;
-            String s = entidad.Pax.ToString();
-            s = entidad.Hora;
-            txtHora.Value = "iudbifusduf";
+            textFecha.Value = entidad.Fecha;
+            txtHora.Value = entidad.Hora;
             txtPax.Value = controladora.servicioSeleccionados().Pax.ToString();
             cbxTipo.Value = controladora.consultarTipo(controladora.servicioSeleccionados().IdServiciosExtras);
             txaNotas.Value = controladora.servicioSeleccionados().Descripcion;
@@ -113,8 +113,15 @@ namespace Servicios_Reservados_2
 
         protected void clickAceptar(object sender, EventArgs e)
         {
-            agregarServicioExtra();
-            
+            if (modo == 2)
+            {
+                modificarServicioExtra();
+            }
+            else
+            {
+                agregarServicioExtra();
+            }
+            Response.Redirect("FormServicios");
         }
 
         /*protected void cambiarModo()
