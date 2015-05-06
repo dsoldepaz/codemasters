@@ -411,3 +411,5 @@ C:\Users\b06171\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reserv
 C:\Users\b06171\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.csprojResolveAssemblyReference.cache
 C:\Users\b14709\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\Oracle.DataAccess.EntityFramework.dll
 C:\Users\b14709\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\b04833\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\Oracle.DataAccess.EntityFramework.dll
+C:\Users\b04833\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\Oracle.ManagedDataAccess.EntityFramework.dll
