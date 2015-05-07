@@ -94,9 +94,9 @@ namespace Servicios_Reservados_2
             try
             {
                 String consultaSQL = "update servicio_especial set pax =" + "'" + entidad.Pax + "', fecha = '"+ entidad.Fecha + "', consumido = '" + entidad.Consumido + "', descripcion = '" + entidad.Descripcion + "', hora = '" + entidad.Hora + "'" +
-                                      "where idreservacion = '" + entidadVieja.IdReservacion + "' and idserviciosextras = '" + entidadVieja.IdServiciosExtras + "';"; 
+                                      "where idreservacion = '" + entidadVieja.IdReservacion + "' and idserviciosextras = '" + entidadVieja.IdServiciosExtras + "'"; 
 
-                adaptador.insertar(consultaSQL);
+                adaptador.actualizar(consultaSQL);
                
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";
@@ -120,7 +120,6 @@ namespace Servicios_Reservados_2
                     respuesta[1] = "Error. ";
                     respuesta[2] = "No se pudo agregar el servicio extra";
                 }
-
             }
             return respuesta;
         }
@@ -135,9 +134,9 @@ namespace Servicios_Reservados_2
             String[] respuesta = new String[3];
             try
             {
-                String consultaSQL = "delete servicio_especial where idReservacion =" + idReservacion + "and idserviciosextras = " + idComidaExtra;
+                String consultaSQL = "delete from servicio_especial where idReservacion = '" + idReservacion + "' and idserviciosextras = '" + idComidaExtra + "'";
 
-                adaptador.insertar(consultaSQL);
+                adaptador.eliminar(consultaSQL);
 
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";

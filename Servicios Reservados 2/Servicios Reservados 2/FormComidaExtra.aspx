@@ -44,8 +44,9 @@
             </p>
                   <table>
                         <tr>
-                            <td><a href="FormComidaExtra.aspx">
-                                <input type="button" class="btn btn-success" value="Cancelar" /></a></td>
+                            <td>
+                                <input type="button" class="btn btn-success" value="Cancelar" runat="server" onserverclick="clickCancelar"/>
+                            </td>
                             <td>
                                 <input type="button" class="btn btn-success" value="Aceptar" runat="server" onserverclick="clickAceptar"/>
                             </td>

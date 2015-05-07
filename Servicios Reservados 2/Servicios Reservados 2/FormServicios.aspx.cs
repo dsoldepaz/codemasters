@@ -179,5 +179,11 @@ namespace Servicios_Reservados_2
             modo = 1; //modificar es 2
             Response.Redirect("FormComidaExtra");
         }
+
+        protected void clickEliminarServicio(object sender, EventArgs e)
+        {
+            modo = 3; //modificar es 2
+            Response.Redirect("FormComidaExtra");
+        }
     }
 }

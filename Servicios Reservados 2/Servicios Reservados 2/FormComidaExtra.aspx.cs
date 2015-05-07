@@ -40,6 +40,11 @@ namespace Servicios_Reservados_2
             modo = FormServicios.modo;
             llenarComboBoxTipo();
             cambiarModo();
+            if (modo == 3)
+            {
+                eliminarServicioExtra();
+                Response.Redirect("FormServicios");
+            }
         }
 
         /*
@@ -145,7 +150,7 @@ namespace Servicios_Reservados_2
         }
 
         /*
-         * Efecto: capta el evento al presionar el botón aceptar y realiza la operación de acuerdo a la operación.
+         * Efecto: capta el evento al presionar el botón aceptar y realiza la operación de acuerdo al modo en el que se encuentra el sistema.
          * Requiere: presionar el botón.
          * Modifica: 
         */
@@ -165,6 +170,17 @@ namespace Servicios_Reservados_2
                     break;
             }
         }
+
+        /*
+         * Efecto: capta el evento al presionar el botón cancelar y regresa a la pantalla de servicios.
+         * Requiere: presionar el botón.
+         * Modifica: 
+        */
+        protected void clickCancelar(object sender, EventArgs e)
+        {
+            Response.Redirect("FormServicios");
+        }
+
 
         /*
          * Efecto: cambia de modo de acuerdo a la operación a realizar (consultar=0, agrgar=1, modificar=2 y eliminar=3).
