@@ -68,10 +68,5 @@ namespace Servicios_Reservados_2.Servicios
             controladoraCE.guardarServicioSeleccionado(nuevoServicio);
 
         }
-
-        internal void modificarServicio()
-        {
-            controladoraCE.modificarServicio();
-        }
     }
 }

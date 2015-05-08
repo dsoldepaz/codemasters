@@ -16,8 +16,8 @@ namespace Servicios_Reservados_2
         private static DataTable reservacion = new DataTable();
         private static String[] ids;
         private static String[] idServ;
-        
-        
+
+        public static int modo;
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,7 +40,10 @@ namespace Servicios_Reservados_2
         }
 
       
-
+        /*Efecto: Llena los campos con la informacion de la reserva
+         * Requiere: NA
+         * Modifica: el valor de los campos en la interfaz
+         */
         protected void llenarCampos()
         {
             DataTable pax = controladora.obtenerPax(controladora.idSelected());
@@ -52,7 +55,10 @@ namespace Servicios_Reservados_2
             txtPax.Value = pax.Rows[0][0].ToString();
         }
 
-
+        /*Efecto: Crea la tabla de servicios
+         * Requiere: NA
+         * Modifica: la tabla servicios, si la reservacion tiene servicios asociados
+         * */
         void llenarGridServicios()
         {
             DataTable tabla = crearTablaServicios();
@@ -80,7 +86,7 @@ namespace Servicios_Reservados_2
                         datos[0] = fila[2].ToString();//obtener los datos a mostrar
                         datos[1] = fila[3].ToString();
                         datos[2] = fila[4].ToString();
-                        datos[3] = DateTime.Parse(fila[5].ToString());
+                        datos[3] = fila[5].ToString();//DateTime.Parse(fila[5].ToString());
                         datos[4] = fila[6].ToString();
                         datos[5] = fila[7].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
@@ -97,8 +103,6 @@ namespace Servicios_Reservados_2
             {
                 Debug.WriteLine("No se pudo cargar las reservaciones");
             }
-
-
         }
 
         /**
@@ -127,7 +131,7 @@ namespace Servicios_Reservados_2
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.DateTime");
+            columna.DataType = System.Type.GetType("System.String");
             columna.ColumnName = "Fecha";
             tabla.Columns.Add(columna);
 
@@ -146,15 +150,39 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
-
+        /*Efecto: obtiene el id del servicio seleccionado y de la reservacion a la que pertence el servicio 
+         * Requiere: parametros evento de la interfaz grafica
+         * Modifica: NA
+         */
         protected void seleccionarServicio(object sender, EventArgs e)
         {
             controladora.seleccionarServicio(ids[GridServicios.SelectedIndex], idServ[GridServicios.SelectedIndex]);
         }
-
+        /*
+         * Efecto: llama al metodo modificarServicio de la controladora y redirecciona la pagina al formComidaExtra
+         * Requiere: parametros evento de la interfaz grafica
+         * Modifica: la variable global modo.
+         */
         protected void modificarServicio(object sender, EventArgs e)
         {
-            controladora.modificarServicio();
+            modo = 2; //modificar es 2
+            Response.Redirect("FormComidaExtra");
+        }
+
+        /*
+        * Efecto: capta el evento del botón para agregar una comida extra, cambia el modo y redirige a la interfaz de comida extra.
+        * Requiere: presionar el botón.
+        * Modifica: la variable global modo.
+        */
+        protected void clickAgregarServicio(object sender, EventArgs e)
+        {
+            modo = 1; //modificar es 2
+            Response.Redirect("FormComidaExtra");
+        }
+
+        protected void clickEliminarServicio(object sender, EventArgs e)
+        {
+            modo = 3; //modificar es 2
             Response.Redirect("FormComidaExtra");
         }
     }
