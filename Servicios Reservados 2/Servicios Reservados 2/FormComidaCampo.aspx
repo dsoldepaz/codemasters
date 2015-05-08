@@ -38,7 +38,7 @@
             <div class="blockdivleft">
                 <input type="radio" name="spreadoption" value="jamon">Jamón
 								<br>
-                <input type="radio" name="spreadoption" value="atun">Atún
+                <input type="radio" name="spreadoption" value="atun">Atún 
 								<br>
                 <input type="radio" name="spreadoption" value="frijoles">Frijoles
             </div>
