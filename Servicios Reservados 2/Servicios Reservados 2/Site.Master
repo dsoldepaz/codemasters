@@ -42,7 +42,7 @@
                 <div class="float-left">
                     <p class="site-title">
                         <a runat="server" href="~/">
-                            <img src="/Images/logo_oet_español_todo_blanco.png" style="width:200px"></a>
+                            <img src="/Images/logo_oet_español_todo_blanco.png" style="width:225px"></a>
                     </p>
                 </div>
                 <div class="float-right">
