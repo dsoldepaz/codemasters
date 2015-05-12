@@ -1,0 +1,20 @@
+﻿li.itemFormulario{
+    width: 90%;
+}
+li.itemFormulario>.radioBusqueda{
+    width:20px;
+}
+li.itemFormulario>input:last-child{
+    width:80%;
+}
+li.itemFormulario:first-child>#inputNombre{
+    margin-left:36px;
+}
+li.itemFormulario:last-child>input{
+    width:80px;
+}
+li{
+      list-style-type: none;
+}
+
+
