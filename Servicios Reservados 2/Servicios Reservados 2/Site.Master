@@ -10,7 +10,7 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
-    <link href="~/oet.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/faviconOET.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="Content/bootstrap-3.3.4-dist/css/bootstrap.css" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
@@ -42,7 +42,7 @@
                 <div class="float-left">
                     <p class="site-title">
                         <a runat="server" href="~/">
-                            <img src="/Images/imagenes_OET/logoOETtrans2.png"></a>
+                            <img src="/Images/logo_oet_español_todo_blanco.png" style="width:200px"></a>
                     </p>
                 </div>
                 <div class="float-right">

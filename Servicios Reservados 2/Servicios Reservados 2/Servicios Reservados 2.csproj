@@ -165,6 +165,7 @@
     <Content Include="Content\bootstrap-3.3.4-dist\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap-3.3.4-dist\js\npm.js" />
     <Content Include="Content\Reservacion.css" />
+    <Content Include="faviconOET.ico" />
     <Content Include="FormEmpleadoReserva.aspx" />
     <Content Include="FormServirPlatos.aspx" />
     <Content Include="Images\help.png" />
@@ -276,6 +277,7 @@
     <Content Include="Images\imagenes_OET\PrevOff.gif" />
     <Content Include="Images\imagenes_OET\Spacer.gif" />
     <Content Include="Images\imagenes_OET\SubmenuArrow.gif" />
+    <Content Include="Images\logo_oet_español_todo_blanco.png" />
     <Content Include="Images\orderedList0.png" />
     <Content Include="Images\orderedList1.png" />
     <Content Include="Images\orderedList2.png" />
