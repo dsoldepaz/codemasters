@@ -34,9 +34,7 @@ namespace Servicios_Reservados_2
         DataTable dt;
         public AdaptadorComidaExtra()
         {
-             adaptador = new OleDbConnection("Provider= MSDAORA;Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True");
-             
-
+             adaptador = new OleDbConnection("Provider= MSDAORA;Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True");             
        
         }
 

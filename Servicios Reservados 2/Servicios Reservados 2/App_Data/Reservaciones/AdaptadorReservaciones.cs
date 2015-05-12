@@ -18,9 +18,7 @@ namespace Servicios_Reservados_2
          * Retorna : N/A
          */
         public AdaptadorReservaciones(){
-             adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True";
-            
-
+             adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True";   
         }
         /*
          * Requiere: Una hilera con la consulta a realizar.
@@ -38,5 +36,6 @@ namespace Servicios_Reservados_2
             adaptador.Close();
             return dt;
         }
+
     }
 }
