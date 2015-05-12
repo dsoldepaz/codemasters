@@ -14,7 +14,7 @@ namespace Servicios_Reservados_2
         DataTable dt;
         public AdaptadorServicios()
         {
-            adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=grupo01;Password=servicios123;Unicode=True";
+            adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True";
 
 
         }
