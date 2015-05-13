@@ -18,5 +18,23 @@ namespace Servicios_Reservados_2
         {
 
         }
+
+        protected void seleccionarEmpleado(object sender, EventArgs e)
+        {
+
+        }
+        /*
+         *  Requiere: Controladores de eventos de la interfaz.
+         *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
+         *  Retrona:  N/A
+         */
+        protected void GridViewReservaciones_PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
+
+            GridViewReservaciones.PageIndex = e.NewPageIndex;
+            GridViewReservaciones.DataSource = Session["tablaa"];
+            GridViewReservaciones.DataBind();
+
+        }
     }
 }
