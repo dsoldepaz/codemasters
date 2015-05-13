@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.OleDb;
 using System.Data;
+using System.Diagnostics;
 
 namespace Servicios_Reservados_2.Servicios
 {
@@ -12,6 +13,7 @@ namespace Servicios_Reservados_2.Servicios
          
         private AdaptadorServicios adaptador;
         DataTable dt;
+
         public ControladoraBDServicios()
         {
             adaptador = new AdaptadorServicios();

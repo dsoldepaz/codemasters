@@ -15,16 +15,16 @@
                         <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                     </asp:Calendar>
                 </li>
-                <li>Hora:<input id="txtHora" runat="server" type="time" />
+                <li>Hora:<input id="txtHora" runat="server" />
                 </li>
              </ul>
         </div>
         <fieldset>
-        <div class="centraldiv">
+        <div class="containerdiv">
               <span class="radios">
-            <input type="radio" name="turn" value="desayuno" checked>Desayuno
-							<input type="radio" name="turn" value="almuerzo">Almuerzo
-							<input type="radio" name="turn" value="cena">Cena	
+            <input type="radio" name="turn" id="radioDesayuno" value="desayuno" runat="server" checked>Desayuno
+			<input type="radio" name="turn" id="radioAlmuerzo" value="almuerzo" runat="server">Almuerzo
+			<input type="radio" name="turn" id="radioCena" value="cena" runat="server">Cena	
              </span>	
         </div>
         </fieldset>
@@ -34,64 +34,62 @@
         <legend>Opción #1 Sandwich [puede marcar dos opciónes]</legend>
         <div class="centraldiv">
             <span class="radios">
-                <input type="radio" name="bread" value="panblanco" checked>Pan blanco
-							<input type="radio" name="bread" value="panintegral">Pan integral
-							<input type="radio" name="bread" value="panbollo">Pan bollo
+                <input type="radio" name="bread" value="panblanco" checked runat="server" id="radioPanBlanco">Pan blanco
+							<input type="radio" name="bread" value="panintegral" runat="server" id="radioPanInt">Pan integral
+							<input type="radio" name="bread" value="panbollo" runat="server" id="radioPanBollo">Pan bollo
             </span>
         </div>
-        <div class="optionblock">
-
-            <div class="blockdivleft">
-                <input type="radio" name="spreadoption" value="jamon">Jamón
+        </br>
+        
+            <div class="centraldiv">
+                <input type="radio" name="spreadoption" value="jamon" id="radioJamon" runat="server">Jamón
 								<br>
-                <input type="radio" name="spreadoption" value="atun">Atún 
+                <input type="radio" name="spreadoption" value="atun" id="radioAtun" runat="server">Atún 
 								<br>
-                <input type="radio" name="spreadoption" value="frijoles">Frijoles
+                <input type="radio" name="spreadoption" value="frijoles" id="radioFrijoles" runat="server">Frijoles
+                        </br>
+                <input type="radio" name="spreadoption" value="mantequillamani" id="radioMyM" runat="server">Mantequilla Maní y jalea 
+								<br>
+                <input type="radio" name="spreadoption" value="omelette" id="radioOmelette" runat="server">Omelette 
+								<br>
+                <input type="radio" name="spreadoption" value="ensaladahuevo" id="radioEnsaladaHuevo" runat="server">Ensalada de huevo 	
             </div>
-            <div class="blockdivright">
-                <input type="radio" name="spreadoption" value="mantequillamani">Mantequilla Maní y jalea 
-								<br>
-                <input type="radio" name="spreadoption" value="omelette">Omelette 
-								<br>
-                <input type="radio" name="spreadoption" value="ensaladahuevo">Ensalada de huevo 	
-            </div>
-        </div>
     </fieldset>
 
     <fieldset class="containerdiv">
         <legend>Opción #2 Debe aportar su propio recipiente</legend>
-        <input type="checkbox" name="pinto" value="gallopinto">Gallo pinto
+        <div class="centraldiv">
+        <input type="checkbox" name="pinto" value="gallopinto" id="chGalloPinto" runat="server">Gallo pinto
+            </div>
     </fieldset>
 
-    <fieldset>
+    <fieldset class="containerdiv">
         <legend>Adicional (marque la opción que desea)</legend>
-        <div class="optionblock">
-            <div class="blockdivleft">
-                <input type="checkbox" name="adicional" value="ensalada">Ensalada
+        <div class="centraldiv">
+                <input type="checkbox" name="adicional" value="ensalada" id="chEnsalada" runat="server">Ensalada
 								<br>
-                <input type="checkbox" name="adicional" value="mayonesa">Mayonesa
+                <input type="checkbox" name="adicional" value="mayonesa" id="chMayonesa" runat="server">Mayonesa
 								<br>
-                <input type="checkbox" name="adicional" value="confites">Confites
+                <input type="checkbox" name="adicional" value="confites" id="chConfites" runat="server">Confites
 								<br>
-                <input type="checkbox" name="adicional" value="frutas">Frutas
+                <input type="checkbox" name="adicional" value="frutas" id="chFrutas" runat="server">Frutas
+                    </br>
+                <input type="checkbox" name="adicional" value="salsatomate" id="chSalsaTomate" runat="server">Salsa de tomate 
+								<br>
+                <input type="checkbox" name="adicional" value="huevos" id="chHuevos" runat="server">Huevos duros 
+								<br>
+                <input type="checkbox" name="adicional" value="galletas" id="chGalletas" runat="server">Galletas
+								<br> 
+                <input type="checkbox" name="adicional" value="platanos" id="chPlatanos" runat="server">Platanos								
             </div>
-            <div class="blockdivright">
-                <input type="checkbox" name="adicional" value="salsatomate">Salsa de tomate 
-								<br>
-                <input type="checkbox" name="adicional" value="huevos">Huevos duros 
-								<br>
-                <input type="checkbox" name="adicional" value="galletas">Galletas
-								<br>
-                <input type="checkbox" name="adicional" value="platanos">Platanos								
-            </div>
-        </div>
     </fieldset>
     <fieldset class="containerdiv">
         <legend>Escoja la opción para bebida</legend>
         <div class="centraldiv">
             <span class="radios">
-                <input type="radio" name="drink" value="agua" checked>Agua
-							<input type="radio" name="drink" value="jugo">Jugo
+                <input type="radio" name="drink" value="agua" checked id="radioAgua" runat="server">Agua
+							</br>
+               <input type="radio" name="drink" value="jugo" id="radioJugo" runat="server">Jugo
             </span>
         </div>
     </fieldset>
