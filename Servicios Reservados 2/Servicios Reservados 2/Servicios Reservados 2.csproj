@@ -166,6 +166,7 @@
     <Content Include="Content\bootstrap-3.3.4-dist\js\npm.js" />
     <Content Include="Content\formEmpleado.css" />
     <Content Include="Content\Reservacion.css" />
+    <Content Include="faviconOET.ico" />
     <Content Include="FormEmpleadoReserva.aspx" />
     <Content Include="FormServirPlatos.aspx" />
     <Content Include="Images\help.png" />
@@ -277,6 +278,7 @@
     <Content Include="Images\imagenes_OET\PrevOff.gif" />
     <Content Include="Images\imagenes_OET\Spacer.gif" />
     <Content Include="Images\imagenes_OET\SubmenuArrow.gif" />
+    <Content Include="Images\logo_oet_español_todo_blanco.png" />
     <Content Include="Images\orderedList0.png" />
     <Content Include="Images\orderedList1.png" />
     <Content Include="Images\orderedList2.png" />
@@ -344,6 +346,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\ServirPlatos\AdaptadorServirPlatos.cs" />
+    <Compile Include="App_Data\ServirPlatos\ControladoraBDServirPlatos.cs" />
+    <Compile Include="App_Data\ServirPlatos\ControladoraServirPlatos.cs" />
     <Compile Include="App_Data\ComidaExtra\AdaptadorComidaExtra.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
@@ -397,7 +402,7 @@
     <Compile Include="App_Data\ComidaExtra\ControladoraBDComidaExtra.cs" />
     <Compile Include="App_Data\ComidaExtra\ControladoraComidaExtra.cs" />
     <Compile Include="App_Data\ComidaExtra\EntidadComidaExtra.cs" />
-    <Compile Include="App_Data\Comedor\ControladoraBDcomedor.cs" />
+    <Compile Include="App_Data\ServirPlatos\ControladoraBDcomedor.cs" />
     <Compile Include="FormEmpleadoReserva.aspx.cs">
       <DependentUpon>FormEmpleadoReserva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

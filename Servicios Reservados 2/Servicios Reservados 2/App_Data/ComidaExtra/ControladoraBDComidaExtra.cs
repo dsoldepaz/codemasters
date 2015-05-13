@@ -25,7 +25,7 @@ namespace Servicios_Reservados_2
          * Modifica: datatable que realiza la consulta. 
         */
         internal DataTable solicitarTipos() {
-            String consultaSQL = "select IDSERVICIO, tipo from Servicios_Extras";
+            String consultaSQL = "select IDSERVICIO, tipo from servicios_reservados.Servicios_Extras";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
@@ -37,7 +37,7 @@ namespace Servicios_Reservados_2
         */
         internal DataTable consultarTipo(String id)
         {
-            String consultaSQL = "select tipo from Servicios_Extras where idServicio = '" + id +"'";
+            String consultaSQL = "select tipo from servicios_reservados.Servicios_Extras where idServicio = '" + id + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
@@ -52,7 +52,7 @@ namespace Servicios_Reservados_2
             String[] respuesta = new String[3];
             try
             {
-                String consultaSQL = "insert into servicio_especial values('" + entidad.IdReservacion + "','" + entidad.IdServiciosExtras + "'," + 
+                String consultaSQL = "insert into servicios_reservados.servicio_especial values('" + entidad.IdReservacion + "','" + entidad.IdServiciosExtras + "'," + 
                     entidad.Pax + ",'" + entidad.Fecha + "','" + entidad.Consumido + "','" + entidad.Descripcion + "','" + entidad.Hora + "')";
                 adaptador.insertar(consultaSQL);
                
@@ -93,7 +93,7 @@ namespace Servicios_Reservados_2
             String[] respuesta = new String[3];
             try
             {
-                String consultaSQL = "update servicio_especial set pax =" + "'" + entidad.Pax + "', fecha = '"+ entidad.Fecha + "', consumido = '" + entidad.Consumido + "', descripcion = '" + entidad.Descripcion + "', hora = '" + entidad.Hora + "'" +
+                String consultaSQL = "update servicios_reservados.servicio_especial set pax =" + "'" + entidad.Pax + "', fecha = '" + entidad.Fecha + "', consumido = '" + entidad.Consumido + "', descripcion = '" + entidad.Descripcion + "', hora = '" + entidad.Hora + "'" +
                                       "where idreservacion = '" + entidadVieja.IdReservacion + "' and idserviciosextras = '" + entidadVieja.IdServiciosExtras + "'"; 
 
                 adaptador.actualizar(consultaSQL);
@@ -134,7 +134,7 @@ namespace Servicios_Reservados_2
             String[] respuesta = new String[3];
             try
             {
-                String consultaSQL = "delete from servicio_especial where idReservacion = '" + idReservacion + "' and idserviciosextras = '" + idComidaExtra + "'";
+                String consultaSQL = "delete from servicios_reservados.servicio_especial where idReservacion = '" + idReservacion + "' and idserviciosextras = '" + idComidaExtra + "'";
 
                 adaptador.eliminar(consultaSQL);
 
