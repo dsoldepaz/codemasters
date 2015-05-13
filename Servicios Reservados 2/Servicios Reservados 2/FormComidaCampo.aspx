@@ -19,7 +19,7 @@
             <input type="radio" name="turn" value="desayuno" checked>Desayuno
 							<input type="radio" name="turn" value="almuerzo">Almuerzo
 							<input type="radio" name="turn" value="cena">Cena	
-             </span>		
+             </span>	
         </div>
         </fieldset>
     </div>
