@@ -30,7 +30,7 @@ namespace Servicios_Reservados_2.Servicios
 
         }
         /**Efecto: Crea la consulta SQL que obtiene las tuplas de los servicios de una reservacion y la retorna en forma de datatable  
-         * Requiere: id de la reservacion
+         * Requiere: id de la reservaciones 
          * Modifica: el dataTable dt
          */
         internal DataTable solicitarServicios(String id)
