@@ -17,6 +17,7 @@ namespace Servicios_Reservados_2
 
         private static ControladoraComidaExtra controladora = new ControladoraComidaExtra();//instancia de la controladora de comida extra
         EntidadComidaExtra entidadConsultada = controladora.servicioSeleccionados();//buscamos el servicio consultado en la controladora
+        private static int paxSeleccionado = controladora.paxSeleccionado();
 
         private static String[] idReservacion = FormReservaciones.ids;
         private static int modo;//variable para controlar el modo en el que se encuentra el sistema (modificar, consultar, agregar o eliminar)
@@ -40,7 +41,7 @@ namespace Servicios_Reservados_2
             modo = FormServicios.modo;
             llenarComboBoxTipo();
             cambiarModo();
-            if (modo == 3)
+            if (modo == 3 || modo == 0)
             {
                 eliminarServicioExtra();
                 Response.Redirect("FormServicios");
@@ -158,14 +159,14 @@ namespace Servicios_Reservados_2
         {
             switch (modo)
             {
-                case 1:
+                case 1://insertar
                     agregarServicioExtra();
                     Response.Redirect("FormServicios");
                     break;
-                case 2:
+                case 2://modificar
                     modificarServicioExtra();
                     break;
-                case 3:
+                case 3://cancelar
                     eliminarServicioExtra();
                     break;
             }
