@@ -4,14 +4,20 @@
 
     <legend><h2>Comida de Campo</h2></legend>
     <fieldset>
-    <div class="containerdiv">
-        <div id="div0" class="centraldiv">
-            <span>
-                <label for="fecha">Fecha:</label>
-                <input name="fecha" type="date"><!--these are examples of input types, notice the pairing with label-->
-                <label for="npax"># PAX:</label>
-                <input name="npax" type="text">
-            </span>
+    <div class="well bs-component">
+         <ul>
+                <li class="itemContenedor">Fecha:<input runat="server" id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
+                    <input id="fechaDeEntrada" class="selectorDeFecha" type="button" runat="server" onserverclick="fechaDeEntrada_ServerClick" />
+                    <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" BackColor="#CCCCCC" BorderStyle="Dashed" ForeColor="#7BC143" Height="80px" Width="100px" BorderWidth="1px" Visible="false" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged">
+                        <DayHeaderStyle ForeColor="#333333" Wrap="True" />
+                        <DayStyle ForeColor="Black" />
+                        <NextPrevStyle ForeColor="Black" />
+                        <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
+                    </asp:Calendar>
+                </li>
+                <li>Hora:<input id="txtHora" runat="server" type="time" />
+                </li>
+             </ul>
         </div>
         <fieldset>
         <div class="centraldiv">
@@ -19,7 +25,7 @@
             <input type="radio" name="turn" value="desayuno" checked>Desayuno
 							<input type="radio" name="turn" value="almuerzo">Almuerzo
 							<input type="radio" name="turn" value="cena">Cena	
-             </span>		
+             </span>	
         </div>
         </fieldset>
     </div>

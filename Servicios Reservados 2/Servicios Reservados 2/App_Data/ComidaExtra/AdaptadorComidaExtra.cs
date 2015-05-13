@@ -11,31 +11,13 @@ namespace Servicios_Reservados_2
 {
     public class AdaptadorComidaExtra
     {
-        /*OracleConnection adaptador= new OracleConnection();
-        DataTable dt;
-        public void AdaptadorReservaciones(){
-             adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=grupo01;Password=servicios123;Unicode=True";
-            
 
-        }
-        internal DataTable consultar(String consultaSQL)
-        {
-            dt = new DataTable();
-            adaptador.Open();
-            OracleCommand comando = adaptador.CreateCommand();
-            comando.CommandText = consultaSQL;
-            OracleDataReader reader = comando.ExecuteReader();
-            dt.Load(reader);           
-            adaptador.Close();
-            return dt;
-        }
-        */
         OleDbConnection adaptador;
+
         DataTable dt;
         public AdaptadorComidaExtra()
         {
-             adaptador = new OleDbConnection("Provider= MSDAORA;Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True");             
-       
+             adaptador = new OleDbConnection("Provider= MSDAORA;Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True");     
         }
 
         /*
@@ -62,22 +44,6 @@ namespace Servicios_Reservados_2
             od.ExecuteNonQuery();
             adaptador.Close();
             return dt;
-        }
-
-        internal void actualizar(String consultaSQL)
-        {
-            adaptador.Open();
-            OleDbCommand od = new OleDbCommand(consultaSQL, adaptador);
-            od.ExecuteNonQuery();
-            adaptador.Close();
-        }
-
-        internal void eliminar(String consultaSQL)
-        {
-            adaptador.Open();
-            OleDbCommand od = new OleDbCommand(consultaSQL, adaptador);
-            od.ExecuteNonQuery();
-            adaptador.Close();
         }
     }
 }
