@@ -11,6 +11,7 @@
         </nav>
 
         <div>
+
     <h2>Empleados</h2>
   <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
