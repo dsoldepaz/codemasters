@@ -16,7 +16,7 @@ namespace Servicios_Reservados_2
       private ControladoraBDComidaExtra controladoraBD;//instancia de la controladora de BD comida extra.
       public static EntidadReservaciones servicios;
       public static ControladoraReservaciones controladoraReserv;
-
+       
       public static EntidadComidaExtra servicioSeleccionado;//instancia entidad comida extra.
        
       public ControladoraComidaExtra()
