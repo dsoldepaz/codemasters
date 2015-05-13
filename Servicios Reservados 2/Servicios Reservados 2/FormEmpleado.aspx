@@ -9,8 +9,7 @@
                 <li class="item-navegacion">Notificaciones <span class="notificacion">0</span></li>
             </ul>
         </nav>
-
-        <div>
+            <div>
 
     <h2>Empleados</h2>
   <asp:UpdatePanel ID="UpdatePanel1" runat="server">
