@@ -24,7 +24,7 @@ namespace Servicios_Reservados_2.Servicios
          */
         internal DataTable obtenerPax(String id)
         {
-            String consultaSQL = "select PAX from reservacionItem where reservacion = '"+ id+ "'";
+            String consultaSQL = "select PAX from reservas.reservacionItem where reservacion = '" + id + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
 
@@ -35,7 +35,7 @@ namespace Servicios_Reservados_2.Servicios
          */
         internal DataTable solicitarServicios(String id)
         {
-            String consultaSQL = "select s.idreservacion, e.idservicio, e.tipo, s.descripcion, s.hora, s.fecha, s.consumido, s.pax from servicio_especial s JOIN servicios_extras e ON e.idservicio = s.idserviciosextras AND s.idreservacion= '" + id + "'";
+            String consultaSQL = "select s.idreservacion, e.idservicio, e.tipo, s.descripcion, s.hora, s.fecha, s.consumido, s.pax from servicios_reservados.servicio_especial s JOIN servicios_reservados.servicios_extras e ON e.idservicio = s.idserviciosextras AND s.idreservacion= '" + id + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
 
@@ -46,7 +46,7 @@ namespace Servicios_Reservados_2.Servicios
          */
         internal DataTable seleccionarServicio(String id, String idserv)
         {
-            String consultaSQL = "select * from servicio_especial where idreservacion = '" + id + "' and idserviciosextras = '" + idserv + "'";
+            String consultaSQL = "select * from servicios_reservados.servicio_especial where idreservacion = '" + id + "' and idserviciosextras = '" + idserv + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
