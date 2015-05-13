@@ -353,3 +353,4 @@ C:\Users\b17013\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reserv
 C:\Users\b17013\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
 C:\Users\b17013\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.dll
 C:\Users\b17013\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.pdb
+C:\Users\b17013\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.csprojResolveAssemblyReference.cache
