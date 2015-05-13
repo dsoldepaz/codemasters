@@ -9,9 +9,13 @@ namespace Servicios_Reservados_2
 {
     public partial class FormComidaCampo : System.Web.UI.Page
     {
+
+        private static ControladoraComidaCampo controladora = new ControladoraComidaExtra();
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
     }
+
+
 }

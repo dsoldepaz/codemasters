@@ -346,6 +346,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\ComidaCampo\AdaptadorComidaExtra.cs" />
+    <Compile Include="App_Data\ComidaCampo\ControladoraBDComidaExtra.cs" />
+    <Compile Include="App_Data\ComidaCampo\ControladoraComidaExtra.cs" />
+    <Compile Include="App_Data\ComidaCampo\EntidadComidaExtra.cs" />
     <Compile Include="App_Data\ServirPlatos\AdaptadorServirPlatos.cs" />
     <Compile Include="App_Data\ServirPlatos\ControladoraBDServirPlatos.cs" />
     <Compile Include="App_Data\ServirPlatos\ControladoraServirPlatos.cs" />

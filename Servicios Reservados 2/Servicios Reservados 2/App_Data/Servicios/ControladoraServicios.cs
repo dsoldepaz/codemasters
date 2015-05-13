@@ -37,6 +37,13 @@ namespace Servicios_Reservados_2.Servicios
 
         }
 
+        public String idNumSelected()
+        {
+            string idNum = controladoraReserv.getReservacionSeleccionada().Numero;
+            return idNum;
+
+        }
+
         internal DataTable obtenerPax(String id)
         {
             DataTable pax = controladora.obtenerPax(id);

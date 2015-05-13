@@ -22,9 +22,9 @@ namespace Servicios_Reservados_2.Servicios
          * Requiere: id de la reservacion
          * Modifica: el dataTable dt
          */
-        internal DataTable obtenerPax(String id)
+        internal DataTable obtenerPax(String idNum)
         {
-            String consultaSQL = "select PAX from reservas.reservacionItem where reservacion = '" + id + "'";
+            String consultaSQL = "select PAX from reservas.vr_reservacion where numero = '" + idNum + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
 

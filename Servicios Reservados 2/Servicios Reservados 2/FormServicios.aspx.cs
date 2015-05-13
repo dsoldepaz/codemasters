@@ -46,7 +46,7 @@ namespace Servicios_Reservados_2
          */
         protected void llenarCampos()
         {
-            DataTable pax = controladora.obtenerPax(controladora.idSelected());
+            DataTable pax = controladora.obtenerPax(controladora.idNumSelected());
             txtAnfitriona.Value = controladora.informacionServicio().Anfitriona;
             txtEstacion.Value = controladora.informacionServicio().Estacion;
             txtNombre.Value = controladora.informacionServicio().Solicitante;
@@ -184,6 +184,12 @@ namespace Servicios_Reservados_2
         {
             modo = 3; //modificar es 2
             Response.Redirect("FormComidaExtra");
+        }
+
+        protected void clickAgregarComidaExtra(object sender, EventArgs e) 
+        {
+            modo = 1;
+
         }
     }
 }
