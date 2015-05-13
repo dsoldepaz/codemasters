@@ -14,10 +14,14 @@ namespace Servicios_Reservados_2
         DataTable dt;
         public AdaptadorServicios()
         {
-            adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=grupo01;Password=servicios123;Unicode=True";
+            adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True";
 
 
         }
+        /**Efecto: Se comunica con la BD para obtener los datos de la misma 
+         * Requiere: La consulta SQL
+         * Modifica: el dataTable dt
+         */
         internal DataTable consultar(String consultaSQL)
         {
             dt = new DataTable();

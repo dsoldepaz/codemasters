@@ -9,7 +9,7 @@
             <li class="item-navegacion">Notificaciones <span class="notificacion">0</span></li>
         </ul>
     </nav>
-    <fieldset>
+
 
         <legend>
             <h2>Reservaciones</h2>
@@ -32,12 +32,12 @@
                                         <select style="width: 176px" id="cbxEstacion" runat="server"></select>
                                     </td>
                                 </tr>
-                            </table>
-                            <table>
+                                </table>
+                             <table>
                                 <tr>
                                     <td>Solicitante:</td>
                                     <td>
-                                        <input class="textbox" id="txtSolicitante" runat="server" />
+                                        <input class="textbox" style="width:500px" id="txtSolicitante" runat="server" />
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-success" id="BotonBuscar" onserverclick="clickBuscar" runat="server">Aplicar filtro</button>
@@ -65,9 +65,7 @@
                         </table>
                         <table>
                             <tr>
-                                <td>
-                                    <button type="button" class="btn btn-danger" id="BotonImp">Activar tiquetes</button>
-                                </td>
+                                
                                 <td>
                                     <a href="FormServicios.aspx">
                                         <input type="button" class="btn btn-success" id="botonServicioExtra" value="Agregar Servicios" /></a>
@@ -81,6 +79,5 @@
             </ContentTemplate>
         </asp:UpdatePanel>
 
-    </fieldset>
 </asp:Content>
 

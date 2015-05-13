@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
+using System.Diagnostics;
+using System.Linq;
+using System.Diagnostics;
+using System.Web;
 
 
 
@@ -13,11 +15,13 @@ namespace Servicios_Reservados_2.Servicios
         public static EntidadReservaciones servicios;
         private ControladoraBDServicios controladora;
         public static ControladoraReservaciones controladoraReserv;
+        public static ControladoraComidaExtra controladoraCE;
 
         public ControladoraServicios()
         {
             controladora = new ControladoraBDServicios();
             controladoraReserv = new ControladoraReservaciones();
+            controladoraCE = new ControladoraComidaExtra();
 
         }
 
@@ -35,6 +39,13 @@ namespace Servicios_Reservados_2.Servicios
 
         }
 
+        public String idNumSelected()
+        {
+            string idNum = controladoraReserv.getReservacionSeleccionada().Numero;
+            return idNum;
+
+        }
+
         internal DataTable obtenerPax(String id)
         {
             DataTable pax = controladora.obtenerPax(id);
@@ -46,6 +57,25 @@ namespace Servicios_Reservados_2.Servicios
         {
             DataTable servicios = controladora.solicitarServicios(id);
             return servicios;
+
+        }
+
+        internal void seleccionarServicio(String id, String idServ)
+        {
+            DataTable servicios = controladora.seleccionarServicio(id, idServ);
+
+            Object[] nuevoServicio = new Object[8];
+
+            nuevoServicio[0] = servicios.Rows[0][0];
+            nuevoServicio[1] = servicios.Rows[0][1];
+            nuevoServicio[2] = servicios.Rows[0][3];
+            nuevoServicio[3] = servicios.Rows[0][4];
+            nuevoServicio[4] = servicios.Rows[0][5];
+            nuevoServicio[5] = servicios.Rows[0][2];
+            nuevoServicio[6] = servicios.Rows[0][6];
+            nuevoServicio[6] =obtenerPax
+
+            controladoraCE.guardarServicioSeleccionado(nuevoServicio);
 
         }
     }

@@ -3656,7 +3656,6 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-group > .btn {
   display: block;
   float: none;
-  width: 100%;
   max-width: 100%;
 }
 .btn-group-vertical > .btn-group > .btn {

@@ -15,12 +15,15 @@ namespace Servicios_Reservados_2
     public class ControladoraBDComedor
     {
 
-
-        internal Object consultarNotasTiquete(string numero)
+        /* Requiere: argumento: numero de tiquete 
+          * Efecto: Verifica el numero de tiquete y recoge la información de la reservacion asociada
+          * Modifica: Nada
+          */
+        internal Object[] consultarNotasTiquete(string numero)
         {
 
 
-            String connectionString = "Data Source=10.1.4.93;User ID=grupo01;Password=servicios123;Unicode=True";
+            String connectionString = "Data Source=10.1.4.93;User ID=grupo01;Password=servicios123;";
 
             String consultaSQL = "select concat(concat(c.nombre,' '),c.apellidos) as nombreCliente ,q4.siglas as anfitriona ,q4.nombre as estacion ,q4.consumido,q4.notas from(select q3.solicitante,nombre,q3.notas,q3.siglas,q3.consumido from(select q2.solicitante,q2.estacion,notas,siglas,q2.consumido from ( select q1.idreservacion,q1.solicitante,q1.estacion,notas,q1.anfitriona, rp.consumido from (select idreservacion,solicitante,estacion,notas, anfitriona from pax join reservacion on pax.idreservacion=reservacion.id and idcliente=" + numero + ")q1 join reservado_pax rp on q1.idreservacion=rp.idreservacion )q2 join anfitriona a on a.id=q2.anfitriona )q3 join estacion e on e.id=q3.estacion)q4 join contacto c on c.id=q4.solicitante";
 
@@ -35,7 +38,7 @@ namespace Servicios_Reservados_2
                 connection.Open();//semms reopening connection is making issues//connection should be openned else it will complain it is closed
 
                 OracleDataReader reader = sqlQuery.ExecuteReader();
-                reader.Read();// https://msdn.microsoft.com/en-us/library/system.data.oracleclient.oracledatareader.read(v=vs.110).aspx
+                //reader.Read();// https://msdn.microsoft.com/en-us/library/system.data.oracleclient.oracledatareader.read(v=vs.110).aspx
 
                 Object[] contenedor = new Object[5];
 

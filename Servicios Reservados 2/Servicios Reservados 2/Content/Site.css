@@ -71,7 +71,6 @@ h1 {
 h2 {
     color: #7BC143;
     font-size: 2.5em;
-    margin: 24px;
 }
 
 h3 {
@@ -94,7 +93,7 @@ h5, h6 {
 /* main layout
 ----------------------------------------------------------*/
 .content-wrapper {
-    padding: 01;
+    margin: 0 auto;
 }
 
 header {
@@ -379,8 +378,7 @@ fieldset.open-auth-providers {
 
 /* forms */
 fieldset {
-    width:90%;
-    margin: 24px;;
+    margin: 24px;
     padding: 50px;
 }
 
@@ -445,6 +443,7 @@ td input[type="submit"] {
     padding: 4px;
     margin-right: 4px;
 }
+
 
 /* info and errors */
 .message-info {
@@ -792,7 +791,7 @@ h1{
 }
 .cancelar-btn,
 .aceptar-btn{
-    width:75px;
+    width:87px;
     float:right;
 }
 .cancelar-btn{
