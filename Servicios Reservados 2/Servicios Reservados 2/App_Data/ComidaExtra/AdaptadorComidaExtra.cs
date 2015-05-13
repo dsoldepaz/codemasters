@@ -13,6 +13,7 @@ namespace Servicios_Reservados_2
     {
 
         OleDbConnection adaptador;
+
         DataTable dt;
         public AdaptadorComidaExtra()
         {
