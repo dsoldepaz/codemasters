@@ -38,25 +38,14 @@
                         <div class="well bs-component">
                     <fieldset>
                         <legend style="color: #7BC143">Información de reservación</legend>
-
-              <table>
-					<caption>Información de reservación</caption>
-					<tr>
-						<th>Cliente</th>
-						<th>Anfitriona</th>
-						<th>Estación</th>
-						<th>Servido</th>
-						<th>Notas</th>
-					</tr>
-					<tr>
-						<td class="basura" runat="server">
-                            <textarea id="clienteArea"  runat="server" ></textarea></td>
-						<td id="anfitrionaArea"  runat="server">     </td>
-						<td id="estacionArea"  runat="server"></td>
-						<td id="servidoArea"  runat="server"></td>
-						<td class="basura"> <textarea id="notasArea"  runat="server"> </textarea></td>
-					</tr>
-				</table>
+                        
+                                    <asp:GridView ID="GridViewTiquete" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
+                                        <AlternatingRowStyle BorderStyle="None" />
+                                        <HeaderStyle Font-Size="1.3em" />
+                                        <SelectedRowStyle BackColor="#7BC143"
+                                            ForeColor="Black"
+                                            Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
+                                    </asp:GridView>
 
                         </div>
                 

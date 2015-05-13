@@ -11,34 +11,18 @@ namespace Servicios_Reservados_2
 {
     public class AdaptadorComidaExtra
     {
-        /*OracleConnection adaptador= new OracleConnection();
-        DataTable dt;
-        public void AdaptadorReservaciones(){
-             adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=grupo01;Password=servicios123;Unicode=True";
-            
 
-        }
-        internal DataTable consultar(String consultaSQL)
-        {
-            dt = new DataTable();
-            adaptador.Open();
-            OracleCommand comando = adaptador.CreateCommand();
-            comando.CommandText = consultaSQL;
-            OracleDataReader reader = comando.ExecuteReader();
-            dt.Load(reader);           
-            adaptador.Close();
-            return dt;
-        }
-        */
         OleDbConnection adaptador;
+
         DataTable dt;
         public AdaptadorComidaExtra()
         {
-             adaptador = new OleDbConnection("Provider= MSDAORA;Data Source=10.1.4.93;User ID=grupo01;Password=servicios123;Unicode=True");
-             
-
-       
+             adaptador = new OleDbConnection("Provider= MSDAORA;Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True");     
         }
+
+        /*
+        * Consultar se utiliza para enviar una string SQL con una consulta y el adaptador se encarga de realizar la consulta directamente en la base de datos.  
+        */
         internal DataTable consultar(String consultaSQL)
         {
             dt = new DataTable();
@@ -49,7 +33,10 @@ namespace Servicios_Reservados_2
             return dt;
         }
 
-            internal DataTable insertar(String consultaSQL)
+       /*
+       * Insertar se utiliza para enviar una string SQL con una inserción y el adaptador se encarga de realizar la inserción directamente en la base de datos.  
+       */
+        internal DataTable insertar(String consultaSQL)
         {
             dt = new DataTable();
             adaptador.Open();
@@ -58,8 +45,6 @@ namespace Servicios_Reservados_2
             adaptador.Close();
             return dt;
         }
-
-
     }
 }
 

@@ -10,51 +10,42 @@
 namespace Servicios_Reservados_2 {
     
     
-    public partial class FormServirPlatos {
+    public partial class FormComidaCampo {
         
         /// <summary>
-        /// Control UpdatePanel1.
+        /// Control textFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText textFecha;
         
         /// <summary>
-        /// Control tiquete.
+        /// Control fechaDeEntrada.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tiquete;
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton fechaDeEntrada;
         
         /// <summary>
-        /// Control Button1.
+        /// Control fechaDeEntradaCalendario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton Button1;
+        protected global::System.Web.UI.WebControls.Calendar fechaDeEntradaCalendario;
         
         /// <summary>
-        /// Control Button2.
+        /// Control txtHora.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton Button2;
-        
-        /// <summary>
-        /// Control GridViewTiquete.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewTiquete;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtHora;
     }
 }

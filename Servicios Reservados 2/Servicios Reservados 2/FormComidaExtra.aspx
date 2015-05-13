@@ -29,7 +29,7 @@
                         <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                     </asp:Calendar>
                 </li>
-                <li class="itemContenedor">Hora:<input id="txtHora" class="tiempo" runat="server" type="time" />
+                <li class="itemContenedor">Hora:<input id="txtHora" runat="server" type="time" />
                 </li>
                 <li class="itemContenedor">#PAX:<input id="txtPax" runat="server" type="number" required="required" placeholder="Entre un digito" />
 
@@ -44,8 +44,9 @@
             </p>
                   <table>
                         <tr>
-                            <td><a href="FormComidaExtra.aspx">
-                                <input type="button" class="btn btn-success" value="Cancelar" /></a></td>
+                            <td>
+                                <input type="button" class="btn btn-success" value="Cancelar" runat="server" onserverclick="clickCancelar"/>
+                            </td>
                             <td>
                                 <input type="button" class="btn btn-success" value="Aceptar" runat="server" onserverclick="clickAceptar"/>
                             </td>
