@@ -179,7 +179,13 @@ namespace Servicios_Reservados_2
         */
         protected void seleccionarReservacion(object sender, EventArgs e)
         {
-            controladora.seleccionarReservacion(ids[GridViewReservaciones.SelectedIndex]);
+            try
+            {
+                controladora.seleccionarReservacion(ids[GridViewReservaciones.SelectedIndex]);
+            }
+            catch (Exception ee) { 
+                
+            }
         }
          
         /*
