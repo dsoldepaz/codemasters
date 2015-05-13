@@ -832,6 +832,7 @@ tbody>tr>th{
 #textFecha{
   background-color: rgb(218, 218, 218)
 }
+#fechaDeEntrada,
 input.selectorDeFecha{
     border-style: none;
     border-color: inherit;

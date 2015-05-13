@@ -23,7 +23,7 @@
                         <NextPrevStyle ForeColor="Black" />
                         <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                     </asp:Calendar>
-
+                    Hora Otro Servicio: <input type="time" />
             </ContentTemplate>
    
         </asp:UpdatePanel>

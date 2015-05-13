@@ -5,3 +5,14 @@ h4{
     color: #7BC143;
     font-size:1.2em;
 }
+#fechaDeEntrada,
+input.selectorDeFecha{
+    border-style: none;
+    border-color: inherit;
+    border-width: medium;
+    background-color:rgba(245, 240, 240, 0.00);
+    border-radius: 0px;
+    background-image:url('../Images/imagenes_OET/DatePicker.gif');
+    height:18px;
+    width: 21px;
+}
