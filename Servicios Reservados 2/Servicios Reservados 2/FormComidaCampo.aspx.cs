@@ -19,7 +19,6 @@ namespace Servicios_Reservados_2
 
         protected void cambiarModo()
         {
-           
            if (modo == 1)
               { // se desea insertar
                   /*textFecha.Disabled = true;
