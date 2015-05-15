@@ -49,6 +49,10 @@ namespace Servicios_Reservados_2.Servicios
         internal DataTable obtenerPax(String id)
         {
             DataTable pax = controladora.obtenerPax(id);
+            
+            int paxSelect = int.Parse(pax.Rows[0][0].ToString());
+            controladoraCE.guardarPaxsSeleccionado(paxSelect);//enciamos la información a la controladora de comida extra
+
             return pax;
 
         }
@@ -73,10 +77,8 @@ namespace Servicios_Reservados_2.Servicios
             nuevoServicio[4] = servicios.Rows[0][5];
             nuevoServicio[5] = servicios.Rows[0][2];
             nuevoServicio[6] = servicios.Rows[0][6];
-           
 
             controladoraCE.guardarServicioSeleccionado(nuevoServicio);
-
         }
     }
 }

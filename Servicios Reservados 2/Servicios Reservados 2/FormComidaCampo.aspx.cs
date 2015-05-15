@@ -73,6 +73,7 @@ namespace Servicios_Reservados_2
               }
         }
 
+ 
     
         /*
         * Efecto: capta el evento al presionar el botón del calendario para hacerlo visible.
