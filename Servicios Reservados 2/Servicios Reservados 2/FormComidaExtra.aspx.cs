@@ -93,7 +93,7 @@ namespace Servicios_Reservados_2
         protected Boolean agregarServicioExtra()
         {
             Boolean res = true;
-            Object[] nuevoServicio = new Object[7];// objeto en el que se almacenan los datos para enviar a encapsular.
+            Object[] nuevoServicio = new Object[8];// objeto en el que se almacenan los datos para enviar a encapsular.
 
             nuevoServicio[0] = controladora.informacionServicio().Id;//recuperamos el id de la reservación
             //en adelante se extrae la información de cada uno de los componentes de la interfaz.
@@ -104,6 +104,7 @@ namespace Servicios_Reservados_2
             nuevoServicio[4] = txaNotas.Value;
             nuevoServicio[5] = txtPax.Value;
             nuevoServicio[6] = txtHora.Value;
+            nuevoServicio[7] = cbxTipoPago.Value;
 
  
             String[] error = controladora.agregarServicioExtra(nuevoServicio);// se le pide a la controladora que lo inserte
