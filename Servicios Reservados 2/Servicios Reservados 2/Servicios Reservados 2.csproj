@@ -350,6 +350,7 @@
     <Compile Include="App_Data\ComidaCampo\ControladoraBDComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\ControladoraComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\EntidadComidaCampo.cs" />
+    <Compile Include="App_Data\Empleados\AdaptadorEmpleado.cs" />
     <Compile Include="App_Data\ServirPlatos\AdaptadorServirPlatos.cs" />
     <Compile Include="App_Data\ServirPlatos\ControladoraBDServirPlatos.cs" />
     <Compile Include="App_Data\ServirPlatos\ControladoraServirPlatos.cs" />
