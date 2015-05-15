@@ -1,20 +1,13 @@
 ﻿li.itemFormulario{
-    width: 90%;
+    width: 30%;
+    padding:5px;
 }
-li.itemFormulario>.radioBusqueda{
-    width:20px;
-}
-li.itemFormulario>input:last-child{
-    width:80%;
-}
-li.itemFormulario:first-child>#inputNombre{
-    margin-left:36px;
-}
-li.itemFormulario:last-child>input{
-    width:80px;
+ul{
+        display:inline-block;
 }
 li{
       list-style-type: none;
+      display:inline-block;
 }
 
 
