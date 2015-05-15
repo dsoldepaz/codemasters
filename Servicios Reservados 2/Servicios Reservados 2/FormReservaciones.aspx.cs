@@ -214,7 +214,7 @@ namespace Servicios_Reservados_2
             {
               solicitante = txtSolicitante.Value.ToString();
           }
-            if (anfitriona.CompareTo("vacio") != 1 || estacion.CompareTo("vacio") != 1 || solicitante.CompareTo("vacio") != 1)
+            if (anfitriona.CompareTo("vacio") != 0 || estacion.CompareTo("vacio") != 0 || solicitante.CompareTo("vacio") != 0)
           {
               DataTable tabla = crearTablaReservaciones();
                 Debug.WriteLine("entre al metodo " + estacion);
