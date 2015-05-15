@@ -37,6 +37,9 @@
                 <li class="itemContenedor">#PAX:<input id="txtPax" runat="server" type="number" required="required" placeholder="Entre un digito" />
 
                 </li>
+                <li class="itemContenedor">Tipo de pago:<select id="cbxTipoPago" runat="server" ></select>
+
+                </li>
 
             </ul>
             <p>
