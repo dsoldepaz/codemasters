@@ -16,3 +16,11 @@ input.selectorDeFecha{
     height:18px;
     width: 21px;
 }
+li.itemFormulario{
+    width: 90%;
+    padding: 2px;
+}
+ul{
+      list-style-type: none;
+      display:inline-block;
+}

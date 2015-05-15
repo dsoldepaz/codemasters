@@ -4,7 +4,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Comidas de Empleado</h1>
-    <fieldset>
+    <fieldset class="contenedor">
+         <h4>Informacion Del Empleado</h4>
+        <ul class ="lista formulario">
+            <li  class="itemFormulario">
+                Nombre: <input id="nombreLbl" />
+            </li>
+            <li  class="itemFormulario">
+                Apellido: <input id="apellidoLbl" />
+            </li>
+            
+            <li  class="itemFormulario">
+                Indentificacion: <input id="idLbl" />
+            </li>
+        </ul>
          <h4>Seleccione el horario de comida</h4>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -12,18 +25,16 @@
             <input type="checkbox" value="Desayuno" />Desayuno
             <input type="checkbox" value="Almuerzo" />Almuerzo
             <input type="checkbox" value="Cena" />Cena
-            <input type="checkbox" value="Otro" />Otro
         </div>
-        Fecha:<input runat="server" id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
-                    <input class="selectorDeFecha" id="fechaDeEntrada" type="button" runat="server" onserverclick="fechaDeEntrada_ServerClick" />
         
-                    <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged" OnDayRender="fechaDeEntradaCalendario_DayRender" BackColor="#CCCCCC" BorderStyle="Dashed" ForeColor="#7BC143" Height="80px" Width="100px" BorderWidth="1px" Visible="false">
+                    <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged" OnDayRender="fechaDeEntradaCalendario_DayRender" BackColor="#CCCCCC" BorderStyle="Dashed" ForeColor="#7BC143" Height="320px" Width="400px" BorderWidth="1px" Visible="true">
                         <DayHeaderStyle ForeColor="#333333" Wrap="True" />
                         <DayStyle ForeColor="Black" />
                         <NextPrevStyle ForeColor="Black" />
+                        <SelectedDayStyle BackColor="#7BC143" />
                         <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                     </asp:Calendar>
-                    Hora Otro Servicio: <input type="time" />
+                    
             </ContentTemplate>
    
         </asp:UpdatePanel>
