@@ -8,7 +8,7 @@ using System.Data.OracleClient;
 
 namespace Servicios_Reservados_2
 {
-    public class AdaptadorReservaciones
+    public class AdaptadorServirPlatos
     {
         OracleConnection adaptador= new OracleConnection();
         DataTable dt;
@@ -17,8 +17,11 @@ namespace Servicios_Reservados_2
          * Efectúa : Crea la hilera de conección con la base de datos.
          * Retorna : N/A
          */
-        public AdaptadorReservaciones(){
-             adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True";   
+        public AdaptadorServirPlatos()
+        {
+             adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True";
+            
+
         }
         /*
          * Requiere: Una hilera con la consulta a realizar.
@@ -36,6 +39,5 @@ namespace Servicios_Reservados_2
             adaptador.Close();
             return dt;
         }
-
     }
 }

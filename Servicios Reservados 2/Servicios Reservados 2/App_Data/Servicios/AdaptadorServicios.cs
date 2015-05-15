@@ -2,25 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.OleDb;
 using System.Data;
-namespace Servicios_Reservados_2.Servicios
+using System.Data.OracleClient;
+
+
+namespace Servicios_Reservados_2
 {
     public class AdaptadorServicios
     {
-         OleDbConnection adaptador;
+        OracleConnection adaptador = new OracleConnection();
         DataTable dt;
-        public AdaptadorServicios(){
-             adaptador = new OleDbConnection("Provider= MSDAORA;Data Source=10.1.4.93;User ID=reservas;Password=reservas;Unicode=True");
-             dt = new DataTable();
-
-       
-        }
-        internal DataTable prueba(String id)
+        public AdaptadorServicios()
         {
+            adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True";
+
+
+        }
+        /**Efecto: Se comunica con la BD para obtener los datos de la misma 
+         * Requiere: La consulta SQL
+         * Modifica: el dataTable dt
+         */
+        internal DataTable consultar(String consultaSQL)
+        {
+            dt = new DataTable();
             adaptador.Open();
-            OleDbDataAdapter od = new OleDbDataAdapter("select * from RESERVACIONITEM where ID = '" + id + "'", adaptador);
-            od.Fill(dt);
+            OracleCommand comando = adaptador.CreateCommand();
+            comando.CommandText = consultaSQL;
+            OracleDataReader reader = comando.ExecuteReader();
+            dt.Load(reader);
             adaptador.Close();
             return dt;
         }

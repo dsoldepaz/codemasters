@@ -40,7 +40,11 @@ namespace Servicios_Reservados_2
             llenarGridReservaciones();
             
         }
-
+        /*
+         *  Requiere: Controladores de eventos de la interfaz.
+         *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
+         *  Retrona:  N/A
+         */
         protected void GridViewReservaciones_PageIndexChanging(Object sender, GridViewPageEventArgs e)
         {
 
@@ -49,6 +53,11 @@ namespace Servicios_Reservados_2
             GridViewReservaciones.DataBind();
             
         } 
+        /**
+         *  Requiere: N/A
+         *  Efectúa: Pide los datos de las estaciones y las anfitrionas; y los inserta entre las opciones de los combo box de estación y anfitriona. 
+         *  Retorna: N/A
+         */
         void llenarComboboxReservaciones()
         {
             DataTable anfitriones = controladora.solicitarAnfitriones();
@@ -72,6 +81,11 @@ namespace Servicios_Reservados_2
                 }
             }
         }
+        /**
+         * Requiere: N/A
+         * Efectúa:  Pide los datos a la controladora y rellena la tabla con los datos de las reservaciones.
+         * Retorna:  N/A
+         */
         void llenarGridReservaciones()
         {
             DataTable tabla = crearTablaReservaciones();
@@ -88,6 +102,7 @@ namespace Servicios_Reservados_2
                 {
                     foreach (DataRow fila in reservaciones.Rows)
                     {
+                        
                         ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
                         datos[0] = fila[1].ToString();//obtener los datos a mostrar
                         datos[1] = fila[2].ToString();
@@ -98,6 +113,7 @@ namespace Servicios_Reservados_2
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
                     }
+                   
                 }
 
                 Session["tablaa"] = tabla;
@@ -163,9 +179,21 @@ namespace Servicios_Reservados_2
         */
         protected void seleccionarReservacion(object sender, EventArgs e)
         {
-            controladora.seleccionarReservacion(ids[GridViewReservaciones.SelectedIndex]);
+            try
+            {
+                controladora.seleccionarReservacion(ids[GridViewReservaciones.SelectedIndex]);
+            }
+            catch (Exception ee) { 
+                
+            }
         }
          
+        /*
+         * Requiere: parámetros de evento de la interfaz. 
+         * Efectúa : verifica cuáles filtros han sido seleccionados y por cada uno que haya sido seleccionado guarda el valor, luego de esto envía estos valores (vacío si no se había seleccionado nada) a la controladora.
+         *           Con los datos retornados los rellena la  tabla, en caso de error despliega un mensaje de error. 
+         * Retorna : N/A
+         */
         protected void clickBuscar(object sender, EventArgs e)
         {
             String anfitriona = "vacio";
@@ -186,7 +214,7 @@ namespace Servicios_Reservados_2
             {
               solicitante = txtSolicitante.Value.ToString();
           }
-            if (anfitriona.CompareTo("vacio") != 1 || estacion.CompareTo("vacio") != 1 || solicitante.CompareTo("vacio") != 1)
+            if (anfitriona.CompareTo("vacio") != 0 || estacion.CompareTo("vacio") != 0 || solicitante.CompareTo("vacio") != 0)
           {
               DataTable tabla = crearTablaReservaciones();
                 Debug.WriteLine("entre al metodo " + estacion);

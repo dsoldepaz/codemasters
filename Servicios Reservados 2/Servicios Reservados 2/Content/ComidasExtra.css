@@ -34,7 +34,7 @@ label.itemContenedor{
 ul>li.itemContenedor {
     display: inline-block;
     margin:12px;
-    width: 30%;
+    width: 20%;
     padding: 8px;
 }
 select {
@@ -62,12 +62,7 @@ input{
     margin:6px;
     margin-left: 10px;
 }
-[type="button"]{
-    background-color:#7BC143;
-    color:white;
-    font-weight:bold;
-    font-size: 1.1em;
-}
+
 input.selectorDeFecha{
     background-color:rgba(245, 240, 240, 0.00);
     border:none;
@@ -76,3 +71,8 @@ input.selectorDeFecha{
     width:21px;
     height:18px;
 }
+ul>li>input.tiempo{
+    line-height: 12px;
+}
+
+  

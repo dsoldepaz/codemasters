@@ -17,7 +17,7 @@ namespace Servicios_Reservados_2.Servicios
 
         public EntidadSerivicios(Object[] datos)
         {
-        
+            
 
 
         } 

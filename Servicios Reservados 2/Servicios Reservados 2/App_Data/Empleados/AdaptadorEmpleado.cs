@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
 using System.Data.OracleClient;
-
+using System.Linq;
+using System.Web;
 
 namespace Servicios_Reservados_2
 {
-    public class AdaptadorReservaciones
+    public class AdaptadorEmpleado
     {
         OracleConnection adaptador= new OracleConnection();
         DataTable dt;
@@ -17,7 +16,8 @@ namespace Servicios_Reservados_2
          * Efectúa : Crea la hilera de conección con la base de datos.
          * Retorna : N/A
          */
-        public AdaptadorReservaciones(){
+        public AdaptadorEmpleado()
+        {
              adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True";   
         }
         /*
@@ -36,6 +36,5 @@ namespace Servicios_Reservados_2
             adaptador.Close();
             return dt;
         }
-
     }
 }

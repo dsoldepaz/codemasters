@@ -1,22 +1,24 @@
 ﻿<%@ Page Title="Comida Extra" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormComidaExtra.aspx.cs" Inherits="Servicios_Reservados_2.FormComidaExtra" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link rel="stylesheet" href="Content/reset.css" />
-    <link rel="stylesheet" href="Content/Site.css" />
-    <link rel="stylesheet" href="Content/CalendarControl.css" />
+
+
     <link rel="stylesheet" href="Content/ComidasExtra.css" />
 
-    <a href="/FormUsuario">
+    <a href="">
         <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>
                 <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
         </div>
     </a>
-    <fieldset>
 
-        <h2>Comida Extra</h2>
-        <section class="principal">
+    <fieldset>
+         <legend>
+                        <h2>Comida Extra</h2>
+                    </legend>
+        
+              <div class="well bs-component">
             <ul>
                 <li class="itemContenedor">Fecha:<input runat="server" id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
                     <input id="fechaDeEntrada" class="selectorDeFecha" type="button" runat="server" onserverclick="fechaDeEntrada_ServerClick" />
@@ -27,12 +29,13 @@
                         <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                     </asp:Calendar>
                 </li>
-                <li class="itemContenedor">Hora:<input id="txtHora" runat="server" />
+                
+                <li class="itemContenedor">Tipo:<asp:DropDownList ID="cbxTipo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="clickAdaptarHora"></asp:DropDownList>
+                </li>
+                <li class="itemContenedor">Hora:<select id="cbxHora" runat="server" ></select> <!--class="itemContenedor">Hora:<input id="txtHora" runat="server" type="time" />-->
                 </li>
                 <li class="itemContenedor">#PAX:<input id="txtPax" runat="server" type="number" required="required" placeholder="Entre un digito" />
 
-                </li>
-                <li class="itemContenedor">Tipo:<select id="cbxTipo" runat="server"></select>
                 </li>
 
             </ul>
@@ -40,9 +43,19 @@
                 <label>Notas:</label>
                 <textarea id="txaNotas" cols="20" name="S1" rows="2" runat="server"></textarea>
             </p>
-            <input type="button" class="cancelar-btn" value="Cancelar" />
-            <input type="button" class="aceptar-btn" onserverclick="clickAceptar" value="Aceptar" runat="server" />
-        </section>
+                  <table>
+                        <tr>
+                            <td>
+                                <input type="button" class="btn btn-success" value="Cancelar" runat="server" onserverclick="clickCancelar"/>
+                            </td>
+                            <td>
+                                <input type="button" class="btn btn-success" value="Aceptar" runat="server" onserverclick="clickAceptar"/>
+                            </td>
+                            
+                        </tr>
+                    </table>
+
+        </div>
     </fieldset>
 
 
