@@ -19,10 +19,10 @@
                      <legend style="color: #7BC143">Filtro de empleados</legend>
                         <ul class ="lista formulario">
                             <li class="itemFormulario">
-                                <input type="radio" class="radioBusqueda" name="busqueda" value="nombre" checked>Nombre <input id="inputNombre" />
+                                Nombre: <input id="inputNombre" />
                             </li>
                             <li class="itemFormulario">
-                            <input type="radio" class="radioBusqueda" name="busqueda" value="identificacion">Identificacion: <input id="inputIdentificacion" />
+                            Identificacion: <input id="inputIdentificacion" />
                             </li>
                             <li class="itemFormulario">
                                 <input type="button" class="btn btn-success" id="botonBuscar" value="Buscar" />
