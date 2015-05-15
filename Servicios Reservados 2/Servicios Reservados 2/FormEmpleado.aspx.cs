@@ -1,42 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Diagnostics;
+
 namespace Servicios_Reservados_2
 {
     public partial class FormEmpleado : System.Web.UI.Page
     {
-        
         private static ControladoraEmpleado controladora = new ControladoraEmpleado();
         public static String[] ids;
-                
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
-                //cargarDatos();  
+                llenarGridEmpleados();
 
 
 
             }
-            
+
 
             // ponerModo();
-
         }
-
-         void cargarDatos()
+        /**
+        * Requiere: N/A.
+        * Efectua: rellena los campos de la interfaz con los datos de las reservaciones.
+        * retorna: N/A
+        */
+        
+        protected void seleccionarEmpleado(object sender, EventArgs e)
         {
-            llenarGridReservaciones();
-            
+
+        }
+        /*
+         *  Requiere: Controladores de eventos de la interfaz.
+         *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
+         *  Retrona:  N/A
+         */
+        protected void GridViewReservaciones_PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
+
+            GridViewEmpleados.PageIndex = e.NewPageIndex;
+            GridViewEmpleados.DataSource = Session["tablaa"];
+            GridViewEmpleados.DataBind();
+
         }
 
-        void llenarGridReservaciones()
+        void llenarGridEmpleados()
         {
             DataTable tabla = crearTablaEmpleados();
 
@@ -52,7 +68,7 @@ namespace Servicios_Reservados_2
                 {
                     foreach (DataRow fila in empleados.Rows)
                     {
-                        
+
                         ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
                         datos[0] = fila[1].ToString();//obtener los datos a mostrar
                         datos[1] = fila[2].ToString();
@@ -60,11 +76,11 @@ namespace Servicios_Reservados_2
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
                     }
-                   
+
                 }
 
                 Session["tablaa"] = tabla;
-                GridViewReservaciones.DataBind();
+                GridViewEmpleados.DataBind();
                 //Debug.WriteLine("hola");
             }
             catch (Exception e)
@@ -75,6 +91,11 @@ namespace Servicios_Reservados_2
 
         }
 
+        /**
+       * Requiere: n/a
+       * Efectua: Crea la DataTable para desplegar.
+       * retorna:  un dato del tipo DataTable con la estructura para consultar.
+       */
         protected DataTable crearTablaEmpleados()//consultar
         {
             DataTable tabla = new DataTable();
@@ -82,7 +103,7 @@ namespace Servicios_Reservados_2
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Identificación";
+            columna.ColumnName = "Identificacion";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
@@ -94,93 +115,87 @@ namespace Servicios_Reservados_2
             columna.DataType = System.Type.GetType("System.String");
             columna.ColumnName = "Apellido";
             tabla.Columns.Add(columna);
-                       
-            GridViewReservaciones.DataSource = tabla;
-            GridViewReservaciones.DataBind();
+
+            tabla.Columns.Add(columna);
+            GridViewEmpleados.DataSource = tabla;
+            GridViewEmpleados.DataBind();
 
             return tabla;
         }
-
-        
-        //protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-
-        //}
-
-        protected void seleccionarEmpleado(object sender, EventArgs e)
+        /**
+        * Requiere: haber cargado el grid
+        * Efectua: cambia la reservacion selecionada.
+        * retorna:  nada. 
+        */
+        protected void seleccionarReservacion(object sender, EventArgs e)
         {
             try
             {
-                //controladora.seleccionarReservacion(ids[GridViewReservaciones.SelectedIndex]);
+                controladora.seleccionarEmpleado(ids[GridViewEmpleados.SelectedIndex]);
             }
-            catch (Exception ee) { 
-                
+            catch (Exception ee)
+            {
+
             }
         }
+
         /*
-         *  Requiere: Controladores de eventos de la interfaz.
-         *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
-         *  Retrona:  N/A
+         * Requiere: parámetros de evento de la interfaz. 
+         * Efectúa : verifica cuáles filtros han sido seleccionados y por cada uno que haya sido seleccionado guarda el valor, luego de esto envía estos valores (vacío si no se había seleccionado nada) a la controladora.
+         *           Con los datos retornados los rellena la  tabla, en caso de error despliega un mensaje de error. 
+         * Retorna : N/A
          */
-        protected void GridViewReservaciones_PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        protected void clickBuscar(object sender, EventArgs e)
         {
-
-            GridViewReservaciones.PageIndex = e.NewPageIndex;
-            GridViewReservaciones.DataSource = Session["tablaa"];
-            GridViewReservaciones.DataBind();
-
-        }
-
-        protected void botonBuscar(Object sender, EventArgs e){
             String nombre = "vacio";
             String iden = "vacio";
+
             if (inputNombre.Value != null)
             {
-              nombre = inputNombre.Value.ToString();
+                nombre = inputNombre.Value.ToString();
             }
             if (inputIdentificacion.Value != null)
             {
-              iden = inputIdentificacion.Value.ToString();
+                iden = inputIdentificacion.Value.ToString();
             }
             if (nombre.CompareTo("vacio") != 0 || iden.CompareTo("vacio") != 0)
-          {
-              DataTable tabla = crearTablaEmpleados();
+            {
+                DataTable tabla = crearTablaEmpleados();
                 
-              try
-              {
+                try
+                {
 
-                  Object[] datos = new Object[3];
-                  DataTable empleados = controladora.consultarEmpleados(nombre, iden);// se consulta el empleado 
-                  ids = new String[empleados.Rows.Count]; //crear el vector para ids en el grid
+                    Object[] datos = new Object[3];
+                    DataTable empleados = controladora.consultarEmpleados(nombre,iden);// se consultan todos
+                    ids = new String[empleados.Rows.Count]; //crear el vector para ids en el grid
                     
-                  int i = 0;
-                  if (empleados.Rows.Count > 0)
-                  {
-                      foreach (DataRow fila in empleados.Rows)
-                      {
-                          ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
-                          datos[0] = fila[1].ToString();//obtener los datos a mostrar
-                          datos[1] = fila[2].ToString();
-                          datos[2] = fila[3].ToString();
-                          tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
-                          i++;
-                      }
-                  }
-                  Session["tablaa"] = tabla;
+                    int i = 0;
+                    if (empleados.Rows.Count > 0)
+                    {
+                        foreach (DataRow fila in empleados.Rows)
+                        {
+                            ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
+                            datos[0] = fila[1].ToString();//obtener los datos a mostrar
+                            datos[1] = fila[2].ToString();
+                            datos[2] = fila[3].ToString();
+                            tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
+                            i++;
+                        }
+                    }
+                    Session["tablaa"] = tabla;
                     //GridViewReservaciones.DataSource = tabla;
-                  GridViewReservaciones.DataBind();
+                    GridViewEmpleados.DataBind();
 
-              }
-              catch (Exception s)
-              {
-                  Debug.WriteLine("No se pudo cargar las reservaciones");
-              }
-          }
-          else
-          {
-              llenarGridReservaciones();
-          }
-        
+                }
+                catch (Exception s)
+                {
+                    Debug.WriteLine("No se pudo cargar las reservaciones");
+                }
+            }
+            else
+            {
+                llenarGridEmpleados();
+            }
         }
     }
 }
