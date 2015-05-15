@@ -46,7 +46,7 @@ namespace Servicios_Reservados_2
               }
               else if (modo == 4)
               { //consultar
-                  textFecha.Disabled = true;
+                 /* textFecha.Disabled = true;
                   txtHora.Disabled = true;
                   radioDesayuno.Disabled= true;
                   radioAlmuerzo.Disabled = false;
@@ -70,6 +70,7 @@ namespace Servicios_Reservados_2
                   chConfites.Disabled = true;
                   radioAgua.Disabled = true;
                   radioJugo.Disabled = true;
+                  */
               }
         }
 

@@ -52,8 +52,8 @@ namespace Servicios_Reservados_2
             String[] respuesta = new String[3];
             try
             {
-                String consultaSQL = "insert into servicios_reservados.servicio_especial values('" + entidad.IdReservacion + "','" + entidad.IdServiciosExtras + "'," + 
-                    entidad.Pax + ",'" + entidad.Fecha + "','" + entidad.Consumido + "','" + entidad.Descripcion + "','" + entidad.Hora + "','" + entidad.TipoPago + "')";
+                String consultaSQL = "insert into servicios_reservados.servicio_especial values('" + entidad.IdReservacion + "','" + entidad.IdServiciosExtras + "'," +
+                    entidad.Pax + ",'" + entidad.Fecha + "','" + entidad.Consumido + "','" + entidad.Descripcion + "','" + entidad.TipoPago + "','" + entidad.Hora + "')";
 
                 adaptador.insertar(consultaSQL);
                
