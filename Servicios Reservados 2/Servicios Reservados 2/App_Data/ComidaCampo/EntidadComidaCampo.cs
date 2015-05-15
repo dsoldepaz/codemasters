@@ -19,7 +19,9 @@ namespace Servicios_Reservados_2
         private String tipoPago;
         private String idAdicional_ComidaCampo;
         private int pax;
-        
+        private String hora;
+
+
         public EntidadComidaCampo(Object[] datos)
         {
             this.idComidaCampo = datos[0].ToString();
@@ -34,6 +36,7 @@ namespace Servicios_Reservados_2
             this.tipoPago = datos[9].ToString();
             this.idAdicional_ComidaCampo = datos[10].ToString();
             this.pax = int.Parse(datos[11].ToString());
+            this.hora = datos[12].ToString();
         }
 
         public String IdComidaCampo
@@ -99,6 +102,11 @@ namespace Servicios_Reservados_2
         {
             get { return Pax; }
             set { Pax = value; }
+        }
+        public String Hora
+        {
+            get { return Hora; }
+            set { Hora = value; }
         }
 
 

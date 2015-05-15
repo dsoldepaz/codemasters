@@ -30,6 +30,10 @@
                             Pax:
                             <input id="txtPax" runat="server" />
                         </il>
+                        <il class="itemFormulario">
+                            Tipo Pago:
+                            <select id="cmbTipoPago" runat="server"/>
+                        </il>
                     </p>
                     <il class="itemFormulario">
                         <input id="radioDesayuno" runat="server" name="turn" type="radio" value="desayuno">Desayuno </input></il>

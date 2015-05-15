@@ -42,6 +42,16 @@ namespace Servicios_Reservados_2.Servicios
             return dt;
 
         }
+
+        internal DataTable solicitarComidaCampo(String id)
+        {
+            String consultaSQL = "select * from servicios_reservados.comida_campo where idreservacion = '" + id + "' and estado <>  'Cancelado'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+
+        }
+
+
         /**Efecto: Crea la consulta SQL que obtiene la tupla del servicio solicitado de la reservacion y la retorna en forma de datatable  
          * Requiere: id de la reservacion, id servicio
          * Modifica: el dataTable dt

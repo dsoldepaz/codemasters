@@ -64,6 +64,12 @@ namespace Servicios_Reservados_2.Servicios
 
         }
 
+        internal DataTable solicitarComidaCampo(String id) 
+        {
+            DataTable comidaCampo = controladora.solicitarComidaCampo(id);
+            return comidaCampo;
+        }
+
         internal void seleccionarServicio(String id, String idServ)
         {
             DataTable servicios = controladora.seleccionarServicio(id, idServ);

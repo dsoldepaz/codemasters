@@ -16,6 +16,7 @@ namespace Servicios_Reservados_2
         private static DataTable reservacion = new DataTable();
         private static String[] ids;
         private static String[] idServ;
+        private static String[] idEmp;
 
         public static int modo;
         
@@ -62,6 +63,7 @@ namespace Servicios_Reservados_2
         void llenarGridServicios()
         {
             DataTable tabla = crearTablaServicios();
+         //   DataTable tablaCampo = crearTablaComidaCampo();
 
             try
             {
@@ -72,7 +74,6 @@ namespace Servicios_Reservados_2
                 ids = new String[servicios.Rows.Count]; //crear el vector para ids en el grid
                 idServ = new String[servicios.Rows.Count];
                 int i = 0;
-                Debug.WriteLine("what!!");
 
                 if (servicios.Rows.Count > 0)
                 {
@@ -80,7 +81,6 @@ namespace Servicios_Reservados_2
 
                     foreach (DataRow fila in servicios.Rows)
                     {
-                        Debug.WriteLine("UNO");
                         ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
                         idServ[i] = fila[1].ToString();
                         datos[0] = fila[2].ToString();//obtener los datos a mostrar
@@ -91,13 +91,49 @@ namespace Servicios_Reservados_2
                         datos[5] = fila[7].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
-                    }
-                    Debug.WriteLine("DOs");
+                    }                 
                 }
 
-                //Session["tablaa"] = tabla;
+             
+                DataTable comidaCampo = controladora.solicitarComidaCampo(controladora.idSelected());// se consultan todos
+
+                ids = new String[comidaCampo.Rows.Count]; //crear el vector para ids en el grid
+                idServ = new String[comidaCampo.Rows.Count];
+                idEmp = new String[comidaCampo.Rows.Count];
+                int j = 0;
+
+
+                if (comidaCampo.Rows.Count > 0)
+                {
+
+                    foreach (DataRow fila in comidaCampo.Rows)
+                    {
+                        
+                        idServ[j] = fila[0].ToString();
+                        idEmp[j] = fila[1].ToString();
+                        ids[j] = fila[2].ToString();// guardar el id para su posterior consulta
+
+                        if (int.Parse(fila[5].ToString()) != 1)
+                        {
+                            datos[0] = "Sandwich";
+                        }
+                        else
+                        {
+                            datos[0] = "Gallo Pinto";
+                        }
+                        datos[1] = fila[6].ToString();
+                        datos[2] = fila[11].ToString();
+                        datos[3] = fila[3].ToString();//DateTime.Parse(fila[5].ToString());
+                        datos[4] = fila[4].ToString();
+                        datos[5] = fila[10].ToString();
+                        tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
+                        j++;
+                    }
+                }
+                
+
                 GridServicios.DataBind();
-                //Debug.WriteLine("hola");
+                
             }
             catch (Exception e)
             {
@@ -106,10 +142,10 @@ namespace Servicios_Reservados_2
         }
 
         /**
-       * Requiere: n/a
-       * Efectua: Crea la DataTable para desplegar.
-       * retorna:  un dato del tipo DataTable con la estructura para consultar.
-       */
+     * Requiere: n/a
+     * Efectua: Crea la DataTable para desplegar.
+     * retorna:  un dato del tipo DataTable con la estructura para consultar.
+     */
         protected DataTable crearTablaServicios()//consultar
         {
             DataTable tabla = new DataTable();
@@ -137,7 +173,7 @@ namespace Servicios_Reservados_2
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Consumido";
+            columna.ColumnName = "Estado";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
@@ -150,6 +186,64 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
+
+        /**
+      * Requiere: n/a
+      * Efectua: Crea la DataTable para desplegar.
+      * retorna:  un dato del tipo DataTable con la estructura para consultar.
+      */
+        protected DataTable crearTablaComidaCampo()//consultar
+        {
+            DataTable tablaCampo = new DataTable();
+            DataColumn columna;
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Fecha";
+            tablaCampo.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Estado";
+            tablaCampo.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Opcion";
+            tablaCampo.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Relleno";
+            tablaCampo.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Pan";
+            tablaCampo.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Bebida";
+            tablaCampo.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Tipo Pago";
+            tablaCampo.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Pax";
+            tablaCampo.Columns.Add(columna);
+
+            GridServicios.DataSource = tablaCampo;
+            GridServicios.DataBind();
+
+            return tablaCampo;
+        }
+
+
         /*Efecto: obtiene el id del servicio seleccionado y de la reservacion a la que pertence el servicio 
          * Requiere: parametros evento de la interfaz grafica
          * Modifica: NA
