@@ -19,13 +19,13 @@
                      <legend style="color: #7BC143">Filtro de empleados</legend>
                         <ul class ="lista formulario">
                             <li class="itemFormulario">
-                               Nombre<input id="inputNombre" runat="server" />
+                               Nombre<input class="textbox" id="inputNombre" runat="server" />
                             </li>
                             <li class="itemFormulario">
-                            Identificacion<input id="inputIdentificacion" runat="server" />
+                            Identificacion<input class="textbox" style="width:500px" id="inputIdentificacion" runat="server" />
                             </li>
                             <li class="itemFormulario">
-                                <input type="button" class="btn btn-success" id="botonBuscar" value="Buscar" />
+                                <input type="button" class="btn btn-success" id="botonBuscar" onserverclick="clickBuscar" value="Buscar" runat="server" />
 
                             </li>
                         </ul>
