@@ -27,14 +27,19 @@
             <input type="checkbox" value="Cena" />Cena
         </div>
         
-                    <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged" OnDayRender="fechaDeEntradaCalendario_DayRender" BackColor="#CCCCCC" BorderStyle="Dashed" ForeColor="#7BC143" Height="320px" Width="400px" BorderWidth="1px" Visible="true">
+                    <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged" OnDayRender="fechaDeEntradaCalendario_DayRender" BackColor="#CCCCCC" BorderStyle="Dashed" ForeColor="#7BC143" Height="320px" Width="400px" BorderWidth="1px" Visible="false">
                         <DayHeaderStyle ForeColor="#333333" Wrap="True" />
                         <DayStyle ForeColor="Black" />
                         <NextPrevStyle ForeColor="Black" />
                         <SelectedDayStyle BackColor="#7BC143" />
                         <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                     </asp:Calendar>
-                    
+                    <h4 id="labelTabla">Comidas reservadas para </h4>
+                     <asp:GridView ID="GridViewReservaciones" runat="server" AllowPaging="true" AllowSorting="true" AutoGenerateSelectButton="True" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" OnSelectedIndexChanged="seleccionarEmpleado" PageSize="20">
+                        <AlternatingRowStyle BorderStyle="None" />
+                        <HeaderStyle Font-Size="1.3em" />
+                        <SelectedRowStyle BackColor="#7BC143" BorderStyle="Dotted" BorderWidth="1px" Font-Bold="true" ForeColor="Black" />
+                    </asp:GridView>
             </ContentTemplate>
    
         </asp:UpdatePanel>
