@@ -19,20 +19,20 @@
                      <legend style="color: #7BC143">Filtro de empleados</legend>
                         <ul class ="lista formulario">
                             <li class="itemFormulario">
-                                <input type="radio" class="radioBusqueda" name="busqueda" value="nombre" checked>Nombre <input id="inputNombre" runat="server"/>
+                               Nombre<input id="inputNombre" runat="server" />
                             </li>
                             <li class="itemFormulario">
-                            <input type="radio" class="radioBusqueda" name="busqueda" value="identificacion">Identificacion: <input id="inputIdentificacion" runat="server"/>
+                            Identificacion<input id="inputIdentificacion" runat="server" />
                             </li>
                             <li class="itemFormulario">
-                                <input type="button" class="btn btn-success" id="botonBuscar" runat="server" value="Buscar" />
+                                <input type="button" class="btn btn-success" id="botonBuscar" value="Buscar" />
 
                             </li>
                         </ul>
                     </div>
                     <div class="well bs-component">
                     <legend style="color: #7BC143">Listado de empleados</legend>
-                    <asp:GridView ID="GridViewReservaciones" runat="server" AllowPaging="true" AllowSorting="true" AutoGenerateSelectButton="True" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" OnSelectedIndexChanged="seleccionarEmpleado" PageSize="20">
+                    <asp:GridView ID="GridViewEmpleados" runat="server" AllowPaging="true" AllowSorting="true" AutoGenerateSelectButton="True" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" OnSelectedIndexChanged="seleccionarEmpleado" PageSize="20">
                         <AlternatingRowStyle BorderStyle="None" />
                         <HeaderStyle Font-Size="1.3em" />
                         <SelectedRowStyle BackColor="#7BC143" BorderStyle="Dotted" BorderWidth="1px" Font-Bold="true" ForeColor="Black" />
