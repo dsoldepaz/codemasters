@@ -71,12 +71,6 @@ namespace Servicios_Reservados_2
          * Efectúa : Pide a la controladora de base de datos la información de la reservación específica y lo guarda en una tabla de datos.
          * Retorna : La tabla de datos con el resultado.
          */
-        internal DataTable solicitarInfo(String id)
-        {
-            DataTable empleadoInfo = controladoraBD.solicitarInfo(id);
-            return empleadoInfo;
-
-
-        }
+       
     }
 }
