@@ -9,15 +9,14 @@ namespace Servicios_Reservados_2
 {
     public class AdaptadorEmpleado
     {
-        OracleConnection adaptador= new OracleConnection();
+         OracleConnection adaptador= new OracleConnection();
         DataTable dt;
         /*
          * Requiere: N/A
          * Efectúa : Crea la hilera de conección con la base de datos.
          * Retorna : N/A
          */
-        public AdaptadorEmpleado()
-        {
+        public AdaptadorEmpleado(){
              adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True";   
         }
         /*

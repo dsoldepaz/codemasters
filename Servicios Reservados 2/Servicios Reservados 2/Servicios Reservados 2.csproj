@@ -164,11 +164,9 @@
     <Content Include="Content\bootstrap-3.3.4-dist\js\bootstrap.js" />
     <Content Include="Content\bootstrap-3.3.4-dist\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap-3.3.4-dist\js\npm.js" />
-    <Content Include="Content\ComidaEmpleado.css" />
     <Content Include="Content\formEmpleado.css" />
     <Content Include="Content\Reservacion.css" />
     <Content Include="faviconOET.ico" />
-    <Content Include="FormComidasEmpleado.aspx" />
     <Content Include="FormEmpleadoReserva.aspx" />
     <Content Include="FormServirPlatos.aspx" />
     <Content Include="Images\help.png" />
@@ -409,14 +407,9 @@
     <Compile Include="App_Data\ComidaExtra\ControladoraComidaExtra.cs" />
     <Compile Include="App_Data\ComidaExtra\EntidadComidaExtra.cs" />
     <Compile Include="App_Data\ServirPlatos\ControladoraBDcomedor.cs" />
-    <Compile Include="App_Data\ComidaEmpleado\ContorladoraComidaEmpleado.cs" />
-    <Compile Include="FormComidasEmpleado.aspx.cs">
-      <DependentUpon>FormComidasEmpleado.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FormComidasEmpleado.aspx.designer.cs">
-      <DependentUpon>FormComidasEmpleado.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="App_Data\Empleados\ControladoraBDEmpleado.cs" />
+    <Compile Include="App_Data\Empleados\ControladoraEmpleado.cs" />
+    <Compile Include="App_Data\Empleados\EntidadEmpleado.cs" />
     <Compile Include="FormEmpleadoReserva.aspx.cs">
       <DependentUpon>FormEmpleadoReserva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -447,9 +440,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Empleados\ControladoraBDEmpleado.cs" />
-    <Compile Include="Empleados\ControladoraEmpleado.cs" />
-    <Compile Include="Empleados\EntidadEmpleado.cs" />
     <Compile Include="FormEmpleado.aspx.cs">
       <DependentUpon>FormEmpleado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
