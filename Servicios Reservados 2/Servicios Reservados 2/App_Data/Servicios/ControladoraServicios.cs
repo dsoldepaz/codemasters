@@ -76,8 +76,8 @@ namespace Servicios_Reservados_2.Servicios
             nuevoServicio[3] = servicios.Rows[0][4];
             nuevoServicio[4] = servicios.Rows[0][5];
             nuevoServicio[5] = servicios.Rows[0][2];
-            nuevoServicio[6] = servicios.Rows[0][6];
-            nuevoServicio[7] = servicios.Rows[0][7];
+            nuevoServicio[7] = servicios.Rows[0][6];
+            nuevoServicio[6] = servicios.Rows[0][7];
 
             controladoraCE.guardarServicioSeleccionado(nuevoServicio);
         }

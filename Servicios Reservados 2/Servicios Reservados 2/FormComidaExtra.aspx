@@ -52,7 +52,7 @@
                                 <input type="button" class="btn btn-success" value="Cancelar" runat="server" onserverclick="clickCancelar"/>
                             </td>
                             <td>
-                                <input type="button" class="btn btn-success" value="Aceptar" runat="server" onserverclick="clickAceptar"/>
+                                <input type="button" class="btn btn-success" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar"/>
                             </td>
                             
                         </tr>

@@ -77,6 +77,7 @@ namespace Servicios_Reservados_2
         {
             Boolean res = true;
             //los desplegamos en cada uno de los componentes de la pantalla
+            cbxHora.Items.Clear();
             cbxHora.Value = entidadConsultada.Hora;
             txtPax.Value = entidadConsultada.Pax.ToString();
             cbxTipo.Text = controladora.consultarTipo(controladora.servicioSeleccionados().IdServiciosExtras);
@@ -199,13 +200,15 @@ namespace Servicios_Reservados_2
             switch (modo)
             {
                 case 0:
-                    consultarServicio();
                     cbxHora.Disabled = true;
                     txtPax.Disabled = true;
                     txaNotas.Disabled = true;
                     textFecha.Disabled = true;
-                    cbxTipo.Enabled = true;
+                    cbxTipo.Enabled = false;
                     cbxTipoPago.Disabled = true;
+                    btnAceptar.Disabled = true;
+                    fechaDeEntrada.Disabled = true;
+                    consultarServicio();
                     break;
                 case 1:
                     txtPax.Value = controladora.paxSeleccionado().ToString();
