@@ -46,7 +46,7 @@ namespace Servicios_Reservados_2
          */
         protected void llenarCampos()
         {
-            DataTable pax = controladora.obtenerPax(controladora.idSelected());
+            DataTable pax = controladora.obtenerPax(controladora.idNumSelected());
             txtAnfitriona.Value = controladora.informacionServicio().Anfitriona;
             txtEstacion.Value = controladora.informacionServicio().Estacion;
             txtNombre.Value = controladora.informacionServicio().Solicitante;
@@ -176,14 +176,31 @@ namespace Servicios_Reservados_2
         */
         protected void clickAgregarServicio(object sender, EventArgs e)
         {
-            modo = 1; //modificar es 2
+            modo = 1; 
             Response.Redirect("FormComidaExtra");
         }
 
+        /*
+       * Efecto: capta el evento del botón para cancelar una comida extra, cambia el modo y redirige a la interfaz de comida extra.
+       * Requiere: presionar el botón.
+       * Modifica: la variable global modo.
+       */
         protected void clickEliminarServicio(object sender, EventArgs e)
         {
-            modo = 3; //modificar es 2
+            modo = 3; 
             Response.Redirect("FormComidaExtra");
+        }
+
+        /*
+       * Efecto: capta el evento del botón para consultar una comida extra, cambia el modo y redirige a la interfaz de comida extra.
+       * Requiere: presionar el botón.
+       * Modifica: la variable global modo.
+       */
+        protected void clickConsultarServicio(object sender, EventArgs e) 
+        {
+            modo = 0;
+            Response.Redirect("FormComidaExtra");
+
         }
     }
 }

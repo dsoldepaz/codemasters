@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
+using System.Diagnostics;
+using System.Linq;
+using System.Diagnostics;
+using System.Web;
 
 
 
@@ -37,9 +39,20 @@ namespace Servicios_Reservados_2.Servicios
 
         }
 
+        public String idNumSelected()
+        {
+            string idNum = controladoraReserv.getReservacionSeleccionada().Numero;
+            return idNum;
+
+        }
+
         internal DataTable obtenerPax(String id)
         {
             DataTable pax = controladora.obtenerPax(id);
+            
+            int paxSelect = int.Parse(pax.Rows[0][0].ToString());
+            controladoraCE.guardarPaxsSeleccionado(paxSelect);//enciamos la información a la controladora de comida extra
+
             return pax;
 
         }
@@ -66,7 +79,6 @@ namespace Servicios_Reservados_2.Servicios
             nuevoServicio[6] = servicios.Rows[0][6];
 
             controladoraCE.guardarServicioSeleccionado(nuevoServicio);
-
         }
     }
 }

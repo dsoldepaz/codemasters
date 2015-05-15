@@ -67,6 +67,24 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.WebControls.Calendar fechaDeEntradaCalendario;
         
         /// <summary>
+        /// Control cbxTipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cbxTipo;
+        
+        /// <summary>
+        /// Control cbxHora.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect cbxHora;
+        
+        /// <summary>
         /// Control txtHora.
         /// </summary>
         /// <remarks>
@@ -85,13 +103,13 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtPax;
         
         /// <summary>
-        /// Control cbxTipo.
+        /// Control cbxTipoPago.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect cbxTipo;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect cbxTipoPago;
         
         /// <summary>
         /// Control txaNotas.

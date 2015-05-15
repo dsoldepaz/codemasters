@@ -17,6 +17,7 @@ namespace Servicios_Reservados_2
 
         private static ControladoraComidaExtra controladora = new ControladoraComidaExtra();//instancia de la controladora de comida extra
         EntidadComidaExtra entidadConsultada = controladora.servicioSeleccionados();//buscamos el servicio consultado en la controladora
+        private static int paxSeleccionado = controladora.paxSeleccionado();
 
         private static String[] idReservacion = FormReservaciones.ids;
         private static int modo;//variable para controlar el modo en el que se encuentra el sistema (modificar, consultar, agregar o eliminar)
@@ -40,11 +41,6 @@ namespace Servicios_Reservados_2
             modo = FormServicios.modo;
             llenarComboBoxTipo();
             cambiarModo();
-            if (modo == 3)
-            {
-                eliminarServicioExtra();
-                Response.Redirect("FormServicios");
-            }
         }
 
         /*
@@ -63,6 +59,14 @@ namespace Servicios_Reservados_2
             }
         }
 
+        void llenarCbxTipoPago()
+        {
+            cbxTipo.Items.Clear();// limpiamos el combobox
+            cbxTipo.Items.Add("Efectivo");
+            cbxTipo.Items.Add("Tarjeta");
+            cbxTipo.Items.Add("Deducción de planilla");
+        }
+
         /*
          * Efecto: llena los campos de la interfaz con los valores del servicio extra consultado.
          * Requiere: iniciar el FormComidaExtra en modo consultar.
@@ -74,7 +78,7 @@ namespace Servicios_Reservados_2
             //los desplegamos en cada uno de los componentes de la pantalla
             txtHora.Value = entidadConsultada.Hora;
             txtPax.Value = entidadConsultada.Pax.ToString();
-            cbxTipo.Value = controladora.consultarTipo(controladora.servicioSeleccionados().IdServiciosExtras);
+            cbxTipo.Text = controladora.consultarTipo(controladora.servicioSeleccionados().IdServiciosExtras);
             txaNotas.Value = entidadConsultada.Descripcion;
             textFecha.Value = entidadConsultada.Fecha.ToString();
 
@@ -158,14 +162,14 @@ namespace Servicios_Reservados_2
         {
             switch (modo)
             {
-                case 1:
+                case 1://insertar
                     agregarServicioExtra();
                     Response.Redirect("FormServicios");
                     break;
-                case 2:
+                case 2://modificar
                     modificarServicioExtra();
                     break;
-                case 3:
+                case 3://cancelar
                     eliminarServicioExtra();
                     break;
             }
@@ -191,44 +195,25 @@ namespace Servicios_Reservados_2
         {
             switch (modo)
             {
+                case 0:
+                    consultarServicio();
+                    cbxHora.Disabled = true;
+                    txtPax.Disabled = true;
+                    txaNotas.Disabled = true;
+                    textFecha.Disabled = true;
+                    cbxTipo.Enabled = true;
+                    break;
+                case 1:
+                    txtPax.Value = controladora.paxSeleccionado().ToString();
+                    break;
                 case 2:
                     consultarServicio();
                     break;
+                case 3:
+                    eliminarServicioExtra();
+                    Response.Redirect("FormServicios");
+                    break;
             }
-          /*  if (modo == 1)
-            { // se desea insertar
-                txtHora.Disabled = true;
-                btnEliminar.Disabled = true;
-                btnAceptar.Disabled = false;
-                btnCancelar.Disabled = false;
-                btnAgregar.Disabled = true;
-            }
-            else if (modo == 2)
-            { //modificar
-                btnModificar.Disabled = true;
-                btnEliminar.Disabled = true;
-                btnAceptar.Disabled = false;
-                btnCancelar.Disabled = false;
-                btnAgregar.Disabled = true;
-            }
-            else if (modo == 3)
-            { // eliminar
-                btnModificar.Disabled = true;
-                btnEliminar.Disabled = true;
-                btnAceptar.Disabled = false;
-                btnCancelar.Disabled = false;
-                btnAgregar.Disabled = true;
-                habilitarCampos(false);
-            }
-            else if (modo == 4)
-            { //consultar
-                btnModificar.Disabled = false;
-                btnEliminar.Disabled = false;
-                btnAceptar.Disabled = true;
-                btnCancelar.Disabled = false;
-                btnAgregar.Disabled = true;
-                habilitarCampos(false);
-            }*/
         }
 
         /*
@@ -263,6 +248,45 @@ namespace Servicios_Reservados_2
         {
             textFecha.Value = fechaDeEntradaCalendario.SelectedDate.ToString("dd/MM/yyyy");
             fechaDeEntradaCalendario.Visible = false;
+        }
+
+        /*
+         * Efecto: capta el evento al seleccionar uno de los tipos de comida y filtra las horas.
+         * Requiere: presionar el cbxTipo.
+         * Modifica: el estado del cbxHora.
+        */
+        protected void clickAdaptarHora(object sender, EventArgs e)
+        {
+            int inicio = 0;
+            int fin = 0;
+            if (cbxTipo.Text == "Desayuno")
+            {
+                inicio = 6;
+                fin = 9;
+            }
+            if (cbxTipo.Text == "Almuerzo")
+            {
+                inicio = 11;
+                fin = 14;
+            }
+            if (cbxTipo.Text == "Cena")
+            {
+                inicio = 18;
+                fin = 21;
+            }
+            if (cbxTipo.Text == "Cafe" || cbxTipo.Text == "Queque")
+            {
+                inicio = 9;
+                fin = 21;
+            }
+
+            cbxHora.Items.Clear();// limpiamos el combobox
+            cbxHora.Items.Add("Seleccionar");// agregamos seleccionar
+            for (int i = inicio; i <= fin; ++i)
+            {
+                String horas = i.ToString() + ":00";
+                cbxHora.Items.Add(horas);
+            }
         }
     }
 }
