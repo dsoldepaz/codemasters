@@ -407,6 +407,9 @@
     <Compile Include="App_Data\ComidaExtra\ControladoraComidaExtra.cs" />
     <Compile Include="App_Data\ComidaExtra\EntidadComidaExtra.cs" />
     <Compile Include="App_Data\ServirPlatos\ControladoraBDcomedor.cs" />
+    <Compile Include="App_Data\Empleados\ControladoraBDEmpleado.cs" />
+    <Compile Include="App_Data\Empleados\ControladoraEmpleado.cs" />
+    <Compile Include="App_Data\Empleados\EntidadEmpleado.cs" />
     <Compile Include="FormEmpleadoReserva.aspx.cs">
       <DependentUpon>FormEmpleadoReserva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -437,9 +440,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Empleados\ControladoraBDEmpleado.cs" />
-    <Compile Include="Empleados\ControladoraEmpleado.cs" />
-    <Compile Include="Empleados\EntidadEmpleado.cs" />
     <Compile Include="FormEmpleado.aspx.cs">
       <DependentUpon>FormEmpleado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
