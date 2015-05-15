@@ -2,7 +2,7 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
      
-    <legend>
+    <!--<legend>
         <h2>Comida Campo</h2>
     </legend>
 
@@ -81,7 +81,7 @@
 
 
         </ContentTemplate>
-    </asp:UpdatePanel>
+    </asp:UpdatePanel>-->
 
   
 	
