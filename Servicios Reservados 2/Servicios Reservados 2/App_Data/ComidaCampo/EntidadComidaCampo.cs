@@ -11,14 +11,14 @@ namespace Servicios_Reservados_2
         private String idEmpleado;
         private String idReservacion;
         private String fecha;
-        private String consumido;
+        private String estado;
         private int opcion;
         private String relleno;
         private String pan;
         private String bebida;
         private String tipoPago;
         private String idAdicional_ComidaCampo;
-        
+        private int pax;
         
         public EntidadComidaCampo(Object[] datos)
         {
@@ -26,13 +26,14 @@ namespace Servicios_Reservados_2
             this.idEmpleado = datos[1].ToString();
             this.idReservacion = datos[2].ToString();
             this.fecha = datos[3].ToString();
-            this.consumido = datos[4].ToString();
+            this.estado = datos[4].ToString();
             this.opcion = int.Parse(datos[5].ToString());
             this.relleno = datos[6].ToString();
             this.pan = datos[7].ToString();
             this.bebida = datos[8].ToString();
             this.tipoPago = datos[9].ToString();
             this.idAdicional_ComidaCampo = datos[10].ToString();
+            this.pax = int.Parse(datos[11].ToString());
         }
 
         public String IdComidaCampo
@@ -59,10 +60,10 @@ namespace Servicios_Reservados_2
             set { Fecha = value; }
         }
 
-        public String Consumido
+        public String Estado
         {
-            get { return consumido; }
-            set { consumido = value; }
+            get { return Estado; }
+            set { Estado = value; }
         }
         public String Opcion
         {
@@ -94,7 +95,11 @@ namespace Servicios_Reservados_2
             get { return IdAdicional_ComidaCampo; }
             set { IdAdicional_ComidaCampo = value; }
         }
-      
+        public int Pax
+        {
+            get { return Pax; }
+            set { Pax = value; }
+        }
 
 
 
