@@ -54,10 +54,10 @@
                     <legend style="color: #7BC143">Agregar Servicios extra</legend>
                     <table>
                         <tr>
-                            <td><a href="FormComidaExtra.aspx">
-                                <input type="button" class="btn btn-success" value="Comida Extra" /></a></td>
                             <td>
-                                <input type="button" class="btn btn-success" value="Comida De Campo" />
+                                <input type="button" class="btn btn-success" value="Comida Extra" runat="server" onserverclick="clickAgregarServicio"/></a></td>
+                            <td>
+                                <input type="button" class="btn btn-success" value="Comida De Campo" onserverclick="cliclAgregarComidaCampo" />
                             </td>
                             <td>
                                 <input type="button" class="btn btn-success" value="Servicio de Guías" /></td>
@@ -80,9 +80,9 @@
                                     </td>
                                     <td>
                                         <div class="btn-group-vertical">
-                                            <input type="button" class="btn btn-success" value="Consultar" />
+                                            <input type="button" class="btn btn-success" value="Consultar" runat="server" onserverclick="clickConsultarServicio"/>
                                             <input type="button" class="btn btn-success" value="Modificar" runat="server" onserverclick="modificarServicio" />
-                                            <input type="button" class="btn btn-success" value="Elimnar" />
+                                            <input type="button" class="btn btn-success" value="Elimnar" runat="server" onserverclick="clickEliminarServicio"/>
 
                                         </div>
                                     </td>

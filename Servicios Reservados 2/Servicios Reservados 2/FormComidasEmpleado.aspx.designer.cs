@@ -10,7 +10,7 @@
 namespace Servicios_Reservados_2 {
     
     
-    public partial class FormEmpleado {
+    public partial class FormComidasEmpleado {
         
         /// <summary>
         /// Control UpdatePanel1.
@@ -22,39 +22,21 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// Control inputNombre.
+        /// Control fechaDeEntradaCalendario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText inputNombre;
+        protected global::System.Web.UI.WebControls.Calendar fechaDeEntradaCalendario;
         
         /// <summary>
-        /// Control inputIdentificacion.
+        /// Control GridViewReservaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText inputIdentificacion;
-        
-        /// <summary>
-        /// Control botonBuscar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton botonBuscar;
-        
-        /// <summary>
-        /// Control GridViewEmpleados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewEmpleados;
+        protected global::System.Web.UI.WebControls.GridView GridViewReservaciones;
     }
 }

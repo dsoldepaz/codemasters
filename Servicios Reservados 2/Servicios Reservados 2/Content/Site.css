@@ -408,7 +408,7 @@ border: 1px solid #e2e2e2;
   font-size: 1.2em;
   margin: 5px 10px 6px 0;
   padding: 5px;
-  width: 200px;
+  width: 156px;
 }
 
 textarea {
@@ -731,7 +731,7 @@ tr.pager td {
 /* END: Mobile Styles */
 /*--Estilos personalizados--*/
 [type="button"]{
-    width: 185px;
+    width: 19px;
     border-radius:4px;
     background-color:#7BC143;
     color: rgb(252, 247, 247);
@@ -831,4 +831,14 @@ tbody>tr>th{
 /*fin de Cosas que importamos de Bootstrap y queremos que se vean asi siempre */
 #textFecha{
   background-color: rgb(218, 218, 218)
+}
+#fechaDeEntrada,
+input.selectorDeFecha{
+    border-style: none;
+    border-color: inherit;
+    border-width: medium;
+    background-color:rgba(245, 240, 240, 0.00);
+    border-radius: 0px;
+    background-image:url('../Images/imagenes_OET/DatePicker.gif');
+    height:18px;
 }
