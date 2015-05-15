@@ -41,11 +41,6 @@ namespace Servicios_Reservados_2
             modo = FormServicios.modo;
             llenarComboBoxTipo();
             cambiarModo();
-            if (modo == 3 || modo == 0)
-            {
-                eliminarServicioExtra();
-                Response.Redirect("FormServicios");
-            }
         }
 
         /*
@@ -62,6 +57,14 @@ namespace Servicios_Reservados_2
                     cbxTipo.Items.Add(fila[1].ToString());
                 }
             }
+        }
+
+        void llenarCbxTipoPago()
+        {
+            cbxTipo.Items.Clear();// limpiamos el combobox
+            cbxTipo.Items.Add("Efectivo");
+            cbxTipo.Items.Add("Tarjeta");
+            cbxTipo.Items.Add("Deducción de planilla");
         }
 
         /*
@@ -192,44 +195,25 @@ namespace Servicios_Reservados_2
         {
             switch (modo)
             {
+                case 0:
+                    consultarServicio();
+                    cbxHora.Disabled = true;
+                    txtPax.Disabled = true;
+                    txaNotas.Disabled = true;
+                    textFecha.Disabled = true;
+                    cbxTipo.Enabled = true;
+                    break;
+                case 1:
+                    txtPax.Value = controladora.paxSeleccionado().ToString();
+                    break;
                 case 2:
                     consultarServicio();
                     break;
+                case 3:
+                    eliminarServicioExtra();
+                    Response.Redirect("FormServicios");
+                    break;
             }
-          /*  if (modo == 1)
-            { // se desea insertar
-                txtHora.Disabled = true;
-                btnEliminar.Disabled = true;
-                btnAceptar.Disabled = false;
-                btnCancelar.Disabled = false;
-                btnAgregar.Disabled = true;
-            }
-            else if (modo == 2)
-            { //modificar
-                btnModificar.Disabled = true;
-                btnEliminar.Disabled = true;
-                btnAceptar.Disabled = false;
-                btnCancelar.Disabled = false;
-                btnAgregar.Disabled = true;
-            }
-            else if (modo == 3)
-            { // eliminar
-                btnModificar.Disabled = true;
-                btnEliminar.Disabled = true;
-                btnAceptar.Disabled = false;
-                btnCancelar.Disabled = false;
-                btnAgregar.Disabled = true;
-                habilitarCampos(false);
-            }
-            else if (modo == 4)
-            { //consultar
-                btnModificar.Disabled = false;
-                btnEliminar.Disabled = false;
-                btnAceptar.Disabled = true;
-                btnCancelar.Disabled = false;
-                btnAgregar.Disabled = true;
-                habilitarCampos(false);
-            }*/
         }
 
         /*
