@@ -19,13 +19,13 @@
                      <legend style="color: #7BC143">Filtro de empleados</legend>
                         <ul class ="lista formulario">
                             <li class="itemFormulario">
-                                <input type="radio" class="radioBusqueda" name="busqueda" value="nombre" checked>Nombre <input id="inputNombre" />
+                                <input type="radio" class="radioBusqueda" name="busqueda" value="nombre" checked>Nombre <input id="inputNombre" runat="server"/>
                             </li>
                             <li class="itemFormulario">
-                            <input type="radio" class="radioBusqueda" name="busqueda" value="identificacion">Identificacion: <input id="inputIdentificacion" />
+                            <input type="radio" class="radioBusqueda" name="busqueda" value="identificacion">Identificacion: <input id="inputIdentificacion" runat="server"/>
                             </li>
                             <li class="itemFormulario">
-                                <input type="button" class="btn btn-success" id="botonBuscar" value="Buscar" />
+                                <input type="button" class="btn btn-success" id="botonBuscar" runat="server" value="Buscar" />
 
                             </li>
                         </ul>
