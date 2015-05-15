@@ -16,8 +16,9 @@ namespace Servicios_Reservados_2
       private ControladoraBDComidaExtra controladoraBD;//instancia de la controladora de BD comida extra.
       public static EntidadReservaciones servicios;
       public static ControladoraReservaciones controladoraReserv;
-
+       
       public static EntidadComidaExtra servicioSeleccionado;//instancia entidad comida extra.
+      public static int paxSeleccionados;
        
       public ControladoraComidaExtra()
         {
@@ -92,6 +93,16 @@ namespace Servicios_Reservados_2
       }
 
       /*
+       * Efecto: comuncación con la controladora de servicios para guardar los pax de la reservación seleccionada.
+       * Requiere: la entrada de los datos.
+       * Modifica: la variable paxSeleccionados, en la que se almacena el servicio consultado.
+       */
+      public void guardarPaxsSeleccionado(int pax)
+      {
+          paxSeleccionados = pax;
+      }
+
+      /*
        * Efecto: devuelve la entidad consultada.
        * Requiere: que la entidad esté inicializada.
        * Modifica: 
@@ -100,6 +111,17 @@ namespace Servicios_Reservados_2
       {
           return servicioSeleccionado;
       }
+
+      /*
+       * Efecto: devuelve loa pax consultados.
+       * Requiere: que la variable pax esté inicializada.
+       * Modifica: 
+       */
+      public int paxSeleccionado()
+      {
+          return paxSeleccionados;
+      }
+
 
       /*
        * Efecto: consulta el tipo de comida extra de un id específico.

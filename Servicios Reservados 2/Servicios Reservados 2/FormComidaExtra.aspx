@@ -29,12 +29,13 @@
                         <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                     </asp:Calendar>
                 </li>
-                <li class="itemContenedor">Hora:<input id="txtHora" runat="server" type="time" />
+                
+                <li class="itemContenedor">Tipo:<asp:DropDownList ID="cbxTipo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="clickAdaptarHora"></asp:DropDownList>
+                </li>
+                <li class="itemContenedor">Hora:<select id="cbxHora" runat="server" ></select> <!--class="itemContenedor">Hora:<input id="txtHora" runat="server" type="time" />-->
                 </li>
                 <li class="itemContenedor">#PAX:<input id="txtPax" runat="server" type="number" required="required" placeholder="Entre un digito" />
 
-                </li>
-                <li class="itemContenedor">Tipo:<select id="cbxTipo" runat="server"></select>
                 </li>
 
             </ul>

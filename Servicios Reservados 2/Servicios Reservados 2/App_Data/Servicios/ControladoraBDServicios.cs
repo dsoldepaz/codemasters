@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.OleDb;
 using System.Data;
+using System.Diagnostics;
 
 namespace Servicios_Reservados_2.Servicios
 {
@@ -12,6 +13,7 @@ namespace Servicios_Reservados_2.Servicios
          
         private AdaptadorServicios adaptador;
         DataTable dt;
+
         public ControladoraBDServicios()
         {
             adaptador = new AdaptadorServicios();
@@ -22,15 +24,15 @@ namespace Servicios_Reservados_2.Servicios
          * Requiere: id de la reservacion
          * Modifica: el dataTable dt
          */
-        internal DataTable obtenerPax(String id)
+        internal DataTable obtenerPax(String idNum)
         {
-            String consultaSQL = "select PAX from reservas.reservacionItem where reservacion = '" + id + "'";
+            String consultaSQL = "select PAX from reservas.vr_reservacion where numero = '" + idNum + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
 
         }
         /**Efecto: Crea la consulta SQL que obtiene las tuplas de los servicios de una reservacion y la retorna en forma de datatable  
-         * Requiere: id de la reservacion
+         * Requiere: id de la reservaciones 
          * Modifica: el dataTable dt
          */
         internal DataTable solicitarServicios(String id)
