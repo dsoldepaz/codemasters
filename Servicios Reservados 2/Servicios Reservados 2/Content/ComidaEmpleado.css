@@ -19,8 +19,9 @@ input.selectorDeFecha{
 li.itemFormulario{
     width: 30%;
     padding: 2px;
-    display:inline-block
+    display:none
 }
+
 ul{
       list-style-type: none;
       display:inline-block;

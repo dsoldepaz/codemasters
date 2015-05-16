@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="ComidaCampo" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormComidaCampo.aspx.cs" Inherits="Servicios_Reservados_2.FormComidaCampo" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-     
-   <legend>
+    <link rel="stylesheet" href="Content/ComidasExtra.css" />
+    <legend>
         <h2>Comida Campo</h2>
     </legend>
 
@@ -10,16 +10,17 @@
         <ContentTemplate>
             <div class="well bs-component">
                 <fieldset>
-                    <p>
-                        Fecha:<input runat="server" id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
-                        <input id="fechaDeEntrada" class="selectorDeFecha" type="button" runat="server" onserverclick="fechaDeEntrada_ServerClick" />
-                    </p>
-                    <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" BackColor="#CCCCCC" BorderStyle="Dashed" BorderWidth="1px" ForeColor="#7BC143" Height="80px" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged" Visible="false" Width="100px">
-                        <DayHeaderStyle ForeColor="#333333" Wrap="True" />
-                        <DayStyle ForeColor="Black" />
-                        <NextPrevStyle ForeColor="Black" />
-                        <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
-                    </asp:Calendar>
+                    <ul>
+                        <li class="itemContenedor">Fecha:<input runat="server" id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
+                            <input id="fechaDeEntrada" class="selectorDeFecha" type="button" runat="server" onserverclick="fechaDeEntrada_ServerClick" />
+                            <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" BackColor="#CCCCCC" BorderStyle="Dashed" BorderWidth="1px" ForeColor="#7BC143" Height="80px" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged" Visible="false" Width="100px">
+                                <DayHeaderStyle ForeColor="#333333" Wrap="True" />
+                                <DayStyle ForeColor="Black" />
+                                <NextPrevStyle ForeColor="Black" />
+                                <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
+                            </asp:Calendar>
+                        </li>
+                    </ul>
                     <p>
                         </li>
                         <il class="itemFormulario">
@@ -31,8 +32,11 @@
                             <input id="txtPax" runat="server" />
                         </il>
                         <il class="itemFormulario">
-                            Tipo Pago:
-                            <select id="cmbTipoPago" runat="server"/>
+                            <label class="labelfont" id="labelPago" runat="server">Tipo Pago:</label>
+                            <select id="cmbTipoPago" runat="server">
+                            <option value="1">De contado</option>
+                            <option value="2">Rebajo de planilla</option>
+                            </select>
                         </il>
                     </p>
                     <il class="itemFormulario">
@@ -45,131 +49,135 @@
             </div>
             <div class="well bs-component">
                 <fieldset>
+                    
                     <legend style="color: #7BC143">Opción #1 Sandwich [puede marcar dos opciónes]</legend>
-                   <ul class ="lista formulario">
-                       <il class="itemFormulario">
-                            <input type="radio" name="bread" value="panblanco" checked runat="server" id="radioPanBlanco">Pan blanco
+                    <input type="checkbox" name="opciones" value="chbxo1" id="checkboxO1" runat="server" onserverclick="checkO1click">
+                    <ul class="lista formulario">
+                        <il class="itemFormulario">
+                            <input type="radio" name="bread" value="panblanco" runat="server" id="radioPanBlanco">Pan blanco
                        </il>
                         <il class="itemFormulario">
                             <input type="radio" name="bread" value="panintegral" runat="server" id="radioPanInt">Pan integral
                         </il>
-                         <il class="itemFormulario">
+                        <il class="itemFormulario">
                           <input type="radio" name="bread" value="panbollo" runat="server" id="radioPanBollo">Pan bollo
                          </il>
-                       </ul>
-                    <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="radio" name="spreadoption" value="jamon" id="radioJamon" runat="server">Jamón
                        </il>
-                        </ul>
-                      <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="radio" name="spreadoption" value="atun" id="radioAtun" runat="server">Atún 
                        </il>
-                        </ul>
-                      <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="radio" name="spreadoption" value="frijoles" id="radioFrijoles" runat="server">Frijoles
                        </il>
-                        </ul>
-                      <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                            <input type="radio" name="spreadoption" value="mantequillamani" id="radioMyM" runat="server">Mantequilla Maní y jalea 
                        </il>
-                        </ul>
-                      <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                            <input type="radio" name="spreadoption" value="omelette" id="radioOmelette" runat="server">Omelette 
                        </il>
-                        </ul>
-                      <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                            <input type="radio" name="spreadoption" value="ensaladahuevo" id="radioEnsaladaHuevo" runat="server">Ensalada de huevo 	
                        </il>
-                        </ul>   
-                    </fieldset>     
+                    </ul>
+                </fieldset>
             </div>
             <div class="well bs-component">
                 <fieldset>
                     <legend style="color: #7BC143">Opción #2 Debe aportar su propio recipiente</legend>
-                    <ul class ="lista formulario">
+                    <input type="checkbox" name="opciones" value="chbxo2" id="CheckboxO2" runat="server">
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="checkbox" name="pinto" value="gallopinto" id="chGalloPinto" runat="server">Gallo pinto
                        </il>
-                        </ul>
-                    </fieldset>     
+                    </ul>
+                </fieldset>
             </div>
             <div class="well bs-component">
                 <fieldset>
                     <legend style="color: #7BC143">Adicional</legend>
-                    <ul class ="lista formulario">
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="checkbox" name="adicional" value="ensalada" id="chEnsalada" runat="server">Ensalada
                        </il>
-                        </ul>
-                      <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                            <input type="checkbox" name="adicional" value="mayonesa" id="chMayonesa" runat="server">Mayonesa
                        </il>
-                        </ul>
-                      <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                              <input type="checkbox" name="adicional" value="confites" id="chConfites" runat="server">Confites
                        </il>
-                        </ul>
-                      <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                           <input type="checkbox" name="adicional" value="frutas" id="chFrutas" runat="server">Frutas
                        </il>
-                        </ul>
-                      <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                           <input type="checkbox" name="adicional" value="salsatomate" id="chSalsaTomate" runat="server">Salsa de tomate 
                        </il>
-                        </ul>
-                      <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="checkbox" name="adicional" value="huevos" id="chHuevos" runat="server">Huevos duros 
                        </il>
-                        </ul>   
-                    <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="checkbox" name="adicional" value="huevos" id="Checkbox1" runat="server">Huevos duros 
                        </il>
-                        </ul>   
-                    <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="checkbox" name="adicional" value="galletas" id="chGalletas" runat="server">Galletas
                        </il>
-                        </ul>   
-                    <ul class ="lista formulario">
+                    </ul>
+                    <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="checkbox" name="adicional" value="platanos" id="chPlatanos" runat="server">Platanos
                        </il>
-                        </ul>   
-                    </fieldset>     
+                    </ul>
+                </fieldset>
             </div>
             <div class="well bs-component">
                 <fieldset>
+                    
                     <legend style="color: #7BC143">Escoja la opción para bebida</legend>
-                   <ul class ="lista formulario">
-                       <il class="itemFormulario">
+                    <input type="checkbox" name="opciones" value="chbxbebida" id="CheckboxBebida" runat="server">
+                    <ul class="lista formulario">
+                        <il class="itemFormulario">
                             <input type="radio" name="drink" value="agua" checked id="radioAgua" runat="server">Agua
                        </il>
                         <il class="itemFormulario">
                            <input type="radio" name="drink" value="jugo" id="radioJugo" runat="server">Jugo
                         </il>
-                       </ul>       
-                    </fieldset>     
-                 <button class="btn btn-success" name="accept" type="button">Aceptar</button>
-                 <button class="btn btn-danger" name="cancel" type="button">cancelar</button>
+                    </ul>
+                </fieldset>
+                <button class="btn btn-success" name="accept" type="button" runat="server" onserverclick="clickAceptar">Aceptar</button>
+                <button class="btn btn-danger" name="cancel" type="button" runat="server" onserverclick="clickCancelar">cancelar</button>
             </div>
 
         </ContentTemplate>
     </asp:UpdatePanel>
+   
 
-  
-	
 </asp:Content>
-<asp:Content ID="Content1" runat="server" contentplaceholderid="HeadContent">
-    </asp:Content>
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">
+</asp:Content>
