@@ -1,13 +1,33 @@
 ﻿li.itemFormulario{
-    width: 30%;
-    padding:5px;
+    width: 80%;
 }
 ul{
         display:inline-block;
 }
-li{
-      list-style-type: none;
-      display:inline-block;
+
+[type="button"]{
+    width: 150px;
 }
-
-
+#botonBuscar{
+    width:100px;
+}
+li.itemFormulario {
+    width: 80%;
+    list-style-type: none;
+    display: -webkit-inline-box;
+    padding: 10px;
+}
+li.itemFormulario:first-child>input{
+    margin-left:38px;
+    margin-top: -7px;
+}
+li.itemFormulario:nth-of-type(2n)>input{
+    margin-left: 6px;
+    margin-top: -5px;
+}
+li.itemFormulario>input{
+    Width:80%;
+}
+li.itemFormulario>*{
+    display:block;
+}

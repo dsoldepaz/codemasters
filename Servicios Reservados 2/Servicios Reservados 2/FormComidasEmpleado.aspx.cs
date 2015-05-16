@@ -13,7 +13,7 @@ namespace Servicios_Reservados_2
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
 
@@ -36,34 +36,12 @@ namespace Servicios_Reservados_2
                 {
                     fechaDeEntradaCalendario.SelectedDates.Add(dt);
                 }
-                list.Clear();
             }
         }
         protected void fechaDeEntrada_ServerClick(object sender, EventArgs e)
         {
             fechaDeEntradaCalendario.Visible = !(fechaDeEntradaCalendario.Visible);
         }
-        /*
-         *  Requiere: N/A.
-         *  Efectúa:  Rellena el formulario con la informacion del empleado.
-         *  Retrona:  N/A
-         */
-        protected void ConsultarEmpleado()
-        {
 
-        }
-        /*
-         *  Requiere: Controladores de eventos de la interfaz.
-         *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
-         *  Retrona:  N/A
-         */
-        protected void GridViewReservaciones_PageIndexChanging(Object sender, GridViewPageEventArgs e)
-        {
-
-            GridViewReservaciones.PageIndex = e.NewPageIndex;
-            GridViewReservaciones.DataSource = Session["tablaa"];
-            GridViewReservaciones.DataBind();
-
-        }
     }
 }
