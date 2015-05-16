@@ -17,8 +17,9 @@ input.selectorDeFecha{
     width: 21px;
 }
 li.itemFormulario{
-    width: 90%;
+    width: 30%;
     padding: 2px;
+    display:inline-block
 }
 ul{
       list-style-type: none;

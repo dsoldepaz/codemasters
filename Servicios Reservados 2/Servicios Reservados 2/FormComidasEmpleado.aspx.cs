@@ -13,7 +13,7 @@ namespace Servicios_Reservados_2
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
 
@@ -36,12 +36,12 @@ namespace Servicios_Reservados_2
                 {
                     fechaDeEntradaCalendario.SelectedDates.Add(dt);
                 }
-                list.Clear();
             }
         }
         protected void fechaDeEntrada_ServerClick(object sender, EventArgs e)
         {
             fechaDeEntradaCalendario.Visible = !(fechaDeEntradaCalendario.Visible);
         }
+
     }
 }

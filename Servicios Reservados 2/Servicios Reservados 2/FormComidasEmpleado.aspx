@@ -34,7 +34,13 @@
                         <SelectedDayStyle BackColor="#7BC143" />
                         <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                     </asp:Calendar>
-                    
+                    <h4 id="etiquetaTabla"></h4>
+                     <asp:GridView ID="GridViewReservaciones" runat="server" AllowPaging="true" AllowSorting="true" AutoGenerateSelectButton="True" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" OnSelectedIndexChanged="seleccionarEmpleado" PageSize="20">
+                        <AlternatingRowStyle BorderStyle="None" />
+                        <HeaderStyle Font-Size="1.3em" />
+                        <SelectedRowStyle BackColor="#7BC143" BorderStyle="Dotted" BorderWidth="1px" Font-Bold="true" ForeColor="Black" />
+                    </asp:GridView>
+
             </ContentTemplate>
    
         </asp:UpdatePanel>
