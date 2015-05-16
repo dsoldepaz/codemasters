@@ -69,5 +69,10 @@ namespace Servicios_Reservados_2
         {
 
         }
+        protected void btnSalir_Click(object sender, EventArgs e)
+        {
+            Session["UsuarioID"] = null;
+            Response.Redirect("~/ingresar.aspx");
+        }
     }
 }

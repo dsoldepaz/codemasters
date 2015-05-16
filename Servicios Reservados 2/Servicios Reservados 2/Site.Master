@@ -47,6 +47,7 @@
                 </div>
                 <div class="float-right">
                     <section id="login">
+                        <asp:Button id="btnSalir" runat="server" Text="Salir" OnClick="btnSalir_Click"/>
                         <asp:LoginView runat="server" ViewStateMode="Disabled">
                             <AnonymousTemplate>
                                 <ul>
