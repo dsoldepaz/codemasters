@@ -22,7 +22,7 @@
                                Nombre<input class="textbox" id="inputNombre" runat="server" />
                             </li>
                             <li class="itemFormulario">
-                            Identificacion<input class="textbox" style="width:500px" id="inputIdentificacion" runat="server" />
+                            Identificacion<input class="textbox" id="inputIdentificacion" runat="server" />
                             </li>
                             <li class="itemFormulario">
                                 <input type="button" class="btn btn-success" id="botonBuscar" onserverclick="clickBuscar" value="Buscar" runat="server" />

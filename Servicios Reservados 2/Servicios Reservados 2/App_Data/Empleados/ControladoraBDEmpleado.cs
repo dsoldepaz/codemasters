@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -40,7 +41,7 @@ namespace Servicios_Reservados_2
          */
         internal DataTable consultarUnEmpleado(String id)
         {
-            String consultaSQL = "select identificacion,nombre,apellidos from financiero.empleados where identificacion = " + id + "order by apellidos desc";
+            String consultaSQL = "select identificacion,nombre,apellidos from financiero.empleados where identificacion = '"+id+"' order by apellidos desc";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
@@ -51,18 +52,21 @@ namespace Servicios_Reservados_2
          * retorna : La tabla de datos con los resultados de  la consulta.
          */
         internal DataTable consultarEmpleados(String nombre,String iden){
-            String consulta = "select identificacion,nombre,apellido from empleado";
+            String consulta = "select identificacion,nombre,apellidos from financiero.empleados";
             String condicional = " where ";
             if (nombre.CompareTo("vacio") != 0) {
-                consulta += condicional+"nombre = "+nombre;
+                nombre = nombre.ToLower();
+                consulta += condicional+"LOWER(nombre) like '"+nombre+"%'";
                 condicional = " and ";
             }
             if (iden.CompareTo("vacio") != 0)
             {
-                consulta += condicional + "identificacion = "+iden;
+                
+                consulta += condicional + "identificacion = '"+iden+"'";
                 condicional = " and ";
             }
-           
+            Debug.WriteLine(consulta);
+            dt = adaptador.consultar(consulta);
             return dt;
         }
     }

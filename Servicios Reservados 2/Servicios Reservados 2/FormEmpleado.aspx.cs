@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Servicios_Reservados_2;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Diagnostics;
 
 namespace Servicios_Reservados_2
 {
@@ -66,12 +67,11 @@ namespace Servicios_Reservados_2
                 int i = 0;
                 if (empleados.Rows.Count > 0)
                 {
-                    Debug.WriteLine("he pasado");
+                    
                     foreach (DataRow fila in empleados.Rows)
                     {
 
                         ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
-                        Debug.WriteLine(fila[0].ToString());
                         datos[0] = fila[0].ToString();//obtener los datos a mostrar
                         datos[1] = fila[1].ToString();
                         datos[2] = fila[2].ToString();
@@ -151,20 +151,21 @@ namespace Servicios_Reservados_2
             String nombre = "vacio";
             String iden = "vacio";
 
-            if (inputNombre.Value != null)
-            {
-                Debug.WriteLine("Me vine por aqui "+inputNombre.ToString() );
-                
-            }
-            if (inputIdentificacion.Value != null)
+
+            if (inputNombre.Value.ToString()!="")
             {
                 nombre = inputNombre.Value.ToString();
+                Debug.WriteLine("hola"+nombre);
+                
+            }
+            if (inputIdentificacion.Value.ToString() != "")
+            {
                 iden = inputIdentificacion.Value.ToString();
             }
             if (nombre.CompareTo("vacio") != 0 || iden.CompareTo("vacio") != 0)
             {
                 DataTable tabla = crearTablaEmpleados();
-                Debug.WriteLine("Me vine por aqui");
+                
                 try
                 {
 
@@ -175,6 +176,7 @@ namespace Servicios_Reservados_2
                     int i = 0;
                     if (empleados.Rows.Count > 0)
                     {
+                        Debug.WriteLine("Me vine por aqui");
                         foreach (DataRow fila in empleados.Rows)
                         {
                             ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
@@ -182,6 +184,7 @@ namespace Servicios_Reservados_2
                             datos[1] = fila[1].ToString();
                             datos[2] = fila[2].ToString();
                             tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
+                            Debug.WriteLine(fila[1].ToString());
                             i++;
                         }
                     }
