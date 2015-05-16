@@ -252,7 +252,7 @@ namespace Servicios_Reservados_2
         {
             if (idServ[GridServicios.SelectedIndex].Contains("C"))
             {
-                modo = 4;
+                FormComidaCampo.modo = 4;
                 Response.Redirect("FormComidaCampo");
             }
             else {
