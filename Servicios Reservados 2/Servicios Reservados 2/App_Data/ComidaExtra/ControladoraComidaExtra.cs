@@ -19,6 +19,7 @@ namespace Servicios_Reservados_2
        
       public static EntidadComidaExtra servicioSeleccionado;//instancia entidad comida extra.
       public static int paxSeleccionados;
+      public static String idReservacionSelccionada;
        
       public ControladoraComidaExtra()
         {
@@ -97,9 +98,10 @@ namespace Servicios_Reservados_2
        * Requiere: la entrada de los datos.
        * Modifica: la variable paxSeleccionados, en la que se almacena el servicio consultado.
        */
-      public void guardarPaxsSeleccionado(int pax)
+      public void guardarReservacionSeleccionada(Object[] datos)
       {
-          paxSeleccionados = pax;
+          paxSeleccionados = int.Parse(datos[0].ToString());
+          idReservacionSelccionada = datos[1].ToString();
       }
 
       /*
@@ -113,13 +115,23 @@ namespace Servicios_Reservados_2
       }
 
       /*
-       * Efecto: devuelve loa pax consultados.
+       * Efecto: devuelve los pax consultados.
        * Requiere: que la variable pax esté inicializada.
        * Modifica: 
        */
       public int paxSeleccionado()
       {
           return paxSeleccionados;
+      }
+
+      /*
+     * Efecto: devuelve la reservación consultada.
+     * Requiere: que la variable idReservacionSelccionada esté inicializada.
+     * Modifica: 
+     */
+      public String reservacionSeleccionada()
+      {
+          return idReservacionSelccionada;
       }
 
 
@@ -132,6 +144,17 @@ namespace Servicios_Reservados_2
         {
             DataTable aux = controladoraBD.consultarTipo(id);
             return aux.Rows[0][0].ToString();
+        }
+
+      /*
+       * Efecto: consulta las fechas de inicio y fin de una reservación con un id específico.
+       * Requiere: que la entidad esté inicializada.
+       * Modifica: el datatable fecha, que se llena con el tipo seleccionado. 
+      */
+        public DataTable consultarFechas(String id)
+        {
+            DataTable fechas = controladoraBD.consultarFechas(id);
+            return fechas;
         }
     }
 }
