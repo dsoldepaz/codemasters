@@ -25,3 +25,9 @@ ul{
       list-style-type: none;
       display:inline-block;
 }
+div:first-of-type{
+    padding:25px;
+}
+div:first-of-type>input{
+    width:100px;
+}
