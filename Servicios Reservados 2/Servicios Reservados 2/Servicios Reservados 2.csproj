@@ -295,6 +295,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="FormComidaCampo.aspx" />
+    <Content Include="Ingresar.aspx" />
     <Content Include="oet.ico" />
     <Content Include="packages.config" />
     <Content Include="FormComidaExtra.aspx" />
@@ -490,6 +491,14 @@
     <Compile Include="FormComidaCampo.aspx.designer.cs">
       <DependentUpon>FormComidaCampo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Ingresar.aspx.cs">
+      <DependentUpon>Ingresar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ingresar.aspx.designer.cs">
+      <DependentUpon>Ingresar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\Login\LoginService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Data\Servicios\ControladoraServicios.cs" />
     <Compile Include="App_Data\Servicios\ControladoraBDServicios.cs" />
