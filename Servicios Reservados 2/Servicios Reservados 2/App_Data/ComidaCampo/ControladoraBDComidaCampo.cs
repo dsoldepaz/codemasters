@@ -19,6 +19,31 @@ namespace Servicios_Reservados_2
             dt = new DataTable();
         }
 
+        public String[] agregarComidaCampo(EntidadComidaCampo entidad)
+        {
+            String[] respuesta = new String[3];
+            try
+            {
+                String consultaSQL = "insert into servicios_reservados.comida_campo values('" + entidad.IdComidaCampo + "','" + entidad.IdEmpleado + "'," +
+                    entidad.IdReservacion + ",'" + entidad.Fecha + "','" + entidad.Estado + "','" + entidad.Opcion + "','" + entidad.Relleno + "','" + entidad.Pan + "','" +
+                    entidad.Relleno + "','" + entidad.Bebida + "','" + entidad.TipoPago + "','" + entidad.Pax + "','" + entidad.Hora + "')";
+
+                adaptador.insertar(consultaSQL);
+
+                respuesta[0] = "success";
+                respuesta[1] = "Exito. ";
+                respuesta[2] = "El usuario se ha insertado exitosamente";
+            }
+            catch (SqlException e)
+            {
+                    respuesta[0] = "danger";
+                    respuesta[1] = "Error. ";
+                    respuesta[2] = "No se pudo agregar el servicio extra";
+                
+
+            }
+            return respuesta;
+        }
 
     }
 }

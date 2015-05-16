@@ -25,9 +25,11 @@ namespace Servicios_Reservados_2
             controladoraReserv = new ControladoraReservaciones();
         }
 
-        public void guardarComidaSeleccionada(Object[] dato)
+        public String[] agregarComidaCampo(Object[] datos)
         {
-            comidaSeleccionada = new EntidadComidaCampo(dato);
+            EntidadComidaCampo entidad = new EntidadComidaCampo(datos);
+            String[] resultado = controladoraBD.agregarComidaCampo(entidad);//llamado a la controladora de base de datos
+            return resultado;
         }
     }
 }
