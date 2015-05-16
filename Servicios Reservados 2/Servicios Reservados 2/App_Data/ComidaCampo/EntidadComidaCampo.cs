@@ -33,8 +33,8 @@ namespace Servicios_Reservados_2
             this.pan = datos[7].ToString();
             this.bebida = datos[8].ToString();
             this.tipoPago = datos[9].ToString();
-            this.pax = int.Parse(datos[11].ToString());
-            this.hora = datos[12].ToString();
+            this.pax = int.Parse(datos[10].ToString());
+            this.hora = datos[11].ToString();
         }
 
         public String IdComidaCampo

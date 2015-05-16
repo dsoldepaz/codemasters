@@ -98,7 +98,8 @@ namespace Servicios_Reservados_2.Servicios
 
             Object[] nuevoComidaC = new Object[12];
 
-            nuevoComidaC[0] = comidaCampo.Rows[0][1];
+            nuevoComidaC[0] = comidaCampo.Rows[0][0];
+            nuevoComidaC[1] = comidaCampo.Rows[0][1];
             nuevoComidaC[2] = comidaCampo.Rows[0][2];
             nuevoComidaC[3] = comidaCampo.Rows[0][3];
             nuevoComidaC[4] = comidaCampo.Rows[0][4];
@@ -106,8 +107,9 @@ namespace Servicios_Reservados_2.Servicios
             nuevoComidaC[6] = comidaCampo.Rows[0][6];
             nuevoComidaC[7] = comidaCampo.Rows[0][7];
             nuevoComidaC[8] = comidaCampo.Rows[0][8];
-            nuevoComidaC[10] = comidaCampo.Rows[0][9];
-            nuevoComidaC[11] = comidaCampo.Rows[0][10];
+            nuevoComidaC[9] = comidaCampo.Rows[0][9];
+            nuevoComidaC[10] = comidaCampo.Rows[0][10];
+            nuevoComidaC[11] = comidaCampo.Rows[0][11];
 
             controladoraComidaCampo.guardarComidaSeleccionada(nuevoComidaC);
         }
