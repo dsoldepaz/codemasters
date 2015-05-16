@@ -16,9 +16,10 @@ namespace Servicios_Reservados_2
         private static DataTable reservacion = new DataTable();
         private static String[] ids;
         private static String[] idServ;
-        private static String[] idEmp;
-
+        private static String[] idComidaCampo;
         public static int modo;
+        public static String tipo;
+        public static String categoria = "Comida Extra";
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -68,7 +69,7 @@ namespace Servicios_Reservados_2
             try
             {
 
-                Object[] datos = new Object[6];
+                Object[] datos = new Object[7];
                 DataTable servicios = controladora.solicitarServicios(controladora.idSelected());// se consultan todos
                 
                 ids = new String[servicios.Rows.Count]; //crear el vector para ids en el grid
@@ -83,49 +84,46 @@ namespace Servicios_Reservados_2
                     {
                         ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
                         idServ[i] = fila[1].ToString();
-                        datos[0] = fila[2].ToString();//obtener los datos a mostrar
-                        datos[1] = fila[3].ToString();
-                        datos[2] = fila[4].ToString();
-                        datos[3] = fila[5].ToString();//DateTime.Parse(fila[5].ToString());
-                        datos[4] = fila[6].ToString();
-                        datos[5] = fila[7].ToString();
+                        datos[0] = "Comida Extra";
+                        datos[1] = fila[2].ToString();//obtener los datos a mostrar
+                        datos[2] = fila[3].ToString();
+                        datos[3] = fila[4].ToString();
+                        datos[4] = fila[5].ToString();//DateTime.Parse(fila[5].ToString());
+                        datos[5] = fila[6].ToString();
+                        datos[6] = fila[7].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
                     }                 
                 }
 
-             
+
+               
                 DataTable comidaCampo = controladora.solicitarComidaCampo(controladora.idSelected());// se consultan todos
-
-                ids = new String[comidaCampo.Rows.Count]; //crear el vector para ids en el grid
-                idServ = new String[comidaCampo.Rows.Count];
-                idEmp = new String[comidaCampo.Rows.Count];
+                idComidaCampo = new String[comidaCampo.Rows.Count];       
                 int j = 0;
-
 
                 if (comidaCampo.Rows.Count > 0)
                 {
 
                     foreach (DataRow fila in comidaCampo.Rows)
                     {
-                        
-                        idServ[j] = fila[0].ToString();
-                        idEmp[j] = fila[1].ToString();
-                        ids[j] = fila[2].ToString();// guardar el id para su posterior consulta
-
-                        if (int.Parse(fila[5].ToString()) != 1)
+                       
+                        idComidaCampo[j] = fila[0].ToString();
+                        //ids[j] = fila[1].ToString();
+                        datos[0] = "Comida Campo";
+                        if (int.Parse(fila[4].ToString()) != 1)
                         {
-                            datos[0] = "Sandwich";
+                            datos[1] = "Sandwich";
                         }
                         else
                         {
-                            datos[0] = "Gallo Pinto";
+                            datos[1] = "Gallo Pinto";
                         }
-                        datos[1] = fila[6].ToString();
-                        datos[2] = fila[11].ToString();
-                        datos[3] = fila[3].ToString();//DateTime.Parse(fila[5].ToString());
-                        datos[4] = fila[4].ToString();
-                        datos[5] = fila[10].ToString();
+                        datos[2] = fila[5].ToString();
+                        datos[3] = fila[9].ToString();
+                        datos[4] = fila[2].ToString();//DateTime.Parse(fila[5].ToString());
+                        datos[5] = fila[3].ToString();
+                        datos[6] = fila[8].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         j++;
                     }
@@ -150,6 +148,11 @@ namespace Servicios_Reservados_2
         {
             DataTable tabla = new DataTable();
             DataColumn columna;
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Categoría";
+            tabla.Columns.Add(columna);
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
@@ -187,61 +190,6 @@ namespace Servicios_Reservados_2
             return tabla;
         }
 
-        /**
-      * Requiere: n/a
-      * Efectua: Crea la DataTable para desplegar.
-      * retorna:  un dato del tipo DataTable con la estructura para consultar.
-      */
-        protected DataTable crearTablaComidaCampo()//consultar
-        {
-            DataTable tablaCampo = new DataTable();
-            DataColumn columna;
-
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Fecha";
-            tablaCampo.Columns.Add(columna);
-
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Estado";
-            tablaCampo.Columns.Add(columna);
-
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Opcion";
-            tablaCampo.Columns.Add(columna);
-
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Relleno";
-            tablaCampo.Columns.Add(columna);
-
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Pan";
-            tablaCampo.Columns.Add(columna);
-
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Bebida";
-            tablaCampo.Columns.Add(columna);
-
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Tipo Pago";
-            tablaCampo.Columns.Add(columna);
-
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Pax";
-            tablaCampo.Columns.Add(columna);
-
-            GridServicios.DataSource = tablaCampo;
-            GridServicios.DataBind();
-
-            return tablaCampo;
-        }
 
 
         /*Efecto: obtiene el id del servicio seleccionado y de la reservacion a la que pertence el servicio 
@@ -250,7 +198,14 @@ namespace Servicios_Reservados_2
          */
         protected void seleccionarServicio(object sender, EventArgs e)
         {
-            controladora.seleccionarServicio(ids[GridServicios.SelectedIndex], idServ[GridServicios.SelectedIndex]);
+            String categoria = GridServicios.SelectedRow.ToString();
+            if (categoria.Contains("Comida Extra")){
+                controladora.seleccionarServicio(ids[GridServicios.SelectedIndex], idServ[GridServicios.SelectedIndex]);
+            }
+            else {
+                controladora.seleccionarComidaCampo(ids[GridServicios.SelectedIndex], idComidaCampo[GridServicios.SelectedIndex]);
+            }
+           
         }
         /*
          * Efecto: llama al metodo modificarServicio de la controladora y redirecciona la pagina al formComidaExtra
@@ -292,8 +247,16 @@ namespace Servicios_Reservados_2
        */
         protected void clickConsultarServicio(object sender, EventArgs e) 
         {
-            modo = 0;
-            Response.Redirect("FormComidaExtra");
+            if (idComidaCampo[0].Contains("C"))
+            {
+                modo = 4;
+                Response.Redirect("FormComidaCampo");
+            }
+            else {
+                modo = 0;
+                Response.Redirect("FormComidaExtra");
+            }
+          
 
         }
     }

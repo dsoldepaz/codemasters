@@ -17,7 +17,6 @@ namespace Servicios_Reservados_2
         private String pan;
         private String bebida;
         private String tipoPago;
-        private String idAdicional_ComidaCampo;
         private int pax;
         private String hora;
 
@@ -34,7 +33,6 @@ namespace Servicios_Reservados_2
             this.pan = datos[7].ToString();
             this.bebida = datos[8].ToString();
             this.tipoPago = datos[9].ToString();
-            this.idAdicional_ComidaCampo = datos[10].ToString();
             this.pax = int.Parse(datos[11].ToString());
             this.hora = datos[12].ToString();
         }
@@ -92,11 +90,6 @@ namespace Servicios_Reservados_2
         {
             get { return TipoPago; }
             set { TipoPago = value; }
-        }
-        public String IdAdicional_ComidaCampo
-        {
-            get { return IdAdicional_ComidaCampo; }
-            set { IdAdicional_ComidaCampo = value; }
         }
         public int Pax
         {

@@ -37,7 +37,7 @@ namespace Servicios_Reservados_2.Servicios
          */
         internal DataTable solicitarServicios(String id)
         {
-            String consultaSQL = "select s.idreservacion, e.idservicio, e.tipo, s.descripcion, s.hora, s.fecha, s.estado, s.pax from servicios_reservados.servicio_especial s JOIN servicios_reservados.servicios_extras e ON e.idservicio = s.idserviciosextras AND s.idreservacion= '" + id + "'";
+            String consultaSQL = "select s.idreservacion, e.idservicio, e.tipo, s.descripcion, s.hora, s.fecha, s.estado, s.pax from servicios_reservados.servicio_especial s JOIN servicios_reservados.servicios_extras e ON e.idservicio = s.idserviciosextras AND s.idreservacion= '" + id + "' and s.estado <>  'Cancelado'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
 
@@ -45,7 +45,7 @@ namespace Servicios_Reservados_2.Servicios
 
         internal DataTable solicitarComidaCampo(String id)
         {
-            String consultaSQL = "select * from servicios_reservados.comida_campo where idreservacion = '" + id + "' and estado <>  'Cancelado'";
+            String consultaSQL = "select c.idcomidacampo, c.idreservacion, c.fecha, c.estado, c.opcion, c.relleno, c.pan, c.bebida, c.pax, c.hora from servicios_reservados.comida_campo c where c.idreservacion = '" + id + "' and c.estado <>  'Cancelado'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
 
@@ -62,5 +62,13 @@ namespace Servicios_Reservados_2.Servicios
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
+
+        internal DataTable seleccionarComidaCampo(String id, String idComidaCampo)
+        {
+            String consultaSQL = "select c.idcomidacampo, c.idreservacion, c.fecha, c.estado, c.opcion, c.relleno, c.pan, c.bebida, c.pax, c.hora from servicios_reservados.comida_campo c  where idreservacion = '" + id + "' and idcomidacampo = '" + idComidaCampo + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
     }
 }
