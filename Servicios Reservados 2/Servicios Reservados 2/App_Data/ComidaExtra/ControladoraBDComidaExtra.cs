@@ -164,5 +164,16 @@ namespace Servicios_Reservados_2
             return respuesta;
         }
 
+        /*
+         * Efecto: solicita las fechas de inicio y fin de una reservación específica.
+         * Requiere: entrada del id.
+         * Modifica: datatable que realiza la consulta. 
+        */
+        internal DataTable consultarFechas(String id)
+        {
+            String consultaSQL = "select entra, sale from reservas.reservacion where id='" + id + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
     }
 }
