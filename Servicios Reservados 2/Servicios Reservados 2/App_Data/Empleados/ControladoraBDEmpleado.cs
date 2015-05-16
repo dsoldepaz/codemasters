@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -27,8 +28,8 @@ namespace Servicios_Reservados_2
          * Retorna : la tabla de datos con el resultado de la consulta.
          */
         internal DataTable consultarTodosEmpleados() {
-            
-            String consultaSQL = "select identificacion,nombre,apellido from... where... order by apellido desc";
+
+            String consultaSQL = "select identificacion,nombre,apellidos from financiero.empleados order by apellidos desc";
             dt = adaptador.consultar(consultaSQL);
             
             return dt;
@@ -40,23 +41,9 @@ namespace Servicios_Reservados_2
          */
         internal DataTable consultarUnEmpleado(String id)
         {
-            String consultaSQL = "select order by entra desc";
-            dt = adaptador.consultar(consultaSQL);
-
-            return dt;
-        }
-
-        /*
-         * Requiere: un identificador de reservación.
-         * Efectúa : Crea la hilera de consulta de la información concatenándolo al identificador de la reservación. Crea una tabala de datos donde almacena el resultado de la consulta.
-         * retorna : La tabla de datos con los resultados de  la consulta.
-         */
-        internal DataTable solicitarInfo(String id)
-        {
-            String consultaSQL = "select where   ";
+            String consultaSQL = "select identificacion,nombre,apellidos from financiero.empleados where identificacion = '"+id+"' order by apellidos desc";
             dt = adaptador.consultar(consultaSQL);
             return dt;
-
         }
 
         /*
@@ -65,18 +52,21 @@ namespace Servicios_Reservados_2
          * retorna : La tabla de datos con los resultados de  la consulta.
          */
         internal DataTable consultarEmpleados(String nombre,String iden){
-            String consulta = "select identificacion,nombre,apellido from empleado";
+            String consulta = "select identificacion,nombre,apellidos from financiero.empleados";
             String condicional = " where ";
             if (nombre.CompareTo("vacio") != 0) {
-                consulta += condicional+"nombre = "+nombre;
+                nombre = nombre.ToLower();
+                consulta += condicional+"LOWER(nombre) like '"+nombre+"%'";
                 condicional = " and ";
             }
             if (iden.CompareTo("vacio") != 0)
             {
-                consulta += condicional + "iden = "+iden;
+                
+                consulta += condicional + "identificacion = '"+iden+"'";
                 condicional = " and ";
             }
-           
+            Debug.WriteLine(consulta);
+            dt = adaptador.consultar(consulta);
             return dt;
         }
     }

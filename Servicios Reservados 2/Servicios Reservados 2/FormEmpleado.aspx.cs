@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Servicios_Reservados_2;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Diagnostics;
 
 namespace Servicios_Reservados_2
 {
@@ -66,13 +67,14 @@ namespace Servicios_Reservados_2
                 int i = 0;
                 if (empleados.Rows.Count > 0)
                 {
+                    
                     foreach (DataRow fila in empleados.Rows)
                     {
 
                         ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
-                        datos[0] = fila[1].ToString();//obtener los datos a mostrar
-                        datos[1] = fila[2].ToString();
-                        datos[2] = fila[3].ToString();
+                        datos[0] = fila[0].ToString();//obtener los datos a mostrar
+                        datos[1] = fila[1].ToString();
+                        datos[2] = fila[2].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
                     }
@@ -85,7 +87,7 @@ namespace Servicios_Reservados_2
             }
             catch (Exception e)
             {
-                Debug.WriteLine("No se pudo cargar las reservaciones");
+                Debug.WriteLine("No se pudo cargar los empleados");
             }
 
 
@@ -103,7 +105,7 @@ namespace Servicios_Reservados_2
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Identificacion";
+            columna.ColumnName = "Identificación";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
@@ -113,10 +115,9 @@ namespace Servicios_Reservados_2
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Apellido";
+            columna.ColumnName = "Apellidos";
             tabla.Columns.Add(columna);
-
-            tabla.Columns.Add(columna);
+                      
             GridViewEmpleados.DataSource = tabla;
             GridViewEmpleados.DataBind();
 
@@ -150,11 +151,14 @@ namespace Servicios_Reservados_2
             String nombre = "vacio";
             String iden = "vacio";
 
-            if (inputNombre.Value != null)
+
+            if (inputNombre.Value.ToString()!="")
             {
                 nombre = inputNombre.Value.ToString();
+                Debug.WriteLine("hola"+nombre);
+                
             }
-            if (inputIdentificacion.Value != null)
+            if (inputIdentificacion.Value.ToString() != "")
             {
                 iden = inputIdentificacion.Value.ToString();
             }
@@ -172,13 +176,15 @@ namespace Servicios_Reservados_2
                     int i = 0;
                     if (empleados.Rows.Count > 0)
                     {
+                        Debug.WriteLine("Me vine por aqui");
                         foreach (DataRow fila in empleados.Rows)
                         {
                             ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
-                            datos[0] = fila[1].ToString();//obtener los datos a mostrar
-                            datos[1] = fila[2].ToString();
-                            datos[2] = fila[3].ToString();
+                            datos[0] = fila[0].ToString();//obtener los datos a mostrar
+                            datos[1] = fila[1].ToString();
+                            datos[2] = fila[2].ToString();
                             tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
+                            Debug.WriteLine(fila[1].ToString());
                             i++;
                         }
                     }

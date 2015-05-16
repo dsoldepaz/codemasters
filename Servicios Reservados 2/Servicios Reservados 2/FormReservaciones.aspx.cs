@@ -210,7 +210,7 @@ namespace Servicios_Reservados_2
                 Debug.WriteLine("entre al metodo de la estacion" + estacion);
                 estacion = cbxEstacion.Value.ToString();
           }
-            if (txtSolicitante.Value != null)
+            if (txtSolicitante.Value.ToString()=="")
             {
               solicitante = txtSolicitante.Value.ToString();
           }

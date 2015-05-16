@@ -40,6 +40,7 @@ namespace Servicios_Reservados_2
         {
             modo = FormServicios.modo;
             llenarComboBoxTipo();
+            llenarCbxTipoPago();
             cambiarModo();
         }
 
@@ -61,10 +62,10 @@ namespace Servicios_Reservados_2
 
         void llenarCbxTipoPago()
         {
-            cbxTipo.Items.Clear();// limpiamos el combobox
-            cbxTipo.Items.Add("Efectivo");
-            cbxTipo.Items.Add("Tarjeta");
-            cbxTipo.Items.Add("Deducción de planilla");
+            cbxTipoPago.Items.Clear();// limpiamos el combobox
+            cbxTipoPago.Items.Add("Efectivo");
+            cbxTipoPago.Items.Add("Tarjeta");
+            cbxTipoPago.Items.Add("Deducción de planilla");
         }
 
         /*
@@ -76,11 +77,13 @@ namespace Servicios_Reservados_2
         {
             Boolean res = true;
             //los desplegamos en cada uno de los componentes de la pantalla
-            txtHora.Value = entidadConsultada.Hora;
+            cbxHora.Items.Clear();
+            cbxHora.Value = entidadConsultada.Hora;
             txtPax.Value = entidadConsultada.Pax.ToString();
             cbxTipo.Text = controladora.consultarTipo(controladora.servicioSeleccionados().IdServiciosExtras);
             txaNotas.Value = entidadConsultada.Descripcion;
             textFecha.Value = entidadConsultada.Fecha.ToString();
+            cbxTipoPago.Value = entidadConsultada.TipoPago;
 
             return res;
         }
@@ -93,7 +96,7 @@ namespace Servicios_Reservados_2
         protected Boolean agregarServicioExtra()
         {
             Boolean res = true;
-            Object[] nuevoServicio = new Object[7];// objeto en el que se almacenan los datos para enviar a encapsular.
+            Object[] nuevoServicio = new Object[8];// objeto en el que se almacenan los datos para enviar a encapsular.
 
             nuevoServicio[0] = controladora.informacionServicio().Id;//recuperamos el id de la reservación
             //en adelante se extrae la información de cada uno de los componentes de la interfaz.
@@ -103,7 +106,8 @@ namespace Servicios_Reservados_2
             nuevoServicio[3] = "no";
             nuevoServicio[4] = txaNotas.Value;
             nuevoServicio[5] = txtPax.Value;
-            nuevoServicio[6] = txtHora.Value;
+            nuevoServicio[6] = cbxHora.Value;
+            nuevoServicio[7] = cbxTipoPago.Value;
 
  
             String[] error = controladora.agregarServicioExtra(nuevoServicio);// se le pide a la controladora que lo inserte
@@ -119,7 +123,7 @@ namespace Servicios_Reservados_2
         protected Boolean modificarServicioExtra()
         {
             Boolean res = true;
-            Object[] nuevoServicio = new Object[7];// objeto en el que se almacenan los datos para enviar a encapsular.
+            Object[] nuevoServicio = new Object[8];// objeto en el que se almacenan los datos para enviar a encapsular.
             nuevoServicio[0] = controladora.informacionServicio().Id;//recuperamos el id de la reservación.
             //en adelante se extrae la información de cada uno de los componentes de la interfaz.
             int indice = cbxTipo.SelectedIndex - 1;
@@ -128,8 +132,8 @@ namespace Servicios_Reservados_2
             nuevoServicio[3] = "no";
             nuevoServicio[4] = txaNotas.Value;
             nuevoServicio[5] = txtPax.Value;
-            nuevoServicio[6] = txtHora.Value;
-
+            nuevoServicio[6] = cbxHora.Value;
+            nuevoServicio[7] = cbxTipoPago.Value;
 
             String[] error = controladora.modificarServicioExtra(nuevoServicio, controladora.servicioSeleccionados());// se le pide a la controladora que lo inserte
             mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
@@ -196,12 +200,15 @@ namespace Servicios_Reservados_2
             switch (modo)
             {
                 case 0:
-                    consultarServicio();
                     cbxHora.Disabled = true;
                     txtPax.Disabled = true;
                     txaNotas.Disabled = true;
                     textFecha.Disabled = true;
-                    cbxTipo.Enabled = true;
+                    cbxTipo.Enabled = false;
+                    cbxTipoPago.Disabled = true;
+                    btnAceptar.Disabled = true;
+                    fechaDeEntrada.Disabled = true;
+                    consultarServicio();
                     break;
                 case 1:
                     txtPax.Value = controladora.paxSeleccionado().ToString();
