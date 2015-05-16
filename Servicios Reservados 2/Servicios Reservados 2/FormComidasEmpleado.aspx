@@ -8,26 +8,26 @@
          <h4>Informacion Del Empleado</h4>
         <ul class ="lista formulario">
             <li  class="itemFormulario">
-                Nombre: <input id="nombreLbl" />
+                Nombre: <input id="nombreLbl" runat="server"/>
             </li>
             <li  class="itemFormulario">
-                Apellido: <input id="apellidoLbl" />
+                Apellido: <input id="apellidoLbl" runat="server"/>
             </li>
             
             <li  class="itemFormulario">
-                Indentificacion: <input id="idLbl" />
+                Indentificacion: <input id="idLbl" runat="server"/>
             </li>
         </ul>
-         <h4>Seleccione el horario de comida</h4>
+         
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
          <div title="Seleccione una operacion sobre las reservaciones de comida">
              
-            <input type="button" value="Agregar" />
-            <input type="button" value="Modificar" />
-            <input type="button" value="Cancelar" />
+            <input type="button" value="Agregar" runat="server" onserverclick="clickAgregar"/>
+            <input type="button" value="Modificar" onserverclick="clickModificar"/>
+            <input type="button" value="Cancelar" onserverclick="clickCancelar"/>
         </div>
-        <div>
+        <div id="selectorDeHorario" runat="server" visible="false" title="Seleccione el horario de comida">
             <input type="checkbox" value="Desayuno" />Desayuno
             <input type="checkbox" value="Almuerzo" />Almuerzo
             <input type="checkbox" value="Cena" />Cena
@@ -41,7 +41,7 @@
                         <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                     </asp:Calendar>
                     <h4 id="labelTabla">Comidas reservadas para </h4>
-                     <asp:GridView ID="GridViewReservaciones" runat="server" AllowPaging="true" AllowSorting="true" AutoGenerateSelectButton="True" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" OnSelectedIndexChanged="seleccionarEmpleado" PageSize="20">
+                     <asp:GridView ID="GridViewReservacionesEmpleado" runat="server" AllowPaging="true" AllowSorting="true" AutoGenerateSelectButton="True" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" OnSelectedIndexChanged="seleccionarReservacion" PageSize="20">
                         <AlternatingRowStyle BorderStyle="None" />
                         <HeaderStyle Font-Size="1.3em" />
                         <SelectedRowStyle BackColor="#7BC143" BorderStyle="Dotted" BorderWidth="1px" Font-Bold="true" ForeColor="Black" />

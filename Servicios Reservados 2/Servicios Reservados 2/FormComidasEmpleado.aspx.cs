@@ -4,13 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Servicios_Reservados_2;
 
 namespace Servicios_Reservados_2
 {
     public partial class FormComidasEmpleado : System.Web.UI.Page
     {
-        public static List<DateTime> list = new List<DateTime>();
-
+        protected String identificacionEmpleado = "";
+        private static List<DateTime> list = new List<DateTime>();
+        private EntidadEmpleado empleadoSeleccionado;
+        private ContorladoraComidaEmpleado controladora = new ContorladoraComidaEmpleado();
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -42,6 +45,51 @@ namespace Servicios_Reservados_2
         {
             fechaDeEntradaCalendario.Visible = !(fechaDeEntradaCalendario.Visible);
         }
+        /*
+         *  Requiere: Controladores de eventos de la interfaz.
+         *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
+         *  Retrona:  N/A
+         */
+        protected void GridViewReservaciones_PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
 
+            GridViewReservacionesEmpleado.PageIndex = e.NewPageIndex;
+            GridViewReservacionesEmpleado.DataSource = Session["tablaa"];
+            GridViewReservacionesEmpleado.DataBind();
+
+        }
+
+        protected void seleccionarReservacion(object sender, EventArgs e)
+        {
+
+        }
+        protected void clickAgregar(object sender, EventArgs e)
+        {
+            selectorDeHorario.Visible = true;
+            fechaDeEntradaCalendario.Visible = true;
+        }
+        protected void clickModificar(object sender, EventArgs e)
+        {
+
+        }
+        protected void clickCancelar(object sender, EventArgs e)
+        {
+
+        }
+        private void iniciarEmpleado()
+        {
+            empleadoSeleccionado = controladora.getInformacionDelEmpleado(identificacionEmpleado);
+            try
+            {
+                this.nombreLbl.Value=empleadoSeleccionado.Nombre;
+                this.apellidoLbl.Value = empleadoSeleccionado.Apellido;
+                this.idLbl.Value = identificacionEmpleado;
+
+            }
+            catch (Exception e)
+            {
+                //No se selecciono un empleado.
+            }
+        }
     }
 }

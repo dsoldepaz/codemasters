@@ -25,7 +25,7 @@ ul{
       list-style-type: none;
       display:inline-block;
 }
-div:first-of-type{
+ContentTemplate>div:first-of-type{
     padding:25px;
 }
 div:first-of-type>input{

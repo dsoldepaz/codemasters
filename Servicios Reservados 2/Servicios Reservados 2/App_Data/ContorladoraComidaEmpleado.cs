@@ -13,17 +13,15 @@ namespace Servicios_Reservados_2
 {
     public class ContorladoraComidaEmpleado
     {
-        private ControladoraEmpleado controlEmpleado = new ControladoraEmpleado();
         public DataTable getComidasEmpleado(int idEmpleado)
         {
             //Hay que consultar en la base de datos.
             return new DataTable();
         }
-        public EntidadEmpleado getInformacionDelEmpleado(String idEmpleado)
+        public int/*cambiar tipo a Empleado*/ getInformacionDelEmpleado(int idEmpleado)
         {
-            controlEmpleado.seleccionarEmpleado(idEmpleado);
-            return controlEmpleado.getEmpleadoSeleccionado();
+            //llamar a la contorladora de mepleados para obtener esta info
+            return 0;
         } 
-
     }
 }

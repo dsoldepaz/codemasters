@@ -731,7 +731,6 @@ tr.pager td {
 /* END: Mobile Styles */
 /*--Estilos personalizados--*/
 [type="button"]{
-    width: 19px;
     border-radius:4px;
     background-color:#7BC143;
     color: rgb(252, 247, 247);
