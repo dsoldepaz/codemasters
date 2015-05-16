@@ -67,6 +67,15 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtPax;
         
         /// <summary>
+        /// Control labelPago.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl labelPago;
+        
+        /// <summary>
         /// Control cmbTipoPago.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,15 @@ namespace Servicios_Reservados_2 {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton radioCena;
+        
+        /// <summary>
+        /// Control checkboxO1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox checkboxO1;
         
         /// <summary>
         /// Control radioPanBlanco.
@@ -182,6 +200,15 @@ namespace Servicios_Reservados_2 {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton radioEnsaladaHuevo;
+        
+        /// <summary>
+        /// Control CheckboxO2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox CheckboxO2;
         
         /// <summary>
         /// Control chGalloPinto.
@@ -272,6 +299,15 @@ namespace Servicios_Reservados_2 {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chPlatanos;
+        
+        /// <summary>
+        /// Control CheckboxBebida.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox CheckboxBebida;
         
         /// <summary>
         /// Control radioAgua.

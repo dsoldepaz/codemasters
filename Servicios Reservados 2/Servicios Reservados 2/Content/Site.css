@@ -408,7 +408,7 @@ border: 1px solid #e2e2e2;
   font-size: 1.2em;
   margin: 5px 10px 6px 0;
   padding: 5px;
-  width: 156px;
+  width: 56px;
 }
 
 textarea {
@@ -421,9 +421,11 @@ textarea {
     }
 
 input[type="checkbox"] {
-    background: transparent;
-    border: inherit;
-    width: auto;
+    border-style: inherit;
+    border-color: inherit;
+    border-width: inherit;
+    background:;
+width: 23px;
 }
 
 input[type="submit"]
@@ -840,4 +842,9 @@ input.selectorDeFecha{
     border-radius: 0px;
     background-image:url('../Images/imagenes_OET/DatePicker.gif');
     height:18px;
+}
+
+
+label.labelfont {
+    font: normal 14px Arial !important;
 }
