@@ -96,6 +96,18 @@ namespace Servicios_Reservados_2
         protected Boolean agregarServicioExtra()
         {
             Boolean res = true;
+            DataTable fechas = controladora.consultarFechas(controladora.reservacionSeleccionada());
+            DateTime fechaInicio = DateTime.Parse(fechas.Rows[0][0].ToString());
+            DateTime fechaFin = DateTime.Parse(fechas.Rows[0][1].ToString());
+            DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;
+
+            if (fechaSelect < fechaInicio || fechaSelect > fechaFin)
+            {
+                mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de lás fechas reservadas-");
+            }
+            else
+            {
+
             Object[] nuevoServicio = new Object[8];// objeto en el que se almacenan los datos para enviar a encapsular.
 
             nuevoServicio[0] = controladora.informacionServicio().Id;//recuperamos el id de la reservación
@@ -103,7 +115,7 @@ namespace Servicios_Reservados_2
             int indice = cbxTipo.SelectedIndex-1;
             nuevoServicio[1] = tipo.Rows[indice][0];
             nuevoServicio[2] = textFecha.Value;
-            nuevoServicio[3] = "no";
+            nuevoServicio[3] = "Activo";
             nuevoServicio[4] = txaNotas.Value;
             nuevoServicio[5] = txtPax.Value;
             nuevoServicio[6] = cbxHora.Value;
@@ -112,6 +124,7 @@ namespace Servicios_Reservados_2
  
             String[] error = controladora.agregarServicioExtra(nuevoServicio);// se le pide a la controladora que lo inserte
             mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+            }
             return res;
         }
 
@@ -129,7 +142,7 @@ namespace Servicios_Reservados_2
             int indice = cbxTipo.SelectedIndex - 1;
             nuevoServicio[1] = tipo.Rows[indice][0];
             nuevoServicio[2] = textFecha.Value;
-            nuevoServicio[3] = "no";
+            nuevoServicio[3] = "Activo";
             nuevoServicio[4] = txaNotas.Value;
             nuevoServicio[5] = txtPax.Value;
             nuevoServicio[6] = cbxHora.Value;

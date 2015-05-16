@@ -50,8 +50,10 @@ namespace Servicios_Reservados_2.Servicios
         {
             DataTable pax = controladora.obtenerPax(id);
             
-            int paxSelect = int.Parse(pax.Rows[0][0].ToString());
-            controladoraCE.guardarPaxsSeleccionado(paxSelect);//enciamos la información a la controladora de comida extra
+            Object[] dato = new Object[2]; 
+            dato[0] = pax.Rows[0][0].ToString();
+            dato[1] = idSelected();
+            controladoraCE.guardarReservacionSeleccionada(dato);//enviamos la información a la controladora de comida extra
 
             return pax;
 
