@@ -67,7 +67,26 @@ namespace Servicios_Reservados_2
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                switch ((string)Session["Tipo"])
+                {
+                    case "0": admin();
+                        break;
+                    case "": Response.Redirect("~/ingresar.aspx");
+                        break;
+                    case null: Response.Redirect("~/ingresar.aspx");
+                        break;
+                    default:
+                        break;
 
+                }
+            }
+        }
+        protected void admin()
+        {
+            string html = string.Format(@"<a>admin</a>");
+            this.rol.Text = html;
         }
         protected void btnSalir_Click(object sender, EventArgs e)
         {
