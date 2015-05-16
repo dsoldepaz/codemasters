@@ -71,9 +71,11 @@ namespace Servicios_Reservados_2
 
                 Object[] datos = new Object[7];
                 DataTable servicios = controladora.solicitarServicios(controladora.idSelected());// se consultan todos
+                DataTable comidaCampo = controladora.solicitarComidaCampo(controladora.idSelected());// se consultan todos
+              //  idComidaCampo = new String[comidaCampo.Rows.Count];   
                 
                 ids = new String[servicios.Rows.Count]; //crear el vector para ids en el grid
-                idServ = new String[servicios.Rows.Count];
+                idServ = new String[servicios.Rows.Count + comidaCampo.Rows.Count + 1];
                 int i = 0;
 
                 if (servicios.Rows.Count > 0)
@@ -98,9 +100,9 @@ namespace Servicios_Reservados_2
 
 
                
-                DataTable comidaCampo = controladora.solicitarComidaCampo(controladora.idSelected());// se consultan todos
-                idComidaCampo = new String[comidaCampo.Rows.Count];       
-                int j = 0;
+                //DataTable comidaCampo = controladora.solicitarComidaCampo(controladora.idSelected());// se consultan todos
+                //idComidaCampo = new String[comidaCampo.Rows.Count];       
+                int j = i+1;
 
                 if (comidaCampo.Rows.Count > 0)
                 {
@@ -108,7 +110,7 @@ namespace Servicios_Reservados_2
                     foreach (DataRow fila in comidaCampo.Rows)
                     {
                        
-                        idComidaCampo[j] = fila[0].ToString();
+                        idServ[j] = fila[0].ToString();
                         //ids[j] = fila[1].ToString();
                         datos[0] = "Comida Campo";
                         if (int.Parse(fila[4].ToString()) != 1)
@@ -198,12 +200,13 @@ namespace Servicios_Reservados_2
          */
         protected void seleccionarServicio(object sender, EventArgs e)
         {
-            String categoria = GridServicios.SelectedRow.ToString();
-            if (categoria.Contains("Comida Extra")){
-                controladora.seleccionarServicio(ids[GridServicios.SelectedIndex], idServ[GridServicios.SelectedIndex]);
+
+            if (idServ[GridServicios.SelectedIndex].Contains("S"))
+            {
+                controladora.seleccionarServicio(ids[0], idServ[GridServicios.SelectedIndex]);
             }
             else {
-                controladora.seleccionarComidaCampo(ids[GridServicios.SelectedIndex], idComidaCampo[GridServicios.SelectedIndex]);
+                controladora.seleccionarComidaCampo(ids[0], idServ[GridServicios.SelectedIndex]);
             }
            
         }
@@ -247,9 +250,9 @@ namespace Servicios_Reservados_2
        */
         protected void clickConsultarServicio(object sender, EventArgs e) 
         {
-            if (idComidaCampo[0].Contains("C"))
+            if (idServ[GridServicios.SelectedIndex].Contains("C"))
             {
-                modo = 4;
+                FormComidaCampo.modo = 4;
                 Response.Redirect("FormComidaCampo");
             }
             else {
