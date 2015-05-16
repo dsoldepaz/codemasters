@@ -168,6 +168,7 @@
     <Content Include="Content\formEmpleado.css" />
     <Content Include="Content\Reservacion.css" />
     <Content Include="faviconOET.ico" />
+    <Content Include="FormComidasEmpleado.aspx" />
     <Content Include="FormEmpleadoReserva.aspx" />
     <Content Include="FormServirPlatos.aspx" />
     <Content Include="Images\help.png" />
@@ -412,6 +413,12 @@
     <Compile Include="App_Data\Empleados\ControladoraBDEmpleado.cs" />
     <Compile Include="App_Data\Empleados\ControladoraEmpleado.cs" />
     <Compile Include="App_Data\Empleados\EntidadEmpleado.cs" />
+    <Compile Include="FormComidasEmpleado.aspx.cs">
+      <DependentUpon>FormComidasEmpleado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormComidasEmpleado.aspx.designer.cs">
+      <DependentUpon>FormComidasEmpleado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FormEmpleadoReserva.aspx.cs">
       <DependentUpon>FormEmpleadoReserva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
