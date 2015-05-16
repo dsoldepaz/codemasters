@@ -29,5 +29,10 @@ namespace Servicios_Reservados_2
         {
             comidaSeleccionada = new EntidadComidaCampo(dato);
         }
+
+        public EntidadComidaCampo servicioSeleccionados()
+        {
+            return comidaSeleccionada;
+        }
     }
 }
