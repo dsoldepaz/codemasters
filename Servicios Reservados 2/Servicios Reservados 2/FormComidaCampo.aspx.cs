@@ -10,12 +10,13 @@ namespace Servicios_Reservados_2
     public partial class FormComidaCampo : System.Web.UI.Page
     {
         private static ControladoraComidaCampo controladora  = new ControladoraComidaCampo();
-        private static int modo;
+        EntidadComidaCampo comidaC = controladora.entidadSeleccionada();
+        public static int modo;
         public static int tipoComidaCampo;
         public static String idEmpleado;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+                if (!IsPostBack)
             {
                 cambiarModo();
 
@@ -32,13 +33,13 @@ namespace Servicios_Reservados_2
                 labelPago.Visible = false;
             }
             
-          /** if (modo == 1)
+            if (modo == 1)
               { // se desea insertar
-                  /*textFecha.Disabled = true;
+                 /* textFecha.Disabled = true;
                   btnEliminar.Disabled = true;
                   btnAceptar.Disabled = false;
                   btnCancelar.Disabled = false;
-                  btnAgregar.Disabled = true;
+                  btnAgregar.Disabled = true;*/
               }
               else if (modo == 2)
               { //modificar
@@ -46,19 +47,20 @@ namespace Servicios_Reservados_2
                   btnEliminar.Disabled = true;
                   btnAceptar.Disabled = false;
                   btnCancelar.Disabled = false;
-                  btnAgregar.Disabled = true;
+                  btnAgregar.Disabled = true;*/
               }
               else if (modo == 3)
               { // eliminar
-                  /*btnModificar.Disabled = true;
+                  /**btnModificar.Disabled = true;
                   btnEliminar.Disabled = true;
                   btnAceptar.Disabled = false;
                   btnCancelar.Disabled = false;
                   btnAgregar.Disabled = true;
-                  habilitarCampos(false);
+                  habilitarCampos(false);*/
               }
               else if (modo == 4)
-             { //consultar
+              {  //consultar
+                  consultarComidaCampoReserv();
                   textFecha.Disabled = true;
                   txtHora.Disabled = true;
                   radioDesayuno.Disabled= true;
@@ -83,7 +85,7 @@ namespace Servicios_Reservados_2
                   chConfites.Disabled = true;
                   radioAgua.Disabled = true;
                   radioJugo.Disabled = true;
-              }**/
+              }
         }
         protected void checkO1click(object sender, EventArgs e)
         {
@@ -219,6 +221,13 @@ namespace Servicios_Reservados_2
         {
             textFecha.Value = fechaDeEntradaCalendario.SelectedDate.ToString("dd/MM/yyyy");
             fechaDeEntradaCalendario.Visible = false;
+        }
+
+
+        protected void consultarComidaCampoReserv() {
+
+            txtPax.Value = comidaC.Pax.ToString();
+        
         }
 
 
