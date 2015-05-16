@@ -164,6 +164,7 @@
     <Content Include="Content\bootstrap-3.3.4-dist\js\bootstrap.js" />
     <Content Include="Content\bootstrap-3.3.4-dist\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap-3.3.4-dist\js\npm.js" />
+    <Content Include="Content\ComidaEmpleado.css" />
     <Content Include="Content\formEmpleado.css" />
     <Content Include="Content\Reservacion.css" />
     <Content Include="faviconOET.ico" />

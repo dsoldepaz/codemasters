@@ -21,6 +21,11 @@
          <h4>Seleccione el horario de comida</h4>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+         <div>
+            <input type="button" value="Agregar" />Agregar
+            <input type="checkbox" value="Almuerzo" />Almuerzo
+            <input type="checkbox" value="Cena" />Cena
+        </div>
         <div>
             <input type="checkbox" value="Desayuno" />Desayuno
             <input type="checkbox" value="Almuerzo" />Almuerzo
