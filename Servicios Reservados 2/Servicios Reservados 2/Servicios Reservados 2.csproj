@@ -170,6 +170,7 @@
     <Content Include="faviconOET.ico" />
     <Content Include="FormComidasEmpleado.aspx" />
     <Content Include="FormEmpleadoReserva.aspx" />
+    <Content Include="FormReportesComedor.aspx" />
     <Content Include="FormServirPlatos.aspx" />
     <Content Include="Images\help.png" />
     <Content Include="Contact.aspx" />
@@ -428,6 +429,13 @@
     </Compile>
     <Compile Include="App_Data\Servicios\AdaptadorServicios.cs" />
     <Compile Include="App_Data\Servicios\EntidadServicios.cs" />
+    <Compile Include="FormReportesComedor.aspx.cs">
+      <DependentUpon>FormReportesComedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormReportesComedor.aspx.designer.cs">
+      <DependentUpon>FormReportesComedor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FormServirPlatos.aspx.cs">
       <DependentUpon>FormServirPlatos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
