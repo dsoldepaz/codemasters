@@ -122,10 +122,7 @@ namespace Servicios_Reservados_2.Servicios
                  {
 
                      nuevoAdicional[0] = adicional.Rows[0][1];
-                     nuevoAdicional[1] = adicional.Rows[1][1];
-                     nuevoAdicional[2] = adicional.Rows[2][1];
-                     nuevoAdicional[3] = adicional.Rows[3][1];
-                     nuevoAdicional[4] = adicional.Rows[4][1];
+                     
                  }
              }
 
