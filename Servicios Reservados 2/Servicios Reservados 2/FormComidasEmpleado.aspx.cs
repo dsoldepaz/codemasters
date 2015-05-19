@@ -50,19 +50,7 @@ namespace Servicios_Reservados_2
         {
             fechaDeEntradaCalendario.Visible = !(fechaDeEntradaCalendario.Visible);
         }
-        /*
-         *  Requiere: Controladores de eventos de la interfaz.
-         *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
-         *  Retrona:  N/A
-         */
-        protected void GridViewReservaciones_PageIndexChanging(Object sender, GridViewPageEventArgs e)
-        {
 
-            GridViewReservacionesEmpleado.PageIndex = e.NewPageIndex;
-            GridViewReservacionesEmpleado.DataSource = Session["tablaa"];
-            GridViewReservacionesEmpleado.DataBind();
-
-        }
 
         protected void seleccionarReservacion(object sender, EventArgs e)
         {
@@ -126,6 +114,9 @@ namespace Servicios_Reservados_2
             turnos[1] = this.checkboxAlmuerzo.Checked;
             turnos[2] = this.checkboxCena.Checked;
             controladora.modificar(seleccionada, empleadoSeleccionado.Id, list, turnos);
+        }
+        protected void consultar(){
+            empleadoSeleccionado.Id
         }
         private void iniciarEmpleado()
         {

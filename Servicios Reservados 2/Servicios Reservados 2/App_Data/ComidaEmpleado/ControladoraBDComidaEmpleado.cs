@@ -11,12 +11,17 @@ namespace Servicios_Reservados_2
         public String[] agregar(EntidadComidaEmpleado nuevo)
         {
             String [] resultado = new String[3];
-            String turnos = ", desayuno = " + nuevo.Turnos[0] + ", almuerzo = " + nuevo.Turnos[1] + ", cena = " + nuevo.Turnos[2] + " ;";
+            String turnos = ", desayuno = ";
+            turnos +=(nuevo.Turnos[0]) ?  "'T'" : "'F'";
+            turnos += ", almuerzo = ";
+            turnos += (nuevo.Turnos[1]) ? "'T'" : "'F'";
+            turnos += ", cena = ";
+            turnos += (nuevo.Turnos[1]) ? "'T';" : "'F';";
             try{
                 foreach (DateTime fecha in nuevo.Fechas)
                 {
-                    String insercion = "Insert into NOMBREDELATABLA values " + "idEmpleado = " + nuevo.IdEmpleado+", ";
-                    insercion += "fechaDeInicio = " + fecha.ToString() + turnos;
+                    String insercion = "Insert into SERVICIO_EMPLEADO values " + "idEmpleado = " + nuevo.IdEmpleado + ", ";
+                    insercion += "fecha = " + fecha.ToString() +" Consumido = F"+ turnos;
                     //EXECUTE NON QUERY
                     resultado[0] = "SUCCESS";
                     resultado[1] = "Exito: ";
