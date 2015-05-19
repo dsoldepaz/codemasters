@@ -27,10 +27,10 @@ namespace Servicios_Reservados_2
             string userid = (string)Session["UsuarioID"];
             if (!IsPostBack)
             {
-                if (userid == "" || userid == null)
+              /*  if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
-                }
+                }*/
                 llenarCampos();
                 llenarGridServicios();
             }

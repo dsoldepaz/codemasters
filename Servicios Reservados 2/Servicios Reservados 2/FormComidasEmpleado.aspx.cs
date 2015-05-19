@@ -121,7 +121,7 @@ namespace Servicios_Reservados_2
             controladora.modificar(seleccionada, empleadoSeleccionado.Id, list, turnos);
         }
         protected void consultar(){
-            empleadoSeleccionado.Id
+            //empleadoSeleccionado.Id;
         }
         private void iniciarEmpleado()
         {

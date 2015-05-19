@@ -69,7 +69,7 @@ namespace Servicios_Reservados_2
         {
             if (!IsPostBack)
             {
-                switch ((string)Session["Tipo"])
+                /*switch ((string)Session["Tipo"])
                 {
                     case "0": admin();
                         break;
@@ -80,7 +80,7 @@ namespace Servicios_Reservados_2
                     default:
                         break;
 
-                }
+                }*/
             }
         }
         protected void admin()
