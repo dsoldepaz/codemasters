@@ -248,23 +248,27 @@ namespace Servicios_Reservados_2
         }
 
 
-       protected void consultarComidaCampoReserv() {
+        protected void consultarComidaCampoReserv()
+        {
 
-            if (controladora.entidadSeleccionada()[5].ToString() == "1") {
+            if (controladora.entidadSeleccionada()[5].ToString() == "1")
+            {
 
                 chGalloPinto.Checked = true;
-            
+
             }
             txtPax.Value = controladora.entidadSeleccionada()[10].ToString();
 
-            if (controladora.adicionalSeleccionado()[0] == "Confites") {
+            if (controladora.adicionalSeleccionado()[0] == "Confites")
+            {
 
                 chConfites.Checked = true;
             }
 
 
+        }
+
+
+
     }
-
-
-
 }

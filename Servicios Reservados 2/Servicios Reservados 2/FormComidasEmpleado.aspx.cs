@@ -16,7 +16,7 @@ namespace Servicios_Reservados_2
         private EntidadComidaEmpleado seleccionada;
         private int modo = 0;//0= Solo el empleado consultado; 1-Agregar Reservacion; 2-Modificar reservacion;
         private ControladoraComidaEmpleado controladora = new ControladoraComidaEmpleado();
-        private DateTime fechaElegida();
+        private DateTime fechaElegida;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -122,10 +122,9 @@ namespace Servicios_Reservados_2
             turnos[2] = this.checkboxCena.Checked;
             controladora.modificar(seleccionada, empleadoSeleccionado.Id, list, turnos);
         }
-        protected void consultar()
-        {
+       protected void consultar(){
             iniciarEmpleado();
-            controladora.consultar(empleadoSeleccionado.Id, fechaElegida);
+            //controladora.consultar(empleadoSeleccionado.Id, fechaElegida);
         }
         private void iniciarEmpleado()
         {
