@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Diagnostics;
+using System.Collections;
 
 namespace Servicios_Reservados_2
 {
@@ -19,6 +20,7 @@ namespace Servicios_Reservados_2
         private static int resultadosPorPagina;
         protected void Page_Load(object sender, EventArgs e)
         {
+            ArrayList listaRoles = (ArrayList)Session["Roles"];
             resultadosPorPagina = GridViewEmpleados.PageSize;
             string userid = (string)Session["username"];
             if (!IsPostBack)
@@ -26,6 +28,9 @@ namespace Servicios_Reservados_2
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
+                } if (!listaRoles.Contains("admin") && !listaRoles.Contains("recepcion"))
+                {
+                    Response.Redirect("ErrorPermiso.aspx");
                 }
                 llenarGridEmpleados();
             }

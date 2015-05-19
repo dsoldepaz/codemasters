@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Diagnostics;
+using System.Collections;
 
 namespace Servicios_Reservados_2
 {
@@ -23,12 +24,16 @@ namespace Servicios_Reservados_2
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ArrayList listaRoles = (ArrayList)Session["Roles"];
             string userid = (string)Session["username"];
             if (!IsPostBack)
             {
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
+                } if (!listaRoles.Contains("admin") && !listaRoles.Contains("recepcion"))
+                {
+                    Response.Redirect("ErrorPermiso.aspx");
                 }
                 cargarDatos();
             }

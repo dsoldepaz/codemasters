@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -16,14 +17,20 @@ namespace Servicios_Reservados_2
         public static int modo;
         public static int tipoComidaCampo;
         public static String idEmpleado;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            ArrayList listaRoles = (ArrayList)Session["Roles"];
             string userid = (string)Session["username"];
             if (!IsPostBack)
             {
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
+                } if (!listaRoles.Contains("admin") && !listaRoles.Contains("recepcion"))
+                {
+                    Response.Redirect("ErrorPermiso.aspx");
                 }
                 modo = FormServicios.modo;
                 cambiarModo();
