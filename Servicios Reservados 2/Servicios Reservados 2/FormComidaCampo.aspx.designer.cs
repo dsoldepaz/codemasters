@@ -202,6 +202,15 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton radioEnsaladaHuevo;
         
         /// <summary>
+        /// Control opcion2Fieldset.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl opcion2Fieldset;
+        
+        /// <summary>
         /// Control CheckboxO2.
         /// </summary>
         /// <remarks>
