@@ -13,6 +13,7 @@ namespace Servicios_Reservados_2
         protected String identificacionEmpleado = "";
         private static List<DateTime> list = new List<DateTime>();
         private EntidadEmpleado empleadoSeleccionado;
+        private EntidadComidaEmpleado seleccionada;
         private int modo = 0;//0= Solo el empleado consultado; 1-Agregar Reservacion; 2-Modificar reservacion;
         private ContorladoraComidaEmpleado controladora = new ContorladoraComidaEmpleado();
         protected void Page_Load(object sender, EventArgs e)
@@ -116,11 +117,15 @@ namespace Servicios_Reservados_2
             turnos[0] = this.checkboxDesayuno.Checked;
             turnos[1] = this.checkboxAlmuerzo.Checked;
             turnos[2] = this.checkboxCena.Checked;
-            controladora.Agregar(identificacionEmpleado, list, turnos);
+            controladora.agregar(empleadoSeleccionado.Id, list, turnos);
         }
         protected void modificarReservacion()
         {
-
+            bool[] turnos = new bool[3];
+            turnos[0] = this.checkboxDesayuno.Checked;
+            turnos[1] = this.checkboxAlmuerzo.Checked;
+            turnos[2] = this.checkboxCena.Checked;
+            controladora.modificar(seleccionada, empleadoSeleccionado.Id, list, turnos);
         }
         private void iniciarEmpleado()
         {

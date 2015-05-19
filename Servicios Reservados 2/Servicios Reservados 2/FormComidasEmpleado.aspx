@@ -27,7 +27,7 @@
                 <input type="button" value="Modificar" onserverclick="clickModificar"/>
                 <input type="button" value="Eliminar" onserverclick="clickEliminar"/>
             </div>
-            <div id="ContenedorManejoDeHorario" runat="server" visible="false">
+            <section id="ContenedorManejoDeHorario" runat="server" visible="false">
                     <div id="selectorDeHorario" runat="server" visible="false" title="Seleccione el horario de comida">
                         <input type="checkbox" id="checkboxDesayuno" runat="server" value="Desayuno" />Desayuno
                         <input type="checkbox" id="checkboxAlmuerzo" runat="server" value="Almuerzo" />Almuerzo
@@ -45,7 +45,7 @@
                     </asp:Calendar>
                     <input type="button" value="Cancelar" runat="server" onserverclick="clickCancelar"/>
                     <input type="button" value="Aceptar" onserverclick="clickAceptar"/>
-                 </div>
+                 </section>
             
                  <h4 id="labelTabla">Comidas reservadas para </h4>
                  <asp:GridView ID="GridViewReservacionesEmpleado" runat="server" AllowPaging="true" AllowSorting="true" AutoGenerateSelectButton="True" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" OnSelectedIndexChanged="seleccionarReservacion" PageSize="20">
