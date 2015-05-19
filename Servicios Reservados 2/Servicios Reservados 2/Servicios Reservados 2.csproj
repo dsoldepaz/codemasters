@@ -416,6 +416,8 @@
     <Compile Include="App_Data\Empleados\ControladoraBDEmpleado.cs" />
     <Compile Include="App_Data\Empleados\ControladoraEmpleado.cs" />
     <Compile Include="App_Data\Empleados\EntidadEmpleado.cs" />
+    <Compile Include="App_Data\ComidaEmpleado\EntidadComidaEmpleado.cs" />
+    <Compile Include="App_Data\ComidaEmpleado\ControladoraBDComidaEmpleado.cs" />
     <Compile Include="FormComidasEmpleado.aspx.cs">
       <DependentUpon>FormComidasEmpleado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
