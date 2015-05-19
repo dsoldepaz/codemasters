@@ -11,6 +11,7 @@ namespace Servicios_Reservados_2
     {
         private static ControladoraComidaCampo controladora  = new ControladoraComidaCampo();
         EntidadComidaCampo comidaC = controladora.entidadSeleccionada();
+   
         public static int modo;
         public static int tipoComidaCampo;
         public static String idEmpleado;
@@ -18,6 +19,7 @@ namespace Servicios_Reservados_2
         {
                 if (!IsPostBack)
             {
+                modo = FormServicios.modo;
                 cambiarModo();
 
             }

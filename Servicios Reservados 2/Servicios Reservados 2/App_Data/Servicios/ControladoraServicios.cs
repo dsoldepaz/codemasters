@@ -92,9 +92,9 @@ namespace Servicios_Reservados_2.Servicios
             controladoraCE.guardarServicioSeleccionado(nuevoServicio);
         }
 
-        internal void seleccionarComidaCampo(String id, String idComidaCampo)
+        internal void seleccionarComidaCampo(String id, String idServ)
         {
-            DataTable comidaCampo = controladora.seleccionarComidaCampo(id, idComidaCampo);
+            DataTable comidaCampo = controladora.seleccionarComidaCampo(id, idServ);
 
             Object[] nuevoComidaC = new Object[12];
 
@@ -111,7 +111,7 @@ namespace Servicios_Reservados_2.Servicios
             nuevoComidaC[10] = comidaCampo.Rows[0][10];
             nuevoComidaC[11] = comidaCampo.Rows[0][11];
 
-            //controladoraComidaCampo.guardarComidaSeleccionada(nuevoComidaC);
+           controladoraComidaCampo.guardarComidaSeleccionada(nuevoComidaC);
         }
     }
 }
