@@ -6,7 +6,7 @@
     <h1>Comidas de Empleado</h1>
     <fieldset class="contenedor">
          <h4>Informacion Del Empleado</h4>
-        <ul class ="lista formulario">
+        <ul class ="listaformulario">
             <li  class="itemFormulario">
                 Nombre: <input id="nombreLbl" runat="server"/>
             </li>

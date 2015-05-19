@@ -351,6 +351,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\ComidaEmpleado\AdaptadorComidaEmpleado.cs" />
     <Compile Include="App_Data\ComidaCampo\AdaptadorComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\ControladoraBDComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\ControladoraComidaCampo.cs" />

@@ -10,8 +10,9 @@ namespace Servicios_Reservados_2
         private String idEmpleado;
         private List<DateTime> fechas;
         private bool[] turnos;//[0] Desayuno [1] Almuerzo [2] Cena
+        private bool pagado;
 
-        public EntidadComidaEmpleado(String idEmpleado, List<DateTime> fechasReserva, bool[] turnos){
+        public EntidadComidaEmpleado(String idEmpleado, List<DateTime> fechasReserva, bool[] turnos, bool pagado){
             this.idEmpleado=idEmpleado;
             fechas = new List<DateTime>();
             foreach ( DateTime fecha in fechasReserva){
@@ -21,6 +22,7 @@ namespace Servicios_Reservados_2
             this.turnos[0] = turnos[0];
             this.turnos[1] = turnos[1];
             this.turnos[2] = turnos[2];
+            this.pagado = pagado;
         }
         public String IdEmpleado
         {
@@ -36,6 +38,11 @@ namespace Servicios_Reservados_2
         {
             get { return Turnos; }
             set { turnos = value; }
+        }
+        public bool Pagado
+        {
+            set { pagado = value; }
+            get { return pagado; }
         }
     }
 }
