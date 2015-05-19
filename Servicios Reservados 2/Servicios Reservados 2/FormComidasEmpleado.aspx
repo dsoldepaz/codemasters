@@ -21,31 +21,39 @@
          
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-         <div title="Seleccione una operacion sobre las reservaciones de comida">
+            <div title="Seleccione una operacion sobre las reservaciones de comida">
              
-            <input type="button" value="Agregar" runat="server" onserverclick="clickAgregar"/>
-            <input type="button" value="Modificar" onserverclick="clickModificar"/>
-            <input type="button" value="Cancelar" onserverclick="clickCancelar"/>
-        </div>
-        <div id="selectorDeHorario" runat="server" visible="false" title="Seleccione el horario de comida">
-            <input type="checkbox" value="Desayuno" />Desayuno
-            <input type="checkbox" value="Almuerzo" />Almuerzo
-            <input type="checkbox" value="Cena" />Cena
-        </div>
-        
-                    <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged" OnDayRender="fechaDeEntradaCalendario_DayRender" BackColor="#CCCCCC" BorderStyle="Dashed" ForeColor="#7BC143" Height="320px" Width="400px" BorderWidth="1px" Visible="false">
+                <input type="button" value="Agregar" runat="server" onserverclick="clickAgregar"/>
+                <input type="button" value="Modificar" onserverclick="clickModificar"/>
+                <input type="button" value="Eliminar" onserverclick="clickEliminar"/>
+            </div>
+            <div id="ContenedorManejoDeHorario" runat="server" visible="false">
+                    <div id="selectorDeHorario" runat="server" visible="false" title="Seleccione el horario de comida">
+                        <input type="checkbox" id="checkboxDesayuno" runat="server" value="Desayuno" />Desayuno
+                        <input type="checkbox" id="checkboxAlmuerzo" runat="server" value="Almuerzo" />Almuerzo
+                        <input type="checkbox" id="checkboxCena" runat="server" value="Cena" />Cena
+                    </div>
+                    <h4>
+                        Seleccione las fechas en las que desea reservar
+                    </h4>
+                    <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged" OnDayRender="fechaDeEntradaCalendario_DayRender" BackColor="#CCCCCC" BorderStyle="Dashed" ForeColor="#7BC143" Height="55%" Width="70%" BorderWidth="1px" Visible="false" ShowNextPrevMonth="False">
                         <DayHeaderStyle ForeColor="#333333" Wrap="True" />
                         <DayStyle ForeColor="Black" />
                         <NextPrevStyle ForeColor="Black" />
                         <SelectedDayStyle BackColor="#7BC143" />
                         <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                     </asp:Calendar>
-                    <h4 id="labelTabla">Comidas reservadas para </h4>
-                     <asp:GridView ID="GridViewReservacionesEmpleado" runat="server" AllowPaging="true" AllowSorting="true" AutoGenerateSelectButton="True" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" OnSelectedIndexChanged="seleccionarReservacion" PageSize="20">
-                        <AlternatingRowStyle BorderStyle="None" />
-                        <HeaderStyle Font-Size="1.3em" />
-                        <SelectedRowStyle BackColor="#7BC143" BorderStyle="Dotted" BorderWidth="1px" Font-Bold="true" ForeColor="Black" />
-                    </asp:GridView>
+                    <input type="button" value="Cancelar" runat="server" onserverclick="clickCancelar"/>
+                    <input type="button" value="Aceptar" onserverclick="clickAceptar"/>
+                 </div>
+            
+                 <h4 id="labelTabla">Comidas reservadas para </h4>
+                 <asp:GridView ID="GridViewReservacionesEmpleado" runat="server" AllowPaging="true" AllowSorting="true" AutoGenerateSelectButton="True" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" OnSelectedIndexChanged="seleccionarReservacion" PageSize="20">
+                     <AlternatingRowStyle BorderStyle="None" />
+                     <HeaderStyle Font-Size="1.3em" />
+                 <SelectedRowStyle BackColor="#7BC143" BorderStyle="Dotted" BorderWidth="1px" Font-Bold="true" ForeColor="Black" />
+                 </asp:GridView>
+
             </ContentTemplate>
    
         </asp:UpdatePanel>

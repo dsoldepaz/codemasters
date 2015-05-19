@@ -111,7 +111,7 @@ namespace Servicios_Reservados_2.Servicios
             nuevoComidaC[10] = comidaCampo.Rows[0][10];
             nuevoComidaC[11] = comidaCampo.Rows[0][11];
 
-            controladoraComidaCampo.guardarComidaSeleccionada(nuevoComidaC);
+            //controladoraComidaCampo.guardarComidaSeleccionada(nuevoComidaC);
         }
     }
 }

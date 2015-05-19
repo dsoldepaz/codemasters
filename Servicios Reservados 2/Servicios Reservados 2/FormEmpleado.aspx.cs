@@ -12,14 +12,17 @@ namespace Servicios_Reservados_2
 {
     public partial class FormEmpleado : System.Web.UI.Page
     {
+        
         private static ControladoraEmpleado controladora = new ControladoraEmpleado();
         public static String[] ids;
-        
+        private static String id;
+        private static int resultadosPorPagina;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            resultadosPorPagina = GridViewEmpleados.PageSize;
             if (!IsPostBack)
             {
+                
                 llenarGridEmpleados();
 
 
@@ -34,10 +37,18 @@ namespace Servicios_Reservados_2
         * Efectua: rellena los campos de la interfaz con los datos de las reservaciones.
         * retorna: N/A
         */
-        
-        protected void seleccionarEmpleado(object sender, EventArgs e)
-        {
 
+        protected void seleccionarEmpleado(object sender, GridViewCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "Select":
+                    //GridViewRow filaSeleccionada = this.gridViewProyectos.Rows[Convert.ToInt32(e.CommandArgument)];// se obtiene el numero de fila seleccionada
+                    id = (ids[Convert.ToInt32(e.CommandArgument) + (this.GridViewEmpleados.PageIndex * 20)]);//se obtiene la cedula a consultar
+                    Debug.WriteLine(id);
+                    break;
+                    
+            }
         }
         /*
          *  Requiere: Controladores de eventos de la interfaz.
@@ -55,6 +66,7 @@ namespace Servicios_Reservados_2
 
         void llenarGridEmpleados()
         {
+            id = "null";
             DataTable tabla = crearTablaEmpleados();
 
             try
@@ -123,21 +135,19 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
-        /**
-        * Requiere: haber cargado el grid
-        * Efectua: cambia la reservacion selecionada.
-        * retorna:  nada. 
-        */
-        protected void seleccionarReservacion(object sender, EventArgs e)
+        
+        protected void clicAgregarServicio(object sender, EventArgs e)
         {
-            try
+            if (id!= "null")
             {
-                controladora.seleccionarEmpleado(ids[GridViewEmpleados.SelectedIndex]);
+                FormComidaCampo.modo = 1;
+                FormComidaCampo.idEmpleado = id;
+                FormComidaCampo.tipoComidaCampo = 1;
+                Response.Redirect("FormComidaCampo");
             }
-            catch (Exception ee)
-            {
-
-            }
+            
+               
+        
         }
 
         /*
