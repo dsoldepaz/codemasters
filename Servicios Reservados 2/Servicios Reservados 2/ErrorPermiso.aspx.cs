@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Servicios_Reservados_2
 {
-    public partial class FormReportesComedor : System.Web.UI.Page
+    public partial class ErrorPermiso : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +18,8 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("~/Ingresar.aspx");
                 }
-            }
+                Response.AddHeader("REFRESH", "3;URL=Default.aspx");
+            }            
         }
     }
 }

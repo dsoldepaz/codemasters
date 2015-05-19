@@ -18,7 +18,7 @@ namespace Servicios_Reservados_2
         private ContorladoraComidaEmpleado controladora = new ContorladoraComidaEmpleado();
         protected void Page_Load(object sender, EventArgs e)
         {
-            string userid = (string)Session["UsuarioID"];
+            string userid = (string)Session["username"];
             if (!IsPostBack)
             {
                 if (userid == "" || userid == null)

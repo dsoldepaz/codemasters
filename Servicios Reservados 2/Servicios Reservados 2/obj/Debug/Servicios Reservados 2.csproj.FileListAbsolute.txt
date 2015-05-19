@@ -632,3 +632,4 @@ C:\Users\b06171\Source\Repos\codemasters2\Servicios Reservados 2\Servicios Reser
 C:\Users\b06171\Source\Repos\codemasters2\Servicios Reservados 2\Servicios Reservados 2\bin\es\Microsoft.AspNet.Membership.OpenAuth.resources.dll
 C:\Users\b06171\Source\Repos\codemasters2\Servicios Reservados 2\Servicios Reservados 2\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
 C:\Users\b06171\Source\Repos\codemasters2\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.pdb
+C:\Users\b06171\Source\Repos\codemasters2\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.csprojResolveAssemblyReference.cache
