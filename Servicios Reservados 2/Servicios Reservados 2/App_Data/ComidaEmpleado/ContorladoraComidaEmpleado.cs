@@ -24,10 +24,16 @@ namespace Servicios_Reservados_2
             controlEmpleado.seleccionarEmpleado(idEmpleado);
             return controlEmpleado.getEmpleadoSeleccionado();
         }
-        public void Agregar(String idEmpleado, List<DateTime> fechasReserva, bool[] turnos)
+        public void agregar(String idEmpleado, List<DateTime> fechasReserva, bool[] turnos)
         {
             EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado( idEmpleado,  fechasReserva, turnos);
             controladoraBD.agregar(nuevo);
+        }
+
+        internal void modificar(EntidadComidaEmpleado seleccionada, string idEmpleado, List<DateTime> fechasReserva, bool[] turnos)
+        {
+            EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado(idEmpleado, fechasReserva, turnos);
+            controladoraBD.modificar(seleccionada, nuevo);
         }
     }
 }

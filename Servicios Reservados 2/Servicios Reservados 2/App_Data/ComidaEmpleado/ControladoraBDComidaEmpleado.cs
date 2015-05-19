@@ -33,5 +33,10 @@ namespace Servicios_Reservados_2
 internal System.Data.DataTable getComidasEmpleado(string idEmpleado)
 {
  	return new System.Data.DataTable();
-}}
+}
+internal void modificar(EntidadComidaEmpleado seleccionada, EntidadComidaEmpleado nuevo)
+{
+    throw new NotImplementedException();
+}
+    }
 }

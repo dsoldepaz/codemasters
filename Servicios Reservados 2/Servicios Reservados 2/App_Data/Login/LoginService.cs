@@ -42,7 +42,7 @@ namespace Servicios_Reservados_2
             string hash = EncodePassword(string.Concat(usuario, contraseña));
             //Declaramos la sentencia SQL
             string sql = "SELECT UsuarioID, Tipo FROM Usuario WHERE Username = '" + usuario + "' AND Contrasena = '" + hash + "'";
-            return adaptadorBD.consultar(sql);
+            return adaptadorBD.consultar(sql); 
         }
     }
 }
