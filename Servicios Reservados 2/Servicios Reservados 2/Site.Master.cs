@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -67,18 +68,12 @@ namespace Servicios_Reservados_2
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ArrayList listaRoles = (ArrayList)Session["Roles"];
             if (!IsPostBack)
             {
-                switch ((string)Session["Tipo"])
+                if (listaRoles.Contains("superadmin"))
                 {
-                    case "0": admin();
-                        break;
-                    case "": Response.Redirect("~/ingresar.aspx");
-                        break;
-                    case null: Response.Redirect("~/ingresar.aspx");
-                        break;
-                    default:
-                        break;
+                    admin();
 
                 }
             }
@@ -90,7 +85,7 @@ namespace Servicios_Reservados_2
         }
         protected void btnSalir_Click(object sender, EventArgs e)
         {
-            Session["UsuarioID"] = null;
+            Session["username"] = null;
             Response.Redirect("~/ingresar.aspx");
         }
     }
