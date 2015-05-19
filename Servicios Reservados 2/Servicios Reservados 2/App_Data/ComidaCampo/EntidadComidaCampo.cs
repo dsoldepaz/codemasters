@@ -103,8 +103,5 @@ namespace Servicios_Reservados_2
             get { return Hora; }
             set { Hora = value; }
         }
-
-
-
-}
+    }
 }
