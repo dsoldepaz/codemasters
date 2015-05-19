@@ -18,13 +18,19 @@ namespace Servicios_Reservados_2
         private static String[] idServ;
         private static String[] idComidaCampo;
         public static int modo;
+        public static int i = 0;
         public static String tipo;
         public static String categoria = "Comida Extra";
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            string userid = (string)Session["UsuarioID"];
             if (!IsPostBack)
             {
+                if (userid == "" || userid == null)
+                {
+                    Response.Redirect("~/Ingresar.aspx");
+                }
                 llenarCampos();
                 llenarGridServicios();
             }
@@ -74,12 +80,13 @@ namespace Servicios_Reservados_2
                 DataTable comidaCampo = controladora.solicitarComidaCampo(controladora.idSelected());// se consultan todos
               //  idComidaCampo = new String[comidaCampo.Rows.Count];   
                 
-                ids = new String[servicios.Rows.Count]; //crear el vector para ids en el grid
+                ids = new String[servicios.Rows.Count + comidaCampo.Rows.Count + 1]; //crear el vector para ids en el grid
                 idServ = new String[servicios.Rows.Count + comidaCampo.Rows.Count + 1];
-                int i = 0;
+                
 
                 if (servicios.Rows.Count > 0)
                 {
+                   
                    
 
                     foreach (DataRow fila in servicios.Rows)
@@ -95,23 +102,24 @@ namespace Servicios_Reservados_2
                         datos[6] = fila[7].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
-                    }                 
+                    }
                 }
 
 
                
                 //DataTable comidaCampo = controladora.solicitarComidaCampo(controladora.idSelected());// se consultan todos
                 //idComidaCampo = new String[comidaCampo.Rows.Count];       
-                int j = i+1;
 
+                int j = i;
                 if (comidaCampo.Rows.Count > 0)
                 {
+                  
 
                     foreach (DataRow fila in comidaCampo.Rows)
                     {
                        
                         idServ[j] = fila[0].ToString();
-                        //ids[j] = fila[1].ToString();
+                        ids[j] = fila[1].ToString();
                         datos[0] = "Comida Campo";
                         if (int.Parse(fila[4].ToString()) != 1)
                         {
@@ -252,7 +260,7 @@ namespace Servicios_Reservados_2
         {
             if (idServ[GridServicios.SelectedIndex].Contains("C"))
             {
-                FormComidaCampo.modo = 4;
+                modo = 4;
                 Response.Redirect("FormComidaCampo");
             }
             else {

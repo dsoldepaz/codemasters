@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,6 +12,7 @@ namespace Servicios_Reservados_2
     {
         private static ControladoraComidaCampo controladora  = new ControladoraComidaCampo();
         EntidadComidaCampo comidaC = controladora.entidadSeleccionada();
+   
         public static int modo;
         public static int tipoComidaCampo;
         public static String idEmpleado;
@@ -18,6 +20,7 @@ namespace Servicios_Reservados_2
         {
                 if (!IsPostBack)
             {
+                modo = FormServicios.modo;
                 cambiarModo();
 
             }
@@ -89,19 +92,11 @@ namespace Servicios_Reservados_2
         }
         protected void checkO1click(object sender, EventArgs e)
         {
-            if (checkboxO1.Checked)
-            {
-                radioPanBlanco.Disabled = false;
-                radioPanBollo.Disabled = false;
-                radioPanInt.Disabled = false;
-                radioJamon.Disabled = false;
-                radioFrijoles.Disabled = false;
-                radioMyM.Disabled = false;
-                radioOmelette.Disabled = false;
-                radioEnsaladaHuevo.Disabled = false;
-                CheckboxO2.Checked = false;
-                
-            }
+           // if (checkboxO1.Checked)
+          //  {
+            opcion2Fieldset.Visible = !opcion2Fieldset.Visible;
+            Debug.WriteLine("picha vivir");   
+           // }
             
                 
         }
@@ -156,7 +151,7 @@ namespace Servicios_Reservados_2
                 nuevaComidaCampo[1] = idEmpleado;
             }
             nuevaComidaCampo[2] = "";
-            nuevaComidaCampo[3] = textFecha.ToString();
+            nuevaComidaCampo[3] = textFecha.Value;
             nuevaComidaCampo[4] = "activo";
             nuevaComidaCampo[5] = 0;
             if(checkboxO1.Checked){
@@ -183,13 +178,23 @@ namespace Servicios_Reservados_2
                 nuevaComidaCampo[8] = bebida;
             }
 
-            nuevaComidaCampo[9] = cmbTipoPago.SelectedIndex.ToString();
-            nuevaComidaCampo[10] = txtPax.ToString();
-            nuevaComidaCampo[11] = txtHora.ToString();
-           
+            nuevaComidaCampo[9] = cmbTipoPago.Value.ToString();
+            nuevaComidaCampo[10] = txtPax.Value;
+            nuevaComidaCampo[11] = txtHora.Value;
+
+            String[] error = controladora.agregarComidaCampo(nuevaComidaCampo);// se le pide a la controladora que lo inserte
+            mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
                         
             
             return res;
+        }
+
+        protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
+        {
+            //alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
+            //labelTipoAlerta.Text = alerta + " ";
+            //labelAlerta.Text = mensaje;
+            //alertAlerta.Attributes.Remove("hidden");
         }
     
         /*
@@ -202,14 +207,21 @@ namespace Servicios_Reservados_2
             fechaDeEntradaCalendario.Visible = !fechaDeEntradaCalendario.Visible;
         }
 
-        /*
-         * Efecto: capta el evento al presionar una fecha en el calendario y lo pasa al textFexha.
-         * Requiere: presionar el calendario y una de las fechas.
-         * Modifica: 
-        */
         protected void clickAceptar(object sender, EventArgs e)
         {
-         
+            switch (modo)
+            {
+                case 1://insertar
+                    agregarComidaCampo();
+                    //Response.Redirect("FormServicios");
+                    break;
+                case 2://modificar
+                    
+                    break;
+                case 3://cancelar
+                    
+                    break;
+            }
         }
         protected void clickCancelar(object sender, EventArgs e)
         {

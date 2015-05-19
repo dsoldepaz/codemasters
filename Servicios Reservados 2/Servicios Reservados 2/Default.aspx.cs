@@ -15,7 +15,9 @@ namespace Servicios_Reservados_2
             if (!IsPostBack)
             {
                 if (userid == "" || userid == null)
+                {
                     Response.Redirect("~/Ingresar.aspx");
+                }
             }
 
         }

@@ -17,14 +17,17 @@ namespace Servicios_Reservados_2
         private static Boolean seConsulto = false;
         protected void Page_Load(object sender, EventArgs e)
         {
+                
 
-            if (!IsPostBack)
-            {
-                cargarDatos();  
-
-
-
-            }
+                string userid = (string)Session["UsuarioID"];
+                if (!IsPostBack)
+                {
+                    if (userid == "" || userid == null)
+                    {
+                        Response.Redirect("~/Ingresar.aspx");
+                    }
+                    cargarDatos();
+                }
             
 
             // ponerModo();
