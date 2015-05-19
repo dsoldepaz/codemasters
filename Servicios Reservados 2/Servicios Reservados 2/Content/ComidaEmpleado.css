@@ -45,3 +45,11 @@ ContentTemplate{
     float:right;
     margin-right: 25px;
 }
+.listaformulario{
+    width:80%;
+    height:10%;
+}
+.itemFormulario{
+    width: 30%;
+    display:inline-block;
+}
