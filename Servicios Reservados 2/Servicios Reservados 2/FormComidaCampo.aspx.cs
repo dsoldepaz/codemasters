@@ -99,10 +99,8 @@ namespace Servicios_Reservados_2
                 radioMyM.Disabled = false;
                 radioOmelette.Disabled = false;
                 radioEnsaladaHuevo.Disabled = false;
-                if (CheckboxO2.Checked)
-                {
-                    CheckboxO2.Checked = false;
-                }
+                CheckboxO2.Checked = false;
+                
             }
             
                 
