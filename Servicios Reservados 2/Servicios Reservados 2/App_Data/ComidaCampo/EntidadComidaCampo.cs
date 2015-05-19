@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -33,6 +34,7 @@ namespace Servicios_Reservados_2
             this.pan = datos[7].ToString();
             this.bebida = datos[8].ToString();
             this.tipoPago = datos[9].ToString();
+            Debug.WriteLine(datos[10].ToString());
             this.pax = int.Parse(datos[10].ToString());
             this.hora = datos[11].ToString();
         }

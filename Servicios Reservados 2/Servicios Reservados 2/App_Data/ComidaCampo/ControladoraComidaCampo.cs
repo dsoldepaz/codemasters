@@ -30,6 +30,13 @@ namespace Servicios_Reservados_2
             
         }
 
+        public String[] agregarComidaCampo(Object[] dato)
+        {
+            EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato);
+            String[] resultado = controladoraBD.agregarComidaCampo(nuevaComidaCampo);
+            return resultado;
+        }
+
         public EntidadComidaCampo entidadSeleccionada()
         {
             return comidaSeleccionada;
