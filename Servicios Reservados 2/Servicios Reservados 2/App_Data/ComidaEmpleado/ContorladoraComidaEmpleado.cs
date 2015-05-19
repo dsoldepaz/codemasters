@@ -14,16 +14,26 @@ namespace Servicios_Reservados_2
     public class ContorladoraComidaEmpleado
     {
         private ControladoraEmpleado controlEmpleado = new ControladoraEmpleado();
-        public DataTable getComidasEmpleado(int idEmpleado)
+        private ControladoraBDComidaEmpleado controladoraBD = new ControladoraBDComidaEmpleado();
+        public DataTable getComidasEmpleado(String idEmpleado)
         {
-            //Hay que consultar en la base de datos.
-            return new DataTable();
+            return controladoraBD.getComidasEmpleado(idEmpleado);
         }
         public EntidadEmpleado getInformacionDelEmpleado(String idEmpleado)
         {
             controlEmpleado.seleccionarEmpleado(idEmpleado);
             return controlEmpleado.getEmpleadoSeleccionado();
-        } 
+        }
+        public void agregar(String idEmpleado, List<DateTime> fechasReserva, bool[] turnos)
+        {
+            EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado( idEmpleado,  fechasReserva, turnos);
+            controladoraBD.agregar(nuevo);
+        }
 
+        internal void modificar(EntidadComidaEmpleado seleccionada, string idEmpleado, List<DateTime> fechasReserva, bool[] turnos)
+        {
+            EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado(idEmpleado, fechasReserva, turnos);
+            controladoraBD.modificar(seleccionada, nuevo);
+        }
     }
 }

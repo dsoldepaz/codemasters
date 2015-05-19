@@ -13,10 +13,15 @@ namespace Servicios_Reservados_2
         protected String identificacionEmpleado = "";
         private static List<DateTime> list = new List<DateTime>();
         private EntidadEmpleado empleadoSeleccionado;
+        private EntidadComidaEmpleado seleccionada;
+        private int modo = 0;//0= Solo el empleado consultado; 1-Agregar Reservacion; 2-Modificar reservacion;
         private ContorladoraComidaEmpleado controladora = new ContorladoraComidaEmpleado();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack)
+            {
+                iniciarEmpleado();
+            }
         }
 
 
@@ -65,16 +70,62 @@ namespace Servicios_Reservados_2
         }
         protected void clickAgregar(object sender, EventArgs e)
         {
-            selectorDeHorario.Visible = true;
-            fechaDeEntradaCalendario.Visible = true;
+            ContenedorManejoDeHorario.Visible = true;
+            modo = 1;
+
+            //String idEmpleado, List<DateTime> fechasReserva, bool[] turnos
         }
         protected void clickModificar(object sender, EventArgs e)
         {
-
+            ContenedorManejoDeHorario.Visible = true;
+            fechaDeEntradaCalendario.Enabled = false;//Solo se puede modificar una fecha a la vez
+            //poner fecha seleccionada
+            //fechaDeEntradaCalendario.SelectedDate = (GridViewReservacionesEmpleado.SelectedRow.ToString();
+            modo = 2;
         }
         protected void clickCancelar(object sender, EventArgs e)
         {
+            
+            limpiarCalendario();
+        }
+        protected void clickEliminar(object sender, EventArgs e)
+        {
 
+        }
+        protected void clickAceptar(object sender, EventArgs e)
+        {
+            switch (modo)
+            {
+                case 1: agregarReservacion();   //agregar
+                    break;
+
+                case 2: modificarReservacion(); // modificar
+                    break;
+                default: break;
+            }
+            limpiarCalendario();
+        }
+        protected void limpiarCalendario()
+        {
+            fechaDeEntradaCalendario.SelectedDates.Clear();
+            list.Clear();
+            modo = 0;
+        }
+        protected void agregarReservacion()
+        {
+            bool[] turnos = new bool[3];
+            turnos[0] = this.checkboxDesayuno.Checked;
+            turnos[1] = this.checkboxAlmuerzo.Checked;
+            turnos[2] = this.checkboxCena.Checked;
+            controladora.agregar(empleadoSeleccionado.Id, list, turnos);
+        }
+        protected void modificarReservacion()
+        {
+            bool[] turnos = new bool[3];
+            turnos[0] = this.checkboxDesayuno.Checked;
+            turnos[1] = this.checkboxAlmuerzo.Checked;
+            turnos[2] = this.checkboxCena.Checked;
+            controladora.modificar(seleccionada, empleadoSeleccionado.Id, list, turnos);
         }
         private void iniciarEmpleado()
         {
@@ -91,5 +142,6 @@ namespace Servicios_Reservados_2
                 //No se selecciono un empleado.
             }
         }
+
     }
 }

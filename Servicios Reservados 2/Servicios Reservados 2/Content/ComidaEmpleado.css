@@ -30,5 +30,18 @@ ContentTemplate>div:first-of-type{
     padding:25px;
 }
 div:first-of-type>input{
-    width:100px;
+    width:110px;
+}
+#ContenedorManejoDeHorario{
+    margin-left:5%;
+}
+#ContenedorManejoDeHorario>div{
+    margin-left:25%;
+}
+ContentTemplate{
+    margin-left:5%;
+}
+#ContenedorManejoDeHorario>input{
+    float:right;
+    margin-right: 25px;
 }
