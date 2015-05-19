@@ -20,13 +20,14 @@ namespace Servicios_Reservados_2
         protected void Page_Load(object sender, EventArgs e)
         {
             resultadosPorPagina = GridViewEmpleados.PageSize;
+            string userid = (string)Session["UsuarioID"];
             if (!IsPostBack)
             {
-                
+                if (userid == "" || userid == null)
+                {
+                    Response.Redirect("~/Ingresar.aspx");
+                }
                 llenarGridEmpleados();
-
-
-
             }
 
 
