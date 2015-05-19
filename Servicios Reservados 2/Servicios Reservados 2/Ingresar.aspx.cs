@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -26,11 +27,17 @@ namespace Servicios_Reservados_2
         {
             //Se verifica en la base de datos el UsuarioID y se almacena en la variable tblUsuario.
             DataTable tblUsuario = login.prConsultaUsuario(usuario,contraseña);
-            //se declara y se le da el valor a la variable de sesión UsuarioID
-            Session["UsuarioID"] = tblUsuario.Rows[0]["UsuarioID"].ToString();
-            Session["Tipo"] = tblUsuario.Rows[0]["Tipo"].ToString();
+            //se declara y se le da el valor a la variable de sesión
+            Session["username"] = tblUsuario.Rows[0]["username"].ToString();
+
+            DataTable roles = login.rolesUsuario(usuario);
+            ArrayList listaRoles = new ArrayList();
+            foreach(DataRow rol in roles.Rows){
+                listaRoles.Add(rol[0].ToString());
+            }
+            Session["Roles"] = listaRoles;
             //Manda a la principal en caso de ser correcto el login
-            Response.Redirect("~/Default.aspx");
+            Response.Redirect("Default.aspx");
         }
         else
         {
