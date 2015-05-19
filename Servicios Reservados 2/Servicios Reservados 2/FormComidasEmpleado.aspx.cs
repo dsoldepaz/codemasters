@@ -15,7 +15,9 @@ namespace Servicios_Reservados_2
         private EntidadEmpleado empleadoSeleccionado;
         private EntidadComidaEmpleado seleccionada;
         private int modo = 0;//0= Solo el empleado consultado; 1-Agregar Reservacion; 2-Modificar reservacion;
-        private ContorladoraComidaEmpleado controladora = new ContorladoraComidaEmpleado();
+        private ControladoraComidaEmpleado controladora = new ControladoraComidaEmpleado();
+        private DateTime fechaElegida();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string userid = (string)Session["username"];
@@ -73,7 +75,7 @@ namespace Servicios_Reservados_2
             ContenedorManejoDeHorario.Visible = true;
             fechaDeEntradaCalendario.Enabled = false;//Solo se puede modificar una fecha a la vez
             //poner fecha seleccionada
-            //fechaDeEntradaCalendario.SelectedDate = (GridViewReservacionesEmpleado.SelectedRow.ToString();
+            fechaDeEntradaCalendario.SelectedDate = fechaElegida;
             modo = 2;
         }
         protected void clickCancelar(object sender, EventArgs e)
@@ -120,8 +122,10 @@ namespace Servicios_Reservados_2
             turnos[2] = this.checkboxCena.Checked;
             controladora.modificar(seleccionada, empleadoSeleccionado.Id, list, turnos);
         }
-        protected void consultar(){
-           // empleadoSeleccionado.Id;
+        protected void consultar()
+        {
+            iniciarEmpleado();
+            controladora.consultar(empleadoSeleccionado.Id, fechaElegida);
         }
         private void iniciarEmpleado()
         {

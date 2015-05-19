@@ -11,7 +11,7 @@ namespace Servicios_Reservados_2
     public partial class FormComidaCampo : System.Web.UI.Page
     {
         private static ControladoraComidaCampo controladora = new ControladoraComidaCampo();
-        EntidadComidaCampo comidaC = controladora.entidadSeleccionada();
+        public static EntidadComidaCampo comidaSeleccionada;
 
         public static int modo;
         public static int tipoComidaCampo;
@@ -248,12 +248,19 @@ namespace Servicios_Reservados_2
         }
 
 
-        protected void consultarComidaCampoReserv()
-        {
+       protected void consultarComidaCampoReserv() {
 
-            txtPax.Value = comidaC.Pax.ToString();
+            if (controladora.entidadSeleccionada()[5].ToString() == "1") {
 
-        }
+                chGalloPinto.Checked = true;
+            
+            }
+            txtPax.Value = controladora.entidadSeleccionada()[10].ToString();
+
+            if (controladora.adicionalSeleccionado()[0] == "Confites") {
+
+                chConfites.Checked = true;
+            }
 
 
     }
