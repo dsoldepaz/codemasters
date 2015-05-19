@@ -17,9 +17,7 @@ namespace Servicios_Reservados_2
         private static Boolean seConsulto = false;
         protected void Page_Load(object sender, EventArgs e)
         {
-                
-
-                string userid = (string)Session["UsuarioID"];
+                string userid = (string)Session["username"];
                 if (!IsPostBack)
                 {
                     if (userid == "" || userid == null)

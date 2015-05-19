@@ -20,11 +20,10 @@ namespace Servicios_Reservados_2
             {
                 if (userid == "" || userid == null)
                 {
-                    //Response.Redirect("~/Ingresar.aspx");
+                    Response.Redirect("~/Ingresar.aspx");
                 }
                 if (listaRoles.Contains("superadmin"))
                 {
-                    Debug.WriteLine("soy super");
 
                 }
             }
