@@ -35,9 +35,7 @@ div:first-of-type>input{
 #ContenedorManejoDeHorario{
     margin-left:5%;
 }
-#ContenedorManejoDeHorario>div{
-    margin-left:25%;
-}
+
 ContentTemplate{
     margin-left:5%;
 }
@@ -48,8 +46,15 @@ ContentTemplate{
 .listaformulario{
     width:80%;
     height:10%;
+    display:inline-block;
+    color:#000000;
+
 }
 .itemFormulario{
     width: 30%;
     display:inline-block;
+    color:#000000;
+}
+#ContenedorManejoDeHorario>div>*{
+    padding: 2px;
 }
