@@ -165,6 +165,7 @@
     <Content Include="Content\bootstrap-3.3.4-dist\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap-3.3.4-dist\js\npm.js" />
     <Content Include="Content\ComidaEmpleado.css" />
+    <Content Include="Content\EmpleadoReserva.css" />
     <Content Include="Content\formEmpleado.css" />
     <Content Include="Content\Reservacion.css" />
     <Content Include="ErrorPermiso.aspx" />
@@ -357,7 +358,7 @@
     <Compile Include="App_Data\ComidaCampo\ControladoraBDComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\ControladoraComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\EntidadComidaCampo.cs" />
-    <Compile Include="App_Data\ComidaEmpleado\ContorladoraComidaEmpleado.cs" />
+    <Compile Include="App_Data\ComidaEmpleado\ControladoraComidaEmpleado.cs" />
     <Compile Include="App_Data\Empleados\AdaptadorEmpleado.cs" />
     <Compile Include="App_Data\Usuarios\ControladoraBDUsuario.cs" />
     <Compile Include="App_Data\Usuarios\ControladoraUsuario.cs" />
@@ -423,6 +424,7 @@
     <Compile Include="App_Data\Empleados\EntidadEmpleado.cs" />
     <Compile Include="App_Data\ComidaEmpleado\EntidadComidaEmpleado.cs" />
     <Compile Include="App_Data\ComidaEmpleado\ControladoraBDComidaEmpleado.cs" />
+    <Compile Include="App_Data\EmpleadoReserva\ControladoraEmpleadoReserva.cs" />
     <Compile Include="ErrorPermiso.aspx.cs">
       <DependentUpon>ErrorPermiso.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -19,7 +19,7 @@ namespace Servicios_Reservados_2
             dt = new DataTable();
         }
 
-        public String[] agregarComidaCampo(EntidadComidaCampo entidad,List<String> lista)
+        public String[] agregarComidaCampo(EntidadComidaCampo entidad)
         {
             String[] respuesta = new String[3];
             try
@@ -29,9 +29,13 @@ namespace Servicios_Reservados_2
                     + entidad.Bebida + "','" + entidad.TipoPago + "'," + entidad.Pax + ",'" + entidad.Hora + "')";
                 Debug.WriteLine(consultaSQL);
                 adaptador.insertar(consultaSQL);
-                if (lista.Count > 0)
+                List<String> lista = entidad.Adicionales;
+                int cantAdicionales = lista.Count;
+                String consultaId = "select MAX(idcomidacampo) from servicios_reservados.comida_campo";
+                dt = adaptador.consultar(consultaId);
+                for (int i = 0; i < cantAdicionales; i++)
                 {
-                    String idComida = "Select MAX(idComidaCampo) from servicios_reservados.comida_campo";
+                    String insercion ="insert into servicios_reservados.adicional values("+dt.Rows[0][0]+",'"+lista[i]+"')"; 
                 }
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";

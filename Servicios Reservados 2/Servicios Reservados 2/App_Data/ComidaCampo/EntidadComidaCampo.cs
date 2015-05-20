@@ -23,7 +23,7 @@ namespace Servicios_Reservados_2
         private String hora;
         private List<String> adicionales;
 
-        public EntidadComidaCampo(Object[] datos)
+        public EntidadComidaCampo(Object[] datos, List<String>lista)
         {
             this.idComidaCampo = datos[0].ToString();
             this.idEmpleado = datos[1].ToString();
@@ -104,10 +104,10 @@ namespace Servicios_Reservados_2
             get { return hora; }
             set { Hora = value; }
         }
-       public List<String> Adicionales 
+        public List<String> Adicionales 
         {
             get { return adicionales; }
             set { adicionales = value; }
         }
     }
-    }
+}

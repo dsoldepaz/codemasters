@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" Title="Empleados" AutoEventWireup="true"  MasterPageFile="~/Site.Master" CodeBehind="FormEmpleadoReserva.aspx.cs" Inherits="Servicios_Reservados_2.FormEmpleadoReserva" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <link rel="stylesheet" href="Content/empleado.css"/>
+    <link rel="stylesheet" href="Content/EmpleadoReserva.css"/>
         <nav>
             <ul>
                 <li class="item-navegacion"><a href="FormReservaciones.aspx">Reservaciones</a></li>
@@ -13,42 +13,38 @@
         </nav>
         <div>
             <h2>Empleados</h2>
+            <h3>Reservaciones del empleado:<span id="lblNombre" runat="server"></span> </h3>
             <fieldset>
-                <legend style="color: #7BC143">Reservación del Empleado</legend>
-                <table>
-                    <tr>
-                        <td style="width: 10%">Nombre:</td>
-                        <td style="width: 40%">
-                            <input class="textbox"/>
-                        </td>
-                        <td style="width: 15%">Cantidad de Personas:</td>
-                        <td>
-                            <input class="textbox"/>
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                         <td style="width: 20%">Tipo Comida:</td>
-                        <td>
-                            <select style="width: 176px"></select>
-                        </td>
-                        <td style="width: 20%">Fecha:</td>
-                        <td>
-                            <select style="width: 176px"></select> <!--MODIFICAR CALENDARIO-->
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                          <td style="width: 20%">Descripción:</td>
-                        <td>
-                           <textarea id="notasEmp" cols="20" name="S1" rows="2"></textarea>
-                        </td>
-                    </tr>
-                </table>
-               
+                <section id="comidasReservadas">
+                    <h4>
+                        Comidas desde el ultimo mes del empleado
+                    </h4>
+                    <section class="panelDeBotones">
+                        <input class="btn btn-success" value="Ver"/>
+                        <input class="btn btn-success" value="Agregar nueva"/>
+                        <input class="btn btn-success" value="Editar"/>
+                        <input class="btn btn-success" value="Cancelar Reservacion"/>
+                    </section>
+                     <asp:GridView ID="GridComidasReservadas" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarComida">
+                     <SelectedRowStyle BackColor="#7BC143" />
+                     </asp:GridView>
 
+                </section>
+                
+                <section id="ServiciosExtra">
+                      <h4>
+                        Servicios Extra desde el ultimo mes del empleado
+                    </h4>
+                    <section class="panelDeBotones">
+                        <input class="btn btn-success" value="Ver" onServerclick="clickVerExtra" runat ="server" />
+                        <input class="btn btn-success" value="Agregar nueva" runat="server" onServerclick="clickAgregarExtra"/>
+                        <input class="btn btn-success" value="Editar"runat="server" onServerclick="clickEditarExtra"/>
+                        <input class="btn btn-success" value="Cancelar Reservacion"runat="server"onServerclick="clickCancelarExtra"/>
+                    </section>
+                     <asp:GridView ID="GridViewComidaExtra" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarComida">
+                     <SelectedRowStyle BackColor="#7BC143" />
+                     </asp:GridView>
+                </section>
             </fieldset>
 
         </div>
