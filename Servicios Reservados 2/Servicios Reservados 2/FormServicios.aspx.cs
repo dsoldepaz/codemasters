@@ -81,14 +81,14 @@ namespace Servicios_Reservados_2
             {
 
                 Object[] datos = new Object[7];
-                DataTable paquete = controladora.solicitarPaquete(controladora.idSelected());// se consultan todos
+               // DataTable paquete = controladora.solicitarPaquete(controladora.idSelected());// se consultan todos
                 DataTable servicios = controladora.solicitarServicios(controladora.idSelected());// se consultan todos
                 DataTable comidaCampo = controladora.solicitarComidaCampo(controladora.idSelected());// se consultan todos   
                 
                 ids = new String[servicios.Rows.Count + comidaCampo.Rows.Count + 1]; //crear el vector para ids en el grid
                 idServ = new String[servicios.Rows.Count + comidaCampo.Rows.Count + 1];
 
-                if (paquete.Rows.Count > 0)
+                /*if (paquete.Rows.Count > 0)
                 {
                     foreach (DataRow fila in paquete.Rows)
                     {                       
@@ -103,7 +103,7 @@ namespace Servicios_Reservados_2
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
                     }
-                }
+                }*/
 
 
 
@@ -288,5 +288,10 @@ namespace Servicios_Reservados_2
           
 
         }
+        protected void clickActivarTiquetes(object sender, EventArgs e)
+        {
+           
+        }
+
     }
 }
