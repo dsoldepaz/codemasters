@@ -127,7 +127,7 @@ namespace Servicios_Reservados_2
                         idServ[j] = fila[0].ToString();
                         ids[j] = fila[1].ToString();
                         datos[0] = "Comida Campo";
-                        if (int.Parse(fila[4].ToString()) != 1)
+                        if (int.Parse(fila[4].ToString()) == 1)
                         {
                             datos[1] = "Sandwich";
                         }
@@ -266,7 +266,7 @@ namespace Servicios_Reservados_2
         {
             if (idServ[GridServicios.SelectedIndex].Contains("C"))
             {
-                modo = 4;
+                 FormComidaCampo.modo = 4;
                 Response.Redirect("FormComidaCampo");
             }
             else {

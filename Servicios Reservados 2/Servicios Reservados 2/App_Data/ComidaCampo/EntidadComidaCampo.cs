@@ -41,67 +41,67 @@ namespace Servicios_Reservados_2
 
         public String IdComidaCampo
         {
-            get { return IdComidaCampo; }
-            set { IdComidaCampo = value; }
+            get { return idComidaCampo; }
+            set { idComidaCampo = value; }
         }
 
         public String IdEmpleado
         {
-            get { return IdEmpleado; }
-            set { IdEmpleado = value; }
+            get { return idEmpleado; }
+            set { idEmpleado = value; }
         }
 
         public String IdReservacion
         {
-            get { return IdReservacion; }
-            set { IdReservacion = value; }
+            get { return idReservacion; }
+            set { idReservacion = value; }
         }
 
         public String Fecha
         {
-            get { return Fecha; }
-            set { Fecha = value; }
+            get { return fecha; }
+            set { fecha = value; }
         }
 
         public String Estado
         {
-            get { return Estado; }
-            set { Estado = value; }
+            get { return estado; }
+            set { estado = value; }
         }
-        public String Opcion
+        public int Opcion
         {
-            get { return Opcion; }
-            set { Opcion = value; }
+            get { return opcion; }
+            set { opcion = value; }
         }
         public String Relleno
         {
-            get { return Relleno; }
-            set { Relleno = value; }
+            get { return relleno; }
+            set { relleno = value; }
         }
-        public int Pan
+        public String Pan
         {
-            get { return Pan; }
-            set { Pan = value; }
+            get { return pan; }
+            set { pan = value; }
         }
         public String Bebida
         {
-            get { return Bebida; }
-            set { Bebida = value; }
+            get { return bebida; }
+            set { bebida = value; }
         }
         public String TipoPago
         {
-            get { return TipoPago; }
-            set { TipoPago = value; }
+            get { return tipoPago; }
+            set { tipoPago = value; }
         }
         public int Pax
         {
-            get { return Pax; }
-            set { Pax = value; }
+            get { return pax; }
+            set { pax = value; }
         }
         public String Hora
         {
-            get { return Hora; }
-            set { Hora = value; }
+            get { return hora; }
+            set { hora = value; }
         }
     }
 }
