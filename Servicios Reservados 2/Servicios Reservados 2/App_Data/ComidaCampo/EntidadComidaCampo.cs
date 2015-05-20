@@ -6,6 +6,7 @@ using System.Web;
 
 namespace Servicios_Reservados_2
 {
+
     public class EntidadComidaCampo
     {
         private String idComidaCampo;
@@ -20,9 +21,9 @@ namespace Servicios_Reservados_2
         private String tipoPago;
         private int pax;
         private String hora;
+        private List<String> adicionales;
 
-
-        public EntidadComidaCampo(Object[] datos)
+        public EntidadComidaCampo(Object[] datos, List<String>lista)
         {
             this.idComidaCampo = datos[0].ToString();
             this.idEmpleado = datos[1].ToString();
@@ -34,74 +35,80 @@ namespace Servicios_Reservados_2
             this.pan = datos[7].ToString();
             this.bebida = datos[8].ToString();
             this.tipoPago = datos[9].ToString();
-            Debug.WriteLine(datos[10].ToString());
             this.pax = int.Parse(datos[10].ToString());
             this.hora = datos[11].ToString();
+            adicionales = lista;
         }
 
         public String IdComidaCampo
         {
-            get { return IdComidaCampo; }
+            get { return idComidaCampo; }
             set { IdComidaCampo = value; }
         }
 
         public String IdEmpleado
         {
-            get { return IdEmpleado; }
+            get { return idEmpleado; }
             set { IdEmpleado = value; }
         }
 
         public String IdReservacion
         {
-            get { return IdReservacion; }
+            get { return idReservacion; }
             set { IdReservacion = value; }
         }
 
         public String Fecha
         {
-            get { return Fecha; }
+            get { return fecha; }
             set { Fecha = value; }
         }
 
         public String Estado
         {
-            get { return Estado; }
+            get { return estado; }
             set { Estado = value; }
         }
-        public String Opcion
+        public int Opcion
         {
-            get { return Opcion; }
+            get { return opcion; }
             set { Opcion = value; }
         }
         public String Relleno
         {
-            get { return Relleno; }
+            get { return relleno; }
             set { Relleno = value; }
         }
-        public int Pan
+        public String Pan
         {
-            get { return Pan; }
+            get { return pan; }
             set { Pan = value; }
         }
         public String Bebida
         {
-            get { return Bebida; }
+            get { return bebida; }
             set { Bebida = value; }
         }
         public String TipoPago
         {
-            get { return TipoPago; }
+            get { return tipoPago; }
             set { TipoPago = value; }
         }
         public int Pax
         {
-            get { return Pax; }
+            get { return pax; }
             set { Pax = value; }
         }
         public String Hora
         {
-            get { return Hora; }
+            get { return hora; }
             set { Hora = value; }
         }
+        public List<String> Adicionales 
+        {
+            get { return adicionales; }
+            set { adicionales = value; }
+        }
+    }
     }
 }

@@ -69,19 +69,24 @@ namespace Servicios_Reservados_2
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
+            string userid = (string)Session["username"];
             if (!IsPostBack)
             {
-                if (listaRoles.Contains("superadmin"))
+                if (listaRoles.Contains("cocina"))
                 {
-                    admin();
+                    this.rol.Text = string.Format(@"<a>"+userid+" (cocina)</a>");
+
+                } if (listaRoles.Contains("recepcion"))
+                {
+                    this.rol.Text = string.Format(@"<a>" + userid + " (recepción)</a>");
+
+                }
+                if (listaRoles.Contains("admin"))
+                {
+                    this.rol.Text = string.Format(@"<a>" + userid + " (admin)</a>");
 
                 }
             }
-        }
-        protected void admin()
-        {
-            string html = string.Format(@"<a>admin</a>");
-            this.rol.Text = html;
         }
         protected void btnSalir_Click(object sender, EventArgs e)
         {

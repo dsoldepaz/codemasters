@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,100 +11,109 @@ namespace Servicios_Reservados_2
 {
     public partial class FormComidaCampo : System.Web.UI.Page
     {
-        private static ControladoraComidaCampo controladora  = new ControladoraComidaCampo();
-        EntidadComidaCampo comidaC = controladora.entidadSeleccionada();
-   
+        private static ControladoraComidaCampo controladora = new ControladoraComidaCampo();
+        EntidadComidaCampo entidadConsultada = controladora.entidadSeleccionada();
+        Object[] adicionales = controladora.adicionalSeleccionado();
+
         public static int modo;
         public static int tipoComidaCampo;
         public static String idEmpleado;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-                if (!IsPostBack)
+
+            ArrayList listaRoles = (ArrayList)Session["Roles"];
+            string userid = (string)Session["username"];
+            if (!IsPostBack)
             {
-                modo = FormServicios.modo;
+                if (userid == "" || userid == null)
+                {
+                    Response.Redirect("~/Ingresar.aspx");
+                } if (!listaRoles.Contains("admin") && !listaRoles.Contains("recepcion"))
+                {
+                    Response.Redirect("ErrorPermiso.aspx");
+                }
                 cambiarModo();
-
             }
-           
-
         }
 
         protected void cambiarModo()
         {
-            
-            if (tipoComidaCampo==0) {
+
+            if (tipoComidaCampo == 0)
+            {
                 cmbTipoPago.Visible = false;
                 labelPago.Visible = false;
             }
-            
+
             if (modo == 1)
-              { // se desea insertar
-                 /* textFecha.Disabled = true;
-                  btnEliminar.Disabled = true;
-                  btnAceptar.Disabled = false;
-                  btnCancelar.Disabled = false;
-                  btnAgregar.Disabled = true;*/
-              }
-              else if (modo == 2)
-              { //modificar
-                  /*btnModificar.Disabled = true;
-                  btnEliminar.Disabled = true;
-                  btnAceptar.Disabled = false;
-                  btnCancelar.Disabled = false;
-                  btnAgregar.Disabled = true;*/
-              }
-              else if (modo == 3)
-              { // eliminar
-                  /**btnModificar.Disabled = true;
-                  btnEliminar.Disabled = true;
-                  btnAceptar.Disabled = false;
-                  btnCancelar.Disabled = false;
-                  btnAgregar.Disabled = true;
-                  habilitarCampos(false);*/
-              }
-              else if (modo == 4)
-              {  //consultar
-                  consultarComidaCampoReserv();
-                  textFecha.Disabled = true;
-                  txtHora.Disabled = true;
-                  radioDesayuno.Disabled= true;
-                  radioAlmuerzo.Disabled = false;
-                  radioCena.Disabled = true;
-                  radioPanBlanco.Disabled = true;
-                  radioPanBollo.Disabled = true;
-                  radioPanInt.Disabled = true;
-                  radioJamon.Disabled = true;
-                  radioFrijoles.Disabled = true;
-                  radioMyM.Disabled = true;
-                  radioOmelette.Disabled = true;
-                  radioEnsaladaHuevo.Disabled = true;
-                  chGalloPinto.Disabled = true;
-                  chEnsalada.Disabled = true;
-                  chGalloPinto.Disabled = true;
-                  chHuevos.Disabled = true;
-                  chMayonesa.Disabled = true;
-                  chPlatanos.Disabled = true;
-                  chSalsaTomate.Disabled = true;
-                  chFrutas.Disabled = true;
-                  chConfites.Disabled = true;
-                  radioAgua.Disabled = true;
-                  radioJugo.Disabled = true;
-              }
+            { // se desea insertar
+                /* textFecha.Disabled = true;
+                 btnEliminar.Disabled = true;
+                 btnAceptar.Disabled = false;
+                 btnCancelar.Disabled = false;
+                 btnAgregar.Disabled = true;*/
+            }
+            else if (modo == 2)
+            { //modificar
+                /*btnModificar.Disabled = true;
+                btnEliminar.Disabled = true;
+                btnAceptar.Disabled = false;
+                btnCancelar.Disabled = false;
+                btnAgregar.Disabled = true;*/
+            }
+            else if (modo == 3)
+            { // eliminar
+                /**btnModificar.Disabled = true;
+                btnEliminar.Disabled = true;
+                btnAceptar.Disabled = false;
+                btnCancelar.Disabled = false;
+                btnAgregar.Disabled = true;
+                habilitarCampos(false);*/
+            }
+            else if (modo == 4)
+            {  //consultar
+                consultarComidaCampoReserv();
+                textFecha.Disabled = true;
+                txtHora.Disabled = true;
+                txtPax.Disabled = true;
+                radioPanBlanco.Disabled = true;
+                radioPanBollo.Disabled = true;
+                radioPanInt.Disabled = true;
+                radioJamon.Disabled = true;
+                radioFrijoles.Disabled = true;
+                radioMyM.Disabled = true;
+                radioOmelette.Disabled = true;
+                radioEnsaladaHuevo.Disabled = true;
+                chGalloPinto.Disabled = true;
+                chEnsalada.Disabled = true;
+                chGalloPinto.Disabled = true;
+                chHuevos.Disabled = true;
+                chMayonesa.Disabled = true;
+                chPlatanos.Disabled = true;
+                chSalsaTomate.Disabled = true;
+                chFrutas.Disabled = true;
+                chConfites.Disabled = true;
+                radioAgua.Disabled = true;
+                radioJugo.Disabled = true;
+            }
         }
         protected void checkO1click(object sender, EventArgs e)
         {
-           // if (checkboxO1.Checked)
-          //  {
+            // if (checkboxO1.Checked)
+            //  {
             opcion2Fieldset.Visible = !opcion2Fieldset.Visible;
-            Debug.WriteLine("picha vivir");   
-           // }
-            
-                
+            Debug.WriteLine("picha vivir");
+            // }
+
+
         }
 
-        protected String getPan(){
+        protected String getPan()
+        {
             String pan = "";
-            if(radioPanBlanco.Checked){
+            if (radioPanBlanco.Checked)
+            {
                 pan = "Pan Blanco";
             }
             if (radioPanBollo.Checked)
@@ -115,13 +125,15 @@ namespace Servicios_Reservados_2
                 pan = "Pan Integral";
             }
             return pan;
-        
+
         }
 
-        protected String getTipoSandwich(){
+        protected String getTipoSandwich()
+        {
             String tipo = "";
-            if (radioJamon.Checked) {
-                tipo = "Jamon"; 
+            if (radioJamon.Checked)
+            {
+                tipo = "Jamon";
             }
             if (radioFrijoles.Checked)
             {
@@ -130,7 +142,7 @@ namespace Servicios_Reservados_2
             }
             if (radioMyM.Checked)
             {
-                tipo = "Mantequilla y maní";
+                tipo = "Mantequilla de maní y jalea";
             }
             if (radioOmelette.Checked)
             {
@@ -140,40 +152,47 @@ namespace Servicios_Reservados_2
             {
                 tipo = "Ensalada de Huevo";
             }
-            return tipo;        
+            return tipo;
         }
         protected Boolean agregarComidaCampo()
         {
             Boolean res = true;
             Object[] nuevaComidaCampo = new Object[12];// objeto en el que se almacenan los datos para enviar a encapsular.
-            nuevaComidaCampo[0]= "";
-            if(tipoComidaCampo==1){
+            nuevaComidaCampo[0] = "";
+            if (tipoComidaCampo == 1)
+            {
                 nuevaComidaCampo[1] = idEmpleado;
             }
             nuevaComidaCampo[2] = "";
             nuevaComidaCampo[3] = textFecha.Value;
             nuevaComidaCampo[4] = "activo";
             nuevaComidaCampo[5] = 0;
-            if(checkboxO1.Checked){
+            if (checkboxO1.Checked)
+            {
                 nuevaComidaCampo[5] = "1";
                 nuevaComidaCampo[7] = getPan();
-            }else{
+            }
+            else
+            {
                 nuevaComidaCampo[7] = "";
 
             }
-            if(CheckboxO2.Checked)
+            if (CheckboxO2.Checked)
             {
                 nuevaComidaCampo[5] = "2";
                 nuevaComidaCampo[6] = getTipoSandwich();
-            }else{
+            }
+            else
+            {
                 nuevaComidaCampo[6] = "";
             }
             nuevaComidaCampo[8] = "";
             if (CheckboxBebida.Checked)
             {
-                String bebida ="Jugo";
-                if(radioAgua.Checked){
-                    bebida ="Agua";
+                String bebida = "Jugo";
+                if (radioAgua.Checked)
+                {
+                    bebida = "Agua";
                 }
                 nuevaComidaCampo[8] = bebida;
             }
@@ -184,8 +203,8 @@ namespace Servicios_Reservados_2
 
             String[] error = controladora.agregarComidaCampo(nuevaComidaCampo);// se le pide a la controladora que lo inserte
             mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
-                        
-            
+
+
             return res;
         }
 
@@ -196,7 +215,7 @@ namespace Servicios_Reservados_2
             //labelAlerta.Text = mensaje;
             //alertAlerta.Attributes.Remove("hidden");
         }
-    
+
         /*
         * Efecto: capta el evento al presionar el botón del calendario para hacerlo visible.
         * Requiere: presionar el calendario.
@@ -216,10 +235,10 @@ namespace Servicios_Reservados_2
                     //Response.Redirect("FormServicios");
                     break;
                 case 2://modificar
-                    
+
                     break;
                 case 3://cancelar
-                    
+
                     break;
             }
         }
@@ -234,15 +253,60 @@ namespace Servicios_Reservados_2
         }
 
 
-        protected void consultarComidaCampoReserv() {
+        protected void consultarComidaCampoReserv()
+        {
 
-            txtPax.Value = comidaC.Pax.ToString();
-        
+            textFecha.Value = entidadConsultada.Fecha;
+            txtHora.Value = entidadConsultada.Hora;
+            txtPax.Value = entidadConsultada.Pax.ToString();
+            if (entidadConsultada.Opcion == 1)
+            {
+                checkboxO1.Checked = true;
+                tipoSandwich();
+            }
+            else if (entidadConsultada.Opcion == 2)
+            {
+                CheckboxO2.Checked = true;
+                chGalloPinto.Checked=true;
+            }
+            if(entidadConsultada.Bebida=="Jugo"){
+                CheckboxBebida.Checked = true;
+                radioJugo.Checked=true;
+            }else if(entidadConsultada.Bebida=="Agua"){
+                CheckboxBebida.Checked = true;
+                radioAgua.Checked=true;
+            }
+
         }
 
+            protected void tipoSandwich()
+            {
+                if(entidadConsultada.Pan == "Pan Blanco")
+                {
+                    radioPanBlanco.Checked = true;
+                }else if(entidadConsultada.Pan == "Pan Bollo"){
+                    radioPanBollo.Checked=true;
+                }else if(entidadConsultada.Pan == "Pan Integral"){
+                    radioPanInt.Checked = true;
+                }
+                if(entidadConsultada.Relleno == "Jamon"){
+                    radioJamon.Checked=true;
+                }else if(entidadConsultada.Relleno == "Atun"){
+                    radioAtun.Checked =true;
+                }else if(entidadConsultada.Relleno == "Frijoles"){
+                    radioFrijoles.Checked=true;
+                }else if(entidadConsultada.Relleno == "Mantequilla de maní y jalea"){
+                    radioMyM.Checked=true;
+                }else if(entidadConsultada.Relleno == "Omelette"){
+                    radioOmelette.Checked=true;
+                }else if(entidadConsultada.Relleno == "Ensalda de huevo"){
+                    radioEnsaladaHuevo.Checked=true;
+                }
+            }
+            
+          
+            
+       
 
     }
-
-
-
 }

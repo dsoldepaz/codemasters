@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Diagnostics;
 using System.Web.UI.WebControls;
+using System.Collections;
 
 namespace Servicios_Reservados_2
 {
@@ -24,12 +25,17 @@ namespace Servicios_Reservados_2
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            string userid = (string)Session["UsuarioID"];
+            ArrayList listaRoles = (ArrayList)Session["Roles"];
+            string userid = (string)Session["username"];
             if (!IsPostBack)
             {
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
+                }
+                if (!listaRoles.Contains("admin") && !listaRoles.Contains("recepcion"))
+                {
+                    Response.Redirect("ErrorPermiso.aspx");
                 }
                 llenarCampos();
                 llenarGridServicios();
@@ -121,7 +127,7 @@ namespace Servicios_Reservados_2
                         idServ[j] = fila[0].ToString();
                         ids[j] = fila[1].ToString();
                         datos[0] = "Comida Campo";
-                        if (int.Parse(fila[4].ToString()) != 1)
+                        if (int.Parse(fila[4].ToString()) == 1)
                         {
                             datos[1] = "Sandwich";
                         }
@@ -260,7 +266,7 @@ namespace Servicios_Reservados_2
         {
             if (idServ[GridServicios.SelectedIndex].Contains("C"))
             {
-                modo = 4;
+                 FormComidaCampo.modo = 4;
                 Response.Redirect("FormComidaCampo");
             }
             else {

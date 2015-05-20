@@ -28,7 +28,7 @@
                                     <td>
                                         <select style="width: 176px" id="cbxAnfitriona" runat="server"></select>
                                     </td>
-                                    <td style="width: 10%;" padding-left="10px;">Estación:</td>
+                                    <td style="width: 10%;">Estación:</td>
                                     <td>
                                         <select style="width: 176px" id="cbxEstacion" runat="server"></select>
                                     </td>

@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <div class="well bs-component">
+    <div class="well bs-component" ID="Recepcionista" runat="server">
 
         <h2>Recepcionista:</h2>
         <p>
@@ -21,10 +21,17 @@
         </p>
 
     </div>
-    <div class="well bs-component">
+    <div class="well bs-component" ID="Cocina" runat="server">
         <h2>Encargado de Cocina:</h2>
         <p>
             <a href="FormServirPlatos.aspx">Servir platos</a>
+        </p>
+
+    </div>
+    <div class="well bs-component" ID="Admin" runat="server">
+        <h2>Administrador del Sistema:</h2>
+        <p>
+            <a href="FormRegistro.aspx">Registrar usuarios</a>
         </p>
 
     </div>

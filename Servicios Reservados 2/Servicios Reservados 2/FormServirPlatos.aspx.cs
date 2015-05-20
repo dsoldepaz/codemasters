@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -16,12 +17,16 @@ namespace Servicios_Reservados_2
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string userid = (string)Session["UsuarioID"];
+            ArrayList listaRoles = (ArrayList)Session["Roles"];
+            string userid = (string)Session["username"];
             if (!IsPostBack)
             {
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
+                } if (!listaRoles.Contains("admin") && !listaRoles.Contains("cocina"))
+                {
+                    Response.Redirect("ErrorPermiso.aspx");
                 }
             }
 
