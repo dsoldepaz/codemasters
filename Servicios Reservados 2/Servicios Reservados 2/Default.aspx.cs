@@ -13,9 +13,11 @@ namespace Servicios_Reservados_2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //seguridad
+            //roles y permisos
             Recepcionista.Visible=false;
-            Cocina.Visible=false;      
+            Cocina.Visible=false;
+            Admin.Visible = false;
+
             string userid = (string)Session["username"];
             ArrayList listaRoles = (ArrayList)Session["Roles"];
 
