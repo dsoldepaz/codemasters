@@ -90,9 +90,9 @@ namespace Servicios_Reservados_2
                     {
 
                         ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
-                        datos[0] = fila[0].ToString();//obtener los datos a mostrar
-                        datos[1] = fila[1].ToString();
-                        datos[2] = fila[2].ToString();
+                        datos[0] = fila[1].ToString();//obtener los datos a mostrar
+                        datos[1] = fila[2].ToString();
+                        datos[2] = fila[3].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
                     }

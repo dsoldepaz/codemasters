@@ -32,7 +32,7 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
-                modo = FormServicios.modo;
+               
                 cambiarModo();
             }
         }
@@ -76,9 +76,6 @@ namespace Servicios_Reservados_2
                 consultarComidaCampoReserv();
                 textFecha.Disabled = true;
                 txtHora.Disabled = true;
-                radioDesayuno.Disabled = true;
-                radioAlmuerzo.Disabled = false;
-                radioCena.Disabled = true;
                 radioPanBlanco.Disabled = true;
                 radioPanBollo.Disabled = true;
                 radioPanInt.Disabled = true;
@@ -102,11 +99,11 @@ namespace Servicios_Reservados_2
         }
         protected void checkO1click(object sender, EventArgs e)
         {
-            // if (checkboxO1.Checked)
-            //  {
-            opcion2Fieldset.Visible = !opcion2Fieldset.Visible;
-            Debug.WriteLine("picha vivir");
-            // }
+             if (checkboxO1.Checked)
+              {
+                  CheckboxO2.Checked = false;
+                  Debug.WriteLine("ooops");
+             }
 
 
         }
@@ -156,11 +153,52 @@ namespace Servicios_Reservados_2
             }
             return tipo;
         }
+
+        protected List<String> listaAdicionales()
+        {
+            List<String> list= new List<String>();
+            if (chEnsalada.Checked)
+            {
+                list.Add("Ensalada");
+            }
+            if (chMayonesa.Checked)
+            {
+                list.Add("Mayonesa");
+            }
+            if (chConfites.Checked)
+            {
+                list.Add("Confites");
+            }
+            if (chFrutas.Checked)
+            {
+                list.Add("Frutas");
+            }
+            if (chSalsaTomate.Checked)
+            {
+                list.Add("Salsa de tomate");
+            }
+            if (chHuevoDuro.Checked)
+            {
+                list.Add("Huevos duros");
+            }
+            if (chGalletas.Checked)
+            {
+                list.Add("Galletas");
+            }
+            if (chPlatanos.Checked)
+            {
+                list.Add("Platanos");
+            }
+
+            return list;
+        } 
+
         protected Boolean agregarComidaCampo()
         {
             Boolean res = true;
             Object[] nuevaComidaCampo = new Object[12];// objeto en el que se almacenan los datos para enviar a encapsular.
-            nuevaComidaCampo[0] = "";
+            List<String> adicionales = listaAdicionales();
+            nuevaComidaCampo[0] = "temporal";
             if (tipoComidaCampo == 1)
             {
                 nuevaComidaCampo[1] = idEmpleado;
@@ -173,6 +211,8 @@ namespace Servicios_Reservados_2
             {
                 nuevaComidaCampo[5] = "1";
                 nuevaComidaCampo[7] = getPan();
+                nuevaComidaCampo[6] = getTipoSandwich();
+                
             }
             else
             {
@@ -182,12 +222,10 @@ namespace Servicios_Reservados_2
             if (CheckboxO2.Checked)
             {
                 nuevaComidaCampo[5] = "2";
-                nuevaComidaCampo[6] = getTipoSandwich();
-            }
-            else
-            {
+                nuevaComidaCampo[7] = "";
                 nuevaComidaCampo[6] = "";
             }
+            
             nuevaComidaCampo[8] = "";
             if (CheckboxBebida.Checked)
             {
@@ -198,12 +236,13 @@ namespace Servicios_Reservados_2
                 }
                 nuevaComidaCampo[8] = bebida;
             }
-
+            Debug.WriteLine(cmbTipoPago.SelectedIndex);
+            Debug.WriteLine(cmbTipoPago.Value.ToString());
             nuevaComidaCampo[9] = cmbTipoPago.Value.ToString();
             nuevaComidaCampo[10] = txtPax.Value;
             nuevaComidaCampo[11] = txtHora.Value;
 
-            String[] error = controladora.agregarComidaCampo(nuevaComidaCampo);// se le pide a la controladora que lo inserte
+            String[] error = controladora.agregarComidaCampo(nuevaComidaCampo,adicionales);// se le pide a la controladora que lo inserte
             mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
 
 
@@ -230,6 +269,7 @@ namespace Servicios_Reservados_2
 
         protected void clickAceptar(object sender, EventArgs e)
         {
+            Debug.WriteLine(modo);
             switch (modo)
             {
                 case 1://insertar
@@ -241,6 +281,8 @@ namespace Servicios_Reservados_2
                     break;
                 case 3://cancelar
 
+                    break;
+                default:
                     break;
             }
         }

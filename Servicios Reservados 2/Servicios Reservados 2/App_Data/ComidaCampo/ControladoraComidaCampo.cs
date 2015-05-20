@@ -33,9 +33,9 @@ namespace Servicios_Reservados_2
         {
             adicional = datos;
         }
-        public String[] agregarComidaCampo(Object[] dato)
+        public String[] agregarComidaCampo(Object[] dato,List<String> lista)
         {
-            EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato);
+            EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato,lista);
             String[] resultado = controladoraBD.agregarComidaCampo(nuevaComidaCampo);
             return resultado;
         }
