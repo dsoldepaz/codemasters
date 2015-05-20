@@ -34,17 +34,12 @@
                         <il class="itemFormulario">
                             <label class="labelfont" id="labelPago" runat="server">Tipo Pago:</label>
                             <select id="cmbTipoPago" runat="server">
-                            <option value="1">De contado</option>
-                            <option value="2">Rebajo de planilla</option>
+                            <option value="De contado">De contado</option>
+                            <option value="Rebajo de planilla">Rebajo de planilla</option>
                             </select>
                         </il>
                     </p>
-                    <il class="itemFormulario">
-                        <input id="radioDesayuno" runat="server" name="turn" type="radio" value="desayuno">Desayuno </input></il>
-                    <il class="itemFormulario">
-                        <input id="radioAlmuerzo" runat="server" name="turn" type="radio" value="almuerzo">Almuerzo </input></il>
-                    <il class="itemFormulario">
-                        <input id="radioCena" runat="server" name="turn" type="radio" value="cena">Cena </input></il>
+                    
                 </fieldset>
             </div>
             <div class="well bs-component">
@@ -136,12 +131,7 @@
                     </ul>
                     <ul class="lista formulario">
                         <il class="itemFormulario">
-                            <input type="checkbox" name="adicional" value="huevos" id="chHuevos" runat="server">Huevos duros 
-                       </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
-                            <input type="checkbox" name="adicional" value="huevos" id="Checkbox1" runat="server">Huevos duros 
+                            <input type="checkbox" name="adicional" value="huevos" id="chHuevoDuro" runat="server">Huevos duros 
                        </il>
                     </ul>
                     <ul class="lista formulario">

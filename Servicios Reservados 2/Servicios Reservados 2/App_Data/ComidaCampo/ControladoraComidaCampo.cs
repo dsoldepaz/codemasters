@@ -14,8 +14,7 @@ namespace Servicios_Reservados_2
     public class ControladoraComidaCampo
     {
         private ControladoraBDComidaCampo controladoraBD;//instancia de la controladora de BD comida extra.
-        private static EntidadComidaCampo comidaSeleccionada;
-        public static Object[] entidad;
+        public static EntidadComidaCampo comidaCampo;
         public static Object[] adicional;
         
         public ControladoraComidaCampo()
@@ -26,23 +25,23 @@ namespace Servicios_Reservados_2
 
         public void guardarComidaSeleccionada(Object[] dato)
         {
-            entidad = dato;
+            comidaCampo = new EntidadComidaCampo(dato);
         }
 
         public void guardarAdicional(Object[] datos)
         {
             adicional = datos;
         }
-        public String[] agregarComidaCampo(Object[] dato)
+        public String[] agregarComidaCampo(Object[] dato,List<String> lista)
         {
-            EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato);
+            EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato,lista);
             String[] resultado = controladoraBD.agregarComidaCampo(nuevaComidaCampo);
             return resultado;
         }
 
-        public Object[] entidadSeleccionada()
+        public EntidadComidaCampo entidadSeleccionada()
         {
-            return entidad;
+            return comidaCampo;
         }
 
         public Object[] adicionalSeleccionado()

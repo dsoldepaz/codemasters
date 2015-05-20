@@ -19,17 +19,20 @@ namespace Servicios_Reservados_2
             dt = new DataTable();
         }
 
-        public String[] agregarComidaCampo(EntidadComidaCampo entidad)
+        public String[] agregarComidaCampo(EntidadComidaCampo entidad,List<String> lista)
         {
             String[] respuesta = new String[3];
             try
             {
-                String consultaSQL = "insert into servicios_reservados.comida_campo values('" + entidad.IdComidaCampo + "','" + entidad.IdEmpleado + "'," +
-                    entidad.IdReservacion + ",'" + entidad.Fecha + "','" + entidad.Estado + "','" + entidad.Opcion + "','" + entidad.Relleno + "','" + entidad.Pan + "','" +
-                    entidad.Relleno + "','" + entidad.Bebida + "','" + entidad.TipoPago + "','" + entidad.Pax + "','" + entidad.Hora + "')";
-
+                String consultaSQL = "insert into servicios_reservados.comida_campo values('" + entidad.IdComidaCampo + "','" + entidad.IdEmpleado + "','" +
+                    entidad.IdReservacion + "','" + entidad.Fecha + "','" + entidad.Estado + "'," + entidad.Opcion + ",'" + entidad.Relleno + "','" + entidad.Pan + "','" 
+                    + entidad.Bebida + "','" + entidad.TipoPago + "'," + entidad.Pax + ",'" + entidad.Hora + "')";
+                Debug.WriteLine(consultaSQL);
                 adaptador.insertar(consultaSQL);
-
+                if (lista.Count > 0)
+                {
+                    String idComida = "Select MAX(idComidaCampo) from servicios_reservados.comida_campo";
+                }
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";
                 respuesta[2] = "El usuario se ha insertado exitosamente";
@@ -42,6 +45,7 @@ namespace Servicios_Reservados_2
                 
 
             }
+            
             return respuesta;
         }
 

@@ -41,10 +41,14 @@ namespace Servicios_Reservados_2
         {
             throw new NotImplementedException();
         }
-
-        internal DataTable getTurnosCancelado(string id, DateTime fechaElegida)
+        /*
+         * 
+         * 
+         * Retorna: un data table con los estados de la  reservacion de los turnos y si ya fue pagado.
+        */
+        internal DataTable getInformacionReservacionEmpleado(string id, DateTime fechaElegida)
         {
-            string consulta = "Select Desayuno, Almuerzo, Cena FROM Reserva_EMPLEADO WHERE IDEMPLEADO = '" + id + "' AND fecha = " + fechaElegida + ";";
+            string consulta = "Select Desayuno, Almuerzo, Cena, pagado, notas FROM Reserva_EMPLEADO WHERE IDEMPLEADO = '" + id + "' AND fecha = " + fechaElegida + ";";
             DataTable dt = adaptador.consultar(consulta);
             return dt;
         }
