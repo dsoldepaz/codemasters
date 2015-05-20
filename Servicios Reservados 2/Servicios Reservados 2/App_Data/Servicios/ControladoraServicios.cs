@@ -18,6 +18,8 @@ namespace Servicios_Reservados_2.Servicios
         public static ControladoraComidaExtra controladoraCE;
         public static ControladoraComidaCampo controladoraComidaCampo;
         private static String[] extra;
+        public List<String> adicionales;
+
 
 
         public ControladoraServicios()
@@ -97,7 +99,7 @@ namespace Servicios_Reservados_2.Servicios
         {
             DataTable comidaCampo = controladora.seleccionarComidaCampo(id, idServ);
             DataTable adicional = controladora.seleccionarAdicional(idServ);
-
+           
             Object[] nuevoComidaC = new Object[12];
 
             nuevoComidaC[0] = comidaCampo.Rows[0][0];
@@ -106,22 +108,19 @@ namespace Servicios_Reservados_2.Servicios
             nuevoComidaC[3] = comidaCampo.Rows[0][3];
             nuevoComidaC[4] = comidaCampo.Rows[0][4];
             nuevoComidaC[5] = comidaCampo.Rows[0][5];
-            nuevoComidaC[6] = comidaCampo.Rows[0][6];
-            nuevoComidaC[7] = comidaCampo.Rows[0][7];
+            nuevoComidaC[7] = comidaCampo.Rows[0][6];
+            nuevoComidaC[6] = comidaCampo.Rows[0][7];
             nuevoComidaC[8] = comidaCampo.Rows[0][8];
             nuevoComidaC[9] = comidaCampo.Rows[0][9];
             nuevoComidaC[10] = comidaCampo.Rows[0][10];
             nuevoComidaC[11] = comidaCampo.Rows[0][11];
-           
-             Object[] nuevoAdicional = new Object[6];
-
              int i = 0;
              if (adicional.Rows.Count > 0)
              {
                  foreach (DataRow fila in adicional.Rows)
                  {
-
-                     nuevoAdicional[i] = adicional.Rows[i][1];
+                     String ad = adicional.Rows[0][i].ToString();
+                     adicionales.Add(ad);
                      i++;
                      
                  }
@@ -129,7 +128,7 @@ namespace Servicios_Reservados_2.Servicios
 
 
            controladoraComidaCampo.guardarComidaSeleccionada(nuevoComidaC);
-           controladoraComidaCampo.guardarAdicional(nuevoAdicional);
+           //controladoraComidaCampo.guardarAdicional(nuevoAdicional);
         }
     }
 }

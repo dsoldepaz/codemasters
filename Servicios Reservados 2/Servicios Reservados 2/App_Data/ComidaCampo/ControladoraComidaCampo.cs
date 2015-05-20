@@ -32,12 +32,12 @@ namespace Servicios_Reservados_2
         {
             adicional = datos;
         }
-        public String[] agregarComidaCampo(Object[] dato,List<String> lista)
+       /* public String[] agregarComidaCampo(Object[] dato,List<String> lista)
         {
             EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato,lista);
             String[] resultado = controladoraBD.agregarComidaCampo(nuevaComidaCampo);
             return resultado;
-        }
+        }*/
 
         public EntidadComidaCampo entidadSeleccionada()
         {

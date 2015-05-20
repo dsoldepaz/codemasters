@@ -74,6 +74,9 @@ namespace Servicios_Reservados_2
             else if (modo == 4)
             {  //consultar
                 consultarComidaCampoReserv();
+                checkboxO1.Disabled = true;
+                CheckboxO2.Disabled = true;
+                CheckboxBebida.Disabled = true;
                 textFecha.Disabled = true;
                 txtHora.Disabled = true;
                 txtPax.Disabled = true;
@@ -84,11 +87,12 @@ namespace Servicios_Reservados_2
                 radioFrijoles.Disabled = true;
                 radioMyM.Disabled = true;
                 radioOmelette.Disabled = true;
+                radioAtun.Disabled = true;
                 radioEnsaladaHuevo.Disabled = true;
                 chGalloPinto.Disabled = true;
                 chEnsalada.Disabled = true;
                 chGalloPinto.Disabled = true;
-                chHuevos.Disabled = true;
+                chHuevoDuro.Disabled = true;
                 chMayonesa.Disabled = true;
                 chPlatanos.Disabled = true;
                 chSalsaTomate.Disabled = true;
@@ -201,8 +205,8 @@ namespace Servicios_Reservados_2
             nuevaComidaCampo[10] = txtPax.Value;
             nuevaComidaCampo[11] = txtHora.Value;
 
-            String[] error = controladora.agregarComidaCampo(nuevaComidaCampo);// se le pide a la controladora que lo inserte
-            mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+            //String[] error = controladora.agregarComidaCampo(nuevaComidaCampo);// se le pide a la controladora que lo inserte
+           // mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
 
 
             return res;
@@ -281,6 +285,7 @@ namespace Servicios_Reservados_2
 
             protected void tipoSandwich()
             {
+                Debug.Write("BUUU:"+ entidadConsultada.Pan);
                 if(entidadConsultada.Pan == "Pan Blanco")
                 {
                     radioPanBlanco.Checked = true;

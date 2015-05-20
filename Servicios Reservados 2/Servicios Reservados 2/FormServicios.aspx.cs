@@ -214,8 +214,7 @@ namespace Servicios_Reservados_2
          */
         protected void seleccionarServicio(object sender, EventArgs e)
         {
-
-            if (idServ[GridServicios.SelectedIndex].Contains("S"))
+            if (idServ[GridServicios.SelectedIndex].Contains("S")) 
             {
                 controladora.seleccionarServicio(ids[0], idServ[GridServicios.SelectedIndex]);
             }
@@ -264,14 +263,14 @@ namespace Servicios_Reservados_2
        */
         protected void clickConsultarServicio(object sender, EventArgs e) 
         {
-            if (idServ[GridServicios.SelectedIndex].Contains("C"))
+            if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
-                 FormComidaCampo.modo = 4;
-                Response.Redirect("FormComidaCampo");
+                modo = 0;
+                Response.Redirect("FormComidaExtra"); ;
             }
             else {
-                modo = 0;
-                Response.Redirect("FormComidaExtra");
+                FormComidaCampo.modo = 4;
+                Response.Redirect("FormComidaCampo");
             }
           
 
