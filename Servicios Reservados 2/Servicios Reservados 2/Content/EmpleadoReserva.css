@@ -1,0 +1,18 @@
+﻿h3{
+    font-size: 1.15em;
+    padding-bottom:3px;
+    Width: 75%;
+    border-bottom: 1px solid #7BC143;
+    color:#7BC143;
+    margin-left:24px;
+}
+h4{
+    font-size: 1.11em;
+    padding-bottom:3px;
+    Width: 50%;
+    border-bottom: 1px solid #7BC143;
+    color:#7BC143;
+}
+section.comidasReservadas>section.panelDeBotones>input.btn:nth-child(2n){
+    width:140px;
+}

@@ -21,31 +21,32 @@ namespace Servicios_Reservados_2
             controlEmpleado.seleccionarEmpleado(idEmpleado);
             return controlEmpleado.getEmpleadoSeleccionado();
         }
-        public void agregar(String idEmpleado, List<DateTime> fechasReserva, bool[] turnos)
+        public void agregar(String idEmpleado, List<DateTime> fechasReserva, bool[] turnos, bool pagado, String notas)
         {
-            EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado( idEmpleado,  fechasReserva, turnos, false);
+            EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado( idEmpleado,  fechasReserva, turnos,   pagado,  notas);
             controladoraBD.agregar(nuevo);
         }
 
-        internal void modificar(EntidadComidaEmpleado seleccionada, string idEmpleado, List<DateTime> fechasReserva, bool[] turnos)
+        internal void modificar(EntidadComidaEmpleado seleccionada, string idEmpleado, List<DateTime> fechasReserva, bool[] turnos, bool pagado, String notas)
         {
-            EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado(idEmpleado, fechasReserva, turnos,false);
+            EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado(idEmpleado, fechasReserva, turnos, pagado, notas);
             controladoraBD.modificar(seleccionada, nuevo);
         }
 
-        internal EntidadComidaEmpleado consultar(string p, DateTime fechaElegida)
+        internal EntidadComidaEmpleado consultar(string id, System.DateTime fechaElegida)
         {
             List<DateTime> list = new List<DateTime>();
             list.Add(fechaElegida);
             bool [] turnos = new bool[3];
-            DataTable dt= controladoraBD.getTurnosCancelado(p, fechaElegida);
+            DataTable dt= controladoraBD.getInformacionReservacionEmpleado(id, fechaElegida);
 
             turnos[0]= (dt.Rows[0][0].ToString().Equals("R")||dt.Rows[0][0].ToString().Equals("C"));
             turnos[1]= (dt.Rows[0][1].ToString().Equals("R")||dt.Rows[0][1].ToString().Equals("C"));
             turnos[2]= (dt.Rows[0][2].ToString().Equals("R")||dt.Rows[0][2].ToString().Equals("C"));
 
             bool pagado = (dt.Rows[0][3].ToString().Equals("T"));
-            EntidadComidaEmpleado consultada= new EntidadComidaEmpleado(p, list,turnos, pagado);
+            String notas =dt.Rows[0][4].ToString();
+            EntidadComidaEmpleado consultada= new EntidadComidaEmpleado(id, list,turnos, pagado, notas);
             return consultada;
         }
     }

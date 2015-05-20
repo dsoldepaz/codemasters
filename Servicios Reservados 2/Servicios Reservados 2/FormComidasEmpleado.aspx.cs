@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Servicios_Reservados_2;
-using System.Collections;
 
 namespace Servicios_Reservados_2
 {
@@ -16,21 +15,17 @@ namespace Servicios_Reservados_2
         private EntidadEmpleado empleadoSeleccionado;
         private EntidadComidaEmpleado seleccionada;
         private int modo = 0;//0= Solo el empleado consultado; 1-Agregar Reservacion; 2-Modificar reservacion;
-        private ControladoraComidaEmpleado controladora = new ControladoraComidaEmpleado();
         private DateTime fechaElegida;
-
+        private ControladoraComidaEmpleado controladora = new ControladoraComidaEmpleado();
+ 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArrayList listaRoles = (ArrayList)Session["Roles"];
-            string userid = (string)Session["username"];
+            string userid = (string)Session["UsuarioID"];
             if (!IsPostBack)
             {
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
-                } if (!listaRoles.Contains("admin") && !listaRoles.Contains("recepcion"))
-                {
-                    Response.Redirect("ErrorPermiso.aspx");
                 }
                 iniciarEmpleado();
             }
@@ -72,8 +67,7 @@ namespace Servicios_Reservados_2
         {
             ContenedorManejoDeHorario.Visible = true;
             modo = 1;
-
-            //String idEmpleado, List<DateTime> fechasReserva, bool[] turnos
+           
         }
         protected void clickModificar(object sender, EventArgs e)
         {
@@ -117,7 +111,7 @@ namespace Servicios_Reservados_2
             turnos[0] = this.checkboxDesayuno.Checked;
             turnos[1] = this.checkboxAlmuerzo.Checked;
             turnos[2] = this.checkboxCena.Checked;
-            controladora.agregar(empleadoSeleccionado.Id, list, turnos);
+            controladora.agregar(empleadoSeleccionado.Id, list, turnos, tipodePago.SelectedIndex==1,notas.Value);
         }
         protected void modificarReservacion()
         {
@@ -125,11 +119,20 @@ namespace Servicios_Reservados_2
             turnos[0] = this.checkboxDesayuno.Checked;
             turnos[1] = this.checkboxAlmuerzo.Checked;
             turnos[2] = this.checkboxCena.Checked;
-            controladora.modificar(seleccionada, empleadoSeleccionado.Id, list, turnos);
+            controladora.modificar(seleccionada, empleadoSeleccionado.Id, list, turnos, tipodePago.SelectedIndex == 1, notas.Value);
         }
-       protected void consultar(){
+        protected void consultar(){
             iniciarEmpleado();
-            //controladora.consultar(empleadoSeleccionado.Id, fechaElegida);
+            seleccionada=controladora.consultar(empleadoSeleccionado.Id, fechaElegida);
+            list = seleccionada.Fechas;
+            notas.Value = seleccionada.Notas;
+            bool[] turnos = seleccionada.Turnos;
+            this.checkboxDesayuno.Checked= turnos[0];
+            this.checkboxAlmuerzo.Checked = turnos[1];
+            this.checkboxCena.Checked = turnos[2];
+            tipodePago.SelectedIndex = (seleccionada.Pagado) ? 1 : 2;
+
+
         }
         private void iniciarEmpleado()
         {
