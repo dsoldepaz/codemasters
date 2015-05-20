@@ -28,5 +28,12 @@
         </p>
 
     </div>
+    <div class="well bs-component" ID="Admin" runat="server">
+        <h2>Administrador del Sistema:</h2>
+        <p>
+            <a href="FormRegistro.aspx">Registrar usuarios</a>
+        </p>
+
+    </div>
 
 </asp:Content>
