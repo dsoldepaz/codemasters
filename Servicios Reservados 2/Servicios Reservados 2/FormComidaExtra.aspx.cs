@@ -7,13 +7,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Diagnostics;
+using System.Collections;
 
 namespace Servicios_Reservados_2
 {
     public partial class FormComidaExtra : System.Web.UI.Page
     {
         static DataTable tipo;//contiene los diferentes tipos de comida extra
-        static EntidadComidaExtra entidadVieja;//entidad consultada
 
         private static ControladoraComidaExtra controladora = new ControladoraComidaExtra();//instancia de la controladora de comida extra
         EntidadComidaExtra entidadConsultada = controladora.servicioSeleccionados();//buscamos el servicio consultado en la controladora
@@ -24,10 +24,18 @@ namespace Servicios_Reservados_2
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ArrayList listaRoles = (ArrayList)Session["Roles"];
+            string userid = (string)Session["username"];
             if (!IsPostBack)
             {
+                if (userid == "" || userid == null)
+                {
+                    Response.Redirect("~/Ingresar.aspx");
+                } if (!listaRoles.Contains("admin") && !listaRoles.Contains("recepcion"))
+                {
+                    Response.Redirect("ErrorPermiso.aspx");
+                }
                 cargarDatos();
-                //consultarServicio();
             }
         }
 
@@ -103,7 +111,7 @@ namespace Servicios_Reservados_2
 
             if (fechaSelect < fechaInicio || fechaSelect > fechaFin)
             {
-                mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de lás fechas reservadas-");
+                mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
             }
             else
             {
@@ -161,6 +169,8 @@ namespace Servicios_Reservados_2
 
                 String[] error = controladora.modificarServicioExtra(nuevoServicio, controladora.servicioSeleccionados());// se le pide a la controladora que lo inserte
                 mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+
+                Response.Redirect("FormServicios");
             }
             return res;
         }
@@ -193,7 +203,6 @@ namespace Servicios_Reservados_2
             {
                 case 1://insertar
                     agregarServicioExtra();
-                    Response.Redirect("FormServicios");
                     break;
                 case 2://modificar
                     modificarServicioExtra();

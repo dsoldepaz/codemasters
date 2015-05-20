@@ -6,7 +6,7 @@
     <h1>Comidas de Empleado</h1>
     <fieldset class="contenedor">
          <h4>Informacion Del Empleado</h4>
-        <ul class ="lista formulario">
+        <ul class ="listaformulario">
             <li  class="itemFormulario">
                 Nombre: <input id="nombreLbl" runat="server"/>
             </li>
@@ -47,12 +47,7 @@
                     <input type="button" value="Aceptar" onserverclick="clickAceptar"/>
                  </section>
             
-                 <h4 id="labelTabla">Comidas reservadas para </h4>
-                 <asp:GridView ID="GridViewReservacionesEmpleado" runat="server" AllowPaging="true" AllowSorting="true" AutoGenerateSelectButton="True" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" OnSelectedIndexChanged="seleccionarReservacion" PageSize="20">
-                     <AlternatingRowStyle BorderStyle="None" />
-                     <HeaderStyle Font-Size="1.3em" />
-                 <SelectedRowStyle BackColor="#7BC143" BorderStyle="Dotted" BorderWidth="1px" Font-Bold="true" ForeColor="Black" />
-                 </asp:GridView>
+
 
             </ContentTemplate>
    

@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Diagnostics;
+using System.Collections;
 namespace Servicios_Reservados_2
 {
     public partial class FormReservaciones : System.Web.UI.Page
@@ -15,16 +16,23 @@ namespace Servicios_Reservados_2
         public static String[] ids;
         DataTable tablaP;
         private static Boolean seConsulto = false;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (!IsPostBack)
-            {
-                cargarDatos();  
-
-
-
-            }
+                string userid = (string)Session["username"];
+                ArrayList listaRoles = (ArrayList)Session["Roles"];
+                if (!IsPostBack)
+                {
+                    if (userid == "" || userid == null)
+                    {
+                        Response.Redirect("~/Ingresar.aspx");
+                    }
+                    if (!listaRoles.Contains("admin") && !listaRoles.Contains("recepcion"))
+                    {
+                        Response.Redirect("ErrorPermiso.aspx");
+                    }
+                    cargarDatos();
+                }
             
 
             // ponerModo();

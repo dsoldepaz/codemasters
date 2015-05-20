@@ -167,6 +167,7 @@
     <Content Include="Content\ComidaEmpleado.css" />
     <Content Include="Content\formEmpleado.css" />
     <Content Include="Content\Reservacion.css" />
+    <Content Include="ErrorPermiso.aspx" />
     <Content Include="faviconOET.ico" />
     <Content Include="FormComidasEmpleado.aspx" />
     <Content Include="FormEmpleadoReserva.aspx" />
@@ -350,6 +351,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\ComidaEmpleado\AdaptadorComidaEmpleado.cs" />
     <Compile Include="App_Data\ComidaCampo\AdaptadorComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\ControladoraBDComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\ControladoraComidaCampo.cs" />
@@ -418,6 +420,13 @@
     <Compile Include="App_Data\Empleados\EntidadEmpleado.cs" />
     <Compile Include="App_Data\ComidaEmpleado\EntidadComidaEmpleado.cs" />
     <Compile Include="App_Data\ComidaEmpleado\ControladoraBDComidaEmpleado.cs" />
+    <Compile Include="ErrorPermiso.aspx.cs">
+      <DependentUpon>ErrorPermiso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPermiso.aspx.designer.cs">
+      <DependentUpon>ErrorPermiso.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FormComidasEmpleado.aspx.cs">
       <DependentUpon>FormComidasEmpleado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

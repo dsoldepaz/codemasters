@@ -17,6 +17,7 @@ namespace Servicios_Reservados_2.Servicios
         public static ControladoraReservaciones controladoraReserv;
         public static ControladoraComidaExtra controladoraCE;
         public static ControladoraComidaCampo controladoraComidaCampo;
+        private static String[] extra;
 
 
         public ControladoraServicios()
@@ -95,6 +96,8 @@ namespace Servicios_Reservados_2.Servicios
         internal void seleccionarComidaCampo(String id, String idServ)
         {
             DataTable comidaCampo = controladora.seleccionarComidaCampo(id, idServ);
+            DataTable adicional = controladora.seleccionarAdicional(idServ);
+            extra = new String[adicional.Rows.Count];
 
             Object[] nuevoComidaC = new Object[12];
 
@@ -110,8 +113,22 @@ namespace Servicios_Reservados_2.Servicios
             nuevoComidaC[9] = comidaCampo.Rows[0][9];
             nuevoComidaC[10] = comidaCampo.Rows[0][10];
             nuevoComidaC[11] = comidaCampo.Rows[0][11];
+           
+             Object[] nuevoAdicional = new Object[8];
+
+             if (adicional.Rows.Count > 0)
+             {
+                 foreach (DataRow fila in adicional.Rows)
+                 {
+
+                     nuevoAdicional[0] = adicional.Rows[0][1];
+                     
+                 }
+             }
+
 
            controladoraComidaCampo.guardarComidaSeleccionada(nuevoComidaC);
+           controladoraComidaCampo.guardarAdicional(nuevoAdicional);
         }
     }
 }

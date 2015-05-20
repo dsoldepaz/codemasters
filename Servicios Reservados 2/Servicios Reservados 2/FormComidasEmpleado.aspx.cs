@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Servicios_Reservados_2;
+using System.Collections;
 
 namespace Servicios_Reservados_2
 {
@@ -15,11 +16,22 @@ namespace Servicios_Reservados_2
         private EntidadEmpleado empleadoSeleccionado;
         private EntidadComidaEmpleado seleccionada;
         private int modo = 0;//0= Solo el empleado consultado; 1-Agregar Reservacion; 2-Modificar reservacion;
-        private ContorladoraComidaEmpleado controladora = new ContorladoraComidaEmpleado();
+        private ControladoraComidaEmpleado controladora = new ControladoraComidaEmpleado();
+        private DateTime fechaElegida;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            ArrayList listaRoles = (ArrayList)Session["Roles"];
+            string userid = (string)Session["username"];
             if (!IsPostBack)
             {
+                if (userid == "" || userid == null)
+                {
+                    Response.Redirect("~/Ingresar.aspx");
+                } if (!listaRoles.Contains("admin") && !listaRoles.Contains("recepcion"))
+                {
+                    Response.Redirect("ErrorPermiso.aspx");
+                }
                 iniciarEmpleado();
             }
         }
@@ -50,19 +62,7 @@ namespace Servicios_Reservados_2
         {
             fechaDeEntradaCalendario.Visible = !(fechaDeEntradaCalendario.Visible);
         }
-        /*
-         *  Requiere: Controladores de eventos de la interfaz.
-         *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
-         *  Retrona:  N/A
-         */
-        protected void GridViewReservaciones_PageIndexChanging(Object sender, GridViewPageEventArgs e)
-        {
 
-            GridViewReservacionesEmpleado.PageIndex = e.NewPageIndex;
-            GridViewReservacionesEmpleado.DataSource = Session["tablaa"];
-            GridViewReservacionesEmpleado.DataBind();
-
-        }
 
         protected void seleccionarReservacion(object sender, EventArgs e)
         {
@@ -80,7 +80,7 @@ namespace Servicios_Reservados_2
             ContenedorManejoDeHorario.Visible = true;
             fechaDeEntradaCalendario.Enabled = false;//Solo se puede modificar una fecha a la vez
             //poner fecha seleccionada
-            //fechaDeEntradaCalendario.SelectedDate = (GridViewReservacionesEmpleado.SelectedRow.ToString();
+            fechaDeEntradaCalendario.SelectedDate = fechaElegida;
             modo = 2;
         }
         protected void clickCancelar(object sender, EventArgs e)
@@ -126,6 +126,10 @@ namespace Servicios_Reservados_2
             turnos[1] = this.checkboxAlmuerzo.Checked;
             turnos[2] = this.checkboxCena.Checked;
             controladora.modificar(seleccionada, empleadoSeleccionado.Id, list, turnos);
+        }
+       protected void consultar(){
+            iniciarEmpleado();
+            //controladora.consultar(empleadoSeleccionado.Id, fechaElegida);
         }
         private void iniciarEmpleado()
         {
