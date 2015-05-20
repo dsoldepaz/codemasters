@@ -25,7 +25,7 @@ namespace Servicios_Reservados_2
 
         public void guardarComidaSeleccionada(Object[] dato)
         {
-            comidaCampo = new EntidadComidaCampo(dato);
+            //comidaCampo = new EntidadComidaCampo(dato);
         }
 
         public void guardarAdicional(Object[] datos)
