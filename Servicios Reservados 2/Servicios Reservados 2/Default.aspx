@@ -25,6 +25,11 @@
         <h2>Encargado de Cocina:</h2>
         <p>
             <a href="FormServirPlatos.aspx">Servir platos</a>
+            
+        </p>
+
+        <p>
+            <a href="FormReportesComedor.aspx">Reportes</a>
         </p>
 
     </div>
