@@ -10,6 +10,11 @@ namespace Servicios_Reservados_2
     public class ControladoraBDComidaEmpleado
     {
         private AdaptadorComidaEmpleado adaptador = new AdaptadorComidaEmpleado();
+       /*
+        * Requiere: Una Entidad Comida Empleado con los datos a insertar
+        * Efectua: Crea la insercion a traves de los datos proporcionados en la entidad encapsulada e inserta los datos a traves del adaptador.
+        * Retorna: Un arreglo de hileras con el mensaje de confirmacion u error de la consulta.
+        */
         public String[] agregar(EntidadComidaEmpleado nuevo)
         {
             String [] resultado = new String[3];
@@ -36,15 +41,21 @@ namespace Servicios_Reservados_2
             }
             return resultado;
         }
-  
-        internal void modificar(EntidadComidaEmpleado seleccionada, EntidadComidaEmpleado nuevo)
+        /*
+         * Requiere: Una entidad de comida Empleado con los datos antiguos y una Entidad de comida empleado con los datos encapsulados.
+         * Efectua : Crea una consulta de actualizacion de los datos y lo actualiza en la base de datos.
+         * Retorna : Retorna: Un arreglo de hileras con el mensaje de confirmacion u error de la consulta.
+         */
+        internal String[] modificar(EntidadComidaEmpleado seleccionada, EntidadComidaEmpleado nuevo)
         {
-            throw new NotImplementedException();
+            String[] resultado = new String[3];
+
+            return resultado;
         }
         /*
-         * 
-         * 
-         * Retorna: un data table con los estados de la  reservacion de los turnos y si ya fue pagado.
+         * Requiere: una hilera con el identificador del empleado y una fecha con la fecha que se quiere consultar.
+         * Efectua : Crea una consulta para consultar los datos individuales de una reservacion de comida de empleado. 
+         * Retorna : un data table con los estados de la  reservacion de los turnos y si ya fue pagado.
         */
         internal DataTable getInformacionReservacionEmpleado(string id, DateTime fechaElegida)
         {
