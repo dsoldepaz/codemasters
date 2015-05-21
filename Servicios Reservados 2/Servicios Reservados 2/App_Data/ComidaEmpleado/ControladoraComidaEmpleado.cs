@@ -49,5 +49,10 @@ namespace Servicios_Reservados_2
             EntidadComidaEmpleado consultada= new EntidadComidaEmpleado(id, list,turnos, pagado, notas);
             return consultada;
         }
+
+        internal void eliminar(EntidadComidaEmpleado entidadComidaEmpleado)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
