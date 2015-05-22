@@ -102,12 +102,15 @@ namespace Servicios_Reservados_2
         }
         protected void checkO1click(object sender, EventArgs e)
         {
-            // if (checkboxO1.Checked)
-            //  {
-            opcion2Fieldset.Visible = !opcion2Fieldset.Visible;
-            Debug.WriteLine("picha vivir");
-            // }
-
+             if (checkboxO1.Checked)
+             {
+                 if (CheckboxO2.Checked)
+                 {
+                     CheckboxO2.Checked = false;
+                 }
+                
+             }
+             Debug.WriteLine("picha vivir");
 
         }
 
