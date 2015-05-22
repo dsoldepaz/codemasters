@@ -98,7 +98,7 @@ namespace Servicios_Reservados_2.Servicios
 
         internal DataTable seleccionarAdicional(String idComidaCampo)
         {
-            String consultaSQL = "select * from servicios_reservados.adicional WHERE idcomidacampo = '" + idComidaCampo + "'";
+            String consultaSQL = "select nombre from servicios_reservados.adicional WHERE idcomidacampo = '" + idComidaCampo + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
@@ -184,7 +184,12 @@ namespace Servicios_Reservados_2.Servicios
             }
             return respuesta;
         }
-
+        internal DataTable obtenerPaquete(string idReservacion)
+        {
+            String consultaSQL = "select vr.nombre, ri.pax from reservas.reservacionitem ri, reservas.v_reservable vr where ri.reservacion ='" + idReservacion + "' and ri.reservable= vr.id and vr.categoria='ANURA7249245184.5851916019'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
 
     }
 }

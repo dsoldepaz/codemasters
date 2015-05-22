@@ -81,7 +81,7 @@ namespace Servicios_Reservados_2
             {
 
                 Object[] datos = new Object[7];
-               // DataTable paquete = controladora.solicitarPaquete(controladora.idSelected());// se consultan todos
+                DataTable paquete = controladora.solicitarPaquete(controladora.idSelected());// se consultan todos
                 DataTable servicios = controladora.solicitarServicios(controladora.idSelected());// se consultan todos
                 DataTable comidaCampo = controladora.solicitarComidaCampo(controladora.idSelected());// se consultan todos   
                 
@@ -139,13 +139,31 @@ namespace Servicios_Reservados_2
                        
                         idServ[j] = fila[0].ToString();
                         ids[j] = fila[1].ToString();
-                        datos[0] = "Comida Campo";
+                       // datos[0] = "Comida Campo";
                         if (int.Parse(fila[4].ToString()) == 1)
                         {
+                            datos[0] = "Incluido en Paquete";
+                            datos[1] = "Desayuno";
+                            
+                        }
+                        if (int.Parse(fila[4].ToString()) == 2)
+                        {
+                            datos[0] = "Incluido en Paquete";
+                            datos[1] = "Almuerzo";
+                        }
+                        if (int.Parse(fila[4].ToString()) == 3)
+                        {
+                            datos[0] = "Incluido en Paquete";
+                            datos[1] = "Cena";
+                        }
+                        if (int.Parse(fila[4].ToString()) == 4)
+                        {
+                            datos[0] = "Comida Campo";
                             datos[1] = "Sandwich";
                         }
-                        else
+                        if (int.Parse(fila[4].ToString()) == 5)
                         {
+                            datos[0] = "Comida Campo";
                             datos[1] = "Gallo Pinto";
                         }
                         datos[2] = fila[5].ToString();
@@ -313,7 +331,7 @@ namespace Servicios_Reservados_2
         }
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
-           
+            Response.Redirect("FormTiquete");
         }
 
     }

@@ -49,12 +49,16 @@ namespace Servicios_Reservados_2
             switch (e.CommandName)
             {
                 case "Select":
-                    //GridViewRow filaSeleccionada = this.gridViewProyectos.Rows[Convert.ToInt32(e.CommandArgument)];// se obtiene el numero de fila seleccionada
                     id = (ids[Convert.ToInt32(e.CommandArgument) + (this.GridViewEmpleados.PageIndex * 20)]);//se obtiene la cedula a consultar
                     Debug.WriteLine(id);
                     break;
                     
             }
+            try
+            {
+                controladora.seleccionarEmpleado(id);
+            }
+            catch (Exception error) { }
         }
         /*
          *  Requiere: Controladores de eventos de la interfaz.
@@ -146,10 +150,7 @@ namespace Servicios_Reservados_2
         {
             if (id!= "null")
             {
-                FormComidaCampo.modo = 1;
-                FormComidaCampo.idEmpleado = id;
-                FormComidaCampo.tipoComidaCampo = 1;
-                Response.Redirect("FormComidaCampo");
+                Response.Redirect("FormEmpleadoReserva");
             }
             
                
