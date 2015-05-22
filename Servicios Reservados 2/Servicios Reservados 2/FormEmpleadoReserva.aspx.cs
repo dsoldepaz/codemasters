@@ -11,7 +11,7 @@ namespace Servicios_Reservados_2
 {
     public partial class FormEmpleadoReserva : System.Web.UI.Page
     {
-        private String idEmpleado = "";
+        internal String idEmpleado = "";
         private ControladoraEmpleadoReserva controladora = new ControladoraEmpleadoReserva();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -94,10 +94,91 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
-
+        /*
+         * Requiere:Argumentos de eventos de la GUI
+         * Efectua :Revisa que tipo de comida es y redirecciona a la pagina correspondiente en modo de consulta
+         * Retorna :N/A
+         */
         protected void btnVer_Click(object sender, EventArgs e)
         {
+            GridViewRow row = GridComidasReservadas.SelectedRow;
+            String tipo = row.Cells[2].Text;
+            if (tipo.Contains("Comida regular"))
+            {
+                //llama comida empleado en modo de consulta
 
+            }
+            else
+            {
+                //llama comida campo en modo de consulta
+            }
+        }
+        /*
+         * Requiere:Argumentos de eventos de la GUI
+         * Efectua :Revisa que tipo de comida es y redirecciona a la pagina correspondiente en modo de agregar
+         * Retorna :N/A
+         */
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridComidasReservadas.SelectedRow;
+            String tipo = row.Cells[2].Text;
+            if (tipo.Contains("Comida regular"))
+            {
+                //llama comida empleado en modo de agregar
+
+            }
+            else
+            {
+                //llama comida campo en modo de agregar
+            }
+        }
+        /*
+         * Requiere:Argumentos de eventos de la GUI
+         * Efectua :Revisa que tipo de comida es y redirecciona a la pagina correspondiente en modo de editar
+         * Retorna :N/A
+         */
+        protected void btnEditar_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridComidasReservadas.SelectedRow;
+            String tipo = row.Cells[2].Text;
+            if (tipo.Contains("Comida regular"))
+            {
+                //llama comida empleado en modo de Editar
+
+            }
+            else
+            {
+                //llama comida campo en modo de Editar
+            }
+        }
+        /*
+         * Requiere:Argumentos de eventos de la GUI
+         * Efectua :Revisa que tipo de comida es y redirecciona a la pagina correspondiente en modo de Cancelar
+         * Retorna :N/A
+         */
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridComidasReservadas.SelectedRow;
+            String tipo = row.Cells[2].Text;
+            if (tipo.Contains("Comida regular"))
+            {
+                //llama comida empleado en modo de cancelar
+
+            }
+            else
+            {
+                //llama comida campo en modo de cancelar
+            }
+        }
+        /*
+         * Requiere:Argumentos de eventos de la GUI
+         * Efectua :Pone visible el panel de botones para poder trabajar sobre la fila selecconada.
+         * Retorna :N/A
+         */
+
+        protected void seleccionarComida(object sender, EventArgs e)
+        {
+            seccionBotones.Visible = true;
         }
     }
 }

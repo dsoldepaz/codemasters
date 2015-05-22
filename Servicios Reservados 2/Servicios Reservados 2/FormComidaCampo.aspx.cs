@@ -13,7 +13,6 @@ namespace Servicios_Reservados_2
     {
         private static ControladoraComidaCampo controladora = new ControladoraComidaCampo();
         EntidadComidaCampo entidadConsultada = controladora.entidadSeleccionada();
-        Object[] adicionales = controladora.adicionalSeleccionado();
 
         public static int modo;
         public static int tipoComidaCampo;
@@ -96,6 +95,9 @@ namespace Servicios_Reservados_2
                 chConfites.Disabled = true;
                 radioAgua.Disabled = true;
                 radioJugo.Disabled = true;
+                CheckboxBebida.Disabled = true;
+                CheckboxO2.Disabled = true;
+                checkboxO1.Disabled = true;
             }
         }
         protected void checkO1click(object sender, EventArgs e)
@@ -310,20 +312,46 @@ namespace Servicios_Reservados_2
             txtPax.Value = entidadConsultada.Pax.ToString();
             if (entidadConsultada.Opcion == 1)
             {
+                CheckboxCambio.Checked = true;
+                radioDesayuno.Checked= true;
+            }
+            if (entidadConsultada.Opcion == 2)
+            {
+                CheckboxCambio.Checked = true;
+                radioAlmuerzo.Checked = true;
+            }
+            if (entidadConsultada.Opcion == 3)
+            {
+                CheckboxCambio.Checked = true;
+                radioCena.Checked = true;
+            }
+            if (entidadConsultada.Opcion == 4)
+            {
                 checkboxO1.Checked = true;
                 tipoSandwich();
             }
-            else if (entidadConsultada.Opcion == 2)
+            else if (entidadConsultada.Opcion == 5)
             {
                 CheckboxO2.Checked = true;
                 chGalloPinto.Checked=true;
             }
-            if(entidadConsultada.Bebida=="Jugo"){
-                CheckboxBebida.Checked = true;
-                radioJugo.Checked=true;
-            }else if(entidadConsultada.Bebida=="Agua"){
-                CheckboxBebida.Checked = true;
-                radioAgua.Checked=true;
+
+            if (entidadConsultada.Adicionales != null)
+            {
+                consultarAdicionales();
+            }
+            if (entidadConsultada.Bebida != null)
+            {
+                if (entidadConsultada.Bebida == "Jugo")
+                {
+                    CheckboxBebida.Checked = true;
+                    radioJugo.Checked = true;
+                }
+                else if (entidadConsultada.Bebida == "Agua")
+                {
+                    CheckboxBebida.Checked = true;
+                    radioAgua.Checked = true;
+                }
             }
 
         }
@@ -350,6 +378,34 @@ namespace Servicios_Reservados_2
                     radioOmelette.Checked=true;
                 }else if(entidadConsultada.Relleno == "Ensalda de huevo"){
                     radioEnsaladaHuevo.Checked=true;
+                }
+            }
+
+            protected void consultarAdicionales() 
+            {
+                if (entidadConsultada.Adicionales.Contains("Ensalada")){
+                    chEnsalada.Checked = true;
+                }
+                if (entidadConsultada.Adicionales.Contains("Mayonesa")) {
+                    chMayonesa.Checked = true;
+                }
+                if (entidadConsultada.Adicionales.Contains("Confites")) {
+                    chConfites.Checked = true;
+                }
+                if (entidadConsultada.Adicionales.Contains("Frutas")) {
+                    chFrutas.Checked = true;
+                }
+                if (entidadConsultada.Adicionales.Contains("Salsa de tomate")) {
+                    chSalsaTomate.Checked = true;
+                }
+                if (entidadConsultada.Adicionales.Contains("Huevos duros")) {
+                    chHuevoDuro.Checked = true;
+                }
+                if (entidadConsultada.Adicionales.Contains("Galletas")) {
+                    chGalletas.Checked = true;
+                }
+                if (entidadConsultada.Adicionales.Contains("Platanos")) {
+                    chPlatanos.Checked = true;
                 }
             }
             
