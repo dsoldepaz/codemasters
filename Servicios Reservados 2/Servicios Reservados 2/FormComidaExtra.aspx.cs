@@ -176,23 +176,6 @@ namespace Servicios_Reservados_2
         }
 
         /*
-         * Efecto: solicita a la controladora que elimine el servicio con los ids consultados.
-         * Requiere: que se consulte previamente una comida extra.
-         * Modifica: 
-        */
-        protected Boolean eliminarServicioExtra()
-        {
-            //sacamos de la entidad consultada los ids.
-            String idReservacion = entidadConsultada.IdReservacion;
-            String idComidaExtra = entidadConsultada.IdServiciosExtras;
-
-            Boolean res = true;
-            String[] error = controladora.eliminarServicioExtra(idReservacion, idComidaExtra);// se le pide a la controladora que lo inserte
-            mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
-            return res;
-        }
-
-        /*
          * Efecto: capta el evento al presionar el botón aceptar y realiza la operación de acuerdo al modo en el que se encuentra el sistema.
          * Requiere: presionar el botón.
          * Modifica: 
@@ -206,9 +189,6 @@ namespace Servicios_Reservados_2
                     break;
                 case 2://modificar
                     modificarServicioExtra();
-                    break;
-                case 3://cancelar
-                    eliminarServicioExtra();
                     break;
             }
         }
@@ -250,11 +230,7 @@ namespace Servicios_Reservados_2
                 case 2:
                     consultarServicio();
                     break;
-                case 3:
-                    eliminarServicioExtra();
-                    Response.Redirect("FormServicios");
-                    break;
-            }
+            }   
         }
 
         /*

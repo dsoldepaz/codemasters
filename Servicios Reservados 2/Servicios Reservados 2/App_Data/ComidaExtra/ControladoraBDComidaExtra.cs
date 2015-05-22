@@ -124,47 +124,6 @@ namespace Servicios_Reservados_2
         }
 
         /*
-        * Efecto: elimina los datos seleccionados de la tabla de servicios_especial
-        * Requiere: el id de la reservacion seleccionada y el id de la comida extra seleccionado.
-        * Modifica: table de servicio_especial
-       */
-        public String[] eliminarServicioExtra(String idReservacion, String idComidaExtra)
-        {
-            String[] respuesta = new String[3];
-            try
-            {
-                String consultaSQL = "update servicios_reservados.servicio_especial set consumido = 'Cancelado'  where idReservacion = '" + idReservacion + "' and idserviciosextras = '" + idComidaExtra + "'";
-
-                adaptador.insertar(consultaSQL);
-
-                respuesta[0] = "success";
-                respuesta[1] = "Exito. ";
-                respuesta[2] = "El usuario se ha insertado exitosamente";
-            }
-            catch (SqlException e)
-            {
-                int r = e.Number;
-
-                if (r == 2627)
-                {
-
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "Informacion ingresada ya existe";
-                }
-                else
-                {
-
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "No se pudo agregar el servicio extra";
-                }
-
-            }
-            return respuesta;
-        }
-
-        /*
          * Efecto: solicita las fechas de inicio y fin de una reservación específica.
          * Requiere: entrada del id.
          * Modifica: datatable que realiza la consulta. 

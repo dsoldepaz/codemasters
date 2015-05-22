@@ -33,5 +33,18 @@ namespace Servicios_Reservados_2
             adaptador.Close();
             return dt;
         }
+
+        /*
+       * Insertar se utiliza para enviar una string SQL con una inserción y el adaptador se encarga de realizar la inserción directamente en la base de datos.  
+       */
+        internal DataTable insertar(String consultaSQL)
+        {
+            dt = new DataTable();
+            adaptador.Open();
+            OleDbCommand od = new OleDbCommand(consultaSQL, adaptador);
+            od.ExecuteNonQuery();
+            adaptador.Close();
+            return dt;
+        }
     }
 }
