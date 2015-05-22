@@ -176,6 +176,7 @@
     <Content Include="FormRegistro.aspx" />
     <Content Include="FormReportesComedor.aspx" />
     <Content Include="FormServirPlatos.aspx" />
+    <Content Include="FormTiquete.aspx" />
     <Content Include="Images\help.png" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\comedor.css" />
@@ -504,6 +505,13 @@
     </Compile>
     <Compile Include="FormServicios.aspx.designer.cs">
       <DependentUpon>FormServicios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormTiquete.aspx.cs">
+      <DependentUpon>FormTiquete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormTiquete.aspx.designer.cs">
+      <DependentUpon>FormTiquete.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
