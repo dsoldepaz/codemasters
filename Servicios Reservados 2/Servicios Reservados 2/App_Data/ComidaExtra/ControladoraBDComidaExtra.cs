@@ -10,12 +10,12 @@ namespace Servicios_Reservados_2
 {
     public class ControladoraBDComidaExtra
     {
-        private AdaptadorComidaExtra adaptador;
+        private AdaptadorBD adaptador;
         DataTable dt;
 
         public ControladoraBDComidaExtra()
         {
-            adaptador = new AdaptadorComidaExtra();
+            adaptador = new AdaptadorBD();
             dt = new DataTable();
         }
 
