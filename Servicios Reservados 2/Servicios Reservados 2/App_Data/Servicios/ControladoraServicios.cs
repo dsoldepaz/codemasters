@@ -129,7 +129,6 @@ namespace Servicios_Reservados_2.Servicios
 
 
            controladoraComidaCampo.guardarComidaSeleccionada(nuevoComidaC, adicionales);
-           //controladoraComidaCampo.guardarAdicional(nuevoAdicional);
         }
 
         internal DataTable solicitarPaquete(string p)

@@ -23,9 +23,9 @@ namespace Servicios_Reservados_2
            
         }
 
-        public void guardarComidaSeleccionada(Object[] dato)
+        public void guardarComidaSeleccionada(Object[] dato, List<String> lista)
         {
-            //comidaCampo = new EntidadComidaCampo(dato);
+            comidaCampo = new EntidadComidaCampo(dato,lista);
         }
 
         public DataTable getComidaEmpleado(String id) {
