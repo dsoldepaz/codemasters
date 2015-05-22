@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,31 @@ namespace Servicios_Reservados_2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            ArrayList listaRoles = (ArrayList)Session["Roles"];
+            string userid = (string)Session["username"];
+            if (!IsPostBack)
+            {
+                if (userid == "" || userid == null)
+                {
+                    Response.Redirect("~/Ingresar.aspx");
+                }
+                if (!listaRoles.Contains("admin") && !listaRoles.Contains("recepcion"))
+                {
+                    Response.Redirect("ErrorPermiso.aspx");
+                }
+                llenarInfoServicio();
+                llenarGridTiquetes();
+            }
+        }
 
+        private void llenarGridTiquetes()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void llenarInfoServicio()
+        {
+            throw new NotImplementedException();
         }
         protected void clickAgregar(object sender, EventArgs e)
         {
