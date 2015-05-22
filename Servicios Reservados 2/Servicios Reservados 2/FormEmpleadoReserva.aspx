@@ -19,7 +19,7 @@
                     <h4>
                         Comidas desde el ultimo mes del empleado
                     </h4>
-                    <section class="panelDeBotones">
+                    <section id="seccionBotones" visible="false" class="panelDeBotones" runat="server">
                         <input class="btn btn-success" value="Ver" runat="server" onserverclick="btnVer_Click" />
                         <input class="btn btn-success" value="Agregar nueva" runat="server" onserverclick="btnAgregar_Click"/>
                         <input class="btn btn-success" value="Editar" runat="server" onserverclick="btnEditar_Click"/>
