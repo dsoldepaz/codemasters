@@ -9,13 +9,13 @@ using System.Data.OracleClient;
 
 namespace Servicios_Reservados_2
 {
-    public class AdaptadorComidaExtra
+    public class AdaptadorBD
     {
 
         OleDbConnection adaptador;
 
         DataTable dt;
-        public AdaptadorComidaExtra()
+        public AdaptadorBD()
         {
              adaptador = new OleDbConnection("Provider= MSDAORA;Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True");     
         }
