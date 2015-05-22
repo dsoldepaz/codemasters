@@ -28,9 +28,9 @@ namespace Servicios_Reservados_2
             //comidaCampo = new EntidadComidaCampo(dato);
         }
 
-        public void guardarAdicional(Object[] datos)
-        {
-            adicional = datos;
+        public DataTable getComidaEmpleado(String id) {
+            DataTable dt = controladoraBD.getComidaEmpleado(id);
+            return dt;
         }
        public String[] agregarComidaCampo(Object[] dato,List<String> lista)
         {
