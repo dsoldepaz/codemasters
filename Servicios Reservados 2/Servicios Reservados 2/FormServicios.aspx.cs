@@ -17,7 +17,6 @@ namespace Servicios_Reservados_2
         private static DataTable reservacion = new DataTable();
         private static String[] ids;
         private static String[] idServ;
-        private static String[] idPaq;
         public static int modo;
         private static int i;
         public static String tipo;
@@ -26,8 +25,10 @@ namespace Servicios_Reservados_2
         protected void Page_Load(object sender, EventArgs e)
         {
             i = 0;
+            
             ArrayList listaRoles = (ArrayList)Session["Roles"];
             string userid = (string)Session["username"];
+
             if (!IsPostBack)
             {
                 if (userid == "" || userid == null)
@@ -89,13 +90,14 @@ namespace Servicios_Reservados_2
 
                 ids = new String[paquete.Rows.Count + servicios.Rows.Count + comidaCampo.Rows.Count + 1]; //crear el vector para ids en el grid
                 idServ = new String[paquete.Rows.Count + servicios.Rows.Count + servicios.Rows.Count + comidaCampo.Rows.Count + 1];
-                idPaq = new String[paquete.Rows.Count];
 
+                //agrega los servicios incluidos en el paquete
                 if (paquete.Rows.Count > 0)
                 {
                     foreach (DataRow fila in paquete.Rows)
                     {
-                        idPaq[i] = fila[0].ToString();
+                        ids[i] = controladora.idSelected();// guardar el id para su posterior consulta
+                        idServ[i] = "Paquete";
                         datos[0] = "Paquete reservación";
                         datos[1] = fila[1].ToString();
                         datos[2] = "Alimentación incluída en el paquete de reservación";
@@ -107,7 +109,7 @@ namespace Servicios_Reservados_2
                         i++;
                     }
                 }
-
+                //agrega los servicios de comida extra
                 if (servicios.Rows.Count > 0)
                 {
                     foreach (DataRow fila in servicios.Rows)
@@ -126,7 +128,7 @@ namespace Servicios_Reservados_2
                     }
                 }
 
-
+                //agrega los servicios de comida de campo
                 int j = i;
                 if (comidaCampo.Rows.Count > 0)
                 {
@@ -242,7 +244,11 @@ namespace Servicios_Reservados_2
          */
         protected void seleccionarServicio(object sender, EventArgs e)
         {
-            if (idServ[GridServicios.SelectedIndex].Contains("S"))
+            if (idServ[GridServicios.SelectedIndex].Contains("Paquete"))
+            {
+                //do something
+            }
+            else if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
                 controladora.seleccionarServicio(ids[0], idServ[GridServicios.SelectedIndex]);
             }
