@@ -13,7 +13,7 @@ namespace Servicios_Reservados_2.Servicios
     public class ControladoraServicios
     {
         public static EntidadReservaciones servicios;
-        private ControladoraBDServicios controladora;
+        private ControladoraBDServicios controladoraBD;
         public static ControladoraReservaciones controladoraReserv;
         public static ControladoraComidaExtra controladoraCE;
         public static ControladoraComidaCampo controladoraComidaCampo;
@@ -24,16 +24,17 @@ namespace Servicios_Reservados_2.Servicios
 
         public ControladoraServicios()
         {
-            controladora = new ControladoraBDServicios();
+            controladoraBD = new ControladoraBDServicios();
             controladoraReserv = new ControladoraReservaciones();
             controladoraCE = new ControladoraComidaExtra();
             controladoraComidaCampo = new ControladoraComidaCampo();
         }
 
-        public EntidadReservaciones informacionServicio() {
+        public EntidadReservaciones informacionServicio()
+        {
             servicios = controladoraReserv.getReservacionSeleccionada();
-           
-          return servicios;
+
+            return servicios;
 
         }
 
@@ -53,9 +54,9 @@ namespace Servicios_Reservados_2.Servicios
 
         internal DataTable obtenerPax(String id)
         {
-            DataTable pax = controladora.obtenerPax(id);
-            
-            Object[] dato = new Object[2]; 
+            DataTable pax = controladoraBD.obtenerPax(id);
+
+            Object[] dato = new Object[2];
             dato[0] = pax.Rows[0][0].ToString();
             dato[1] = idSelected();
             controladoraCE.guardarReservacionSeleccionada(dato);//enviamos la información a la controladora de comida extra
@@ -66,20 +67,20 @@ namespace Servicios_Reservados_2.Servicios
 
         internal DataTable solicitarServicios(String id)
         {
-            DataTable servicios = controladora.solicitarServicios(id);
+            DataTable servicios = controladoraBD.solicitarServicios(id);
             return servicios;
 
         }
 
-        internal DataTable solicitarComidaCampo(String id) 
+        internal DataTable solicitarComidaCampo(String id)
         {
-            DataTable comidaCampo = controladora.solicitarComidaCampo(id);
+            DataTable comidaCampo = controladoraBD.solicitarComidaCampo(id);
             return comidaCampo;
         }
 
         internal void seleccionarServicio(String id, String idServ)
         {
-            DataTable servicios = controladora.seleccionarServicio(id, idServ);
+            DataTable servicios = controladoraBD.seleccionarServicio(id, idServ);
 
             Object[] nuevoServicio = new Object[8];
 
@@ -97,10 +98,10 @@ namespace Servicios_Reservados_2.Servicios
 
         internal void seleccionarComidaCampo(String id, String idServ)
         {
-            DataTable comidaCampo = controladora.seleccionarComidaCampo(id, idServ);
-            DataTable adicional = controladora.seleccionarAdicional(idServ);
+            DataTable comidaCampo = controladoraBD.seleccionarComidaCampo(id, idServ);
+            DataTable adicional = controladoraBD.seleccionarAdicional(idServ);
             adicionales = new List<String>();
-           
+
             Object[] nuevoComidaC = new Object[12];
 
             nuevoComidaC[0] = comidaCampo.Rows[0][0];
@@ -115,26 +116,22 @@ namespace Servicios_Reservados_2.Servicios
             nuevoComidaC[9] = comidaCampo.Rows[0][9];
             nuevoComidaC[10] = comidaCampo.Rows[0][10];
             nuevoComidaC[11] = comidaCampo.Rows[0][11];
-             int i = 0;
-             if (adicional.Rows.Count > 0)
-             {
-                 foreach (DataRow fila in adicional.Rows)
-                 {
-                     String ad = adicional.Rows[i][0].ToString();
-                     adicionales.Add(ad);
-                     i++;
-                     
-                 }
-             }
+            int i = 0;
+            if (adicional.Rows.Count > 0)
+            {
+                foreach (DataRow fila in adicional.Rows)
+                {
+                    String ad = adicional.Rows[i][0].ToString();
+                    adicionales.Add(ad);
+                    i++;
+
+                }
+            }
 
 
-           controladoraComidaCampo.guardarComidaSeleccionada(nuevoComidaC, adicionales);
+            controladoraComidaCampo.guardarComidaSeleccionada(nuevoComidaC, adicionales);
         }
 
-        internal DataTable solicitarPaquete(string p)
-        {
-            throw new NotImplementedException();
-        }
 
         /*
          * Efecto: recibe los ids y los manda a la controladora de BD para eliminar el servicio.
@@ -143,7 +140,7 @@ namespace Servicios_Reservados_2.Servicios
          */
         internal String[] cancelarComidaExtra(String idReservacion, String idComidaExtra)
         {
-            String[] resultado = controladora.cancelarComidaExtra(idReservacion, idComidaExtra);
+            String[] resultado = controladoraBD.cancelarComidaExtra(idReservacion, idComidaExtra);
             return resultado;
         }
 
@@ -154,7 +151,7 @@ namespace Servicios_Reservados_2.Servicios
          */
         internal DataTable obtenerEstadoComidaExtra(String idReservacion, String idCE)
         {
-            return controladora.obtenerEstadoComidaExtra(idReservacion, idCE);
+            return controladoraBD.obtenerEstadoComidaExtra(idReservacion, idCE);
         }
 
         /*
@@ -164,7 +161,7 @@ namespace Servicios_Reservados_2.Servicios
          */
         internal DataTable obtenerEstadoComidaCampo(String idCC)
         {
-            return controladora.obtenerEstadoComidaCampo(idCC);
+            return controladoraBD.obtenerEstadoComidaCampo(idCC);
         }
 
         /*
@@ -174,8 +171,12 @@ namespace Servicios_Reservados_2.Servicios
          */
         internal String[] cancelarComidaCampo(String idCC)
         {
-            String[] resultado = controladora.cancelarComidaCampo(idCC);
+            String[] resultado = controladoraBD.cancelarComidaCampo(idCC);
             return resultado;
+        }
+        internal DataTable solicitarPaquete(string idReservacion)
+        {
+            return controladoraBD.obtenerPaquete(idReservacion);
         }
     }
 }

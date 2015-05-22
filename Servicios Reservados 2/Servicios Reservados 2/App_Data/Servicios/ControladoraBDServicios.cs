@@ -184,7 +184,12 @@ namespace Servicios_Reservados_2.Servicios
             }
             return respuesta;
         }
-
+        internal DataTable obtenerPaquete(string idReservacion)
+        {
+            String consultaSQL = "select * from reservas.reservacion where id ='" + idReservacion + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
 
     }
 }
