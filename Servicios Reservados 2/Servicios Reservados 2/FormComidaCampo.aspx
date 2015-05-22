@@ -45,8 +45,8 @@
             <div class="well bs-component">
                 <fieldset>
                     
-                    <legend style="color: #7BC143">Opción #1 Sandwich [puede marcar dos opciónes]</legend>
-                    <input type="checkbox" name="opciones" value="chbxo1" id="checkboxO1" runat="server" OnServerChange="checkO1click" AutoPostBack="True">
+                    <h2>Opción #1 Sandwich [puede marcar dos opciónes]</h2>
+                    <input type="checkbox" id="checkboxO1" runat="server" onserverchange="checkO1click" >
                     <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="radio" name="bread" value="panblanco" runat="server" id="radioPanBlanco">Pan blanco
@@ -92,8 +92,8 @@
             </div>
             <div class="well bs-component">
                 <fieldset id="opcion2Fieldset" runat="server">
-                    <legend style="color: #7BC143">Opción #2 Debe aportar su propio recipiente</legend>
-                    <input type="checkbox" name="opciones" value="chbxo2" id="CheckboxO2" runat="server">
+                    <h2>Opción #2 Debe aportar su propio recipiente</h2>
+                    <input type="checkbox" id="CheckboxO2" runat="server" onserverchange="checkO1click">
                     <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="checkbox" name="pinto" value="gallopinto" id="chGalloPinto" runat="server">Gallo pinto

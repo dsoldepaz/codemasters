@@ -61,16 +61,12 @@ namespace Servicios_Reservados_2
         /*
          * Requiere: N/A.
          * Efectúa : N/A
-         * Retorna : la vaible glbal de la clase reservacionSeleccionada.
+         * Retorna : 
          */
         public EntidadEmpleado getEmpleadoSeleccionado() {
             return empleadoSeleccionado;
         }
-        /*
-         * Requiere: Un identificador de reservacion.
-         * Efectúa : Pide a la controladora de base de datos la información de la reservación específica y lo guarda en una tabla de datos.
-         * Retorna : La tabla de datos con el resultado.
-         */
+       
        
     }
 }
