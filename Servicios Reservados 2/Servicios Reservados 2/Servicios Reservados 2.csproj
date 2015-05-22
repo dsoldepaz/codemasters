@@ -367,7 +367,7 @@
     <Compile Include="App_Data\ServirPlatos\AdaptadorServirPlatos.cs" />
     <Compile Include="App_Data\ServirPlatos\ControladoraBDServirPlatos.cs" />
     <Compile Include="App_Data\ServirPlatos\ControladoraServirPlatos.cs" />
-    <Compile Include="App_Data\ComidaExtra\AdaptadorComidaExtra.cs" />
+    <Compile Include="App_Data\AdaptadorBD.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -448,7 +448,6 @@
     <Compile Include="FormEmpleadoReserva.aspx.designer.cs">
       <DependentUpon>FormEmpleadoReserva.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Data\Servicios\AdaptadorServicios.cs" />
     <Compile Include="App_Data\Servicios\EntidadServicios.cs" />
     <Compile Include="FormRegistro.aspx.cs">
       <DependentUpon>FormRegistro.aspx</DependentUpon>

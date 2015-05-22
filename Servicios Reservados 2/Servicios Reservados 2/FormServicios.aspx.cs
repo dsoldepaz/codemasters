@@ -18,14 +18,17 @@ namespace Servicios_Reservados_2
         private static String[] ids;
         private static String[] idServ;
         public static int modo;
-        public static int i = 0;
+        private static int i;
         public static String tipo;
         public static String categoria = "Comida Extra";
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            i = 0;
+            
             ArrayList listaRoles = (ArrayList)Session["Roles"];
             string userid = (string)Session["username"];
+
             if (!IsPostBack)
             {
                 if (userid == "" || userid == null)
@@ -40,7 +43,7 @@ namespace Servicios_Reservados_2
                 llenarGridServicios();
             }
         }
-        
+
         protected void clickAceptar(object sender, EventArgs e)
         {
             //rec = controladora.prueba("ANURA0310112004.095646531");
@@ -52,7 +55,7 @@ namespace Servicios_Reservados_2
             //}
         }
 
-      
+
         /*Efecto: Llena los campos con la informacion de la reserva
          * Requiere: NA
          * Modifica: el valor de los campos en la interfaz
@@ -75,43 +78,40 @@ namespace Servicios_Reservados_2
         void llenarGridServicios()
         {
             DataTable tabla = crearTablaServicios();
-         //   DataTable tablaCampo = crearTablaComidaCampo();
+            //   DataTable tablaCampo = crearTablaComidaCampo();
 
             try
             {
 
                 Object[] datos = new Object[7];
-               // DataTable paquete = controladora.solicitarPaquete(controladora.idSelected());// se consultan todos
+                DataTable paquete = controladora.solicitarPaquete(controladora.idSelected());// se consultan todos
                 DataTable servicios = controladora.solicitarServicios(controladora.idSelected());// se consultan todos
                 DataTable comidaCampo = controladora.solicitarComidaCampo(controladora.idSelected());// se consultan todos   
-                
-                ids = new String[servicios.Rows.Count + comidaCampo.Rows.Count + 1]; //crear el vector para ids en el grid
-                idServ = new String[servicios.Rows.Count + comidaCampo.Rows.Count + 1];
 
-                /*if (paquete.Rows.Count > 0)
+                ids = new String[paquete.Rows.Count + servicios.Rows.Count + comidaCampo.Rows.Count + 1]; //crear el vector para ids en el grid
+                idServ = new String[paquete.Rows.Count + servicios.Rows.Count + servicios.Rows.Count + comidaCampo.Rows.Count + 1];
+
+                //agrega los servicios incluidos en el paquete
+                if (paquete.Rows.Count > 0)
                 {
                     foreach (DataRow fila in paquete.Rows)
-                    {                       
-                        idServ[i] = fila[1].ToString();
+                    {
+                        ids[i] = controladora.idSelected();// guardar el id para su posterior consulta
+                        idServ[i] = "Paquete";
                         datos[0] = "Paquete reservación";
-                        datos[1] = fila[2].ToString();//obtener los datos a mostrar
-                        datos[2] = fila[3].ToString();
-                        datos[3] = fila[4].ToString();
-                        datos[4] = fila[5].ToString();//DateTime.Parse(fila[5].ToString());
-                        datos[5] = fila[6].ToString();
-                        datos[6] = fila[7].ToString();
+                        datos[1] = fila[1].ToString();
+                        datos[2] = "Alimentación incluída en el paquete de reservación";
+                        datos[3] = "-";
+                        datos[4] = "-";
+                        datos[5] = "no disp";
+                        datos[6] = fila[2].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
                     }
-                }*/
-
-
-
+                }
+                //agrega los servicios de comida extra
                 if (servicios.Rows.Count > 0)
                 {
-                   
-                   
-
                     foreach (DataRow fila in servicios.Rows)
                     {
                         ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
@@ -127,24 +127,24 @@ namespace Servicios_Reservados_2
                         i++;
                     }
                 }
-      
 
+                //agrega los servicios de comida de campo
                 int j = i;
                 if (comidaCampo.Rows.Count > 0)
                 {
-                  
+
 
                     foreach (DataRow fila in comidaCampo.Rows)
                     {
-                       
+
                         idServ[j] = fila[0].ToString();
                         ids[j] = fila[1].ToString();
-                       // datos[0] = "Comida Campo";
+                        // datos[0] = "Comida Campo";
                         if (int.Parse(fila[4].ToString()) == 1)
                         {
                             datos[0] = "Incluido en Paquete";
                             datos[1] = "Desayuno";
-                            
+
                         }
                         if (int.Parse(fila[4].ToString()) == 2)
                         {
@@ -175,10 +175,9 @@ namespace Servicios_Reservados_2
                         j++;
                     }
                 }
-                
 
                 GridServicios.DataBind();
-                
+
             }
             catch (Exception e)
             {
@@ -245,14 +244,19 @@ namespace Servicios_Reservados_2
          */
         protected void seleccionarServicio(object sender, EventArgs e)
         {
-            if (idServ[GridServicios.SelectedIndex].Contains("S")) 
+            if (idServ[GridServicios.SelectedIndex].Contains("Paquete"))
+            {
+                //do something
+            }
+            else if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
                 controladora.seleccionarServicio(ids[0], idServ[GridServicios.SelectedIndex]);
             }
-            else {
+            else
+            {
                 controladora.seleccionarComidaCampo(ids[0], idServ[GridServicios.SelectedIndex]);
             }
-           
+
         }
         /*
          * Efecto: llama al metodo modificarServicio de la controladora y redirecciona la pagina al formComidaExtra
@@ -272,7 +276,7 @@ namespace Servicios_Reservados_2
         */
         protected void clickAgregarServicio(object sender, EventArgs e)
         {
-            modo = 1; 
+            modo = 1;
             Response.Redirect("FormComidaExtra");
         }
 
@@ -322,20 +326,22 @@ namespace Servicios_Reservados_2
        * Requiere: presionar el botón.
        * Modifica: la variable global modo.
        */
-        protected void clickConsultarServicio(object sender, EventArgs e) 
+        protected void clickConsultarServicio(object sender, EventArgs e)
         {
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
                 modo = 0;
                 Response.Redirect("FormComidaExtra"); ;
             }
-            else {
+            else
+            {
                 FormComidaCampo.modo = 4;
                 Response.Redirect("FormComidaCampo");
             }
-          
+
 
         }
+
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
             Response.Redirect("FormTiquete");

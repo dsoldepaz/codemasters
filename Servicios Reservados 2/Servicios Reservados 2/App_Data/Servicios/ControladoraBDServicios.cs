@@ -11,13 +11,13 @@ namespace Servicios_Reservados_2.Servicios
 {
     public class ControladoraBDServicios
     {
-         
-        private AdaptadorServicios adaptador;
+
+        private AdaptadorBD adaptador;
         DataTable dt;
 
         public ControladoraBDServicios()
         {
-            adaptador = new AdaptadorServicios();
+            adaptador = new AdaptadorBD();
             dt = new DataTable();
         }
 
@@ -186,7 +186,7 @@ namespace Servicios_Reservados_2.Servicios
         }
         internal DataTable obtenerPaquete(string idReservacion)
         {
-            String consultaSQL = "select * from reservas.reservacion where id ='" + idReservacion + "'";
+            String consultaSQL = "select ri.id, vr.nombre, ri.pax from reservas.reservacionitem ri, reservas.v_reservable vr where ri.reservacion ='" + idReservacion + "' and ri.reservable= vr.id and vr.categoria='ANURA7249245184.5851916019'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
