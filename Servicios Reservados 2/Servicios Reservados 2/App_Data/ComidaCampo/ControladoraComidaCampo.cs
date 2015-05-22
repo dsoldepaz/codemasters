@@ -48,10 +48,5 @@ namespace Servicios_Reservados_2
         {
             return adicional;
         }
-
-        internal DataTable getComidaEmpleado(string idEmpleado)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
