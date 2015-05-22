@@ -41,6 +41,8 @@ namespace Servicios_Reservados_2
         protected void fechaDeEntrada_ServerClick(object sender, EventArgs e)
         {
             fechaDeEntradaCalendario.Visible = !fechaDeEntradaCalendario.Visible;
+           // fechaDeEntrada.Visible = true;
+
         }
 
         /*
@@ -50,8 +52,9 @@ namespace Servicios_Reservados_2
         */
         protected void fechaDeEntradaCalendario_SelectionChanged(object sender, EventArgs e)
         {
-            textFecha.Value = fechaDeEntradaCalendario.SelectedDate.ToString("dd/MM/yyyy");
-            fechaDeEntradaCalendario.Visible = false;
+           // textFecha.Value = fechaDeEntradaCalendario.SelectedDate.ToString("dd/MM/yyyy");
+           fechaDeEntradaCalendario.Visible = false;
+
         }
     }
 }
