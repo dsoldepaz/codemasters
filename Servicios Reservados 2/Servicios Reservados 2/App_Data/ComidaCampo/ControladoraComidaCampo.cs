@@ -23,15 +23,12 @@ namespace Servicios_Reservados_2
            
         }
 
-        public void guardarComidaSeleccionada(Object[] dato)
+        public void guardarComidaSeleccionada(Object[] dato, List<String> lista )
         {
-            //comidaCampo = new EntidadComidaCampo(dato);
+            comidaCampo = new EntidadComidaCampo(dato, lista);
         }
 
-        public void guardarAdicional(Object[] datos)
-        {
-            adicional = datos;
-        }
+       
        public String[] agregarComidaCampo(Object[] dato,List<String> lista)
         {
             EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato,lista);
@@ -44,9 +41,6 @@ namespace Servicios_Reservados_2
             return comidaCampo;
         }
 
-        public Object[] adicionalSeleccionado()
-        {
-            return adicional;
-        }
+      
     }
 }

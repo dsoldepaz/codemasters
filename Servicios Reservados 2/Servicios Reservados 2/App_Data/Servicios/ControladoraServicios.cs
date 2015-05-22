@@ -99,6 +99,7 @@ namespace Servicios_Reservados_2.Servicios
         {
             DataTable comidaCampo = controladora.seleccionarComidaCampo(id, idServ);
             DataTable adicional = controladora.seleccionarAdicional(idServ);
+            adicionales = new List<String>();
            
             Object[] nuevoComidaC = new Object[12];
 
@@ -119,7 +120,7 @@ namespace Servicios_Reservados_2.Servicios
              {
                  foreach (DataRow fila in adicional.Rows)
                  {
-                     String ad = adicional.Rows[0][i].ToString();
+                     String ad = adicional.Rows[i][0].ToString();
                      adicionales.Add(ad);
                      i++;
                      
@@ -127,7 +128,7 @@ namespace Servicios_Reservados_2.Servicios
              }
 
 
-           controladoraComidaCampo.guardarComidaSeleccionada(nuevoComidaC);
+           controladoraComidaCampo.guardarComidaSeleccionada(nuevoComidaC, adicionales);
            //controladoraComidaCampo.guardarAdicional(nuevoAdicional);
         }
 

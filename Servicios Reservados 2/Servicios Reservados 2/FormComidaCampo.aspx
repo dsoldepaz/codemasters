@@ -20,8 +20,8 @@
                                 <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                             </asp:Calendar>
                         </li>
-                    </ul>
-                    <p>
+                    
+                  
                         </li>
                         <il class="itemFormulario">
                             Hora:
@@ -39,13 +39,28 @@
                             </select>
                         </il>
                     </p>
+                        </ul>
                     
                 </fieldset>
             </div>
             <div class="well bs-component">
+                <fieldset id="Fieldset1" runat="server">
+                    <legend style="color: #7BC143">Opción #1 Reemplezar por: </legend>
+                    <input type="checkbox" name="opciones" value="chbxo2" id="CheckboxCambio" runat="server">
+                    <ul class="lista formulario">
+                        <il class="itemFormulario">
+                            <input type="radio" name="desayuno" value="desayuno" id="radioDesayuno" runat="server">Desayuno
+                            <input type="radio" name="almuerzo" value="desayuno" id="radioAlmuerzo" runat="server">Almuerzo
+                            <input type="radio" name="cena" value="desayuno" id="radioCena" runat="server">Cena
+                       </il>
+                    </ul>
+                </fieldset>
+            </div>
+
+            <div class="well bs-component">
                 <fieldset>
                     
-                    <legend style="color: #7BC143">Opción #1 Sandwich [puede marcar dos opciónes]</legend>
+                    <legend style="color: #7BC143">Opción #2 Sandwich [puede marcar dos opciónes]</legend>
                     <input type="checkbox" name="opciones" value="chbxo1" id="checkboxO1" runat="server" OnServerChange="checkO1click" AutoPostBack="True">
                     <ul class="lista formulario">
                         <il class="itemFormulario">
@@ -92,7 +107,7 @@
             </div>
             <div class="well bs-component">
                 <fieldset id="opcion2Fieldset" runat="server">
-                    <legend style="color: #7BC143">Opción #2 Debe aportar su propio recipiente</legend>
+                    <legend style="color: #7BC143">Opción #3 Debe aportar su propio recipiente</legend>
                     <input type="checkbox" name="opciones" value="chbxo2" id="CheckboxO2" runat="server">
                     <ul class="lista formulario">
                         <il class="itemFormulario">
