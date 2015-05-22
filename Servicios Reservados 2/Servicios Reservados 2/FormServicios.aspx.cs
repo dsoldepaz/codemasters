@@ -81,7 +81,7 @@ namespace Servicios_Reservados_2
             {
 
                 Object[] datos = new Object[7];
-               // DataTable paquete = controladora.solicitarPaquete(controladora.idSelected());// se consultan todos
+                DataTable paquete = controladora.solicitarPaquete(controladora.idSelected());// se consultan todos
                 DataTable servicios = controladora.solicitarServicios(controladora.idSelected());// se consultan todos
                 DataTable comidaCampo = controladora.solicitarComidaCampo(controladora.idSelected());// se consultan todos   
                 

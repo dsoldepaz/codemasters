@@ -186,7 +186,7 @@ namespace Servicios_Reservados_2.Servicios
         }
         internal DataTable obtenerPaquete(string idReservacion)
         {
-            String consultaSQL = "select vr.nombre from reservas.reservacionitem ri, v_reservable vr where ri.reservacion ='" + idReservacion + "' and ri.reservable= vr.id and vr.categoria='ANURA7249245184.5851916019'";
+            String consultaSQL = "select distinct vr.nombre from reservas.reservacionitem ri, reservas.v_reservable vr where ri.reservacion ='" + idReservacion + "' and ri.reservable= vr.id and vr.categoria='ANURA7249245184.5851916019'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
