@@ -14,7 +14,7 @@ namespace Servicios_Reservados_2
         private static List<DateTime> list = new List<DateTime>();
         private EntidadEmpleado empleadoSeleccionado;
         private EntidadComidaEmpleado seleccionada;
-        private int modo = 0;//0= Solo el empleado consultado; 1-Agregar Reservacion; 2-Modificar reservacion;
+        private int modo = 0;//0= Solo el empleado consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
         private DateTime fechaElegida;
         private ControladoraComidaEmpleado controladora = new ControladoraComidaEmpleado();
         /*
@@ -31,8 +31,28 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("~/Ingresar.aspx");
                 }
-                iniciarEmpleado();
+                
             }
+        }
+        private void arrancar()
+        {
+            iniciarEmpleado();
+
+            ponerModo();
+        }
+
+        private void ponerModo()
+        {
+            switch (modo)
+            {
+                case 3: cancelar();
+                    break;
+            }
+        }
+
+        private void cancelar()
+        {
+            throw new NotImplementedException();
         }
         /*
          * Requiere: Parametros de eventos de la GUI
