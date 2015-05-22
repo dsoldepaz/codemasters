@@ -40,10 +40,10 @@ namespace Servicios_Reservados_2
         internal DataTable insertar(String consultaSQL)
         {
             dt = new DataTable();
-            adaptador.Open();
+            /*adaptador.Open();
             OleDbCommand od = new OleDbCommand(consultaSQL, adaptador);
             od.ExecuteNonQuery();
-            adaptador.Close();
+            adaptador.Close();*/
             return dt;
         }
     }
