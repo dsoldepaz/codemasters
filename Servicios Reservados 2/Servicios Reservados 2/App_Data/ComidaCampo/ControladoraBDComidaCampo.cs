@@ -33,9 +33,13 @@ namespace Servicios_Reservados_2
                 int cantAdicionales = lista.Count;
                 String consultaId = "select MAX(idcomidacampo) from servicios_reservados.comida_campo";
                 dt = adaptador.consultar(consultaId);
+                int id = int.Parse(dt.Rows[0][0].ToString());
+                Debug.WriteLine("id");
                 for (int i = 0; i < cantAdicionales; i++)
                 {
-                    String insercion ="insert into servicios_reservados.adicional values("+dt.Rows[0][0]+",'"+lista[i]+"')"; 
+                    String insercion ="insert into servicios_reservados.adicional values("+id+",'"+lista[i]+"')";
+                    Debug.WriteLine(insercion);
+                    adaptador.insertar(insercion);
                 }
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";
@@ -51,6 +55,13 @@ namespace Servicios_Reservados_2
             }
             
             return respuesta;
+        }
+
+        public DataTable getComidaEmpleado(String id)
+        {
+            String consultaSQL = "SELECT IDCOMIDACAMPO, IDEMPLEADO,'Comida de Campo', FECHA, TIPOPAGO FROM COMIDA_CAMPO Where IDEMPLEADO = '" + id + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
         }
 
     }

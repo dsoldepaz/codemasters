@@ -283,8 +283,31 @@ namespace Servicios_Reservados_2
        */
         protected void clickEliminarServicio(object sender, EventArgs e)
         {
-            modo = 3; 
-            Response.Redirect("FormComidaExtra");
+            DataTable estado;
+            if (idServ[GridServicios.SelectedIndex].Contains("S"))
+            {
+                estado = controladora.obtenerEstadoComidaExtra(ids[0], idServ[GridServicios.SelectedIndex]);
+                if (estado.Rows[0][0].ToString() == "Activo")
+                {
+                    controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex]);
+                }
+                else
+                {
+                    //error
+                }
+            }
+            else
+            {
+                estado = controladora.obtenerEstadoComidaCampo(idServ[GridServicios.SelectedIndex]);
+                if (estado.Rows[0][0].ToString() == "activo")
+                {
+                    controladora.cancelarComidaCampo(idServ[GridServicios.SelectedIndex]);
+                }
+                else
+                {
+                    //error
+                }
+            }
         }
 
         /*

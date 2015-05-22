@@ -61,17 +61,6 @@ namespace Servicios_Reservados_2
       }
 
       /*
-       * Efecto: recibe los ids y los manda a la controladora de BD para eliminar el servicio.
-       * Requiere: los ids.
-       * Modifica:
-      */
-      public String[] eliminarServicioExtra(String idReservacion, String idComidaExtra) 
-      {
-          String[] resultado = controladoraBD.eliminarServicioExtra(idReservacion, idComidaExtra);
-          return resultado;
-      }
-
-      /*
        * Efecto: obtener el id de la reservación consultada.
        * Requiere: la consulta de una reservación.
        * Modifica: la variable servicios.

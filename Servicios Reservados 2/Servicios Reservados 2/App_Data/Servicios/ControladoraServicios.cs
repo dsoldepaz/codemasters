@@ -136,5 +136,47 @@ namespace Servicios_Reservados_2.Servicios
         {
             throw new NotImplementedException();
         }
+
+        /*
+         * Efecto: recibe los ids y los manda a la controladora de BD para eliminar el servicio.
+         * Requiere: los ids.
+         * Modifica:
+         */
+        internal String[] cancelarComidaExtra(String idReservacion, String idComidaExtra)
+        {
+            String[] resultado = controladora.cancelarComidaExtra(idReservacion, idComidaExtra);
+            return resultado;
+        }
+
+        /*
+         * Efecto: pide a la controladora de BD el estado de una comida extra  
+         * Requiere: id de la reservacion y id de la comida extra
+         * Modifica:
+         */
+        internal DataTable obtenerEstadoComidaExtra(String idReservacion, String idCE)
+        {
+            return controladora.obtenerEstadoComidaExtra(idReservacion, idCE);
+        }
+
+        /*
+         * Efecto: pide a la controladora de BD el estado de una comida de campo  
+         * Requiere: id de la comida de campo 
+         * Modifica:
+         */
+        internal DataTable obtenerEstadoComidaCampo(String idCC)
+        {
+            return controladora.obtenerEstadoComidaCampo(idCC);
+        }
+
+        /*
+         * Efecto: recibe el id de la comida de campo y lo manda a cancelar a la controladora de BD.
+         * Requiere: el id.
+         * Modifica:
+         */
+        internal String[] cancelarComidaCampo(String idCC)
+        {
+            String[] resultado = controladora.cancelarComidaCampo(idCC);
+            return resultado;
+        }
     }
 }

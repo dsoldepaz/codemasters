@@ -54,5 +54,10 @@ namespace Servicios_Reservados_2
         {
             throw new NotImplementedException();
         }
+
+        internal DataTable getComidaEmpleado(string idEmpleado)
+        {
+            return controladoraBD.getReservacionesEmpleado(idEmpleado);
+        }
     }
 }
