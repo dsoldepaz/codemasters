@@ -39,6 +39,7 @@ namespace Servicios_Reservados_2
             return resultado;
         }
 
+
         public EntidadComidaCampo entidadSeleccionada()
         {
             return comidaCampo;

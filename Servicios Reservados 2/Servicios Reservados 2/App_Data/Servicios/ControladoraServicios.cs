@@ -17,7 +17,6 @@ namespace Servicios_Reservados_2.Servicios
         public static ControladoraReservaciones controladoraReserv;
         public static ControladoraComidaExtra controladoraCE;
         public static ControladoraComidaCampo controladoraComidaCampo;
-        private static String[] extra;
         public List<String> adicionales;
 
 

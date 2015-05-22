@@ -17,6 +17,7 @@ namespace Servicios_Reservados_2
         public static int modo;
         public static int tipoComidaCampo;
         public static String idEmpleado;
+        public static String idReservacion;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,12 +47,32 @@ namespace Servicios_Reservados_2
             }
 
             if (modo == 1)
-            { // se desea insertar
-                /* textFecha.Disabled = true;
-                 btnEliminar.Disabled = true;
-                 btnAceptar.Disabled = false;
-                 btnCancelar.Disabled = false;
-                 btnAgregar.Disabled = true;*/
+            {
+                textFecha.Disabled = true;
+                txtHora.Disabled = true;
+                txtPax.Disabled = true;
+                radioPanBlanco.Disabled = true;
+                radioPanBollo.Disabled = true;
+                radioPanInt.Disabled = true;
+                radioJamon.Disabled = true;
+                radioFrijoles.Disabled = true;
+                radioMyM.Disabled = true;
+                radioOmelette.Disabled = true;
+                radioEnsaladaHuevo.Disabled = true;
+                chGalloPinto.Disabled = true;
+                chEnsalada.Disabled = true;
+                chGalloPinto.Disabled = true;
+                chHuevoDuro.Disabled = true;
+                chMayonesa.Disabled = true;
+                chPlatanos.Disabled = true;
+                chSalsaTomate.Disabled = true;
+                chFrutas.Disabled = true;
+                chConfites.Disabled = true;
+                radioAgua.Disabled = true;
+                radioJugo.Disabled = true;
+                CheckboxBebida.Disabled = true;
+                CheckboxO2.Disabled = true;
+                checkboxO1.Disabled = true;
             }
             else if (modo == 2)
             { //modificar
@@ -98,20 +119,19 @@ namespace Servicios_Reservados_2
                 CheckboxBebida.Disabled = true;
                 CheckboxO2.Disabled = true;
                 checkboxO1.Disabled = true;
+                btnAgregar.Disabled = true;
+                
             }
         }
         protected void checkO1click(object sender, EventArgs e)
         {
-             if (checkboxO1.Checked)
-             {
-                 if (CheckboxO2.Checked)
-                 {
-                     CheckboxO2.Checked = false;
-                 }
-                
-             }
-             Debug.WriteLine("picha vivir");
-
+            if (checkboxO1.Checked)
+            {
+                if (CheckboxO2.Checked)
+                {
+                    CheckboxO2.Checked = false;
+                }
+            }
         }
 
         protected String getPan()
@@ -143,15 +163,12 @@ namespace Servicios_Reservados_2
             if (radioFrijoles.Checked)
             {
                 tipo = "Frijoles";
-
             }
 
             if (radioAtun.Checked)
             {
                 tipo = "Atun";
-
             }
-
             if (radioMyM.Checked)
             {
                 tipo = "Mantequilla de maní y jalea";
@@ -214,7 +231,7 @@ namespace Servicios_Reservados_2
             {
                 nuevaComidaCampo[1] = idEmpleado;
             }
-            nuevaComidaCampo[2] = "";
+            nuevaComidaCampo[2] = "";   
             nuevaComidaCampo[3] = textFecha.Value;
             nuevaComidaCampo[4] = "activo";
             nuevaComidaCampo[5] = 0;
@@ -259,12 +276,69 @@ namespace Servicios_Reservados_2
             return res;
         }
 
+
+        protected Boolean agregarComidaCampoReserv()
+        {
+            Boolean res = true;
+            Object[] nuevaComidaCampo = new Object[12];// objeto en el que se almacenan los datos para enviar a encapsular.
+            List<String> lista = listaAdicionales();
+            nuevaComidaCampo[0] = "";
+            nuevaComidaCampo[1] = "";
+            nuevaComidaCampo[2] = idReservacion;
+            nuevaComidaCampo[3] = textFecha.Value;
+            nuevaComidaCampo[4] = "Activo";
+            nuevaComidaCampo[5] = 0;
+            if (CheckboxCambio.Checked)
+            {
+                if (radioDesayuno.Checked) {
+                    nuevaComidaCampo[5] = "1";
+                }else if(radioAlmuerzo.Checked){
+                    nuevaComidaCampo[5]="2";
+                }else if(radioCena.Checked){
+                    nuevaComidaCampo[5]="3";
+                }
+                nuevaComidaCampo[6]="";
+                nuevaComidaCampo[7]="";
+                nuevaComidaCampo[8]="";
+                nuevaComidaCampo[9] = "";
+            }
+            else if(checkboxO1.Checked){  //sandwich
+                nuevaComidaCampo[5] ="4";
+                nuevaComidaCampo[6]= getTipoSandwich();
+                nuevaComidaCampo[7]= getPan();
+            }else if(CheckboxO2.Checked){
+                nuevaComidaCampo[5]="5";
+                 nuevaComidaCampo[6]="";
+                nuevaComidaCampo[7]= "";
+            }
+            nuevaComidaCampo[8] = "";
+            if (CheckboxBebida.Checked)
+            {
+                String bebida = "Jugo";
+                if (radioAgua.Checked)
+                {
+                    bebida = "Agua";
+                }
+                nuevaComidaCampo[8] = bebida;
+            }
+
+            nuevaComidaCampo[9] = "";
+            nuevaComidaCampo[10] = txtPax.Value;
+            nuevaComidaCampo[11] = txtHora.Value;
+
+            String[] error = controladora.agregarComidaCampo(nuevaComidaCampo, lista);// se le pide a la controladora que lo inserte
+            mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+
+
+            return res;
+        }
+
         protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
         {
-            //alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
-            //labelTipoAlerta.Text = alerta + " ";
-            //labelAlerta.Text = mensaje;
-            //alertAlerta.Attributes.Remove("hidden");
+            alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
+            labelTipoAlerta.Text = alerta + " ";
+            labelAlerta.Text = mensaje;
+            alertAlerta.Attributes.Remove("hidden");
         }
 
         /*
@@ -282,7 +356,17 @@ namespace Servicios_Reservados_2
             switch (modo)
             {
                 case 1://insertar
-                    agregarComidaCampo();
+                    if (tipoComidaCampo == 1) //agregar la comida dependiendo si es para un empleado o una reservacion.
+                    {
+                        agregarComidaCampo();
+                    }
+                    else
+                    {
+                        agregarComidaCampoReserv();
+                        modo = 5;
+                        cambiarModo();
+                    }
+                    
                     //Response.Redirect("FormServicios");
                     break;
                 case 2://modificar

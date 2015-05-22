@@ -57,7 +57,7 @@
                             <td>
                                 <input type="button" class="btn btn-success" value="Comida Extra" runat="server" onserverclick="clickAgregarServicio"/></a></td>
                             <td>
-                                <input type="button" class="btn btn-success" value="Comida De Campo" onserverclick="cliclAgregarComidaCampo" />
+                                <input type="button" class="btn btn-success" value="Comida De Campo" runat="server" onserverclick="cliclAgregarComidaCampo" />
                             </td>
                             <td>
                                 <input type="button" class="btn btn-success" value="Servicio de Guías" /></td>

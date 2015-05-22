@@ -31,15 +31,18 @@ namespace Servicios_Reservados_2
                 adaptador.insertar(consultaSQL);
                 List<String> lista = entidad.Adicionales;
                 int cantAdicionales = lista.Count;
-                String consultaId = "select MAX(idcomidacampo) from servicios_reservados.comida_campo";
-                dt = adaptador.consultar(consultaId);
-                int id = int.Parse(dt.Rows[0][0].ToString());
-                Debug.WriteLine("id");
-                for (int i = 0; i < cantAdicionales; i++)
+                if (cantAdicionales > 0)
                 {
-                    String insercion ="insert into servicios_reservados.adicional values("+id+",'"+lista[i]+"')";
-                    Debug.WriteLine(insercion);
-                    adaptador.insertar(insercion);
+                    String consultaId = "select MAX(idcomidacampo) from servicios_reservados.comida_campo";
+                    dt = adaptador.consultar(consultaId);
+                    int id = int.Parse(dt.Rows[0][0].ToString());
+                    Debug.WriteLine("id");
+                    for (int i = 0; i < cantAdicionales; i++)
+                    {
+                        String insercion = "insert into servicios_reservados.adicional values(" + id + ",'" + lista[i] + "')";
+                        Debug.WriteLine(insercion);
+                        adaptador.insertar(insercion);
+                    }
                 }
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";
@@ -56,6 +59,9 @@ namespace Servicios_Reservados_2
             
             return respuesta;
         }
+
+       
+
 
         public DataTable getComidaEmpleado(String id)
         {

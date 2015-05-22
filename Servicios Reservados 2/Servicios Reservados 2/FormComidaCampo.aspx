@@ -2,6 +2,15 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <link rel="stylesheet" href="Content/ComidasExtra.css" />
+
+      <a href="">
+        <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>
+                <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+        </div>
+    </a> <!--para manejar mensajes de exito/error!-->
+
     <legend>
         <h2>Comida Campo</h2>
     </legend>
@@ -168,14 +177,14 @@
                     <input type="checkbox" name="opciones" value="chbxbebida" id="CheckboxBebida" runat="server">
                     <ul class="lista formulario">
                         <il class="itemFormulario">
-                            <input type="radio" name="drink" value="agua" checked id="radioAgua" runat="server">Agua
+                            <input type="radio" name="drink" value="agua" id="radioAgua" runat="server">Agua
                        </il>
                         <il class="itemFormulario">
                            <input type="radio" name="drink" value="jugo" id="radioJugo" runat="server">Jugo
                         </il>
                     </ul>
                 </fieldset>
-                <button class="btn btn-success" name="accept" type="button" runat="server" onserverclick="clickAceptar">Aceptar</button>
+                <button class="btn btn-success" id= "btnAgregar" name="accept" type="button" runat="server" onserverclick="clickAceptar">Aceptar</button>
                 <button class="btn btn-danger" name="cancel" type="button" runat="server" onserverclick="clickCancelar">cancelar</button>
             </div>
 
