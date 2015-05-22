@@ -63,5 +63,13 @@ namespace Servicios_Reservados_2
             DataTable dt = adaptador.consultar(consulta);
             return dt;
         }
+
+        internal DataTable getReservacionesEmpleado(string idEmpleado)
+        {
+            DataTable dt = new DataTable();
+            String consulta = "SELECT IDCOMIDAEMPLEADO,IDEMPLEADO,FECHA,PAGADO FROM RESERVA_EMPLEADO WHERE IDEMPLEADO = " + idEmpleado+";";
+            dt = adaptador.consultar(consulta);
+            return dt;
+        }
     }
 }
