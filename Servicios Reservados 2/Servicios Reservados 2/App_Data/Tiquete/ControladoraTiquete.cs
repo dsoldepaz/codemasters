@@ -22,6 +22,7 @@ namespace Servicios_Reservados_2
         {
             controladoraBD = new ControladoraBDTiquete();
             controladoraRes = new ControladoraReservaciones();
+            controladoraServ = new ControladoraServicios();
         }
         /*
          * Requiere: N/A
