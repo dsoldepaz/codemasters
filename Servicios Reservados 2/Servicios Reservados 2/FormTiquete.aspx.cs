@@ -41,6 +41,11 @@ namespace Servicios_Reservados_2
             anfitriona.Value = reservacion.Anfitriona;
             estacion.Value = reservacion.Estacion;
             numero.Value = reservacion.Numero;
+
+            servicio = controladora.solicitarInfoServicio();
+            categoria.Value = servicio.Categoria;
+            estado.Value = servicio.Estado;
+            pax.Value = servicio.Pax.ToString();
             
 
             

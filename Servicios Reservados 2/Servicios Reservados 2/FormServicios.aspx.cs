@@ -97,7 +97,7 @@ namespace Servicios_Reservados_2
                     foreach (DataRow fila in paquete.Rows)
                     {
                         ids[i] = controladora.idSelected();// guardar el id para su posterior consulta
-                        idServ[i] = fila[1].ToString();
+                        idServ[i] = fila[0].ToString();
                         datos[0] = "Paquete reservación";
                         datos[1] = fila[1].ToString();
                         datos[2] = "Alimentación incluída en el paquete de reservación";
