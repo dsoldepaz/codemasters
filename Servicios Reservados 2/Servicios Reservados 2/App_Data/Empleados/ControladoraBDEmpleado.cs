@@ -29,7 +29,7 @@ namespace Servicios_Reservados_2
          */
         internal DataTable consultarTodosEmpleados() {
 
-            String consultaSQL = "select idempleado,identificacion,nombre,apellidos from financiero.empleados order by apellidos desc";
+            String consultaSQL = "select idempleado,numempleado,nombre,apellidos from financiero.empleados order by apellidos desc";
             dt = adaptador.consultar(consultaSQL);
             
             return dt;
@@ -41,7 +41,7 @@ namespace Servicios_Reservados_2
          */
         internal DataTable consultarUnEmpleado(String id)
         {
-            String consultaSQL = "select idempleado,identificacion,nombre,apellidos from financiero.empleados where idempleado = '" + id + "' order by apellidos desc";
+            String consultaSQL = "select idempleado,numempleado,nombre,apellidos from financiero.empleados where idempleado = '" + id + "' order by apellidos desc";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
@@ -52,7 +52,7 @@ namespace Servicios_Reservados_2
          * retorna : La tabla de datos con los resultados de  la consulta.
          */
         internal DataTable consultarEmpleados(String nombre,String iden){
-            String consulta = "select idempleado,identificacion,nombre,apellidos from financiero.empleados";
+            String consulta = "select idempleado,numempleado,nombre,apellidos from financiero.empleados";
             String condicional = " where ";
             if (nombre.CompareTo("vacio") != 0) {
                 nombre = nombre.ToLower();

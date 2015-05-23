@@ -46,13 +46,13 @@ namespace Servicios_Reservados_2
                 }
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";
-                respuesta[2] = "El usuario se ha insertado exitosamente";
+                respuesta[2] = "La comida de campo se ha agregado exitosamente";
             }
             catch (SqlException e)
             {
                     respuesta[0] = "danger";
                     respuesta[1] = "Error. ";
-                    respuesta[2] = "No se pudo agregar el servicio extra";
+                    respuesta[2] = "No se pudo agregar  la comida de campo";
                 
 
             }
@@ -65,7 +65,7 @@ namespace Servicios_Reservados_2
 
         public DataTable getComidaEmpleado(String id)
         {
-            String consultaSQL = "SELECT IDCOMIDACAMPO, IDEMPLEADO,'Comida de Campo', FECHA, TIPOPAGO FROM COMIDA_CAMPO Where IDEMPLEADO = '" + id + "'";
+            String consultaSQL = "SELECT IDCOMIDACAMPO,'Comida de Campo:', IDEMPLEADO, FECHA, TIPOPAGO, OPCION FROM servicios_reservados.COMIDA_CAMPO Where IDEMPLEADO = '" + id + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }

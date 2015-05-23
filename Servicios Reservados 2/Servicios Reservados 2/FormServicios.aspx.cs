@@ -129,7 +129,7 @@ namespace Servicios_Reservados_2
                 }
 
                 //agrega los servicios de comida de campo
-                int j = i;
+                
                 if (comidaCampo.Rows.Count > 0)
                 {
 
@@ -137,8 +137,8 @@ namespace Servicios_Reservados_2
                     foreach (DataRow fila in comidaCampo.Rows)
                     {
 
-                        idServ[j] = fila[0].ToString();
-                        ids[j] = fila[1].ToString();
+                        idServ[i] = fila[0].ToString();
+                        ids[i] = fila[1].ToString();
                         // datos[0] = "Comida Campo";
                         if (int.Parse(fila[4].ToString()) == 1)
                         {
@@ -172,7 +172,7 @@ namespace Servicios_Reservados_2
                         datos[5] = fila[3].ToString();
                         datos[6] = fila[8].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
-                        j++;
+                        i++;
                     }
                 }
 
@@ -284,6 +284,7 @@ namespace Servicios_Reservados_2
 
         protected void cliclAgregarComidaCampo(object sender, EventArgs e)
         {
+            FormComidaCampo.modo = 1;
             FormComidaCampo.idReservacion = controladora.idSelected();
             FormComidaCampo.tipoComidaCampo = 0;
             Response.Redirect("FormComidaCampo");
@@ -312,7 +313,7 @@ namespace Servicios_Reservados_2
             else
             {
                 estado = controladora.obtenerEstadoComidaCampo(idServ[GridServicios.SelectedIndex]);
-                if (estado.Rows[0][0].ToString() == "activo")
+                if (estado.Rows[0][0].ToString() == "Activo")
                 {
                     controladora.cancelarComidaCampo(idServ[GridServicios.SelectedIndex]);
                 }

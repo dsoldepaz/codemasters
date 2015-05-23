@@ -1,37 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.OracleClient;
 using System.Linq;
 using System.Web;
+using System.Data.OleDb;
+using System.Diagnostics;
+using System.Data;
+using System.Data.OracleClient;
 
 namespace Servicios_Reservados_2
 {
     public class AdaptadorComidaEmpleado
     {
-        OracleConnection adaptador= new OracleConnection();
+
+        OleDbConnection adaptador;
+
         DataTable dt;
-        /*
-         * Requiere: N/A
-         * Efectúa : Crea la hilera de conección con la base de datos.
-         * Retorna : N/A
-         */
-        public AdaptadorComidaEmpleado(){
-             adaptador.ConnectionString = "Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True";   
+        public AdaptadorComidaEmpleado()
+        {
+            adaptador = new OleDbConnection("Provider= MSDAORA;Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True");
         }
+
         /*
-         * Requiere: Una hilera con la consulta a realizar.
-         * Efectúa : Crea una conección con la base de datos hace la consulta a la base de datos, cierra la conección. Llena una tabla de datos con el resultado
-         * Retorna : la tabla de datos con el resultado de la consulta.
-         */
+        * Consultar se utiliza para enviar una string SQL con una consulta y el adaptador se encarga de realizar la consulta directamente en la base de datos.  
+        */
         internal DataTable consultar(String consultaSQL)
         {
             dt = new DataTable();
             adaptador.Open();
-            OracleCommand comando = adaptador.CreateCommand();
-            comando.CommandText = consultaSQL;
-            OracleDataReader reader = comando.ExecuteReader();
-            dt.Load(reader);           
+            OleDbDataAdapter od = new OleDbDataAdapter(consultaSQL, adaptador);
+            od.Fill(dt);
+            adaptador.Close();
+            return dt;
+        }
+
+        /*
+        * Insertar se utiliza para enviar una string SQL con una inserción y el adaptador se encarga de realizar la inserción directamente en la base de datos.  
+        */
+        internal DataTable insertar(String consultaSQL)
+        {
+            dt = new DataTable();
+            adaptador.Open();
+            OleDbCommand od = new OleDbCommand(consultaSQL, adaptador);
+            od.ExecuteNonQuery();
             adaptador.Close();
             return dt;
         }
