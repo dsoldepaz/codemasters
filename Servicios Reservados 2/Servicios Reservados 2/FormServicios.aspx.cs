@@ -21,6 +21,8 @@ namespace Servicios_Reservados_2
         private static int i;
         public static String tipo;
         public static String categoria = "Comida Extra";
+        public static EntidadComidaCampo comidaCampoConsultada;
+        public static EntidadComidaExtra comidaExtraConsultada;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -252,11 +254,11 @@ namespace Servicios_Reservados_2
             }
             else if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
-                controladora.seleccionarServicio(ids[0], idServ[GridServicios.SelectedIndex]);
+                comidaExtraConsultada = controladora.seleccionarServicio(ids[0], idServ[GridServicios.SelectedIndex]);
             }
             else
             {
-                controladora.seleccionarComidaCampo(ids[0], idServ[GridServicios.SelectedIndex]);
+                comidaCampoConsultada = controladora.seleccionarComidaCampo(ids[0], idServ[GridServicios.SelectedIndex]);
             }
 
         }
@@ -297,13 +299,11 @@ namespace Servicios_Reservados_2
        */
         protected void clickEliminarServicio(object sender, EventArgs e)
         {
-            DataTable estado;
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
-                estado = controladora.obtenerEstadoComidaExtra(ids[0], idServ[GridServicios.SelectedIndex]);
-                if (estado.Rows[0][0].ToString() == "Activo")
+                if (comidaExtraConsultada.Consumido == "Activo")
                 {
-                    controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex]);
+                    controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], comidaExtraConsultada.Fecha, comidaExtraConsultada.Hora);
                 }
                 else
                 { 
@@ -312,8 +312,7 @@ namespace Servicios_Reservados_2
             }
             else
             {
-                estado = controladora.obtenerEstadoComidaCampo(idServ[GridServicios.SelectedIndex]);
-                if (estado.Rows[0][0].ToString() == "Activo")
+                if (comidaCampoConsultada.Estado == "Activo")
                 {
                     controladora.cancelarComidaCampo(idServ[GridServicios.SelectedIndex]);
                 }
