@@ -362,6 +362,9 @@
     <Compile Include="App_Data\ComidaCampo\EntidadComidaCampo.cs" />
     <Compile Include="App_Data\ComidaEmpleado\ControladoraComidaEmpleado.cs" />
     <Compile Include="App_Data\Empleados\AdaptadorEmpleado.cs" />
+    <Compile Include="App_Data\Tiquete\ControladoraBDTiquete.cs" />
+    <Compile Include="App_Data\Tiquete\ControladoraTiquete.cs" />
+    <Compile Include="App_Data\Tiquete\EntidadTiquete.cs" />
     <Compile Include="App_Data\Usuarios\ControladoraBDUsuario.cs" />
     <Compile Include="App_Data\Usuarios\ControladoraUsuario.cs" />
     <Compile Include="App_Data\ServirPlatos\AdaptadorServirPlatos.cs" />

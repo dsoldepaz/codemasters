@@ -1,5 +1,4 @@
-﻿using Servicios_Reservados_2.Servicios;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -14,6 +13,7 @@ namespace Servicios_Reservados_2
     public partial class FormServicios : System.Web.UI.Page
     {
         private ControladoraServicios controladora = new ControladoraServicios();
+        private static EntidadServicios seleccionado = null;
         private static DataTable reservacion = new DataTable();
         private static String[] ids;
         private static String[] idServ;
@@ -97,7 +97,7 @@ namespace Servicios_Reservados_2
                     foreach (DataRow fila in paquete.Rows)
                     {
                         ids[i] = controladora.idSelected();// guardar el id para su posterior consulta
-                        idServ[i] = "Paquete";
+                        idServ[i] = fila[1].ToString();
                         datos[0] = "Paquete reservación";
                         datos[1] = fila[1].ToString();
                         datos[2] = "Alimentación incluída en el paquete de reservación";
@@ -129,7 +129,7 @@ namespace Servicios_Reservados_2
                 }
 
                 //agrega los servicios de comida de campo
-                int j = i;
+                
                 if (comidaCampo.Rows.Count > 0)
                 {
 
@@ -137,8 +137,8 @@ namespace Servicios_Reservados_2
                     foreach (DataRow fila in comidaCampo.Rows)
                     {
 
-                        idServ[j] = fila[0].ToString();
-                        ids[j] = fila[1].ToString();
+                        idServ[i] = fila[0].ToString();
+                        ids[i] = fila[1].ToString();
                         // datos[0] = "Comida Campo";
                         if (int.Parse(fila[4].ToString()) == 1)
                         {
@@ -172,7 +172,7 @@ namespace Servicios_Reservados_2
                         datos[5] = fila[3].ToString();
                         datos[6] = fila[8].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
-                        j++;
+                        i++;
                     }
                 }
 
@@ -244,9 +244,11 @@ namespace Servicios_Reservados_2
          */
         protected void seleccionarServicio(object sender, EventArgs e)
         {
-            if (idServ[GridServicios.SelectedIndex].Contains("Paquete"))
+            //seleccionar bien
+            seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex]);
+            //revisar esto
+            if (idServ[GridServicios.SelectedIndex].Contains("."))
             {
-                //do something
             }
             else if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
@@ -282,6 +284,7 @@ namespace Servicios_Reservados_2
 
         protected void cliclAgregarComidaCampo(object sender, EventArgs e)
         {
+            FormComidaCampo.modo = 1;
             FormComidaCampo.idReservacion = controladora.idSelected();
             FormComidaCampo.tipoComidaCampo = 0;
             Response.Redirect("FormComidaCampo");
@@ -310,7 +313,7 @@ namespace Servicios_Reservados_2
             else
             {
                 estado = controladora.obtenerEstadoComidaCampo(idServ[GridServicios.SelectedIndex]);
-                if (estado.Rows[0][0].ToString() == "activo")
+                if (estado.Rows[0][0].ToString() == "Activo")
                 {
                     controladora.cancelarComidaCampo(idServ[GridServicios.SelectedIndex]);
                 }
@@ -345,7 +348,8 @@ namespace Servicios_Reservados_2
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
             Response.Redirect("FormTiquete");
-        }
+        }   
+
 
     }
 }

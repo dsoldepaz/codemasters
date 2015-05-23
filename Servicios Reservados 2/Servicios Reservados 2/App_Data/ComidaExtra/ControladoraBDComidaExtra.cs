@@ -59,7 +59,7 @@ namespace Servicios_Reservados_2
                
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";
-                respuesta[2] = "El usuario se ha insertado exitosamente";
+                respuesta[2] = "La comida extra se ha insertado exitosamente";
             }
             catch (SqlException e)
             {

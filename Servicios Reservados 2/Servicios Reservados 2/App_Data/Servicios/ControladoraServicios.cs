@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using System.Diagnostics;
 using System.Web;
 
 
 
-namespace Servicios_Reservados_2.Servicios
+namespace Servicios_Reservados_2
 {
     public class ControladoraServicios
     {
         public static EntidadReservaciones servicios;
-        private ControladoraBDServicios controladoraBD;
+        private static ControladoraBDServicios controladoraBD;
         public static ControladoraReservaciones controladoraReserv;
         public static ControladoraComidaExtra controladoraCE;
         public static ControladoraComidaCampo controladoraComidaCampo;
         public List<String> adicionales;
+        private static EntidadServicios seleccionado;
 
 
 
@@ -177,5 +177,31 @@ namespace Servicios_Reservados_2.Servicios
         {
             return controladoraBD.obtenerPaquete(idReservacion);
         }
+
+        internal EntidadServicios crearServicio(string id, string idRes)
+        {
+             if (id.Contains("."))
+            {
+                DataTable dt= controladoraBD.solicitarReservItem(id);
+                seleccionado= new EntidadServicios(idRes, id,  "Paquete", "-", "-", "-", int.Parse(dt.Rows[0][0].ToString()));
+                
+            }
+            else if (id.Contains("S"))
+            {
+                DataTable servicio = controladoraBD.seleccionarServicio(id, idRes);
+                seleccionado = new EntidadServicios(idRes, id, "Comida Extra", servicio.Rows[0][4].ToString(), servicio.Rows[0][7].ToString(), servicio.Rows[0][3].ToString(), int.Parse(servicio.Rows[0][2].ToString()));
+            }
+            else
+            {
+                DataTable servicio = controladoraBD.seleccionarComidaCampo(id, idRes);
+                seleccionado = new EntidadServicios(idRes, id, "Comida Campo", servicio.Rows[0][4].ToString(), servicio.Rows[0][11].ToString(), servicio.Rows[0][3].ToString(), int.Parse(servicio.Rows[0][10].ToString()));
+            }
+             return seleccionado;
+
+        }
+        public EntidadServicios servicioSeleccionado(){ 
+            return seleccionado;
+        }
+
     }
 }
