@@ -50,26 +50,52 @@ namespace Servicios_Reservados_2
             Object[] datos = new Object[5];
             foreach (DataRow fila in data.Rows)
             {
-                //SELECT IDCOMIDAEMPLEADO,'Comida regular',IDEMPLEADO,FECHA,PAGADO
+                //SELECT IDCOMIDAEMPLEADO,IDEMPLEADO,FECHA,PAGADO
                 datos[0] = fila[0].ToString(); //IDCOMIDAEMPLEADO
                 datos[1] = fila[1].ToString(); //Tipo
                 datos[2] = fila[2].ToString(); //IDEMPLEADO
                 datos[3] = fila[3].ToString(); //FECHA
-                datos[4] = fila[4].ToString(); //PAGADO
+                datos[4] = (fila[4].ToString().CompareTo("T") == 0) ? "Efectivo" : "Deduccion de Salario"; //PAGADO es un valor booleano a nivel logico.
+
                 tabla.Rows.Add(datos);
             }
 
             foreach (DataRow fila in datosComidaC.Rows)
             {
-                //SELECT IDCOMIDAEMPLEADO,'Comida Campo:tipo',IDEMPLEADO,FECHA,PAGADO
+                String etiqueta = fila[1].ToString();
+                int opcion = int.Parse(fila[5].ToString());
+                switch (opcion)
+                {
+                    case 1:
+                        etiqueta += "Desayuno";
+                        break;
+                    case 2:
+                        etiqueta += "Almuerzo";
+                        break;
+                    case 3:
+                        etiqueta += "Cena";
+                        break;
+                    case 4:
+                        etiqueta += "Sandwich";
+                        break;
+                    case 5:
+                        etiqueta += "Gallo Pinto";
+                        break;
+                    default:
+                        break;
+
+
+                }
+                //SELECT IDCOMIDAEMPLEADO,IDEMPLEADO,FECHA,PAGADO,OPCION
                 datos[0] = fila[0].ToString(); //IDCOMIDAEMPLEADO
-                datos[1] = fila[1].ToString(); //Tipo
+                datos[1] = etiqueta; //Tipo
                 datos[2] = fila[2].ToString(); //IDEMPLEADO
                 datos[3] = fila[3].ToString(); //FECHA
-                datos[4] = fila[4].ToString(); //PAGADO
+                datos[4] = (fila[4].ToString().CompareTo("T") == 0) ? "Efectivo" : "Deduccion de Salario"; //PAGADO es un valor booleano a nivel logico.
+
                 tabla.Rows.Add(datos);
             }
-
+           
             GridComidasReservadas.DataBind();
         }
         /**
@@ -153,7 +179,11 @@ namespace Servicios_Reservados_2
          * Retorna :N/A
          */
         protected void btnAgregarCC_Click(object sender, EventArgs e)
-            {
+        {
+            FormComidaCampo.idEmpleado = idEmpleado;
+            FormComidaCampo.modo = 1;
+            FormComidaCampo.tipoComidaCampo = 1;
+            Response.Redirect("FormComidaCampo");
         }
 
         /*

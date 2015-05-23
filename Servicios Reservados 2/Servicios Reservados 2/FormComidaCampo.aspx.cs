@@ -367,6 +367,9 @@ namespace Servicios_Reservados_2
                     if (tipoComidaCampo == 1) //agregar la comida dependiendo si es para un empleado o una reservacion.
                     {
                         agregarComidaCampo();
+                        FormEmpleadoReserva.idEmpleado = idEmpleado;
+                        Response.Redirect("FormEmpleadoReserva");
+                        
                     }
                     else
                     {
