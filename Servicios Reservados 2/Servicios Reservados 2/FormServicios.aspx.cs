@@ -346,7 +346,10 @@ namespace Servicios_Reservados_2
 
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
-            Response.Redirect("FormTiquete");
+            if(seleccionado!=null){
+                Response.Redirect("FormTiquete");
+            }
+            
         }   
 
 
