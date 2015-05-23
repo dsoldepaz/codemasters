@@ -231,25 +231,37 @@ namespace Servicios_Reservados_2
             nuevaComidaCampo[3] = textFecha.Value;
             nuevaComidaCampo[4] = "activo";
             nuevaComidaCampo[5] = 0;
-            if (opcion==2)
+            
+            if (radioDesayuno.Checked)
             {
                 nuevaComidaCampo[5] = "1";
-                nuevaComidaCampo[7] = getPan();
             }
-            else
-            {
-                nuevaComidaCampo[7] = "";
-
-            }
-            if (CheckboxO2.Checked)
+            else if (radioAlmuerzo.Checked)
             {
                 nuevaComidaCampo[5] = "2";
+            }
+            else if (radioCena.Checked)
+            {
+                nuevaComidaCampo[5] = "3";
+            }
+            if (opcion==2)
+            {
+                nuevaComidaCampo[5] = "4";
+                nuevaComidaCampo[7] = getPan();
                 nuevaComidaCampo[6] = getTipoSandwich();
             }
             else
             {
+                nuevaComidaCampo[7] = "";
                 nuevaComidaCampo[6] = "";
+
             }
+            if (CheckboxO2.Checked)
+            {
+                nuevaComidaCampo[5] = "5";
+                
+            }
+            
             nuevaComidaCampo[8] = "";
             if (CheckboxBebida.Checked)
             {
@@ -355,6 +367,9 @@ namespace Servicios_Reservados_2
                     if (tipoComidaCampo == 1) //agregar la comida dependiendo si es para un empleado o una reservacion.
                     {
                         agregarComidaCampo();
+                        FormEmpleadoReserva.idEmpleado = idEmpleado;
+                        Response.Redirect("FormEmpleadoReserva");
+                        
                     }
                     else
                     {

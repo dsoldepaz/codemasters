@@ -53,8 +53,8 @@ namespace Servicios_Reservados_2
         {
             DataTable empleado = controladoraBD.consultarUnEmpleado(id);
 
-            String nombre = empleado.Rows[0][1].ToString();
-            String apellido = empleado.Rows[0][2].ToString();
+            String nombre = empleado.Rows[0][2].ToString();
+            String apellido = empleado.Rows[0][3].ToString();
             
           empleadoSeleccionado = new EntidadEmpleado(id, nombre, apellido);
         }
