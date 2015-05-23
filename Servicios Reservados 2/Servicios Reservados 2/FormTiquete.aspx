@@ -29,21 +29,31 @@
                                 <tr>
                                     <td>Anfitriona:</td>
                                     <td>
-                                        <input class="textbox" style="width:500px" id="Text1" runat="server" />
+                                        <input class="textbox" style="width:500px" id="anfitriona" runat="server" />
                                     </td>
                                     <td>Estación:</td>
                                     <td>
-                                        <input class="textbox" style="width:500px" id="Text3" runat="server" />
+                                        <input class="textbox" style="width:500px" id="estacion" runat="server" />
                                     </td>
                                     </tr>
                                     <tr>
-                                    <td>Reservación:</td>
+                                    <td>Número de reservación:</td>
                                     <td>
-                                        <input class="textbox" style="width:500px" id="Text4" runat="server" />
+                                        <input class="textbox" style="width:500px" id="numero" runat="server" />
                                     </td>
-                                    <td>Tipo de servicio:</td>
+                                    <td>Categoria de servicio:</td>
                                     <td>
-                                        <input class="textbox" style="width:500px" id="Text2" runat="server" />
+                                        <input class="textbox" style="width:500px" id="categoria" runat="server" />
+                                    </td>
+                                </tr>
+                                   <tr>
+                                    <td>Estado:</td>
+                                    <td>
+                                        <input class="textbox" style="width:500px" id="estado" runat="server" />
+                                    </td>
+                                    <td>Pax:</td>
+                                    <td>
+                                        <input class="textbox" style="width:500px" id="pax" runat="server" />
                                     </td>
                                 </tr>
                             </table>                           

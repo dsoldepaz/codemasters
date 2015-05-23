@@ -7,7 +7,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Data.SqlClient;
 
-namespace Servicios_Reservados_2.Servicios
+namespace Servicios_Reservados_2
 {
     public class ControladoraBDServicios
     {
@@ -191,5 +191,12 @@ namespace Servicios_Reservados_2.Servicios
             return dt;
         }
 
+
+        internal DataTable solicitarReservItem(string id)
+        {
+            String consultaSQL = "select ri.pax from reservas.reservacionitem ri where ri.id ='" + id + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
     }
 }

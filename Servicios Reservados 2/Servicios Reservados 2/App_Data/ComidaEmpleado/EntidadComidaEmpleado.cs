@@ -8,31 +8,33 @@ namespace Servicios_Reservados_2
     public class EntidadComidaEmpleado
     {
         //IDEMPLEADO*, FECHA*, PAGADO*, NOTAS*, DESAYUNO*, ALMUERZO*, CENA*, IDCOMIDAEMPLEADO*     
-        private int idComida
+        internal int idComida
         {
             get { return idComida; }
             set { idComida = value; }
         }
-        private String idEmpleado   {
+        internal String idEmpleado
+        {
             get { return idEmpleado; }
             set { idEmpleado = value; }
         }
-        private List<DateTime> fechas{
+        internal List<DateTime> fechas
+        {
             get { return fechas; }
             set { fechas = value;}
         }
-        private bool[] turnos//[0] Desayuno [1] Almuerzo [2] Cena
+        internal bool[] turnos//[0] Desayuno [1] Almuerzo [2] Cena
                     {
             get { return turnos; }
             set { turnos = value; }
         }
 
-        private bool pagado
+        internal bool pagado
         {
             set { pagado = value; }
             get { return pagado; }
         }
-        private String notas
+        internal String notas
         {
             set { notas = value; }
             get { return notas; }
