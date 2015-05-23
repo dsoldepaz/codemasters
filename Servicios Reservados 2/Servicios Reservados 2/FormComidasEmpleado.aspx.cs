@@ -10,11 +10,12 @@ namespace Servicios_Reservados_2
 {
     public partial class FormComidasEmpleado : System.Web.UI.Page
     {
-        protected String identificacionEmpleado = "";
+        internal static String identificacionEmpleado = "";
         private static List<DateTime> list = new List<DateTime>();
         private EntidadEmpleado empleadoSeleccionado;
         private EntidadComidaEmpleado seleccionada;
-        private int modo = 0;//0= Solo el empleado consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+        internal static int modo = 0;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+        internal static int idComida=-1;
         private DateTime fechaElegida;
         private ControladoraComidaEmpleado controladora = new ControladoraComidaEmpleado();
         /*
