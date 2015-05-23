@@ -182,6 +182,8 @@ namespace Servicios_Reservados_2
         */
         protected void clickAceptar(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, GetType(), "OpenModal", "OpenModal()", true);
+            /*
             switch (modo)
             {
                 case 1://insertar
@@ -191,6 +193,7 @@ namespace Servicios_Reservados_2
                     modificarServicioExtra();
                     break;
             }
+             * */
         }
 
         /*

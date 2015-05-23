@@ -17,7 +17,7 @@ namespace Servicios_Reservados_2.Servicios
         public static ControladoraReservaciones controladoraReserv;
         public static ControladoraComidaExtra controladoraCE;
         public static ControladoraComidaCampo controladoraComidaCampo;
-        public List<String> adicionales;
+        
 
 
 
@@ -64,71 +64,26 @@ namespace Servicios_Reservados_2.Servicios
 
         }
 
-        internal DataTable solicitarServicios(String id)
+        internal DataTable solicitarServicios(String id)//para llenar grid
         {
             DataTable servicios = controladoraBD.solicitarServicios(id);
             return servicios;
-
         }
 
-        internal DataTable solicitarComidaCampo(String id)
+        internal DataTable solicitarComidaCampo(String id)//para llenear grid
         {
             DataTable comidaCampo = controladoraBD.solicitarComidaCampo(id);
             return comidaCampo;
         }
 
-        internal void seleccionarServicio(String id, String idServ)
+        internal EntidadComidaExtra seleccionarServicio(String id, String idServ)
         {
-            DataTable servicios = controladoraBD.seleccionarServicio(id, idServ);
-
-            Object[] nuevoServicio = new Object[8];
-
-            nuevoServicio[0] = servicios.Rows[0][0];
-            nuevoServicio[1] = servicios.Rows[0][1];
-            nuevoServicio[2] = servicios.Rows[0][3];
-            nuevoServicio[3] = servicios.Rows[0][4];
-            nuevoServicio[4] = servicios.Rows[0][5];
-            nuevoServicio[5] = servicios.Rows[0][2];
-            nuevoServicio[7] = servicios.Rows[0][6];
-            nuevoServicio[6] = servicios.Rows[0][7];
-
-            controladoraCE.guardarServicioSeleccionado(nuevoServicio);
+            return controladoraCE.guardarServicioSeleccionado(id, idServ);
         }
 
-        internal void seleccionarComidaCampo(String id, String idServ)
+        internal EntidadComidaCampo seleccionarComidaCampo(String id, String idServ)
         {
-            DataTable comidaCampo = controladoraBD.seleccionarComidaCampo(id, idServ);
-            DataTable adicional = controladoraBD.seleccionarAdicional(idServ);
-            adicionales = new List<String>();
-
-            Object[] nuevoComidaC = new Object[12];
-
-            nuevoComidaC[0] = comidaCampo.Rows[0][0];
-            nuevoComidaC[1] = comidaCampo.Rows[0][1];
-            nuevoComidaC[2] = comidaCampo.Rows[0][2];
-            nuevoComidaC[3] = comidaCampo.Rows[0][3];
-            nuevoComidaC[4] = comidaCampo.Rows[0][4];
-            nuevoComidaC[5] = comidaCampo.Rows[0][5];
-            nuevoComidaC[7] = comidaCampo.Rows[0][6];
-            nuevoComidaC[6] = comidaCampo.Rows[0][7];
-            nuevoComidaC[8] = comidaCampo.Rows[0][8];
-            nuevoComidaC[9] = comidaCampo.Rows[0][9];
-            nuevoComidaC[10] = comidaCampo.Rows[0][10];
-            nuevoComidaC[11] = comidaCampo.Rows[0][11];
-            int i = 0;
-            if (adicional.Rows.Count > 0)
-            {
-                foreach (DataRow fila in adicional.Rows)
-                {
-                    String ad = adicional.Rows[i][0].ToString();
-                    adicionales.Add(ad);
-                    i++;
-
-                }
-            }
-
-
-            controladoraComidaCampo.guardarComidaSeleccionada(nuevoComidaC, adicionales);
+            return controladoraComidaCampo.guardarComidaSeleccionada(id, idServ);
         }
 
 
@@ -137,9 +92,9 @@ namespace Servicios_Reservados_2.Servicios
          * Requiere: los ids.
          * Modifica:
          */
-        internal String[] cancelarComidaExtra(String idReservacion, String idComidaExtra)
+        internal String[] cancelarComidaExtra(String idReservacion, String idComidaExtra, String fecha, String hora)
         {
-            String[] resultado = controladoraBD.cancelarComidaExtra(idReservacion, idComidaExtra);
+            String[] resultado = controladoraBD.cancelarComidaExtra(idReservacion, idComidaExtra, fecha, hora);
             return resultado;
         }
 
