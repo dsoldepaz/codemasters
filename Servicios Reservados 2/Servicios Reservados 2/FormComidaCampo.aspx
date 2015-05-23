@@ -67,10 +67,19 @@
             </div>
 
             <div class="well bs-component">
-                <fieldset>
-                    
-                    <legend style="color: #7BC143">Opción #2 Sandwich [puede marcar dos opciónes]</legend>
-                    <input type="checkbox" name="opciones" value="chbxo1" id="checkboxO1" runat="server" OnServerChange="checkO1click" AutoPostBack="True">
+                                     <table>
+                        <tr>
+                            <td>
+                                <button style="background-color:white; width:50px" id= "btnO2" type="button" runat="server" onserverclick="checkO2"></button>
+                                
+                            </td>
+                            <td>
+                                <h4>Opción #2 Sandwich [puede marcar dos opciónes] </h4>
+                            </td>
+                        </tr>
+                    </table>
+                <fieldset id="fieldsetO2" visible="false" runat="server">
+
                     <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="radio" name="bread" value="panblanco" runat="server" id="radioPanBlanco">Pan blanco

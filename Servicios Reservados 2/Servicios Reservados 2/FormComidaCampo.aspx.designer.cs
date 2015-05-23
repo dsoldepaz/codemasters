@@ -157,13 +157,22 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton radioCena;
         
         /// <summary>
-        /// Control checkboxO1.
+        /// Control btnO2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox checkboxO1;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnO2;
+        
+        /// <summary>
+        /// Control fieldsetO2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fieldsetO2;
         
         /// <summary>
         /// Control radioPanBlanco.
