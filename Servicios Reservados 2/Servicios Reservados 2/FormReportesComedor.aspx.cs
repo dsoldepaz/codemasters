@@ -41,7 +41,8 @@ namespace Servicios_Reservados_2
         protected void fechaDeEntrada_ServerClick(object sender, EventArgs e)
         {
             fechaDeEntradaCalendario.Visible = !fechaDeEntradaCalendario.Visible;
-           // fechaDeEntrada.Visible = true;
+            //textFecha.Visible = !textFecha.Visible;
+          // fechaDeEntrada.Visible = !fechaDeEntrada.Visible;
 
         }
 

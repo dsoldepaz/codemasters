@@ -10,31 +10,39 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
 <link rel="stylesheet" href="Content/reportes.css"/>
-<%--<link rel="stylesheet" href="Content/ComidasExtra.css" /> --%>
 
 
 <style type="text/css">
-    #jcDiv1{
+
+    body {
+ 
+  display:block;
+}
+
+    #jcDiv1, #jcDiv0{
         margin:auto;
         width:700px;
+        padding-bottom:80px;/*separates content, margin doesnot work*/
+        height:auto;
      }
 
-    #jcDiv1 ul{
+     #jcDiv0{
+       border-radius: 2px;
+     }
+
+    #jcDiv1 ul,  #jcDiv0 ul{
         padding:0px;
         list-style:none;
+           
+     }
+
+
+     #jcDiv1 ul li{
+       margin-top:40px; 
+        
      }
     
-     #jcDiv0{
-        margin:auto;
-        width:700px;
-        
-     }
 
-    #jcDiv0 ul{
-        padding:0px;
-        list-style:none;
-        
-     }
 
     #jcDiv0 ul li{
         float:left;
@@ -75,13 +83,10 @@
        display:block;
      }
 
-     /*
-     .itemContenedor{
-       display:none;   
-     }*/
+    #jcTextFecha {
+         width: initial;
+    }
 
- 
-     
         
     
 </style>
@@ -103,7 +108,9 @@
 
 
 
-   <div id="jcDiv0">
+
+
+   <div id="jcDiv0" class="well bs-component">
        <ul>
             <li><a href="#">Proximo</a>
                 <ul>
@@ -132,6 +139,7 @@
                     <li><asp:LinkButton runat="server" Text="4" OnClick="clickEnero"></asp:LinkButton></li>
 
                 </ul>
+           </li>
 
              <li><asp:LinkButton runat="server" Text="Por Fechas" OnClick="fechaDeEntrada_ServerClick"></asp:LinkButton></li>
        </ul>
@@ -140,19 +148,20 @@
 
 
 
+
     <div id="jcDiv1">
 
-        <ul>
-                <li class="itemContenedor">
+           
                     <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" BackColor="#CCCCCC" BorderStyle="Dashed" ForeColor="#7BC143" Height="80px" Width="100px" BorderWidth="1px" Visible="false" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged">
                         <DayHeaderStyle ForeColor="#333333" Wrap="True" />
                         <DayStyle ForeColor="Black" />
                         <NextPrevStyle ForeColor="Black" />
                         <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                     </asp:Calendar>
-                </li>
-        </ul>
-    </div>
+               
+        </div>
+    
+
 
       
 
