@@ -26,9 +26,18 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
+                llenarCampos();
+                cargarComidas();
 
             }
         }
+
+        protected void llenarCampos()
+        {
+
+
+        }
+
         /*
          * Requiere: N/A
          * EFECTUA :Inserta todas las columnas de la tabla que pasa la contorladora en la tabla de datos del grid ge la GUI

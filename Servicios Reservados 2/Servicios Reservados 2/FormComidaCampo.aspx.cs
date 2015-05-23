@@ -18,6 +18,7 @@ namespace Servicios_Reservados_2
         public static int tipoComidaCampo;
         public static String idEmpleado;
         public static String idReservacion;
+        public static int opcion;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -72,7 +73,7 @@ namespace Servicios_Reservados_2
                 radioJugo.Disabled = true;
                 CheckboxBebida.Disabled = true;
                 CheckboxO2.Disabled = true;
-                checkboxO1.Disabled = true;
+                btnO2.Disabled = true;
             }
             else if (modo == 2)
             { //modificar
@@ -118,20 +119,15 @@ namespace Servicios_Reservados_2
                 radioJugo.Disabled = true;
                 CheckboxBebida.Disabled = true;
                 CheckboxO2.Disabled = true;
-                checkboxO1.Disabled = true;
+                btnO2.Disabled = true;
                 btnAgregar.Disabled = true;
                 
             }
         }
-        protected void checkO1click(object sender, EventArgs e)
+        protected void checkO2(object sender, EventArgs e)
         {
-            if (checkboxO1.Checked)
-            {
-                if (CheckboxO2.Checked)
-                {
-                    CheckboxO2.Checked = false;
-                }
-            }
+            fieldsetO2.Visible = !fieldsetO2.Visible;
+            opcion = 2;
         }
 
         protected String getPan()
@@ -235,7 +231,7 @@ namespace Servicios_Reservados_2
             nuevaComidaCampo[3] = textFecha.Value;
             nuevaComidaCampo[4] = "activo";
             nuevaComidaCampo[5] = 0;
-            if (checkboxO1.Checked)
+            if (opcion==2)
             {
                 nuevaComidaCampo[5] = "1";
                 nuevaComidaCampo[7] = getPan();
@@ -302,7 +298,7 @@ namespace Servicios_Reservados_2
                 nuevaComidaCampo[8]="";
                 nuevaComidaCampo[9] = "";
             }
-            else if(checkboxO1.Checked){  //sandwich
+            else if(opcion==2){  //sandwich
                 nuevaComidaCampo[5] ="4";
                 nuevaComidaCampo[6]= getTipoSandwich();
                 nuevaComidaCampo[7]= getPan();
@@ -411,8 +407,7 @@ namespace Servicios_Reservados_2
             }
             if (entidadConsultada.Opcion == 4)
             {
-                checkboxO1.Checked = true;
-                tipoSandwich();
+                 tipoSandwich();
             }
             else if (entidadConsultada.Opcion == 5)
             {
