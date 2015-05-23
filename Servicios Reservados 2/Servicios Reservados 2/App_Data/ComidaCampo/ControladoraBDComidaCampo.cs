@@ -65,7 +65,7 @@ namespace Servicios_Reservados_2
 
         public DataTable getComidaEmpleado(String id)
         {
-            String consultaSQL = "SELECT IDCOMIDACAMPO, IDEMPLEADO,'Comida de Campo', FECHA, TIPOPAGO FROM COMIDA_CAMPO Where IDEMPLEADO = '" + id + "'";
+            String consultaSQL = "SELECT IDCOMIDACAMPO,'Comida de Campo: ', IDEMPLEADO, FECHA, TIPOPAGO,OPCION FROM COMIDA_CAMPO Where IDEMPLEADO = '" + id + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }

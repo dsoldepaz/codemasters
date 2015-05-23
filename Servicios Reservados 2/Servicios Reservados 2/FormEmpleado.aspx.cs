@@ -150,6 +150,7 @@ namespace Servicios_Reservados_2
         {
             if (id!= "null")
             {
+                FormEmpleadoReserva.idEmpleado = id;
                 Response.Redirect("FormEmpleadoReserva");
             }
             

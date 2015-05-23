@@ -11,7 +11,7 @@ namespace Servicios_Reservados_2
 {
     public partial class FormEmpleadoReserva : System.Web.UI.Page
     {
-        internal String idEmpleado = String.Empty;
+        public static String idEmpleado = String.Empty;
         private ControladoraEmpleadoReserva controladora = new ControladoraEmpleadoReserva();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,17 +26,12 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
-                llenarCampos();
                 cargarComidas();
 
             }
         }
 
-        protected void llenarCampos()
-        {
-
-
-        }
+        
 
         /*
          * Requiere: N/A
@@ -47,10 +42,22 @@ namespace Servicios_Reservados_2
         {
             DataTable tabla = crearTablaComidaEmpleado();
             DataTable data = controladora.obtenerTabla(idEmpleado);
+            DataTable datosComidaC = controladora.obtenerComidaCampo(idEmpleado);
             Object[] datos = new Object[5];
             foreach (DataRow fila in data.Rows)
             {
                 //SELECT IDCOMIDAEMPLEADO,'Comida regular',IDEMPLEADO,FECHA,PAGADO
+                datos[0] = fila[0].ToString(); //IDCOMIDAEMPLEADO
+                datos[1] = fila[1].ToString(); //Tipo
+                datos[2] = fila[2].ToString(); //IDEMPLEADO
+                datos[3] = fila[3].ToString(); //FECHA
+                datos[4] = fila[4].ToString(); //PAGADO
+                tabla.Rows.Add(datos);
+            }
+
+            foreach (DataRow fila in datosComidaC.Rows)
+            {
+                //SELECT IDCOMIDAEMPLEADO,'Comida Campo:tipo',IDEMPLEADO,FECHA,PAGADO
                 datos[0] = fila[0].ToString(); //IDCOMIDAEMPLEADO
                 datos[1] = fila[1].ToString(); //Tipo
                 datos[2] = fila[2].ToString(); //IDEMPLEADO
@@ -74,7 +81,7 @@ namespace Servicios_Reservados_2
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Numero";
+            columna.ColumnName = "Numero de Orden";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
@@ -196,10 +203,7 @@ namespace Servicios_Reservados_2
          */
         private void iniciarEmpleado()
         {
-            if (idEmpleado.Length != 0)//la cadena tiene algo
-            {
-                controladora.
-            }
+            
         }
     }
 }
