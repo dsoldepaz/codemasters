@@ -268,9 +268,19 @@ namespace Servicios_Reservados_2
          * Modifica: la variable global modo.
          */
         protected void modificarServicio(object sender, EventArgs e)
-        {
-            modo = 2; //modificar es 2
-            Response.Redirect("FormComidaExtra");
+        {       
+            if (idServ[GridServicios.SelectedIndex].Contains("S"))
+            {
+                modo = 2; //modificar es 2
+                Response.Redirect("FormComidaExtra");
+            }
+            else
+            {
+                FormComidaCampo.modo = 2; //modo para modificar
+                FormComidaCampo.tipoComidaCampo = 0;
+                Response.Redirect("FormComidaCampo");
+            }
+
         }
 
         /*
@@ -347,7 +357,10 @@ namespace Servicios_Reservados_2
 
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
-            Response.Redirect("FormTiquete");
+            if(seleccionado!=null){
+                Response.Redirect("FormTiquete");
+            }
+            
         }   
 
 

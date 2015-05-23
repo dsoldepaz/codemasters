@@ -71,6 +71,12 @@ namespace Servicios_Reservados_2
             return resultado;
         }
 
+       public String[] modificarComidaCampo(Object[] dato, List<String> lista, EntidadComidaCampo entidadConsultada)
+       {
+           EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato, lista);
+           String[] resultado = controladoraBD.modificarComidaCampo(nuevaComidaCampo, entidadConsultada);
+           return resultado;
+       }
 
         public EntidadComidaCampo entidadSeleccionada()
         {
