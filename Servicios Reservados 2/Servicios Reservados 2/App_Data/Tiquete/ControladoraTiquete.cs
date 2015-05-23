@@ -38,5 +38,10 @@ namespace Servicios_Reservados_2
         {
             return controladoraServ.servicioSeleccionado();
         }
+
+        internal DataTable solicitarTiquetes(string p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace Servicios_Reservados_2{
         private int pax;
 
 
-        public EntidadServicios(string idRes, string id, string categoria, String hora, String fecha, string estado, int pax)
+        public EntidadServicios(String idRes, String id, String categoria, String hora, String fecha, String estado, int pax)
         {
             this.idRes = idRes;
             this.id = id;

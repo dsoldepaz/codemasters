@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -30,7 +31,16 @@ namespace Servicios_Reservados_2
                     Response.Redirect("ErrorPermiso.aspx");
                 }
                 llenarInfoServicio();
+                llenarListaTiquetes();
             }
+           
+        }
+
+        private void llenarListaTiquetes()
+        {
+            crearTablaTiquetes();
+            DataTable tiquetes = controladora.solicitarTiquetes(servicio.Id);// se consultan todos
+
 
         }
 
@@ -53,6 +63,7 @@ namespace Servicios_Reservados_2
         }
         protected void clickAgregar(object sender, EventArgs e)
         {
+           
 
         }
         protected void seleccionarTiquete(object sender, EventArgs e)
@@ -74,6 +85,21 @@ namespace Servicios_Reservados_2
         protected void clickActivar(object sender, EventArgs e)
         {
 
+        }
+        protected DataTable crearTablaTiquetes()//consultar
+        {
+            DataTable tabla = new DataTable();
+            DataColumn columna;
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Número";
+            tabla.Columns.Add(columna);
+
+            GridViewTiquetes.DataSource = tabla;
+            GridViewTiquetes.DataBind();
+
+            return tabla;
         }
     }
 }
