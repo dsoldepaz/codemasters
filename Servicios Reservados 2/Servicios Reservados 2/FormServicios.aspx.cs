@@ -1,5 +1,4 @@
-﻿using Servicios_Reservados_2.Servicios;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -14,6 +13,7 @@ namespace Servicios_Reservados_2
     public partial class FormServicios : System.Web.UI.Page
     {
         private ControladoraServicios controladora = new ControladoraServicios();
+        private static EntidadServicios seleccionado = null;
         private static DataTable reservacion = new DataTable();
         private static String[] ids;
         private static String[] idServ;
@@ -97,7 +97,7 @@ namespace Servicios_Reservados_2
                     foreach (DataRow fila in paquete.Rows)
                     {
                         ids[i] = controladora.idSelected();// guardar el id para su posterior consulta
-                        idServ[i] = "Paquete";
+                        idServ[i] = fila[1].ToString();
                         datos[0] = "Paquete reservación";
                         datos[1] = fila[1].ToString();
                         datos[2] = "Alimentación incluída en el paquete de reservación";
@@ -244,9 +244,11 @@ namespace Servicios_Reservados_2
          */
         protected void seleccionarServicio(object sender, EventArgs e)
         {
-            if (idServ[GridServicios.SelectedIndex].Contains("Paquete"))
+            //seleccionar bien
+            seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex]);
+            //revisar esto
+            if (idServ[GridServicios.SelectedIndex].Contains("."))
             {
-                //do something
             }
             else if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
@@ -345,7 +347,8 @@ namespace Servicios_Reservados_2
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
             Response.Redirect("FormTiquete");
-        }
+        }   
+
 
     }
 }
