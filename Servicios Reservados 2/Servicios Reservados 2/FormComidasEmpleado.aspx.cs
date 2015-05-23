@@ -202,14 +202,14 @@ namespace Servicios_Reservados_2
          * Retorna : N/A
          */
         protected void consultar(){
-            seleccionada=controladora.consultar(empleadoSeleccionado.Id, fechaElegida);
-            list = seleccionada.Fechas;
-            notas.Value = seleccionada.Notas;
-            bool[] turnos = seleccionada.Turnos;
+            seleccionada=controladora.consultar(idComida);
+            list = seleccionada.fechas;
+            notas.Value = seleccionada.notas;
+            bool[] turnos = seleccionada.turnos;
             this.checkboxDesayuno.Checked= turnos[0];
             this.checkboxAlmuerzo.Checked = turnos[1];
             this.checkboxCena.Checked = turnos[2];
-            tipodePago.SelectedIndex = (seleccionada.Pagado) ? 1 : 2;
+            tipodePago.SelectedIndex = (seleccionada.pagado) ? 1 : 2;
         }
         /*
          * Requiere:N/A

@@ -29,7 +29,7 @@ namespace Servicios_Reservados_2
 
         internal void modificar(EntidadComidaEmpleado seleccionada, string idEmpleado, List<DateTime> fechasReserva, bool[] turnos, bool pagado, String notas)
         {
-            EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado(idEmpleado, fechasReserva, turnos, pagado, notas);
+            EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado(idEmpleado, fechasReserva, turnos, pagado, notas, seleccionada.idComida);
             controladoraBD.modificar(seleccionada, nuevo);
         }
 
@@ -46,7 +46,8 @@ namespace Servicios_Reservados_2
 
             bool pagado = (dt.Rows[0][3].ToString().Equals("T"));
             String notas =dt.Rows[0][4].ToString();
-            EntidadComidaEmpleado consultada= new EntidadComidaEmpleado(id, list,turnos, pagado, notas);
+            EntidadComidaEmpleado consultada = new EntidadComidaEmpleado(dt.Rows[0][0].ToString(),list, turnos, pagado, notas,Int32.Parse(dt.Rows[0][7].ToString()) );
+            //String idEmpleado, List<DateTime> fechasReserva, bool[] turnos, bool pagado, String notas, int id = -1
             return consultada;
         }
 
