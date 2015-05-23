@@ -19,17 +19,17 @@ namespace Servicios_Reservados_2
         {
             String [] resultado = new String[3];
             String turnos = ", desayuno = ";
-            turnos +=(nuevo.Turnos[0]) ?  "'R'" : "'N'";
+            turnos +=(nuevo.turnos[0]) ?  "'R'" : "'N'";
             turnos += ", almuerzo = ";
-            turnos += (nuevo.Turnos[1]) ? "'R'" : "'N'";
+            turnos += (nuevo.turnos[1]) ? "'R'" : "'N'";
             turnos += ", cena = ";
-            turnos += (nuevo.Turnos[1]) ? "'R';" : "'N';";
+            turnos += (nuevo.turnos[1]) ? "'R';" : "'N';";
             try{
-                foreach (DateTime fecha in nuevo.Fechas)
+                foreach (DateTime fecha in nuevo.fechas)
                 {
-                    String insercion = "Insert into Reserva_EMPLEADO values " + "idEmpleado = " + nuevo.IdEmpleado + ", ";
+                    String insercion = "Insert into Reserva_EMPLEADO values " + "idEmpleado = " + nuevo.idEmpleado + ", ";
                     insercion += "fecha = " + fecha.ToString() +" Consumido = F"+ turnos;
-                    //EXECUTE NON QUERY
+                    adaptador.insertar(insercion);
                     resultado[0] = "SUCCESS";
                     resultado[1] = "Exito: ";
                     resultado[2] = "Los datos se guardaron correctamente.";
@@ -49,7 +49,38 @@ namespace Servicios_Reservados_2
         internal String[] modificar(EntidadComidaEmpleado seleccionada, EntidadComidaEmpleado nuevo)
         {
             String[] resultado = new String[3];
+            try
+            {
+                foreach (DateTime fecha in nuevo.fechas)
+                {
+                    DataTable actual = adaptador.consultar("SELECT DESAYUNO, ALMUERZO, CENA FROM FROM RESERVA_EMPLEADO Where idcomidaempleado ="+seleccionada.idComida+";");
+                    string update = "UPDATE RESERVA_EMPLEADO SET";
+                    if (actual.Rows[0][0].ToString().CompareTo("C") == 0 && !nuevo.turnos[0])//DESAYUNO
+                    {//Si ya se sirvio no se puede cancelar. 
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        //R = Reservado C= Consumido N=No reservado X=Cancelado
 
+                    }
+                     /* ---------------------------------------------------------------------
+                     * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                     * *********************************************************************
+                     */
+                    update += "WHERE IDCOMIDAEMPLEADO ="+seleccionada.idComida+";";
+                    adaptador.insertar(update);
+                    resultado[0] = "SUCCESS";
+                    resultado[1] = "Exito: ";
+                    resultado[2] = "Los datos se Modificaron correctamente.";
+                }
+            }
+            catch (Exception e)
+            {
+                resultado[0] = "DANGER";
+                resultado[1] = "ERROR: ";
+                resultado[2] = "No se pudo modificar el elemento, por favor verifique los datos, No se puede cancelar comidas que ya han sido servidas.";
+            }
             return resultado;
         }
         /*
@@ -57,9 +88,9 @@ namespace Servicios_Reservados_2
          * Efectua : Crea una consulta para consultar los datos individuales de una reservacion de comida de empleado. 
          * Retorna : un data table con los estados de la  reservacion de los turnos y si ya fue pagado.
         */
-        internal DataTable getInformacionReservacionEmpleado(string id, DateTime fechaElegida)
+        internal DataTable getInformacionReservacionEmpleado(int idReservacionComida)
         {
-            string consulta = "Select Desayuno, Almuerzo, Cena, pagado, notas FROM Reserva_EMPLEADO WHERE IDEMPLEADO = '" + id + "' AND fecha = " + fechaElegida + ";";
+            string consulta = "SELECT IDEMPLEADO, FECHA, PAGADO, NOTAS, DESAYUNO, ALMUERZO, CENA, IDCOMIDAEMPLEADO  FROM RESERVA_EMPLEADO Where idcomidaempleado ="+idReservacionComida+";";
             DataTable dt = adaptador.consultar(consulta);
             return dt;
         }
@@ -67,7 +98,7 @@ namespace Servicios_Reservados_2
         internal DataTable getReservacionesEmpleado(string idEmpleado)
         {
             DataTable dt = new DataTable();
-            String consulta = "SELECT IDCOMIDAEMPLEADO,'Comida regular',IDEMPLEADO,FECHA,PAGADO FROM RESERVA_EMPLEADO WHERE IDEMPLEADO = " + idEmpleado + ";";
+            String consulta = "SELECT IDCOMIDAEMPLEADO,'Comida regular',IDEMPLEADO,FECHA,PAGADO FROM servicios_reservados.RESERVA_EMPLEADO WHERE IDEMPLEADO = '"+ idEmpleado +"'";
             dt = adaptador.consultar(consulta);
             return dt;
         }

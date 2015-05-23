@@ -29,24 +29,25 @@ namespace Servicios_Reservados_2
 
         internal void modificar(EntidadComidaEmpleado seleccionada, string idEmpleado, List<DateTime> fechasReserva, bool[] turnos, bool pagado, String notas)
         {
-            EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado(idEmpleado, fechasReserva, turnos, pagado, notas);
+            EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado(idEmpleado, fechasReserva, turnos, pagado, notas, seleccionada.idComida);
             controladoraBD.modificar(seleccionada, nuevo);
         }
 
-        internal EntidadComidaEmpleado consultar(string id, System.DateTime fechaElegida)
+        internal EntidadComidaEmpleado consultar(int idReservacion)
         {
             List<DateTime> list = new List<DateTime>();
-            list.Add(fechaElegida);
             bool [] turnos = new bool[3];
-            DataTable dt= controladoraBD.getInformacionReservacionEmpleado(id, fechaElegida);
+            DataTable dt = controladoraBD.getInformacionReservacionEmpleado(idReservacion);
+            //IDEMPLEADO, FECHA, PAGADO, NOTAS, DESAYUNO, ALMUERZO, CENA, IDCOMIDAEMPLEADO
 
-            turnos[0]= (dt.Rows[0][0].ToString().Equals("R")||dt.Rows[0][0].ToString().Equals("C"));
-            turnos[1]= (dt.Rows[0][1].ToString().Equals("R")||dt.Rows[0][1].ToString().Equals("C"));
-            turnos[2]= (dt.Rows[0][2].ToString().Equals("R")||dt.Rows[0][2].ToString().Equals("C"));
+            turnos[0]= (dt.Rows[0][4].ToString().Equals("R")||dt.Rows[0][0].ToString().Equals("C"));
+            turnos[1]= (dt.Rows[0][5].ToString().Equals("R")||dt.Rows[0][1].ToString().Equals("C"));
+            turnos[2]= (dt.Rows[0][6].ToString().Equals("R")||dt.Rows[0][2].ToString().Equals("C"));
 
             bool pagado = (dt.Rows[0][3].ToString().Equals("T"));
             String notas =dt.Rows[0][4].ToString();
-            EntidadComidaEmpleado consultada= new EntidadComidaEmpleado(id, list,turnos, pagado, notas);
+            EntidadComidaEmpleado consultada = new EntidadComidaEmpleado(dt.Rows[0][0].ToString(),list, turnos, pagado, notas,Int32.Parse(dt.Rows[0][7].ToString()) );
+            //String idEmpleado, List<DateTime> fechasReserva, bool[] turnos, bool pagado, String notas, int id = -1
             return consultada;
         }
 

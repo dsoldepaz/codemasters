@@ -13,31 +13,13 @@ namespace Servicios_Reservados_2 {
     public partial class FormComidasEmpleado {
         
         /// <summary>
-        /// Control nombreLbl.
+        /// Control lblEmpleado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText nombreLbl;
-        
-        /// <summary>
-        /// Control apellidoLbl.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText apellidoLbl;
-        
-        /// <summary>
-        /// Control idLbl.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText idLbl;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblEmpleado;
         
         /// <summary>
         /// Control UpdatePanel1.

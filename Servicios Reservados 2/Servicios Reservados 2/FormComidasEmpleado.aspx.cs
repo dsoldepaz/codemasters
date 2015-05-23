@@ -10,11 +10,12 @@ namespace Servicios_Reservados_2
 {
     public partial class FormComidasEmpleado : System.Web.UI.Page
     {
-        protected String identificacionEmpleado = "";
+        internal static String identificacionEmpleado = "";
         private static List<DateTime> list = new List<DateTime>();
         private EntidadEmpleado empleadoSeleccionado;
         private EntidadComidaEmpleado seleccionada;
-        private int modo = 0;//0= Solo el empleado consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+        internal static int modo = 0;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+        internal static int idComida=-1;
         private DateTime fechaElegida;
         private ControladoraComidaEmpleado controladora = new ControladoraComidaEmpleado();
         /*
@@ -31,7 +32,7 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("~/Ingresar.aspx");
                 }
-                
+                arrancar();
             }
         }
         private void arrancar()
@@ -43,9 +44,17 @@ namespace Servicios_Reservados_2
 
         private void ponerModo()
         {
-            switch (modo)
+            switch (modo)//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
             {
-                case 3: cancelar();
+                case 0: consultar();
+                    break;
+                case 1: agregarReservacion();
+                    break;
+                case 2: consultar();
+                    modificarReservacion();
+                    break;
+                case 3: consultar(); 
+                    cancelar();
                     break;
             }
         }
@@ -188,32 +197,36 @@ namespace Servicios_Reservados_2
             turnos[2] = this.checkboxCena.Checked;
             controladora.modificar(seleccionada, empleadoSeleccionado.Id, list, turnos, tipodePago.SelectedIndex == 1, notas.Value);
         }
+        /* Requiere: N/A
+         * Efectua : pide los datos a la controladora y los coloca en su posicion en la GUI.
+         * Retorna : N/A
+         */
         protected void consultar(){
-            iniciarEmpleado();
-            seleccionada=controladora.consultar(empleadoSeleccionado.Id, fechaElegida);
-            list = seleccionada.Fechas;
-            notas.Value = seleccionada.Notas;
-            bool[] turnos = seleccionada.Turnos;
+            seleccionada=controladora.consultar(idComida);
+            list = seleccionada.fechas;
+            notas.Value = seleccionada.notas;
+            bool[] turnos = seleccionada.turnos;
             this.checkboxDesayuno.Checked= turnos[0];
             this.checkboxAlmuerzo.Checked = turnos[1];
             this.checkboxCena.Checked = turnos[2];
-            tipodePago.SelectedIndex = (seleccionada.Pagado) ? 1 : 2;
-
-
+            tipodePago.SelectedIndex = (seleccionada.pagado) ? 1 : 2;
         }
+        /*
+         * Requiere:N/A
+         * Efectua :Pone en la etiqueta del nombre, la informacion del empleado.
+         * Retrona :N/A
+         */
         private void iniciarEmpleado()
         {
             empleadoSeleccionado = controladora.getInformacionDelEmpleado(identificacionEmpleado);
             try
             {
-                this.nombreLbl.Value=empleadoSeleccionado.Nombre;
-                this.apellidoLbl.Value = empleadoSeleccionado.Apellido;
-                this.idLbl.Value = identificacionEmpleado;
-
+                lblEmpleado.InnerText = empleadoSeleccionado.Id + "-" + empleadoSeleccionado.Nombre + " " + empleadoSeleccionado.Apellido;
             }
             catch (Exception e)
             {
                 //No se selecciono un empleado.
+                lblEmpleado.InnerText = "ERROR NO SE SELECCIONO NINGUN EMPLEADO";
             }
         }
 

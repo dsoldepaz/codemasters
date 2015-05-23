@@ -11,7 +11,7 @@ namespace Servicios_Reservados_2
 {
     public partial class FormEmpleadoReserva : System.Web.UI.Page
     {
-        internal String idEmpleado = String.Empty;
+        public static String idEmpleado = String.Empty;
         private ControladoraEmpleadoReserva controladora = new ControladoraEmpleadoReserva();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,9 +26,9 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
-                llenarCampos();
+                iniciarEmpleado();
                 cargarComidas();
-
+                deshabilitarBotones();
             }
         }
 
@@ -47,18 +47,56 @@ namespace Servicios_Reservados_2
         {
             DataTable tabla = crearTablaComidaEmpleado();
             DataTable data = controladora.obtenerTabla(idEmpleado);
+            DataTable datosComidaC = controladora.obtenerComidaCampo(idEmpleado);
             Object[] datos = new Object[5];
             foreach (DataRow fila in data.Rows)
             {
-                //SELECT IDCOMIDAEMPLEADO,'Comida regular',IDEMPLEADO,FECHA,PAGADO
+                //SELECT IDCOMIDAEMPLEADO,IDEMPLEADO,FECHA,PAGADO
                 datos[0] = fila[0].ToString(); //IDCOMIDAEMPLEADO
                 datos[1] = fila[1].ToString(); //Tipo
                 datos[2] = fila[2].ToString(); //IDEMPLEADO
                 datos[3] = fila[3].ToString(); //FECHA
-                datos[4] = fila[4].ToString(); //PAGADO
+                datos[4] = (fila[4].ToString().CompareTo("T") == 0) ? "Efectivo" : "Deduccion de Salario"; //PAGADO es un valor booleano a nivel logico.
+
                 tabla.Rows.Add(datos);
             }
 
+            foreach (DataRow fila in datosComidaC.Rows)
+            {
+                String etiqueta = fila[1].ToString();
+                int opcion = int.Parse(fila[5].ToString());
+                switch (opcion)
+                {
+                    case 1:
+                        etiqueta += "Desayuno";
+                        break;
+                    case 2:
+                        etiqueta += "Almuerzo";
+                        break;
+                    case 3:
+                        etiqueta += "Cena";
+                        break;
+                    case 4:
+                        etiqueta += "Sandwich";
+                        break;
+                    case 5:
+                        etiqueta += "Gallo Pinto";
+                        break;
+                    default:
+                        break;
+
+
+                }
+                //SELECT IDCOMIDAEMPLEADO,IDEMPLEADO,FECHA,PAGADO,OPCION
+                datos[0] = fila[0].ToString(); //IDCOMIDAEMPLEADO
+                datos[1] = etiqueta; //Tipo
+                datos[2] = fila[2].ToString(); //IDEMPLEADO
+                datos[3] = fila[3].ToString(); //FECHA
+                datos[4] = (fila[4].ToString().CompareTo("T") == 0) ? "Efectivo" : "Deduccion de Salario"; //PAGADO es un valor booleano a nivel logico.
+
+                tabla.Rows.Add(datos);
+            }
+           
             GridComidasReservadas.DataBind();
         }
         /**
@@ -74,7 +112,7 @@ namespace Servicios_Reservados_2
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Numero";
+            columna.ColumnName = "Numero de Orden";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
@@ -115,6 +153,9 @@ namespace Servicios_Reservados_2
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de consulta
+                FormComidasEmpleado.idComida=Int32.Parse( row.Cells[1].Text);//saca el id de la comida seleccionada.
+                FormComidasEmpleado.modo = 0;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+                Response.Redirect("FormComidasEmpleado");
 
             }
             else
@@ -124,23 +165,28 @@ namespace Servicios_Reservados_2
         }
         /*
          * Requiere:Argumentos de eventos de la GUI
-         * Efectua :Revisa que tipo de comida es y redirecciona a la pagina correspondiente en modo de agregar
+         * Efectua :llama la interfaz de Comida de Empleado en modo de agregar
          * Retorna :N/A
          */
-        protected void btnAgregar_Click(object sender, EventArgs e)
+        protected void btnAgregarCR_Click(object sender, EventArgs e)
         {
-            GridViewRow row = GridComidasReservadas.SelectedRow;
-            String tipo = row.Cells[2].Text;
-            if (tipo.Contains("Comida regular"))
-            {
-                //llama comida empleado en modo de agregar
-
+            FormComidasEmpleado.modo = 1;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+            FormComidasEmpleado.identificacionEmpleado = idEmpleado;
+            Response.Redirect("FormComidasEmpleado");
             }
-            else
-            {
-                //llama comida campo en modo de agregar
-            }
+        /*
+         * Requiere:Argumentos de eventos de la GUI
+         * Efectua :llama la interfaz de Comida de Campo en modo de agregar
+         * Retorna :N/A
+         */
+        protected void btnAgregarCC_Click(object sender, EventArgs e)
+        {
+            FormComidaCampo.idEmpleado = idEmpleado;
+            FormComidaCampo.modo = 1;
+            FormComidaCampo.tipoComidaCampo = 1;
+            Response.Redirect("FormComidaCampo");
         }
+
         /*
          * Requiere:Argumentos de eventos de la GUI
          * Efectua :Revisa que tipo de comida es y redirecciona a la pagina correspondiente en modo de editar
@@ -153,6 +199,9 @@ namespace Servicios_Reservados_2
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de Editar
+                FormComidasEmpleado.idComida = Int32.Parse(row.Cells[1].Text);//saca el id de la comida seleccionada.
+                FormComidasEmpleado.modo = 2;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+                Response.Redirect("FormComidasEmpleado");
 
             }
             else
@@ -172,7 +221,9 @@ namespace Servicios_Reservados_2
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de cancelar
-
+                FormComidasEmpleado.idComida = Int32.Parse(row.Cells[1].Text);//saca el id de la comida seleccionada.
+                FormComidasEmpleado.modo = 3;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+                Response.Redirect("FormComidasEmpleado");
             }
             else
             {
@@ -187,19 +238,32 @@ namespace Servicios_Reservados_2
 
         protected void seleccionarComida(object sender, EventArgs e)
         {
-            seccionBotones.Visible = true;
+            btnVer.Disabled = false;
+            btnEditar.Disabled = false;
+            btnCancelar.Disabled = false;
         }
         /*
-         * Requiere:
-         * Efectua :
-         * Retorna :
+         * Requiere: N/A
+         * Efectua : Carga el empleado seleccionado en la etiqueta de la GUI.
+         * Retorna : N/A
          */
         private void iniciarEmpleado()
         {
             if (idEmpleado.Length != 0)//la cadena tiene algo
             {
-                //controladora.
+                EntidadEmpleado empleado=controladora.obtenerEmpleado(idEmpleado);
+                this.lblNombre.InnerText = (empleado.Id + "-" + empleado.Nombre + " " + empleado.Apellido);
             }
+            else
+            {
+                this.lblNombre.InnerText = "No se ha seleccionado ningun empleado";
+            }
+        }
+        private void deshabilitarBotones()
+        {
+            btnVer.Disabled = true;
+            btnEditar.Disabled = true;
+            btnCancelar.Disabled = true;
         }
     }
 }

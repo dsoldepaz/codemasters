@@ -127,7 +127,7 @@ namespace Servicios_Reservados_2
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Identificación";
+            columna.ColumnName = "Número Carné";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
@@ -150,6 +150,7 @@ namespace Servicios_Reservados_2
         {
             if (id!= "null")
             {
+                FormEmpleadoReserva.idEmpleado = id;
                 Response.Redirect("FormEmpleadoReserva");
             }
             
