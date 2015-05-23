@@ -198,7 +198,7 @@ namespace Servicios_Reservados_2
         {
             if (idEmpleado.Length != 0)//la cadena tiene algo
             {
-                controladora.
+                //controladora.
             }
         }
     }
