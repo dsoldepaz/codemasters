@@ -49,9 +49,9 @@ namespace Servicios_Reservados_2
 
             if (modo == 5)
             {
-                radioDesayuno.Disabled = true;
-                radioAlmuerzo.Disabled = true;
-                radioCena.Disabled=true;
+                radioDesayuno.Enabled = true;
+                radioAlmuerzo.Enabled = true;
+                radioCena.Enabled = true;
                 CheckboxCambio.Disabled = true;
                 textFecha.Disabled = true;
                 txtHora.Disabled = true;
@@ -75,9 +75,9 @@ namespace Servicios_Reservados_2
                 chConfites.Disabled = true;
                 radioAgua.Disabled = true;
                 radioJugo.Disabled = true;
-                CheckboxBebida.Disabled = true;
-                CheckboxO2.Disabled = true;
-                btnO2.Disabled = true;
+                CheckboxBebida.Enabled = true;
+                checkO2.Enabled = true;
+                
             }
             else if (modo == 2)
             { //modificar
@@ -98,7 +98,11 @@ namespace Servicios_Reservados_2
             }
             else if (modo == 4)
             {  //consultar
+                
                 consultarComidaCampo();
+                radioDesayuno.Enabled = false;
+                radioAlmuerzo.Enabled = false;
+                radioCena.Enabled = false;
                 textFecha.Disabled = true;
                 txtHora.Disabled = true;
                 txtPax.Disabled = true;
@@ -121,14 +125,28 @@ namespace Servicios_Reservados_2
                 chConfites.Disabled = true;
                 radioAgua.Disabled = true;
                 radioJugo.Disabled = true;
-                CheckboxBebida.Disabled = true;
-                CheckboxO2.Disabled = true;
-                btnO2.Disabled = true;
+                CheckboxBebida.Enabled = true;
+                checkO2.Enabled = true;
                 btnAgregar.Disabled = true;
                 
             }
         }
-        protected void checkO2(object sender, EventArgs e)
+
+        protected void cambiarFechaD(object sender, EventArgs e)
+        {
+            
+            txtHora.Value = "8:00";
+        }
+
+        protected void cambiarFechaA(object sender, EventArgs e)
+        {
+            txtHora.Value = ":00";
+        }
+        protected void cambiarFechaC(object sender, EventArgs e)
+        {
+            txtHora.Value = "8:00";
+        }
+        protected void checkedO2(object sender, EventArgs e)
         {
             fieldsetO2.Visible = !fieldsetO2.Visible;
             opcion = 2;
@@ -248,7 +266,7 @@ namespace Servicios_Reservados_2
             {
                 nuevaComidaCampo[5] = "3";
             }
-            if (opcion==2)
+            if (checkO2.Checked)
             {
                 nuevaComidaCampo[5] = "4";
                 nuevaComidaCampo[7] = getPan();
@@ -260,7 +278,7 @@ namespace Servicios_Reservados_2
                 nuevaComidaCampo[6] = "";
 
             }
-            if (CheckboxO2.Checked)
+            if (checkO3.Checked)
             {
                 nuevaComidaCampo[5] = "5";
                 
@@ -318,11 +336,14 @@ namespace Servicios_Reservados_2
                 nuevaComidaCampo[8]="";
                 nuevaComidaCampo[9] = "";
             }
-            else if(opcion==2){  //sandwich
+            else if (checkO2.Checked)
+            {  //sandwich
                 nuevaComidaCampo[5] ="4";
                 nuevaComidaCampo[6]= getTipoSandwich();
                 nuevaComidaCampo[7]= getPan();
-            }else if(CheckboxO2.Checked){
+            }
+            else if (checkO3.Checked)
+            {
                 nuevaComidaCampo[5]="5";
                  nuevaComidaCampo[6]="";
                 nuevaComidaCampo[7]= "";
@@ -442,7 +463,7 @@ namespace Servicios_Reservados_2
             }
             else if (entidadConsultada.Opcion == 5)
             {
-                CheckboxO2.Checked = true;
+                checkO3.Checked = true;
                 chGalloPinto.Checked=true;
             }
 
@@ -519,10 +540,7 @@ namespace Servicios_Reservados_2
                 }
             }
 
-            protected void cambiarFecha(object sender, EventArgs e)
-            {
-                txtHora.Value = "8:00";
-            }
+            
             
           
             
