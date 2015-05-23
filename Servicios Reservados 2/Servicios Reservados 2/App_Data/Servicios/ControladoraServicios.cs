@@ -131,8 +131,8 @@ namespace Servicios_Reservados_2
             }
             else
             {
-                EntidadComidaCampo comidaCampo = seleccionarComidaCampo(idRes, id);
-                seleccionado = new EntidadServicios(idRes, id, "Comida Campo", comidaCampo.Hora, comidaCampo.Fecha, comidaCampo.Estado, comidaCampo.Pax);
+               /* EntidadComidaCampo comidaCampo = seleccionarComidaCampo(idRes, id);
+                seleccionado = new EntidadServicios(idRes, id, "Comida Campo", comidaCampo.Hora, comidaCampo.Fecha, comidaCampo.Estado, comidaCampo.Pax);*/
             }
              return seleccionado;
         }

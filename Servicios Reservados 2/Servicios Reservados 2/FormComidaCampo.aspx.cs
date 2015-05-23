@@ -149,8 +149,8 @@ namespace Servicios_Reservados_2
         }
         protected void checkedO2(object sender, EventArgs e)
         {
-            fieldsetO2.Visible = !fieldsetO2.Visible;
-            opcion = 2;
+            //fieldsetO2.Visible = !fieldsetO2.Visible;
+            //opcion = 2;
         }
 
         protected String getPan()

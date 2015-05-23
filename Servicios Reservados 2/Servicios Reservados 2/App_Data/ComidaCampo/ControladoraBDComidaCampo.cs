@@ -62,20 +62,21 @@ namespace Servicios_Reservados_2
             String[] respuesta = new String[3];
             try
             {
-                String consultaSQL = "update servicios_reservados.servicio_especial set idcomidacampo = '" + entidad.IdComidaCampo + "', idempleado = '" + entidad.IdEmpleado + "', idreservacion = '" + entidad.IdReservacion + "', estado = '" + entidad.Estado + "', fecha = '" + entidad.Fecha + "', opcion = '" + entidad.Opcion + "', relleno = '" + entidad.Relleno + "'" + "', pan = '" + entidad.Pan + "'" + "', bebida = '" + entidad.Bebida + "'" + "', tipopago = '" + entidad.TipoPago + "'" + "', pax = '" + entidad.Pax + "'" + "', hora = '" + entidad.Hora + "'" +
+                String consultaSQL = "update servicios_reservados.comida_campo set idcomidacampo = '" + entidadVieja.IdComidaCampo + "', idempleado = '" + entidad.IdEmpleado + "', idreservacion = '" + entidad.IdReservacion + "', estado = '" + entidad.Estado + "', fecha = '" + entidad.Fecha + "', opcion = '" + entidad.Opcion + "', relleno = '" + entidad.Relleno + "', pan = '" + entidad.Pan + "', bebida = '" + entidad.Bebida + "', tipopago = '" + entidad.TipoPago + "', pax = '" + entidad.Pax + "', hora = '" + entidad.Hora + "'" +
                                           "where idcomidacampo = '" + entidadVieja.IdComidaCampo + "'";
                 adaptador.insertar(consultaSQL);
-                String borrarAdicional = "delete * from servicios_reservados.adicional where idcomidacampo = '" + entidadVieja.IdComidaCampo + "'";
+                String borrarAdicional = "delete from servicios_reservados.adicional where idcomidacampo = '" + entidadVieja.IdComidaCampo + "'";
+                adaptador.insertar(borrarAdicional);
                 List<String> lista = entidad.Adicionales;
                 int cant = entidad.Adicionales.Count();
                 for (int i = 0; i < cant; i++)
                 {
-                    String modAdicional = "insert into servicios_reservados.adicional values(" + entidad.IdComidaCampo + ",'" + lista[i] + "')";
+                    String modAdicional = "insert into servicios_reservados.adicional values(" + entidadVieja.IdComidaCampo + ", '" + lista[i] + "')";
                     adaptador.insertar(modAdicional);
                 }
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";
-                respuesta[2] = "La comida de campo se ha agregado exitosamente";
+                respuesta[2] = "La comida de campo se ha modificado exitosamente";
             }
             catch (SqlException e)
             {
@@ -126,27 +127,14 @@ namespace Servicios_Reservados_2
 
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";
-                respuesta[2] = "El usuario se ha insertado exitosamente";
+                respuesta[2] = "La comida de campo ha sido eliminada exitosamente";
             }
             catch (SqlException e)
             {
-                int r = e.Number;
-
-                if (r == 2627)
-                {
-
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "Informacion ingresada ya existe";
-                }
-                else
-                {
-
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "No se pudo agregar el servicio extra";
-                }
-
+             
+               respuesta[0] = "danger";
+               respuesta[1] = "Error. ";
+               respuesta[2] = "No se eliminar la comida de campo";
             }
             return respuesta;
         }

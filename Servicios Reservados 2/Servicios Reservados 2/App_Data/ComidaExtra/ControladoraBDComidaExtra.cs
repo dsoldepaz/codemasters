@@ -164,26 +164,14 @@ namespace Servicios_Reservados_2
 
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";
-                respuesta[2] = "El usuario se ha insertado exitosamente";
+                respuesta[2] = "La comida extra se ha eliminado exitosamente";
             }
             catch (SqlException e)
             {
-                int r = e.Number;
-
-                if (r == 2627)
-                {
-
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "Informacion ingresada ya existe";
-                }
-                else
-                {
-
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "No se pudo agregar el servicio extra";
-                }
+                respuesta[0] = "danger";
+                respuesta[1] = "Error. ";
+                respuesta[2] = "No se pudo eliminar la comida extra";
+                
 
             }
             return respuesta;
