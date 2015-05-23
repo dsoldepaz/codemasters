@@ -81,6 +81,7 @@ namespace Servicios_Reservados_2
             }
             else if (modo == 2)
             { //modificar
+                consultarComidaCampo();
                 /*btnModificar.Disabled = true;
                 btnEliminar.Disabled = true;
                 btnAceptar.Disabled = false;
@@ -251,7 +252,7 @@ namespace Servicios_Reservados_2
             }
             nuevaComidaCampo[2] = "";   
             nuevaComidaCampo[3] = textFecha.Value;
-            nuevaComidaCampo[4] = "activo";
+            nuevaComidaCampo[4] = "Activo";
             nuevaComidaCampo[5] = 0;
             
             if (radioDesayuno.Checked)
@@ -368,6 +369,68 @@ namespace Servicios_Reservados_2
             return res;
         }
 
+        protected Boolean modificarComidaCampo()
+        {
+            Boolean res = true;
+            Object[] comidaModificar = new Object[12];// objeto en el que se almacenan los datos para enviar a encapsular.
+            List<String> lista = listaAdicionales();
+            comidaModificar[0] = "";
+            comidaModificar[1] = "";
+            comidaModificar[2] = idReservacion;
+            comidaModificar[3] = textFecha.Value;
+            comidaModificar[4] = "Activo";
+            comidaModificar[5] = 0;
+
+            if (CheckboxCambio.Checked)
+            {
+                if (radioDesayuno.Checked)
+                {
+                    comidaModificar[5] = "1";
+                }
+                else if (radioAlmuerzo.Checked)
+                {
+                    comidaModificar[5] = "2";
+                }
+                else if (radioCena.Checked)
+                {
+                    comidaModificar[5] = "3";
+                }
+                comidaModificar[6] = "";
+                comidaModificar[7] = "";
+                comidaModificar[8] = "";
+                comidaModificar[9] = "";
+            }
+            else if (checkO2.Checked)
+            {  //sandwich
+                comidaModificar[5] = "4";
+                comidaModificar[6] = getTipoSandwich();
+                comidaModificar[7] = getPan();
+            }
+            else if (checkO3.Checked)
+            {
+                comidaModificar[5] = "5";
+                comidaModificar[6] = "";
+                comidaModificar[7] = "";
+            }
+            comidaModificar[8] = "";
+            if (CheckboxBebida.Checked)
+            {
+                String bebida = "Jugo";
+                if (radioAgua.Checked)
+                {
+                    bebida = "Agua";
+                }
+                comidaModificar[8] = bebida;
+            }
+
+            comidaModificar[9] = "";
+            comidaModificar[10] = txtPax.Value;
+            comidaModificar[11] = txtHora.Value;
+            String[] error = controladora.modificarComidaCampo(comidaModificar, lista, entidadConsultada);// se le pide a la controladora que lo inserte
+            mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+            return res;
+        }
+
         protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
         {
             alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
@@ -409,6 +472,19 @@ namespace Servicios_Reservados_2
                    
                     break;
                 case 2://modificar
+                    if (tipoComidaCampo == 1) //agregar la comida dependiendo si es para un empleado o una reservacion.
+                    {
+                        FormEmpleadoReserva.idEmpleado = idEmpleado;
+                        
+
+                    }
+                    else
+                    {
+                        modificarComidaCampo();
+                        modo = 5;
+                        cambiarModo();
+                        
+                    }
 
                     break;
                 case 3://cancelar
@@ -420,11 +496,11 @@ namespace Servicios_Reservados_2
         {
             switch (tipoComidaCampo)
             {
-                case 0:
+                case 0: //cancelar reserv
                     Response.Redirect("FormServicios");
                     break;
-                case 1://insertar
-                    //Response.Redirect("FormServicios");
+                case 1://cancelar empleado
+                    Response.Redirect("FormEmpleadoReserva");
                     break;
             }
 
