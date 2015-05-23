@@ -47,8 +47,12 @@ namespace Servicios_Reservados_2
                 labelPago.Visible = false;
             }
 
-            if (modo == 1)
+            if (modo == 5)
             {
+                radioDesayuno.Disabled = true;
+                radioAlmuerzo.Disabled = true;
+                radioCena.Disabled=true;
+                CheckboxCambio.Disabled = true;
                 textFecha.Disabled = true;
                 txtHora.Disabled = true;
                 txtPax.Disabled = true;
@@ -284,14 +288,18 @@ namespace Servicios_Reservados_2
             nuevaComidaCampo[3] = textFecha.Value;
             nuevaComidaCampo[4] = "Activo";
             nuevaComidaCampo[5] = 0;
+         
             if (CheckboxCambio.Checked)
             {
                 if (radioDesayuno.Checked) {
                     nuevaComidaCampo[5] = "1";
+                    txtHora.Value = "08:00";
                 }else if(radioAlmuerzo.Checked){
                     nuevaComidaCampo[5]="2";
+                    txtHora.Value = "12:00";
                 }else if(radioCena.Checked){
                     nuevaComidaCampo[5]="3";
+                    txtHora.Value = "06:00";
                 }
                 nuevaComidaCampo[6]="";
                 nuevaComidaCampo[7]="";
@@ -324,8 +332,6 @@ namespace Servicios_Reservados_2
 
             String[] error = controladora.agregarComidaCampo(nuevaComidaCampo, lista);// se le pide a la controladora que lo inserte
             mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
-
-
             return res;
         }
 
@@ -375,6 +381,15 @@ namespace Servicios_Reservados_2
         }
         protected void clickCancelar(object sender, EventArgs e)
         {
+            switch (tipoComidaCampo)
+            {
+                case 0:
+                    Response.Redirect("FormServicios");
+                    break;
+                case 1://insertar
+                    //Response.Redirect("FormServicios");
+                    break;
+            }
 
         }
         protected void fechaDeEntradaCalendario_SelectionChanged(object sender, EventArgs e)
@@ -486,6 +501,11 @@ namespace Servicios_Reservados_2
                 if (entidadConsultada.Adicionales.Contains("Platanos")) {
                     chPlatanos.Checked = true;
                 }
+            }
+
+            protected void cambiarFecha(object sender, EventArgs e)
+            {
+                txtHora.Value = "8:00";
             }
             
           

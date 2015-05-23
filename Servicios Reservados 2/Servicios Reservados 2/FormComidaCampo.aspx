@@ -1,22 +1,23 @@
 ﻿<%@ Page Title="ComidaCampo" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormComidaCampo.aspx.cs" Inherits="Servicios_Reservados_2.FormComidaCampo" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+
     <link rel="stylesheet" href="Content/ComidasExtra.css" />
 
-      <a href="">
+  
+
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <a href="">
         <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>
                 <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
         </div>
-    </a> <!--para manejar mensajes de exito/error!-->
-
-    <legend>
-        <h2>Comida Campo</h2>
-    </legend>
-
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
+    </a>
+          <legend>
+                <h2>Comida Campo</h2>
+             </legend>
             <div class="well bs-component">
                 <fieldset>
                     <ul>
@@ -58,11 +59,12 @@
                     <input type="checkbox" name="opciones" value="chbxo2" id="CheckboxCambio" runat="server">
                     <ul class="lista formulario">
                         <il class="itemFormulario">
-                            <input type="radio" name="desayuno" value="desayuno" id="radioDesayuno" runat="server">Desayuno
+                            <input type="radio" name="desayuno" value="desayuno" id="radioDesayuno" runat="server" >Desayuno
                             <input type="radio" name="almuerzo" value="desayuno" id="radioAlmuerzo" runat="server">Almuerzo
                             <input type="radio" name="cena" value="desayuno" id="radioCena" runat="server">Cena
                        </il>
                     </ul>
+                    <asp:RadioButton ID="prueba" runat="server" AutoPostBack ="true" OnCheckedChanged="cambiarFecha"/>
                 </fieldset>
             </div>
 
@@ -82,7 +84,7 @@
 
                     <ul class="lista formulario">
                         <il class="itemFormulario">
-                            <input type="radio" name="bread" value="panblanco" runat="server" id="radioPanBlanco">Pan blanco
+                            <input type="radio" name="bread" value="panblanco" runat="server" id="radioPanBlanco" on>Pan blanco
                        </il>
                         <il class="itemFormulario">
                             <input type="radio" name="bread" value="panintegral" runat="server" id="radioPanInt">Pan integral
