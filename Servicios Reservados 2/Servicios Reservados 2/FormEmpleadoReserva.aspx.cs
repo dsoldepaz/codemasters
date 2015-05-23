@@ -26,12 +26,16 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
+                iniciarEmpleado();
                 cargarComidas();
-
             }
         }
 
-        
+        protected void llenarCampos()
+        {
+
+
+        }
 
         /*
          * Requiere: N/A
@@ -122,6 +126,9 @@ namespace Servicios_Reservados_2
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de consulta
+                FormComidasEmpleado.idComida=Int32.Parse( row.Cells[1].Text);//saca el id de la comida seleccionada.
+                FormComidasEmpleado.modo = 0;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+                Response.Redirect("FormComidasEmpleado");
 
             }
             else
@@ -131,23 +138,24 @@ namespace Servicios_Reservados_2
         }
         /*
          * Requiere:Argumentos de eventos de la GUI
-         * Efectua :Revisa que tipo de comida es y redirecciona a la pagina correspondiente en modo de agregar
+         * Efectua :llama la interfaz de Comida de Empleado en modo de agregar
          * Retorna :N/A
          */
-        protected void btnAgregar_Click(object sender, EventArgs e)
+        protected void btnAgregarCR_Click(object sender, EventArgs e)
         {
-            GridViewRow row = GridComidasReservadas.SelectedRow;
-            String tipo = row.Cells[2].Text;
-            if (tipo.Contains("Comida regular"))
-            {
-                //llama comida empleado en modo de agregar
-
+            FormComidasEmpleado.modo = 1;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+            FormComidasEmpleado.identificacionEmpleado = idEmpleado;
+            Response.Redirect("FormComidasEmpleado");
             }
-            else
+        /*
+         * Requiere:Argumentos de eventos de la GUI
+         * Efectua :llama la interfaz de Comida de Campo en modo de agregar
+         * Retorna :N/A
+         */
+        protected void btnAgregarCC_Click(object sender, EventArgs e)
             {
-                //llama comida campo en modo de agregar
-            }
         }
+
         /*
          * Requiere:Argumentos de eventos de la GUI
          * Efectua :Revisa que tipo de comida es y redirecciona a la pagina correspondiente en modo de editar
@@ -197,13 +205,21 @@ namespace Servicios_Reservados_2
             seccionBotones.Visible = true;
         }
         /*
-         * Requiere:
-         * Efectua :
-         * Retorna :
+         * Requiere: N/A
+         * Efectua : Carga el empleado seleccionado en la etiqueta de la GUI.
+         * Retorna : N/A
          */
         private void iniciarEmpleado()
         {
-            
+            if (idEmpleado.Length != 0)//la cadena tiene algo
+            {
+                EntidadEmpleado empleado=controladora.obtenerEmpleado(idEmpleado);
+                this.lblNombre.InnerText = (empleado.Id + "-" + empleado.Nombre + " " + empleado.Apellido);
+            }
+            else
+            {
+                this.lblNombre.InnerText = "No se ha seleccionado ningun empleado";
+            }
         }
     }
 }
