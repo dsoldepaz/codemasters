@@ -95,28 +95,8 @@ namespace Servicios_Reservados_2
          */
         internal String[] cancelarComidaExtra(String idReservacion, String idComidaExtra, String fecha, String hora)
         {
-            String[] resultado = controladoraBD.cancelarComidaExtra(idReservacion, idComidaExtra, fecha, hora);
+            String[] resultado = controladoraCE.cancelarComidaExtra(idReservacion, idComidaExtra, fecha, hora);
             return resultado;
-        }
-
-        /*
-         * Efecto: pide a la controladora de BD el estado de una comida extra  
-         * Requiere: id de la reservacion y id de la comida extra
-         * Modifica:
-         */
-        internal DataTable obtenerEstadoComidaExtra(String idReservacion, String idCE)
-        {
-            return controladoraBD.obtenerEstadoComidaExtra(idReservacion, idCE);
-        }
-
-        /*
-         * Efecto: pide a la controladora de BD el estado de una comida de campo  
-         * Requiere: id de la comida de campo 
-         * Modifica:
-         */
-        internal DataTable obtenerEstadoComidaCampo(String idCC)
-        {
-            return controladoraBD.obtenerEstadoComidaCampo(idCC);
         }
 
         /*
@@ -126,9 +106,11 @@ namespace Servicios_Reservados_2
          */
         internal String[] cancelarComidaCampo(String idCC)
         {
-            String[] resultado = controladoraBD.cancelarComidaCampo(idCC);
+            String[] resultado = controladoraComidaCampo.cancelarComidaCampo(idCC);
             return resultado;
         }
+
+
         internal DataTable solicitarPaquete(string idReservacion)
         {
             return controladoraBD.obtenerPaquete(idReservacion);

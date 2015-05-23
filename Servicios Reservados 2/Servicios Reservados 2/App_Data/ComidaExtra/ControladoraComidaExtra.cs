@@ -160,5 +160,16 @@ namespace Servicios_Reservados_2
             DataTable fechas = controladoraBD.consultarFechas(id);
             return fechas;
         }
+
+        /*
+         * Efecto: recibe los ids y los manda a la controladora de BD para cancelar el servicio.
+         * Requiere: los ids.
+         * Modifica:
+         */
+        internal String[] cancelarComidaExtra(String idReservacion, String idComidaExtra, String fecha, String hora)
+        {
+            String[] resultado = controladoraBD.cancelarComidaExtra(idReservacion, idComidaExtra, fecha, hora);
+            return resultado;
+        }
     }
 }

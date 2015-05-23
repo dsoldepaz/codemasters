@@ -167,7 +167,7 @@ namespace Servicios_Reservados_2
                 nuevoServicio[6] = cbxHora.Value;
                 nuevoServicio[7] = cbxTipoPago.Value;
 
-                String[] error = controladora.modificarServicioExtra(nuevoServicio, controladora.servicioSeleccionados());// se le pide a la controladora que lo inserte
+                String[] error = controladora.modificarServicioExtra(nuevoServicio, entidadConsultada);// se le pide a la controladora que lo inserte
                 mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
 
                 Response.Redirect("FormServicios");

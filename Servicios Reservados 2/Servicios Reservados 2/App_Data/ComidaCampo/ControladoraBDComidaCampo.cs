@@ -84,5 +84,46 @@ namespace Servicios_Reservados_2
             return dt;
         }
 
+        /*
+         * Efecto: actualiza el atributo estado de la tabla comida_campo de la comida de campo seleccionada
+         * Requiere: el id de la reservacion seleccionada y el id de la comida extra seleccionado.
+         * Modifica: table de servicio_especial
+         */
+        public String[] cancelarComidaCampo(String idComidaCampo)
+        {
+            String[] respuesta = new String[3];
+            try
+            {
+                String consultaSQL = "update servicios_reservados.comida_campo set estado = 'Cancelado'  where idcomidacampo = '" + idComidaCampo + "'";
+
+                dt = adaptador.insertar(consultaSQL);
+
+                respuesta[0] = "success";
+                respuesta[1] = "Exito. ";
+                respuesta[2] = "El usuario se ha insertado exitosamente";
+            }
+            catch (SqlException e)
+            {
+                int r = e.Number;
+
+                if (r == 2627)
+                {
+
+                    respuesta[0] = "danger";
+                    respuesta[1] = "Error. ";
+                    respuesta[2] = "Informacion ingresada ya existe";
+                }
+                else
+                {
+
+                    respuesta[0] = "danger";
+                    respuesta[1] = "Error. ";
+                    respuesta[2] = "No se pudo agregar el servicio extra";
+                }
+
+            }
+            return respuesta;
+        }
+
     }
 }

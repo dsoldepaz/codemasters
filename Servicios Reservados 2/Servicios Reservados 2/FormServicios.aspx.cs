@@ -292,7 +292,7 @@ namespace Servicios_Reservados_2
             Response.Redirect("FormComidaCampo");
         }
 
-        /*
+      /*
        * Efecto: capta el evento del botón para cancelar una comida extra, cambia el modo y redirige a la interfaz de comida extra.
        * Requiere: presionar el botón.
        * Modifica: la variable global modo.
@@ -321,6 +321,7 @@ namespace Servicios_Reservados_2
                     //error
                 }
             }
+            llenarGridServicios();
         }
 
         /*

@@ -76,5 +76,16 @@ namespace Servicios_Reservados_2
         {
             return comidaCampoConsultada;
         }
+
+        /*
+         * Efecto: recibe el id de la comida de campo y lo manda a cancelar a la controladora de BD.
+         * Requiere: el id.
+         * Modifica:
+         */
+        internal String[] cancelarComidaCampo(String id)
+        {
+            String[] resultado = controladoraBD.cancelarComidaCampo(id);
+            return resultado;
+        }
     }
 }
