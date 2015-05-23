@@ -94,7 +94,7 @@ namespace Servicios_Reservados_2
             }
             else if (modo == 4)
             {  //consultar
-                consultarComidaCampoReserv();
+                consultarComidaCampo();
                 textFecha.Disabled = true;
                 txtHora.Disabled = true;
                 txtPax.Disabled = true;
@@ -376,9 +376,10 @@ namespace Servicios_Reservados_2
                         agregarComidaCampoReserv();
                         modo = 5;
                         cambiarModo();
+                        Response.Redirect("FormServicios");
                     }
                     
-                    //Response.Redirect("FormServicios");
+                   
                     break;
                 case 2://modificar
 
@@ -399,7 +400,7 @@ namespace Servicios_Reservados_2
         }
 
 
-        protected void consultarComidaCampoReserv()
+        protected void consultarComidaCampo()
         {
 
             textFecha.Value = entidadConsultada.Fecha;
