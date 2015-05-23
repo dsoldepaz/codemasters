@@ -70,5 +70,19 @@ namespace Servicios_Reservados_2
             return dt;
         }
 
+        internal DataTable seleccionarComidaCampo(String id, String idComidaCampo)
+        {
+            String consultaSQL = "select * from servicios_reservados.comida_campo WHERE idreservacion = '" + id + "' and idcomidacampo = '" + idComidaCampo + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        internal DataTable seleccionarAdicional(String idComidaCampo)
+        {
+            String consultaSQL = "select nombre from servicios_reservados.adicional WHERE idcomidacampo = '" + idComidaCampo + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
     }
 }

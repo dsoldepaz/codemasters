@@ -95,7 +95,7 @@ namespace Servicios_Reservados_2
             try
             {
                 String consultaSQL = "update servicios_reservados.servicio_especial set pax =" + "'" + entidad.Pax + "', fecha = '" + entidad.Fecha + "', estado = '" + entidad.Consumido + "', descripcion = '" + entidad.Descripcion + "', hora = '" + entidad.Hora + "', tipo_pago = '" + entidad.TipoPago + "', idserviciosextras = '" + entidad.IdServiciosExtras +"'" +
-                                      "where idreservacion = '" + entidadVieja.IdReservacion + "' and idserviciosextras = '" + entidadVieja.IdServiciosExtras + "'";
+                                      "where idreservacion = '" + entidadVieja.IdReservacion + "' and idserviciosextras = '" + entidadVieja.IdServiciosExtras + "' and fecha = '" + entidadVieja.Fecha + "' and hora = '" + entidadVieja.Hora + "'";
 
                 adaptador.insertar(consultaSQL);
                
@@ -131,6 +131,18 @@ namespace Servicios_Reservados_2
         internal DataTable consultarFechas(String id)
         {
             String consultaSQL = "select entra, sale from reservas.reservacion where id='" + id + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        /*
+         * Efecto: Crea la consulta SQL que obtiene la tupla del servicio solicitado de la reservacion y la retorna en forma de datatable  
+         * Requiere: id de la reservacion, id servicio
+         * Modifica: el dataTable dt
+         */
+        internal DataTable seleccionarServicio(String id, String idserv)
+        {
+            String consultaSQL = "select * from servicios_reservados.servicio_especial where idreservacion = '" + id + "' and idserviciosextras = '" + idserv + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
