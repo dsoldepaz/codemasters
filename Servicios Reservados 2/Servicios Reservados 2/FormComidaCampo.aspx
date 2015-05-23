@@ -4,20 +4,20 @@
 
     <link rel="stylesheet" href="Content/ComidasExtra.css" />
 
-  
+
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <a href="">
-        <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong>
-                <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
-        </div>
-    </a>
-          <legend>
+                <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>
+                        <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                </div>
+            </a>
+            <legend>
                 <h2>Comida Campo</h2>
-             </legend>
+            </legend>
             <div class="well bs-component">
                 <fieldset>
                     <ul>
@@ -30,8 +30,8 @@
                                 <TitleStyle BackColor="#7BC143" ForeColor="#333333" />
                             </asp:Calendar>
                         </li>
-                    
-                  
+
+
                         </li>
                         <il class="itemFormulario">
                             Hora:
@@ -48,9 +48,9 @@
                             <option value="Rebajo de planilla">Rebajo de planilla</option>
                             </select>
                         </il>
-                    </p>
-                        </ul>
-                    
+                        </p>
+                    </ul>
+
                 </fieldset>
             </div>
             <div class="well bs-component">
@@ -59,27 +59,27 @@
                     <input type="checkbox" name="opciones" value="chbxo2" id="CheckboxCambio" runat="server">
                     <ul class="lista formulario">
                         <il class="itemFormulario">
-                            <input type="radio" name="desayuno" value="desayuno" id="radioDesayuno" runat="server" >Desayuno
-                            <input type="radio" name="almuerzo" value="desayuno" id="radioAlmuerzo" runat="server">Almuerzo
-                            <input type="radio" name="cena" value="desayuno" id="radioCena" runat="server">Cena
+                            <asp:RadioButton ID="radioDesayuno" runat="server" AutoPostBack ="true" OnCheckedChanged="cambiarFechaD"/>Desayuno
+                            <asp:RadioButton ID="radioAlmuerzo" runat="server" AutoPostBack ="true" OnCheckedChanged="cambiarFechaA"/>Almuerzo
+                            <asp:RadioButton ID="radioCena" runat="server" AutoPostBack ="true" OnCheckedChanged="cambiarFechaC"/>Cena
+                            
                        </il>
                     </ul>
-                    <asp:RadioButton ID="prueba" runat="server" AutoPostBack ="true" OnCheckedChanged="cambiarFecha"/>
+
                 </fieldset>
             </div>
 
             <div class="well bs-component">
-                                     <table>
-                        <tr>
-                            <td>
-                                <button style="background-color:white; width:50px" id= "btnO2" type="button" runat="server" onserverclick="checkO2"></button>
-                                
-                            </td>
-                            <td>
-                                <h4>Opción #2 Sandwich [puede marcar dos opciónes] </h4>
-                            </td>
-                        </tr>
-                    </table>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:CheckBox ID="checkO2" runat="server" OnCheckedChanged="checkedO2"/>
+                        </td>
+                        <td>
+                            <h4>Opción #2 Sandwich [puede marcar dos opciónes] </h4>
+                        </td>
+                    </tr>
+                </table>
                 <fieldset id="fieldsetO2" visible="false" runat="server">
 
                     <ul class="lista formulario">
@@ -127,8 +127,17 @@
             </div>
             <div class="well bs-component">
                 <fieldset id="opcion2Fieldset" runat="server">
-                    <legend style="color: #7BC143">Opción #3 Debe aportar su propio recipiente</legend>
-                    <input type="checkbox" name="opciones" value="chbxo2" id="CheckboxO2" runat="server">
+                    <table>
+                    <tr>
+                        <td>
+                            <asp:CheckBox ID="checkO3" runat="server" OnCheckedChanged="checkedO3"/>
+                        </td>
+                        <td>
+                            <h4>Opción #3 Debe aportar su propio recipiente</h4>
+                        </td>
+                    </tr>
+                </table>
+                    
                     <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="checkbox" name="pinto" value="gallopinto" id="chGalloPinto" runat="server">Gallo pinto
@@ -183,9 +192,17 @@
             </div>
             <div class="well bs-component">
                 <fieldset>
+                     <table>
+                    <tr>
+                        <td>
+                            <asp:CheckBox ID="CheckboxBebida" runat="server" OnCheckedChanged="checkbebida"/>
+                        </td>
+                        <td>
+                            <h4>Escoja la opción para bebida</h4>
+                        </td>
+                    </tr>
+                </table>
                     
-                    <legend style="color: #7BC143">Escoja la opción para bebida</legend>
-                    <input type="checkbox" name="opciones" value="chbxbebida" id="CheckboxBebida" runat="server">
                     <ul class="lista formulario">
                         <il class="itemFormulario">
                             <input type="radio" name="drink" value="agua" id="radioAgua" runat="server">Agua
@@ -195,13 +212,13 @@
                         </il>
                     </ul>
                 </fieldset>
-                <button class="btn btn-success" id= "btnAgregar" name="accept" type="button" runat="server" onserverclick="clickAceptar">Aceptar</button>
+                <button class="btn btn-success" id="btnAgregar" name="accept" type="button" runat="server" onserverclick="clickAceptar">Aceptar</button>
                 <button class="btn btn-danger" name="cancel" type="button" runat="server" onserverclick="clickCancelar">cancelar</button>
             </div>
 
         </ContentTemplate>
     </asp:UpdatePanel>
-   
+
 
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">
