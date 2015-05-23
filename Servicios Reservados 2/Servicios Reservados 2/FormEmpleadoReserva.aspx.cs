@@ -11,7 +11,7 @@ namespace Servicios_Reservados_2
 {
     public partial class FormEmpleadoReserva : System.Web.UI.Page
     {
-        internal String idEmpleado = "";
+        internal String idEmpleado = String.Empty;
         private ControladoraEmpleadoReserva controladora = new ControladoraEmpleadoReserva();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -188,6 +188,18 @@ namespace Servicios_Reservados_2
         protected void seleccionarComida(object sender, EventArgs e)
         {
             seccionBotones.Visible = true;
+        }
+        /*
+         * Requiere:
+         * Efectua :
+         * Retorna :
+         */
+        private void iniciarEmpleado()
+        {
+            if (idEmpleado.Length != 0)//la cadena tiene algo
+            {
+                controladora.
+            }
         }
     }
 }

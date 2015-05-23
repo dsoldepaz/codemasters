@@ -16,3 +16,9 @@ h4{
 section.comidasReservadas>section.panelDeBotones>input.btn:nth-child(2n){
     width:140px;
 }
+.comida{
+    width:150px;
+}
+section>input.cancelar{
+    width:130px;
+}
