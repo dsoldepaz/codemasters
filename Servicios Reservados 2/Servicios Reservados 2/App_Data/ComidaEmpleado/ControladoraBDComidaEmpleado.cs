@@ -61,10 +61,16 @@ namespace Servicios_Reservados_2
                     }
                     else
                     {
+                        
                         //R = Reservado C= Consumido N=No reservado X=Cancelado
+                        if (actual.Rows[0][0].ToString().CompareTo("R")==0 && )
+                        {
+                            update +="Desayuno ='X'";
+                        }
 
                     }
                      /* ---------------------------------------------------------------------
+                      * NO ESTA LISTO
                      * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                      * *********************************************************************
                      */
