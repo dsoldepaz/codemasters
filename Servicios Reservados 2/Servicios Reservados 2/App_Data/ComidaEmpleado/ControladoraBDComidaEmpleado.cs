@@ -57,9 +57,9 @@ namespace Servicios_Reservados_2
          * Efectua : Crea una consulta para consultar los datos individuales de una reservacion de comida de empleado. 
          * Retorna : un data table con los estados de la  reservacion de los turnos y si ya fue pagado.
         */
-        internal DataTable getInformacionReservacionEmpleado(string id, DateTime fechaElegida)
+        internal DataTable getInformacionReservacionEmpleado(int idReservacionComida)
         {
-            string consulta = "Select Desayuno, Almuerzo, Cena, pagado, notas FROM Reserva_EMPLEADO WHERE IDEMPLEADO = '" + id + "' AND fecha = " + fechaElegida + ";";
+            string consulta = "SELECT IDEMPLEADO, FECHA, PAGADO, NOTAS, DESAYUNO, ALMUERZO, CENA, IDCOMIDAEMPLEADO  FROM RESERVA_EMPLEADO Where idcomidaempleado ="+idReservacionComida+";";
             DataTable dt = adaptador.consultar(consulta);
             return dt;
         }

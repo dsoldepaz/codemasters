@@ -28,6 +28,7 @@ namespace Servicios_Reservados_2
                 }
                 iniciarEmpleado();
                 cargarComidas();
+                deshabilitarBotones();
             }
         }
         /*
@@ -149,6 +150,9 @@ namespace Servicios_Reservados_2
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de Editar
+                FormComidasEmpleado.idComida = Int32.Parse(row.Cells[1].Text);//saca el id de la comida seleccionada.
+                FormComidasEmpleado.modo = 2;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+                Response.Redirect("FormComidasEmpleado");
 
             }
             else
@@ -168,7 +172,9 @@ namespace Servicios_Reservados_2
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de cancelar
-
+                FormComidasEmpleado.idComida = Int32.Parse(row.Cells[1].Text);//saca el id de la comida seleccionada.
+                FormComidasEmpleado.modo = 3;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+                Response.Redirect("FormComidasEmpleado");
             }
             else
             {
@@ -183,7 +189,9 @@ namespace Servicios_Reservados_2
 
         protected void seleccionarComida(object sender, EventArgs e)
         {
-            seccionBotones.Visible = true;
+            btnVer.Disabled = false;
+            btnEditar.Disabled = false;
+            btnCancelar.Disabled = false;
         }
         /*
          * Requiere: N/A
@@ -201,6 +209,12 @@ namespace Servicios_Reservados_2
             {
                 this.lblNombre.InnerText = "No se ha seleccionado ningun empleado";
             }
+        }
+        private void deshabilitarBotones()
+        {
+            btnVer.Disabled = true;
+            btnEditar.Disabled = true;
+            btnCancelar.Disabled = true;
         }
     }
 }

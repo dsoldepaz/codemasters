@@ -3,21 +3,8 @@
     <link rel="stylesheet" href="Content/ComidaEmpleado.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Comidas de Empleado</h1>
+    <h1>Comidas de Empleado <span id="lblEmpleado" runat="server">{nombre Empleado}</span></h1>
     <fieldset class="contenedor">
-         <h4>Informacion Del Empleado</h4>
-        <ul class ="listaformulario">
-            <li  class="itemFormulario">
-                Nombre: <input id="nombreLbl" runat="server"/>
-            </li>
-            <li  class="itemFormulario">
-                Apellido: <input id="apellidoLbl" runat="server"/>
-            </li>
-            
-            <li  class="itemFormulario">
-                Indentificacion: <input id="idLbl" runat="server"/>
-            </li>
-        </ul>
          
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
