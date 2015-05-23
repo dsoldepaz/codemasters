@@ -5,7 +5,11 @@
 
     <link rel="stylesheet" href="Content/ComidasExtra.css" />
 
-    <a href="">
+ 
+
+  <asp:UpdatePanel ID="UpdatePanel1" runat="server">    
+      <ContentTemplate>
+             <a href="">
         <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>
@@ -15,9 +19,8 @@
 
     <fieldset>
          <legend>
-                        <h2>Comida Extra</h2>
+               <h2>Comida Extra</h2>
                     </legend>
-        
               <div class="well bs-component">
             <ul>
                 <li class="itemContenedor">Fecha:<input runat="server" id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
@@ -32,9 +35,9 @@
                 
                 <li class="itemContenedor">Tipo:<asp:DropDownList ID="cbxTipo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="clickAdaptarHora"></asp:DropDownList>
                 </li>
-                <li class="itemContenedor">Hora:<select id="cbxHora" runat="server" ></select> <!--class="itemContenedor">Hora:<input id="txtHora" runat="server" type="time" />-->
+                <li class="itemContenedor">Hora:<select id="cbxHora" runat="server" ></select> 
                 </li>
-                <li class="itemContenedor">#PAX:<input id="txtPax" runat="server" type="number" required="required" placeholder="Entre un digito" />
+                <li class="itemContenedor">#PAX:<input id="txtPax" runat="server"  required="required" placeholder="Entre un digito" />
 
                 </li>
                 <li class="itemContenedor">Tipo de pago:<select id="cbxTipoPago" runat="server" ></select>
@@ -49,17 +52,21 @@
                   <table>
                         <tr>
                             <td>
-                                <input type="button" class="btn btn-success" value="Cancelar" runat="server" onserverclick="clickCancelar"/>
+                                 <input type="button" class="btn btn-success" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar"/>
+                                
                             </td>
                             <td>
-                                <input type="button" class="btn btn-success" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar"/>
+                               <input type="button" class="btn btn-danger" id= "btnCancelar" value="Cancelar" runat="server" onserverclick="clickCancelar"/>
                             </td>
                             
                         </tr>
                     </table>
 
         </div>
+             
     </fieldset>
-
+         </ContentTemplate>
+              </asp:UpdatePanel>
 
 </asp:Content>
+
