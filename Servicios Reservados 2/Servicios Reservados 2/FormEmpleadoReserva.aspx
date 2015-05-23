@@ -21,9 +21,10 @@
                     </h4>
                     <section id="seccionBotones" visible="false" class="panelDeBotones" runat="server">
                         <input class="btn btn-success" value="Ver" runat="server" onserverclick="btnVer_Click" />
-                        <input class="btn btn-success" value="Agregar nueva" runat="server" onserverclick="btnAgregar_Click"/>
+                        <input class="btn btn-success comida" value="Nueva Comida Regular" runat="server" onserverclick="btnAgregarCR_Click"/>
+                        <input class="btn btn-success comida" value="Nueva Comida Campo" runat="server" onserverclick="btnAgregarCC_Click"/>
                         <input class="btn btn-success" value="Editar" runat="server" onserverclick="btnEditar_Click"/>
-                        <input class="btn btn-success" value="Cancelar Reservacion" runat="server" onserverclick="btnCancelar_Click"/>
+                        <input class="btn btn-success cancelar" value="Cancelar Comida" runat="server" onserverclick="btnCancelar_Click"/>
                     </section>
                      <asp:GridView ID="GridComidasReservadas" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarComida">
                      <SelectedRowStyle BackColor="#7BC143" />
