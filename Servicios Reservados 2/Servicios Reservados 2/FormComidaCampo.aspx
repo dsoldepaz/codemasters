@@ -72,7 +72,7 @@
                                      <table>
                         <tr>
                             <td>
-                                <button style="background-color:white" id= "btnO2" name="btnO1" type="button" runat="server" onserverclick="checkO2"></button>
+                                <button style="background-color:white; width:50px" id= "btnO2" type="button" runat="server" onserverclick="checkO2"></button>
                                 
                             </td>
                             <td>

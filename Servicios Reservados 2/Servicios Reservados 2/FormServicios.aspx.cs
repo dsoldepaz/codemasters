@@ -304,7 +304,7 @@ namespace Servicios_Reservados_2
                     controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex]);
                 }
                 else
-                {
+                { 
                     //error
                 }
             }
