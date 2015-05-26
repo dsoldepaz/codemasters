@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Servicios_Reservados_2{
+namespace Servicios_Reservados_2
+{
     public class EntidadServicios
     {
-        private String idRes;
-        private String id;
+        private String idSolicitante;
+        private String tipoSolicitante;
+        private String idServicio;
         private String categoria;
         private String estado;
         private String hora;
@@ -15,30 +17,39 @@ namespace Servicios_Reservados_2{
         private int pax;
 
 
-        public EntidadServicios(String idRes, String id, String categoria, String hora, String fecha, String estado, int pax)
+        public EntidadServicios(String idSol, String tipoSolicitante, String id, String categoria, String hora, String fecha, String estado, int pax)
         {
-            this.idRes = idRes;
-            this.id = id;
+            this.idSolicitante = idSol;
+            this.tipoSolicitante = tipoSolicitante;
+            this.idServicio = id;
             this.categoria = categoria;
             this.estado = estado;
             this.hora = hora;
             this.fecha = fecha;
             this.pax = pax;
         }
-        public String IdRes
+        public String IdSolicitante
         {
-            get { return idRes; }
-            set { idRes = value; }
+            get { return idSolicitante; }
+            set { idSolicitante = value; }
         }
-        public String Id {
-            get { return id; } 
-            set { id = value;}
+        public String TipoSolicitante
+        {
+            get { return tipoSolicitante; }
+            set { tipoSolicitante = value; }
         }
-        public String Categoria        {
+        public String IdServicio
+        {
+            get { return idServicio; }
+            set { idServicio = value; }
+        }
+        public String Categoria
+        {
             get { return categoria; }
             set { categoria = value; }
         }
-        public String Estado {
+        public String Estado
+        {
             get { return estado; }
             set { estado = value; }
         }
@@ -49,14 +60,15 @@ namespace Servicios_Reservados_2{
         }
         public String Fecha
         {
-            get { return fecha; } 
-            set { fecha = value;}
+            get { return fecha; }
+            set { fecha = value; }
         }
-        public int Pax {
-            get { return pax; } 
-            set { pax = value;}
+        public int Pax
+        {
+            get { return pax; }
+            set { pax = value; }
         }
     }
-   
+
 
 }

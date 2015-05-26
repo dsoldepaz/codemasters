@@ -39,7 +39,7 @@ namespace Servicios_Reservados_2
         private void llenarListaTiquetes()
         {
             DataTable tabla = crearTablaTiquetes();
-            DataTable tiquetes = controladora.solicitarTiquetes(servicio.Id);// se consultan todos
+            DataTable tiquetes = controladora.solicitarTiquetes(servicio.IdServicio);// se consultan todos
             if (tiquetes.Rows.Count > 0)
             {
                 foreach (DataRow fila in tiquetes.Rows)

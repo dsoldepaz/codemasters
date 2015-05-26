@@ -56,9 +56,9 @@ namespace Servicios_Reservados_2
             return dt;
         }
 
-        internal void insertarTiquetes(string idServ, int numTiquete)
+        internal void insertarTiquetes(string idServ, int numTiquete, String categoria, String idSolicitante, String tipoSolicitante)
         {
-            String consultaSQL = "insert into tiquete values('" + numTiquete + "','" + idServ + "')";
+            String consultaSQL = "insert into tiquete values('" + numTiquete + "','" + idServ + "', 0,'" + categoria + "','" + idSolicitante + "','" + tipoSolicitante + "')";
             adaptador.insertar(consultaSQL);
         }
     }

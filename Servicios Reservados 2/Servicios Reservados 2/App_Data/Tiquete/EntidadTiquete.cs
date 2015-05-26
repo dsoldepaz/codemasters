@@ -9,6 +9,7 @@ namespace Servicios_Reservados_2
     {
         private int numero;
         private String idServicio;
+        private String tipoSolicitante;
         private int consumido;
         private String solicitante;
         private String categoria;
@@ -19,10 +20,11 @@ namespace Servicios_Reservados_2
          * Efectúa : Inicializa las variables globales de la clase con los parámetros.
          * Retorna : N/A.
          */
-        public EntidadTiquete(int numero, String idServicio, int consumido, String solicitante, String categoria, String notas)
+        public EntidadTiquete(int numero, String idServicio, String tipoSolicitante, int consumido, String solicitante, String categoria, String notas)
         {
             this.numero = numero;
             this.idServicio = idServicio;
+            this.tipoSolicitante = tipoSolicitante;
             this.consumido = consumido;
             this.solicitante = solicitante;
             this.categoria = categoria;
@@ -48,6 +50,16 @@ namespace Servicios_Reservados_2
         {
             get { return idServicio; }
             set { idServicio = value; }
+        }
+        /*
+ * Requiere: una Hilera con el valor nuevo
+ * Efectúa : Asigna a la variable global Anftritriona con el parámetro
+ * Retorna : El valor de la variable global Anfitriona
+ */
+        public String TipoSolicitante
+        {
+            get { return tipoSolicitante; }
+            set { tipoSolicitante = value; }
         }
         /*
          * Requiere: una Hilera con el valor nuevo

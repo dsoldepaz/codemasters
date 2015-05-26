@@ -26,9 +26,18 @@ namespace Servicios_Reservados_2
          * Retorna : la tabla de datos que se crea.
          */
         internal EntidadTiquete solicitarTiquete(int numTiquete)
-        {            
+        {
             DataTable tiquete = controladoraBD.consultarTiquete(numTiquete);
-            seleccionado = new EntidadTiquete();
+            //ir por notas y nombres
+            
+            String idServicio = tiquete.Rows[0][0].ToString();
+            int consumido = int.Parse(tiquete.Rows[0][1].ToString());
+            String categoria = tiquete.Rows[0][2].ToString();
+            String solicitante = tiquete.Rows[0][3].ToString();             
+            String tipoSolicitante = tiquete.Rows[0][4].ToString(); 
+
+            String notas = "ir por las notas";
+            seleccionado = new EntidadTiquete(numTiquete, idServicio, tipoSolicitante,consumido, solicitante, categoria, notas);
             return seleccionado;
         }
 

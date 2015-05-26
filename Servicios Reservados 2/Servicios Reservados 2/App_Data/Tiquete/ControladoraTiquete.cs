@@ -48,7 +48,7 @@ namespace Servicios_Reservados_2
 
         internal void activarTiquete(int numTiquete)
         {
-            controladoraBD.insertarTiquetes(servicio.Id, numTiquete);
+            controladoraBD.insertarTiquetes(servicio.IdServicio, numTiquete, servicio.Categoria, servicio.IdSolicitante, servicio.TipoSolicitante);
         }
 
         internal void desactivarTiquete(int p)

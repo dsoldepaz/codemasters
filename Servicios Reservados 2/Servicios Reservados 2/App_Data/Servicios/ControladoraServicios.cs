@@ -121,18 +121,18 @@ namespace Servicios_Reservados_2
              if (id.Contains("."))
             {
                 DataTable dt= controladoraBD.solicitarReservItem(id);
-                seleccionado= new EntidadServicios(idRes, id,  "Paquete", "-", "-", "-", int.Parse(dt.Rows[0][0].ToString()));
+                seleccionado= new EntidadServicios(idRes, "reservacion", id,  "Paquete", "hora", "fecha", "consumido", int.Parse(dt.Rows[0][0].ToString()));
                 
             }
             else if (id.Contains("S"))
             {
                 EntidadComidaExtra servicio = seleccionarServicio(idRes, id);
-                seleccionado = new EntidadServicios(idRes, id, "Comida Extra", servicio.Hora, servicio.Fecha, servicio.Consumido, servicio.Pax);
+                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida Extra", servicio.Hora, servicio.Fecha, servicio.Consumido, servicio.Pax);
             }
             else
             {
                /* EntidadComidaCampo comidaCampo = seleccionarComidaCampo(idRes, id);
-                seleccionado = new EntidadServicios(idRes, id, "Comida Campo", comidaCampo.Hora, comidaCampo.Fecha, comidaCampo.Estado, comidaCampo.Pax);*/
+                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida Campo", comidaCampo.Hora, comidaCampo.Fecha, comidaCampo.Estado, comidaCampo.Pax);*/
             }
              return seleccionado;
         }

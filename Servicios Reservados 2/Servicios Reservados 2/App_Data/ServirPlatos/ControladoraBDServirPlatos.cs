@@ -29,7 +29,7 @@ namespace Servicios_Reservados_2
          */
         internal DataTable consultarTiquete(int numTiquete)
         {
-            String consultaSQL = "SELECT idservicio, consumido FROM tiquete where numero ='"+numTiquete+"'";
+            String consultaSQL = "SELECT idservicio, consumido, categoria, idsolicitante, tiposolicitante FROM tiquete where numero ='"+numTiquete+"'";
             dt = adaptador.consultar(consultaSQL);
 
             return dt;
