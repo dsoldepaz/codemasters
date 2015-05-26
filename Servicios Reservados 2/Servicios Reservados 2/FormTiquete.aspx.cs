@@ -11,9 +11,9 @@ namespace Servicios_Reservados_2
 {
     public partial class FormTiquete : System.Web.UI.Page
     {
-        ControladoraTiquete controladora = new ControladoraTiquete();
-        EntidadReservaciones reservacion;
-        EntidadServicios servicio;
+        private static ControladoraTiquete controladora = new ControladoraTiquete();
+        private static EntidadReservaciones reservacion;
+        private static EntidadServicios servicio;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -52,20 +52,21 @@ namespace Servicios_Reservados_2
 
         private void llenarInfoServicio()
         {
-            reservacion = controladora.solicitarInfoReservacion();
-
-            anfitriona.Value = reservacion.Anfitriona;
-            estacion.Value = reservacion.Estacion;
-            numero.Value = reservacion.Numero;
-
             servicio = controladora.solicitarInfoServicio();
+            if("empleado".Equals(servicio.TipoSolicitante)){
+
+            
+            }else if("reservacion".Equals(servicio.TipoSolicitante)){
+                reservacion = controladora.solicitarInfoReservacion();
+
+                anfitriona.Value = reservacion.Anfitriona;
+                estacion.Value = reservacion.Estacion;
+                numero.Value = reservacion.Numero;                
+            }
+            
             categoria.Value = servicio.Categoria;
             estado.Value = servicio.Estado;
             pax.Value = servicio.Pax.ToString();
-
-
-
-
         }
         protected void clickAgregar(object sender, EventArgs e)
         {

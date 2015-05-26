@@ -66,7 +66,6 @@ namespace Servicios_Reservados_2
         public EntidadEmpleado getEmpleadoSeleccionado() {
             return empleadoSeleccionado;
         }
-       
-       
+
     }
 }

@@ -271,6 +271,7 @@ namespace Servicios_Reservados_2
         {
             if (seleccionado != null)
             {
+                controladora.activarTiquete();
                 Response.Redirect("FormTiquete");
             }
 

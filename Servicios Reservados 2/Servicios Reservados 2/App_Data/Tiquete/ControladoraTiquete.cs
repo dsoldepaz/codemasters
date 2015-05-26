@@ -14,6 +14,8 @@ namespace Servicios_Reservados_2
         private static ControladoraServicios controladoraServ;
         private static ControladoraBDTiquete controladoraBD;
         private static ControladoraReservaciones controladoraRes;
+        private static ControladoraEmpleadoReserva controladoraEmplRes;
+        public static EntidadServicios servicioActiva;
         /*
          * Requiere: N/A
          * Efectúa : Inicializa las variables globales de la clase. 
@@ -24,6 +26,7 @@ namespace Servicios_Reservados_2
             controladoraBD = new ControladoraBDTiquete();
             controladoraRes = new ControladoraReservaciones();
             controladoraServ = new ControladoraServicios();
+            controladoraEmplRes = new ControladoraEmpleadoReserva();
         }
         /*
          * Requiere: N/A
@@ -37,7 +40,16 @@ namespace Servicios_Reservados_2
         }
         internal EntidadServicios solicitarInfoServicio()
         {
-            servicio = controladoraServ.servicioSeleccionado();
+            if ("empleado".Equals(servicioActiva.TipoSolicitante))
+            {
+                servicio = controladoraEmplRes.servicioSeleccionado();
+
+            }
+            else if ("reservacion".Equals(servicioActiva.TipoSolicitante))
+            {
+                servicio = controladoraServ.servicioSeleccionado();
+            }
+
             return servicio;
         }
 
