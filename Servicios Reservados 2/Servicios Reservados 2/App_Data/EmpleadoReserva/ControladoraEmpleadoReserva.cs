@@ -11,6 +11,7 @@ namespace Servicios_Reservados_2
         private ControladoraEmpleado controladoraEmpleado;
         private ControladoraComidaEmpleado controladoraComidaEmpleado;
         private ControladoraComidaCampo controladoraComidaCampo;
+        private static EntidadServicios seleccionada;
         public ControladoraEmpleadoReserva()
         {
             controladoraEmpleado = new ControladoraEmpleado();
@@ -33,6 +34,12 @@ namespace Servicios_Reservados_2
         {
             controladoraEmpleado.seleccionarEmpleado(idEmpleado);
             return controladoraEmpleado.getEmpleadoSeleccionado();
+        }
+
+        internal EntidadServicios crearServicio(string idEmpleado, int p)
+        {
+            
+            return seleccionada;
         }
     }
 }
