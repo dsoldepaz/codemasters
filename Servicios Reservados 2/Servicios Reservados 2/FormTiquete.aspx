@@ -64,9 +64,10 @@
                                 <tr>
                                     <td>Número:</td>
                                     <td>
-                                        <input class="textbox" style="width:500px" id="txtTiquete" runat="server" />
+                                        <input class="textbox" style="width:500px" id="numTiquete" runat="server" />
                                     </td>
                                     <td>
+                                        <asp:Button ID="Button1" runat="server" Text="Button" />
                                         <button type="button" class="btn btn-success" id="BotonAgregar" onserverclick="clickAgregar" runat="server">Agregar</button>
                                     </td>
                                 </tr>

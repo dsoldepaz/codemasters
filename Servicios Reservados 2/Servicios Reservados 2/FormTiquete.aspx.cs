@@ -33,15 +33,21 @@ namespace Servicios_Reservados_2
                 llenarInfoServicio();
                 llenarListaTiquetes();
             }
-           
+
         }
 
         private void llenarListaTiquetes()
         {
-            crearTablaTiquetes();
+            DataTable tabla = crearTablaTiquetes();
             DataTable tiquetes = controladora.solicitarTiquetes(servicio.Id);// se consultan todos
-
-
+            if (tiquetes.Rows.Count > 0)
+            {
+                foreach (DataRow fila in tiquetes.Rows)
+                {
+                    tabla.Rows.Add(fila[0].ToString());// cargar en la tabla los datos de cada proveedor
+                }
+            }
+            GridViewTiquetes.DataBind();
         }
 
         private void llenarInfoServicio()
@@ -56,30 +62,24 @@ namespace Servicios_Reservados_2
             categoria.Value = servicio.Categoria;
             estado.Value = servicio.Estado;
             pax.Value = servicio.Pax.ToString();
-            
 
-            
+
+
 
         }
         protected void clickAgregar(object sender, EventArgs e)
         {
-           
-
+            controladora.activarTiquete(int.Parse(numTiquete.Value));
+            Response.Redirect(Request.Url.AbsoluteUri);
         }
         protected void seleccionarTiquete(object sender, EventArgs e)
         {
-            /* if (idServ[GridServicios.SelectedIndex].Contains("S"))
-             {
-                 controladora.seleccionarServicio(ids[0], idServ[GridServicios.SelectedIndex]);
-             }
-             else
-             {
-                 controladora.seleccionarComidaCampo(ids[0], idServ[GridServicios.SelectedIndex]);
-             }*/
-
+          controladora.seleccionarTiquete(int.Parse(GridViewTiquetes.SelectedRow.Cells[1].Text));
         }
         protected void clickQuitar(object sender, EventArgs e)
         {
+            controladora.desactivarTiquete(int.Parse(numTiquete.Value));
+            Response.Redirect(Request.Url.AbsoluteUri);
 
         }
         protected void clickActivar(object sender, EventArgs e)
