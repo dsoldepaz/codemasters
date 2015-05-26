@@ -39,18 +39,8 @@ namespace Servicios_Reservados_2
 
         }
         internal EntidadServicios solicitarInfoServicio()
-        {
-            if ("empleado".Equals(servicioActiva.TipoSolicitante))
-            {
-                servicio = controladoraEmplRes.servicioSeleccionado();
-
-            }
-            else if ("reservacion".Equals(servicioActiva.TipoSolicitante))
-            {
-                servicio = controladoraServ.servicioSeleccionado();
-            }
-
-            return servicio;
+        {           
+            return servicioActiva;
         }
 
         internal DataTable solicitarTiquetes(string idServ)
@@ -71,6 +61,11 @@ namespace Servicios_Reservados_2
         internal void seleccionarTiquete(int numTiquete)
         {
             tiqueteSeleccionado = numTiquete;
+        }
+
+        internal EntidadEmpleado solicitarInfoEmpleado(string p)
+        {
+            throw new NotImplementedException();
         }
     }
 }

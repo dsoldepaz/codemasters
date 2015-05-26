@@ -141,6 +141,11 @@ namespace Servicios_Reservados_2
         public EntidadServicios servicioSeleccionado(){ 
             return seleccionado;
         }
+        internal void activarTiquete()
+        {
+            //*hacer metodo set
+            ControladoraTiquete.servicioActiva = seleccionado;
+        }
 
     }
 }

@@ -13,6 +13,7 @@ namespace Servicios_Reservados_2
     {
         private static ControladoraTiquete controladora = new ControladoraTiquete();
         private static EntidadReservaciones reservacion;
+        private static EntidadEmpleado empleado;
         private static EntidadServicios servicio;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -53,20 +54,21 @@ namespace Servicios_Reservados_2
         private void llenarInfoServicio()
         {
             servicio = controladora.solicitarInfoServicio();
-            if("empleado".Equals(servicio.TipoSolicitante)){
+            categoria.Value = servicio.Categoria;
+            estado.Value = servicio.Estado;
+            pax.Value = servicio.Pax.ToString();
 
+            if("empleado".Equals(servicio.TipoSolicitante)){
+               // empleado = controladora.solicitarInfoEmpleado(servicio.IdSolicitante);
             
             }else if("reservacion".Equals(servicio.TipoSolicitante)){
                 reservacion = controladora.solicitarInfoReservacion();
-
                 anfitriona.Value = reservacion.Anfitriona;
                 estacion.Value = reservacion.Estacion;
                 numero.Value = reservacion.Numero;                
             }
             
-            categoria.Value = servicio.Categoria;
-            estado.Value = servicio.Estado;
-            pax.Value = servicio.Pax.ToString();
+            
         }
         protected void clickAgregar(object sender, EventArgs e)
         {
