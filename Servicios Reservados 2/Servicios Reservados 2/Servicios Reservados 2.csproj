@@ -177,6 +177,7 @@
     <Content Include="FormReportesComedor.aspx" />
     <Content Include="FormServirPlatos.aspx" />
     <Content Include="FormTiquete.aspx" />
+    <Content Include="Images\imagenes_OET\calendarjc.png" />
     <Content Include="Images\help.png" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\comedor.css" />
