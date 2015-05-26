@@ -58,7 +58,7 @@ namespace Servicios_Reservados_2
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("No se pudo cargar las reservaciones");
+                Debug.WriteLine("No se pudo cargar tiquete");
             }
 
 
@@ -76,12 +76,12 @@ namespace Servicios_Reservados_2
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Anfitriona";
+            columna.ColumnName = "Categoria";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Estación";
+            columna.ColumnName = "Consumido";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();

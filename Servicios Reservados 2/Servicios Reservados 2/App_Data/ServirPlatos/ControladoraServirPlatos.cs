@@ -9,6 +9,7 @@ namespace Servicios_Reservados_2
 {
     public class ControladoraServirPlatos
     {
+        private static EntidadTiquete seleccionado;
         private static ControladoraBDServirPlatos controladoraBD;
         /*
          * Requiere: N/A
@@ -24,11 +25,11 @@ namespace Servicios_Reservados_2
          * Efectúa : Pide a la controladora de base de datos la información del tiquete y las guarda en una tabla de datos. 
          * Retorna : la tabla de datos que se crea.
          */
-        internal DataTable solicitarTiquete(int numTiquete)
-        {
-            DataTable detalle = controladoraBD.consultarTiquete(numTiquete);
-            return detalle;
-
+        internal EntidadTiquete solicitarTiquete(int numTiquete)
+        {            
+            DataTable tiquete = controladoraBD.consultarTiquete(numTiquete);
+            seleccionado = new EntidadTiquete();
+            return seleccionado;
         }
 
     }
