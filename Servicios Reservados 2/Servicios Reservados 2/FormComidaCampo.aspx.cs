@@ -161,6 +161,7 @@ namespace Servicios_Reservados_2
             chConfites.Checked = false;
             radioAgua.Checked = false;
             radioJugo.Checked = false;
+            txtHora.Value = "";
 
 
         }
@@ -197,10 +198,10 @@ namespace Servicios_Reservados_2
 
         protected void checkbebida(object sender, EventArgs e)
         {
-            if (!CheckboxBebida.Checked)
+            if (CheckboxBebida.Checked)
             {
-                radioAgua.Checked = false;
-                radioJugo.Checked = false;
+                radioAgua.Disabled = false;
+                radioJugo.Disabled = false;
             }
         }
 
@@ -403,7 +404,7 @@ namespace Servicios_Reservados_2
             DateTime fechaFinal = reservacionConsultada.FechaSalida;
             DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;
             DateTime fechaHoy = DateTime.Today;
-            if ((tipoComidaCampo == 0) && (fechaSelect < fechaInicio || fechaSelect > fechaFinal) || (fechaSelect <= fechaHoy))
+            if ((tipoComidaCampo == 0) && (fechaSelect < fechaInicio || fechaSelect > fechaFinal) || (fechaSelect < fechaHoy))
             {
                 mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
                 res = false;
@@ -496,7 +497,7 @@ namespace Servicios_Reservados_2
             DateTime fechaFinal = reservacionConsultada.FechaSalida;
             DateTime fechaSelect = DateTime.Parse(textFecha.Value);
             DateTime fechaHoy = DateTime.Today;
-            if ((tipoComidaCampo == 0) && (fechaSelect < fechaInicio || fechaSelect > fechaFinal) || (fechaSelect <= fechaHoy))
+            if ((tipoComidaCampo == 0) && (fechaSelect < fechaInicio || fechaSelect > fechaFinal) || (fechaSelect < fechaHoy))
             {
                 mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
                 res = false;
@@ -629,9 +630,11 @@ namespace Servicios_Reservados_2
                     }
                     else
                     {
-                        modificarComidaCampo();
-                        modo = 5;
-                        cambiarModo();
+                        bool accion = modificarComidaCampo();
+                        if (accion)
+                        {
+                            Response.Redirect("FormServicios");
+                        }
 
                     }
 
