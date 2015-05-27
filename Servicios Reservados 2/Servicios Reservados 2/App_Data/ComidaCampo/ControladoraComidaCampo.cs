@@ -39,8 +39,8 @@ namespace Servicios_Reservados_2
             nuevoComidaC[3] = comidaCampo.Rows[0][3];
             nuevoComidaC[4] = comidaCampo.Rows[0][4];
             nuevoComidaC[5] = comidaCampo.Rows[0][5];
-            nuevoComidaC[7] = comidaCampo.Rows[0][6];
-            nuevoComidaC[6] = comidaCampo.Rows[0][7];
+            nuevoComidaC[6] = comidaCampo.Rows[0][6];
+            nuevoComidaC[7] = comidaCampo.Rows[0][7];
             nuevoComidaC[8] = comidaCampo.Rows[0][8];
             nuevoComidaC[9] = comidaCampo.Rows[0][9];
             nuevoComidaC[10] = comidaCampo.Rows[0][10];
@@ -76,8 +76,8 @@ namespace Servicios_Reservados_2
             nuevoComidaC[3] = comidaCampo.Rows[0][3];
             nuevoComidaC[4] = comidaCampo.Rows[0][4];
             nuevoComidaC[5] = comidaCampo.Rows[0][5];
-            nuevoComidaC[7] = comidaCampo.Rows[0][6];
-            nuevoComidaC[6] = comidaCampo.Rows[0][7];
+            nuevoComidaC[6] = comidaCampo.Rows[0][6];   //relleno
+            nuevoComidaC[7] = comidaCampo.Rows[0][7];  //pan
             nuevoComidaC[8] = comidaCampo.Rows[0][8];
             nuevoComidaC[9] = comidaCampo.Rows[0][9];
             nuevoComidaC[10] = comidaCampo.Rows[0][10];

@@ -33,13 +33,11 @@
 
 
                         </li>
-                        <il class="itemFormulario">
-                            Hora:
-                            <input id="txtHora" runat="server" />
-                        </il>
+                        <li class="itemContenedor">Hora:<select id="cmbHora" runat="server"></select>
+                        </li>
                         <il class="itemFormulario">
                             Pax:
-                            <input id="txtPax" runat="server" />
+                            <input id="txtPax" runat="server" required="required" title="Inserte un número entero" pattern="^[0-9]+$"/>
                         </il>
                         <il class="itemFormulario">
                             <label class="labelfont" id="labelPago" runat="server">Tipo Pago:</label>
@@ -61,15 +59,15 @@
                             <asp:CheckBox ID="checkO1" runat="server" OnCheckedChanged="checkedO1" AutoPostBack ="true"/>
                         </td>
                         <td>
-                            <h4>Opción #1 Reemplezar por:</h4>
+                            <h4>Opción #1 Remplezar por:</h4>
                         </td>
                     </tr>
                 </table>
                     <ul class="lista formulario">
                         <il class="itemFormulario">
-                            <asp:RadioButton ID="radioDesayuno" runat="server" name="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaD"/>Desayuno
-                            <asp:RadioButton ID="radioAlmuerzo" runat="server" name="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaA"/>Almuerzo
-                            <asp:RadioButton ID="radioCena" runat="server" name="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaC"/>Cena
+                            <asp:RadioButton ID="radioDesayuno" runat="server" GroupName="desayuno" AutoPostBack ="true" OnCheckedChanged="cambiarFechaD"/>Desayuno
+                            <asp:RadioButton ID="radioAlmuerzo" runat="server" GroupName="almuerzo" AutoPostBack ="true" OnCheckedChanged="cambiarFechaA"/>Almuerzo
+                            <asp:RadioButton ID="radioCena" runat="server" GroupName="cena" AutoPostBack ="true" OnCheckedChanged="cambiarFechaC"/>Cena
                             
                        </il>
                     </ul>
@@ -84,7 +82,7 @@
                             <asp:CheckBox ID="checkO2" runat="server" OnCheckedChanged="checkedO2" AutoPostBack ="true"/>
                         </td>
                         <td>
-                            <h4>Opción #2 Sandwich [puede marcar dos opciónes] </h4>
+                            <h4>Opción #2 Sandwich [puede marcar dos opciones] </h4>
                         </td>
                     </tr>
                 </table>

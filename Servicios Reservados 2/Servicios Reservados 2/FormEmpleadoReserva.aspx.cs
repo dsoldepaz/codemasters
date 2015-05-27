@@ -16,6 +16,7 @@ namespace Servicios_Reservados_2
         private ControladoraEmpleadoReserva controladora = new ControladoraEmpleadoReserva();
         private static EntidadServicios seleccionado = null;
         public static EntidadComidaCampo comidaCampoConsultada;
+        public static EntidadComidaEmpleado comidaEmpleadoSeleccionado; 
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
@@ -247,18 +248,18 @@ namespace Servicios_Reservados_2
             btnVer.Disabled = false;
             btnEditar.Disabled = false;
             btnCancelar.Disabled = false;
-            Debug.WriteLine(GridComidasReservadas.SelectedRow.Cells[1].Text);
-            Debug.WriteLine(GridComidasReservadas.SelectedRow.Cells[2].Text);
 
-            Debug.WriteLine(GridComidasReservadas.SelectedRow.Cells[3].Text);
-            if (GridComidasReservadas.SelectedRow.Cells[2].Text != "Comida regular")
+            if (GridComidasReservadas.SelectedRow.Cells[2].Text != "Comida regular")//* es mejor comparar strings con "mi string".equals()
             {
                 comidaCampoConsultada = controladora.consultarComidaCampoSeleccionada(idEmpleado, GridComidasReservadas.SelectedRow.Cells[1].Text);
+                seleccionado = controladora.crearServicio(idEmpleado, int.Parse(comidaCampoConsultada.IdComidaCampo), comidaCampoConsultada.Fecha, "Comida de campo", "Notas no disponibles", comidaCampoConsultada.Estado);
             }
             else
             {
-                //seleccionado = controladora.crearServicio(idEmpleado, int.Parse(GridComidasReservadas.SelectedRow.Cells[1].Text), GridComidasReservadas.SelectedRow.Cells[3].Text);
+                comidaEmpleadoSeleccionado = controladora.consultarComida(Int32.Parse(GridComidasReservadas.SelectedRow.Cells[1].Text));
+                //seleccionado = controladora.crearServicio(idEmpleado, comidaEmpleadoSeleccionado.idComida, GridComidasReservadas.SelectedRow.Cells[3].Text, comidaEmpleadoSeleccionado.notas);
             }
+
         }
         /*
          * Requiere: N/A

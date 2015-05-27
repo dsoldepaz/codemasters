@@ -71,6 +71,12 @@ namespace Servicios_Reservados_2
             fechaInicio.Value = controladora.informacionServicio().FechaInicio.ToString("dd/MM/yyyy");
             fechaFinal.Value = controladora.informacionServicio().FechaSalida.ToString("dd/MM/yyyy");
             txtPax.Value = controladora.paxReserv(controladora.idNumSelected());
+            txtAnfitriona.Disabled = true;
+            txtEstacion.Disabled = true;
+            txtNombre.Disabled = true;
+            fechaFinal.Disabled = true;
+            fechaInicio.Disabled = true;
+            txtPax.Disabled = true;
         }
 
         /*Efecto: Crea la tabla de servicios
@@ -248,18 +254,7 @@ namespace Servicios_Reservados_2
         {
             //seleccionar bien
             seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex]);
-            //revisar esto
-            if (idServ[GridServicios.SelectedIndex].Contains("."))
-            {
-            }
-            else if (idServ[GridServicios.SelectedIndex].Contains("S"))
-            {
-                comidaExtraConsultada = controladora.seleccionarServicio(ids[0], idServ[GridServicios.SelectedIndex]);
-            }
-            else
-            {
-                comidaCampoConsultada = controladora.seleccionarComidaCampo(ids[0], idServ[GridServicios.SelectedIndex]);
-            }
+
 
         }
         /*
@@ -268,7 +263,8 @@ namespace Servicios_Reservados_2
          * Modifica: la variable global modo.
          */
         protected void modificarServicio(object sender, EventArgs e)
-        {       
+        {
+            
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
                 modo = 2; //modificar es 2

@@ -51,11 +51,13 @@ namespace Servicios_Reservados_2
 
             if (modo == 1)
             {
+                fechaDeEntradaCalendario.SelectedDate = DateTime.Today;
+                llenarHora();
                 radioDesayuno.Enabled = false;
                 radioAlmuerzo.Enabled = false;
                 radioCena.Enabled = false;
                 textFecha.Disabled = true;
-                txtHora.Disabled = true;
+                cmbHora.Disabled = true;
                 txtPax.Disabled = true;
                 radioPanBlanco.Disabled = true;
                 radioPanBollo.Disabled = true;
@@ -84,6 +86,8 @@ namespace Servicios_Reservados_2
             }
             else if (modo == 2)
             { //modificar
+                fechaDeEntradaCalendario.SelectedDate = DateTime.Parse(entidadConsultada.Fecha);
+                llenarHora();
                 consultarComidaCampo();
                 /*btnModificar.Disabled = true;
                 btnEliminar.Disabled = true;
@@ -102,13 +106,13 @@ namespace Servicios_Reservados_2
             }
             else if (modo == 4)
             {  //consultar
-
+                fechaDeEntrada.Disabled = true;
                 consultarComidaCampo();
                 radioDesayuno.Enabled = false;
                 radioAlmuerzo.Enabled = false;
                 radioCena.Enabled = false;
                 textFecha.Disabled = true;
-                txtHora.Disabled = true;
+                cmbHora.Disabled = true;
                 txtPax.Disabled = true;
                 radioPanBlanco.Disabled = true;
                 radioPanBollo.Disabled = true;
@@ -151,33 +155,63 @@ namespace Servicios_Reservados_2
             radioOmelette.Checked = false;
             radioEnsaladaHuevo.Checked = false;
             chGalloPinto.Checked = false;
-            chEnsalada.Checked = false;
+            /*chEnsalada.Checked = false;
             chGalletas.Checked = false;
             chHuevoDuro.Checked = false;
             chMayonesa.Checked = false;
             chPlatanos.Checked = false;
             chSalsaTomate.Checked = false;
             chFrutas.Checked = false;
-            chConfites.Checked = false;
+            chConfites.Checked = false;*/
             radioAgua.Checked = false;
             radioJugo.Checked = false;
+            cmbHora.Value = "";
 
+        }
 
+        protected void llenarHora()
+        {
+            int inicio = 6;
+            int fin = 21;
+            for (int i = inicio; i <= fin; i++)
+            {
+                String horas = i.ToString() + ":00";
+                cmbHora.Items.Add(horas);
+            }  
         }
 
         protected void cambiarFechaD(object sender, EventArgs e)
         {
-
-            txtHora.Value = "8:00";
+            cmbHora.Items.Clear();
+            int inicio=6;
+            int fin = 8;
+            for (int i = inicio; i <= fin; i++) { 
+                String horas=i.ToString()+ ":00";
+                cmbHora.Items.Add(horas);
+            }       
         }
 
         protected void cambiarFechaA(object sender, EventArgs e)
         {
-            txtHora.Value = "12:00";
+            cmbHora.Items.Clear();
+            int inicio = 11;
+            int fin = 14;
+            for (int i = inicio; i <= fin; i++)
+            {
+                String horas = i.ToString() + ":00";
+                cmbHora.Items.Add(horas);
+            }       
         }
         protected void cambiarFechaC(object sender, EventArgs e)
         {
-            txtHora.Value = "18:00";
+            cmbHora.Items.Clear();
+            int inicio = 18;
+            int fin = 20;
+            for (int i = inicio; i <= fin; i++)
+            {
+                String horas = i.ToString() + ":00";
+                cmbHora.Items.Add(horas);
+            }  
         }
         protected void checkedO1(object sender, EventArgs e)
         {
@@ -197,10 +231,10 @@ namespace Servicios_Reservados_2
 
         protected void checkbebida(object sender, EventArgs e)
         {
-            if (!CheckboxBebida.Checked)
+            if (CheckboxBebida.Checked)
             {
-                radioAgua.Checked = false;
-                radioJugo.Checked = false;
+                radioAgua.Disabled = false;
+                radioJugo.Disabled = false;
             }
         }
 
@@ -386,7 +420,7 @@ namespace Servicios_Reservados_2
 
              nuevaComidaCampo[9] = cmbTipoPago.Value.ToString();
              nuevaComidaCampo[10] = txtPax.Value;
-             nuevaComidaCampo[11] = txtHora.Value;
+             nuevaComidaCampo[11] = cmbHora.Value;
 
              String[] error = controladora.agregarComidaCampo(nuevaComidaCampo,lista);// se le pide a la controladora que lo inserte
              mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
@@ -399,11 +433,11 @@ namespace Servicios_Reservados_2
         protected Boolean agregarComidaCampo()
         {
             Boolean res = true;
-            DateTime fechaInicio = reservacionConsultada.FechaInicio;
+           DateTime fechaInicio = reservacionConsultada.FechaInicio;
             DateTime fechaFinal = reservacionConsultada.FechaSalida;
-            DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;
+            DateTime fechaSeleccionada = fechaDeEntradaCalendario.SelectedDate;
             DateTime fechaHoy = DateTime.Today;
-            if ((tipoComidaCampo == 0) && (fechaSelect < fechaInicio || fechaSelect > fechaFinal) || (fechaSelect <= fechaHoy))
+            if ((tipoComidaCampo == 0) && (fechaSeleccionada < fechaInicio || fechaSeleccionada > fechaFinal) || (fechaSeleccionada < fechaHoy))
             {
                 mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
                 res = false;
@@ -425,7 +459,7 @@ namespace Servicios_Reservados_2
                 }
 
 
-                nuevaComidaCampo[3] = textFecha.Value;
+                nuevaComidaCampo[3] = fechaSeleccionada.ToString("MM/dd/yyyy"); 
                 nuevaComidaCampo[4] = "Activo";
                 nuevaComidaCampo[5] = 0;
 
@@ -480,7 +514,7 @@ namespace Servicios_Reservados_2
                     nuevaComidaCampo[9] = cmbTipoPago.Value.ToString();
                 }
                 nuevaComidaCampo[10] = txtPax.Value;
-                nuevaComidaCampo[11] = txtHora.Value;
+                nuevaComidaCampo[11] = cmbHora.Value;
 
                 String[] error = controladora.agregarComidaCampo(nuevaComidaCampo, lista);// se le pide a la controladora que lo inserte
                 mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
@@ -494,9 +528,9 @@ namespace Servicios_Reservados_2
             Boolean res = true;
             DateTime fechaInicio = reservacionConsultada.FechaInicio;
             DateTime fechaFinal = reservacionConsultada.FechaSalida;
-            DateTime fechaSelect = DateTime.Parse(textFecha.Value);
+            DateTime fechaSeleccionada = DateTime.Parse(textFecha.Value);
             DateTime fechaHoy = DateTime.Today;
-            if ((tipoComidaCampo == 0) && (fechaSelect < fechaInicio || fechaSelect > fechaFinal) || (fechaSelect <= fechaHoy))
+            if ((tipoComidaCampo == 0) && (fechaSeleccionada < fechaInicio || fechaSeleccionada > fechaFinal) || (fechaSeleccionada < fechaHoy))
             {
                 mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
                 res = false;
@@ -570,7 +604,7 @@ namespace Servicios_Reservados_2
                     comidaModificar[9] = cmbTipoPago.Value.ToString(); ;
                 }
                 comidaModificar[10] = txtPax.Value;
-                comidaModificar[11] = txtHora.Value;
+                comidaModificar[11] = cmbHora.Value;
                 String[] error = controladora.modificarComidaCampo(comidaModificar, lista, entidadConsultada);// se le pide a la controladora que lo inserte
                 mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
             }
@@ -629,9 +663,11 @@ namespace Servicios_Reservados_2
                     }
                     else
                     {
-                        modificarComidaCampo();
-                        modo = 5;
-                        cambiarModo();
+                        bool accion = modificarComidaCampo();
+                        if (accion)
+                        {
+                            Response.Redirect("FormServicios");
+                        }
 
                     }
 
@@ -656,7 +692,7 @@ namespace Servicios_Reservados_2
         }
         protected void fechaDeEntradaCalendario_SelectionChanged(object sender, EventArgs e)
         {
-            textFecha.Value = fechaDeEntradaCalendario.SelectedDate.ToString("dd/MM/yyyy");
+            textFecha.Value = fechaDeEntradaCalendario.SelectedDate.ToString("MM/dd/yyyy");
             fechaDeEntradaCalendario.Visible = false;
         }
 
@@ -665,7 +701,7 @@ namespace Servicios_Reservados_2
         {
 
             textFecha.Value = entidadConsultada.Fecha;
-            txtHora.Value = entidadConsultada.Hora;
+            cmbHora.Value = entidadConsultada.Hora;
             txtPax.Value = entidadConsultada.Pax.ToString();
             if (entidadConsultada.Opcion == 1)
             {

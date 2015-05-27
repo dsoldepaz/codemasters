@@ -25,10 +25,10 @@
                                 <td>
                                     <input id="tiquete" runat="server" />
                                 <td>
-                                    <input id="Button1" runat="server" type="button" class="btn btn-success" value="Verificar"  onserverclick="clickVerificar" formmethod="post" />
+                                    <input id="btnVerificar" runat="server" type="button" class="btn btn-success" value="Verificar"  onserverclick="clickVerificar" />
                                 </td>
                                 <td>
-                                    <input id="Button2" runat="server" type="button" class="btn btn-success" value="Servir" />
+                                    <input id="btnServir" runat="server" type="button" class="btn btn-success" value="Servir" onserverclick="clickServir"/>
 
                             </tr>
                           

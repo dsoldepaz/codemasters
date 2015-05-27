@@ -62,5 +62,11 @@ namespace Servicios_Reservados_2
             return seleccionado;
         }
 
+
+        internal void servirTiquete()
+        {
+            int vecesConsumido = seleccionado.Consumido + 1;
+            controladoraBD.servirTiquete(seleccionado.Numero,vecesConsumido);
+        }
     }
 }
