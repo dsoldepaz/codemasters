@@ -12,19 +12,19 @@ namespace Servicios_Reservados_2
         private String idServicio;
         private String categoria;
         private String estado;
-        private String hora;
+
         private String fecha;
         private int pax;
 
 
-        public EntidadServicios(String idSol, String tipoSolicitante, String id, String categoria, String hora, String fecha, String estado, int pax)
+        public EntidadServicios(String idSol, String tipoSolicitante, String id, String categoria, String fecha, String estado, int pax)
         {
             this.idSolicitante = idSol;
             this.tipoSolicitante = tipoSolicitante;
             this.idServicio = id;
             this.categoria = categoria;
             this.estado = estado;
-            this.hora = hora;
+
             this.fecha = fecha;
             this.pax = pax;
         }
@@ -53,11 +53,7 @@ namespace Servicios_Reservados_2
             get { return estado; }
             set { estado = value; }
         }
-        public String Hora
-        {
-            get { return hora; }
-            set { hora = value; }
-        }
+
         public String Fecha
         {
             get { return fecha; }
