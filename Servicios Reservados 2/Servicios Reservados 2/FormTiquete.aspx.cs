@@ -59,13 +59,19 @@ namespace Servicios_Reservados_2
             pax.Value = servicio.Pax.ToString();
 
             if("empleado".Equals(servicio.TipoSolicitante)){
-               // empleado = controladora.solicitarInfoEmpleado(servicio.IdSolicitante);
+                empleado = controladora.solicitarInfoEmpleado(servicio.IdSolicitante);
+                anfitriona.Value = "No disponible";
+                estacion.Value = "No disponible";
+                numero.Value = empleado.Id;
+                solicitante.Value = empleado.Nombre + " " + empleado.Apellido;
+
             
             }else if("reservacion".Equals(servicio.TipoSolicitante)){
                 reservacion = controladora.solicitarInfoReservacion();
                 anfitriona.Value = reservacion.Anfitriona;
                 estacion.Value = reservacion.Estacion;
-                numero.Value = reservacion.Numero;                
+                numero.Value = reservacion.Numero;
+                solicitante.Value = reservacion.Solicitante;
             }
             
             

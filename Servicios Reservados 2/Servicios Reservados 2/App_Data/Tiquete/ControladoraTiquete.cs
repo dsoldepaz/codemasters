@@ -15,6 +15,7 @@ namespace Servicios_Reservados_2
         private static ControladoraBDTiquete controladoraBD;
         private static ControladoraReservaciones controladoraRes;
         private static ControladoraEmpleadoReserva controladoraEmplRes;
+        private static ControladoraEmpleado controladoraEmpl;
         public static EntidadServicios servicioActiva;
         /*
          * Requiere: N/A
@@ -27,6 +28,7 @@ namespace Servicios_Reservados_2
             controladoraRes = new ControladoraReservaciones();
             controladoraServ = new ControladoraServicios();
             controladoraEmplRes = new ControladoraEmpleadoReserva();
+            controladoraEmpl = new ControladoraEmpleado();
         }
         /*
          * Requiere: N/A
@@ -65,7 +67,7 @@ namespace Servicios_Reservados_2
 
         internal EntidadEmpleado solicitarInfoEmpleado(string p)
         {
-            throw new NotImplementedException();
+            return controladoraEmpl.getEmpleadoSeleccionado();
         }
     }
 }
