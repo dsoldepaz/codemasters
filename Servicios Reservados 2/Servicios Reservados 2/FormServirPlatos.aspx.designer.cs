@@ -31,22 +31,22 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText tiquete;
         
         /// <summary>
-        /// Control Button1.
+        /// Control btnVerificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton Button1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnVerificar;
         
         /// <summary>
-        /// Control Button2.
+        /// Control btnServir.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton Button2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnServir;
         
         /// <summary>
         /// Control GridViewTiquete.

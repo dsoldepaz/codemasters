@@ -249,15 +249,16 @@ namespace Servicios_Reservados_2
             btnEditar.Disabled = false;
             btnCancelar.Disabled = false;
 
-            if (GridComidasReservadas.SelectedRow.Cells[2].Text != "Comida regular")
+            if (GridComidasReservadas.SelectedRow.Cells[2].Text != "Comida regular")//* es mejor comparar strings con "mi string".equals()
             {
                 comidaCampoConsultada = controladora.consultarComidaCampoSeleccionada(idEmpleado, GridComidasReservadas.SelectedRow.Cells[1].Text);
+                seleccionado = controladora.crearServicio(idEmpleado, int.Parse(comidaCampoConsultada.IdComidaCampo), comidaCampoConsultada.Fecha, "Comida de campo", "Notas no disponibles", comidaCampoConsultada.Estado);
             }
             else
             {
                 comidaEmpleadoSeleccionado = controladora.consultarComida(Int32.Parse(GridComidasReservadas.SelectedRow.Cells[1].Text));
+                //seleccionado = controladora.crearServicio(idEmpleado, comidaEmpleadoSeleccionado.idComida, GridComidasReservadas.SelectedRow.Cells[3].Text, comidaEmpleadoSeleccionado.notas);
             }
-            seleccionado = controladora.crearServicio(idEmpleado, int.Parse(GridComidasReservadas.SelectedRow.Cells[1].Text), GridComidasReservadas.SelectedRow.Cells[3].Text, "ponernotas");
 
         }
         /*
