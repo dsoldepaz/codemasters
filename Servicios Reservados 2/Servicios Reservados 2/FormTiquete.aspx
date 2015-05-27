@@ -41,23 +41,31 @@
                                     <td>
                                         <input class="textbox" style="width:500px" id="numero" runat="server" />
                                     </td>
+                                    <td>Solicitante:</td>
+                                    <td>
+                                        <input class="textbox" style="width:500px" id="solicitante" runat="server" />
+                                    </td>
+                                </tr>
+                                   <tr>
                                     <td>Categoria de servicio:</td>
                                     <td>
                                         <input class="textbox" style="width:500px" id="categoria" runat="server" />
                                     </td>
-                                </tr>
-                                   <tr>
                                     <td>Estado:</td>
                                     <td>
                                         <input class="textbox" style="width:500px" id="estado" runat="server" />
                                     </td>
+                                </tr>
+                                 </tr>
+                                   <tr>
                                     <td>Pax:</td>
                                     <td>
                                         <input class="textbox" style="width:500px" id="pax" runat="server" />
                                     </td>
                                 </tr>
-                            </table>                           
+                            </table>                                                       
                     </div>
+                    
                     <div class="well bs-component">
                         <legend style="color: #7BC143">Información de tiquetes a activar</legend>
                           <table>
@@ -66,8 +74,7 @@
                                     <td>
                                         <input class="textbox" style="width:500px" id="numTiquete" runat="server" />
                                     </td>
-                                    <td>
-                                        <asp:Button ID="Button1" runat="server" Text="Button" />
+                                    <td>                                       
                                         <button type="button" class="btn btn-success" id="BotonAgregar" onserverclick="clickAgregar" runat="server">Agregar</button>
                                     </td>
                                 </tr>
