@@ -92,7 +92,7 @@ namespace Servicios_Reservados_2
 
         public DataTable getComidaEmpleado(String id)
         {
-            String consultaSQL = "SELECT IDCOMIDACAMPO,'Comida de Campo:', IDEMPLEADO, FECHA, TIPOPAGO, OPCION FROM servicios_reservados.COMIDA_CAMPO Where IDEMPLEADO = '" + id + "'";
+            String consultaSQL = "SELECT IDCOMIDACAMPO,'Comida de Campo', IDEMPLEADO, FECHA, TIPOPAGO, OPCION FROM servicios_reservados.COMIDA_CAMPO Where IDEMPLEADO = '" + id + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
@@ -100,6 +100,13 @@ namespace Servicios_Reservados_2
         internal DataTable seleccionarComidaCampo(String id, String idComidaCampo)
         {
             String consultaSQL = "select * from servicios_reservados.comida_campo WHERE idreservacion = '" + id + "' and idcomidacampo = '" + idComidaCampo + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        internal DataTable seleccionarComidaCampoEmpleado(String id, String idComidaCampo)
+        {
+            String consultaSQL = "select * from servicios_reservados.comida_campo WHERE idempleado = '" + id + "' and idcomidacampo = '" + idComidaCampo + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
