@@ -23,7 +23,7 @@
                     <ul>
                         <li class="itemContenedor">Fecha:<input runat="server" id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
                             <input id="fechaDeEntrada" class="selectorDeFecha" type="button" runat="server" onserverclick="fechaDeEntrada_ServerClick" />
-                            <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" BackColor="#CCCCCC" BorderStyle="Dashed" BorderWidth="1px" ForeColor="#7BC143" Height="80px" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged" Visible="false" Width="100px" SelectedDate="<%# DateTime.Today %>">
+                            <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" BackColor="#CCCCCC" BorderStyle="Dashed" BorderWidth="1px" ForeColor="#7BC143" Height="80px" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged" Visible="false" Width="100px">
                                 <DayHeaderStyle ForeColor="#333333" Wrap="True" />
                                 <DayStyle ForeColor="Black" />
                                 <NextPrevStyle ForeColor="Black" />
@@ -33,13 +33,11 @@
 
 
                         </li>
-                        <il class="itemFormulario">
-                            Hora:
-                            <input id="txtHora" runat="server" />
-                        </il>
+                        <li class="itemContenedor">Hora:<select id="cmbHora" runat="server"></select>
+                        </li>
                         <il class="itemFormulario">
                             Pax:
-                            <input id="txtPax" runat="server" />
+                            <input id="txtPax" runat="server" required="required" title="Inserte un número entero" pattern="^[0-9]+$"/>
                         </il>
                         <il class="itemFormulario">
                             <label class="labelfont" id="labelPago" runat="server">Tipo Pago:</label>
