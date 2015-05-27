@@ -83,8 +83,31 @@ namespace Servicios_Reservados_2
 
         internal void servirTiquete()
         {
-            int vecesConsumido = seleccionado.Consumido + 1;
-            controladoraBD.servirTiquete(seleccionado.Numero, vecesConsumido);
+            int vecesConsumidoTiquete = seleccionado.Consumido + 1;
+            controladoraBD.servirTiquete(seleccionado.Numero, vecesConsumidoTiquete);
+            if ("empleado".Equals(seleccionado.TipoSolicitante) && "Comida campo".Equals(seleccionado.Categoria))
+                {
+                    //
+                }
+                else if ("empleado".Equals(seleccionado.TipoSolicitante) && "Comida regular".Equals(seleccionado.Categoria))
+                {
+                    //
+                }
+                else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Paquete".Equals(seleccionado.Categoria))
+                {
+                    DataTable paquete = controladoraServicios.solicitarVecesConsumidoPaquete(seleccionado.IdServicio);
+                    int vecesConsumido = int.Parse(paquete.Rows[0][0].ToString())+1;                   
+                    controladoraServicios.actualizarVecesConsumidoPaquete(seleccionado.IdServicio, vecesConsumido);
+                }
+                else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida extra".Equals(seleccionado.Categoria))
+                {
+                    //
+                }
+                else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida campo".Equals(seleccionado.Categoria))
+                {
+                    //
+                }
+
         }
     }
 }

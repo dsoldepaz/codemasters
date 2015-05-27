@@ -79,6 +79,18 @@ namespace Servicios_Reservados_2
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
+        internal DataTable vecesConsumidoPaquete(string id)
+        {
+            String consultaSQL = "select vecesconsumido from reservas.reservacionitem where id ='"+id+"'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
 
+
+        internal void actualizarVecesConsumidoPaquete(string idServicio, int vecesConsumido)
+        {
+            String consultaSQL = "update reservas.reservacionitem set vecesconsumido= " + vecesConsumido + " where id ='" + idServicio + "'";
+            dt = adaptador.consultar(consultaSQL);
+        }
     }
 }
