@@ -37,7 +37,7 @@ namespace Servicios_Reservados_2 {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText btnVer;
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnVer;
         
         /// <summary>
         /// Control btnEditar.
@@ -46,7 +46,7 @@ namespace Servicios_Reservados_2 {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText btnEditar;
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnEditar;
         
         /// <summary>
         /// Control btnCancelar.
@@ -55,7 +55,16 @@ namespace Servicios_Reservados_2 {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText btnCancelar;
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnCancelar;
+        
+        /// <summary>
+        /// Control tiquetesBtn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton tiquetesBtn;
         
         /// <summary>
         /// Control GridComidasReservadas.
