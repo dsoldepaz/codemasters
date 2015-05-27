@@ -97,9 +97,7 @@
                                 <td>                                    
                                         <input type="button" class="btn btn-success" id="botonQuitar" value="Quitar tiquete"  onserverclick="clickQuitar" runat="server"/></a>
                                 </td>                          
-                                <td>                                    
-                                        <input type="button" class="btn btn-success" id="botonActivar" value="Activar tiquetes"  onserverclick="clickActivar" runat="server" /></a>
-                                </td>
+            
                             </tr>
                         </table>
 

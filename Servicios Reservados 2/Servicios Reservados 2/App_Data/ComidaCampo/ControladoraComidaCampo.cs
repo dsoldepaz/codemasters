@@ -14,12 +14,15 @@ namespace Servicios_Reservados_2
     public class ControladoraComidaCampo
     {
         private ControladoraBDComidaCampo controladoraBD;//instancia de la controladora de BD comida extra.
+        private ControladoraReservaciones controladoraReserv;
         public static EntidadComidaCampo comidaCampoConsultada;
+        public static EntidadReservaciones reservacionConsultada;
         private static List<String> adicionales;
 
         public ControladoraComidaCampo()
         {
             controladoraBD = new ControladoraBDComidaCampo();
+            controladoraReserv = new ControladoraReservaciones();
            
         }
 
@@ -128,6 +131,13 @@ namespace Servicios_Reservados_2
         {
             String[] resultado = controladoraBD.cancelarComidaCampo(id);
             return resultado;
+        }
+
+        public EntidadReservaciones reservConsultada()
+        {
+            reservacionConsultada = controladoraReserv.getReservacionSeleccionada();
+            return reservacionConsultada;
+
         }
     }
 }

@@ -22,6 +22,7 @@ namespace Servicios_Reservados_2
         public String[] agregarComidaCampo(EntidadComidaCampo entidad)
         {
             String[] respuesta = new String[3];
+           
             try
             {
                 String consultaSQL = "insert into servicios_reservados.comida_campo values('" + entidad.IdComidaCampo + "','" + entidad.IdEmpleado + "','" +
