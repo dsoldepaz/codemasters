@@ -22,6 +22,6 @@ section.comidasReservadas>section.panelDeBotones>input.btn:nth-child(2n){
 section>input.cancelar{
     width:130px;
 }
-#tiquetesBtn{
-    width:120px;
+fieldset>section>section>.tiquete{
+    width:125px;
 }
