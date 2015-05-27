@@ -110,7 +110,7 @@ namespace Servicios_Reservados_2
             DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;
             DateTime fechaActual = DateTime.Today;
 
-            if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect <= fechaActual)
+            if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect < fechaActual)
             {
                 mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
                 res = false;
@@ -152,7 +152,7 @@ namespace Servicios_Reservados_2
             DateTime fechaSelect = DateTime.Parse(textFecha.Value);
             DateTime fechaActual = DateTime.Today;
 
-            if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect <= fechaActual)
+            if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect < fechaActual)
             {
                 mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de lás fechas reservadas-");
             }
@@ -312,7 +312,7 @@ namespace Servicios_Reservados_2
             }
 
             cbxHora.Items.Clear();// limpiamos el combobox
-            cbxHora.Items.Add("Seleccionar");// agregamos seleccionar
+            //cbxHora.Items.Add("Seleccionar");// agregamos seleccionar
             for (int i = inicio; i <= fin; ++i)
             {
                 String horas = i.ToString() + ":00";

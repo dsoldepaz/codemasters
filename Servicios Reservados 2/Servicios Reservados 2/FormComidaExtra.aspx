@@ -24,7 +24,6 @@
                 <div class="well bs-component">
                     <ul>
                         <li class="itemContenedor">Fecha:<input runat="server" id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="textFecha" CssClass="field-validation-error" ErrorMessage="Este campo es obligatorio." />
                             <input id="fechaDeEntrada" class="selectorDeFecha" type="button" runat="server" onserverclick="fechaDeEntrada_ServerClick" />
                             <asp:Calendar ID="fechaDeEntradaCalendario" runat="server" BackColor="#CCCCCC" BorderStyle="Dashed" ForeColor="#7BC143" Height="80px" Width="100px" BorderWidth="1px" Visible="false" OnSelectionChanged="fechaDeEntradaCalendario_SelectionChanged">
                                 <DayHeaderStyle ForeColor="#333333" Wrap="True" />
@@ -35,13 +34,10 @@
                         </li>
 
                         <li class="itemContenedor">Tipo:<asp:DropDownList ID="cbxTipo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="clickAdaptarHora"></asp:DropDownList>
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="cbxTipo" CssClass="field-validation-error" ErrorMessage="Este campo es obligatorio." />
                         </li>
                         <li class="itemContenedor">Hora:<select id="cbxHora" runat="server"></select>
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="cbxHora" CssClass="field-validation-error" ErrorMessage="Este campo es obligatorio." />
                         </li>
-                        <li class="itemContenedor">#PAX:<input id="txtPax" runat="server" required="required" placeholder="Entre un digito" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtPax" CssClass="field-validation-error" ErrorMessage="Este campo es obligatorio." />
+                        <li class="itemContenedor">#PAX:<input id="txtPax" runat="server" required="required" placeholder="inserte un digito" pattern="^[0-9]+$"/>
                         </li>
                         <li class="itemContenedor">Tipo de pago:<select id="cbxTipoPago" runat="server"></select>
 
