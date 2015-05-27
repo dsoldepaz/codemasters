@@ -16,7 +16,6 @@ namespace Servicios_Reservados_2
         private ControladoraBDComidaCampo controladoraBD;//instancia de la controladora de BD comida extra.
         private ControladoraReservaciones controladoraReserv;
         public static EntidadComidaCampo comidaCampoConsultada;
-        public static EntidadReservaciones reservacionConsultada;
         private static List<String> adicionales;
 
         public ControladoraComidaCampo()
@@ -135,9 +134,15 @@ namespace Servicios_Reservados_2
 
         public EntidadReservaciones reservConsultada()
         {
-            reservacionConsultada = controladoraReserv.getReservacionSeleccionada();
-            return reservacionConsultada;
-
+            return controladoraReserv.getReservacionSeleccionada();
         }
+
+       public String paxReserv(String id)
+        {
+            String pax = controladoraReserv.obtenerPax(id);
+            return pax;
+        
+        }
+
     }
 }

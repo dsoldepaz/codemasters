@@ -37,10 +37,10 @@ namespace Servicios_Reservados_2
             return controladoraEmpleado.getEmpleadoSeleccionado();
         }
 
-        internal EntidadServicios crearServicio(string idEmpleado, int idServicio, string fechaServ)
+        internal EntidadServicios crearServicio(string idEmpleado, int idServicio, string fechaServ, String notas)
         {
             
-            seleccionado = new EntidadServicios(idEmpleado, "empleado", idServicio.ToString(), "PonerCategoria", fechaServ, "ponerconsumido", 1);
+            seleccionado = new EntidadServicios(idEmpleado, "empleado", idServicio.ToString(), "PonerCategoria", fechaServ, "ponerconsumido", 1, notas);
             return seleccionado;
         }
         internal EntidadComidaCampo consultarComidaCampoSeleccionada(string idEmpleado, String idServicio)
