@@ -87,7 +87,6 @@ namespace Servicios_Reservados_2
             return controladoraComidaCampo.guardarComidaSeleccionada(id, idServ);
         }
 
-
         /*
          * Efecto: recibe los ids y los manda a la controladora de BD para eliminar el servicio.
          * Requiere: los ids.
@@ -121,18 +120,18 @@ namespace Servicios_Reservados_2
              if (id.Contains("."))
             {
                 DataTable dt= controladoraBD.solicitarReservItem(id);
-                seleccionado= new EntidadServicios(idRes, "reservacion", id,  "Paquete", "Toda la estadía", "ponerconsumido", int.Parse(dt.Rows[0][0].ToString()));
+                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Paquete", "Durante toda la estadía", "Durante toda la estadía", int.Parse(dt.Rows[0][0].ToString()), dt.Rows[0][1].ToString());
                 
             }
             else if (id.Contains("S"))
             {
                 EntidadComidaExtra servicio = seleccionarServicio(idRes, id);
-                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida extra", servicio.Fecha, servicio.Consumido, servicio.Pax);
+                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida extra", servicio.Fecha, servicio.Consumido, servicio.Pax, servicio.Descripcion);
             }
             else
             {
                 EntidadComidaCampo comidaCampo = seleccionarComidaCampo(idRes, id);
-                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida campo", comidaCampo.Fecha, comidaCampo.Estado, comidaCampo.Pax);
+                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida campo", comidaCampo.Fecha, comidaCampo.Estado, comidaCampo.Pax, "Nada");
             }
              return seleccionado;
         }

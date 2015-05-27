@@ -87,7 +87,7 @@ namespace Servicios_Reservados_2
 
         internal DataTable solicitarReservItem(string id)
         {
-            String consultaSQL = "select ri.pax from reservas.reservacionitem ri where ri.id ='" + id + "'";
+            String consultaSQL = "select ri.pax, r.notas from reservas.reservacionitem ri, reservacion r where ri.id ='" + id + "' and ri.reservacion=r.id";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
