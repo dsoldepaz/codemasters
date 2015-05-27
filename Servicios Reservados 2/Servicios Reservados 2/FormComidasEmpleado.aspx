@@ -11,7 +11,7 @@
             <div title="Seleccione una operacion sobre las reservaciones de comida">
              
                 <input type="button" value="Agregar" runat="server" onserverclick="clickAgregar"/>
-                <input type="button" value="Modificar" runat="server" onserverclick="clickModificar"/>
+                <input type="button" value="Editar" runat="server" onserverclick="clickModificar"/>
                 <input type="button" value="Eliminar" runat="server" onserverclick="clickEliminar"/>
             </div>
             <section id="ContenedorManejoDeHorario" runat="server" visible="false">

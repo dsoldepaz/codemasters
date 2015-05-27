@@ -17,8 +17,11 @@ section.comidasReservadas>section.panelDeBotones>input.btn:nth-child(2n){
     width:140px;
 }
 .comida{
-    width:150px;
+    width:175px;
 }
 section>input.cancelar{
     width:130px;
+}
+#tiquetesBtn{
+    width:120px;
 }
