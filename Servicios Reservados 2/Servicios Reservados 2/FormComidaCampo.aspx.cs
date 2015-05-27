@@ -13,7 +13,7 @@ namespace Servicios_Reservados_2
     {
         private static ControladoraComidaCampo controladora = new ControladoraComidaCampo();
         EntidadComidaCampo entidadConsultada = controladora.entidadSeleccionada();
-
+        EntidadReservaciones reservacionConsultada = controladora.reservConsultada();
         public static int modo;
         public static int tipoComidaCampo;
         public static String idEmpleado;
@@ -299,6 +299,7 @@ namespace Servicios_Reservados_2
             nuevaComidaCampo[9] = cmbTipoPago.Value.ToString();
             nuevaComidaCampo[10] = txtPax.Value;
             nuevaComidaCampo[11] = txtHora.Value;
+            
 
             String[] error = controladora.agregarComidaCampo(nuevaComidaCampo,lista);// se le pide a la controladora que lo inserte
             mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
@@ -311,6 +312,18 @@ namespace Servicios_Reservados_2
         protected Boolean agregarComidaCampoReserv()
         {
             Boolean res = true;
+            if (tipoComidaCampo == 0)  //confirmar fecha en rango segun reservación.
+            {
+               /* DateTime fechaInicio = reservacionConsultada.FechaInicio;
+                DateTime fechaFinal = reservacionConsultada.FechaSalida;
+                DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;
+                if (fechaSelect < fechaInicio || fechaSelect > fechaFinal)
+                {
+                    mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
+                }*/
+
+            }
+
             Object[] nuevaComidaCampo = new Object[12];// objeto en el que se almacenan los datos para enviar a encapsular.
             List<String> lista = listaAdicionales();
             nuevaComidaCampo[0] = "";
@@ -324,13 +337,10 @@ namespace Servicios_Reservados_2
             {
                 if (radioDesayuno.Checked) {
                     nuevaComidaCampo[5] = "1";
-                    txtHora.Value = "08:00";
                 }else if(radioAlmuerzo.Checked){
                     nuevaComidaCampo[5]="2";
-                    txtHora.Value = "12:00";
                 }else if(radioCena.Checked){
                     nuevaComidaCampo[5]="3";
-                    txtHora.Value = "06:00";
                 }
                 nuevaComidaCampo[6]="";
                 nuevaComidaCampo[7]="";
@@ -362,6 +372,7 @@ namespace Servicios_Reservados_2
 
             nuevaComidaCampo[9] = "";
             nuevaComidaCampo[10] = txtPax.Value;
+
             nuevaComidaCampo[11] = txtHora.Value;
 
             String[] error = controladora.agregarComidaCampo(nuevaComidaCampo, lista);// se le pide a la controladora que lo inserte
@@ -616,11 +627,7 @@ namespace Servicios_Reservados_2
                 }
             }
 
-            
-            
-          
-            
-       
+             
 
     }
 }
