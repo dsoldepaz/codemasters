@@ -104,7 +104,7 @@ namespace Servicios_Reservados_2
         internal DataTable getReservacionesEmpleado(string idEmpleado)
         {
             DataTable dt = new DataTable();
-            String consulta = "SELECT IDCOMIDAEMPLEADO,'Comida regular',IDEMPLEADO,FECHA,PAGADO FROM servicios_reservados.RESERVA_EMPLEADO WHERE IDEMPLEADO = '"+ idEmpleado +"'";
+            String consulta = "SELECT IDCOMIDAEMPLEADO,'Comida regular',IDEMPLEADO,FECHA,PAGADO FROM servicios_reservados.RESERVA_EMPLEADO WHERE IDEMPLEADO = '" + idEmpleado + "'AND FECHA >= ADD_MONTHS(SYSDATE, - 1) ";
             dt = adaptador.consultar(consulta);
             return dt;
         }
