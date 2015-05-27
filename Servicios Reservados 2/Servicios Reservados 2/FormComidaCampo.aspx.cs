@@ -13,7 +13,7 @@ namespace Servicios_Reservados_2
     {
         private static ControladoraComidaCampo controladora = new ControladoraComidaCampo();
         EntidadComidaCampo entidadConsultada = controladora.entidadSeleccionada();
-
+        EntidadReservaciones reservacionConsultada = controladora.reservConsultada();
         public static int modo;
         public static int tipoComidaCampo;
         public static String idEmpleado;
@@ -240,7 +240,7 @@ namespace Servicios_Reservados_2
             return lista;
         }
 
-        protected Boolean agregarComidaCampo()
+       /* protected Boolean agregarComidaCampo()
         {
             Boolean res = true;
             Object[] nuevaComidaCampo = new Object[12];// objeto en el que se almacenan los datos para enviar a encapsular.
@@ -305,129 +305,186 @@ namespace Servicios_Reservados_2
 
 
             return res;
-        }
+        }*/
 
 
-        protected Boolean agregarComidaCampoReserv()
+        protected Boolean agregarComidaCampo()
         {
             Boolean res = true;
-            Object[] nuevaComidaCampo = new Object[12];// objeto en el que se almacenan los datos para enviar a encapsular.
-            List<String> lista = listaAdicionales();
-            nuevaComidaCampo[0] = "";
-            nuevaComidaCampo[1] = "";
-            nuevaComidaCampo[2] = idReservacion;
-            nuevaComidaCampo[3] = textFecha.Value;
-            nuevaComidaCampo[4] = "Activo";
-            nuevaComidaCampo[5] = 0;
-         
-            if (CheckboxCambio.Checked)
-            {
-                if (radioDesayuno.Checked) {
-                    nuevaComidaCampo[5] = "1";
-                    txtHora.Value = "08:00";
-                }else if(radioAlmuerzo.Checked){
-                    nuevaComidaCampo[5]="2";
-                    txtHora.Value = "12:00";
-                }else if(radioCena.Checked){
-                    nuevaComidaCampo[5]="3";
-                    txtHora.Value = "06:00";
-                }
-                nuevaComidaCampo[6]="";
-                nuevaComidaCampo[7]="";
-                nuevaComidaCampo[8]="";
-                nuevaComidaCampo[9] = "";
-            }
-            else if (checkO2.Checked)
-            {  //sandwich
-                nuevaComidaCampo[5] ="4";
-                nuevaComidaCampo[6]= getTipoSandwich();
-                nuevaComidaCampo[7]= getPan();
-            }
-            else if (checkO3.Checked)
-            {
-                nuevaComidaCampo[5]="5";
-                 nuevaComidaCampo[6]="";
-                nuevaComidaCampo[7]= "";
-            }
-            nuevaComidaCampo[8] = "";
-            if (CheckboxBebida.Checked)
-            {
-                String bebida = "Jugo";
-                if (radioAgua.Checked)
-                {
-                    bebida = "Agua";
-                }
-                nuevaComidaCampo[8] = bebida;
-            }
+                 DateTime fechaInicio = reservacionConsultada.FechaInicio;
+                 DateTime fechaFinal = reservacionConsultada.FechaSalida;
+                 DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;
+                 DateTime fechaHoy = DateTime.Today;
+                 if ((tipoComidaCampo==0)&&(fechaSelect < fechaInicio || fechaSelect > fechaFinal) || (fechaSelect <= fechaHoy))
+                 {
+                     mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
+                     res = false;
+                 }
+                 else{
+                     Object[] nuevaComidaCampo = new Object[12];// objeto en el que se almacenan los datos para enviar a encapsular.
+                     List<String> lista = listaAdicionales();
+                     nuevaComidaCampo[0] = "";
+                     if (tipoComidaCampo == 0)
+                     {
+                         nuevaComidaCampo[1] = "";
+                         nuevaComidaCampo[2] = idReservacion;
+                     }
+                     else
+                     {
+                         nuevaComidaCampo[1] = idEmpleado;
+                         nuevaComidaCampo[2] = "";
+                     }
+                     
+                    
+                     nuevaComidaCampo[3] = textFecha.Value;
+                     nuevaComidaCampo[4] = "Activo";
+                     nuevaComidaCampo[5] = 0;
 
-            nuevaComidaCampo[9] = "";
-            nuevaComidaCampo[10] = txtPax.Value;
-            nuevaComidaCampo[11] = txtHora.Value;
+                     if (CheckboxCambio.Checked)
+                     {
+                         if (radioDesayuno.Checked)
+                         {
+                             nuevaComidaCampo[5] = "1";
+                         }
+                         else if (radioAlmuerzo.Checked)
+                         {
+                             nuevaComidaCampo[5] = "2";
+                         }
+                         else if (radioCena.Checked)
+                         {
+                             nuevaComidaCampo[5] = "3";
+                         }
+                         nuevaComidaCampo[6] = "";
+                         nuevaComidaCampo[7] = "";
+                         nuevaComidaCampo[8] = "";
+                         nuevaComidaCampo[9] = "";
+                     }
+                     else if (checkO2.Checked)
+                     {  //sandwich
+                         nuevaComidaCampo[5] = "4";
+                         nuevaComidaCampo[6] = getTipoSandwich();
+                         nuevaComidaCampo[7] = getPan();
+                     }
+                     else if (checkO3.Checked)
+                     {
+                         nuevaComidaCampo[5] = "5";
+                         nuevaComidaCampo[6] = "";
+                         nuevaComidaCampo[7] = "";
+                     }
+                     nuevaComidaCampo[8] = "";
+                     if (CheckboxBebida.Checked)
+                     {
+                         String bebida = "Jugo";
+                         if (radioAgua.Checked)
+                         {
+                             bebida = "Agua";
+                         }
+                         nuevaComidaCampo[8] = bebida;
+                     }
 
-            String[] error = controladora.agregarComidaCampo(nuevaComidaCampo, lista);// se le pide a la controladora que lo inserte
-            mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
-            return res;
+                     if (tipoComidaCampo == 0)
+                     {
+                         nuevaComidaCampo[9] = "";
+                     }
+                     else
+                     {
+                         nuevaComidaCampo[9] = cmbTipoPago.Value.ToString();
+                     }
+                     nuevaComidaCampo[10] = txtPax.Value;
+                     nuevaComidaCampo[11] = txtHora.Value;
+
+                     String[] error = controladora.agregarComidaCampo(nuevaComidaCampo, lista);// se le pide a la controladora que lo inserte
+                     mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+                 
+                 }
+                 return res;
         }
 
         protected Boolean modificarComidaCampo()
         {
             Boolean res = true;
-            Object[] comidaModificar = new Object[12];// objeto en el que se almacenan los datos para enviar a encapsular.
-            List<String> lista = listaAdicionales();
-            comidaModificar[0] = "";
-            comidaModificar[1] = "";
-            comidaModificar[2] = idReservacion;
-            comidaModificar[3] = textFecha.Value;
-            comidaModificar[4] = "Activo";
-            comidaModificar[5] = 0;
+             DateTime fechaInicio = reservacionConsultada.FechaInicio;
+                 DateTime fechaFinal = reservacionConsultada.FechaSalida;
+                 DateTime fechaSelect = DateTime.Parse(textFecha.Value);
+                 DateTime fechaHoy = DateTime.Today;
+                 if ((tipoComidaCampo == 0) && (fechaSelect < fechaInicio || fechaSelect > fechaFinal) || (fechaSelect <= fechaHoy))
+                 {
+                     mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
+                     res = false;
+                 }
+                 else
+                 {
+                     Object[] comidaModificar = new Object[12];// objeto en el que se almacenan los datos para enviar a encapsular.
+                     List<String> lista = listaAdicionales();
+                     comidaModificar[0] = "";
+                     if (tipoComidaCampo == 0)
+                     {
+                         comidaModificar[1] = "";
+                         comidaModificar[2] = idReservacion;
+                     }
+                     else
+                     {
+                         comidaModificar[1] = idEmpleado;
+                         comidaModificar[2] = "";
+                     }
+                     comidaModificar[3] = textFecha.Value;
+                     comidaModificar[4] = "Activo";
+                     comidaModificar[5] = 0;
 
-            if (CheckboxCambio.Checked)
-            {
-                if (radioDesayuno.Checked)
-                {
-                    comidaModificar[5] = "1";
-                }
-                else if (radioAlmuerzo.Checked)
-                {
-                    comidaModificar[5] = "2";
-                }
-                else if (radioCena.Checked)
-                {
-                    comidaModificar[5] = "3";
-                }
-                comidaModificar[6] = "";
-                comidaModificar[7] = "";
-                comidaModificar[8] = "";
-                comidaModificar[9] = "";
-            }
-            else if (checkO2.Checked)
-            {  //sandwich
-                comidaModificar[5] = "4";
-                comidaModificar[6] = getTipoSandwich();
-                comidaModificar[7] = getPan();
-            }
-            else if (checkO3.Checked)
-            {
-                comidaModificar[5] = "5";
-                comidaModificar[6] = "";
-                comidaModificar[7] = "";
-            }
-            comidaModificar[8] = "";
-            if (CheckboxBebida.Checked)
-            {
-                String bebida = "Jugo";
-                if (radioAgua.Checked)
-                {
-                    bebida = "Agua";
-                }
-                comidaModificar[8] = bebida;
-            }
-
-            comidaModificar[9] = "";
-            comidaModificar[10] = txtPax.Value;
-            comidaModificar[11] = txtHora.Value;
-            String[] error = controladora.modificarComidaCampo(comidaModificar, lista, entidadConsultada);// se le pide a la controladora que lo inserte
-            mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+                     if (CheckboxCambio.Checked)
+                     {
+                         if (radioDesayuno.Checked)
+                         {
+                             comidaModificar[5] = "1";
+                         }
+                         else if (radioAlmuerzo.Checked)
+                         {
+                             comidaModificar[5] = "2";
+                         }
+                         else if (radioCena.Checked)
+                         {
+                             comidaModificar[5] = "3";
+                         }
+                         comidaModificar[6] = "";
+                         comidaModificar[7] = "";
+                         comidaModificar[8] = "";
+                         comidaModificar[9] = "";
+                     }
+                     else if (checkO2.Checked)
+                     {  //sandwich
+                         comidaModificar[5] = "4";
+                         comidaModificar[6] = getTipoSandwich();
+                         comidaModificar[7] = getPan();
+                     }
+                     else if (checkO3.Checked)
+                     {
+                         comidaModificar[5] = "5";
+                         comidaModificar[6] = "";
+                         comidaModificar[7] = "";
+                     }
+                     comidaModificar[8] = "";
+                     if (CheckboxBebida.Checked)
+                     {
+                         String bebida = "Jugo";
+                         if (radioAgua.Checked)
+                         {
+                             bebida = "Agua";
+                         }
+                         comidaModificar[8] = bebida;
+                     }
+                     if (tipoComidaCampo == 0)
+                     {
+                         comidaModificar[9] = "";
+                     }
+                     else
+                     {
+                         comidaModificar[9] = cmbTipoPago.Value.ToString(); ;
+                     }
+                     comidaModificar[10] = txtPax.Value;
+                     comidaModificar[11] = txtHora.Value;
+                     String[] error = controladora.modificarComidaCampo(comidaModificar, lista, entidadConsultada);// se le pide a la controladora que lo inserte
+                     mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+                 }
             return res;
         }
 
@@ -457,16 +514,19 @@ namespace Servicios_Reservados_2
                     if (tipoComidaCampo == 1) //agregar la comida dependiendo si es para un empleado o una reservacion.
                     {
                         agregarComidaCampo();
-                        FormEmpleadoReserva.idEmpleado = idEmpleado;
+                        //FormEmpleadoReserva.idEmpleado = idEmpleado;
                         Response.Redirect("FormEmpleadoReserva");
                         
                     }
                     else
                     {
-                        agregarComidaCampoReserv();
-                        modo = 5;
-                        cambiarModo();
-                        Response.Redirect("FormServicios");
+                        bool accion = agregarComidaCampo();
+                        if (accion)
+                        {
+                            Response.Redirect("FormServicios");
+                        }
+                      
+                       
                     }
                     
                    
