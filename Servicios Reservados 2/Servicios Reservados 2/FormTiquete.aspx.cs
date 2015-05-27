@@ -87,7 +87,7 @@ namespace Servicios_Reservados_2
         }
         protected void clickQuitar(object sender, EventArgs e)
         {
-            controladora.desactivarTiquete(int.Parse(numTiquete.Value));
+            controladora.desactivarTiquete();
             Response.Redirect(Request.Url.AbsoluteUri);
 
         }
