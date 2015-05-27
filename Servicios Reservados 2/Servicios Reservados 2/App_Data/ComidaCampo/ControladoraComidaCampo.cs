@@ -16,7 +16,6 @@ namespace Servicios_Reservados_2
         private ControladoraBDComidaCampo controladoraBD;//instancia de la controladora de BD comida extra.
         private ControladoraReservaciones controladoraReserv;
         public static EntidadComidaCampo comidaCampoConsultada;
-        public static EntidadReservaciones reservacionConsultada;
         private static List<String> adicionales;
 
         public ControladoraComidaCampo()
@@ -63,6 +62,42 @@ namespace Servicios_Reservados_2
             return comidaCampoConsultada;
         }
 
+        public EntidadComidaCampo consultarComidaCampoSeleccionada(String id, String idServicio)
+        {
+            DataTable comidaCampo = controladoraBD.seleccionarComidaCampoEmpleado(id, idServicio);
+            DataTable adicional = controladoraBD.seleccionarAdicional(idServicio);
+            adicionales = new List<String>();
+
+            Object[] nuevoComidaC = new Object[12];
+
+            nuevoComidaC[0] = comidaCampo.Rows[0][0];
+            nuevoComidaC[1] = comidaCampo.Rows[0][1];
+            nuevoComidaC[2] = comidaCampo.Rows[0][2];
+            nuevoComidaC[3] = comidaCampo.Rows[0][3];
+            nuevoComidaC[4] = comidaCampo.Rows[0][4];
+            nuevoComidaC[5] = comidaCampo.Rows[0][5];
+            nuevoComidaC[7] = comidaCampo.Rows[0][6];
+            nuevoComidaC[6] = comidaCampo.Rows[0][7];
+            nuevoComidaC[8] = comidaCampo.Rows[0][8];
+            nuevoComidaC[9] = comidaCampo.Rows[0][9];
+            nuevoComidaC[10] = comidaCampo.Rows[0][10];
+            nuevoComidaC[11] = comidaCampo.Rows[0][11];
+            int i = 0;
+            if (adicional.Rows.Count > 0)
+            {
+                foreach (DataRow fila in adicional.Rows)
+                {
+                    String ad = adicional.Rows[i][0].ToString();
+                    adicionales.Add(ad);
+                    i++;
+
+                }
+            }
+
+
+            comidaCampoConsultada = new EntidadComidaCampo(nuevoComidaC, adicionales);
+            return comidaCampoConsultada;
+        }
         public DataTable getComidaEmpleado(String id) {
             DataTable dt = controladoraBD.getComidaEmpleado(id);
             return dt;
@@ -99,9 +134,15 @@ namespace Servicios_Reservados_2
 
         public EntidadReservaciones reservConsultada()
         {
-            reservacionConsultada = controladoraReserv.getReservacionSeleccionada();
-            return reservacionConsultada;
-
+            return controladoraReserv.getReservacionSeleccionada();
         }
+
+       public String paxReserv(String id)
+        {
+            String pax = controladoraReserv.obtenerPax(id);
+            return pax;
+        
+        }
+
     }
 }

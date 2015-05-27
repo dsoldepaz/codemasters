@@ -40,12 +40,13 @@ namespace Servicios_Reservados_2
             DataTable dt = controladoraBD.getInformacionReservacionEmpleado(idReservacion);
             //IDEMPLEADO, FECHA, PAGADO, NOTAS, DESAYUNO, ALMUERZO, CENA, IDCOMIDAEMPLEADO
 
+            list.Add(DateTime.ParseExact(dt.Rows[0][1].ToString(), "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture));
             turnos[0] = dt.Rows[0][4].ToString().ToCharArray(0, 1)[0];
             turnos[1] = dt.Rows[0][5].ToString().ToCharArray(0, 1)[0];
             turnos[2] = dt.Rows[0][6].ToString().ToCharArray(0, 1)[0];
 
-            bool pagado = (dt.Rows[0][3].ToString().Equals("T"));
-            String notas = dt.Rows[0][4].ToString();
+            bool pagado = (dt.Rows[0][2].ToString().Equals("T"));
+            String notas = dt.Rows[0][3].ToString();
             EntidadComidaEmpleado consultada = new EntidadComidaEmpleado(dt.Rows[0][0].ToString(), list, turnos, pagado, notas, Int32.Parse(dt.Rows[0][7].ToString()));
             //String idEmpleado, List<DateTime> fechasReserva, bool[] turnos, bool pagado, String notas, int id = -1
             return consultada;

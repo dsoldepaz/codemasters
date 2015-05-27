@@ -51,15 +51,9 @@ namespace Servicios_Reservados_2
 
         }
 
-        internal DataTable obtenerPax(String id)
+        public String paxReserv(String id)
         {
-            DataTable pax = controladoraBD.obtenerPax(id);
-
-            Object[] dato = new Object[2];
-            dato[0] = pax.Rows[0][0].ToString();
-            dato[1] = idSelected();
-            controladoraCE.guardarReservacionSeleccionada(dato);//enviamos la información a la controladora de comida extra
-
+            String pax = controladoraReserv.obtenerPax(id);
             return pax;
 
         }
