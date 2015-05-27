@@ -51,13 +51,13 @@ namespace Servicios_Reservados_2
 
             if (modo == 1)
             {
-                fechaDeEntradaCalendario.SelectedDate = DateTime.Today;
+                fechaDeEntradaCalendario.SelectedDate = DateTime.Today; //ver al insertar fecha
                 llenarHora();
                 radioDesayuno.Enabled = false;
                 radioAlmuerzo.Enabled = false;
                 radioCena.Enabled = false;
                 textFecha.Disabled = true;
-                cmbHora.Disabled = true;
+                cbxHora.Disabled = false;
                 txtPax.Disabled = true;
                 radioPanBlanco.Disabled = true;
                 radioPanBollo.Disabled = true;
@@ -87,7 +87,6 @@ namespace Servicios_Reservados_2
             else if (modo == 2)
             { //modificar
                 fechaDeEntradaCalendario.SelectedDate = DateTime.Parse(entidadConsultada.Fecha);
-                llenarHora();
                 consultarComidaCampo();
                 /*btnModificar.Disabled = true;
                 btnEliminar.Disabled = true;
@@ -112,7 +111,7 @@ namespace Servicios_Reservados_2
                 radioAlmuerzo.Enabled = false;
                 radioCena.Enabled = false;
                 textFecha.Disabled = true;
-                cmbHora.Disabled = true;
+                cbxHora.Disabled = true;
                 txtPax.Disabled = true;
                 radioPanBlanco.Disabled = true;
                 radioPanBollo.Disabled = true;
@@ -165,8 +164,7 @@ namespace Servicios_Reservados_2
             chConfites.Checked = false;*/
             radioAgua.Checked = false;
             radioJugo.Checked = false;
-            cmbHora.Value = "";
-
+            cbxHora.Items.Clear();
         }
 
         protected void llenarHora()
@@ -176,41 +174,41 @@ namespace Servicios_Reservados_2
             for (int i = inicio; i <= fin; i++)
             {
                 String horas = i.ToString() + ":00";
-                cmbHora.Items.Add(horas);
+                cbxHora.Items.Add(horas);
             }  
         }
 
         protected void cambiarFechaD(object sender, EventArgs e)
         {
-            cmbHora.Items.Clear();
+            cbxHora.Items.Clear();
             int inicio=6;
             int fin = 8;
             for (int i = inicio; i <= fin; i++) { 
                 String horas=i.ToString()+ ":00";
-                cmbHora.Items.Add(horas);
+                cbxHora.Items.Add(horas);
             }       
         }
 
         protected void cambiarFechaA(object sender, EventArgs e)
         {
-            cmbHora.Items.Clear();
+            cbxHora.Items.Clear();
             int inicio = 11;
             int fin = 14;
             for (int i = inicio; i <= fin; i++)
             {
                 String horas = i.ToString() + ":00";
-                cmbHora.Items.Add(horas);
+                cbxHora.Items.Add(horas);
             }       
         }
         protected void cambiarFechaC(object sender, EventArgs e)
         {
-            cmbHora.Items.Clear();
+            cbxHora.Items.Clear();
             int inicio = 18;
             int fin = 20;
             for (int i = inicio; i <= fin; i++)
             {
                 String horas = i.ToString() + ":00";
-                cmbHora.Items.Add(horas);
+                cbxHora.Items.Add(horas);
             }  
         }
         protected void checkedO1(object sender, EventArgs e)
@@ -241,6 +239,7 @@ namespace Servicios_Reservados_2
         protected void checkedO3(object sender, EventArgs e)
         {
             limpiarCampos();
+            llenarHora();
             if (checkO2.Checked)
             {
                 checkO2.Checked = false;
@@ -254,6 +253,7 @@ namespace Servicios_Reservados_2
         protected void checkedO2(object sender, EventArgs e)
         {
             limpiarCampos();
+            llenarHora();
             if (checkO1.Checked)
             {
                 checkO1.Checked = false;
@@ -420,7 +420,7 @@ namespace Servicios_Reservados_2
 
              nuevaComidaCampo[9] = cmbTipoPago.Value.ToString();
              nuevaComidaCampo[10] = txtPax.Value;
-             nuevaComidaCampo[11] = cmbHora.Value;
+             nuevaComidaCampo[11] = cbxHora.Value;
 
              String[] error = controladora.agregarComidaCampo(nuevaComidaCampo,lista);// se le pide a la controladora que lo inserte
              mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
@@ -514,7 +514,7 @@ namespace Servicios_Reservados_2
                     nuevaComidaCampo[9] = cmbTipoPago.Value.ToString();
                 }
                 nuevaComidaCampo[10] = txtPax.Value;
-                nuevaComidaCampo[11] = cmbHora.Value;
+                nuevaComidaCampo[11] = cbxHora.Value;
 
                 String[] error = controladora.agregarComidaCampo(nuevaComidaCampo, lista);// se le pide a la controladora que lo inserte
                 mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
@@ -604,7 +604,7 @@ namespace Servicios_Reservados_2
                     comidaModificar[9] = cmbTipoPago.Value.ToString(); ;
                 }
                 comidaModificar[10] = txtPax.Value;
-                comidaModificar[11] = cmbHora.Value;
+                comidaModificar[11] = cbxHora.Value;
                 String[] error = controladora.modificarComidaCampo(comidaModificar, lista, entidadConsultada);// se le pide a la controladora que lo inserte
                 mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
             }
@@ -701,7 +701,7 @@ namespace Servicios_Reservados_2
         {
 
             textFecha.Value = entidadConsultada.Fecha;
-            cmbHora.Value = entidadConsultada.Hora;
+            cbxHora.Value = entidadConsultada.Hora;
             txtPax.Value = entidadConsultada.Pax.ToString();
             if (entidadConsultada.Opcion == 1)
             {
