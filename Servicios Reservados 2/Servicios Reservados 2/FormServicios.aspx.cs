@@ -65,13 +65,12 @@ namespace Servicios_Reservados_2
          */
         protected void llenarCampos()
         {
-            DataTable pax = controladora.obtenerPax(controladora.idNumSelected());
             txtAnfitriona.Value = controladora.informacionServicio().Anfitriona;
             txtEstacion.Value = controladora.informacionServicio().Estacion;
             txtNombre.Value = controladora.informacionServicio().Solicitante;
             fechaInicio.Value = controladora.informacionServicio().FechaInicio.ToString("dd/MM/yyyy");
             fechaFinal.Value = controladora.informacionServicio().FechaSalida.ToString("dd/MM/yyyy");
-            txtPax.Value = pax.Rows[0][0].ToString();
+            txtPax.Value = controladora.paxReserv(controladora.idNumSelected());
         }
 
         /*Efecto: Crea la tabla de servicios

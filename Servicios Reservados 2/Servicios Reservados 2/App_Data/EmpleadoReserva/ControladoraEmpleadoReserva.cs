@@ -12,6 +12,7 @@ namespace Servicios_Reservados_2
         private ControladoraComidaEmpleado controladoraComidaEmpleado;
         private ControladoraComidaCampo controladoraComidaCampo;
         private static EntidadServicios seleccionado;
+        private static EntidadComidaCampo comidaSeleccionada;
         public ControladoraEmpleadoReserva()
         {
             controladoraEmpleado = new ControladoraEmpleado();
@@ -36,12 +37,17 @@ namespace Servicios_Reservados_2
             return controladoraEmpleado.getEmpleadoSeleccionado();
         }
 
-        internal EntidadServicios crearServicio(string idEmpleado, int idServicio)
+        internal EntidadServicios crearServicio(string idEmpleado, int idServicio, string fechaServ, String notas)
         {
-            seleccionado = new EntidadServicios(idEmpleado, "empleado", idServicio.ToString(), "categoria", "hora", "fecha", "consumido", 1);
+            
+            seleccionado = new EntidadServicios(idEmpleado, "empleado", idServicio.ToString(), "PonerCategoria", fechaServ, "ponerconsumido", 1, notas);
             return seleccionado;
         }
-
+        internal EntidadComidaCampo consultarComidaCampoSeleccionada(string idEmpleado, String idServicio)
+        {
+            return controladoraComidaCampo.consultarComidaCampoSeleccionada(idEmpleado, idServicio);
+            
+        }
         internal EntidadServicios servicioSeleccionado()
         {
             return seleccionado;
@@ -49,7 +55,7 @@ namespace Servicios_Reservados_2
 
         internal void activarTiquete()
         {
-            ControladoraTiquete.servicioActiva = seleccionado;
+            ControladoraTiquete.setServicio(seleccionado);
         }
     }
 }

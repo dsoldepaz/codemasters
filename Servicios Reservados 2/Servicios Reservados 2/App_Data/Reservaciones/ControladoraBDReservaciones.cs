@@ -84,6 +84,18 @@ namespace Servicios_Reservados_2
 
         }
 
+        /**Efecto: Crea la consulta SQL que obtiene el numero de pax de la reservacion y la retorna en forma de datatable  
+         * Requiere: id de la reservacion
+         * Modifica: el dataTable dt
+         */
+        internal DataTable obtenerPax(String idNum)
+        {
+            String consultaSQL = "select PAX from reservas.vr_reservacion where numero = '" + idNum + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+
+        }
+
         /*
          * Requiere: Hilera con la Anfitriona seleccionada, Hilera con la estación seleccionada y una hilera con el solicitante. 
          * Efectúa : Crea la hilera de consulta a partir de los parámetros dados, valida uno a uno cuáles son diferentes de vacío y estos los agrega como parámetros a la consulta. Una vez creada la consulta, la efectúa con el adaptador y gurada el resultado en una tabla de datos.

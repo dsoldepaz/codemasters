@@ -16,7 +16,6 @@ namespace Servicios_Reservados_2
       private ControladoraBDComidaExtra controladoraBD;//instancia de la controladora de BD comida extra.
       public static EntidadReservaciones servicios;
       public static ControladoraReservaciones controladoraReserv;
-       
       public static EntidadComidaExtra servicioSeleccionado;//instancia entidad comida extra.
       public static int paxSeleccionados;
       public static String idReservacionSelccionada;
@@ -102,10 +101,10 @@ namespace Servicios_Reservados_2
        * Requiere: la entrada de los datos.
        * Modifica: la variable paxSeleccionados, en la que se almacena el servicio consultado.
        */
-      public void guardarReservacionSeleccionada(Object[] datos)
+      public String paxConsultado(String id)
       {
-          paxSeleccionados = int.Parse(datos[0].ToString());
-          idReservacionSelccionada = datos[1].ToString();
+          String pax = controladoraReserv.obtenerPax(id);
+          return pax;
       }
 
       /*
@@ -133,11 +132,11 @@ namespace Servicios_Reservados_2
      * Requiere: que la variable idReservacionSelccionada esté inicializada.
      * Modifica: 
      */
-      public String reservacionSeleccionada()
+      public EntidadReservaciones reservacionSeleccionada()
       {
-          return idReservacionSelccionada;
-      }
-
+          return controladoraReserv.getReservacionSeleccionada();
+         
+      } 
 
       /*
        * Efecto: consulta el tipo de comida extra de un id específico.
@@ -171,5 +170,7 @@ namespace Servicios_Reservados_2
             String[] resultado = controladoraBD.cancelarComidaExtra(idReservacion, idComidaExtra, fecha, hora);
             return resultado;
         }
+
+
     }
 }

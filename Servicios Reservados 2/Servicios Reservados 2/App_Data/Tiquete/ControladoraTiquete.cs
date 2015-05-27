@@ -9,13 +9,13 @@ namespace Servicios_Reservados_2
 {
     public class ControladoraTiquete
     {
-        private static int tiqueteSeleccionado;
-        private static EntidadServicios servicio;
+        private static int numTiqueteSeleccionado;
         private static ControladoraServicios controladoraServ;
         private static ControladoraBDTiquete controladoraBD;
         private static ControladoraReservaciones controladoraRes;
         private static ControladoraEmpleadoReserva controladoraEmplRes;
-        public static EntidadServicios servicioActiva;
+        private static ControladoraEmpleado controladoraEmpl;
+        private static EntidadServicios servicio;
         /*
          * Requiere: N/A
          * Efectúa : Inicializa las variables globales de la clase. 
@@ -27,6 +27,7 @@ namespace Servicios_Reservados_2
             controladoraRes = new ControladoraReservaciones();
             controladoraServ = new ControladoraServicios();
             controladoraEmplRes = new ControladoraEmpleadoReserva();
+            controladoraEmpl = new ControladoraEmpleado();
         }
         /*
          * Requiere: N/A
@@ -40,7 +41,7 @@ namespace Servicios_Reservados_2
         }
         internal EntidadServicios solicitarInfoServicio()
         {           
-            return servicioActiva;
+            return servicio;
         }
 
         internal DataTable solicitarTiquetes(string idServ)
@@ -53,19 +54,24 @@ namespace Servicios_Reservados_2
             controladoraBD.insertarTiquetes(servicio.IdServicio, numTiquete, servicio.Categoria, servicio.IdSolicitante, servicio.TipoSolicitante);
         }
 
-        internal void desactivarTiquete(int p)
+        internal void desactivarTiquete()
         {
-            throw new NotImplementedException();
+            controladoraBD.eliminarTiquete(numTiqueteSeleccionado);
         }
 
         internal void seleccionarTiquete(int numTiquete)
         {
-            tiqueteSeleccionado = numTiquete;
+            numTiqueteSeleccionado = numTiquete;
         }
 
-        internal EntidadEmpleado solicitarInfoEmpleado(string p)
+        internal EntidadEmpleado solicitarInfoEmpleado()
         {
-            throw new NotImplementedException();
+            return controladoraEmpl.getEmpleadoSeleccionado();
+        }
+
+        internal static void setServicio(EntidadServicios seleccionado)
+        {
+            servicio = seleccionado;
         }
     }
 }
