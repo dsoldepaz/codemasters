@@ -61,5 +61,10 @@ namespace Servicios_Reservados_2
             String consultaSQL = "insert into tiquete values('" + numTiquete + "','" + idServ + "', 0,'" + categoria + "','" + idSolicitante + "','" + tipoSolicitante + "')";
             adaptador.insertar(consultaSQL);
         }
+
+        internal void eliminarTiquete(int numTiqueteSeleccionado)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
