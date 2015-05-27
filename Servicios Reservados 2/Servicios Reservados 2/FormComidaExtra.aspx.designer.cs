@@ -127,7 +127,7 @@ namespace Servicios_Reservados_2 {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnAceptar;
+        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit btnAceptar;
         
         /// <summary>
         /// Control btnCancelar.

@@ -37,7 +37,7 @@
                         </li>
                         <li class="itemContenedor">Hora:<select id="cbxHora" runat="server"></select>
                         </li>
-                        <li class="itemContenedor">#PAX:<input id="txtPax" runat="server" required="required" placeholder="inserte un digito" pattern="^[0-9]+$"/>
+                        <li class="itemContenedor">#PAX:<input id="txtPax" runat="server" required="required" title="Inserte un número." pattern="^[0-9]+$" />
                         </li>
                         <li class="itemContenedor">Tipo de pago:<select id="cbxTipoPago" runat="server"></select>
 
@@ -46,12 +46,12 @@
                     </ul>
                     <p>
                         <label>Notas:</label>
-                        <textarea id="txaNotas" cols="20" name="S1" rows="2" runat="server"></textarea>
+                        <textarea id="txaNotas" cols="20" name="S1" rows="2" runat="server" title="Solo puede insertar lestras, comas y puntos." pattern="^[a-z]+$"></textarea>
                     </p>
                     <table>
                         <tr>
                             <td>
-                                <input type="button" class="btn btn-success" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" />
+                                <input type="submit" class="btn btn-success" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" />
 
                             </td>
                             <td>
