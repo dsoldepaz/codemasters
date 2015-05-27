@@ -121,12 +121,12 @@ namespace Servicios_Reservados_2
             else if (id.Contains("S"))
             {
                 EntidadComidaExtra servicio = seleccionarServicio(idRes, id);
-                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida Extra", servicio.Fecha, servicio.Consumido, servicio.Pax);
+                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida extra", servicio.Fecha, servicio.Consumido, servicio.Pax);
             }
             else
             {
                 EntidadComidaCampo comidaCampo = seleccionarComidaCampo(idRes, id);
-                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida Campo", comidaCampo.Fecha, comidaCampo.Estado, comidaCampo.Pax);
+                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida campo", comidaCampo.Fecha, comidaCampo.Estado, comidaCampo.Pax);
             }
              return seleccionado;
         }
