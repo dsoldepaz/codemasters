@@ -36,9 +36,10 @@ namespace Servicios_Reservados_2
             return controladoraEmpleado.getEmpleadoSeleccionado();
         }
 
-        internal EntidadServicios crearServicio(string idEmpleado, int idServicio)
+        internal EntidadServicios crearServicio(string idEmpleado, int idServicio, string fechaServ)
         {
-            seleccionado = new EntidadServicios(idEmpleado, "empleado", idServicio.ToString(), "categoria", "hora", "fecha", "consumido", 1);
+            
+            seleccionado = new EntidadServicios(idEmpleado, "empleado", idServicio.ToString(), "PonerCategoria", fechaServ, "ponerconsumido", 1);
             return seleccionado;
         }
 
@@ -49,7 +50,7 @@ namespace Servicios_Reservados_2
 
         internal void activarTiquete()
         {
-            ControladoraTiquete.servicioActiva = seleccionado;
+            ControladoraTiquete.setServicio(seleccionado);
         }
     }
 }
