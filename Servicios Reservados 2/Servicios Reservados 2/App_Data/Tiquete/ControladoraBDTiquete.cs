@@ -47,6 +47,19 @@ namespace Servicios_Reservados_2
 
         }
 
-        
+
+
+        internal DataTable obtenerTiquetes(string idServ)
+        {
+            String consultaSQL = "select numero FROM tiquete WHERE idServicio = '" + idServ + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        internal void insertarTiquetes(string idServ, int numTiquete, String categoria, String idSolicitante, String tipoSolicitante)
+        {
+            String consultaSQL = "insert into tiquete values('" + numTiquete + "','" + idServ + "', 0,'" + categoria + "','" + idSolicitante + "','" + tipoSolicitante + "')";
+            adaptador.insertar(consultaSQL);
+        }
     }
 }

@@ -9,10 +9,14 @@ namespace Servicios_Reservados_2
 {
     public class ControladoraTiquete
     {
-        private static EntidadTiquete Seleccionado;
+        private static int tiqueteSeleccionado;
+        private static EntidadServicios servicio;
         private static ControladoraServicios controladoraServ;
         private static ControladoraBDTiquete controladoraBD;
         private static ControladoraReservaciones controladoraRes;
+        private static ControladoraEmpleadoReserva controladoraEmplRes;
+        private static ControladoraEmpleado controladoraEmpl;
+        public static EntidadServicios servicioActiva;
         /*
          * Requiere: N/A
          * Efectúa : Inicializa las variables globales de la clase. 
@@ -23,6 +27,8 @@ namespace Servicios_Reservados_2
             controladoraBD = new ControladoraBDTiquete();
             controladoraRes = new ControladoraReservaciones();
             controladoraServ = new ControladoraServicios();
+            controladoraEmplRes = new ControladoraEmpleadoReserva();
+            controladoraEmpl = new ControladoraEmpleado();
         }
         /*
          * Requiere: N/A
@@ -35,13 +41,33 @@ namespace Servicios_Reservados_2
 
         }
         internal EntidadServicios solicitarInfoServicio()
-        {
-            return controladoraServ.servicioSeleccionado();
+        {           
+            return servicioActiva;
         }
 
-        internal DataTable solicitarTiquetes(string p)
+        internal DataTable solicitarTiquetes(string idServ)
+        {
+            return controladoraBD.obtenerTiquetes(idServ);
+        }
+
+        internal void activarTiquete(int numTiquete)
+        {
+            controladoraBD.insertarTiquetes(servicio.IdServicio, numTiquete, servicio.Categoria, servicio.IdSolicitante, servicio.TipoSolicitante);
+        }
+
+        internal void desactivarTiquete(int p)
         {
             throw new NotImplementedException();
+        }
+
+        internal void seleccionarTiquete(int numTiquete)
+        {
+            tiqueteSeleccionado = numTiquete;
+        }
+
+        internal EntidadEmpleado solicitarInfoEmpleado(string p)
+        {
+            return controladoraEmpl.getEmpleadoSeleccionado();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Servicios_Reservados_2
     {
         public static String idEmpleado = String.Empty;
         private ControladoraEmpleadoReserva controladora = new ControladoraEmpleadoReserva();
+        private static EntidadServicios seleccionado = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
@@ -241,6 +242,7 @@ namespace Servicios_Reservados_2
             btnVer.Disabled = false;
             btnEditar.Disabled = false;
             btnCancelar.Disabled = false;
+            seleccionado = controladora.crearServicio(idEmpleado, int.Parse(GridComidasReservadas.SelectedRow.Cells[1].Text));
         }
         /*
          * Requiere: N/A
@@ -265,5 +267,15 @@ namespace Servicios_Reservados_2
             btnEditar.Disabled = true;
             btnCancelar.Disabled = true;
         }
+        protected void clickActivarTiquetes(object sender, EventArgs e)
+        {
+            if (seleccionado != null)
+            {
+                controladora.activarTiquete();
+                Response.Redirect("FormTiquete");
+            }
+
+        }   
+
     }
 }

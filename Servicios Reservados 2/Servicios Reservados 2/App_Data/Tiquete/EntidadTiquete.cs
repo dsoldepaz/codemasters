@@ -7,94 +7,97 @@ namespace Servicios_Reservados_2
 {
     public class EntidadTiquete
     {
-        private String id;
-        private String anfitriona;
-        private String estacion;
-        private String numero;
+        private int numero;
+        private String idServicio;
+        private String tipoSolicitante;
+        private int consumido;
         private String solicitante;
-        private DateTime fechaInicio;
-        private DateTime fechaSalida;
+        private String categoria;
+        private String notas;
+
         /*
-         * Requiere: Un identificador de reservacion, una hilera con la anfritriona, una hilera con la estación, una hilera con el número, una hilera con el solicitante, una fecha con el inicio y una fecha con la salida
+         * Requiere:
          * Efectúa : Inicializa las variables globales de la clase con los parámetros.
          * Retorna : N/A.
          */
-        public EntidadTiquete(String id, String anfitriona, String estacion, String numero, String solicitante, DateTime fechaInicio, DateTime fechaSalida)
+        public EntidadTiquete(int numero, String idServicio, String tipoSolicitante, int consumido, String solicitante, String categoria, String notas)
         {
-            Id = id;
-            Anfitriona = anfitriona;
-            Estacion = estacion;
-            Numero = numero;
-            Solicitante = solicitante;
-            FechaInicio = fechaInicio;
-            FechaSalida = fechaSalida;
-                
-        } 
+            this.numero = numero;
+            this.idServicio = idServicio;
+            this.tipoSolicitante = tipoSolicitante;
+            this.consumido = consumido;
+            this.solicitante = solicitante;
+            this.categoria = categoria;
+            this.notas = notas;
+
+        }
         /*
          * Requiere: una Hilera con el valor nuevo
          * Efectúa : Asigna a la variable global id con el parámetro
          * Retorna : El valor de la variable global id
          */
-        public String Id {
-            get { return id; } 
-            set { id = value;}
+        public int Numero
+        {
+            get { return numero; }
+            set { numero = value; }
         }
         /*
          * Requiere: una Hilera con el valor nuevo
          * Efectúa : Asigna a la variable global Anftritriona con el parámetro
          * Retorna : El valor de la variable global Anfitriona
          */
-        public String Anfitriona {
-            get { return anfitriona; }
-            set { anfitriona = value; }
+        public String IdServicio
+        {
+            get { return idServicio; }
+            set { idServicio = value; }
+        }
+        /*
+ * Requiere: una Hilera con el valor nuevo
+ * Efectúa : Asigna a la variable global Anftritriona con el parámetro
+ * Retorna : El valor de la variable global Anfitriona
+ */
+        public String TipoSolicitante
+        {
+            get { return tipoSolicitante; }
+            set { tipoSolicitante = value; }
         }
         /*
          * Requiere: una Hilera con el valor nuevo
          * Efectúa : Asigna a la variable global Estación con el parámetro
          * Retorna : El valor de la variable global Estación
          */
-        public String Estacion {
-            get { return estacion; } 
-            set { estacion = value;}
+        public int Consumido
+        {
+            get { return consumido; }
+            set { consumido = value; }
         }
         /*
          * Requiere: una Hilera con el valor nuevo
          * Efectúa : Asigna a la variable global Numero con el parámetro
          * Retorna : El valor de la variable global Numero
          */
-        public String Numero
+        public String Solicitante
         {
-            get { return numero; }
-            set { numero = value; }
+            get { return solicitante; }
+            set { solicitante = value; }
         }
         /*
          * Requiere: una Fecha con el valor nuevo
          * Efectúa : Asigna a la variable global FechaInicio con el parámetro
          * Retorna : El valor de la variable global FechaInicio
          */
-        public DateTime FechaInicio {
-            get { return fechaInicio; } 
-            set { fechaInicio = value;}
+        public String Categoria
+        {
+            get { return categoria; }
+            set { categoria = value; }
         }
-        /*
-         * Requiere: una Fecha con el valor nuevo
-         * Efectúa : Asigna a la variable global FechaSalida con el parámetro
-         * Retorna : El valor de la variable global FechaSalida
-         */
-        public DateTime FechaSalida {
-            get { return fechaSalida; } 
-            set { fechaSalida = value;}
-        }
-        /*
-         * Requiere: una Hilera con el valor nuevo
-         * Efectúa : Asigna a la variable global Solicitante con el parámetro
-         * Retorna : El valor de la variable global Solicitante
-         */
-        public String Solicitante {
-            get { return solicitante; } 
-            set { solicitante = value;}
+
+        public String Notas
+        {
+            get { return notas; }
+            set { notas = value; }
         }
     }
-   
+
 
 }

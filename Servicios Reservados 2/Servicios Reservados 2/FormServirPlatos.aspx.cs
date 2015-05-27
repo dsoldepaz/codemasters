@@ -40,31 +40,24 @@ namespace Servicios_Reservados_2
         {
             DataTable tabla = crearTablaTiquete();
             int numTiquete = int.Parse(tiquete.Value);
+            Object[] datos = new Object[4];
 
-            try
-            {
-                DataTable datosTiquete = controladora.solicitarTiquete(numTiquete);// se consulta
-                Object[] datos = new Object[datosTiquete.Columns.Count];
+                EntidadTiquete datosTiquete = controladora.solicitarTiquete(numTiquete);// se consulta
 
-                if (datosTiquete.Rows.Count > 0)
-                {
-                    for (int i = 0; i < datosTiquete.Columns.Count; i++)
-                    {
-                        datos[i] = datosTiquete.Rows[0][i].ToString();//obtener los datos a mostrar
-                    }
-                    tabla.Rows.Add(datos);// cargar en la tabla los datos 
-                }
+                datos[0] = datosTiquete.Solicitante;//obtener los datos a mostrar
+                datos[1] = datosTiquete.Categoria;
+                datos[2] = datosTiquete.Consumido;
+                datos[3] = datosTiquete.Notas;
+
+                tabla.Rows.Add(datos);// cargar en la tabla los datos 
+
                 GridViewTiquete.DataBind();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("No se pudo cargar las reservaciones");
-            }
+          
 
 
         }
 
-        protected DataTable crearTablaTiquete()//consultar
+        protected DataTable crearTablaTiquete()
         {
             DataTable tabla = new DataTable();
             DataColumn columna;
@@ -76,12 +69,12 @@ namespace Servicios_Reservados_2
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Anfitriona";
+            columna.ColumnName = "Categoria";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Estación";
+            columna.ColumnName = "Consumido";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();

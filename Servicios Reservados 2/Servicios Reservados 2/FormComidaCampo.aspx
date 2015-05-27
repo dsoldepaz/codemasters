@@ -130,7 +130,7 @@
                     <table>
                     <tr>
                         <td>
-                            <asp:CheckBox ID="checkO3" runat="server" OnCheckedChanged="checkedO3"/>
+                            <asp:CheckBox ID="checkO3" runat="server"/>  <!-->OnCheckedChanged="checkedO3"<-->
                         </td>
                         <td>
                             <h4>Opción #3 Debe aportar su propio recipiente</h4>
@@ -195,7 +195,7 @@
                      <table>
                     <tr>
                         <td>
-                            <asp:CheckBox ID="CheckboxBebida" runat="server" OnCheckedChanged="checkbebida"/>
+                            <asp:CheckBox ID="CheckboxBebida" runat="server"/><!-->OnCheckedChanged="checkbebida"<-->
                         </td>
                         <td>
                             <h4>Escoja la opción para bebida</h4>

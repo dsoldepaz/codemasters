@@ -24,6 +24,7 @@ namespace Servicios_Reservados_2
         public static EntidadComidaCampo comidaCampoConsultada;
         public static EntidadComidaExtra comidaExtraConsultada;
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             i = 0;
@@ -277,6 +278,7 @@ namespace Servicios_Reservados_2
             else
             {
                 FormComidaCampo.modo = 2; //modo para modificar
+                FormComidaCampo.idReservacion = controladora.idSelected();
                 FormComidaCampo.tipoComidaCampo = 0;
                 Response.Redirect("FormComidaCampo");
             }
@@ -302,18 +304,20 @@ namespace Servicios_Reservados_2
             Response.Redirect("FormComidaCampo");
         }
 
-        /*
+      /*
        * Efecto: capta el evento del botón para cancelar una comida extra, cambia el modo y redirige a la interfaz de comida extra.
        * Requiere: presionar el botón.
        * Modifica: la variable global modo.
        */
         protected void clickEliminarServicio(object sender, EventArgs e)
         {
+            String[] mensaje;
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
                 if (comidaExtraConsultada.Consumido == "Activo")
                 {
-                    controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], comidaExtraConsultada.Fecha, comidaExtraConsultada.Hora);
+                    mensaje = controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], comidaExtraConsultada.Fecha, comidaExtraConsultada.Hora);
+                    mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
                 }
                 else
                 { 
@@ -324,13 +328,15 @@ namespace Servicios_Reservados_2
             {
                 if (comidaCampoConsultada.Estado == "Activo")
                 {
-                    controladora.cancelarComidaCampo(idServ[GridServicios.SelectedIndex]);
+                   mensaje= controladora.cancelarComidaCampo(idServ[GridServicios.SelectedIndex]);
+                   mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
                 }
                 else
                 {
                     //error
                 }
-            }
+            }  
+            llenarGridServicios();
         }
 
         /*
@@ -340,6 +346,7 @@ namespace Servicios_Reservados_2
        */
         protected void clickConsultarServicio(object sender, EventArgs e)
         {
+            
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
                 modo = 0;
@@ -354,9 +361,20 @@ namespace Servicios_Reservados_2
 
         }
 
+      
+
+        protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
+        {
+            alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
+            labelTipoAlerta.Text = alerta + " ";
+            labelAlerta.Text = mensaje;
+            alertAlerta.Attributes.Remove("hidden");
+        }
+
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
             if(seleccionado!=null){
+                controladora.activarTiquete();
                 Response.Redirect("FormTiquete");
             }
             

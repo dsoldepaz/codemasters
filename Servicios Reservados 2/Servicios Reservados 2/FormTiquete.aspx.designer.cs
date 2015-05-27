@@ -49,6 +49,15 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText numero;
         
         /// <summary>
+        /// Control solicitante.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText solicitante;
+        
+        /// <summary>
         /// Control categoria.
         /// </summary>
         /// <remarks>
@@ -76,13 +85,13 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText pax;
         
         /// <summary>
-        /// Control txtTiquete.
+        /// Control numTiquete.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTiquete;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText numTiquete;
         
         /// <summary>
         /// Control BotonAgregar.
