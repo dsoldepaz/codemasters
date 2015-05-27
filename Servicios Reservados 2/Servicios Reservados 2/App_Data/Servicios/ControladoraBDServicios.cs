@@ -21,18 +21,6 @@ namespace Servicios_Reservados_2
             dt = new DataTable();
         }
 
-        /**Efecto: Crea la consulta SQL que obtiene el numero de pax de la reservacion y la retorna en forma de datatable  
-         * Requiere: id de la reservacion
-         * Modifica: el dataTable dt
-         */
-        internal DataTable obtenerPax(String idNum)
-        {
-            String consultaSQL = "select PAX from reservas.vr_reservacion where numero = '" + idNum + "'";
-            dt = adaptador.consultar(consultaSQL);
-            return dt;
-
-        }
-
         /*
          * Efecto: Crea la consulta SQL que obtiene el estado de una comida extra  
          * Requiere: id de la reservacion y id de la comida extra

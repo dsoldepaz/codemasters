@@ -791,3 +791,4 @@ C:\Users\b04833\Source\Repos\codemasters2\Servicios Reservados 2\Servicios Reser
 C:\Users\b04833\Source\Repos\codemasters2\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.csprojResolveAssemblyReference.cache
 C:\Users\b04833\Source\Repos\codemasters2\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.dll
 C:\Users\b04833\Source\Repos\codemasters2\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.pdb
+C:\Users\b17013\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.csprojResolveAssemblyReference.cache

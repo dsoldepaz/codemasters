@@ -103,5 +103,12 @@ namespace Servicios_Reservados_2
 
         }
 
+        public String obtenerPax(String id)
+        {
+            DataTable paxConsultado = controladoraBD.obtenerPax(id);
+            String pax = paxConsultado.Rows[0][0].ToString();
+            return pax;
+
+        }
     }
 }
