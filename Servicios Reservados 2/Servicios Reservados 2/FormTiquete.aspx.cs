@@ -40,12 +40,15 @@ namespace Servicios_Reservados_2
         private void llenarListaTiquetes()
         {
             DataTable tabla = crearTablaTiquetes();
+            Object[] datos = new Object[2];
             DataTable tiquetes = controladora.solicitarTiquetes(servicio.IdServicio);// se consultan todos
             if (tiquetes.Rows.Count > 0)
             {
                 foreach (DataRow fila in tiquetes.Rows)
                 {
-                    tabla.Rows.Add(fila[0].ToString());// cargar en la tabla los datos de cada proveedor
+                    datos[0] = fila[0].ToString(); 
+                    datos[1] = fila[1].ToString(); 
+                    tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                 }
             }
             GridViewTiquetes.DataBind();
@@ -59,7 +62,7 @@ namespace Servicios_Reservados_2
             pax.Value = servicio.Pax.ToString();
 
             if("empleado".Equals(servicio.TipoSolicitante)){
-                empleado = controladora.solicitarInfoEmpleado(servicio.IdSolicitante);
+                empleado = controladora.solicitarInfoEmpleado();
                 anfitriona.Value = "No disponible";
                 estacion.Value = "No disponible";
                 numero.Value = empleado.Id;
@@ -103,6 +106,11 @@ namespace Servicios_Reservados_2
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
             columna.ColumnName = "Número";
+            tabla.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Consumido";
             tabla.Columns.Add(columna);
 
             GridViewTiquetes.DataSource = tabla;

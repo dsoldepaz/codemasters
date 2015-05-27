@@ -51,7 +51,7 @@ namespace Servicios_Reservados_2
 
         internal DataTable obtenerTiquetes(string idServ)
         {
-            String consultaSQL = "select numero FROM tiquete WHERE idServicio = '" + idServ + "'";
+            String consultaSQL = "select numero, consumido FROM tiquete WHERE idServicio = '" + idServ + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
@@ -64,7 +64,9 @@ namespace Servicios_Reservados_2
 
         internal void eliminarTiquete(int numTiqueteSeleccionado)
         {
-            throw new NotImplementedException();
+            String consultaSQL = "delete FROM tiquete WHERE numero="+ numTiqueteSeleccionado.ToString();
+            adaptador.insertar(consultaSQL);
+
         }
     }
 }
