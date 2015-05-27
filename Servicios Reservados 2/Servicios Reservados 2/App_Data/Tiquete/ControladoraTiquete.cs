@@ -64,7 +64,7 @@ namespace Servicios_Reservados_2
             numTiqueteSeleccionado = numTiquete;
         }
 
-        internal EntidadEmpleado solicitarInfoEmpleado(string p)
+        internal EntidadEmpleado solicitarInfoEmpleado()
         {
             return controladoraEmpl.getEmpleadoSeleccionado();
         }
