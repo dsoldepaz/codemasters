@@ -33,8 +33,20 @@ namespace Servicios_Reservados_2
                 }
                 llenarInfoServicio();
                 llenarListaTiquetes();
+                bloquarEdicionInfo();
             }
 
+        }
+
+        private void bloquarEdicionInfo()
+        {
+            anfitriona.Disabled = true;
+            estacion.Disabled = true;
+            numero.Disabled = true;
+            solicitante.Disabled = true;
+            categoria.Disabled = true;
+            estado.Disabled = true;
+            pax.Disabled = true;
         }
 
         private void llenarListaTiquetes()
@@ -92,10 +104,6 @@ namespace Servicios_Reservados_2
         {
             controladora.desactivarTiquete();
             Response.Redirect(Request.Url.AbsoluteUri);
-
-        }
-        protected void clickActivar(object sender, EventArgs e)
-        {
 
         }
         protected DataTable crearTablaTiquetes()//consultar
