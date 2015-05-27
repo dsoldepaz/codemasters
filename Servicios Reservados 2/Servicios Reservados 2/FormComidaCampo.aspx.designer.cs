@@ -121,13 +121,13 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Fieldset1;
         
         /// <summary>
-        /// Control CheckboxCambio.
+        /// Control checkO1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox CheckboxCambio;
+        protected global::System.Web.UI.WebControls.CheckBox checkO1;
         
         /// <summary>
         /// Control radioDesayuno.

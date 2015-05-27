@@ -55,13 +55,21 @@
             </div>
             <div class="well bs-component">
                 <fieldset id="Fieldset1" runat="server">
-                    <legend style="color: #7BC143">Opción #1 Reemplezar por: </legend>
-                    <input type="checkbox" name="opciones" value="chbxo2" id="CheckboxCambio" runat="server">
+                    <table>
+                    <tr>
+                        <td>
+                            <asp:CheckBox ID="checkO1" runat="server" OnCheckedChanged="checkedO1" AutoPostBack ="true"/>
+                        </td>
+                        <td>
+                            <h4>Opción #1 Reemplezar por:</h4>
+                        </td>
+                    </tr>
+                </table>
                     <ul class="lista formulario">
                         <il class="itemFormulario">
-                            <asp:RadioButton ID="radioDesayuno" runat="server" AutoPostBack ="true" OnCheckedChanged="cambiarFechaD"/>Desayuno
-                            <asp:RadioButton ID="radioAlmuerzo" runat="server" AutoPostBack ="true" OnCheckedChanged="cambiarFechaA"/>Almuerzo
-                            <asp:RadioButton ID="radioCena" runat="server" AutoPostBack ="true" OnCheckedChanged="cambiarFechaC"/>Cena
+                            <asp:RadioButton ID="radioDesayuno" runat="server" name="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaD"/>Desayuno
+                            <asp:RadioButton ID="radioAlmuerzo" runat="server" name="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaA"/>Almuerzo
+                            <asp:RadioButton ID="radioCena" runat="server" name="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaC"/>Cena
                             
                        </il>
                     </ul>
@@ -73,14 +81,14 @@
                 <table>
                     <tr>
                         <td>
-                            <asp:CheckBox ID="checkO2" runat="server" OnCheckedChanged="checkedO2"/>
+                            <asp:CheckBox ID="checkO2" runat="server" OnCheckedChanged="checkedO2" AutoPostBack ="true"/>
                         </td>
                         <td>
                             <h4>Opción #2 Sandwich [puede marcar dos opciónes] </h4>
                         </td>
                     </tr>
                 </table>
-                <fieldset id="fieldsetO2" visible="false" runat="server">
+                <fieldset id="fieldsetO2" runat="server">
 
                     <ul class="lista formulario">
                         <il class="itemFormulario">
@@ -130,7 +138,7 @@
                     <table>
                     <tr>
                         <td>
-                            <asp:CheckBox ID="checkO3" runat="server"/>  <!-->OnCheckedChanged="checkedO3"<-->
+                            <asp:CheckBox ID="checkO3" runat="server" OnCheckedChanged="checkedO3" AutoPostBack ="true"/> 
                         </td>
                         <td>
                             <h4>Opción #3 Debe aportar su propio recipiente</h4>
@@ -195,7 +203,7 @@
                      <table>
                     <tr>
                         <td>
-                            <asp:CheckBox ID="CheckboxBebida" runat="server"/><!-->OnCheckedChanged="checkbebida"<-->
+                            <asp:CheckBox ID="CheckboxBebida" runat="server" OnCheckedChanged="checkbebida" AutoPostBack ="true"/>
                         </td>
                         <td>
                             <h4>Escoja la opción para bebida</h4>
@@ -212,8 +220,9 @@
                         </il>
                     </ul>
                 </fieldset>
-                <button class="btn btn-success" id="btnAgregar" name="accept" type="button" runat="server" onserverclick="clickAceptar">Aceptar</button>
                 <button class="btn btn-danger" name="cancel" type="button" runat="server" onserverclick="clickCancelar">cancelar</button>
+                <button class="btn btn-success" id="btnAgregar" name="accept" type="button" runat="server" onserverclick="clickAceptar">Aceptar</button>
+                
             </div>
 
         </ContentTemplate>
