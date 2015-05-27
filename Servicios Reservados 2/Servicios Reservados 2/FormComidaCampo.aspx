@@ -33,7 +33,7 @@
 
 
                         </li>
-                        <li class="itemContenedor">Hora:<select id="cmbHora" runat="server"></select>
+                        <li class="itemContenedor">Hora:<select id="cbxHora" runat="server"></select>
                         </li>
                         <il class="itemFormulario">
                             Pax:
