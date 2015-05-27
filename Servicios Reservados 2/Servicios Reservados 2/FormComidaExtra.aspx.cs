@@ -86,13 +86,12 @@ namespace Servicios_Reservados_2
             Boolean res = true;
             //los desplegamos en cada uno de los componentes de la pantalla
             cbxHora.Items.Clear();
-            cbxHora.Value = entidadConsultada.Hora;
+            cbxHora.Items.Add(entidadConsultada.Hora);
             txtPax.Value = entidadConsultada.Pax.ToString();
             cbxTipo.Text = controladora.consultarTipo(controladora.servicioSeleccionados().IdServiciosExtras);
             txaNotas.Value = entidadConsultada.Descripcion;
             textFecha.Value = entidadConsultada.Fecha.ToString();
             cbxTipoPago.Value = entidadConsultada.TipoPago;
-
             return res;
         }
 
@@ -128,7 +127,7 @@ namespace Servicios_Reservados_2
             nuevoServicio[4] = txaNotas.Value;
             nuevoServicio[5] = txtPax.Value;
             nuevoServicio[6] = cbxHora.Value;
-            nuevoServicio[7] = cbxTipoPago.Value;
+            nuevoServicio[7] = fechaSelect.ToString("MM/dd/yyyy");//cbxTipoPago.Value;
 
  
             String[] error = controladora.agregarServicioExtra(nuevoServicio);// se le pide a la controladora que lo inserte
@@ -153,6 +152,7 @@ namespace Servicios_Reservados_2
             if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect < fechaActual)
             {
                 mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de lás fechas reservadas-");
+                res = false;
             }
             else
             {
@@ -235,12 +235,15 @@ namespace Servicios_Reservados_2
                     btnAceptar.Disabled = true;
                     fechaDeEntrada.Disabled = true;
                     consultarServicio();
+                    fechaDeEntrada.Disabled = true;
                     break;
                 case 1:
                     txtPax.Value = controladora.paxConsultado(reservConsultada.Numero);
+                    fechaDeEntradaCalendario.SelectedDate = DateTime.Today;
                     break;
                 case 2:
                     consultarServicio();
+                    fechaDeEntradaCalendario.SelectedDate = DateTime.Parse(entidadConsultada.Fecha);
                     break;
             }   
         }
@@ -275,7 +278,7 @@ namespace Servicios_Reservados_2
         */
         protected void fechaDeEntradaCalendario_SelectionChanged(object sender, EventArgs e)
         {
-            textFecha.Value = fechaDeEntradaCalendario.SelectedDate.ToString("dd/MM/yyyy");
+            textFecha.Value = fechaDeEntradaCalendario.SelectedDate.ToString("MM/dd/yyyy");
             fechaDeEntradaCalendario.Visible = false;
         }
 
