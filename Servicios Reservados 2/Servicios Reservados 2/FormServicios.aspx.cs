@@ -254,18 +254,7 @@ namespace Servicios_Reservados_2
         {
             //seleccionar bien
             seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex]);
-            //revisar esto
-            if (idServ[GridServicios.SelectedIndex].Contains("."))
-            {
-            }
-            else if (idServ[GridServicios.SelectedIndex].Contains("S"))
-            {
-                comidaExtraConsultada = controladora.seleccionarServicio(ids[0], idServ[GridServicios.SelectedIndex]);
-            }
-            else
-            {
-                comidaCampoConsultada = controladora.seleccionarComidaCampo(ids[0], idServ[GridServicios.SelectedIndex]);
-            }
+
 
         }
         /*

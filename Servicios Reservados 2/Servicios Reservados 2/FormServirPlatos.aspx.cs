@@ -38,25 +38,25 @@ namespace Servicios_Reservados_2
          */
         protected void clickVerificar(object sender, EventArgs e)
         {
+            verificar();
+        }
+
+        protected void verificar() {
             DataTable tabla = crearTablaTiquete();
             int numTiquete = int.Parse(tiquete.Value);
             Object[] datos = new Object[4];
 
-                EntidadTiquete datosTiquete = controladora.solicitarTiquete(numTiquete);// se consulta
+            EntidadTiquete datosTiquete = controladora.solicitarTiquete(numTiquete);// se consulta
 
-                datos[0] = datosTiquete.Solicitante;//obtener los datos a mostrar
-                datos[1] = datosTiquete.Categoria;
-                datos[2] = datosTiquete.Consumido;
-                datos[3] = datosTiquete.Notas;
+            datos[0] = datosTiquete.Solicitante;//obtener los datos a mostrar
+            datos[1] = datosTiquete.Categoria;
+            datos[2] = datosTiquete.Consumido;
+            datos[3] = datosTiquete.Notas;
 
-                tabla.Rows.Add(datos);// cargar en la tabla los datos 
+            tabla.Rows.Add(datos);// cargar en la tabla los datos 
 
-                GridViewTiquete.DataBind();
-          
-
-
+            GridViewTiquete.DataBind(); 
         }
-
         protected DataTable crearTablaTiquete()
         {
             DataTable tabla = new DataTable();
@@ -87,7 +87,11 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
-
+        protected void clickServir(object sender, EventArgs e)
+        {
+            controladora.servirTiquete();
+            verificar();
+        }
 
     }
 }

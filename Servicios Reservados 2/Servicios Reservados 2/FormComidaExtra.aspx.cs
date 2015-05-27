@@ -107,10 +107,12 @@ namespace Servicios_Reservados_2
             DateTime fechaInicio = DateTime.Parse(reservConsultada.FechaInicio.ToString());
             DateTime fechaFin = DateTime.Parse(reservConsultada.FechaSalida.ToString());
             DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;
+            DateTime fechaActual = DateTime.Today;
 
-            if (fechaSelect < fechaInicio || fechaSelect > fechaFin)
+            if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect < fechaActual)
             {
                 mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
+                res = false;
             }
             else
             {
@@ -146,8 +148,9 @@ namespace Servicios_Reservados_2
             DateTime fechaInicio = DateTime.Parse(reservConsultada.FechaInicio.ToString());
             DateTime fechaFin = DateTime.Parse(reservConsultada.FechaSalida.ToString());
             DateTime fechaSelect = DateTime.Parse(textFecha.Value);
+            DateTime fechaActual = DateTime.Today;
 
-            if (fechaSelect < fechaInicio || fechaSelect > fechaFin)
+            if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect < fechaActual)
             {
                 mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de lás fechas reservadas-");
             }
@@ -168,7 +171,7 @@ namespace Servicios_Reservados_2
                 String[] error = controladora.modificarServicioExtra(nuevoServicio, entidadConsultada);// se le pide a la controladora que lo inserte
                 mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
 
-                Response.Redirect("FormServicios");
+                
             }
             return res;
         }
@@ -180,18 +183,25 @@ namespace Servicios_Reservados_2
         */
         protected void clickAceptar(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "OpenModal", "OpenModal()", true);
-            /*
+            bool accion;
             switch (modo)
             {
                 case 1://insertar
-                    agregarServicioExtra();
+                    accion = agregarServicioExtra();
+                    if (accion)
+                    {
+                        Response.Redirect("FormServicios");
+                    }
                     break;
                 case 2://modificar
-                    modificarServicioExtra();
+                    
+                    accion = modificarServicioExtra();
+                    if (accion)
+                    {
+                        Response.Redirect("FormServicios");
+                    }
                     break;
             }
-             * */
         }
 
         /*
@@ -201,6 +211,7 @@ namespace Servicios_Reservados_2
         */
         protected void clickCancelar(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, GetType(), "OpenModal", "OpenModal()", true);
             Response.Redirect("FormServicios");
         }
 
@@ -299,7 +310,7 @@ namespace Servicios_Reservados_2
             }
 
             cbxHora.Items.Clear();// limpiamos el combobox
-            cbxHora.Items.Add("Seleccionar");// agregamos seleccionar
+            //cbxHora.Items.Add("Seleccionar");// agregamos seleccionar
             for (int i = inicio; i <= fin; ++i)
             {
                 String horas = i.ToString() + ":00";
