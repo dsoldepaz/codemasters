@@ -57,5 +57,10 @@ namespace Servicios_Reservados_2
         {
             ControladoraTiquete.setServicio(seleccionado);
         }
+
+        internal EntidadComidaEmpleado consultarComida(int p)
+        {
+            return controladoraComidaEmpleado.consultar(p);    
+        }
     }
 }
