@@ -12,7 +12,7 @@ namespace Servicios_Reservados_2
         private static EntidadTiquete seleccionado;
         private static ControladoraBDServirPlatos controladoraBD;
         private static ControladoraComidaEmpleado controladoraComidaEmp;
-        private static ControladoraComidaCampo controladoraComidaCampo;
+        private static ControladoraEmpleado controladoraEmp;
         private static ControladoraComidaExtra controladoraComidaExtra;
         private static ControladoraReservaciones controladoraReservaciones;
         private static ControladoraServicios controladoraServicios;
@@ -27,6 +27,8 @@ namespace Servicios_Reservados_2
             controladoraServicios = new ControladoraServicios();
             controladoraComidaExtra = new ControladoraComidaExtra();
             controladoraReservaciones = new ControladoraReservaciones();
+            controladoraComidaEmp = new ControladoraComidaEmpleado();
+            controladoraEmp = new ControladoraEmpleado();
         }
         /*
          * Requiere: N/A
@@ -47,13 +49,17 @@ namespace Servicios_Reservados_2
                 String anfitriona = "No disponible";
                 String estacion = "No disponible";
                 String nombreSolicitante="No disponible";
-                if ("empleado".Equals(tipoSolicitante) && "Comida campo".Equals(categoria))
+                if ("empleado".Equals(tipoSolicitante) && "Comida de campo".Equals(categoria))
                 {
-                    //controladoraComidaCampo.solicitar(idServicio, idSolicitante);
+                    EntidadEmpleado empleado= controladoraComidaEmp.getInformacionDelEmpleado(idSolicitante);
+                    nombreSolicitante = empleado.Nombre +" "+ empleado.Apellido;
+
                 }
                 else if ("empleado".Equals(tipoSolicitante) && "Comida regular".Equals(categoria))
                 {
-                    //controladoraComidaEmpleado.solicitar(idServicio, idSolicitante);
+                    EntidadComidaEmpleado comidaEmp= controladoraComidaEmp.consultar(int.Parse(idServicio));
+                    notas = comidaEmp.notas;
+
                 }
                 else if ("reservacion".Equals(tipoSolicitante) && "Paquete".Equals(categoria))
                 {
@@ -113,7 +119,9 @@ namespace Servicios_Reservados_2
                 }
                 else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida extra".Equals(seleccionado.Categoria))
                 {
-                    //
+                    DataTable comidaExtra = controladoraComidaExtra.solicitarVecesConsumido(seleccionado.IdServicio, seleccionado.Solicitante);
+                    int vecesConsumido = int.Parse(comidaExtra.Rows[0][0].ToString()) + 1;
+                    controladoraComidaExtra.actualizarVecesConsumido(seleccionado.IdServicio, vecesConsumido, seleccionado.Solicitante);
                 }
                 else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida campo".Equals(seleccionado.Categoria))
                 {

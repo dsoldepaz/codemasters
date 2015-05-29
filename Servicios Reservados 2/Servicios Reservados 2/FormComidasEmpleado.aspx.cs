@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Servicios_Reservados_2;
 using System.Collections;
+using System.Data;
 
 namespace Servicios_Reservados_2
 {
@@ -53,7 +54,8 @@ namespace Servicios_Reservados_2
             {
                 case 0: consultar();
                     break;
-                case 1: agregarReservacion();
+                case 1: ContenedorManejoDeHorario.Visible = true;
+                    GridFechasReservadas.Visible = true;           
                     break;
                 case 2: consultar();
                     modificarReservacion();
@@ -99,7 +101,19 @@ namespace Servicios_Reservados_2
                 List<DateTime> newList = (List<DateTime>)Session["SelectedDates"];
                 foreach (DateTime dt in newList)
                 {
-                    fechaDeEntradaCalendario.SelectedDates.Add(dt);
+                    if (dt.Date > System.DateTime.Today.Date)
+                    {
+                       /* if (!fechaDeEntradaCalendario.SelectedDates.Contains(dt))
+                        {
+                            fechaDeEntradaCalendario.SelectedDates.Add(dt);
+                        }
+                        else
+                        {
+                            fechaDeEntradaCalendario.SelectedDates.Remove(dt);
+
+                        }*/
+                    }
+                    
                 }
             }
         }
@@ -111,8 +125,8 @@ namespace Servicios_Reservados_2
          */
         protected void clickAgregar(object sender, EventArgs e)
         {
-            ContenedorManejoDeHorario.Visible = true;
             modo = 1;
+            ponerModo();
 
         }
         /*
@@ -123,9 +137,9 @@ namespace Servicios_Reservados_2
         protected void clickModificar(object sender, EventArgs e)
         {
             ContenedorManejoDeHorario.Visible = true;
-            fechaDeEntradaCalendario.Enabled = false;//Solo se puede modificar una fecha a la vez
+            //fechaDeEntradaCalendario.Enabled = false;//Solo se puede modificar una fecha a la vez
             //poner fecha seleccionada
-            fechaDeEntradaCalendario.SelectedDate = fechaElegida;
+            //fechaDeEntradaCalendario.SelectedDate = fechaElegida;
             modo = 2;
         }
         /*
@@ -172,7 +186,7 @@ namespace Servicios_Reservados_2
          */
         protected void limpiarCalendario()
         {
-            fechaDeEntradaCalendario.SelectedDates.Clear();
+            //fechaDeEntradaCalendario.SelectedDates.Clear();
             list.Clear();
             modo = 0;
         }
@@ -183,11 +197,11 @@ namespace Servicios_Reservados_2
          */
         protected void agregarReservacion()
         {
-            char[] turnos = new char[3];
-            turnos[0] = (this.checkboxDesayuno.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
-            turnos[1] = (this.checkboxAlmuerzo.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
-            turnos[2] = (this.checkboxCena.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
-            controladora.agregar(empleadoSeleccionado.Id, list, turnos, tipodePago.SelectedIndex == 1, notas.Value);
+            char[] Turnos = new char[3];
+            Turnos[0] = (this.checkboxDesayuno.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
+            Turnos[1] = (this.checkboxAlmuerzo.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
+            Turnos[2] = (this.checkboxCena.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
+            controladora.agregar(empleadoSeleccionado.Id, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
         }
         /*
          * Requiere: Parametros de eventos de la GUI
@@ -196,38 +210,38 @@ namespace Servicios_Reservados_2
          */
         protected void modificarReservacion()
         {
-            char[] turnos = new char[3];
+            char[] Turnos = new char[3];
             char valor;
             if (this.checkboxDesayuno.Checked)/*se mantuvo reservado*/
             {
-                valor = (seleccionada.turnos[0] == 'R' || seleccionada.turnos[0] == 'N') ? 'R' : (seleccionada.turnos[0] == 'C') ? 'C' : 'X';
+                valor = (seleccionada.Turnos[0] == 'R' || seleccionada.Turnos[0] == 'N') ? 'R' : (seleccionada.Turnos[0] == 'C') ? 'C' : 'X';
             }
             else
             {
-                valor = (seleccionada.turnos[0] == 'N') ? 'N' : 'X';//Si estaba consumida, reservada o cancelada, los errores los manejaran las controladoras e informaran.
+                valor = (seleccionada.Turnos[0] == 'N') ? 'N' : 'X';//Si estaba consumida, reservada o cancelada, los errores los manejaran las controladoras e informaran.
             }
-            turnos[0] = valor;
+            Turnos[0] = valor;
             //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             if (this.checkboxAlmuerzo.Checked)/*se mantuvo reservado*/
             {
-                valor = (seleccionada.turnos[1] == 'R' || seleccionada.turnos[1] == 'N') ? 'R' : (seleccionada.turnos[1] == 'C') ? 'C' : 'X';
+                valor = (seleccionada.Turnos[1] == 'R' || seleccionada.Turnos[1] == 'N') ? 'R' : (seleccionada.Turnos[1] == 'C') ? 'C' : 'X';
             }
             else
             {
-                valor = (seleccionada.turnos[1] == 'N') ? 'N' : 'X';//Si estaba consumida, reservada o cancelada, los errores los manejaran las controladoras e informaran.
+                valor = (seleccionada.Turnos[1] == 'N') ? 'N' : 'X';//Si estaba consumida, reservada o cancelada, los errores los manejaran las controladoras e informaran.
             }
-            turnos[1] = valor;
+            Turnos[1] = valor;
             //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             if (this.checkboxAlmuerzo.Checked)/*se mantuvo reservado*/
             {
-                valor = (seleccionada.turnos[1] == 'R' || seleccionada.turnos[1] == 'N') ? 'R' : (seleccionada.turnos[1] == 'C') ? 'C' : 'X';
+                valor = (seleccionada.Turnos[1] == 'R' || seleccionada.Turnos[1] == 'N') ? 'R' : (seleccionada.Turnos[1] == 'C') ? 'C' : 'X';
             }
             else
             {
-                valor = (seleccionada.turnos[1] == 'N') ? 'N' : 'X';//Si estaba consumida, reservada o cancelada, los errores los manejaran las controladoras e informaran.
+                valor = (seleccionada.Turnos[1] == 'N') ? 'N' : 'X';//Si estaba consumida, reservada o cancelada, los errores los manejaran las controladoras e informaran.
             }
-            turnos[2] = valor;
-            controladora.modificar(seleccionada, empleadoSeleccionado.Id, list, turnos, tipodePago.SelectedIndex == 1, notas.Value);
+            Turnos[2] = valor;
+            controladora.modificar(seleccionada, empleadoSeleccionado.Id, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
         }
         /* Requiere: N/A
          * Efectua : pide los datos a la controladora y los coloca en su posicion en la GUI.
@@ -236,15 +250,15 @@ namespace Servicios_Reservados_2
         protected void consultar()
         {
             seleccionada = controladora.consultar(idComida);
-            list = seleccionada.fechas;
-            notas.Value = seleccionada.notas;
-            this.checkboxDesayuno.Checked = (seleccionada.turnos[0] == 'R' || seleccionada.turnos[0] == 'C');
-            this.checkboxDesayuno.Disabled = (seleccionada.turnos[0] == 'C');
-            this.checkboxAlmuerzo.Checked = (seleccionada.turnos[1] == 'R' || seleccionada.turnos[1] == 'C');
-            this.checkboxAlmuerzo.Disabled = (seleccionada.turnos[1] == 'C');
-            this.checkboxCena.Checked = (seleccionada.turnos[2] == 'R' || seleccionada.turnos[2] == 'C');
-            this.checkboxCena.Disabled = (seleccionada.turnos[2] == 'C');
-            tipodePago.SelectedIndex = (seleccionada.pagado) ? 1 : 2;
+            list = seleccionada.Fechas;
+            notas.Value = seleccionada.Notas;
+            this.checkboxDesayuno.Checked = (seleccionada.Turnos[0] == 'R' || seleccionada.Turnos[0] == 'C');
+            this.checkboxDesayuno.Disabled = (seleccionada.Turnos[0] == 'C');
+            this.checkboxAlmuerzo.Checked = (seleccionada.Turnos[1] == 'R' || seleccionada.Turnos[1] == 'C');
+            this.checkboxAlmuerzo.Disabled = (seleccionada.Turnos[1] == 'C');
+            this.checkboxCena.Checked = (seleccionada.Turnos[2] == 'R' || seleccionada.Turnos[2] == 'C');
+            this.checkboxCena.Disabled = (seleccionada.Turnos[2] == 'C');
+            tipodePago.SelectedIndex = (seleccionada.Pagado) ? 1 : 2;
 
         }
         /*
@@ -268,6 +282,42 @@ namespace Servicios_Reservados_2
                 //No se selecciono un empleado.
                 lblEmpleado.InnerText = "ERROR NO SE SELECCIONO NINGUN EMPLEADO";
             }
+        }
+
+        protected void AgregarFecha_ServerClick(object sender, EventArgs e)
+        {
+            DataTable tabla = crearTablaFechaComidaEmpleado();
+            Object[] datos = new Object[1];
+            datos[0] = fecha.Value;
+            tabla.Rows.Add(datos);
+            foreach (DateTime dt in list)
+            {
+                datos[0] = String.Format("{0:yyyy-MM-dd}", dt);          // "03/09/2008"
+                
+                tabla.Rows.Add(datos);
+            }
+            GridFechasReservadas.DataBind();
+            DateTime MyDateTime = DateTime.Parse(fecha.Value);
+            list.Add(MyDateTime);
+        }
+        /**
+         * Requiere: n/a
+         * Efectua: Crea la DataTable para desplegar.
+         * retorna:  un dato del tipo DataTable con la estructura para consultar.
+         */
+        protected DataTable crearTablaFechaComidaEmpleado()//consultar
+        {
+            DataTable tabla = new DataTable();
+            DataColumn columna;
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Fecha Reservada";
+            tabla.Columns.Add(columna);
+            GridFechasReservadas.DataSource = tabla;
+            GridFechasReservadas.DataBind();
+
+            return tabla;
         }
 
     }

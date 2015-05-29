@@ -29,7 +29,7 @@ namespace Servicios_Reservados_2
 
         internal void modificar(EntidadComidaEmpleado seleccionada, string idEmpleado, List<DateTime> fechasReserva, char[] turnos, bool pagado, String notas)
         {
-            EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado(idEmpleado, fechasReserva, turnos, pagado, notas, seleccionada.idComida);
+            EntidadComidaEmpleado nuevo = new EntidadComidaEmpleado(idEmpleado, fechasReserva, turnos, pagado, notas, seleccionada.IdComida);
             controladoraBD.modificar(seleccionada, nuevo);
         }
 
@@ -40,7 +40,7 @@ namespace Servicios_Reservados_2
             DataTable dt = controladoraBD.getInformacionReservacionEmpleado(idReservacion);
             //IDEMPLEADO, FECHA, PAGADO, NOTAS, DESAYUNO, ALMUERZO, CENA, IDCOMIDAEMPLEADO
 
-            list.Add(DateTime.ParseExact(dt.Rows[0][1].ToString(), "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture));
+            //list.Add(DateTime.ParseExact(dt.Rows[0][1].ToString(), "g", System.Globalization.CultureInfo.InvariantCulture));//{8/20/2015 12:00:00 AM}
             turnos[0] = dt.Rows[0][4].ToString().ToCharArray(0, 1)[0];
             turnos[1] = dt.Rows[0][5].ToString().ToCharArray(0, 1)[0];
             turnos[2] = dt.Rows[0][6].ToString().ToCharArray(0, 1)[0];

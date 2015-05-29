@@ -38,7 +38,7 @@ div:first-of-type>input{
 ContentTemplate{
     margin-left:5%;
 }
-#ContenedorManejoDeHorario>input{
+#ContenedorManejoDeHorario>input[type="button"]{
     float:right;
     margin-right: 25px;
 }
@@ -64,4 +64,11 @@ section>div>input:disabled:hover:after{
     padding: 5px;
     color: #000000;
     border: 1px solid #F26631;
+}
+[type="date"]{
+    width:150px;
+    float:none;
+}
+ul{
+    display:block;
 }

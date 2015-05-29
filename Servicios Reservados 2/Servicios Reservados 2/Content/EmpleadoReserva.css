@@ -25,3 +25,6 @@ section>input.cancelar{
 fieldset>section>section>.tiquete{
     width:125px;
 }
+#MainContent_GridComidasReservadas > tbody > tr > td:nth-child(2) {
+  padding-left: 9%;
+}

@@ -19,18 +19,18 @@ namespace Servicios_Reservados_2
         {
             String[] resultado = new String[3];
             String turnos = ", desayuno = ";
-            turnos += "'" + (nuevo.turnos[0]) + "'";
+            turnos += "'" + (nuevo.Turnos[0]) + "'";
             turnos += ", almuerzo = ";
-            turnos += "'" + (nuevo.turnos[1]) + "'";
+            turnos += "'" + (nuevo.Turnos[1]) + "'";
             turnos += ", cena = ";
-            turnos += "'" + (nuevo.turnos[1]) + "'";
+            turnos += "'" + (nuevo.Turnos[1]) + "'";
             try
             {
-                foreach (DateTime fecha in nuevo.fechas)
+                foreach (DateTime fecha in nuevo.Fechas)
                 {
                     //Crea la sentencia en sql para insertar.
-                    String insercion = "Insert into Reserva_EMPLEADO values " + "idEmpleado = " + nuevo.idEmpleado + ", ";
-                    insercion += "fecha = to_date('" + fecha.ToString("dd.MM.yyyy HH:mm:ss") + "' ,'DD.MM.YYYY hh24:mi:ss') , Consumido = F," + "notas = '" + nuevo.notas + "'" + turnos;
+                    String insercion = "Insert into Reserva_EMPLEADO values " + "idEmpleado = " + nuevo.IdEmpleado + ", ";
+                    insercion += "fecha = to_date('" + fecha.ToString("dd.MM.yyyy HH:mm:ss") + "' ,'DD.MM.YYYY hh24:mi:ss') , Consumido = F," + "notas = '" + nuevo.Notas + "'" + turnos;
 
 
                     adaptador.insertar(insercion);//inserta en la db
@@ -57,44 +57,44 @@ namespace Servicios_Reservados_2
             String[] resultado = new String[3];
             try
             {
-                foreach (DateTime fecha in nuevo.fechas)
+                foreach (DateTime fecha in nuevo.Fechas)
                 {
                     string update = "UPDATE RESERVA_EMPLEADO SET";
-                    if (seleccionada.turnos[0] == 'C' && nuevo.turnos[0] != 'C')//DESAYUNO
+                    if (seleccionada.Turnos[0] == 'C' && nuevo.Turnos[0] != 'C')//DESAYUNO
                     {//Si ya se sirvio no se puede cancelar. 
                         throw new Exception();
                     }
                     else
                     {
-                        update += "Desayuno = '" + nuevo.turnos[0] + "' ,";
+                        update += "Desayuno = '" + nuevo.Turnos[0] + "' ,";
                         //R = Reservado C= Consumido N=No reservado X=Cancelado
 
                     }
-                    if (seleccionada.turnos[1] == 'C' && nuevo.turnos[1] != 'C')//ALMUERZO
+                    if (seleccionada.Turnos[1] == 'C' && nuevo.Turnos[1] != 'C')//ALMUERZO
                     {//Si ya se sirvio no se puede cancelar. 
                         throw new Exception();
                     }
                     else
                     {
-                        update += "Almuerzo = '" + nuevo.turnos[1] + "' ,";
+                        update += "Almuerzo = '" + nuevo.Turnos[1] + "' ,";
                         //R = Reservado C= Consumido N=No reservado X=Cancelado
 
                     }
-                    if (seleccionada.turnos[2] == 'C' && nuevo.turnos[2] != 'C')//CENA
+                    if (seleccionada.Turnos[2] == 'C' && nuevo.Turnos[2] != 'C')//CENA
                     {//Si ya se sirvio no se puede cancelar. 
                         throw new Exception();
                     }
                     else
                     {
-                        update += "CENA = '" + nuevo.turnos[1] + "', pagado =";
+                        update += "CENA = '" + nuevo.Turnos[1] + "', pagado =";
                         //R = Reservado C= Consumido N=No reservado X=Cancelado
 
                     }
-                    update += (nuevo.pagado) ? "'T'," : "'F',";//Si esta o no pagado.
-                    update += " notas = '" + nuevo.notas + "' "; // predicado del update completo.
+                    update += (nuevo.Pagado) ? "'T'," : "'F',";//Si esta o no pagado.
+                    update += " notas = '" + nuevo.Notas + "' "; // predicado del update completo.
 
                     //----------------------------------------------------------------------
-                    update += "WHERE IDCOMIDAEMPLEADO =" + seleccionada.idComida ;
+                    update += "WHERE IDCOMIDAEMPLEADO =" + seleccionada.IdComida ;
                     adaptador.insertar(update);
                     resultado[0] = "SUCCESS";
                     resultado[1] = "Exito: ";
@@ -135,14 +135,14 @@ namespace Servicios_Reservados_2
 
             try
             {
-                if (entidadComidaEmpleado.turnos[0] == 'C' || entidadComidaEmpleado.turnos[1] == 'C' || entidadComidaEmpleado.turnos[2] == 'C')//si alguna ya fue consumida
+                if (entidadComidaEmpleado.Turnos[0] == 'C' || entidadComidaEmpleado.Turnos[1] == 'C' || entidadComidaEmpleado.Turnos[2] == 'C')//si alguna ya fue consumida
                 {
                     throw new Exception(); //no se puede cancelar
 
                 }
                 else
                 {
-                    String update = "UPDATE RESERVA_EMPLEADO SET Desayuno ='X', Almuerzo ='X', cena='X' WHERE IDCOMIDAEMPLEADO = " + entidadComidaEmpleado.idComida ;
+                    String update = "UPDATE RESERVA_EMPLEADO SET Desayuno ='X', Almuerzo ='X', cena='X' WHERE IDCOMIDAEMPLEADO = " + entidadComidaEmpleado.IdComida ;
                     resultado[0] = "SUCCESS";
                     resultado[1] = "Exito: ";
                     resultado[2] = "Los datos se Modificaron correctamente.";
