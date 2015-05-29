@@ -55,15 +55,15 @@ namespace Servicios_Reservados_2
                 String consultaSQL = "insert into servicios_reservados.servicio_especial values('" + entidad.IdReservacion + "','" + entidad.IdServiciosExtras + "'," +
                     entidad.Pax + ",'" + entidad.Fecha + "','" + entidad.Consumido + "','" + entidad.Descripcion + "','" + entidad.TipoPago + "','" + entidad.Hora + "', 0)";
 
-                adaptador.insertar(consultaSQL);
+                respuesta = adaptador.insertar(consultaSQL);
                
-                respuesta[0] = "success";
+                /*respuesta[0] = "success";
                 respuesta[1] = "Exito. ";
-                respuesta[2] = "La comida extra se ha insertado exitosamente";
+                respuesta[2] = "La comida extra se ha insertado exitosamente";*/
             }
             catch (SqlException e)
             {
-                int r = e.Number;
+               /* int r = e.Number;
 
                 if (r == 2627)
                 {
@@ -79,7 +79,7 @@ namespace Servicios_Reservados_2
                     respuesta[1] = "Error. ";
                     respuesta[2] = "No se pudo agregar el servicio extra";
                 }
-
+                */
             }
             return respuesta;
         }
@@ -160,7 +160,7 @@ namespace Servicios_Reservados_2
                 String consultaSQL = "update servicios_reservados.servicio_especial set estado = 'Cancelado'  where idReservacion = '" + idReservacion +
                     "' and idserviciosextras = '" + idComidaExtra + "' and fecha = '" + fecha + "' and hora = '" + hora + "'";
 
-                dt = adaptador.insertar(consultaSQL);
+                adaptador.insertar(consultaSQL);
 
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";

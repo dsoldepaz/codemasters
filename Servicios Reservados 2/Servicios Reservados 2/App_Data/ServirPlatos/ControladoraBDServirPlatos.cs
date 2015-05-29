@@ -38,7 +38,7 @@ namespace Servicios_Reservados_2
         internal void servirTiquete(int numTiquete, int vecesConsumido)
         {
             String consultaSQL = "UPDATE tiquete SET consumido="+vecesConsumido+" WHERE numero ='" + numTiquete + "'";
-            dt = adaptador.insertar(consultaSQL);
+            adaptador.insertar(consultaSQL);
         }
     }
 }

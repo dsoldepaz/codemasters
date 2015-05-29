@@ -6,6 +6,7 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.Data;
 using System.Data.OracleClient;
+using System.Data.SqlClient;
 
 namespace Servicios_Reservados_2
 {
@@ -36,14 +37,40 @@ namespace Servicios_Reservados_2
        /*
        * Insertar se utiliza para enviar una string SQL con una inserción y el adaptador se encarga de realizar la inserción directamente en la base de datos.  
        */
-        internal DataTable insertar(String consultaSQL)
+        internal String[] insertar(String consultaSQL)
         {
-            dt = new DataTable();
-            adaptador.Open();
-            OleDbCommand od = new OleDbCommand(consultaSQL, adaptador);
-            od.ExecuteNonQuery();
-            adaptador.Close();
-            return dt;
+            String[] respuesta = new String[3];
+            try
+            {
+                adaptador.Open();
+                OleDbCommand od = new OleDbCommand(consultaSQL, adaptador);
+                od.ExecuteNonQuery();
+                adaptador.Close();
+
+                respuesta[0] = "success";
+                respuesta[1] = "Exito. ";
+                respuesta[2] = "La comida extra se ha eliminado exitosamente";
+            }
+            catch (SqlException e)
+            {
+                int r = e.Number;
+
+                if (r == 2627)
+                {
+
+                    respuesta[0] = "danger";
+                    respuesta[1] = "Error. ";
+                    respuesta[2] = "Informacion ingresada ya existe";
+                }
+                else
+                {
+
+                    respuesta[0] = "danger";
+                    respuesta[1] = "Error. ";
+                    respuesta[2] = "No se pudo agregar el servicio extra";
+                }
+            }
+            return respuesta;
         }
     }
 }
