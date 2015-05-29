@@ -76,15 +76,6 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.WebControls.Calendar fechaDeEntradaCalendario;
         
         /// <summary>
-        /// Control cbxHora.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect cbxHora;
-        
-        /// <summary>
         /// Control txtPax.
         /// </summary>
         /// <remarks>
@@ -155,6 +146,15 @@ namespace Servicios_Reservados_2 {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton radioCena;
+        
+        /// <summary>
+        /// Control cbxHoraOpcion1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect cbxHoraOpcion1;
         
         /// <summary>
         /// Control checkO2.
@@ -256,6 +256,15 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton radioEnsaladaHuevo;
         
         /// <summary>
+        /// Control cmbHoraSandwich.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect cmbHoraSandwich;
+        
+        /// <summary>
         /// Control opcion2Fieldset.
         /// </summary>
         /// <remarks>
@@ -281,6 +290,15 @@ namespace Servicios_Reservados_2 {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chGalloPinto;
+        
+        /// <summary>
+        /// Control cmbHoraGalloPinto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect cmbHoraGalloPinto;
         
         /// <summary>
         /// Control chEnsalada.
