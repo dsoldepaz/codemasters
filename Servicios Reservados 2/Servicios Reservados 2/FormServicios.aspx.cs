@@ -111,7 +111,7 @@ namespace Servicios_Reservados_2
                         datos[2] = "Alimentación incluída en el paquete de reservación";
                         datos[3] = "-";
                         datos[4] = "-";
-                        datos[5] = "no disp";
+                        datos[5] = "No disponible";
                         datos[6] = fila[2].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
