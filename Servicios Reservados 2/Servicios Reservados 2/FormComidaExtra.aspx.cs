@@ -127,7 +127,7 @@ namespace Servicios_Reservados_2
             nuevoServicio[4] = txaNotas.Value;
             nuevoServicio[5] = txtPax.Value;
             nuevoServicio[6] = cbxHora.Value;
-            nuevoServicio[7] = fechaSelect.ToString("MM/dd/yyyy");//cbxTipoPago.Value;
+            nuevoServicio[7] = cbxTipoPago.Value;
 
  
             String[] error = controladora.agregarServicioExtra(nuevoServicio);// se le pide a la controladora que lo inserte
