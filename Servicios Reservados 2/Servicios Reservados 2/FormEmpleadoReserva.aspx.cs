@@ -53,6 +53,7 @@ namespace Servicios_Reservados_2
             DataTable data = controladora.obtenerTabla(idEmpleado);
             DataTable datosComidaC = controladora.obtenerComidaCampo(idEmpleado);
             Object[] datos = new Object[5];
+            String cat = "";
             foreach (DataRow fila in data.Rows)
             {
                 //SELECT IDCOMIDAEMPLEADO,IDEMPLEADO,FECHA,PAGADO
@@ -60,25 +61,29 @@ namespace Servicios_Reservados_2
                 datos[1] = fila[1].ToString(); //Categoria
                 datos[2] = ""; //tipo
                 datos[3] = fila[3].ToString(); //FECHA
-                datos[4] = (fila[4].ToString().CompareTo("T") == 0) ? "Efectivo" : "Deduccion de Salario"; //PAGADO es un valor booleano a nivel logico.
+                datos[4] = (fila[4].ToString().CompareTo("T") == 0) ? "Efectivo" : "Deducción de Salario"; //PAGADO es un valor booleano a nivel logico.
 
                 tabla.Rows.Add(datos);
             }
 
             foreach (DataRow fila in datosComidaC.Rows)
             {
+
                 String tipo="";
                 int opcion = int.Parse(fila[5].ToString());
                 switch (opcion)
                 {
                     case 1:
                         tipo = "Desayuno";
+                        cat = "Incluido en Paquete";
                         break;
                     case 2:
                         tipo = "Almuerzo";
+                        cat = "Incluido en Paquete";
                         break;
                     case 3:
                         tipo = "Cena";
+                        cat = "Incluido en Paquete";
                         break;
                     case 4:
                         tipo = "Sandwich";
@@ -93,10 +98,18 @@ namespace Servicios_Reservados_2
                 }
                 //SELECT IDCOMIDAEMPLEADO,IDEMPLEADO,FECHA,PAGADO,OPCION
                 datos[0] = fila[0].ToString(); //IDCOMIDAEMPLEADO
-                datos[1] = fila[1].ToString(); //Categoria
+                if (cat != "")
+                {
+                    datos[1] = cat; //Categoria
+                }
+                else
+                {
+                    datos[1] = fila[1].ToString(); //Categoria
+                }
+                
                 datos[2] = tipo; //Tipo
                 datos[3] = fila[3].ToString(); //FECHA
-                datos[4] = (fila[4].ToString().CompareTo("T") == 0) ? "Efectivo" : "Deduccion de Salario"; //PAGADO es un valor booleano a nivel logico.
+                datos[4] = (fila[4].ToString().CompareTo("De contado") == 0) ? "Efectivo" : "Deduccion de Salario"; //PAGADO es un valor booleano a nivel logico.
 
                 tabla.Rows.Add(datos);
             }
@@ -213,7 +226,10 @@ namespace Servicios_Reservados_2
             }
             else
             {
-                //llama comida campo en modo de Editar
+                FormComidaCampo.idEmpleado = idEmpleado;
+                FormComidaCampo.modo = 2;
+                FormComidaCampo.tipoComidaCampo = 1;
+                Response.Redirect("FormComidaCampo");
             }
         }
         /*
@@ -225,6 +241,7 @@ namespace Servicios_Reservados_2
         {
             GridViewRow row = GridComidasReservadas.SelectedRow;
             String tipo = row.Cells[2].Text;
+            String[] mensaje;
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de cancelar
@@ -234,7 +251,8 @@ namespace Servicios_Reservados_2
             }
             else
             {
-                //llama comida campo en modo de cancelar
+                String idComida = row.Cells[1].Text;
+                mensaje = controladora.cancelarComidaCampo(idComida);
             }
         }
         /*

@@ -62,5 +62,11 @@ namespace Servicios_Reservados_2
         {
             return controladoraComidaEmpleado.consultar(p);    
         }
+
+        internal String[] cancelarComidaCampo(String idCC)
+        {
+            String[] resultado = controladoraComidaCampo.cancelarComidaCampo(idCC);
+            return resultado;
+        }
     }
 }

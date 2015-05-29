@@ -58,7 +58,7 @@ namespace Servicios_Reservados_2
                 radioCena.Enabled = false;
                 textFecha.Disabled = true;
                 cbxHora.Disabled = false;
-                txtPax.Disabled = true;
+                txtPax.Disabled = false;
                 radioPanBlanco.Disabled = true;
                 radioPanBollo.Disabled = true;
                 radioPanInt.Disabled = true;
@@ -428,18 +428,40 @@ namespace Servicios_Reservados_2
 
              return res;
          }*/
+        protected Boolean revisarFechas()
+        {
+            
+            DateTime fechaSeleccionada = fechaDeEntradaCalendario.SelectedDate;
+            DateTime fechaHoy = DateTime.Today;
+            Boolean correcta = true;
+            if (tipoComidaCampo == 0)
+            {
+                DateTime fechaInicio = reservacionConsultada.FechaInicio;
+                DateTime fechaFinal = reservacionConsultada.FechaSalida;
+                if (fechaSeleccionada < fechaInicio || fechaSeleccionada > fechaFinal || fechaSeleccionada < fechaHoy)
+                {
+                        mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
+                      correcta = false;
+                }
+            }
+            else
+            {
+                if(fechaSeleccionada< fechaHoy){
+                    mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, no es una fecha válida");
+                    correcta = false;
+                }
+            }
 
+            return correcta;
+
+        }
 
         protected Boolean agregarComidaCampo()
         {
             Boolean res = true;
-           DateTime fechaInicio = reservacionConsultada.FechaInicio;
-            DateTime fechaFinal = reservacionConsultada.FechaSalida;
-            DateTime fechaSeleccionada = fechaDeEntradaCalendario.SelectedDate;
-            DateTime fechaHoy = DateTime.Today;
-            if ((tipoComidaCampo == 0) && (fechaSeleccionada < fechaInicio || fechaSeleccionada > fechaFinal) || (fechaSeleccionada < fechaHoy))
+          
+            if (!revisarFechas())
             {
-                mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
                 res = false;
             }
             else
@@ -459,7 +481,7 @@ namespace Servicios_Reservados_2
                 }
 
 
-                nuevaComidaCampo[3] = fechaSeleccionada.ToString("MM/dd/yyyy"); 
+                nuevaComidaCampo[3] = textFecha.Value; 
                 nuevaComidaCampo[4] = "Activo";
                 nuevaComidaCampo[5] = 0;
 
@@ -526,13 +548,9 @@ namespace Servicios_Reservados_2
         protected Boolean modificarComidaCampo()
         {
             Boolean res = true;
-            DateTime fechaInicio = reservacionConsultada.FechaInicio;
-            DateTime fechaFinal = reservacionConsultada.FechaSalida;
-            DateTime fechaSeleccionada = DateTime.Parse(textFecha.Value);
-            DateTime fechaHoy = DateTime.Today;
-            if ((tipoComidaCampo == 0) && (fechaSeleccionada < fechaInicio || fechaSeleccionada > fechaFinal) || (fechaSeleccionada < fechaHoy))
+            
+            if (!revisarFechas())
             {
-                mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
                 res = false;
             }
             else
@@ -636,9 +654,13 @@ namespace Servicios_Reservados_2
                 case 1://insertar
                     if (tipoComidaCampo == 1) //agregar la comida dependiendo si es para un empleado o una reservacion.
                     {
-                        agregarComidaCampo();
+                        bool accion = agregarComidaCampo();
                         //FormEmpleadoReserva.idEmpleado = idEmpleado;
-                        Response.Redirect("FormEmpleadoReserva");
+                        if (accion)
+                        {
+                            Response.Redirect("FormEmpleadoReserva");
+                        }
+                        
 
                     }
                     else
