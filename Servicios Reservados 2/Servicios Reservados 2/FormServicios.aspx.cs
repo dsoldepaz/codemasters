@@ -111,7 +111,7 @@ namespace Servicios_Reservados_2
                         datos[2] = "Alimentación incluída en el paquete de reservación";
                         datos[3] = "-";
                         datos[4] = "-";
-                        datos[5] = "no disp";
+                        datos[5] = "No disponible";
                         datos[6] = fila[2].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
@@ -309,6 +309,7 @@ namespace Servicios_Reservados_2
             String[] mensaje;
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
+                comidaExtraConsultada = controladora.seleccionarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex]);
                 if (comidaExtraConsultada.Consumido == "Activo")
                 {
                     mensaje = controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], comidaExtraConsultada.Fecha, comidaExtraConsultada.Hora);
@@ -321,6 +322,7 @@ namespace Servicios_Reservados_2
             }
             else
             {
+                comidaCampoConsultada = controladora.seleccionarComidaCampo(ids[0], idServ[GridServicios.SelectedIndex]);
                 if (comidaCampoConsultada.Estado == "Activo")
                 {
                    mensaje= controladora.cancelarComidaCampo(idServ[GridServicios.SelectedIndex]);

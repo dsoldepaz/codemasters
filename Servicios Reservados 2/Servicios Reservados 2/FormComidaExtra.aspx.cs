@@ -240,10 +240,12 @@ namespace Servicios_Reservados_2
                 case 1:
                     txtPax.Value = controladora.paxConsultado(reservConsultada.Numero);
                     fechaDeEntradaCalendario.SelectedDate = DateTime.Today;
+                    textFecha.Value = DateTime.Today.ToString("MM/dd/yyyy");
                     break;
                 case 2:
                     consultarServicio();
                     fechaDeEntradaCalendario.SelectedDate = DateTime.Parse(entidadConsultada.Fecha);
+                    textFecha.Value = entidadConsultada.Fecha;
                     break;
             }   
         }
@@ -313,7 +315,6 @@ namespace Servicios_Reservados_2
             }
 
             cbxHora.Items.Clear();// limpiamos el combobox
-            //cbxHora.Items.Add("Seleccionar");// agregamos seleccionar
             for (int i = inicio; i <= fin; ++i)
             {
                 String horas = i.ToString() + ":00";
