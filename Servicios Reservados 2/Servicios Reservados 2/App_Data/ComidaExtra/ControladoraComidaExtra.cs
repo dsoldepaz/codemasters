@@ -173,14 +173,14 @@ namespace Servicios_Reservados_2
 
 
 
-        internal DataTable solicitarVecesConsumido(string idServicio)
+        internal DataTable solicitarVecesConsumido(string idServicio, string idRes)
         {
-            return controladoraBD.vecesConsumidoPaquete(idServicio);
+            return controladoraBD.vecesConsumido(idServicio, idRes);
         }
 
-        internal void actualizarVecesConsumido(string idServicio, int vecesConsumido)
+        internal void actualizarVecesConsumido(string idServicio, int vecesConsumido, string idRes)
         {
-            controladoraBD.actualizarVecesConsumidoPaquete(idServicio, vecesConsumido);
+            controladoraBD.actualizarVecesConsumido(idServicio, vecesConsumido, idRes);
         }
     }
 }

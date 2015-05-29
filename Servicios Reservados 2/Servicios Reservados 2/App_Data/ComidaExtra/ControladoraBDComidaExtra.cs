@@ -177,17 +177,17 @@ namespace Servicios_Reservados_2
             return respuesta;
         }
 
-        internal DataTable vecesConsumidoPaquete(string id)
+        internal DataTable vecesConsumido(string id, string idRes)
         {
-            String consultaSQL = "select vecesconsumido from servicios_reservados.servicio_especial where idserviciosextras ='" + id + "'";
+            String consultaSQL = "select vecesconsumido from servicios_reservados.servicio_especial where idserviciosextras ='" + id + "' and idreservacion='" + idRes + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
 
 
-        internal void actualizarVecesConsumidoPaquete(string idServicio, int vecesConsumido)
+        internal void actualizarVecesConsumido(string idServicio, int vecesConsumido, string idRes)
         {
-            String consultaSQL = "update servicios_reservados.servicio_especial set vecesconsumido= " + vecesConsumido + " where idserviciosextras ='" + idServicio + "'";
+            String consultaSQL = "update servicios_reservados.servicio_especial set vecesconsumido= " + vecesConsumido + " where idserviciosextras ='" + idServicio + "'and idreservacion='" + idRes + "'";
             dt = adaptador.consultar(consultaSQL);
         }
     }

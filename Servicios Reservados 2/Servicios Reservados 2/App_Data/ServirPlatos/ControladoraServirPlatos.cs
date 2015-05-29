@@ -119,9 +119,9 @@ namespace Servicios_Reservados_2
                 }
                 else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida extra".Equals(seleccionado.Categoria))
                 {
-                    DataTable comidaExtra = controladoraComidaExtra.solicitarVecesConsumido(seleccionado.IdServicio);
+                    DataTable comidaExtra = controladoraComidaExtra.solicitarVecesConsumido(seleccionado.IdServicio, seleccionado.Solicitante);
                     int vecesConsumido = int.Parse(comidaExtra.Rows[0][0].ToString()) + 1;
-                    controladoraComidaExtra.actualizarVecesConsumido(seleccionado.IdServicio, vecesConsumido);
+                    controladoraComidaExtra.actualizarVecesConsumido(seleccionado.IdServicio, vecesConsumido, seleccionado.Solicitante);
                 }
                 else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida campo".Equals(seleccionado.Categoria))
                 {
