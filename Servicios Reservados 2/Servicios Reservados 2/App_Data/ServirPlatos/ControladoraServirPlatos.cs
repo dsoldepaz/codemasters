@@ -57,8 +57,8 @@ namespace Servicios_Reservados_2
                 }
                 else if ("empleado".Equals(tipoSolicitante) && "Comida regular".Equals(categoria))
                 {
-                   // EntidadComidaEmpleado comidaEmp= controladoraComidaEmp.consultar(int.Parse(idServicio));
-                   // notas = comidaEmp.notas;
+                    EntidadComidaEmpleado comidaEmp= controladoraComidaEmp.consultar(int.Parse(idServicio));
+                    notas = comidaEmp.notas;
 
                 }
                 else if ("reservacion".Equals(tipoSolicitante) && "Paquete".Equals(categoria))
@@ -119,7 +119,9 @@ namespace Servicios_Reservados_2
                 }
                 else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida extra".Equals(seleccionado.Categoria))
                 {
-                    //
+                    DataTable comidaExtra = controladoraComidaExtra.solicitarVecesConsumido(seleccionado.IdServicio);
+                    int vecesConsumido = int.Parse(comidaExtra.Rows[0][0].ToString()) + 1;
+                    controladoraServicios.actualizarVecesConsumidoPaquete(seleccionado.IdServicio, vecesConsumido);
                 }
                 else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida campo".Equals(seleccionado.Categoria))
                 {

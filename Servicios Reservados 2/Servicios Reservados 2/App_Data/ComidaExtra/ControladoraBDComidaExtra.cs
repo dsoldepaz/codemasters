@@ -176,5 +176,19 @@ namespace Servicios_Reservados_2
             }
             return respuesta;
         }
+
+        internal DataTable vecesConsumidoPaquete(string id)
+        {
+            String consultaSQL = "select vecesconsumido from servicios_reservados.servicio_especial where idserviciosextras ='" + id + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+
+        internal void actualizarVecesConsumidoPaquete(string idServicio, int vecesConsumido)
+        {
+            String consultaSQL = "update servicios_reservados.servicio_especial set vecesconsumido= " + vecesConsumido + " where idserviciosextras ='" + idServicio + "'";
+            dt = adaptador.consultar(consultaSQL);
+        }
     }
 }
