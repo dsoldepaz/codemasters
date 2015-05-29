@@ -254,8 +254,6 @@ namespace Servicios_Reservados_2
         {
             //seleccionar bien
             seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text);
-
-
         }
         /*
          * Efecto: llama al metodo modificarServicio de la controladora y redirecciona la pagina al formComidaExtra
@@ -277,7 +275,6 @@ namespace Servicios_Reservados_2
                 FormComidaCampo.tipoComidaCampo = 0;
                 Response.Redirect("FormComidaCampo");
             }
-
         }
 
         /*
