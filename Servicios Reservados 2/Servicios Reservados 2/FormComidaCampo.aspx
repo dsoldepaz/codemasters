@@ -67,9 +67,9 @@
                 </table>
                     <ul class="lista formulario">
                         <il class="itemFormulario">
-                            <asp:RadioButton ID="radioDesayuno" runat="server" name="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaD"/>Desayuno
-                            <asp:RadioButton ID="radioAlmuerzo" runat="server" name="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaA"/>Almuerzo
-                            <asp:RadioButton ID="radioCena" runat="server" name="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaC"/>Cena
+                            <asp:RadioButton ID="radioDesayuno" runat="server" GroupName="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaD"/>Desayuno
+                            <asp:RadioButton ID="radioAlmuerzo" runat="server" GroupName="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaA"/>Almuerzo
+                            <asp:RadioButton ID="radioCena" runat="server" GroupName="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaC"/>Cena
                             
                        </il>
                     </ul>
