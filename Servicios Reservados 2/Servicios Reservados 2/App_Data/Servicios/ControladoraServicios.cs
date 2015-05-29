@@ -71,7 +71,7 @@ namespace Servicios_Reservados_2
             return comidaCampo;
         }
 
-        internal EntidadComidaExtra seleccionarServicio(String id, String idServ)
+        internal EntidadComidaExtra seleccionarComidaExtra(String id, String idServ)
         {
             return controladoraCE.guardarServicioSeleccionado(id, idServ);
         }
@@ -119,7 +119,7 @@ namespace Servicios_Reservados_2
             }
             else if (id.Contains("S"))
             {
-                EntidadComidaExtra servicio = seleccionarServicio(idRes, id);
+                EntidadComidaExtra servicio = seleccionarComidaExtra(idRes, id);
                 seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida extra", servicio.Fecha, servicio.Consumido, servicio.Pax, servicio.Descripcion);
             }
             else

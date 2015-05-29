@@ -1,7 +1,7 @@
 ﻿body {
     margin: 5px;
     background-color: #FFFFFF;
-    font-family: monospace;
+    font-family: helvetica;
     color: #000000;
 }
 body>form>div.well{
@@ -9,14 +9,14 @@ body>form>div.well{
     height: 80%;
     margin:3%;
     padding:128px;
-    background-color:rgb(222, 228, 214);
+    background-color:#eee;
 }
 body>form>div>#txtUsuario,
 body>form>div>#txtContraseña{
-  border: 2px dashed #7BC143;
+  border: 2px solid #7BC143;
   border-radius: 10px;
   padding: 5px;
-  width: 80%;
+  width: 50%;
   margin: 2% 4% 4% 4%;
 }
 h5{
@@ -32,7 +32,6 @@ h1{
     padding-bottom: 12px;
     border-bottom:solid 3px;
     border-bottom-color: #7BC143;
-    color: #7BC143;
     font-family: sans-serif;
 
 }
@@ -40,4 +39,5 @@ h1{
   display: block;
   padding: 6px;
   border-radius: 10px;
+  MARGIN-LEFT: 50px;
 }

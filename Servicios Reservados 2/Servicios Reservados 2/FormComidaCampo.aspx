@@ -31,10 +31,6 @@
                             </asp:Calendar>
                         </li>
 
-
-                        </li>
-                        <li class="itemContenedor">Hora:<select id="cbxHora" runat="server"></select>
-                        </li>
                         <il class="itemFormulario">
                             Pax:
                             <input id="txtPax" runat="server" required="required" title="Inserte un número entero" pattern="^[0-9]+$"/>
@@ -65,11 +61,16 @@
                 </table>
                     <ul class="lista formulario">
                         <il class="itemFormulario">
-                            <asp:RadioButton ID="radioDesayuno" runat="server" GroupName="desayuno" AutoPostBack ="true" OnCheckedChanged="cambiarFechaD"/>Desayuno
-                            <asp:RadioButton ID="radioAlmuerzo" runat="server" GroupName="almuerzo" AutoPostBack ="true" OnCheckedChanged="cambiarFechaA"/>Almuerzo
-                            <asp:RadioButton ID="radioCena" runat="server" GroupName="cena" AutoPostBack ="true" OnCheckedChanged="cambiarFechaC"/>Cena
+                            <asp:RadioButton ID="radioDesayuno" runat="server" GroupName="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaD"/>Desayuno
+                            <asp:RadioButton ID="radioAlmuerzo" runat="server" GroupName="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaA"/>Almuerzo
+                            <asp:RadioButton ID="radioCena" runat="server" GroupName="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaC"/>Cena
                             
                        </il>
+                        </ul>
+                    <ul>
+                         </li>
+                        <li class="itemContenedor">Hora:<select id="cbxHoraOpcion1" runat="server"></select>
+                        </li>
                     </ul>
 
                 </fieldset>
@@ -129,6 +130,11 @@
                            <input type="radio" name="spreadoption" value="ensaladahuevo" id="radioEnsaladaHuevo" runat="server">Ensalada de huevo 	
                        </il>
                     </ul>
+                     <ul>
+                         </li>
+                        <li class="itemContenedor">Hora:<select id="cmbHoraSandwich" runat="server"></select>
+                        </li>
+                    </ul>
                 </fieldset>
             </div>
             <div class="well bs-component">
@@ -148,6 +154,11 @@
                         <il class="itemFormulario">
                             <input type="checkbox" name="pinto" value="gallopinto" id="chGalloPinto" runat="server">Gallo pinto
                        </il>
+                    </ul>
+                      <ul>
+                         </li>
+                        <li class="itemContenedor">Hora:<select id="cmbHoraGalloPinto" runat="server"></select>
+                        </li>
                     </ul>
                 </fieldset>
             </div>
