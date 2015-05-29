@@ -16,7 +16,6 @@ namespace Servicios_Reservados_2
         private ControladoraBDComidaCampo controladoraBD;//instancia de la controladora de BD comida extra.
         private ControladoraReservaciones controladoraReserv;
         public static EntidadComidaCampo comidaCampoConsultada;
-        public static EntidadReservaciones reservacionConsultada;
         private static List<String> adicionales;
 
         public ControladoraComidaCampo()
@@ -40,8 +39,8 @@ namespace Servicios_Reservados_2
             nuevoComidaC[3] = comidaCampo.Rows[0][3];
             nuevoComidaC[4] = comidaCampo.Rows[0][4];
             nuevoComidaC[5] = comidaCampo.Rows[0][5];
-            nuevoComidaC[7] = comidaCampo.Rows[0][6];
-            nuevoComidaC[6] = comidaCampo.Rows[0][7];
+            nuevoComidaC[6] = comidaCampo.Rows[0][6];
+            nuevoComidaC[7] = comidaCampo.Rows[0][7];
             nuevoComidaC[8] = comidaCampo.Rows[0][8];
             nuevoComidaC[9] = comidaCampo.Rows[0][9];
             nuevoComidaC[10] = comidaCampo.Rows[0][10];
@@ -77,8 +76,8 @@ namespace Servicios_Reservados_2
             nuevoComidaC[3] = comidaCampo.Rows[0][3];
             nuevoComidaC[4] = comidaCampo.Rows[0][4];
             nuevoComidaC[5] = comidaCampo.Rows[0][5];
-            nuevoComidaC[7] = comidaCampo.Rows[0][6];
-            nuevoComidaC[6] = comidaCampo.Rows[0][7];
+            nuevoComidaC[6] = comidaCampo.Rows[0][6];   //relleno
+            nuevoComidaC[7] = comidaCampo.Rows[0][7];  //pan
             nuevoComidaC[8] = comidaCampo.Rows[0][8];
             nuevoComidaC[9] = comidaCampo.Rows[0][9];
             nuevoComidaC[10] = comidaCampo.Rows[0][10];
@@ -135,9 +134,15 @@ namespace Servicios_Reservados_2
 
         public EntidadReservaciones reservConsultada()
         {
-            reservacionConsultada = controladoraReserv.getReservacionSeleccionada();
-            return reservacionConsultada;
-
+            return controladoraReserv.getReservacionSeleccionada();
         }
+
+       public String paxReserv(String id)
+        {
+            String pax = controladoraReserv.obtenerPax(id);
+            return pax;
+        
+        }
+
     }
 }

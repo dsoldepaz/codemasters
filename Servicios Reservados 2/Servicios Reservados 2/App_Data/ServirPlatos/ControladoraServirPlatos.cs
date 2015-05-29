@@ -14,6 +14,7 @@ namespace Servicios_Reservados_2
         private static ControladoraComidaEmpleado controladoraComidaEmp;
         private static ControladoraComidaCampo controladoraComidaCampo;
         private static ControladoraComidaExtra controladoraComidaExtra;
+        private static ControladoraServicios controladoraServicios;
         /*
          * Requiere: N/A
          * Efectúa : Inicializa las variables globales de la clase. 
@@ -22,6 +23,7 @@ namespace Servicios_Reservados_2
         public ControladoraServirPlatos()
         {
             controladoraBD = new ControladoraBDServirPlatos();
+            controladoraServicios = new ControladoraServicios();
         }
         /*
          * Requiere: N/A
@@ -31,36 +33,81 @@ namespace Servicios_Reservados_2
         internal EntidadTiquete solicitarTiquete(int numTiquete)
         {
             DataTable tiquete = controladoraBD.consultarTiquete(numTiquete);
-            
-            String idServicio = tiquete.Rows[0][0].ToString();
-            int consumido = int.Parse(tiquete.Rows[0][1].ToString());
-            String categoria = tiquete.Rows[0][2].ToString();
-            String solicitante = tiquete.Rows[0][3].ToString();             
-            String tipoSolicitante = tiquete.Rows[0][4].ToString();
-            if ("empleado".Equals(tipoSolicitante) && "Comida campo".Equals(categoria))
+            if (tiquete.Rows.Count > 0)
             {
-                //controladoraComidaCampo.solicitar(idServicio, idSolicitante);
+                String idServicio = tiquete.Rows[0][0].ToString();
+                int consumido = int.Parse(tiquete.Rows[0][1].ToString());
+                String categoria = tiquete.Rows[0][2].ToString();
+                String idSolicitante = tiquete.Rows[0][3].ToString();
+                String tipoSolicitante = tiquete.Rows[0][4].ToString();
+                String notas = "No disponible";
+                String anfitriona = "No disponible";
+                String estacion = "No disponible";
+                String nombreSolicitante="No disponible";
+                if ("empleado".Equals(tipoSolicitante) && "Comida campo".Equals(categoria))
+                {
+                    //controladoraComidaCampo.solicitar(idServicio, idSolicitante);
+                }
+                else if ("empleado".Equals(tipoSolicitante) && "Comida regular".Equals(categoria))
+                {
+                    //controladoraComidaEmpleado.solicitar(idServicio, idSolicitante);
+                }
+                else if ("reservacion".Equals(tipoSolicitante) && "Paquete".Equals(categoria))
+                {
+                    DataTable paquete = controladoraServicios.solicitarInfoPaquete(idServicio);
+                    notas = paquete.Rows[0][1].ToString();
+                    anfitriona = paquete.Rows[0][2].ToString();
+                    estacion = paquete.Rows[0][3].ToString();
+                    nombreSolicitante = paquete.Rows[0][4].ToString();
+
+                }
+                else if ("reservacion".Equals(tipoSolicitante) && "Comida extra".Equals(categoria))
+                {
+                    //controladoraComidaCampo.solicitar(idServicio, idSolicitante);
+                }
+                else if ("reservacion".Equals(tipoSolicitante) && "Comida campo".Equals(categoria))
+                {
+                    //controladoraComidaCampo.solicitar(idServicio, idSolicitante);
+                }
+
+                seleccionado = new EntidadTiquete(numTiquete, idServicio, tipoSolicitante, consumido, idSolicitante, categoria, notas, anfitriona, estacion, nombreSolicitante);
+
             }
-            else if ("empleado".Equals(tipoSolicitante) && "Comida regular".Equals(categoria))
+            else
             {
-                //controladoraComidaEmpleado.solicitar(idServicio, idSolicitante);
+                seleccionado = null;
             }
-            else if ("reservacion".Equals(tipoSolicitante) && "Paquete".Equals(categoria))
-            {
-                //controladoraServicios.solicitar(idServicio, idSolicitante);
-            }
-            else if ("reservacion".Equals(tipoSolicitante) && "Comida extra".Equals(categoria))
-            {
-                //controladoraComidaCampo.solicitar(idServicio, idSolicitante);
-            }
-            else if ("reservacion".Equals(tipoSolicitante) && "Comida campo".Equals(categoria))
-            {
-                //controladoraComidaCampo.solicitar(idServicio, idSolicitante);
-            }
-            String notas = "ir por las notas";
-            seleccionado = new EntidadTiquete(numTiquete, idServicio, tipoSolicitante,consumido, solicitante, categoria, notas);
             return seleccionado;
         }
 
+
+        internal void servirTiquete()
+        {
+            int vecesConsumidoTiquete = seleccionado.Consumido + 1;
+            controladoraBD.servirTiquete(seleccionado.Numero, vecesConsumidoTiquete);
+            if ("empleado".Equals(seleccionado.TipoSolicitante) && "Comida campo".Equals(seleccionado.Categoria))
+                {
+                    //
+                }
+                else if ("empleado".Equals(seleccionado.TipoSolicitante) && "Comida regular".Equals(seleccionado.Categoria))
+                {
+                    //
+                }
+                else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Paquete".Equals(seleccionado.Categoria))
+                {
+                    DataTable paquete = controladoraServicios.solicitarVecesConsumidoPaquete(seleccionado.IdServicio);
+                    int vecesConsumido = int.Parse(paquete.Rows[0][0].ToString())+1;                   
+                    controladoraServicios.actualizarVecesConsumidoPaquete(seleccionado.IdServicio, vecesConsumido);
+                }
+                else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida extra".Equals(seleccionado.Categoria))
+                {
+                    //
+                }
+                else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida campo".Equals(seleccionado.Categoria))
+                {
+                    //
+                }
+
+        }
     }
 }

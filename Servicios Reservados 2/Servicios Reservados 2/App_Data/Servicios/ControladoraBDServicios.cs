@@ -21,18 +21,6 @@ namespace Servicios_Reservados_2
             dt = new DataTable();
         }
 
-        /**Efecto: Crea la consulta SQL que obtiene el numero de pax de la reservacion y la retorna en forma de datatable  
-         * Requiere: id de la reservacion
-         * Modifica: el dataTable dt
-         */
-        internal DataTable obtenerPax(String idNum)
-        {
-            String consultaSQL = "select PAX from reservas.vr_reservacion where numero = '" + idNum + "'";
-            dt = adaptador.consultar(consultaSQL);
-            return dt;
-
-        }
-
         /*
          * Efecto: Crea la consulta SQL que obtiene el estado de una comida extra  
          * Requiere: id de la reservacion y id de la comida extra
@@ -87,9 +75,22 @@ namespace Servicios_Reservados_2
 
         internal DataTable solicitarReservItem(string id)
         {
-            String consultaSQL = "select ri.pax from reservas.reservacionitem ri where ri.id ='" + id + "'";
+            String consultaSQL = "select ri.pax, r.notas, vr.siglas, vr.estacion, c.nombre FROM reservas.reservacionitem ri, reservas.reservacion r, reservas.vr_reservacion vr, reservas.contacto c where ri.id ='" + id + "' and ri.reservacion=r.id and r.numero=vr.numero and r.solicitante = c.id";
             dt = adaptador.consultar(consultaSQL);
             return dt;
+        }
+        internal DataTable vecesConsumidoPaquete(string id)
+        {
+            String consultaSQL = "select vecesconsumido from reservas.reservacionitem where id ='"+id+"'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+
+        internal void actualizarVecesConsumidoPaquete(string idServicio, int vecesConsumido)
+        {
+            String consultaSQL = "update reservas.reservacionitem set vecesconsumido= " + vecesConsumido + " where id ='" + idServicio + "'";
+            dt = adaptador.consultar(consultaSQL);
         }
     }
 }

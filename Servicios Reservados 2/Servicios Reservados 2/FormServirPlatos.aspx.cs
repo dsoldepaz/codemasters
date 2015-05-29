@@ -14,6 +14,7 @@ namespace Servicios_Reservados_2
     {
 
         ControladoraServirPlatos controladora = new ControladoraServirPlatos();
+        private static int modo=0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,8 +29,24 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
+                cambiarModo();
             }
 
+        }
+        protected void cambiarModo()
+        {
+            if (modo == 0)
+            {//esperando tiquete
+                infoTiquete.Visible = false;
+                btnServir.Disabled = true;
+                tiquete.Value = "";
+
+            }
+            else if (modo == 1)
+            {//tiquete verificado
+                infoTiquete.Visible = true;
+                btnServir.Disabled = false;
+            }
         }
 
         /* Requiere: La introduccion de un numero de tiquete por parte del usuario
@@ -38,29 +55,56 @@ namespace Servicios_Reservados_2
          */
         protected void clickVerificar(object sender, EventArgs e)
         {
-            DataTable tabla = crearTablaTiquete();
-            int numTiquete = int.Parse(tiquete.Value);
-            Object[] datos = new Object[4];
-
-                EntidadTiquete datosTiquete = controladora.solicitarTiquete(numTiquete);// se consulta
-
-                datos[0] = datosTiquete.Solicitante;//obtener los datos a mostrar
-                datos[1] = datosTiquete.Categoria;
-                datos[2] = datosTiquete.Consumido;
-                datos[3] = datosTiquete.Notas;
-
-                tabla.Rows.Add(datos);// cargar en la tabla los datos 
-
-                GridViewTiquete.DataBind();
-          
-
-
+            verificar();
         }
 
+        protected void verificar() {
+            if (tiquete.Value!=null)
+            {
+                DataTable tabla = crearTablaTiquete();
+                int numTiquete = int.Parse(tiquete.Value);
+                Object[] datos = new Object[6];
+
+                EntidadTiquete datosTiquete = controladora.solicitarTiquete(numTiquete);// se consulta
+                if (datosTiquete != null)
+                {
+                    datos[0] = datosTiquete.Anfitriona;
+                    datos[1] = datosTiquete.Estacion;
+                    datos[2] = datosTiquete.NombreSolicitante;
+                    datos[3] = datosTiquete.Categoria;
+                    datos[4] = datosTiquete.Consumido;
+                    datos[5] = datosTiquete.Notas;
+                    
+
+                    tabla.Rows.Add(datos);// cargar en la tabla los datos 
+
+                    GridViewTiquete.DataBind();
+                    modo = 1;
+                    cambiarModo();
+                }
+                else
+                {
+
+                    modo = 0;
+                    cambiarModo();
+                }  
+            }            
+                      
+        }
         protected DataTable crearTablaTiquete()
         {
             DataTable tabla = new DataTable();
             DataColumn columna;
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Anfitriona";
+            tabla.Columns.Add(columna); 
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Estación";
+            tabla.Columns.Add(columna);
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
@@ -87,7 +131,13 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
-
+        protected void clickServir(object sender, EventArgs e)
+        {
+            controladora.servirTiquete();
+            verificar();
+            modo = 0;
+            cambiarModo();
+        }
 
     }
 }

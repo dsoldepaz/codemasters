@@ -25,7 +25,7 @@
                         <input type="button"  class="btn btn-success comida" value="Nueva Comida Campo" runat="server" onserverclick="btnAgregarCC_Click"/>
                         <input id="btnEditar" type="button" class="btn btn-success" value="Editar" runat="server" onserverclick="btnEditar_Click"/>
                         <input id="btnCancelar" type="button" class="btn btn-success cancelar" value="Cancelar Comida" runat="server" onserverclick="btnCancelar_Click"/>
-                        <input id="tiquetesBtn" type="button" class="btn btn-success" value="Activar Tiquete" runat="server" onserverclick="clickActivarTiquetes" />
+                        <input id="tiquetesBtn" type="button" class="btn btn-success tiquete" value="Activar Tiquete" runat="server" onserverclick="clickActivarTiquetes" />
                     </section>
                      <asp:GridView ID="GridComidasReservadas" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarComida">
                      <SelectedRowStyle BackColor="#7BC143" />
