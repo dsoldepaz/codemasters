@@ -254,7 +254,28 @@ namespace Servicios_Reservados_2
         {
             //seleccionar bien
             seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text);
-
+            String opcion = GridServicios.SelectedRow.Cells[1].Text;
+            if (opcion == "Incluido en Paquete")
+            {
+                btnActivarTiquete.Disabled = true;
+                btnCancelar.Disabled = false;
+                btnConsultar.Disabled = false;
+                btnModificar.Disabled = false;
+            }
+            else if (opcion == "Paquete reservaci&#243;n")
+            {
+                btnActivarTiquete.Disabled = false;
+                btnCancelar.Disabled = true;
+                btnConsultar.Disabled = true;
+                btnModificar.Disabled = true;
+            }
+            else
+            {
+                btnActivarTiquete.Disabled = false;
+                btnCancelar.Disabled = false;
+                btnConsultar.Disabled = false;
+                btnModificar.Disabled = false;
+            }
 
         }
         /*
