@@ -438,7 +438,7 @@ input[type="submit"]
     font-weight: 600;
     padding: 7px;
     margin-right: 8px;
-    width: auto;
+    width: 123px;
 }
 
 td input[type="submit"] {
@@ -737,7 +737,7 @@ tr.pager td {
     border-radius:4px;
     background-color:#7BC143;
     color: rgb(252, 247, 247);
-    width: 150px;
+    width: 136px;
 }
 nav{
       background-color: #7BC143;
