@@ -76,9 +76,9 @@ namespace Servicios_Reservados_2
        * Requiere: la entrada de los datos.
        * Modifica: la variable servicioSeleccionado, en la que se almacena el servicio consultado.
       */
-      public EntidadComidaExtra guardarServicioSeleccionado(String id, String idServ)
+      public EntidadComidaExtra guardarServicioSeleccionado(String id, String idServ, String fecha, String hora)
       {
-          DataTable servicios = controladoraBD.seleccionarServicio(id, idServ);
+          DataTable servicios = controladoraBD.seleccionarServicio(id, idServ, fecha, hora);
 
           Object[] nuevoServicio = new Object[8];
 

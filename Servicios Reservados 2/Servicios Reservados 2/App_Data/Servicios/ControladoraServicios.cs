@@ -71,9 +71,9 @@ namespace Servicios_Reservados_2
             return comidaCampo;
         }
 
-        internal EntidadComidaExtra seleccionarComidaExtra(String id, String idServ)
+        internal EntidadComidaExtra seleccionarComidaExtra(String id, String idServ, String fecha, String hora)
         {
-            return controladoraCE.guardarServicioSeleccionado(id, idServ);
+            return controladoraCE.guardarServicioSeleccionado(id, idServ, fecha, hora);
         }
 
         internal EntidadComidaCampo seleccionarComidaCampo(String id, String idServ)
@@ -109,7 +109,7 @@ namespace Servicios_Reservados_2
             return controladoraBD.obtenerPaquete(idReservacion);
         }
 
-        internal EntidadServicios crearServicio(string idRes, string id)
+        internal EntidadServicios crearServicio(string idRes, string id, String fecha, String hora)
         {
              if (id.Contains("."))
             {
@@ -119,7 +119,7 @@ namespace Servicios_Reservados_2
             }
             else if (id.Contains("S"))
             {
-                EntidadComidaExtra servicio = seleccionarComidaExtra(idRes, id);
+                EntidadComidaExtra servicio = seleccionarComidaExtra(idRes, id, fecha, hora);
                 seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida extra", servicio.Fecha, servicio.Consumido, servicio.Pax, servicio.Descripcion);
             }
             else

@@ -253,7 +253,7 @@ namespace Servicios_Reservados_2
         protected void seleccionarServicio(object sender, EventArgs e)
         {
             //seleccionar bien
-            seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex]);
+            seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text);
 
 
         }
@@ -309,7 +309,7 @@ namespace Servicios_Reservados_2
             String[] mensaje;
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
-                comidaExtraConsultada = controladora.seleccionarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex]);
+                comidaExtraConsultada = controladora.seleccionarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text);
                 if (comidaExtraConsultada.Consumido == "Activo")
                 {
                     mensaje = controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], comidaExtraConsultada.Fecha, comidaExtraConsultada.Hora);

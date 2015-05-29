@@ -140,9 +140,9 @@ namespace Servicios_Reservados_2
          * Requiere: id de la reservacion, id servicio
          * Modifica: el dataTable dt
          */
-        internal DataTable seleccionarServicio(String id, String idserv)
+        internal DataTable seleccionarServicio(String id, String idserv, String fecha, String hora)
         {
-            String consultaSQL = "select * from servicios_reservados.servicio_especial where idreservacion = '" + id + "' and idserviciosextras = '" + idserv + "'";
+            String consultaSQL = "select * from servicios_reservados.servicio_especial where idreservacion = '" + id + "' and idserviciosextras = '" + idserv + "' and fecha = '" + fecha + "' and hora = '" + hora +"'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }

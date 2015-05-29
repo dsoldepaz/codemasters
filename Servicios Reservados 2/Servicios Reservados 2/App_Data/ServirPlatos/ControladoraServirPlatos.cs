@@ -66,13 +66,13 @@ namespace Servicios_Reservados_2
                 }
                 else if ("reservacion".Equals(tipoSolicitante) && "Comida extra".Equals(categoria))
                 {
-                    EntidadComidaExtra comidaExtra = controladoraComidaExtra.guardarServicioSeleccionado(idSolicitante, idServicio);
+                   /* EntidadComidaExtra comidaExtra = controladoraComidaExtra.guardarServicioSeleccionado(idSolicitante, idServicio);
                     notas = comidaExtra.Descripcion;
                     DataTable servicio = controladoraReservaciones.solicitarInfo(idSolicitante);
                     anfitriona = servicio.Rows[0][2].ToString();
                     estacion = servicio.Rows[0][3].ToString();
                     nombreSolicitante = servicio.Rows[0][4].ToString();
-
+                    */
                 }
                 else if ("reservacion".Equals(tipoSolicitante) && "Comida campo".Equals(categoria))
                 {                    
