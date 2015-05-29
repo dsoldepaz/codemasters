@@ -109,23 +109,23 @@ namespace Servicios_Reservados_2
             return controladoraBD.obtenerPaquete(idReservacion);
         }
 
-        internal EntidadServicios crearServicio(string idRes, string id, String fecha, String hora)
+        internal EntidadServicios crearServicio(string idRes, string id, String fecha, String hora, String categoria)
         {
              if (id.Contains("."))
             {
                 DataTable dt= controladoraBD.solicitarReservItem(id);
-                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Paquete", "Durante toda la estadía", "Durante toda la estadía", int.Parse(dt.Rows[0][0].ToString()), dt.Rows[0][1].ToString());
+                seleccionado = new EntidadServicios(idRes, "reservacion", id, categoria, "Durante toda la estadia", "Durante toda la estadia", int.Parse(dt.Rows[0][0].ToString()), dt.Rows[0][1].ToString(), "Varias");
                 
             }
             else if (id.Contains("S"))
             {
                 EntidadComidaExtra servicio = seleccionarComidaExtra(idRes, id, fecha, hora);
-                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida extra", servicio.Fecha, servicio.Consumido, servicio.Pax, servicio.Descripcion);
+                seleccionado = new EntidadServicios(idRes, "reservacion", id, categoria, servicio.Fecha, servicio.Consumido, servicio.Pax, servicio.Descripcion, servicio.Hora);
             }
             else
             {
                 EntidadComidaCampo comidaCampo = seleccionarComidaCampo(idRes, id);
-                seleccionado = new EntidadServicios(idRes, "reservacion", id, "Comida campo", comidaCampo.Fecha, comidaCampo.Estado, comidaCampo.Pax, "Nada");
+                seleccionado = new EntidadServicios(idRes, "reservacion", id, categoria, comidaCampo.Fecha, comidaCampo.Estado, comidaCampo.Pax, "Nada",hora);
             }
              return seleccionado;
         }

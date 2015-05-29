@@ -177,9 +177,9 @@ namespace Servicios_Reservados_2
             return respuesta;
         }
 
-        internal DataTable vecesConsumido(string id, string idRes)
+        internal DataTable vecesConsumido(string id, string idRes, string fecha, string hora)
         {
-            String consultaSQL = "select vecesconsumido from servicios_reservados.servicio_especial where idserviciosextras ='" + id + "' and idreservacion='" + idRes + "'";
+            String consultaSQL = "select vecesconsumido from servicios_reservados.servicio_especial where idserviciosextras ='" + id + "' and idreservacion='" + idRes + "' and fecha='" + fecha + "' and hora='" +hora+ "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
