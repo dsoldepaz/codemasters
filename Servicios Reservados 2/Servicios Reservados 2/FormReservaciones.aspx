@@ -68,8 +68,8 @@
                             <tr>
                                 
                                 <td>
-                                    <a href="FormServicios.aspx">
-                                        <input type="button" class="btn btn-success" id="botonServicioExtra" value="Agregar Servicios" /></a>
+                                    
+                                        <input type="button" runat="server" class="btn btn-success" id="botonServicioExtra" value="Agregar Servicios" onserverclick="clickAgregarServicioExtra" /></a>
                                 </td>
                             </tr>
                         </table>

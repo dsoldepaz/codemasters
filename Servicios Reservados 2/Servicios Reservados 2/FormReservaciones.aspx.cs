@@ -46,6 +46,8 @@ namespace Servicios_Reservados_2
         {
             llenarComboboxReservaciones();
             llenarGridReservaciones();
+            botonServicioExtra.Disabled = true;
+
             
         }
         /*
@@ -190,6 +192,7 @@ namespace Servicios_Reservados_2
             try
             {
                 controladora.seleccionarReservacion(ids[GridViewReservaciones.SelectedIndex]);
+                botonServicioExtra.Disabled = false;
             }
             catch (Exception ee) { 
                 
@@ -264,6 +267,11 @@ namespace Servicios_Reservados_2
             {
               llenarGridReservaciones();
           }
+        }
+
+        protected void clickAgregarServicioExtra(object sender, EventArgs e)
+        {
+            Response.Redirect("FormServicios");
         }
 
     }
