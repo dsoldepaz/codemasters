@@ -121,7 +121,7 @@ namespace Servicios_Reservados_2
                 {
                     DataTable comidaExtra = controladoraComidaExtra.solicitarVecesConsumido(seleccionado.IdServicio);
                     int vecesConsumido = int.Parse(comidaExtra.Rows[0][0].ToString()) + 1;
-                    controladoraServicios.actualizarVecesConsumidoPaquete(seleccionado.IdServicio, vecesConsumido);
+                    controladoraComidaExtra.actualizarVecesConsumido(seleccionado.IdServicio, vecesConsumido);
                 }
                 else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida campo".Equals(seleccionado.Categoria))
                 {
