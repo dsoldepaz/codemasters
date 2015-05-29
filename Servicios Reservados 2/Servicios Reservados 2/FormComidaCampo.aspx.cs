@@ -158,7 +158,7 @@ namespace Servicios_Reservados_2
         }
         protected void limpiarCamposOpcion2()
         {
-            cambiarModo();
+            //cambiarModo();
             radioDesayuno.Checked = false;
             radioAlmuerzo.Checked = false;
             radioCena.Checked = false;
@@ -170,13 +170,14 @@ namespace Servicios_Reservados_2
 
         protected void limpiarCamposOpcion1(){
 
-            cambiarModo();
+            //cambiarModo();
             radioPanBlanco.Checked = false;
             radioPanBollo.Checked = false;
             radioPanInt.Checked = false;
             radioJamon.Checked = false;
             radioFrijoles.Checked = false;
             radioMyM.Checked = false;
+            radioAtun.Checked = false;
             radioOmelette.Checked = false;
             radioEnsaladaHuevo.Checked = false;
             chGalloPinto.Checked = false;
@@ -186,7 +187,7 @@ namespace Servicios_Reservados_2
 
         protected void limpiarCamposOpcion3()
         {
-            cambiarModo();
+            //cambiarModo();
             radioDesayuno.Checked = false;
             radioAlmuerzo.Checked = false;
             radioAlmuerzo.Checked = false;
@@ -194,6 +195,7 @@ namespace Servicios_Reservados_2
             radioPanBollo.Checked = false;
             radioPanInt.Checked = false;
             radioJamon.Checked = false;
+            radioAtun.Checked = false;
             radioFrijoles.Checked = false;
             radioMyM.Checked = false;
             radioOmelette.Checked = false;
@@ -274,7 +276,6 @@ namespace Servicios_Reservados_2
             if (checkO1.Checked)
             {
                 radioDesayuno.Enabled = true;
-                radioDesayuno.Checked = true;
                 radioAlmuerzo.Enabled = true;
                 radioCena.Enabled = true;
                 cbxHoraOpcion1.Disabled = false;
@@ -384,6 +385,7 @@ namespace Servicios_Reservados_2
             }
             return tipo;
         }
+
         protected List<String> listaAdicionales()
         {
             List<String> lista = new List<String>();
@@ -515,6 +517,9 @@ namespace Servicios_Reservados_2
                     nuevaComidaCampo[7] = "";
                     nuevaComidaCampo[11] = cmbHoraGalloPinto.Value;
                 }
+                else {
+                    res = false;
+                }
                 nuevaComidaCampo[8] = "";
                 if (CheckboxBebida.Checked)
                 {
@@ -612,6 +617,10 @@ namespace Servicios_Reservados_2
                     comidaModificar[7] = "";
                     comidaModificar[11] = cmbHoraGalloPinto.Value;
                 }
+                else
+                {
+                    res = false;
+                }
                 comidaModificar[8] = "";
                 if (CheckboxBebida.Checked)
                 {
@@ -631,8 +640,17 @@ namespace Servicios_Reservados_2
                     comidaModificar[9] = cmbTipoPago.Value.ToString(); ;
                 }
                 comidaModificar[10] = txtPax.Value;
-                String[] error = controladora.modificarComidaCampo(comidaModificar, lista, entidadConsultada);// se le pide a la controladora que lo inserte
-                mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+
+                if (checkO1.Checked || checkO2.Checked || checkO3.Checked)
+                {
+                    String[] error = controladora.modificarComidaCampo(comidaModificar, lista, entidadConsultada);// se le pide a la controladora que lo inserte
+                    mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+                }
+                else
+                {
+                    mostrarMensaje("danger", "Error:", "Debe seleccionar una opción");
+                }
+               
             }
             return res;
         }
