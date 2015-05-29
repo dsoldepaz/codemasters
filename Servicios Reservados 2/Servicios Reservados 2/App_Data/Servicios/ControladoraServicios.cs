@@ -138,5 +138,20 @@ namespace Servicios_Reservados_2
             ControladoraTiquete.setServicio(seleccionado);
         }
 
+
+        internal DataTable solicitarInfoPaquete(string idServicio)
+        {
+            return controladoraBD.solicitarReservItem(idServicio);
+        }
+        internal DataTable solicitarVecesConsumidoPaquete(string idServicio)
+        {
+            return controladoraBD.vecesConsumidoPaquete(idServicio);
+        }
+
+
+        internal void actualizarVecesConsumidoPaquete(string idServicio, int vecesConsumido)
+        {
+            controladoraBD.actualizarVecesConsumidoPaquete(idServicio, vecesConsumido);
+        }
     }
 }

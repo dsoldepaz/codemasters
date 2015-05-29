@@ -75,9 +75,22 @@ namespace Servicios_Reservados_2
 
         internal DataTable solicitarReservItem(string id)
         {
-            String consultaSQL = "select ri.pax, r.notas from reservas.reservacionitem ri, reservas.reservacion r where ri.id ='" + id + "' and ri.reservacion=r.id";
+            String consultaSQL = "select ri.pax, r.notas, vr.siglas, vr.estacion, c.nombre FROM reservas.reservacionitem ri, reservas.reservacion r, reservas.vr_reservacion vr, reservas.contacto c where ri.id ='" + id + "' and ri.reservacion=r.id and r.numero=vr.numero and r.solicitante = c.id";
             dt = adaptador.consultar(consultaSQL);
             return dt;
+        }
+        internal DataTable vecesConsumidoPaquete(string id)
+        {
+            String consultaSQL = "select vecesconsumido from reservas.reservacionitem where id ='"+id+"'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+
+        internal void actualizarVecesConsumidoPaquete(string idServicio, int vecesConsumido)
+        {
+            String consultaSQL = "update reservas.reservacionitem set vecesconsumido= " + vecesConsumido + " where id ='" + idServicio + "'";
+            dt = adaptador.consultar(consultaSQL);
         }
     }
 }

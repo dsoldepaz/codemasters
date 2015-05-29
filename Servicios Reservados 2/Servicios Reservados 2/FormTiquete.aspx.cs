@@ -15,6 +15,7 @@ namespace Servicios_Reservados_2
         private static EntidadReservaciones reservacion;
         private static EntidadEmpleado empleado;
         private static EntidadServicios servicio;
+        private static int modo;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,12 +34,21 @@ namespace Servicios_Reservados_2
                 }
                 llenarInfoServicio();
                 llenarListaTiquetes();
-                bloquarEdicionInfo();
+                bloquearEdicionInfo();
+                cambiarModo();
             }
 
         }
+        protected void cambiarModo()
+        { 
+            if(modo==0){
+               
+            }else if(modo==1){
 
-        private void bloquarEdicionInfo()
+            }
+        }
+
+        private void bloquearEdicionInfo()
         {
             anfitriona.Disabled = true;
             estacion.Disabled = true;
