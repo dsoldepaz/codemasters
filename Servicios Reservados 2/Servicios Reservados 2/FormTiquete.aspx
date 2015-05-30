@@ -71,10 +71,10 @@
                                 <tr>
                                     <td>Número:</td>
                                     <td>
-                                        <input class="textbox"  id="numTiquete" runat="server" />
+                                        <input class="textbox"  id="numTiquete" runat="server" required="required" title="Inserte un número de 4 digitos" pattern="^[0-9]{1,4}$" />
                                     </td>
                                     <td>                                       
-                                        <button type="button" class="btn btn-success" id="BotonAgregar" onserverclick="clickAgregar" runat="server">Agregar</button>
+                                        <input type="submit" value="Agregar" class="btn btn-success" id="BotonAgregar" onserverclick="clickAgregar" runat="server"/>
                                     </td>
                                 </tr>
                             </table>

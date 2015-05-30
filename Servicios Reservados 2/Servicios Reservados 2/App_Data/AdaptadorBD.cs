@@ -40,36 +40,36 @@ namespace Servicios_Reservados_2
         internal String[] insertar(String consultaSQL)
         {
             String[] respuesta = new String[3];
+            adaptador.Open();
+            OleDbCommand od = new OleDbCommand(consultaSQL, adaptador);
+
             try
             {
-                adaptador.Open();
-                OleDbCommand od = new OleDbCommand(consultaSQL, adaptador);
                 od.ExecuteNonQuery();
-                adaptador.Close();
 
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";
                 respuesta[2] = "La comida extra se ha eliminado exitosamente";
             }
-            catch (SqlException e)
+            catch (OleDbException e)
             {
-                int r = e.Number;
+                int r = e.ErrorCode;
 
-                if (r == 2627)
+                if (r == -2147217873)
                 {
 
                     respuesta[0] = "danger";
                     respuesta[1] = "Error. ";
-                    respuesta[2] = "Informacion ingresada ya existe";
+                    respuesta[2] = "La informacion ingresada ya existe";
                 }
                 else
                 {
-
                     respuesta[0] = "danger";
                     respuesta[1] = "Error. ";
                     respuesta[2] = "No se pudo agregar el servicio extra";
                 }
             }
+            adaptador.Close();
             return respuesta;
         }
     }
