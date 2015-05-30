@@ -223,6 +223,7 @@ namespace Servicios_Reservados_2
                 //llama comida empleado en modo de Editar
                 FormComidasEmpleado.idComida = Int32.Parse(row.Cells[1].Text);//saca el id de la comida seleccionada.
                 FormComidasEmpleado.modo = 2;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+                FormComidasEmpleado.identificacionEmpleado = idEmpleado;
                 Response.Redirect("FormComidasEmpleado");
 
             }

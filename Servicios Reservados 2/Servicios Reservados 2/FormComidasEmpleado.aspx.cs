@@ -15,11 +15,19 @@ namespace Servicios_Reservados_2
     {
         internal static String identificacionEmpleado = "";
         private static List<DateTime> list = new List<DateTime>();
-        private EntidadEmpleado empleadoSeleccionado;
-        private EntidadComidaEmpleado seleccionada;
+        private static EntidadEmpleado empleadoSeleccionado;
+        private static EntidadComidaEmpleado seleccionada;
         internal static int modo = 0;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
         internal static int idComida = -1;
         private ControladoraComidaEmpleado controladora = new ControladoraComidaEmpleado();
+       //Atributos consultados
+        private int idComidaViejo;
+        private String idEmpleadoViejo;
+        private List<DateTime> fechasViejo;
+        private char[] turnosViejo;
+        private bool pagadoViejo;
+        private String notasViejo;
+
         /*
          * Requiere: Parametros de eventos de la GUI
          * Efectua : Valida que el ususario este registrado, en caso contrario lo envia a la pagina de inicio de sesion.
@@ -138,7 +146,9 @@ namespace Servicios_Reservados_2
          */
         protected void clickEliminar(object sender, EventArgs e)
         {
-            controladora.eliminar(this.seleccionada);
+
+            EntidadComidaEmpleado aCancelar = new EntidadComidaEmpleado(seleccionada.IdEmpleado, seleccionada.Fechas, seleccionada.Turnos, seleccionada.Pagado, seleccionada.Notas, seleccionada.IdComida);
+            controladora.eliminar(aCancelar);
         }
         /*
          * Requiere: Parametros de eventos de la GUI
@@ -231,6 +241,15 @@ namespace Servicios_Reservados_2
         protected void consultar()
         {
             seleccionada = controladora.consultar(idComida);
+            /****************************<guardarDatosViejos>********************************************/
+            idComidaViejo = seleccionada.IdComida;
+            idEmpleadoViejo= seleccionada.IdEmpleado;
+            fechasViejo = seleccionada.Fechas;
+            turnosViejo= seleccionada.Turnos;
+            pagadoViejo= seleccionada.Pagado;
+            notasViejo= seleccionada.Notas;
+            /****************************</guardarDatosViejos>*******************************************/
+            
             list = seleccionada.Fechas;
             notas.Value = seleccionada.Notas;
             Debug.WriteLine("notas: "+seleccionada.Notas);
