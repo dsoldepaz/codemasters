@@ -45,10 +45,13 @@ namespace Servicios_Reservados_2
                 String categoria = tiquete.Rows[0][2].ToString();
                 String idSolicitante = tiquete.Rows[0][3].ToString();
                 String tipoSolicitante = tiquete.Rows[0][4].ToString();
+                String fecha = tiquete.Rows[0][5].ToString();
+                String hora= tiquete.Rows[0][6].ToString();
                 String notas = "No disponible";
                 String anfitriona = "No disponible";
                 String estacion = "No disponible";
                 String nombreSolicitante="No disponible";
+
                 if ("empleado".Equals(tipoSolicitante) && "Comida de campo".Equals(categoria))
                 {
                     EntidadEmpleado empleado= controladoraComidaEmp.getInformacionDelEmpleado(idSolicitante);
@@ -58,7 +61,7 @@ namespace Servicios_Reservados_2
                 else if ("empleado".Equals(tipoSolicitante) && "Comida regular".Equals(categoria))
                 {
                     EntidadComidaEmpleado comidaEmp= controladoraComidaEmp.consultar(int.Parse(idServicio));
-                    notas = comidaEmp.Notas;
+                    //notas = comidaEmp.notas;
 
                 }
                 else if ("reservacion".Equals(tipoSolicitante) && "Paquete".Equals(categoria))
@@ -72,13 +75,13 @@ namespace Servicios_Reservados_2
                 }
                 else if ("reservacion".Equals(tipoSolicitante) && "Comida extra".Equals(categoria))
                 {
-                    EntidadComidaExtra comidaExtra = controladoraComidaExtra.guardarServicioSeleccionado(idSolicitante, idServicio);
+                    EntidadComidaExtra comidaExtra = controladoraComidaExtra.guardarServicioSeleccionado(idSolicitante, idServicio, fecha, hora);
                     notas = comidaExtra.Descripcion;
                     DataTable servicio = controladoraReservaciones.solicitarInfo(idSolicitante);
                     anfitriona = servicio.Rows[0][2].ToString();
                     estacion = servicio.Rows[0][3].ToString();
                     nombreSolicitante = servicio.Rows[0][4].ToString();
-
+                    
                 }
                 else if ("reservacion".Equals(tipoSolicitante) && "Comida campo".Equals(categoria))
                 {                    
@@ -88,7 +91,7 @@ namespace Servicios_Reservados_2
                     nombreSolicitante = servicio.Rows[0][4].ToString();
                 }
 
-                seleccionado = new EntidadTiquete(numTiquete, idServicio, tipoSolicitante, consumido, idSolicitante, categoria, notas, anfitriona, estacion, nombreSolicitante);
+                seleccionado = new EntidadTiquete(numTiquete, idServicio, tipoSolicitante, consumido, idSolicitante, categoria, notas, anfitriona, estacion, nombreSolicitante, fecha, hora);
 
             }
             else
@@ -119,7 +122,7 @@ namespace Servicios_Reservados_2
                 }
                 else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida extra".Equals(seleccionado.Categoria))
                 {
-                    DataTable comidaExtra = controladoraComidaExtra.solicitarVecesConsumido(seleccionado.IdServicio, seleccionado.Solicitante);
+                    DataTable comidaExtra = controladoraComidaExtra.solicitarVecesConsumido(seleccionado.IdServicio, seleccionado.Solicitante, seleccionado.Fecha, seleccionado.Hora);
                     int vecesConsumido = int.Parse(comidaExtra.Rows[0][0].ToString()) + 1;
                     controladoraComidaExtra.actualizarVecesConsumido(seleccionado.IdServicio, vecesConsumido, seleccionado.Solicitante);
                 }

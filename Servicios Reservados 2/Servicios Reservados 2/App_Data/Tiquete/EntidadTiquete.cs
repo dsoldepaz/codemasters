@@ -17,13 +17,15 @@ namespace Servicios_Reservados_2
         private String anfitriona;
         private String estacion;
         private String nombreSolicitante;
+        private String fecha;
+        private String hora;
 
         /*
          * Requiere:
          * Efectúa : Inicializa las variables globales de la clase con los parámetros.
          * Retorna : N/A.
          */
-        public EntidadTiquete(int numero, String idServicio, String tipoSolicitante, int consumido, String solicitante, String categoria, String notas, String anfitriona, String estacion, String nombreSolicitante)
+        public EntidadTiquete(int numero, String idServicio, String tipoSolicitante, int consumido, String solicitante, String categoria, String notas, String anfitriona, String estacion, String nombreSolicitante, String fecha, String hora)
         {
             this.numero = numero;
             this.idServicio = idServicio;
@@ -35,6 +37,8 @@ namespace Servicios_Reservados_2
             this.anfitriona = anfitriona;
             this.estacion = estacion;
             this.nombreSolicitante = nombreSolicitante;
+            this.fecha = fecha;
+            this.hora = hora;
 
         }
         /*
@@ -58,10 +62,10 @@ namespace Servicios_Reservados_2
             set { idServicio = value; }
         }
         /*
- * Requiere: una Hilera con el valor nuevo
- * Efectúa : Asigna a la variable global Anftritriona con el parámetro
- * Retorna : El valor de la variable global Anfitriona
- */
+         * Requiere: una Hilera con el valor nuevo
+         * Efectúa : Asigna a la variable global Anftritriona con el parámetro
+         * Retorna : El valor de la variable global Anfitriona
+         */
         public String TipoSolicitante
         {
             get { return tipoSolicitante; }
@@ -97,7 +101,6 @@ namespace Servicios_Reservados_2
             get { return categoria; }
             set { categoria = value; }
         }
-
         public String Notas
         {
             get { return notas; }
@@ -112,6 +115,16 @@ namespace Servicios_Reservados_2
         {
             get { return estacion; }
             set { estacion = value; }
+        }
+        public String Fecha
+        {
+            get { return fecha; }
+            set { fecha = value; }
+        }
+        public String Hora
+        {
+            get { return hora; }
+            set { hora = value; }
         }
         public String NombreSolicitante
         {

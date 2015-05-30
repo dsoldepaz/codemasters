@@ -89,10 +89,10 @@
                                 </td>
                                 <td>
                                     <div class="btn-group-vertical">
-                                        <input type="button" class="btn btn-success" value="Activar Tiquete" runat="server" onserverclick="clickActivarTiquetes" />
-                                        <input type="button" class="btn btn-success" value="Consultar" runat="server" onserverclick="clickConsultarServicio" />
-                                        <input type="button" class="btn btn-success" value="Modificar" runat="server" onserverclick="modificarServicio" />
-                                        <input type="button" class="btn btn-success" value="Elimnar" runat="server" onserverclick="clickEliminarServicio" />
+                                        <input type="button" class="btn btn-success" id="btnActivarTiquete" value="Activar Tiquete" runat="server" onserverclick="clickActivarTiquetes" />
+                                        <input type="button" class="btn btn-success" id="btnConsultar" value="Consultar" runat="server" onserverclick="clickConsultarServicio" />
+                                        <input type="button" class="btn btn-success" id="btnModificar" value="Modificar" runat="server" onserverclick="modificarServicio" />
+                                        <input type="button" class="btn btn-success" id="btnCancelar" value="Cancelar" runat="server" onserverclick="clickEliminarServicio" />
 
                                     </div>
                                 </td>

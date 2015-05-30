@@ -44,14 +44,14 @@ namespace Servicios_Reservados_2
             return servicio;
         }
 
-        internal DataTable solicitarTiquetes(string idServ)
+        internal DataTable solicitarTiquetes(string idServ, string idSolicitante, string fecha, string hora)
         {
-            return controladoraBD.obtenerTiquetes(idServ);
+            return controladoraBD.obtenerTiquetes(idServ, idSolicitante,  fecha,  hora);
         }
 
         internal void activarTiquete(int numTiquete)
         {
-            controladoraBD.insertarTiquetes(servicio.IdServicio, numTiquete, servicio.Categoria, servicio.IdSolicitante, servicio.TipoSolicitante);
+            controladoraBD.insertarTiquetes(servicio.IdServicio, numTiquete, servicio.Categoria, servicio.IdSolicitante, servicio.TipoSolicitante, servicio.Fecha, servicio.Hora);
         }
 
         internal void desactivarTiquete()

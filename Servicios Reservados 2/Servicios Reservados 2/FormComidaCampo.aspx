@@ -33,7 +33,7 @@
 
                         <il class="itemFormulario">
                             Pax:
-                            <input id="txtPax" runat="server" required="required" title="Inserte un número entero" pattern="^[0-9]+$"/>
+                            <input id="txtPax" runat="server" required="required" title="Inserte un número" pattern="^[0-9]+$"/>
                         </il>
                         <il class="itemFormulario">
                             <label class="labelfont" id="labelPago" runat="server">Tipo Pago:</label>
@@ -229,8 +229,8 @@
                         </il>
                     </ul>
                 </fieldset>
-                <button class="btn btn-danger" name="cancel" type="button" runat="server" onserverclick="clickCancelar">cancelar</button>
-                <button class="btn btn-success" id="btnAgregar" name="accept" type="button" runat="server" onserverclick="clickAceptar">Aceptar</button>
+                <button class="btn btn-danger" name="cancel" type="button" runat="server" onserverclick="clickCancelar">Cancelar</button>
+                <input class="btn btn-success" id="btnAgregar" value="Aceptar" type="submit" runat="server" onserverclick="clickAceptar"/>
                 
             </div>
 
