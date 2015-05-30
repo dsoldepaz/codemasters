@@ -58,7 +58,7 @@ namespace Servicios_Reservados_2
                 else if ("empleado".Equals(tipoSolicitante) && "Comida regular".Equals(categoria))
                 {
                     EntidadComidaEmpleado comidaEmp= controladoraComidaEmp.consultar(int.Parse(idServicio));
-                    notas = comidaEmp.notas;
+                    notas = comidaEmp.Notas;
 
                 }
                 else if ("reservacion".Equals(tipoSolicitante) && "Paquete".Equals(categoria))

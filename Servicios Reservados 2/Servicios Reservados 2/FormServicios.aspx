@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="Servicios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormServicios.aspx.cs" Inherits="Servicios_Reservados_2.FormServicios" %>
 
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <link rel="stylesheet" href="Content/Servicios.css" />
     <nav>
         <ul>
             <li class="item-navegacion"><a href="FormReservaciones.aspx">Reservaciones</a></li>
@@ -62,12 +64,12 @@
                     <table>
                         <tr>
                             <td>
-                                <input type="button" class="btn btn-success" value="Comida Extra" runat="server" onserverclick="clickAgregarServicio" /></a></td>
+                                <input type="button" class="btn btn-Naranja" value="Comida Extra" runat="server" onserverclick="clickAgregarServicio" /></a></td>
                             <td>
-                                <input type="button" class="btn btn-success" value="Comida De Campo" runat="server" onserverclick="cliclAgregarComidaCampo" />
+                                <input type="button" class="btn btn-Naranja" value="Comida De Campo" runat="server" onserverclick="cliclAgregarComidaCampo" />
                             </td>
                             <td>
-                                <input type="button" class="btn btn-success" value="Servicio de Guías" /></td>
+                                <input type="button" class="btn btn-Naranja" value="Servicio de Guías" /></td>
                         </tr>
                     </table>
             </div>
@@ -79,7 +81,7 @@
                     <div class="well bs-component" style="background-color: white">
                         <table>
                             <tr>
-                                <td style="width: 95%">
+                                <td style="width: 50%">
                                     <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarServicio">
                                         <SelectedRowStyle BackColor="#7BC143" />
                                     </asp:GridView>

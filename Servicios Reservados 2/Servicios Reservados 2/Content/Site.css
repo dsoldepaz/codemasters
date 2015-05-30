@@ -59,7 +59,7 @@ mark {
 
 h1, h2, h3,
 h4, h5, h6 {
-    color: #000;
+    color: #7BC143;
     margin-bottom: 0;
     padding-bottom: 0;
 }
@@ -409,7 +409,7 @@ border: 1px solid #e2e2e2;
   margin: 5px 10px 6px 0;
   padding: 5px;
   
-width: 100px;
+width: 200px;
 }
 
 textarea {
@@ -431,14 +431,10 @@ width: 23px;
 
 input[type="submit"]
  {
-    background-color: #d3dce0;
-    border: 1px solid #787878;
-    cursor: pointer;
     font-size: 1.2em;
     font-weight: 600;
     padding: 7px;
     margin-right: 8px;
-    width: auto;
 }
 
 td input[type="submit"] {
