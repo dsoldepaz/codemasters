@@ -25,7 +25,7 @@
                                 <tr>
                                     <td>Tiquete:</td>
                                     <td>
-                                        <input id="tiquete" runat="server" />
+                                        <input id="tiquete" runat="server" required="required" title="Inserte un número de 4 digitos" pattern="^[0-9]{1,4}$" />
                                     <td>
                                         <asp:Button ID="btnVerificar" class="btn btn-success" Text="Verificar" runat="server" OnClick="clickVerificar" />
                                     </td>
