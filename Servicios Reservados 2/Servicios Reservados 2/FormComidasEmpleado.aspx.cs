@@ -201,7 +201,9 @@ namespace Servicios_Reservados_2
             Turnos[0] = (this.checkboxDesayuno.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
             Turnos[1] = (this.checkboxAlmuerzo.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
             Turnos[2] = (this.checkboxCena.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
-            controladora.agregar(empleadoSeleccionado.Id, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
+            String[] resultado = controladora.agregar(empleadoSeleccionado.Id, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
+            modo = 0;
+            ponerModo();
         }
         /*
          * Requiere: Parametros de eventos de la GUI
