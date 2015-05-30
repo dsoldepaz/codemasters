@@ -272,12 +272,12 @@ namespace Servicios_Reservados_2
             if (GridComidasReservadas.SelectedRow.Cells[2].Text != "Comida regular")//* es mejor comparar strings con "mi string".equals()
             {
                 comidaCampoConsultada = controladora.consultarComidaCampoSeleccionada(idEmpleado, GridComidasReservadas.SelectedRow.Cells[1].Text);
-                seleccionado = controladora.crearServicio(idEmpleado, int.Parse(comidaCampoConsultada.IdComidaCampo), comidaCampoConsultada.Fecha, "Comida de campo", "Notas no disponibles", comidaCampoConsultada.Estado, comidaCampoConsultada.Hora);
+                seleccionado = controladora.crearServicio(idEmpleado, int.Parse(comidaCampoConsultada.IdComidaCampo), comidaCampoConsultada.Fecha, "Comida Campo", "Notas no disponibles", comidaCampoConsultada.Estado, comidaCampoConsultada.Hora);
             }
             else
             {
                 comidaEmpleadoSeleccionado = controladora.consultarComida(Int32.Parse(GridComidasReservadas.SelectedRow.Cells[1].Text));
-                seleccionado = controladora.crearServicio(idEmpleado, ,comidaEmpleadoSeleccionado.idComida, GridComidasReservadas.SelectedRow.Cells[3].Text, comidaEmpleadoSeleccionado.notas);
+                seleccionado = controladora.crearServicio(idEmpleado, comidaEmpleadoSeleccionado.IdComida, comidaEmpleadoSeleccionado.Fechas[0].ToString(), "Comida regular", comidaEmpleadoSeleccionado.Notas, "Depende del turno", "Depende del turno");
             }
 
         }

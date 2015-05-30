@@ -54,7 +54,7 @@ namespace Servicios_Reservados_2
                 String estacion = "No disponible";
                 String nombreSolicitante="No disponible";
 
-                if ("empleado".Equals(tipoSolicitante) && "Comida de campo".Equals(categoria))
+                if ("empleado".Equals(tipoSolicitante) && "Comida Campo".Equals(categoria))
                 {
                     EntidadEmpleado empleado= controladoraComidaEmp.getInformacionDelEmpleado(idSolicitante);
                     nombreSolicitante = empleado.Nombre +" "+ empleado.Apellido;
@@ -63,6 +63,8 @@ namespace Servicios_Reservados_2
                 else if ("empleado".Equals(tipoSolicitante) && "Comida regular".Equals(categoria))
                 {
                     EntidadComidaEmpleado comidaEmp= controladoraComidaEmp.consultar(int.Parse(idServicio));
+                    EntidadEmpleado empleado = controladoraComidaEmp.getInformacionDelEmpleado(idSolicitante);
+                    nombreSolicitante = empleado.Nombre + " " + empleado.Apellido;
                     notas = comidaEmp.Notas;                   
 
                 }
