@@ -22,22 +22,22 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// Control numTiquete.
+        /// Control tiquete.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText numTiquete;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText tiquete;
         
         /// <summary>
-        /// Control BotonAgregar.
+        /// Control btnVerificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit BotonAgregar;
+        protected global::System.Web.UI.WebControls.Button btnVerificar;
         
         /// <summary>
         /// Control infoTiquete.
