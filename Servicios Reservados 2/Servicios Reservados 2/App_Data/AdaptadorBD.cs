@@ -18,7 +18,7 @@ namespace Servicios_Reservados_2
         DataTable dt;
         public AdaptadorBD()
         {
-             adaptador = new OleDbConnection("Provider= MSDAORA;Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True");     
+            iniciarAdaptador();
         }
 
         /*
@@ -27,6 +27,7 @@ namespace Servicios_Reservados_2
         internal DataTable consultar(String consultaSQL)
         {
             dt = new DataTable();
+            iniciarAdaptador();
             adaptador.Open();
             OleDbDataAdapter od = new OleDbDataAdapter(consultaSQL, adaptador);
             od.Fill(dt);
@@ -42,6 +43,7 @@ namespace Servicios_Reservados_2
             String[] respuesta = new String[3];
             try
             {
+                iniciarAdaptador();
                 adaptador.Open();
                 OleDbCommand od = new OleDbCommand(consultaSQL, adaptador);
                 od.ExecuteNonQuery();
@@ -71,6 +73,11 @@ namespace Servicios_Reservados_2
                 }
             }
             return respuesta;
+
+        }
+        private void iniciarAdaptador()
+        {
+            adaptador = new OleDbConnection("Provider= MSDAORA;Data Source=10.1.4.93;User ID=servicios_reservados;Password=servicios;Unicode=True");
         }
     }
 }

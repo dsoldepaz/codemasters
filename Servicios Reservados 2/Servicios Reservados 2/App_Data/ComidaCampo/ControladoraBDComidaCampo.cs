@@ -146,6 +146,18 @@ namespace Servicios_Reservados_2
             }
             return respuesta;
         }
+        internal DataTable vecesConsumido(string idServ)
+        {
+            String consultaSQL = "select vecesconsumido from servicios_reservados.comida_campo where idcomidacampo ='" + idServ +  "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
 
+
+        internal void actualizarVecesConsumido(string idServicio, int vecesConsumido)
+        {
+            String consultaSQL = "update servicios_reservados.comida_campo set vecesconsumido= " + vecesConsumido + " where idcomidacampo ='"  + "'";
+            dt = adaptador.consultar(consultaSQL);
+        }
     }
 }

@@ -131,6 +131,10 @@ namespace Servicios_Reservados_2
 
  
             String[] error = controladora.agregarServicioExtra(nuevoServicio);// se le pide a la controladora que lo inserte
+                if("danger".Equals(error[0]))
+                {
+                    res = false;
+                }
             mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
             }
             return res;

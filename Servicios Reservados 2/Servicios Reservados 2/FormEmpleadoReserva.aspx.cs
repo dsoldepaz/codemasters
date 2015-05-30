@@ -166,13 +166,15 @@ namespace Servicios_Reservados_2
         protected void btnVer_Click(object sender, EventArgs e)
         {
             GridViewRow row = GridComidasReservadas.SelectedRow;
-            String tipo = row.Cells[1].Text;
+            String tipo = row.Cells[2].Text;
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de consulta
                 FormComidasEmpleado.idComida=Int32.Parse( row.Cells[1].Text);//saca el id de la comida seleccionada.
+                Debug.WriteLine(FormComidasEmpleado.idComida);
                 FormComidasEmpleado.modo = 0;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
-                Response.Redirect("FormComidasEmpleado");
+                FormComidasEmpleado.identificacionEmpleado = idEmpleado;
+                Response.Redirect("FormComidasEmpleado.aspx");
 
             }
             else
@@ -275,7 +277,7 @@ namespace Servicios_Reservados_2
             else
             {
                 comidaEmpleadoSeleccionado = controladora.consultarComida(Int32.Parse(GridComidasReservadas.SelectedRow.Cells[1].Text));
-                //seleccionado = controladora.crearServicio(idEmpleado, comidaEmpleadoSeleccionado.idComida, GridComidasReservadas.SelectedRow.Cells[3].Text, comidaEmpleadoSeleccionado.notas);
+                seleccionado = controladora.crearServicio(idEmpleado, ,comidaEmpleadoSeleccionado.idComida, GridComidasReservadas.SelectedRow.Cells[3].Text, comidaEmpleadoSeleccionado.notas);
             }
 
         }

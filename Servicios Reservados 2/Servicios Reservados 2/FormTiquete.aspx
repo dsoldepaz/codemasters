@@ -67,17 +67,20 @@
                     
                     <div class="well bs-component">
                         <legend style="color: #7BC143">Información de tiquetes activos</legend>
+
+                        <asp:Panel runat="server" DefaultButton="BotonAgregar">
                           <table>
                                 <tr>
                                     <td>Número:</td>
                                     <td>
-                                        <input class="textbox"  id="numTiquete" runat="server" />
+                                        <input class="textbox"  id="numTiquete" runat="server" required="required" title="Inserte un número de 4 digitos" pattern="^[0-9]{1,4}$" />
                                     </td>
                                     <td>                                       
-                                        <button type="button" class="btn btn-success" id="BotonAgregar" onserverclick="clickAgregar" runat="server">Agregar</button>
+                                        <asp:button  text="Agregar" class="btn btn-success" id="BotonAgregar" OnClick="clickAgregar" runat="server"/>                                         
                                     </td>
                                 </tr>
                             </table>
+                               </asp:Panel>
                         <table>
                             <tr>
                                 <td>

@@ -178,9 +178,9 @@ namespace Servicios_Reservados_2
             return controladoraBD.vecesConsumido(idServicio, idRes, fecha, hora);
         }
 
-        internal void actualizarVecesConsumido(string idServicio, int vecesConsumido, string idRes)
+        internal void actualizarVecesConsumido(string idServicio, int vecesConsumido, string idRes, string fecha, string hora)
         {
-            controladoraBD.actualizarVecesConsumido(idServicio, vecesConsumido, idRes);
+            controladoraBD.actualizarVecesConsumido(idServicio, vecesConsumido, idRes, fecha, hora);
         }
     }
 }
