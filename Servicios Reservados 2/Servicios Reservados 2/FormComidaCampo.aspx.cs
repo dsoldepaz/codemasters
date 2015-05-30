@@ -66,7 +66,7 @@ namespace Servicios_Reservados_2
                 radioMyM.Disabled = true;
                 radioOmelette.Disabled = true;
                 radioEnsaladaHuevo.Disabled = true;
-                chGalloPinto.Disabled = true;
+                //chGalloPinto.Disabled = true;
                 chEnsalada.Disabled = false;
                 chMayonesa.Disabled = false;
                 chConfites.Disabled = false;
@@ -103,7 +103,7 @@ namespace Servicios_Reservados_2
                 radioEnsaladaHuevo.Disabled = true;
                 radioAgua.Disabled = true;
                 radioJugo.Disabled = true;
-                chGalloPinto.Disabled = true;
+                //chGalloPinto.Disabled = true;
                 CheckboxBebida.Enabled = true;
                 checkO2.Enabled = true;
                 checkO1.Enabled = true;
@@ -134,7 +134,7 @@ namespace Servicios_Reservados_2
                 radioMyM.Disabled = true;
                 radioOmelette.Disabled = true;
                 radioEnsaladaHuevo.Disabled = true;
-                chGalloPinto.Disabled = true;
+                //chGalloPinto.Disabled = true;
                 chEnsalada.Disabled = true;
                 chHuevoDuro.Disabled = true;
                 chMayonesa.Disabled = true;
@@ -162,7 +162,7 @@ namespace Servicios_Reservados_2
             radioDesayuno.Checked = false;
             radioAlmuerzo.Checked = false;
             radioCena.Checked = false;
-            chGalloPinto.Checked = false;
+            //chGalloPinto.Checked = false;
             cbxHoraOpcion1.Items.Clear();
             cmbHoraSandwich.Items.Clear();
             cmbHoraGalloPinto.Items.Clear();
@@ -180,7 +180,7 @@ namespace Servicios_Reservados_2
             radioAtun.Checked = false;
             radioOmelette.Checked = false;
             radioEnsaladaHuevo.Checked = false;
-            chGalloPinto.Checked = false;
+            //chGalloPinto.Checked = false;
             cmbHoraSandwich.Items.Clear();
             cmbHoraGalloPinto.Items.Clear();
         }
@@ -200,7 +200,7 @@ namespace Servicios_Reservados_2
             radioMyM.Checked = false;
             radioOmelette.Checked = false;
             radioEnsaladaHuevo.Checked = false;
-            chGalloPinto.Checked = false;
+            //chGalloPinto.Checked = false;
             cmbHoraSandwich.Items.Clear();
             cbxHoraOpcion1.Items.Clear();
         }
@@ -308,7 +308,7 @@ namespace Servicios_Reservados_2
             {
                 checkO1.Checked = false;
             }
-            chGalloPinto.Disabled = false;
+            //chGalloPinto.Disabled = false;
             cmbHoraGalloPinto.Disabled = false;
                
         }
@@ -512,6 +512,7 @@ namespace Servicios_Reservados_2
                 }
                 else if (checkO3.Checked)
                 {
+                    //galloPinto
                     nuevaComidaCampo[5] = "5";
                     nuevaComidaCampo[6] = "";
                     nuevaComidaCampo[7] = "";
@@ -541,7 +542,7 @@ namespace Servicios_Reservados_2
                 }
                 nuevaComidaCampo[10] = txtPax.Value;
 
-                if (checkO1.Checked || checkO2.Checked || checkO3.Checked)
+                if ((checkO1.Checked && (radioDesayuno.Checked || radioAlmuerzo.Checked || radioCena.Checked)) || (checkO2.Checked && getTipoSandwich()!= "" && getPan() != "") || checkO3.Checked)
                 {
                     String[] error = controladora.agregarComidaCampo(nuevaComidaCampo, lista);// se le pide a la controladora que lo inserte
                     mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
@@ -549,6 +550,7 @@ namespace Servicios_Reservados_2
                 else
                 {
                     mostrarMensaje("danger", "Error:", "Debe seleccionar una opción");
+                    res = false;
                 }
             }
             return res;
@@ -782,7 +784,7 @@ namespace Servicios_Reservados_2
             else if (entidadConsultada.Opcion == 5)
             {
                 checkO3.Checked = true;
-                chGalloPinto.Checked = true;
+                //chGalloPinto.Checked = true;
                 cmbHoraGalloPinto.Items.Add(entidadConsultada.Hora);
             }
 
@@ -820,9 +822,9 @@ namespace Servicios_Reservados_2
                      radioOmelette.Disabled = false;
                      radioEnsaladaHuevo.Disabled = false;
                 }
-                else if(checkO3.Checked){
+               /* else if(checkO3.Checked){
                     chGalloPinto.Disabled = false;
-                }
+                }*/
                 if(CheckboxBebida.Checked){
                     radioAgua.Disabled = false;
                     radioJugo.Disabled = false;

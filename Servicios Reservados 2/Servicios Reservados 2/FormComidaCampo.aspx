@@ -33,7 +33,7 @@
 
                         <il class="itemFormulario">
                             Pax:
-                            <input id="txtPax" runat="server" required="required" title="Inserte un número" pattern="^[0-9]+$"/>
+                            <input style="width:50px" id="txtPax" runat="server" required="required" title="Inserte un número" pattern="^[0-9]+$"/>
                         </il>
                         <il class="itemFormulario">
                             <label class="labelfont" id="labelPago" runat="server">Tipo Pago:</label>
@@ -50,29 +50,30 @@
             <div class="well bs-component">
                 <fieldset id="Fieldset1" runat="server">
                     <table>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="checkO1" runat="server" OnCheckedChanged="checkedO1" AutoPostBack ="true"/>
-                        </td>
-                        <td>
-                            <h4>Opción #1 Remplezar por:</h4>
-                        </td>
-                    </tr>
-                </table>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
-                            <asp:RadioButton ID="radioDesayuno" runat="server" GroupName="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaD"/>Desayuno
-                            <asp:RadioButton ID="radioAlmuerzo" runat="server" GroupName="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaA"/>Almuerzo
-                            <asp:RadioButton ID="radioCena" runat="server" GroupName="opcion1" AutoPostBack ="true" OnCheckedChanged="cambiarFechaC"/>Cena
-                            
-                       </il>
-                        </ul>
-                    <ul>
-                         </li>
-                        <li class="itemContenedor">Hora:<select id="cbxHoraOpcion1" runat="server"></select>
-                        </li>
-                    </ul>
+                        <tr>
+                            <td>
+                                <asp:CheckBox ID="checkO1" runat="server" OnCheckedChanged="checkedO1" AutoPostBack="true" />
+                            </td>
+                            <td>
+                                <h4>Opción #1 Remplezar por:</h4>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td class="auto-style5">
+                                <asp:RadioButton ID="radioDesayuno" runat="server" GroupName="opcion1" AutoPostBack="true" OnCheckedChanged="cambiarFechaD" /></td><td class="auto-style4">Desayuno</td>
+                            <td class="auto-style5">
+                                <asp:RadioButton ID="radioAlmuerzo" runat="server" GroupName="opcion1" AutoPostBack="true" OnCheckedChanged="cambiarFechaA" /></td><td class="auto-style4">Almuerzo</td>
+                            <td class="auto-style5">
+                                <asp:RadioButton ID="radioCena" runat="server" GroupName="opcion1" AutoPostBack="true" OnCheckedChanged="cambiarFechaC" /></td><td class="auto-style4">Cena</td>
 
+                        </tr>
+                        <tr>
+                            <td>Hora:</td><td><select id="cbxHoraOpcion1" runat="server"></select>
+                            </td>
+                        </tr>
+                    </table>
                 </fieldset>
             </div>
 
@@ -80,140 +81,129 @@
                 <table>
                     <tr>
                         <td>
-                            <asp:CheckBox ID="checkO2" runat="server" OnCheckedChanged="checkedO2" AutoPostBack ="true"/>
+                            <asp:CheckBox ID="checkO2" runat="server" OnCheckedChanged="checkedO2" AutoPostBack="true" />
                         </td>
                         <td>
                             <h4>Opción #2 Sandwich [puede marcar dos opciones] </h4>
                         </td>
                     </tr>
-                    </table>
+                </table>
                 <fieldset id="fieldsetO2" runat="server">
+                                            <label>
+                            Seleccione tipo Pan</label>
                     <table>
-                       <caption>
-                                <label>
-                                Seleccionar tipo Pan</label></caption>
                         <tr>
-                                <td>
-                                    <input id="radioPanBlanco" runat="server" name="bread" on="" type="radio" value="panblanco">Pan blanco</td>
-                                    <td>
-                                        <input id="radioPanInt" runat="server" name="bread" type="radio" value="panintegral">Pan integral</td>
-                                    <td>
-                                        <input id="radioPanBollo" runat="server" name="bread" type="radio" value="panbollo">Pan bollo</td>
-                            </tr>
-                               </table>
+                            <td  class="auto-style5">
+                                <input id="radioPanBlanco" runat="server" name="bread" on="" type="radio" value="panblanco"></td><td class="auto-style4">Pan blanco</td>
+                            <td class="auto-style5">
+                                <input id="radioPanInt" runat="server" name="bread" type="radio" value="panintegral"></td><td class="auto-style4">Pan integral</td>
+                            <td class="auto-style5">
+                                <input id="radioPanBollo" runat="server" name="bread" type="radio" value="panbollo"></td><td class="auto-style4">Pan bollo</td>
+                        </tr>
+                    </table>
+                                            <label>
+                            Seleccione relleno</label>
                     <table>
-                            <caption>
-                                <label>
-                                Seleccionar relleno</label></caption>
-                                <tr>
-                                    <td>
-                                        <input id="radioJamon" runat="server" name="spreadoption" type="radio" value="jamon">Jamón</td>
-                                    <td>
-                                        <input id="radioAtun" runat="server" name="spreadoption" type="radio" value="atun">Atún
-                                       </td>
-                                        <td>
-                                            <input id="radioFrijoles" runat="server" name="spreadoption" type="radio" value="frijoles">Frijoles</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input id="radioMyM" runat="server" name="spreadoption" type="radio" value="mantequillamani">Mantequilla Maní y jalea</td>
-                                    <td>
-                                        <input id="radioOmelette" runat="server" name="spreadoption" type="radio" value="omelette">Omelette</td>
-                                    <td>
-                                        <input id="radioEnsaladaHuevo" runat="server" name="spreadoption" type="radio" value="ensaladahuevo">Ensalada de huevo</td>
-                                </tr>
-                                <tr>
-                                    <td>Hora:<select id="cmbHoraSandwich" runat="server">
-                                        </select> </td>
-                                </tr>
-                        </table>
+
+                        <tr>
+                            <td class="auto-style5">
+                                <input id="radioJamon" runat="server" name="spreadoption" type="radio" value="jamon"></td><td class="auto-style4">Jamón</td>
+                            <td class="auto-style5">
+                                <input id="radioAtun" runat="server" name="spreadoption" type="radio" value="atun"></td><td class="auto-style4">Atún
+                            </td>
+                            <td  class="auto-style5">
+                                <input id="radioFrijoles" runat="server" name="spreadoption" type="radio" value="frijoles"></td><td class="auto-style4">Frijoles</td>
+                        </tr>
+                        <tr>
+                            <td  class="auto-style5">
+                                <input id="radioMyM" runat="server" name="spreadoption" type="radio" value="mantequillamani"></td><td class="auto-style4">Mantequilla Maní y jalea</td>
+                            <td>
+                                <input id="radioOmelette" runat="server" name="spreadoption" type="radio" value="omelette"></td><td class="auto-style4">Omelette</td>
+                            <td  class="auto-style5">
+                                <input id="radioEnsaladaHuevo" runat="server" name="spreadoption" type="radio" value="ensaladahuevo"></td><td class="auto-style4">Ensalada de huevo</td>
+                        </tr>
+                        <tr>
+                             <td>Hora:</td><td><select id="cmbHoraSandwich" runat="server"></select>
+                            </td>
+                        </tr>
+                    </table>
                 </fieldset>
             </div>
             <div class="well bs-component">
                 <fieldset id="opcion2Fieldset" runat="server">
                     <table>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="checkO3" runat="server" OnCheckedChanged="checkedO3" AutoPostBack ="true"/> 
-                        </td>
-                        <td>
-                            <h4>Opción #3 Debe aportar su propio recipiente</h4>
-                        </td>
-                    </tr>
-                </table>
-                    
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
-                            <input type="checkbox" name="pinto" value="gallopinto" id="chGalloPinto" runat="server">Gallo pinto
-                       </il>
-                    </ul>
-                      <ul>
-                         </li>
-                        <li class="itemContenedor">Hora:<select id="cmbHoraGalloPinto" runat="server"></select>
-                        </li>
-                    </ul>
+                        <tr>
+                            <td>
+                                <asp:CheckBox ID="checkO3" runat="server" OnCheckedChanged="checkedO3" AutoPostBack="true" />
+                            </td>
+                            <td>
+                                <h4>Opción #3 Gallo Pinto [Debe aportar su propio recipiente]</h4>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr><td>Hora:<select id="cmbHoraGalloPinto" runat="server"></select></td></tr>
+                    </table>
                 </fieldset>
             </div>
             <div class="well bs-component">
                 <fieldset>
                     <legend>Adicional</legend>
                     <table>
-                   <tr>
-                        <td>
-                            <input type="checkbox" name="adicional" value="ensalada" id="chEnsalada" runat="server">Ensalada
-                       </td>
-                        <td>
-                           <input type="checkbox" name="adicional" value="mayonesa" id="chMayonesa" runat="server">Mayonesa
-                       </td>
-                        <td>
-                             <input type="checkbox" name="adicional" value="confites" id="chConfites" runat="server">Confites
-                       </td>
-                        <td>
-                          <input type="checkbox" name="adicional" value="frutas" id="chFrutas" runat="server">Frutas
-                    </td>
-                       </tr>
                         <tr>
-                        <td>
-                          <input type="checkbox" name="adicional" value="salsatomate" id="chSalsaTomate" runat="server">Salsa de tomate 
-                       </td>
-                        <td>
-                            <input type="checkbox" name="adicional" value="huevos" id="chHuevoDuro" runat="server">Huevos duros 
-                       </td>
-                        <td>
-                            <input type="checkbox" name="adicional" value="galletas" id="chGalletas" runat="server">Galletas
-                       </td>
-                    <td>
-                            <input type="checkbox" name="adicional" value="platanos" id="chPlatanos" runat="server">Platanos
-                       </il>
-                    </td>
-                   </table>
+                            <td class="auto-style5">
+                                <input type="checkbox" name="adicional" value="ensalada" id="chEnsalada" runat="server"></td><td class="auto-style4">Ensalada
+                            </td>
+                            <td class="auto-style5">
+                                <input type="checkbox" name="adicional" value="mayonesa" id="chMayonesa" runat="server"></td><td class="auto-style4">Mayonesa
+                            </td>
+                            <td class="auto-style5">
+                                <input type="checkbox" name="adicional" value="confites" id="chConfites" runat="server"></td><td class="auto-style4">Confites
+                            </td>
+                            <td class="auto-style5">
+                                <input type="checkbox" name="adicional" value="frutas" id="chFrutas" runat="server"></td><td class="auto-style4">Frutas
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style5">
+                                <input type="checkbox" name="adicional" value="salsatomate" id="chSalsaTomate" runat="server"></td><td class="auto-style4">Salsa de tomate 
+                            </td>
+                            <td class="auto-style5">
+                                <input type="checkbox" name="adicional" value="huevos" id="chHuevoDuro" runat="server"></td><td class="auto-style4">Huevos duros 
+                            </td>
+                            <td class="auto-style5">
+                                <input type="checkbox" name="adicional" value="galletas" id="chGalletas" runat="server"></td><td class="auto-style4">Galletas
+                            </td>
+                            <td class="auto-style5">
+                                <input type="checkbox" name="adicional" value="platanos" id="chPlatanos" runat="server"></td><td class="auto-style4">Platanos
+                            </td>
+                    </table>
                 </fieldset>
             </div>
             <div class="well bs-component">
                 <fieldset>
-                     <table>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="CheckboxBebida" runat="server" OnCheckedChanged="checkbebida" AutoPostBack ="true"/>
-                        </td>
-                        <td>
-                            <h4>Escoja la opción para bebida</h4>
-                        </td>
-                    </tr>
-                </table>
-                    
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
-                            <input type="radio" name="drink" value="agua" id="radioAgua" runat="server">Agua
-                       </il>
-                        <il class="itemFormulario">
-                           <input type="radio" name="drink" value="jugo" id="radioJugo" runat="server">Jugo
-                        </il>
-                    </ul>
+                    <table>
+                        <tr>
+                            <td>
+                                <asp:CheckBox ID="CheckboxBebida" runat="server" OnCheckedChanged="checkbebida" AutoPostBack="true" />
+                            </td>
+                            <td>
+                                <h4>Escoja la opción para bebida</h4>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td class="auto-style5">
+                                <input type="radio" name="drink" value="agua" id="radioAgua" runat="server"></td><td class="auto-style4">Agua</td>
+                            <td class="auto-style5">
+                                <input type="radio" name="drink" value="jugo" id="radioJugo" runat="server"></td><td class="auto-style4">Jugo</td>
+                        </tr>
+                    </table>
                 </fieldset>
                 <button class="btn btn-danger" name="cancel" type="button" runat="server" onserverclick="clickCancelar">Cancelar</button>
-                <input class="btn btn-success" id="btnAgregar" value="Aceptar" type="submit" runat="server" onserverclick="clickAceptar"/>
-                
+                <input class="btn btn-success" id="btnAgregar" value="Aceptar" type="submit" runat="server" onserverclick="clickAceptar" />
+
             </div>
 
         </ContentTemplate>
@@ -222,9 +212,24 @@
 
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">
+
     <style type="text/css">
         .auto-style1 {
-            width: 242px;
+            width: 30px;
+        }
+        .auto-style2 {
+            width: 16px;
+        }
+        .auto-style3 {
+            width: 46px;
+        }
+        .auto-style4 {
+            height: 36px;
+        }
+        .auto-style5 {
+            width: 46px;
+            height: 36px;
         }
     </style>
+
 </asp:Content>

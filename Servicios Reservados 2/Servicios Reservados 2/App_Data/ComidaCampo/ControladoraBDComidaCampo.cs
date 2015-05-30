@@ -27,7 +27,7 @@ namespace Servicios_Reservados_2
             {
                 String consultaSQL = "insert into servicios_reservados.comida_campo values('" + entidad.IdComidaCampo + "','" + entidad.IdEmpleado + "','" +
                     entidad.IdReservacion + "','" + entidad.Fecha + "','" + entidad.Estado + "'," + entidad.Opcion + ",'" + entidad.Relleno + "','" + entidad.Pan + "','" 
-                    + entidad.Bebida + "','" + entidad.TipoPago + "'," + entidad.Pax + ",'" + entidad.Hora + "')";
+                    + entidad.Bebida + "','" + entidad.TipoPago + "'," + entidad.Pax + ",'" + entidad.Hora + "', 0)";
                 adaptador.insertar(consultaSQL);
                 List<String> lista = entidad.Adicionales;
                 int cantAdicionales = lista.Count;
@@ -156,7 +156,7 @@ namespace Servicios_Reservados_2
 
         internal void actualizarVecesConsumido(string idServicio, int vecesConsumido)
         {
-            String consultaSQL = "update servicios_reservados.comida_campo set vecesconsumido= " + vecesConsumido + " where idcomidacampo ='"  + "'";
+            String consultaSQL = "update servicios_reservados.comida_campo set vecesconsumido= " + vecesConsumido + " where idcomidacampo ='" + idServicio + "'";
             dt = adaptador.consultar(consultaSQL);
         }
     }
