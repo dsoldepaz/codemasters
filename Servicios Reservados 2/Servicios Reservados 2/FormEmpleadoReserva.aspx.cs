@@ -275,7 +275,7 @@ namespace Servicios_Reservados_2
             else
             {
                 comidaEmpleadoSeleccionado = controladora.consultarComida(Int32.Parse(GridComidasReservadas.SelectedRow.Cells[1].Text));
-                //seleccionado = controladora.crearServicio(idEmpleado, comidaEmpleadoSeleccionado.idComida, GridComidasReservadas.SelectedRow.Cells[3].Text, comidaEmpleadoSeleccionado.notas);
+                seleccionado = controladora.crearServicio(idEmpleado, ,comidaEmpleadoSeleccionado.idComida, GridComidasReservadas.SelectedRow.Cells[3].Text, comidaEmpleadoSeleccionado.notas);
             }
 
         }

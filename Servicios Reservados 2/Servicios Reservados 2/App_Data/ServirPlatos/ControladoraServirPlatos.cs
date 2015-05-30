@@ -63,7 +63,7 @@ namespace Servicios_Reservados_2
                 else if ("empleado".Equals(tipoSolicitante) && "Comida regular".Equals(categoria))
                 {
                     EntidadComidaEmpleado comidaEmp= controladoraComidaEmp.consultar(int.Parse(idServicio));
-                    //notas = comidaEmp.notas;
+                    notas = comidaEmp.Notas;                   
 
                 }
                 else if ("reservacion".Equals(tipoSolicitante) && "Paquete".Equals(categoria))
@@ -75,7 +75,7 @@ namespace Servicios_Reservados_2
                     nombreSolicitante = paquete.Rows[0][4].ToString();
 
                 }
-                else if ("reservacion".Equals(tipoSolicitante) && "Comida extra".Equals(categoria))
+                else if ("reservacion".Equals(tipoSolicitante) && "Comida Extra".Equals(categoria))
                 {
                     EntidadComidaExtra comidaExtra = controladoraComidaExtra.guardarServicioSeleccionado(idSolicitante, idServicio, fecha, hora);
                     notas = comidaExtra.Descripcion;                    
@@ -124,11 +124,11 @@ namespace Servicios_Reservados_2
                     int vecesConsumido = int.Parse(paquete.Rows[0][0].ToString())+1;                   
                     controladoraServicios.actualizarVecesConsumidoPaquete(seleccionado.IdServicio, vecesConsumido);
                 }
-                else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida extra".Equals(seleccionado.Categoria))
+                else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida Extra".Equals(seleccionado.Categoria))
                 {
-                   /* DataTable comidaExtra = controladoraComidaExtra.solicitarVecesConsumido(seleccionado.IdServicio, seleccionado.Solicitante, seleccionado.Fecha, seleccionado.Hora);
+                    DataTable comidaExtra = controladoraComidaExtra.solicitarVecesConsumido(seleccionado.IdServicio, seleccionado.Solicitante, seleccionado.Fecha, seleccionado.Hora);
                     int vecesConsumido = int.Parse(comidaExtra.Rows[0][0].ToString()) + 1;
-                    controladoraComidaExtra.actualizarVecesConsumido(seleccionado.IdServicio, vecesConsumido, seleccionado.Solicitante);*/
+                    controladoraComidaExtra.actualizarVecesConsumido(seleccionado.IdServicio, vecesConsumido, seleccionado.Solicitante, seleccionado.Fecha, seleccionado.Hora);
                 }
                 else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida Campo".Equals(seleccionado.Categoria))
                 {
