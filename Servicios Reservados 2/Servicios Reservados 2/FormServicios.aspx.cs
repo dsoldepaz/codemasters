@@ -265,7 +265,7 @@ namespace Servicios_Reservados_2
                 btnConsultar.Disabled = false;
                 btnModificar.Disabled = false;
             }
-            else if ("Paquete reservacion".Equals(opcion))
+            else if ("Paquete".Equals(opcion))
             {
                 btnActivarTiquete.Disabled = false;
                 btnCancelar.Disabled = true;
@@ -333,10 +333,10 @@ namespace Servicios_Reservados_2
             String[] mensaje;
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
-                comidaExtraConsultada = controladora.seleccionarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text);
-                if (comidaExtraConsultada.Consumido == "Activo")
+                
+                if ("Activo".Equals(seleccionado.Estado))
                 {
-                    mensaje = controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], comidaExtraConsultada.Fecha, comidaExtraConsultada.Hora);
+                    mensaje = controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], seleccionado.Fecha, seleccionado.Hora);
                     mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
                 }
                 else
@@ -346,8 +346,7 @@ namespace Servicios_Reservados_2
             }
             else
             {
-                comidaCampoConsultada = controladora.seleccionarComidaCampo(ids[0], idServ[GridServicios.SelectedIndex]);
-                if (comidaCampoConsultada.Estado == "Activo")
+                if ("Activo".Equals(seleccionado.Estado))
                 {
                    mensaje= controladora.cancelarComidaCampo(idServ[GridServicios.SelectedIndex]);
                    mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);

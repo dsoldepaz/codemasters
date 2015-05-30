@@ -65,33 +65,10 @@
 
             </fieldset>
 
-
-
         </ContentTemplate>
     </asp:UpdatePanel>
 
-    <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Ventana de Confirmación</h4>
-                </div>
-                <div class="modal-body">
-                    ¿Está seguro que desea eliminar?               
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Eliminar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript">
-        function openModal() {
-            $('#modalConfirmacion').modal('show');
-        }
-    </script>
+   
 
 </asp:Content>
 

@@ -21,6 +21,7 @@
                         <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
                 </div>
             </a>
+
             <div class="well bs-component">
                 <fieldset>
                     <legend style="color: #7BC143">Información de reservación</legend>
@@ -100,6 +101,24 @@
 
                 </fieldset>
             </div>
+
+            <!-->MODAL<-->
+ <div class="modal fade" id="modalCancelar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Ventana de Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que desea cancelar?               
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" runat="server" onserverclick="clickEliminarServicio">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
         </ContentTemplate>
