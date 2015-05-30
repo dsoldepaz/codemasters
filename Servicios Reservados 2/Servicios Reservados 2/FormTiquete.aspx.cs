@@ -63,7 +63,7 @@ namespace Servicios_Reservados_2
         {
             DataTable tabla = crearTablaTiquetes();
             Object[] datos = new Object[2];
-            DataTable tiquetes = controladora.solicitarTiquetes(servicio.IdServicio);// se consultan todos
+            DataTable tiquetes = controladora.solicitarTiquetes(servicio.IdServicio, servicio.IdSolicitante, servicio.Fecha, servicio.Hora);// se consultan todos
             if (tiquetes.Rows.Count > 0)
             {
                 foreach (DataRow fila in tiquetes.Rows)

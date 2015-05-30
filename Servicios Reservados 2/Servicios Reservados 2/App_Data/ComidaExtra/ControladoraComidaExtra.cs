@@ -173,9 +173,9 @@ namespace Servicios_Reservados_2
 
 
 
-        internal DataTable solicitarVecesConsumido(string idServicio, string idRes)
+        internal DataTable solicitarVecesConsumido(string idServicio, string idRes, string fecha, string hora)
         {
-            return controladoraBD.vecesConsumido(idServicio, idRes);
+            return controladoraBD.vecesConsumido(idServicio, idRes, fecha, hora);
         }
 
         internal void actualizarVecesConsumido(string idServicio, int vecesConsumido, string idRes)

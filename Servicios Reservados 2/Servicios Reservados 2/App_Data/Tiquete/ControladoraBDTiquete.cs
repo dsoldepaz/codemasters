@@ -9,14 +9,14 @@ using System.Diagnostics;
 namespace Servicios_Reservados_2
 {
     public class ControladoraBDTiquete
-    {         
+    {
         private AdaptadorBD adaptador;
         DataTable dt;
-    /*
-     * Requiere: N/A
-     * Efectúa : inicializa las variables globales de la clase
-     * retorna : N/A
-     */
+        /*
+         * Requiere: N/A
+         * Efectúa : inicializa las variables globales de la clase
+         * retorna : N/A
+         */
         public ControladoraBDTiquete()
         {
             adaptador = new AdaptadorBD();
@@ -27,7 +27,7 @@ namespace Servicios_Reservados_2
          * Efectúa : Obtiene la fecha actual. Crea la consulta para obtener las cosultas activas con la fecha actual. Guarda en una tabla de datos el resultado a la consulta al adaptador.
          * Retorna : la tabla de datos con el resultado de la consulta.
          */
-            internal DataTable solicitarEstaciones()
+        internal DataTable solicitarEstaciones()
         {
             String consultaSQL = "select  nombre from reservas.estacion";
             dt = adaptador.consultar(consultaSQL);
@@ -49,22 +49,22 @@ namespace Servicios_Reservados_2
 
 
 
-        internal DataTable obtenerTiquetes(string idServ)
+        internal DataTable obtenerTiquetes(string idServ, string idSolicitante, string fecha, string hora)
         {
-            String consultaSQL = "select numero, consumido FROM tiquete WHERE idServicio = '" + idServ + "'";
+            String consultaSQL = "select numero, consumido FROM tiquete WHERE idServicio = '" + idServ + "' and idSolicitante='" + idSolicitante + "' and fecha='" + fecha + "' and hora='" + hora + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
 
-        internal void insertarTiquetes(string idServ, int numTiquete, String categoria, String idSolicitante, String tipoSolicitante)
+        internal void insertarTiquetes(string idServ, int numTiquete, String categoria, String idSolicitante, String tipoSolicitante, String fecha, String hora)
         {
-            String consultaSQL = "insert into tiquete values('" + numTiquete + "','" + idServ + "', 0,'" + categoria + "','" + idSolicitante + "','" + tipoSolicitante + "')";
+            String consultaSQL = "insert into tiquete values('" + numTiquete + "','" + idServ + "', 0,'" + categoria + "','" + idSolicitante + "','" + tipoSolicitante + "','" + fecha + "','" + hora + "')";
             adaptador.insertar(consultaSQL);
         }
 
         internal void eliminarTiquete(int numTiqueteSeleccionado)
         {
-            String consultaSQL = "delete FROM tiquete WHERE numero="+ numTiqueteSeleccionado.ToString();
+            String consultaSQL = "delete FROM tiquete WHERE numero=" + numTiqueteSeleccionado.ToString();
             adaptador.insertar(consultaSQL);
 
         }

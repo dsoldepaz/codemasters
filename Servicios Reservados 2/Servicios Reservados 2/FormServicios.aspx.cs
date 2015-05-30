@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Diagnostics;
 using System.Web.UI.WebControls;
 using System.Collections;
+using System.IO;
 
 namespace Servicios_Reservados_2
 {
@@ -86,8 +87,6 @@ namespace Servicios_Reservados_2
         void llenarGridServicios()
         {
             DataTable tabla = crearTablaServicios();
-            //   DataTable tablaCampo = crearTablaComidaCampo();
-
             try
             {
 
@@ -106,7 +105,7 @@ namespace Servicios_Reservados_2
                     {
                         ids[i] = controladora.idSelected();// guardar el id para su posterior consulta
                         idServ[i] = fila[0].ToString();
-                        datos[0] = "Paquete reservación";
+                        datos[0] = "Paquete";
                         datos[1] = fila[1].ToString();
                         datos[2] = "Alimentación incluída en el paquete de reservación";
                         datos[3] = "-";
@@ -251,18 +250,22 @@ namespace Servicios_Reservados_2
          * Modifica: NA
          */
         protected void seleccionarServicio(object sender, EventArgs e)
-        {
-            //seleccionar bien
-            seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text);
-            String opcion = GridServicios.SelectedRow.Cells[1].Text;
-            if (opcion == "Incluido en Paquete")
+        {         
+            // Decode the encoded string.
+            StringWriter myWriter = new StringWriter();
+            HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[1].Text, myWriter);
+            String opcion = myWriter.ToString();
+
+            seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text, opcion);
+            
+            if ("Incluido en Paquete".Equals(opcion))
             {
                 btnActivarTiquete.Disabled = true;
                 btnCancelar.Disabled = false;
                 btnConsultar.Disabled = false;
                 btnModificar.Disabled = false;
             }
-            else if (opcion == "Paquete reservaci&#243;n")
+            else if ("Paquete reservacion".Equals(opcion))
             {
                 btnActivarTiquete.Disabled = false;
                 btnCancelar.Disabled = true;
