@@ -82,7 +82,7 @@
                     <div class="well bs-component" style="background-color: white">
                         <table>
                             <tr>
-                                <td style="width: 50%">
+                                <td>
                                     <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarServicio">
                                         <SelectedRowStyle BackColor="#7BC143" />
                                     </asp:GridView>
