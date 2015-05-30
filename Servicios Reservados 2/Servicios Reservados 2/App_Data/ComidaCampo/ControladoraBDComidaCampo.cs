@@ -156,7 +156,7 @@ namespace Servicios_Reservados_2
 
         internal void actualizarVecesConsumido(string idServicio, int vecesConsumido)
         {
-            String consultaSQL = "update servicios_reservados.comida_campo set vecesconsumido= " + vecesConsumido + " where idcomidacampo ='"  + "'";
+            String consultaSQL = "update servicios_reservados.comida_campo set vecesconsumido= " + vecesConsumido + " where idcomidacampo ='" + idServicio + "'";
             dt = adaptador.consultar(consultaSQL);
         }
     }

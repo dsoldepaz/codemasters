@@ -54,7 +54,7 @@ namespace Servicios_Reservados_2
                 String estacion = "No disponible";
                 String nombreSolicitante="No disponible";
 
-                if ("empleado".Equals(tipoSolicitante) && "Comida Campo".Equals(categoria))
+                if ("empleado".Equals(tipoSolicitante) && "Comida de campo".Equals(categoria))
                 {
                     EntidadEmpleado empleado= controladoraComidaEmp.getInformacionDelEmpleado(idSolicitante);
                     nombreSolicitante = empleado.Nombre +" "+ empleado.Apellido;
@@ -112,7 +112,7 @@ namespace Servicios_Reservados_2
         {
             int vecesConsumidoTiquete = seleccionado.Consumido + 1;
             controladoraBD.servirTiquete(seleccionado.Numero, vecesConsumidoTiquete);
-            if ("empleado".Equals(seleccionado.TipoSolicitante) && "Comida Campo".Equals(seleccionado.Categoria))
+            if ("empleado".Equals(seleccionado.TipoSolicitante) && "Comida de campo".Equals(seleccionado.Categoria))
                 {
                     DataTable comidaCampoEmp = controladoraComidaCampo.solicitarVecesConsumido(seleccionado.IdServicio);
                     int vecesConsumido = int.Parse(comidaCampoEmp.Rows[0][0].ToString()) + 1;
