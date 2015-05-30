@@ -59,6 +59,7 @@ namespace Servicios_Reservados_2
             this.turnos[1] = turnos[1];
             this.turnos[2] = turnos[2];
             this.pagado = pagado;
+            this.notas = notas;
         }
 
     }

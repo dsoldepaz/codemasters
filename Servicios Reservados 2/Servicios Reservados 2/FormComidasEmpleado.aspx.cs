@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Servicios_Reservados_2;
 using System.Collections;
 using System.Data;
+using System.Diagnostics;
 
 namespace Servicios_Reservados_2
 {
@@ -18,7 +19,6 @@ namespace Servicios_Reservados_2
         private EntidadComidaEmpleado seleccionada;
         internal static int modo = 0;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
         internal static int idComida = -1;
-        private DateTime fechaElegida;
         private ControladoraComidaEmpleado controladora = new ControladoraComidaEmpleado();
         /*
          * Requiere: Parametros de eventos de la GUI
@@ -38,30 +38,36 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
+
+                Debug.WriteLine("iniciando");
                 arrancar();
             }
         }
         private void arrancar()
         {
+            Debug.WriteLine("iniciando empleado");
             iniciarEmpleado();
-
+            Debug.WriteLine("poniendo modo");
             ponerModo();
         }
 
         private void ponerModo()
         {
+            ContenedorManejoDeHorario.Visible = true;
+            Debug.WriteLine("Modo: "+modo);
+
             switch (modo)//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
             {
                 case 0: consultar();
                     break;
-                case 1: ContenedorManejoDeHorario.Visible = true;
-                    GridFechasReservadas.Visible = true;           
+                case 1: GridFechasReservadas.Visible = true;
                     break;
                 case 2: consultar();
-                    modificarReservacion();
                     break;
                 case 3: consultar();
                     cancelar();
+                    break;
+                default: bloquearInterfaz();
                     break;
             }
         }
@@ -89,34 +95,7 @@ namespace Servicios_Reservados_2
             Session["SelectedDates"] = list;
         }
 
-        /*
-         * Requiere: Parametros de eventos de la GUI
-         * Efectua : Carga las fechas seleccionadas en el calendario una por una.
-         * Retorna : N/A
-         */
-        protected void fechaDeEntradaCalendario_SelectionChanged(object sender, EventArgs e)
-        {
-            if (Session["SelectedDates"] != null)
-            {
-                List<DateTime> newList = (List<DateTime>)Session["SelectedDates"];
-                foreach (DateTime dt in newList)
-                {
-                    if (dt.Date > System.DateTime.Today.Date)
-                    {
-                       /* if (!fechaDeEntradaCalendario.SelectedDates.Contains(dt))
-                        {
-                            fechaDeEntradaCalendario.SelectedDates.Add(dt);
-                        }
-                        else
-                        {
-                            fechaDeEntradaCalendario.SelectedDates.Remove(dt);
 
-                        }*/
-                    }
-                    
-                }
-            }
-        }
 
         /*
          * Requiere: Parametros de eventos de la GUI
@@ -201,8 +180,8 @@ namespace Servicios_Reservados_2
             Turnos[0] = (this.checkboxDesayuno.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
             Turnos[1] = (this.checkboxAlmuerzo.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
             Turnos[2] = (this.checkboxCena.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
-            String[] resultado = controladora.agregar(empleadoSeleccionado.Id, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
-            modo = 0;
+            String[] resultado = controladora.agregar(identificacionEmpleado, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
+            modo = 5;
             ponerModo();
         }
         /*
@@ -254,13 +233,51 @@ namespace Servicios_Reservados_2
             seleccionada = controladora.consultar(idComida);
             list = seleccionada.Fechas;
             notas.Value = seleccionada.Notas;
+            Debug.WriteLine("notas: "+seleccionada.Notas);
             this.checkboxDesayuno.Checked = (seleccionada.Turnos[0] == 'R' || seleccionada.Turnos[0] == 'C');
             this.checkboxDesayuno.Disabled = (seleccionada.Turnos[0] == 'C');
             this.checkboxAlmuerzo.Checked = (seleccionada.Turnos[1] == 'R' || seleccionada.Turnos[1] == 'C');
-            this.checkboxAlmuerzo.Disabled = (seleccionada.Turnos[1] == 'C');
+            this.checkboxAlmuerzo.Disabled = (seleccionada.Turnos[2] == 'C');
             this.checkboxCena.Checked = (seleccionada.Turnos[2] == 'R' || seleccionada.Turnos[2] == 'C');
             this.checkboxCena.Disabled = (seleccionada.Turnos[2] == 'C');
             tipodePago.SelectedIndex = (seleccionada.Pagado) ? 1 : 2;
+            this.fecha.Value = String.Format("{0:yyyy-MM-dd}", list[0]);
+            bloquearInterfaz();
+
+        }
+
+        private void bloquearInterfaz()
+        {
+           switch (modo){//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+               case 1:    this.fecha.Disabled = false;
+                           this.btnFecha.Disabled = false;
+                           this.notas.Disabled = false;
+                           this.checkboxAlmuerzo.Disabled = false;
+                           this.checkboxCena.Disabled = false;
+                           this.checkboxDesayuno.Disabled = false;
+                           this.tipodePago.Disabled = false;
+                           this.btnAceptar.Disabled = false;
+                           break;
+               case 2:     this.fecha.Disabled = true;
+                           this.btnFecha.Disabled = true;
+                           this.notas.Disabled = false;
+                           this.tipodePago.Disabled = false;
+                           this.btnAceptar.Disabled = false;
+                           this.checkboxCena.Disabled = (seleccionada.Turnos[2] == 'C');
+                           this.checkboxDesayuno.Disabled = (seleccionada.Turnos[0] == 'C');
+                           this.checkboxAlmuerzo.Disabled = (seleccionada.Turnos[2] == 'C');     
+                           break;     
+               default :this.fecha.Disabled = true;
+                        this.btnFecha.Disabled = true;
+                        this.notas.Disabled = true;
+                        this.checkboxAlmuerzo.Disabled = true;
+                        this.checkboxCena.Disabled = true;
+                        this.checkboxDesayuno.Disabled = true;
+                        this.tipodePago.Disabled = true;
+                        this.btnAceptar.Disabled = true;
+               break;
+                
+           }
 
         }
         /*
@@ -276,6 +293,8 @@ namespace Servicios_Reservados_2
                 {
                     empleadoSeleccionado = controladora.getInformacionDelEmpleado(identificacionEmpleado);
                     lblEmpleado.InnerText = empleadoSeleccionado.Id + "-" + empleadoSeleccionado.Nombre + " " + empleadoSeleccionado.Apellido;
+                }else{
+                    Debug.WriteLine("oops");
                 }
                 
             }
