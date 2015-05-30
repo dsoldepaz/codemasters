@@ -16,6 +16,7 @@ namespace Servicios_Reservados_2
         private static ControladoraComidaExtra controladoraComidaExtra;
         private static ControladoraReservaciones controladoraReservaciones;
         private static ControladoraServicios controladoraServicios;
+        private static ControladoraComidaCampo controladoraComidaCampo;
         /*
          * Requiere: N/A
          * Efectúa : Inicializa las variables globales de la clase. 
@@ -29,6 +30,7 @@ namespace Servicios_Reservados_2
             controladoraReservaciones = new ControladoraReservaciones();
             controladoraComidaEmp = new ControladoraComidaEmpleado();
             controladoraEmp = new ControladoraEmpleado();
+            controladoraComidaCampo = new ControladoraComidaCampo();
         }
         /*
          * Requiere: N/A
@@ -76,15 +78,17 @@ namespace Servicios_Reservados_2
                 else if ("reservacion".Equals(tipoSolicitante) && "Comida extra".Equals(categoria))
                 {
                     EntidadComidaExtra comidaExtra = controladoraComidaExtra.guardarServicioSeleccionado(idSolicitante, idServicio, fecha, hora);
-                    notas = comidaExtra.Descripcion;
+                    notas = comidaExtra.Descripcion;                    
                     DataTable servicio = controladoraReservaciones.solicitarInfo(idSolicitante);
                     anfitriona = servicio.Rows[0][2].ToString();
                     estacion = servicio.Rows[0][3].ToString();
                     nombreSolicitante = servicio.Rows[0][4].ToString();
                     
                 }
-                else if ("reservacion".Equals(tipoSolicitante) && "Comida campo".Equals(categoria))
-                {                    
+                else if ("reservacion".Equals(tipoSolicitante) && "Comida Campo".Equals(categoria))
+                {
+                    EntidadComidaCampo comidaCampo = controladoraComidaCampo.guardarComidaSeleccionada(idSolicitante,idServicio);
+                    
                     DataTable servicio = controladoraReservaciones.solicitarInfo(idSolicitante);
                     anfitriona = servicio.Rows[0][2].ToString();
                     estacion = servicio.Rows[0][3].ToString();
@@ -122,13 +126,15 @@ namespace Servicios_Reservados_2
                 }
                 else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida extra".Equals(seleccionado.Categoria))
                 {
-                    DataTable comidaExtra = controladoraComidaExtra.solicitarVecesConsumido(seleccionado.IdServicio, seleccionado.Solicitante, seleccionado.Fecha, seleccionado.Hora);
+                   /* DataTable comidaExtra = controladoraComidaExtra.solicitarVecesConsumido(seleccionado.IdServicio, seleccionado.Solicitante, seleccionado.Fecha, seleccionado.Hora);
                     int vecesConsumido = int.Parse(comidaExtra.Rows[0][0].ToString()) + 1;
-                    controladoraComidaExtra.actualizarVecesConsumido(seleccionado.IdServicio, vecesConsumido, seleccionado.Solicitante);
+                    controladoraComidaExtra.actualizarVecesConsumido(seleccionado.IdServicio, vecesConsumido, seleccionado.Solicitante);*/
                 }
-                else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida campo".Equals(seleccionado.Categoria))
+                else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida Campo".Equals(seleccionado.Categoria))
                 {
-                    //
+                    DataTable comidaCampoRes = controladoraComidaCampo.solicitarVecesConsumido(seleccionado.IdServicio);
+                    int vecesConsumido = int.Parse(comidaCampoRes.Rows[0][0].ToString()) + 1;
+                    controladoraComidaCampo.actualizarVecesConsumido(seleccionado.IdServicio, vecesConsumido);
                 }
 
         }

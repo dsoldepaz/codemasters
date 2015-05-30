@@ -86,55 +86,47 @@
                             <h4>Opción #2 Sandwich [puede marcar dos opciones] </h4>
                         </td>
                     </tr>
-                </table>
+                    </table>
                 <fieldset id="fieldsetO2" runat="server">
-
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
-                            <input type="radio" name="bread" value="panblanco" runat="server" id="radioPanBlanco" on>Pan blanco
-                       </il>
-                        <il class="itemFormulario">
-                            <input type="radio" name="bread" value="panintegral" runat="server" id="radioPanInt">Pan integral
-                        </il>
-                        <il class="itemFormulario">
-                          <input type="radio" name="bread" value="panbollo" runat="server" id="radioPanBollo">Pan bollo
-                         </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
-                            <input type="radio" name="spreadoption" value="jamon" id="radioJamon" runat="server">Jamón
-                       </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
-                            <input type="radio" name="spreadoption" value="atun" id="radioAtun" runat="server">Atún 
-                       </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
-                            <input type="radio" name="spreadoption" value="frijoles" id="radioFrijoles" runat="server">Frijoles
-                       </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
-                           <input type="radio" name="spreadoption" value="mantequillamani" id="radioMyM" runat="server">Mantequilla Maní y jalea 
-                       </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
-                           <input type="radio" name="spreadoption" value="omelette" id="radioOmelette" runat="server">Omelette 
-                       </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
-                           <input type="radio" name="spreadoption" value="ensaladahuevo" id="radioEnsaladaHuevo" runat="server">Ensalada de huevo 	
-                       </il>
-                    </ul>
-                     <ul>
-                         </li>
-                        <li class="itemContenedor">Hora:<select id="cmbHoraSandwich" runat="server"></select>
-                        </li>
-                    </ul>
+                    <table>
+                       <caption>
+                                <label>
+                                Seleccionar tipo Pan</label></caption>
+                        <tr>
+                                <td>
+                                    <input id="radioPanBlanco" runat="server" name="bread" on="" type="radio" value="panblanco">Pan blanco</td>
+                                    <td>
+                                        <input id="radioPanInt" runat="server" name="bread" type="radio" value="panintegral">Pan integral</td>
+                                    <td>
+                                        <input id="radioPanBollo" runat="server" name="bread" type="radio" value="panbollo">Pan bollo</td>
+                            </tr>
+                               </table>
+                    <table>
+                            <caption>
+                                <label>
+                                Seleccionar relleno</label></caption>
+                                <tr>
+                                    <td>
+                                        <input id="radioJamon" runat="server" name="spreadoption" type="radio" value="jamon">Jamón</td>
+                                    <td>
+                                        <input id="radioAtun" runat="server" name="spreadoption" type="radio" value="atun">Atún
+                                       </td>
+                                        <td>
+                                            <input id="radioFrijoles" runat="server" name="spreadoption" type="radio" value="frijoles">Frijoles</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input id="radioMyM" runat="server" name="spreadoption" type="radio" value="mantequillamani">Mantequilla Maní y jalea</td>
+                                    <td>
+                                        <input id="radioOmelette" runat="server" name="spreadoption" type="radio" value="omelette">Omelette</td>
+                                    <td>
+                                        <input id="radioEnsaladaHuevo" runat="server" name="spreadoption" type="radio" value="ensaladahuevo">Ensalada de huevo</td>
+                                </tr>
+                                <tr>
+                                    <td>Hora:<select id="cmbHoraSandwich" runat="server">
+                                        </select> </td>
+                                </tr>
+                        </table>
                 </fieldset>
             </div>
             <div class="well bs-component">
@@ -164,47 +156,37 @@
             </div>
             <div class="well bs-component">
                 <fieldset>
-                    <legend style="color: #7BC143">Adicional</legend>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
+                    <legend>Adicional</legend>
+                    <table>
+                   <tr>
+                        <td>
                             <input type="checkbox" name="adicional" value="ensalada" id="chEnsalada" runat="server">Ensalada
-                       </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
+                       </td>
+                        <td>
                            <input type="checkbox" name="adicional" value="mayonesa" id="chMayonesa" runat="server">Mayonesa
-                       </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
+                       </td>
+                        <td>
                              <input type="checkbox" name="adicional" value="confites" id="chConfites" runat="server">Confites
-                       </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
+                       </td>
+                        <td>
                           <input type="checkbox" name="adicional" value="frutas" id="chFrutas" runat="server">Frutas
-                       </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
+                    </td>
+                       </tr>
+                        <tr>
+                        <td>
                           <input type="checkbox" name="adicional" value="salsatomate" id="chSalsaTomate" runat="server">Salsa de tomate 
-                       </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
+                       </td>
+                        <td>
                             <input type="checkbox" name="adicional" value="huevos" id="chHuevoDuro" runat="server">Huevos duros 
-                       </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
+                       </td>
+                        <td>
                             <input type="checkbox" name="adicional" value="galletas" id="chGalletas" runat="server">Galletas
-                       </il>
-                    </ul>
-                    <ul class="lista formulario">
-                        <il class="itemFormulario">
+                       </td>
+                    <td>
                             <input type="checkbox" name="adicional" value="platanos" id="chPlatanos" runat="server">Platanos
                        </il>
-                    </ul>
+                    </td>
+                   </table>
                 </fieldset>
             </div>
             <div class="well bs-component">
@@ -240,4 +222,9 @@
 
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">
+    <style type="text/css">
+        .auto-style1 {
+            width: 242px;
+        }
+    </style>
 </asp:Content>

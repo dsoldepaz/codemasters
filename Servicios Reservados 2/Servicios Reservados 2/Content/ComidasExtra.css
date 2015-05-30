@@ -50,10 +50,10 @@ select {
   width: 80%;
   height: 120px;
 }
-label{
+label {  
   margin-left: 1%;
-  font-size: 1.2em;
-  /*color: #7BC143;*/
+  font-size: 1.03em;
+  color: #7BC143;
   display: inherit;
 }
 input{

@@ -810,10 +810,7 @@ h1{
 tbody>tr>td{
     padding:5px;
 }
-tbody>tr>td:first-child{
-    text-decoration:underline;
 
-}
 tbody>tr>th{
   padding: 1px 0px 1px 6px;
 }
