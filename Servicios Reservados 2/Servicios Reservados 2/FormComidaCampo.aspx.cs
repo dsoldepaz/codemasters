@@ -65,8 +65,8 @@ namespace Servicios_Reservados_2
                 radioFrijoles.Disabled = true;
                 radioMyM.Disabled = true;
                 radioOmelette.Disabled = true;
+                radioAtun.Disabled = true;
                 radioEnsaladaHuevo.Disabled = true;
-                //chGalloPinto.Disabled = true;
                 chEnsalada.Disabled = false;
                 chMayonesa.Disabled = false;
                 chConfites.Disabled = false;
@@ -101,9 +101,9 @@ namespace Servicios_Reservados_2
                 radioMyM.Disabled = true;
                 radioOmelette.Disabled = true;
                 radioEnsaladaHuevo.Disabled = true;
+                radioAtun.Disabled = true;
                 radioAgua.Disabled = true;
                 radioJugo.Disabled = true;
-                //chGalloPinto.Disabled = true;
                 CheckboxBebida.Enabled = true;
                 checkO2.Enabled = true;
                 checkO1.Enabled = true;
@@ -134,7 +134,7 @@ namespace Servicios_Reservados_2
                 radioMyM.Disabled = true;
                 radioOmelette.Disabled = true;
                 radioEnsaladaHuevo.Disabled = true;
-                //chGalloPinto.Disabled = true;
+                radioAtun.Disabled = true;
                 chEnsalada.Disabled = true;
                 chHuevoDuro.Disabled = true;
                 chMayonesa.Disabled = true;
@@ -158,22 +158,19 @@ namespace Servicios_Reservados_2
         }
         protected void limpiarCamposOpcion2()
         {
-            //cambiarModo();
+            cambiarModo();
             radioDesayuno.Checked = false;
             radioAlmuerzo.Checked = false;
             radioCena.Checked = false;
-            //chGalloPinto.Checked = false;
             cbxHoraOpcion1.Items.Clear();
             cmbHoraSandwich.Items.Clear();
             cmbHoraGalloPinto.Items.Clear();
-            radioDesayuno.Enabled = false;
-            radioAlmuerzo.Enabled = false;
-            radioCena.Enabled = false;
+            
         }
 
         protected void limpiarCamposOpcion1(){
 
-            //cambiarModo();
+            cambiarModo();
             radioPanBlanco.Checked = false;
             radioPanBollo.Checked = false;
             radioPanInt.Checked = false;
@@ -183,7 +180,6 @@ namespace Servicios_Reservados_2
             radioAtun.Checked = false;
             radioOmelette.Checked = false;
             radioEnsaladaHuevo.Checked = false;
-            //chGalloPinto.Checked = false;
             cmbHoraSandwich.Items.Clear();
             cmbHoraGalloPinto.Items.Clear();
         }
@@ -206,7 +202,6 @@ namespace Servicios_Reservados_2
             radioMyM.Checked = false;
             radioOmelette.Checked = false;
             radioEnsaladaHuevo.Checked = false;
-            //chGalloPinto.Checked = false;
             cmbHoraSandwich.Items.Clear();
             cbxHoraOpcion1.Items.Clear();
         }
@@ -281,6 +276,7 @@ namespace Servicios_Reservados_2
             }
             if (checkO1.Checked)
             {
+                radioDesayuno.Checked = true;
                 radioDesayuno.Enabled = true;
                 radioAlmuerzo.Enabled = true;
                 radioCena.Enabled = true;
@@ -292,6 +288,7 @@ namespace Servicios_Reservados_2
         {
             if (CheckboxBebida.Checked)
             {
+                radioAgua.Checked = true;
                 radioAgua.Disabled = false;
                 radioJugo.Disabled = false;
             }
@@ -316,7 +313,7 @@ namespace Servicios_Reservados_2
             }
             //chGalloPinto.Disabled = false;
             cmbHoraGalloPinto.Disabled = false;
-               
+              
         }
         protected void checkedO2(object sender, EventArgs e)
         {
@@ -330,6 +327,8 @@ namespace Servicios_Reservados_2
             {
                 checkO3.Checked = false;
             }
+            radioPanBlanco.Checked = true;
+            radioJamon.Checked = true;
            radioPanBlanco.Disabled = false;
            radioPanBollo.Disabled = false;
            radioPanInt.Disabled = false;
