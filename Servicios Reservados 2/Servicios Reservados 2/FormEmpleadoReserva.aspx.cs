@@ -292,7 +292,7 @@ namespace Servicios_Reservados_2
             if (idEmpleado.Length != 0)//la cadena tiene algo
             {
                 EntidadEmpleado empleado=controladora.obtenerEmpleado(idEmpleado);
-                this.lblNombre.InnerText = (empleado.Id + "-" + empleado.Nombre + " " + empleado.Apellido);
+                this.lblNombre.InnerText = (empleado.Nombre + " " + empleado.Apellido);
             }
             else
             {

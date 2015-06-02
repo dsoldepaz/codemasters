@@ -14,17 +14,21 @@
         <div>
             <h2>Empleados</h2>
             <h3>Reservaciones del empleado:<span id="lblNombre" runat="server"></span> </h3>
-            
-                        <input type="button"  class="btn btn-success comida" value="Nueva Comida Regular" runat="server" onserverclick="btnAgregarCR_Click"/>
-                        <input type="button"  class="btn btn-success comida" value="Nueva Comida Campo" runat="server" onserverclick="btnAgregarCC_Click"/>
-             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <div class="well">
+                <h4>
+                    Agregar Servicios
+                </h4>
+                <input type="button"  class="btn btn-success comida" value="Nueva Comida Regular" runat="server" onserverclick="btnAgregarCR_Click"/>
+                <input type="button"  class="btn btn-success comida" value="Nueva Comida Campo" runat="server" onserverclick="btnAgregarCC_Click"/>
+            </div>
+             <asp:UpdatePanel ID="UpdatePanel1"  class="well" runat="server">
             <ContentTemplate>
             <fieldset>
                  <h4>
                         Comidas desde el ultimo mes del empleado
                     </h4>
                 <section id="comidasReservadas">
-                    <asp:GridView ID="GridComidasReservadas" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarComida" Width="75%">
+                    <asp:GridView ID="GridComidasReservadas" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarComida" Width="100%">
                      <SelectedRowStyle BackColor="#7BC143" />
                      </asp:GridView>
                     <section id="seccionBotones" class="btn-group-vertical" runat="server">
