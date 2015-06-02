@@ -60,7 +60,8 @@ namespace Servicios_Reservados_2
                 datos[0] = fila[0].ToString(); //IDCOMIDAEMPLEADO
                 datos[1] = fila[1].ToString(); //Categoria
                 datos[2] = ""; //tipo
-                datos[3] = fila[3].ToString(); //FECHA
+                DateTime nuevo = DateTime.Parse(fila[3].ToString());
+                datos[3] = nuevo.ToString("MM/dd/yyyy"); //FECHA
                 datos[4] = (fila[4].ToString().CompareTo("T") == 0) ? "Efectivo" : "Deducción de Salario"; //PAGADO es un valor booleano a nivel logico.
 
                 tabla.Rows.Add(datos);
