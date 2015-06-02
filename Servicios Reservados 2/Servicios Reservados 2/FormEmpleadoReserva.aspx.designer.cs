@@ -49,6 +49,15 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl seccionBotones;
         
         /// <summary>
+        /// Control tiquetesBtn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton tiquetesBtn;
+        
+        /// <summary>
         /// Control btnVer.
         /// </summary>
         /// <remarks>
@@ -74,14 +83,5 @@ namespace Servicios_Reservados_2 {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btnCancelar;
-        
-        /// <summary>
-        /// Control tiquetesBtn.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton tiquetesBtn;
     }
 }

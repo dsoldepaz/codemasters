@@ -31,3 +31,8 @@ section>input.btn.btn-success {
 section#comidasReservadas {
   display: -webkit-box;
 }
+.comida{
+    width:175px;
+    background-color: #F26631;
+    border-color: orange;
+}

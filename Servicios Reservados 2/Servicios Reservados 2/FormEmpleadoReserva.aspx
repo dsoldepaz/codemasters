@@ -14,6 +14,9 @@
         <div>
             <h2>Empleados</h2>
             <h3>Reservaciones del empleado:<span id="lblNombre" runat="server"></span> </h3>
+            
+                        <input type="button"  class="btn btn-success comida" value="Nueva Comida Regular" runat="server" onserverclick="btnAgregarCR_Click"/>
+                        <input type="button"  class="btn btn-success comida" value="Nueva Comida Campo" runat="server" onserverclick="btnAgregarCC_Click"/>
              <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
             <fieldset>
@@ -25,12 +28,10 @@
                      <SelectedRowStyle BackColor="#7BC143" />
                      </asp:GridView>
                     <section id="seccionBotones" class="btn-group-vertical" runat="server">
-                        <input id="btnVer" type="button" class="btn btn-success" value="Ver" runat="server" onserverclick="btnVer_Click" />
-                        <input type="button"  class="btn btn-success comida" value="Nueva Comida Regular" runat="server" onserverclick="btnAgregarCR_Click"/>
-                        <input type="button"  class="btn btn-success comida" value="Nueva Comida Campo" runat="server" onserverclick="btnAgregarCC_Click"/>
-                        <input id="btnEditar" type="button" class="btn btn-success" value="Editar" runat="server" onserverclick="btnEditar_Click"/>
-                        <input id="btnCancelar" type="button" class="btn btn-success cancelar" value="Cancelar Comida" runat="server" onserverclick="btnCancelar_Click"/>
                         <input id="tiquetesBtn" type="button" class="btn btn-success tiquete" value="Activar Tiquete" runat="server" onserverclick="clickActivarTiquetes" />
+                        <input id="btnVer" type="button" class="btn btn-success" value="Consultar" runat="server" onserverclick="btnVer_Click" />
+                        <input id="btnEditar" type="button" class="btn btn-success" value="Modificar" runat="server" onserverclick="btnEditar_Click"/>
+                        <input id="btnCancelar" type="button" class="btn btn-success cancelar" value="Cancelar" runat="server" onserverclick="btnCancelar_Click"/>
                     </section>
                     
 
