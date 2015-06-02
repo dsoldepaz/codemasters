@@ -5,7 +5,7 @@
         <nav>
             <ul>
                 <li class="item-navegacion"><a href="FormReservaciones.aspx">Reservaciones</a></li>
-                <li class="item-navegacion"><a href="FormEmpleadoReserva.aspx"  class="seleccionado">Empleados</a></li>
+                <li class="item-navegacion"><a href="FormEmpleado.aspx"  class="seleccionado">Empleados</a></li>
                 <li class="item-navegacion">Notificaciones <span class="notificacion">0</span></li>
                 <li class="item-navegacion"><a href="FormReportesComedor.aspx">Reportes</a></li>
 
@@ -14,6 +14,8 @@
         <div>
             <h2>Empleados</h2>
             <h3>Reservaciones del empleado:<span id="lblNombre" runat="server"></span> </h3>
+             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
             <fieldset>
                  <h4>
                         Comidas desde el ultimo mes del empleado
@@ -35,6 +37,8 @@
                 </section>
               
             </fieldset>
+                 </ContentTemplate>
+        </asp:UpdatePanel>
 
         </div>
     </asp:Content>
