@@ -166,6 +166,9 @@ namespace Servicios_Reservados_2
             cbxHoraOpcion1.Items.Clear();
             cmbHoraSandwich.Items.Clear();
             cmbHoraGalloPinto.Items.Clear();
+            radioDesayuno.Enabled = false;
+            radioAlmuerzo.Enabled = false;
+            radioCena.Enabled = false;
         }
 
         protected void limpiarCamposOpcion1(){
@@ -191,6 +194,9 @@ namespace Servicios_Reservados_2
             radioDesayuno.Checked = false;
             radioAlmuerzo.Checked = false;
             radioAlmuerzo.Checked = false;
+            radioDesayuno.Enabled = false;
+            radioAlmuerzo.Enabled = false;
+            radioAlmuerzo.Enabled = false;
             radioPanBlanco.Checked = false;
             radioPanBollo.Checked = false;
             radioPanInt.Checked = false;
@@ -708,7 +714,11 @@ namespace Servicios_Reservados_2
                     if (tipoComidaCampo == 1) //agregar la comida dependiendo si es para un empleado o una reservacion.
                     {
                         FormEmpleadoReserva.idEmpleado = idEmpleado;
-
+                        bool accion = modificarComidaCampo();
+                        if (accion)
+                        {
+                            Response.Redirect("FormEmpleadoReserva");
+                        }
 
                     }
                     else
