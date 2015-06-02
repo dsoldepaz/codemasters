@@ -249,9 +249,7 @@ namespace Servicios_Reservados_2
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de cancelar
-                FormComidasEmpleado.idComida = Int32.Parse(row.Cells[1].Text);//saca el id de la comida seleccionada.
-                FormComidasEmpleado.modo = 3;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
-                Response.Redirect("FormComidasEmpleado");
+                controladora.cancelarComidaRegular(Int32.Parse(row.Cells[1].Text));
             }
             else
             {

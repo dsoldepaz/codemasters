@@ -6,7 +6,7 @@
     <nav>
         <ul>
             <li class="item-navegacion"><a href="FormReservaciones.aspx">Reservaciones</a></li>
-            <li class="item-navegacion"><a href="FormEmpleado.aspx">Empleados</a></li>
+            <li class="item-navegacion"><a href="FormEmpleado.aspx" class="seleccionado">Empleados</a></li>
             <li class="item-navegacion">Notificaciones <span class="notificacion">0</span></li>
         </ul>
     </nav>

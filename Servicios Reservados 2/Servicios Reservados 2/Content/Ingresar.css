@@ -25,9 +25,9 @@ h5{
     font-weight:bolder;
 }
 h1{
-    font-size: 5.0em;
+    font-size: 3em;
     margin-top: 24px;
-    width: 90%;
+    width: 94%;
     margin-left:5%;
     padding-bottom: 12px;
     border-bottom:solid 3px;
@@ -40,4 +40,40 @@ h1{
   padding: 6px;
   border-radius: 10px;
   MARGIN-LEFT: 50px;
+  margin-top: 12px;
+}
+form{
+    display: -webkit-box;
+    margin: 24px;
+}
+.well{
+  width: 45%;
+  Height: 600px;
+}
+aside {
+  display: block;
+  width: 45%;
+  margin-left: 2%;
+  padding: 24px 24px 24px 48px;
+  border-left: 3px solid rgb(123, 193, 67);
+  margin-top: 24px;
+  margin-bottom: 36px;
+  border-radius: 3px;
+}
+[type="password"],
+[type=text] {
+  margin-left: 80px;
+  width: 60%;
+  border-radius: 8px;
+}
+header {
+  height: 90px;
+  background-color: rgb(123, 193, 67);
+  margin: -8px;
+}
+img{
+    margin:12px;
+}
+p {
+  margin-left: 40px;
 }

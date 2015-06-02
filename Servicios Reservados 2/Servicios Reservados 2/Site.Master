@@ -69,6 +69,9 @@
                 <div class="float-left">
                     <p>&copy; <%: DateTime.Now.Year %> - Servicios Reservados</p>
                 </div>
+                <div class="float-right">
+                    <p>Code Masters en colaboracion la Universidad de Costa Rica para OET</p>
+                </div>
             </div>
         </footer>
     </form>
