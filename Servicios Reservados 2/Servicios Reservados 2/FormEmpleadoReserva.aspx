@@ -14,6 +14,8 @@
         <div>
             <h2>Empleados</h2>
             <h3>Reservaciones del empleado:<span id="lblNombre" runat="server"></span> </h3>
+             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
             <fieldset>
                  <h4>
                         Comidas desde el ultimo mes del empleado
@@ -35,6 +37,8 @@
                 </section>
               
             </fieldset>
+                 </ContentTemplate>
+        </asp:UpdatePanel>
 
         </div>
     </asp:Content>
