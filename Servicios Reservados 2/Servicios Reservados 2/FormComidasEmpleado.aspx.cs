@@ -165,7 +165,7 @@ namespace Servicios_Reservados_2
                     break;
                 default: break;
             }
-            limpiarCalendario();
+            limpiarCalendario();   
         }
         /*
          * Requiere: N/A
