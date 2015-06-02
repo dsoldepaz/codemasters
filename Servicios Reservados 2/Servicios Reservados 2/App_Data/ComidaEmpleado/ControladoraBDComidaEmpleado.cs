@@ -18,7 +18,7 @@ namespace Servicios_Reservados_2
         public String[] agregar(EntidadComidaEmpleado nuevo)
         {
             String[] resultado = new String[3];
-            String turnos = ", ";
+            String turnos="" ;
             turnos += "'" + (nuevo.Turnos[0]) + "'";
             turnos += ",";
             turnos += "'" + (nuevo.Turnos[1]) + "'";
@@ -31,21 +31,16 @@ namespace Servicios_Reservados_2
                     //Crea la sentencia en sql para insertar.
                     String insercion = " Insert into Reserva_EMPLEADO (idEmpleado,fecha, Pagado, notas, desayuno, almuerzo, cena)values (";
                     insercion += ("'" + nuevo.IdEmpleado + "',");
-                    insercion += ("TO_DATE('" + nuevo + "' ,'DD.MM.YYYY hh24:mi:ss') ,");
+                    insercion += ("TO_DATE('" + fecha.ToString() + "' ,'MM/DD/YYYY hh:mi:ss AM') ,");
                     insercion += ("'" + ((nuevo.Pagado)?'T':'F') + "',");
                     insercion += ("'" + nuevo.Notas + "',");
                     insercion += turnos + ")";
-                    adaptador.insertar(insercion);
-                    resultado[0] = "SUCCESS";
-                    resultado[1] = "Exito: ";
-                    resultado[2] = "Los datos se guardaron correctamente.";
+                    resultado=adaptador.insertar(insercion);
                 }
             }
             catch (Exception e)
             {
-                resultado[0] = "DANGER";
-                resultado[1] = "ERROR: ";
-                resultado[2] = "No se pudo insertar el elemento, por favor verifique los datos";
+                Debug.WriteLine(e.ToString());
             }
             return resultado;
         }
@@ -61,7 +56,7 @@ namespace Servicios_Reservados_2
             {
                 foreach (DateTime fecha in nuevo.Fechas)
                 {
-                    string update = "UPDATE RESERVA_EMPLEADO SET";
+                    string update = "UPDATE RESERVA_EMPLEADO SET ";
                     if (seleccionada.Turnos[0] == 'C' && nuevo.Turnos[0] != 'C')//DESAYUNO
                     {//Si ya se sirvio no se puede cancelar. 
                         throw new Exception();
