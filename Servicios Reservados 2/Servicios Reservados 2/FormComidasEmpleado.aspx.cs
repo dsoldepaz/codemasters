@@ -146,7 +146,6 @@ namespace Servicios_Reservados_2
          */
         protected void clickEliminar(object sender, EventArgs e)
         {
-
             EntidadComidaEmpleado aCancelar = new EntidadComidaEmpleado(seleccionada.IdEmpleado, seleccionada.Fechas, seleccionada.Turnos, seleccionada.Pagado, seleccionada.Notas, seleccionada.IdComida);
             controladora.eliminar(aCancelar);
         }
@@ -186,14 +185,18 @@ namespace Servicios_Reservados_2
          */
         protected void agregarReservacion()
         {
-            char[] Turnos = new char[3];
-            Turnos[0] = (this.checkboxDesayuno.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
-            Turnos[1] = (this.checkboxAlmuerzo.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
-            Turnos[2] = (this.checkboxCena.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
-            String[] resultado = controladora.agregar(identificacionEmpleado, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
-            modo = 5;
-            ponerModo();
-        }
+            if (this.checkboxDesayuno.Checked || this.checkboxAlmuerzo.Checked || this.checkboxCena.Checked)
+            {
+                char[] Turnos = new char[3];
+                Turnos[0] = (this.checkboxDesayuno.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
+                Turnos[1] = (this.checkboxAlmuerzo.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
+                Turnos[2] = (this.checkboxCena.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
+                String[] resultado = controladora.agregar(identificacionEmpleado, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
+                modo = 5;
+                ponerModo();
+            }
+            }
+
         /*
          * Requiere: Parametros de eventos de la GUI
          * Efectua : recupera los datos de la GUI y los manda a la controlador junto con los datos que se seleccionaron, para que se actualicen en la base de datos.
@@ -256,10 +259,10 @@ namespace Servicios_Reservados_2
             this.checkboxDesayuno.Checked = (seleccionada.Turnos[0] == 'R' || seleccionada.Turnos[0] == 'C');
             this.checkboxDesayuno.Disabled = (seleccionada.Turnos[0] == 'C');
             this.checkboxAlmuerzo.Checked = (seleccionada.Turnos[1] == 'R' || seleccionada.Turnos[1] == 'C');
-            this.checkboxAlmuerzo.Disabled = (seleccionada.Turnos[2] == 'C');
+            this.checkboxAlmuerzo.Disabled = (seleccionada.Turnos[1] == 'C');
             this.checkboxCena.Checked = (seleccionada.Turnos[2] == 'R' || seleccionada.Turnos[2] == 'C');
             this.checkboxCena.Disabled = (seleccionada.Turnos[2] == 'C');
-            tipodePago.SelectedIndex = (seleccionada.Pagado) ? 1 : 2;
+            tipodePago.SelectedIndex = (seleccionada.Pagado) ? 0 : 1;
             this.fecha.Value = String.Format("{0:yyyy-MM-dd}", list[0]);
             bloquearInterfaz();
 
@@ -326,19 +329,25 @@ namespace Servicios_Reservados_2
 
         protected void AgregarFecha_ServerClick(object sender, EventArgs e)
         {
+            DateTime MyDateTime = DateTime.Parse(fecha.Value);
+            if(MyDateTime.Date >DateTime.Now.Date ){
+                
             DataTable tabla = crearTablaFechaComidaEmpleado();
             Object[] datos = new Object[1];
             datos[0] = fecha.Value;
             tabla.Rows.Add(datos);
             foreach (DateTime dt in list)
             {
-                datos[0] = String.Format("{0:yyyy-MM-dd}", dt);          // "03/09/2008"
+                datos[0] = String.Format("{0:yyyy-dd-MM}", dt);          // "03/09/2008"
                 
                 tabla.Rows.Add(datos);
-            }
+            }/*else{
+                //deberia de enviar un error
+            }*/
             GridFechasReservadas.DataBind();
-            DateTime MyDateTime = DateTime.Parse(fecha.Value);
             list.Add(MyDateTime);
+            btnAceptar.Disabled = false;
+            }
         }
         /**
          * Requiere: n/a
