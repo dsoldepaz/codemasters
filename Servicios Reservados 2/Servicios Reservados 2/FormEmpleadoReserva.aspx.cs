@@ -255,6 +255,7 @@ namespace Servicios_Reservados_2
             {
                 String idComida = row.Cells[1].Text;
                 mensaje = controladora.cancelarComidaCampo(idComida);
+                Response.Redirect(Request.Url.AbsoluteUri);
             }
         }
         /*
