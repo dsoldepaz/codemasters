@@ -187,7 +187,7 @@ namespace Servicios_Reservados_2
 
         protected void limpiarCamposOpcion3()
         {
-            //cambiarModo();
+            cambiarModo();
             radioDesayuno.Checked = false;
             radioAlmuerzo.Checked = false;
             radioAlmuerzo.Checked = false;
@@ -436,7 +436,7 @@ namespace Servicios_Reservados_2
                 DateTime fechaFinal = reservacionConsultada.FechaSalida;
                 if (fechaSeleccionada < fechaInicio || fechaSeleccionada > fechaFinal || fechaSeleccionada < fechaHoy)
                 {
-                        mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
+                      mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
                       correcta = false;
                 }
             }
@@ -643,7 +643,7 @@ namespace Servicios_Reservados_2
                 }
                 comidaModificar[10] = txtPax.Value;
 
-                if (checkO1.Checked || checkO2.Checked || checkO3.Checked)
+                if ((checkO1.Checked && (radioDesayuno.Checked || radioAlmuerzo.Checked || radioCena.Checked)) || (checkO2.Checked && getTipoSandwich() != "" && getPan() != "") || checkO3.Checked)
                 {
                     String[] error = controladora.modificarComidaCampo(comidaModificar, lista, entidadConsultada);// se le pide a la controladora que lo inserte
                     mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
