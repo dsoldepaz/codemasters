@@ -7,7 +7,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Data.SqlClient;
 
-namespace Servicios_Reservados_2.Servicios
+namespace Servicios_Reservados_2
 {
     public class ControladoraBDServicios
     {
@@ -19,18 +19,6 @@ namespace Servicios_Reservados_2.Servicios
         {
             adaptador = new AdaptadorBD();
             dt = new DataTable();
-        }
-
-        /**Efecto: Crea la consulta SQL que obtiene el numero de pax de la reservacion y la retorna en forma de datatable  
-         * Requiere: id de la reservacion
-         * Modifica: el dataTable dt
-         */
-        internal DataTable obtenerPax(String idNum)
-        {
-            String consultaSQL = "select PAX from reservas.vr_reservacion where numero = '" + idNum + "'";
-            dt = adaptador.consultar(consultaSQL);
-            return dt;
-
         }
 
         /*
@@ -77,113 +65,6 @@ namespace Servicios_Reservados_2.Servicios
 
         }
 
-
-        /**Efecto: Crea la consulta SQL que obtiene la tupla del servicio solicitado de la reservacion y la retorna en forma de datatable  
-         * Requiere: id de la reservacion, id servicio
-         * Modifica: el dataTable dt
-         */
-        internal DataTable seleccionarServicio(String id, String idserv)
-        {
-            String consultaSQL = "select * from servicios_reservados.servicio_especial where idreservacion = '" + id + "' and idserviciosextras = '" + idserv + "'";
-            dt = adaptador.consultar(consultaSQL);
-            return dt;
-        }
-
-        internal DataTable seleccionarComidaCampo(String id, String idComidaCampo)
-        {
-            String consultaSQL = "select * from servicios_reservados.comida_campo WHERE idreservacion = '" + id + "' and idcomidacampo = '" + idComidaCampo + "'";
-            dt = adaptador.consultar(consultaSQL);
-            return dt;
-        }
-
-        internal DataTable seleccionarAdicional(String idComidaCampo)
-        {
-            String consultaSQL = "select nombre from servicios_reservados.adicional WHERE idcomidacampo = '" + idComidaCampo + "'";
-            dt = adaptador.consultar(consultaSQL);
-            return dt;
-        }
-
-        /*
-        * Efecto: actualiza el atributo estado de la tabla servicios_especiales de la comida extra seleccionada
-        * Requiere: el id de la reservacion seleccionada y el id de la comida extra seleccionado.
-        * Modifica: table de servicio_especial
-       */
-        public String[] cancelarComidaExtra(String idReservacion, String idComidaExtra)
-        {
-            String[] respuesta = new String[3];
-            try
-            {
-                String consultaSQL = "update servicios_reservados.servicio_especial set estado = 'Cancelado'  where idReservacion = '" + idReservacion + "' and idserviciosextras = '" + idComidaExtra + "'";
-
-                dt = adaptador.insertar(consultaSQL);
-
-                respuesta[0] = "success";
-                respuesta[1] = "Exito. ";
-                respuesta[2] = "El usuario se ha insertado exitosamente";
-            }
-            catch (SqlException e)
-            {
-                int r = e.Number;
-
-                if (r == 2627)
-                {
-
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "Informacion ingresada ya existe";
-                }
-                else
-                {
-
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "No se pudo agregar el servicio extra";
-                }
-
-            }
-            return respuesta;
-        }
-
-        /*
-         * Efecto: actualiza el atributo estado de la tabla comida_campo de la comida de campo seleccionada
-         * Requiere: el id de la reservacion seleccionada y el id de la comida extra seleccionado.
-         * Modifica: table de servicio_especial
-         */
-        public String[] cancelarComidaCampo(String idCC)
-        {
-            String[] respuesta = new String[3];
-            try
-            {
-                String consultaSQL = "update servicios_reservados.comida_campo set estado = 'Cancelado'  where idcomidacampo = '" + idCC + "'";
-
-                dt = adaptador.insertar(consultaSQL);
-
-                respuesta[0] = "success";
-                respuesta[1] = "Exito. ";
-                respuesta[2] = "El usuario se ha insertado exitosamente";
-            }
-            catch (SqlException e)
-            {
-                int r = e.Number;
-
-                if (r == 2627)
-                {
-
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "Informacion ingresada ya existe";
-                }
-                else
-                {
-
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "No se pudo agregar el servicio extra";
-                }
-
-            }
-            return respuesta;
-        }
         internal DataTable obtenerPaquete(string idReservacion)
         {
             String consultaSQL = "select ri.id, vr.nombre, ri.pax from reservas.reservacionitem ri, reservas.v_reservable vr where ri.reservacion ='" + idReservacion + "' and ri.reservable= vr.id and vr.categoria='ANURA7249245184.5851916019'";
@@ -191,5 +72,25 @@ namespace Servicios_Reservados_2.Servicios
             return dt;
         }
 
+
+        internal DataTable solicitarReservItem(string id)
+        {
+            String consultaSQL = "select ri.pax, r.notas, vr.siglas, vr.estacion, c.nombre FROM reservas.reservacionitem ri, reservas.reservacion r, reservas.vr_reservacion vr, reservas.contacto c where ri.id ='" + id + "' and ri.reservacion=r.id and r.numero=vr.numero and r.solicitante = c.id";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+        internal DataTable vecesConsumidoPaquete(string id)
+        {
+            String consultaSQL = "select vecesconsumido from reservas.reservacionitem where id ='"+id+"'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+
+        internal void actualizarVecesConsumidoPaquete(string idServicio, int vecesConsumido)
+        {
+            String consultaSQL = "update reservas.reservacionitem set vecesconsumido= " + vecesConsumido + " where id ='" + idServicio + "'";
+            dt = adaptador.consultar(consultaSQL);
+        }
     }
 }

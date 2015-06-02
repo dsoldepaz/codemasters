@@ -1,10 +1,12 @@
 ﻿<%@ Page Title="Servicios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormServicios.aspx.cs" Inherits="Servicios_Reservados_2.FormServicios" %>
 
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <link rel="stylesheet" href="Content/Servicios.css" />
     <nav>
         <ul>
             <li class="item-navegacion"><a href="FormReservaciones.aspx">Reservaciones</a></li>
-            <li class="item-navegacion"><a href="FormEmpleadoReserva.aspx">Empleados</a></li>
+            <li class="item-navegacion"><a href="FormEmpleado.aspx" class="seleccionado">Empleados</a></li>
             <li class="item-navegacion">Notificaciones <span class="notificacion">0</span></li>
         </ul>
     </nav>
@@ -55,44 +57,51 @@
                     <table>
                         <tr>
                             <td>
-                                <input type="button" class="btn btn-success" value="Comida Extra" runat="server" onserverclick="clickAgregarServicio"/></a></td>
+                                <input type="button" class="btn btn-Naranja" value="Comida Extra" runat="server" onserverclick="clickAgregarServicio" /></a></td>
                             <td>
-                                <input type="button" class="btn btn-success" value="Comida De Campo" runat="server" onserverclick="cliclAgregarComidaCampo" />
+                                <input type="button" class="btn btn-Naranja" value="Comida De Campo" runat="server" onserverclick="cliclAgregarComidaCampo" />
                             </td>
                             <td>
-                                <input type="button" class="btn btn-success" value="Servicio de Guías" /></td>
+                                <input type="button" class="btn btn-Naranja" value="Servicio de Guías" /></td>
                         </tr>
                     </table>
             </div>
             <div class="well bs-component">
                 <fieldset>
-
+                    <a href="">
+                        <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong>
+                                <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                        </div>
+                    </a>
                     <legend style="color: #7BC143">Listado de servicios</legend>
 
-                        <div class="well bs-component" style="background-color: white">
-                            <table>
-                                <tr>
-                                    <td style="width: 95%">
-                                        <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarServicio">
-                                            <SelectedRowStyle BackColor="#7BC143" />
-                                        </asp:GridView>
+                    <div class="well bs-component" style="background-color: white">
+                        <table>
+                            <tr>
+                                <td>
+                                    <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarServicio">
+                                        <SelectedRowStyle BackColor="#7BC143" />
+                                    </asp:GridView>
 
-                                    </td>
-                                    <td>
-                                        <div class="btn-group-vertical">
-                                            <input type="button" class="btn btn-success" value="Activar Tiquete" runat="server" onserverclick="clickActivarTiquetes"/>
-                                            <input type="button" class="btn btn-success" value="Consultar" runat="server" onserverclick="clickConsultarServicio"/>
-                                            <input type="button" class="btn btn-success" value="Modificar" runat="server" onserverclick="modificarServicio" />
-                                            <input type="button" class="btn btn-success" value="Elimnar" runat="server" onserverclick="clickEliminarServicio"/>
+                                </td>
+                                <td>
+                                    <div class="btn-group-vertical">
+                                        <input type="button" class="btn btn-success" id="btnActivarTiquete" value="Activar Tiquete" runat="server" onserverclick="clickActivarTiquetes" />
+                                        <input type="button" class="btn btn-success" id="btnConsultar" value="Consultar" runat="server" onserverclick="clickConsultarServicio" />
+                                        <input type="button" class="btn btn-success" id="btnModificar" value="Modificar" runat="server" onserverclick="modificarServicio" />
+                                        <input type="button" class="btn btn-success" id="btnCancelar" value="Cancelar" runat="server" onserverclick="clickEliminarServicio" />
 
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
 
                 </fieldset>
             </div>
+
 
 
         </ContentTemplate>

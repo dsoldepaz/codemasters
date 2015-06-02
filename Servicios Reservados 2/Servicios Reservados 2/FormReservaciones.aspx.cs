@@ -46,6 +46,8 @@ namespace Servicios_Reservados_2
         {
             llenarComboboxReservaciones();
             llenarGridReservaciones();
+            botonServicioExtra.Disabled = true;
+
             
         }
         /*
@@ -185,11 +187,12 @@ namespace Servicios_Reservados_2
         * Efectua: cambia la reservacion selecionada.
         * retorna:  nada. 
         */
-        protected void seleccionarReservacion(object sender, EventArgs e)
+        protected void seleccionarReservacion(object sender, GridViewCommandEventArgs e)
         {
             try
             {
-                controladora.seleccionarReservacion(ids[GridViewReservaciones.SelectedIndex]);
+                controladora.seleccionarReservacion(ids[Convert.ToInt32(e.CommandArgument) + (this.GridViewReservaciones.PageIndex * 20)]);
+                botonServicioExtra.Disabled = false;
             }
             catch (Exception ee) { 
                 
@@ -264,6 +267,11 @@ namespace Servicios_Reservados_2
             {
               llenarGridReservaciones();
           }
+        }
+
+        protected void clickAgregarServicioExtra(object sender, EventArgs e)
+        {
+            Response.Redirect("FormServicios");
         }
 
     }

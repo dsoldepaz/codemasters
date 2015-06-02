@@ -13,12 +13,26 @@ h4{
     border-bottom: 1px solid #7BC143;
     color:#7BC143;
 }
-section.comidasReservadas>section.panelDeBotones>input.btn:nth-child(2n){
-    width:140px;
+
+
+#MainContent_GridComidasReservadas > tbody > tr > td:nth-child(2) {
+  padding-left: 9%;
+}
+.btn-group-vertical{
+    margin-left:10%;
+}
+section>input.btn.btn-success {
+  width: 200px;
+}
+.comidasReservadas{
+    display:inline-block;
+}
+
+section#comidasReservadas {
+  display: -webkit-box;
 }
 .comida{
-    width:150px;
-}
-section>input.cancelar{
-    width:130px;
+    width:175px;
+    background-color: #F26631;
+    border-color: orange;
 }

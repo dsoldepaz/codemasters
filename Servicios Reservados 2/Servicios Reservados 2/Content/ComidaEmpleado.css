@@ -1,5 +1,4 @@
 ﻿input[ type="checkbox"]{
-    margin-left: 20px;
 }
 h4{
     color: #7BC143;
@@ -39,7 +38,7 @@ div:first-of-type>input{
 ContentTemplate{
     margin-left:5%;
 }
-#ContenedorManejoDeHorario>input{
+#ContenedorManejoDeHorario>input[type="button"]{
     float:right;
     margin-right: 25px;
 }
@@ -57,4 +56,19 @@ ContentTemplate{
 }
 #ContenedorManejoDeHorario>div>*{
     padding: 2px;
+}
+
+section>div>input:disabled:hover:after{
+    content: "No se puede cancelar comidas consumidas";
+    background-color: #FDBB30;
+    padding: 5px;
+    color: #000000;
+    border: 1px solid #F26631;
+}
+[type="date"]{
+    width:150px;
+    float:none;
+}
+ul{
+    display:block;
 }

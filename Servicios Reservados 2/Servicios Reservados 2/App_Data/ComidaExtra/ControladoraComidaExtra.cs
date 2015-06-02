@@ -16,7 +16,6 @@ namespace Servicios_Reservados_2
       private ControladoraBDComidaExtra controladoraBD;//instancia de la controladora de BD comida extra.
       public static EntidadReservaciones servicios;
       public static ControladoraReservaciones controladoraReserv;
-       
       public static EntidadComidaExtra servicioSeleccionado;//instancia entidad comida extra.
       public static int paxSeleccionados;
       public static String idReservacionSelccionada;
@@ -77,9 +76,24 @@ namespace Servicios_Reservados_2
        * Requiere: la entrada de los datos.
        * Modifica: la variable servicioSeleccionado, en la que se almacena el servicio consultado.
       */
-      public void guardarServicioSeleccionado(Object[] dato)
+      public EntidadComidaExtra guardarServicioSeleccionado(String id, String idServ, String fecha, String hora)
       {
-          servicioSeleccionado = new EntidadComidaExtra(dato);
+          DataTable servicios = controladoraBD.seleccionarServicio(id, idServ, fecha, hora);
+
+          Object[] nuevoServicio = new Object[8];
+
+          nuevoServicio[0] = servicios.Rows[0][0];
+          nuevoServicio[1] = servicios.Rows[0][1];
+          nuevoServicio[2] = servicios.Rows[0][3];
+          nuevoServicio[3] = servicios.Rows[0][4];
+          nuevoServicio[4] = servicios.Rows[0][5];
+          nuevoServicio[5] = servicios.Rows[0][2];
+          nuevoServicio[7] = servicios.Rows[0][6];
+          nuevoServicio[6] = servicios.Rows[0][7];
+
+          servicioSeleccionado = new EntidadComidaExtra(nuevoServicio);
+
+          return servicioSeleccionado;
       }
 
       /*
@@ -87,10 +101,10 @@ namespace Servicios_Reservados_2
        * Requiere: la entrada de los datos.
        * Modifica: la variable paxSeleccionados, en la que se almacena el servicio consultado.
        */
-      public void guardarReservacionSeleccionada(Object[] datos)
+      public String paxConsultado(String id)
       {
-          paxSeleccionados = int.Parse(datos[0].ToString());
-          idReservacionSelccionada = datos[1].ToString();
+          String pax = controladoraReserv.obtenerPax(id);
+          return pax;
       }
 
       /*
@@ -118,11 +132,11 @@ namespace Servicios_Reservados_2
      * Requiere: que la variable idReservacionSelccionada esté inicializada.
      * Modifica: 
      */
-      public String reservacionSeleccionada()
+      public EntidadReservaciones reservacionSeleccionada()
       {
-          return idReservacionSelccionada;
-      }
-
+          return controladoraReserv.getReservacionSeleccionada();
+         
+      } 
 
       /*
        * Efecto: consulta el tipo de comida extra de un id específico.
@@ -144,6 +158,29 @@ namespace Servicios_Reservados_2
         {
             DataTable fechas = controladoraBD.consultarFechas(id);
             return fechas;
+        }
+
+        /*
+         * Efecto: recibe los ids y los manda a la controladora de BD para cancelar el servicio.
+         * Requiere: los ids.
+         * Modifica:
+         */
+        internal String[] cancelarComidaExtra(String idReservacion, String idComidaExtra, String fecha, String hora)
+        {
+            String[] resultado = controladoraBD.cancelarComidaExtra(idReservacion, idComidaExtra, fecha, hora);
+            return resultado;
+        }
+
+
+
+        internal DataTable solicitarVecesConsumido(string idServicio, string idRes, string fecha, string hora)
+        {
+            return controladoraBD.vecesConsumido(idServicio, idRes, fecha, hora);
+        }
+
+        internal void actualizarVecesConsumido(string idServicio, int vecesConsumido, string idRes, string fecha, string hora)
+        {
+            controladoraBD.actualizarVecesConsumido(idServicio, vecesConsumido, idRes, fecha, hora);
         }
     }
 }

@@ -11,6 +11,8 @@ namespace Servicios_Reservados_2
         private ControladoraEmpleado controladoraEmpleado;
         private ControladoraComidaEmpleado controladoraComidaEmpleado;
         private ControladoraComidaCampo controladoraComidaCampo;
+        private static EntidadServicios seleccionado;
+        private static EntidadComidaCampo comidaSeleccionada;
         public ControladoraEmpleadoReserva()
         {
             controladoraEmpleado = new ControladoraEmpleado();
@@ -33,6 +35,46 @@ namespace Servicios_Reservados_2
         {
             controladoraEmpleado.seleccionarEmpleado(idEmpleado);
             return controladoraEmpleado.getEmpleadoSeleccionado();
+        }
+
+        internal EntidadServicios crearServicio(string idEmpleado, int idServicio, string fechaServ, String categoria, String notas, String estado, String hora)
+        {
+            
+            seleccionado = new EntidadServicios(idEmpleado, "empleado", idServicio.ToString(), categoria, fechaServ, estado, 1, notas, hora);
+            return seleccionado;
+        }
+        internal EntidadComidaCampo consultarComidaCampoSeleccionada(string idEmpleado, String idServicio)
+        {
+            return controladoraComidaCampo.consultarComidaCampoSeleccionada(idEmpleado, idServicio);
+            
+        }
+        internal EntidadServicios servicioSeleccionado()
+        {
+            return seleccionado;
+        }
+
+        internal void activarTiquete()
+        {
+            ControladoraTiquete.setServicio(seleccionado);
+        }
+
+        internal EntidadComidaEmpleado consultarComida(int p)
+        {
+            return controladoraComidaEmpleado.consultar(p);    
+        }
+
+        internal String[] cancelarComidaCampo(String idCC)
+        {
+            String[] resultado = controladoraComidaCampo.cancelarComidaCampo(idCC);
+            return resultado;
+        }
+        internal String[] cancelarComidaRegular(int id)
+        {
+            String[] resultado = new string[3];
+            EntidadComidaEmpleado cancelar = controladoraComidaEmpleado.consultar(id);
+            resultado =controladoraComidaEmpleado.eliminar(cancelar);
+           
+            return resultado;
         }
     }
 }

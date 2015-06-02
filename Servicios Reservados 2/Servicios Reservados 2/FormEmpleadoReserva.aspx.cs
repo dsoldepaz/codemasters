@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,6 +14,9 @@ namespace Servicios_Reservados_2
     {
         public static String idEmpleado = String.Empty;
         private ControladoraEmpleadoReserva controladora = new ControladoraEmpleadoReserva();
+        private static EntidadServicios seleccionado = null;
+        public static EntidadComidaCampo comidaCampoConsultada;
+        public static EntidadComidaEmpleado comidaEmpleadoSeleccionado; 
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
@@ -49,38 +53,44 @@ namespace Servicios_Reservados_2
             DataTable data = controladora.obtenerTabla(idEmpleado);
             DataTable datosComidaC = controladora.obtenerComidaCampo(idEmpleado);
             Object[] datos = new Object[5];
+            String cat = "";
             foreach (DataRow fila in data.Rows)
             {
                 //SELECT IDCOMIDAEMPLEADO,IDEMPLEADO,FECHA,PAGADO
                 datos[0] = fila[0].ToString(); //IDCOMIDAEMPLEADO
-                datos[1] = fila[1].ToString(); //Tipo
-                datos[2] = fila[2].ToString(); //IDEMPLEADO
-                datos[3] = fila[3].ToString(); //FECHA
-                datos[4] = (fila[4].ToString().CompareTo("T") == 0) ? "Efectivo" : "Deduccion de Salario"; //PAGADO es un valor booleano a nivel logico.
+                datos[1] = fila[1].ToString(); //Categoria
+                datos[2] = ""; //tipo
+                DateTime nuevo = DateTime.Parse(fila[3].ToString());
+                datos[3] = nuevo.ToString("MM/dd/yyyy"); //FECHA
+                datos[4] = (fila[4].ToString().CompareTo("T") == 0) ? "Efectivo" : "Deducción de Salario"; //PAGADO es un valor booleano a nivel logico.
 
                 tabla.Rows.Add(datos);
             }
 
             foreach (DataRow fila in datosComidaC.Rows)
             {
-                String etiqueta = fila[1].ToString();
+
+                String tipo="";
                 int opcion = int.Parse(fila[5].ToString());
                 switch (opcion)
                 {
                     case 1:
-                        etiqueta += "Desayuno";
+                        tipo = "Desayuno";
+                        cat = "Incluido en Paquete";
                         break;
                     case 2:
-                        etiqueta += "Almuerzo";
+                        tipo = "Almuerzo";
+                        cat = "Incluido en Paquete";
                         break;
                     case 3:
-                        etiqueta += "Cena";
+                        tipo = "Cena";
+                        cat = "Incluido en Paquete";
                         break;
                     case 4:
-                        etiqueta += "Sandwich";
+                        tipo = "Sandwich";
                         break;
                     case 5:
-                        etiqueta += "Gallo Pinto";
+                        tipo = "Gallo Pinto";
                         break;
                     default:
                         break;
@@ -89,10 +99,18 @@ namespace Servicios_Reservados_2
                 }
                 //SELECT IDCOMIDAEMPLEADO,IDEMPLEADO,FECHA,PAGADO,OPCION
                 datos[0] = fila[0].ToString(); //IDCOMIDAEMPLEADO
-                datos[1] = etiqueta; //Tipo
-                datos[2] = fila[2].ToString(); //IDEMPLEADO
+                if (cat != "")
+                {
+                    datos[1] = cat; //Categoria
+                }
+                else
+                {
+                    datos[1] = fila[1].ToString(); //Categoria
+                }
+                
+                datos[2] = tipo; //Tipo
                 datos[3] = fila[3].ToString(); //FECHA
-                datos[4] = (fila[4].ToString().CompareTo("T") == 0) ? "Efectivo" : "Deduccion de Salario"; //PAGADO es un valor booleano a nivel logico.
+                datos[4] = (fila[4].ToString().CompareTo("De contado") == 0) ? "Efectivo" : "Deduccion de Salario"; //PAGADO es un valor booleano a nivel logico.
 
                 tabla.Rows.Add(datos);
             }
@@ -117,12 +135,12 @@ namespace Servicios_Reservados_2
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Tipo";
+            columna.ColumnName = "Categoría";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "ID del empleado";
+            columna.ColumnName = "Tipo";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
@@ -154,13 +172,18 @@ namespace Servicios_Reservados_2
             {
                 //llama comida empleado en modo de consulta
                 FormComidasEmpleado.idComida=Int32.Parse( row.Cells[1].Text);//saca el id de la comida seleccionada.
+                Debug.WriteLine(FormComidasEmpleado.idComida);
                 FormComidasEmpleado.modo = 0;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
-                Response.Redirect("FormComidasEmpleado");
+                FormComidasEmpleado.identificacionEmpleado = idEmpleado;
+                Response.Redirect("FormComidasEmpleado.aspx");
 
             }
             else
             {
-                //llama comida campo en modo de consulta
+                FormComidaCampo.modo = 4;
+                FormComidaCampo.idEmpleado = idEmpleado;
+                FormComidaCampo.tipoComidaCampo = 1;
+                Response.Redirect("FormComidaCampo");
             }
         }
         /*
@@ -201,12 +224,16 @@ namespace Servicios_Reservados_2
                 //llama comida empleado en modo de Editar
                 FormComidasEmpleado.idComida = Int32.Parse(row.Cells[1].Text);//saca el id de la comida seleccionada.
                 FormComidasEmpleado.modo = 2;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+                FormComidasEmpleado.identificacionEmpleado = idEmpleado;
                 Response.Redirect("FormComidasEmpleado");
 
             }
             else
             {
-                //llama comida campo en modo de Editar
+                FormComidaCampo.idEmpleado = idEmpleado;
+                FormComidaCampo.modo = 2;
+                FormComidaCampo.tipoComidaCampo = 1;
+                Response.Redirect("FormComidaCampo");
             }
         }
         /*
@@ -218,16 +245,17 @@ namespace Servicios_Reservados_2
         {
             GridViewRow row = GridComidasReservadas.SelectedRow;
             String tipo = row.Cells[2].Text;
+            String[] mensaje;
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de cancelar
-                FormComidasEmpleado.idComida = Int32.Parse(row.Cells[1].Text);//saca el id de la comida seleccionada.
-                FormComidasEmpleado.modo = 3;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
-                Response.Redirect("FormComidasEmpleado");
+                controladora.cancelarComidaRegular(Int32.Parse(row.Cells[1].Text));
             }
             else
             {
-                //llama comida campo en modo de cancelar
+                String idComida = row.Cells[1].Text;
+                mensaje = controladora.cancelarComidaCampo(idComida);
+                Response.Redirect(Request.Url.AbsoluteUri);
             }
         }
         /*
@@ -241,6 +269,18 @@ namespace Servicios_Reservados_2
             btnVer.Disabled = false;
             btnEditar.Disabled = false;
             btnCancelar.Disabled = false;
+
+            if (GridComidasReservadas.SelectedRow.Cells[2].Text != "Comida regular")//* es mejor comparar strings con "mi string".equals()
+            {
+                comidaCampoConsultada = controladora.consultarComidaCampoSeleccionada(idEmpleado, GridComidasReservadas.SelectedRow.Cells[1].Text);
+                seleccionado = controladora.crearServicio(idEmpleado, int.Parse(comidaCampoConsultada.IdComidaCampo), comidaCampoConsultada.Fecha, "Comida Campo", "Notas no disponibles", comidaCampoConsultada.Estado, comidaCampoConsultada.Hora);
+            }
+            else
+            {
+                comidaEmpleadoSeleccionado = controladora.consultarComida(Int32.Parse(GridComidasReservadas.SelectedRow.Cells[1].Text));
+                seleccionado = controladora.crearServicio(idEmpleado, comidaEmpleadoSeleccionado.IdComida, comidaEmpleadoSeleccionado.Fechas[0].ToString(), "Comida regular", comidaEmpleadoSeleccionado.Notas, "Depende del turno", "Depende del turno");
+            }
+
         }
         /*
          * Requiere: N/A
@@ -252,7 +292,7 @@ namespace Servicios_Reservados_2
             if (idEmpleado.Length != 0)//la cadena tiene algo
             {
                 EntidadEmpleado empleado=controladora.obtenerEmpleado(idEmpleado);
-                this.lblNombre.InnerText = (empleado.Id + "-" + empleado.Nombre + " " + empleado.Apellido);
+                this.lblNombre.InnerText = (empleado.Nombre + " " + empleado.Apellido);
             }
             else
             {
@@ -265,5 +305,15 @@ namespace Servicios_Reservados_2
             btnEditar.Disabled = true;
             btnCancelar.Disabled = true;
         }
+        protected void clickActivarTiquetes(object sender, EventArgs e)
+        {
+            if (seleccionado != null)
+            {
+                controladora.activarTiquete();
+                Response.Redirect("FormTiquete");
+            }
+
+        }   
+
     }
 }

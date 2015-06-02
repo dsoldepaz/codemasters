@@ -1,5 +1,4 @@
-﻿using Servicios_Reservados_2.Servicios;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -8,12 +7,14 @@ using System.Web.UI;
 using System.Diagnostics;
 using System.Web.UI.WebControls;
 using System.Collections;
+using System.IO;
 
 namespace Servicios_Reservados_2
 {
     public partial class FormServicios : System.Web.UI.Page
     {
         private ControladoraServicios controladora = new ControladoraServicios();
+        private static EntidadServicios seleccionado = null;
         private static DataTable reservacion = new DataTable();
         private static String[] ids;
         private static String[] idServ;
@@ -21,6 +22,9 @@ namespace Servicios_Reservados_2
         private static int i;
         public static String tipo;
         public static String categoria = "Comida Extra";
+        public static EntidadComidaCampo comidaCampoConsultada;
+        public static EntidadComidaExtra comidaExtraConsultada;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -62,13 +66,18 @@ namespace Servicios_Reservados_2
          */
         protected void llenarCampos()
         {
-            DataTable pax = controladora.obtenerPax(controladora.idNumSelected());
             txtAnfitriona.Value = controladora.informacionServicio().Anfitriona;
             txtEstacion.Value = controladora.informacionServicio().Estacion;
             txtNombre.Value = controladora.informacionServicio().Solicitante;
             fechaInicio.Value = controladora.informacionServicio().FechaInicio.ToString("dd/MM/yyyy");
             fechaFinal.Value = controladora.informacionServicio().FechaSalida.ToString("dd/MM/yyyy");
-            txtPax.Value = pax.Rows[0][0].ToString();
+            txtPax.Value = controladora.paxReserv(controladora.idNumSelected());
+            txtAnfitriona.Disabled = true;
+            txtEstacion.Disabled = true;
+            txtNombre.Disabled = true;
+            fechaFinal.Disabled = true;
+            fechaInicio.Disabled = true;
+            txtPax.Disabled = true;
         }
 
         /*Efecto: Crea la tabla de servicios
@@ -78,8 +87,6 @@ namespace Servicios_Reservados_2
         void llenarGridServicios()
         {
             DataTable tabla = crearTablaServicios();
-            //   DataTable tablaCampo = crearTablaComidaCampo();
-
             try
             {
 
@@ -97,13 +104,13 @@ namespace Servicios_Reservados_2
                     foreach (DataRow fila in paquete.Rows)
                     {
                         ids[i] = controladora.idSelected();// guardar el id para su posterior consulta
-                        idServ[i] = "Paquete";
-                        datos[0] = "Paquete reservación";
+                        idServ[i] = fila[0].ToString();
+                        datos[0] = "Paquete";
                         datos[1] = fila[1].ToString();
                         datos[2] = "Alimentación incluída en el paquete de reservación";
                         datos[3] = "-";
                         datos[4] = "-";
-                        datos[5] = "no disp";
+                        datos[5] = "No disponible";
                         datos[6] = fila[2].ToString();
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
@@ -243,18 +250,34 @@ namespace Servicios_Reservados_2
          * Modifica: NA
          */
         protected void seleccionarServicio(object sender, EventArgs e)
-        {
-            if (idServ[GridServicios.SelectedIndex].Contains("Paquete"))
+        {         
+            // Decode the encoded string.
+            StringWriter myWriter = new StringWriter();
+            HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[1].Text, myWriter);
+            String opcion = myWriter.ToString();
+
+            seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text, opcion);
+            
+            if ("Incluido en Paquete".Equals(opcion))
             {
-                //do something
+                btnActivarTiquete.Disabled = true;
+                btnCancelar.Disabled = false;
+                btnConsultar.Disabled = false;
+                btnModificar.Disabled = false;
             }
-            else if (idServ[GridServicios.SelectedIndex].Contains("S"))
+            else if ("Paquete".Equals(opcion))
             {
-                controladora.seleccionarServicio(ids[0], idServ[GridServicios.SelectedIndex]);
+                btnActivarTiquete.Disabled = false;
+                btnCancelar.Disabled = true;
+                btnConsultar.Disabled = true;
+                btnModificar.Disabled = true;
             }
             else
             {
-                controladora.seleccionarComidaCampo(ids[0], idServ[GridServicios.SelectedIndex]);
+                btnActivarTiquete.Disabled = false;
+                btnCancelar.Disabled = false;
+                btnConsultar.Disabled = false;
+                btnModificar.Disabled = false;
             }
 
         }
@@ -265,8 +288,20 @@ namespace Servicios_Reservados_2
          */
         protected void modificarServicio(object sender, EventArgs e)
         {
-            modo = 2; //modificar es 2
-            Response.Redirect("FormComidaExtra");
+            
+            if (idServ[GridServicios.SelectedIndex].Contains("S"))
+            {
+                modo = 2; //modificar es 2
+                Response.Redirect("FormComidaExtra");
+            }
+            else
+            {
+                FormComidaCampo.modo = 2; //modo para modificar
+                FormComidaCampo.idReservacion = controladora.idSelected();
+                FormComidaCampo.tipoComidaCampo = 0;
+                Response.Redirect("FormComidaCampo");
+            }
+
         }
 
         /*
@@ -288,20 +323,21 @@ namespace Servicios_Reservados_2
             Response.Redirect("FormComidaCampo");
         }
 
-        /*
+      /*
        * Efecto: capta el evento del botón para cancelar una comida extra, cambia el modo y redirige a la interfaz de comida extra.
        * Requiere: presionar el botón.
        * Modifica: la variable global modo.
        */
         protected void clickEliminarServicio(object sender, EventArgs e)
         {
-            DataTable estado;
+            String[] mensaje;
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
-                estado = controladora.obtenerEstadoComidaExtra(ids[0], idServ[GridServicios.SelectedIndex]);
-                if (estado.Rows[0][0].ToString() == "Activo")
+                
+                if ("Activo".Equals(seleccionado.Estado))
                 {
-                    controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex]);
+                    mensaje = controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], seleccionado.Fecha, seleccionado.Hora);
+                    mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
                 }
                 else
                 { 
@@ -310,16 +346,17 @@ namespace Servicios_Reservados_2
             }
             else
             {
-                estado = controladora.obtenerEstadoComidaCampo(idServ[GridServicios.SelectedIndex]);
-                if (estado.Rows[0][0].ToString() == "Activo")
+                if ("Activo".Equals(seleccionado.Estado))
                 {
-                    controladora.cancelarComidaCampo(idServ[GridServicios.SelectedIndex]);
+                   mensaje= controladora.cancelarComidaCampo(idServ[GridServicios.SelectedIndex]);
+                   mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
                 }
                 else
                 {
                     //error
                 }
-            }
+            }  
+            llenarGridServicios();
         }
 
         /*
@@ -329,6 +366,7 @@ namespace Servicios_Reservados_2
        */
         protected void clickConsultarServicio(object sender, EventArgs e)
         {
+            
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
                 modo = 0;
@@ -343,10 +381,25 @@ namespace Servicios_Reservados_2
 
         }
 
+      
+
+        protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
+        {
+            alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
+            labelTipoAlerta.Text = alerta + " ";
+            labelAlerta.Text = mensaje;
+            alertAlerta.Attributes.Remove("hidden");
+        }
+
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
-            Response.Redirect("FormTiquete");
-        }
+            if(seleccionado!=null){
+                controladora.activarTiquete();
+                Response.Redirect("FormTiquete");
+            }
+            
+        }   
+
 
     }
 }

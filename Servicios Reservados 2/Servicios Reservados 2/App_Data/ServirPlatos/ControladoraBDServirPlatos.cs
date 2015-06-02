@@ -10,7 +10,7 @@ namespace Servicios_Reservados_2
 {
     public class ControladoraBDServirPlatos
     {
-        private AdaptadorServirPlatos adaptador;
+        private AdaptadorBD adaptador;
         DataTable dt;
         /*
          * Requiere: N/A
@@ -19,7 +19,7 @@ namespace Servicios_Reservados_2
          */
         public ControladoraBDServirPlatos()
         {
-            adaptador = new AdaptadorServirPlatos();
+            adaptador = new AdaptadorBD();
             dt = new DataTable();
         }
         /*
@@ -29,12 +29,16 @@ namespace Servicios_Reservados_2
          */
         internal DataTable consultarTiquete(int numTiquete)
         {
-            String consultaSQL = "SELECT r.cuentaclientekey, r.siglas, r.estacion, r.notas FROM RESERVAS.VR_RESERVACION r";
+            String consultaSQL = "SELECT idservicio, consumido, categoria, idsolicitante, tiposolicitante, fecha, hora FROM tiquete where numero ='"+numTiquete+"'";
             dt = adaptador.consultar(consultaSQL);
 
             return dt;
         }
-      
 
+        internal void servirTiquete(int numTiquete, int vecesConsumido)
+        {
+            String consultaSQL = "UPDATE tiquete SET consumido="+vecesConsumido+" WHERE numero ='" + numTiquete + "'";
+            adaptador.insertar(consultaSQL);
+        }
     }
 }

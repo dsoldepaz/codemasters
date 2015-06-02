@@ -76,15 +76,6 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.WebControls.Calendar fechaDeEntradaCalendario;
         
         /// <summary>
-        /// Control txtHora.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtHora;
-        
-        /// <summary>
         /// Control txtPax.
         /// </summary>
         /// <remarks>
@@ -121,13 +112,13 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Fieldset1;
         
         /// <summary>
-        /// Control CheckboxCambio.
+        /// Control checkO1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox CheckboxCambio;
+        protected global::System.Web.UI.WebControls.CheckBox checkO1;
         
         /// <summary>
         /// Control radioDesayuno.
@@ -136,7 +127,7 @@ namespace Servicios_Reservados_2 {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton radioDesayuno;
+        protected global::System.Web.UI.WebControls.RadioButton radioDesayuno;
         
         /// <summary>
         /// Control radioAlmuerzo.
@@ -145,7 +136,7 @@ namespace Servicios_Reservados_2 {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton radioAlmuerzo;
+        protected global::System.Web.UI.WebControls.RadioButton radioAlmuerzo;
         
         /// <summary>
         /// Control radioCena.
@@ -154,25 +145,25 @@ namespace Servicios_Reservados_2 {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton radioCena;
+        protected global::System.Web.UI.WebControls.RadioButton radioCena;
         
         /// <summary>
-        /// Control prueba.
+        /// Control cbxHoraOpcion1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton prueba;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect cbxHoraOpcion1;
         
         /// <summary>
-        /// Control btnO2.
+        /// Control checkO2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnO2;
+        protected global::System.Web.UI.WebControls.CheckBox checkO2;
         
         /// <summary>
         /// Control fieldsetO2.
@@ -265,6 +256,15 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton radioEnsaladaHuevo;
         
         /// <summary>
+        /// Control cmbHoraSandwich.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect cmbHoraSandwich;
+        
+        /// <summary>
         /// Control opcion2Fieldset.
         /// </summary>
         /// <remarks>
@@ -274,22 +274,22 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl opcion2Fieldset;
         
         /// <summary>
-        /// Control CheckboxO2.
+        /// Control checkO3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox CheckboxO2;
+        protected global::System.Web.UI.WebControls.CheckBox checkO3;
         
         /// <summary>
-        /// Control chGalloPinto.
+        /// Control cmbHoraGalloPinto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chGalloPinto;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect cmbHoraGalloPinto;
         
         /// <summary>
         /// Control chEnsalada.
@@ -370,7 +370,7 @@ namespace Servicios_Reservados_2 {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox CheckboxBebida;
+        protected global::System.Web.UI.WebControls.CheckBox CheckboxBebida;
         
         /// <summary>
         /// Control radioAgua.
@@ -397,6 +397,6 @@ namespace Servicios_Reservados_2 {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnAgregar;
+        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit btnAgregar;
     }
 }

@@ -127,7 +127,7 @@ namespace Servicios_Reservados_2
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Número Carné";
+            columna.ColumnName = "Carné";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
@@ -173,8 +173,6 @@ namespace Servicios_Reservados_2
             if (inputNombre.Value.ToString()!="")
             {
                 nombre = inputNombre.Value.ToString();
-                Debug.WriteLine("hola"+nombre);
-                
             }
             if (inputIdentificacion.Value.ToString() != "")
             {
@@ -194,13 +192,12 @@ namespace Servicios_Reservados_2
                     int i = 0;
                     if (empleados.Rows.Count > 0)
                     {
-                        Debug.WriteLine("Me vine por aqui");
                         foreach (DataRow fila in empleados.Rows)
                         {
                             ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
-                            datos[0] = fila[0].ToString();//obtener los datos a mostrar
-                            datos[1] = fila[1].ToString();
-                            datos[2] = fila[2].ToString();
+                            datos[0] = fila[1].ToString();//obtener los datos a mostrar
+                            datos[1] = fila[2].ToString();
+                            datos[2] = fila[3].ToString();
                             tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                             Debug.WriteLine(fila[1].ToString());
                             i++;

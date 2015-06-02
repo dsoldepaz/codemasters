@@ -50,37 +50,12 @@ namespace Servicios_Reservados_2
         public String[] agregarServicioExtra(EntidadComidaExtra entidad)
         {
             String[] respuesta = new String[3];
-            try
-            {
-                String consultaSQL = "insert into servicios_reservados.servicio_especial values('" + entidad.IdReservacion + "','" + entidad.IdServiciosExtras + "'," +
-                    entidad.Pax + ",'" + entidad.Fecha + "','" + entidad.Consumido + "','" + entidad.Descripcion + "','" + entidad.TipoPago + "','" + entidad.Hora + "')";
+            
+            String consultaSQL = "insert into servicios_reservados.servicio_especial values('" + entidad.IdReservacion + "','" + entidad.IdServiciosExtras + "'," +
+                    entidad.Pax + ",'" + entidad.Fecha + "','" + entidad.Consumido + "','" + entidad.Descripcion + "','" + entidad.TipoPago + "','" + entidad.Hora + "', 0)";
 
-                adaptador.insertar(consultaSQL);
+            respuesta = adaptador.insertar(consultaSQL);
                
-                respuesta[0] = "success";
-                respuesta[1] = "Exito. ";
-                respuesta[2] = "La comida extra se ha insertado exitosamente";
-            }
-            catch (SqlException e)
-            {
-                int r = e.Number;
-
-                if (r == 2627)
-                {
-                    
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "Informacion ingresada ya existe";
-                }
-                else
-                {
-                    
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "No se pudo agregar el servicio extra";
-                }
-
-            }
             return respuesta;
         }
 
@@ -92,34 +67,12 @@ namespace Servicios_Reservados_2
         public String[] modificarServicioExtra(EntidadComidaExtra entidad, EntidadComidaExtra entidadVieja)
         {
             String[] respuesta = new String[3];
-            try
-            {
-                String consultaSQL = "update servicios_reservados.servicio_especial set pax =" + "'" + entidad.Pax + "', fecha = '" + entidad.Fecha + "', estado = '" + entidad.Consumido + "', descripcion = '" + entidad.Descripcion + "', hora = '" + entidad.Hora + "', tipo_pago = '" + entidad.TipoPago + "', idserviciosextras = '" + entidad.IdServiciosExtras +"'" +
-                                      "where idreservacion = '" + entidadVieja.IdReservacion + "' and idserviciosextras = '" + entidadVieja.IdServiciosExtras + "'";
+           
+            String consultaSQL = "update servicios_reservados.servicio_especial set pax =" + "'" + entidad.Pax + "', fecha = '" + entidad.Fecha + "', estado = '" + entidad.Consumido + "', descripcion = '" + entidad.Descripcion + "', hora = '" + entidad.Hora + "', tipo_pago = '" + entidad.TipoPago + "', idserviciosextras = '" + entidad.IdServiciosExtras +"'" +
+                                      "where idreservacion = '" + entidadVieja.IdReservacion + "' and idserviciosextras = '" + entidadVieja.IdServiciosExtras + "' and fecha = '" + entidadVieja.Fecha + "' and hora = '" + entidadVieja.Hora + "'";
 
-                adaptador.insertar(consultaSQL);
-               
-                respuesta[0] = "success";
-                respuesta[1] = "Exito. ";
-                respuesta[2] = "El usuario se ha insertado exitosamente";
-            }
-            catch (SqlException e)
-            {
-                int r = e.Number;
-
-                if (r == 2627)
-                {
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "Informacion ingresada ya existe";
-                }
-                else
-                {
-                    respuesta[0] = "danger";
-                    respuesta[1] = "Error. ";
-                    respuesta[2] = "No se pudo agregar el servicio extra";
-                }
-            }
+            respuesta = adaptador.insertar(consultaSQL);
+          
             return respuesta;
         }
 
@@ -133,6 +86,62 @@ namespace Servicios_Reservados_2
             String consultaSQL = "select entra, sale from reservas.reservacion where id='" + id + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
+        }
+
+        /*
+         * Efecto: Crea la consulta SQL que obtiene la tupla del servicio solicitado de la reservacion y la retorna en forma de datatable  
+         * Requiere: id de la reservacion, id servicio
+         * Modifica: el dataTable dt
+         */
+        internal DataTable seleccionarServicio(String id, String idserv, String fecha, String hora)
+        {
+            String consultaSQL = "select * from servicios_reservados.servicio_especial where idreservacion = '" + id + "' and idserviciosextras = '" + idserv + "' and fecha = '" + fecha + "' and hora = '" + hora +"'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        /*
+        * Efecto: actualiza el atributo estado de la tabla servicios_especiales de la comida extra seleccionada
+        * Requiere: el id de la reservacion seleccionada y el id de la comida extra seleccionado.
+        * Modifica: table de servicio_especial
+       */
+        public String[] cancelarComidaExtra(String idReservacion, String idComidaExtra, String fecha, String hora)
+        {
+            String[] respuesta = new String[3];
+            try
+            {
+                String consultaSQL = "update servicios_reservados.servicio_especial set estado = 'Cancelado'  where idReservacion = '" + idReservacion +
+                    "' and idserviciosextras = '" + idComidaExtra + "' and fecha = '" + fecha + "' and hora = '" + hora + "'";
+
+                adaptador.insertar(consultaSQL);
+
+                respuesta[0] = "success";
+                respuesta[1] = "Exito. ";
+                respuesta[2] = "La comida extra se ha eliminado exitosamente";
+            }
+            catch (SqlException e)
+            {
+                respuesta[0] = "danger";
+                respuesta[1] = "Error. ";
+                respuesta[2] = "No se pudo eliminar la comida extra";
+                
+
+            }
+            return respuesta;
+        }
+
+        internal DataTable vecesConsumido(string id, string idRes, string fecha, string hora)
+        {
+            String consultaSQL = "select vecesconsumido from servicios_reservados.servicio_especial where idserviciosextras ='" + id + "' and idreservacion='" + idRes + "' and fecha='" + fecha + "' and hora='" +hora+ "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+
+        internal void actualizarVecesConsumido(string idServicio, int vecesConsumido, string idRes, string fecha, string hora)
+        {
+            String consultaSQL = "update servicios_reservados.servicio_especial set vecesconsumido= " + vecesConsumido + " where idserviciosextras ='" + idServicio + "' and idreservacion='" + idRes + "' and fecha='" + fecha + "' and hora='" + hora + "'";
+            dt = adaptador.consultar(consultaSQL);
         }
     }
 }

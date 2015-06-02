@@ -14,6 +14,7 @@ namespace Servicios_Reservados_2
     {
 
         ControladoraServirPlatos controladora = new ControladoraServirPlatos();
+        private static int modo=0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,8 +29,24 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
+                cambiarModo();
             }
 
+        }
+        protected void cambiarModo()
+        {
+            if (modo == 0)
+            {//esperando tiquete
+                infoTiquete.Visible = false;
+                btnServir.Disabled = true;
+                tiquete.Value = "";
+
+            }
+            else if (modo == 1)
+            {//tiquete verificado
+                infoTiquete.Visible = true;
+                btnServir.Disabled = false;
+            }
         }
 
         /* Requiere: La introduccion de un numero de tiquete por parte del usuario
@@ -38,36 +55,56 @@ namespace Servicios_Reservados_2
          */
         protected void clickVerificar(object sender, EventArgs e)
         {
-            DataTable tabla = crearTablaTiquete();
-            int numTiquete = int.Parse(tiquete.Value);
-
-            try
-            {
-                DataTable datosTiquete = controladora.solicitarTiquete(numTiquete);// se consulta
-                Object[] datos = new Object[datosTiquete.Columns.Count];
-
-                if (datosTiquete.Rows.Count > 0)
-                {
-                    for (int i = 0; i < datosTiquete.Columns.Count; i++)
-                    {
-                        datos[i] = datosTiquete.Rows[0][i].ToString();//obtener los datos a mostrar
-                    }
-                    tabla.Rows.Add(datos);// cargar en la tabla los datos 
-                }
-                GridViewTiquete.DataBind();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("No se pudo cargar las reservaciones");
-            }
-
-
+            verificar();
         }
 
-        protected DataTable crearTablaTiquete()//consultar
+        protected void verificar() {
+            if (tiquete.Value!=null)
+            {
+                DataTable tabla = crearTablaTiquete();
+                int numTiquete = int.Parse(tiquete.Value);
+                Object[] datos = new Object[6];
+
+                EntidadTiquete datosTiquete = controladora.solicitarTiquete(numTiquete);// se consulta
+                if (datosTiquete != null)
+                {
+                    datos[0] = datosTiquete.Anfitriona;
+                    datos[1] = datosTiquete.Estacion;
+                    datos[2] = datosTiquete.NombreSolicitante;
+                    datos[3] = datosTiquete.Categoria;
+                    datos[4] = datosTiquete.Consumido;
+                    datos[5] = datosTiquete.Notas;
+                    
+
+                    tabla.Rows.Add(datos);// cargar en la tabla los datos 
+
+                    GridViewTiquete.DataBind();
+                    modo = 1;
+                    cambiarModo();
+                }
+                else
+                {
+
+                    modo = 0;
+                    cambiarModo();
+                }  
+            }            
+                      
+        }
+        protected DataTable crearTablaTiquete()
         {
             DataTable tabla = new DataTable();
             DataColumn columna;
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Anfitriona";
+            tabla.Columns.Add(columna); 
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Estación";
+            tabla.Columns.Add(columna);
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
@@ -76,12 +113,12 @@ namespace Servicios_Reservados_2
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Anfitriona";
+            columna.ColumnName = "Categoria";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Estación";
+            columna.ColumnName = "Consumido";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
@@ -94,7 +131,13 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
-
+        protected void clickServir(object sender, EventArgs e)
+        {
+            controladora.servirTiquete();
+            verificar();
+            modo = 0;
+            cambiarModo();
+        }
 
     }
 }
