@@ -81,7 +81,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" onrowdatabound="filaSeleccionada" >
+                                    <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
                                         <SelectedRowStyle BackColor="#7BC143" />
            
                                         

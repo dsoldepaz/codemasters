@@ -261,7 +261,7 @@ namespace Servicios_Reservados_2
             HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[1].Text, myWriter);
             String opcion = myWriter.ToString();
             
-            seleccionado = controladora.crearServicio(ids[0], idServ[index], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text, opcion);
+           // seleccionado = controladora.crearServicio(ids[0], idServ[index], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text, opcion);
             
 
         }
@@ -323,8 +323,8 @@ namespace Servicios_Reservados_2
                 
                 if ("Activo".Equals(seleccionado.Estado))
                 {
-                    mensaje = controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], seleccionado.Fecha, seleccionado.Hora);
-                    mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
+                    //mensaje = controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], seleccionado.Fecha, seleccionado.Hora);
+                    //mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
                 }
                 else
                 { 
@@ -403,7 +403,7 @@ namespace Servicios_Reservados_2
             Response.Redirect("FormServicios");
         }
 
-        protected void filaSeleccionada(object sender, GridViewRowEventArgs e)
+       /* protected void filaSeleccionada(object sender, GridViewRowEventArgs e)
         {
             LinkButton btnConsultar = (LinkButton)e.Row.Cells[5].FindControl("btnConsultar");
             LinkButton btnModificar = (LinkButton)e.Row.Cells[5].FindControl("btnModificar");
@@ -425,7 +425,7 @@ namespace Servicios_Reservados_2
                 btnActivarTiquete.Visible = true;
             }
 
-        }
+        }*/
 
     }
 }
