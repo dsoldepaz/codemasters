@@ -7,6 +7,7 @@ namespace Servicios_Reservados_2
 {
     public class EntidadComidaExtra
     {
+        private String idComidaExtra;
         private String idReservacion;
         private String idServiciosExtras;
         private String hora;
@@ -27,6 +28,7 @@ namespace Servicios_Reservados_2
             this.pax = int.Parse(datos[5].ToString());
             this.hora = datos[6].ToString();
             this.tipoPago = datos[7].ToString();
+            this.idComidaExtra = datos[8].ToString();
         }
 
         public String IdReservacion
@@ -71,6 +73,11 @@ namespace Servicios_Reservados_2
         {
             get { return tipoPago; }
             set { tipoPago = value; }
+        }
+        public String IdComidaExtra
+        {
+            get { return idComidaExtra; }
+            set { idComidaExtra = value; }
         }
     }
 }

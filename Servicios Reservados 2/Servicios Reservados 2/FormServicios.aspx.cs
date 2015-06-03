@@ -122,7 +122,7 @@ namespace Servicios_Reservados_2
                     foreach (DataRow fila in servicios.Rows)
                     {
                         ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
-                        idServ[i] = fila[1].ToString();
+                        idServ[i] = fila[8].ToString();
                         datos[0] = "Comida Extra";
                         datos[1] = fila[2].ToString();//obtener los datos a mostrar
                         datos[2] = fila[3].ToString();
@@ -256,7 +256,7 @@ namespace Servicios_Reservados_2
             HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[1].Text, myWriter);
             String opcion = myWriter.ToString();
 
-            seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text, opcion);
+            seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex], opcion);
             
             if ("Incluido en Paquete".Equals(opcion))
             {
@@ -279,7 +279,6 @@ namespace Servicios_Reservados_2
                 btnConsultar.Disabled = false;
                 btnModificar.Disabled = false;
             }
-
         }
         /*
          * Efecto: llama al metodo modificarServicio de la controladora y redirecciona la pagina al formComidaExtra
@@ -288,7 +287,6 @@ namespace Servicios_Reservados_2
          */
         protected void modificarServicio(object sender, EventArgs e)
         {
-            
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
                 modo = 2; //modificar es 2
@@ -315,6 +313,11 @@ namespace Servicios_Reservados_2
             Response.Redirect("FormComidaExtra");
         }
 
+        /*
+        * Efecto: capta el evento del botón para agregar una comida de campo, cambia el modo y redirige a la interfaz de comida de campo.
+        * Requiere: presionar el botón.
+        * Modifica: la variable global modo.
+        */
         protected void cliclAgregarComidaCampo(object sender, EventArgs e)
         {
             FormComidaCampo.modo = 1;
@@ -336,7 +339,7 @@ namespace Servicios_Reservados_2
                 
                 if ("Activo".Equals(seleccionado.Estado))
                 {
-                    mensaje = controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], seleccionado.Fecha, seleccionado.Hora);
+                    mensaje = controladora.cancelarComidaExtra(idServ[GridServicios.SelectedIndex]);
                     mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
                 }
                 else

@@ -76,9 +76,9 @@ namespace Servicios_Reservados_2
        * Requiere: la entrada de los datos.
        * Modifica: la variable servicioSeleccionado, en la que se almacena el servicio consultado.
       */
-      public EntidadComidaExtra guardarServicioSeleccionado(String id, String idServ, String fecha, String hora)
+      public EntidadComidaExtra guardarServicioSeleccionado(String idComidaExtra)
       {
-          DataTable servicios = controladoraBD.seleccionarServicio(id, idServ, fecha, hora);
+          DataTable servicios = controladoraBD.seleccionarServicio(idComidaExtra);
 
           Object[] nuevoServicio = new Object[8];
 
@@ -165,9 +165,9 @@ namespace Servicios_Reservados_2
          * Requiere: los ids.
          * Modifica:
          */
-        internal String[] cancelarComidaExtra(String idReservacion, String idComidaExtra, String fecha, String hora)
+        internal String[] cancelarComidaExtra(String idComidaExtra)
         {
-            String[] resultado = controladoraBD.cancelarComidaExtra(idReservacion, idComidaExtra, fecha, hora);
+            String[] resultado = controladoraBD.cancelarComidaExtra(idComidaExtra);
             return resultado;
         }
 

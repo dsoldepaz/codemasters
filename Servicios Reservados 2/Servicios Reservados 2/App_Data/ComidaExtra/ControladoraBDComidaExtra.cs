@@ -52,7 +52,7 @@ namespace Servicios_Reservados_2
             String[] respuesta = new String[3];
             
             String consultaSQL = "insert into servicios_reservados.servicio_especial values('" + entidad.IdReservacion + "','" + entidad.IdServiciosExtras + "'," +
-                    entidad.Pax + ",'" + entidad.Fecha + "','" + entidad.Consumido + "','" + entidad.Descripcion + "','" + entidad.TipoPago + "','" + entidad.Hora + "', 0)";
+                    entidad.Pax + ",'" + entidad.Fecha + "','" + entidad.Consumido + "','" + entidad.Descripcion + "','" + entidad.TipoPago + "','" + entidad.Hora + "', 0, 'S' || comida_extra_secuencia.nextval)";
 
             respuesta = adaptador.insertar(consultaSQL);
                
@@ -93,9 +93,9 @@ namespace Servicios_Reservados_2
          * Requiere: id de la reservacion, id servicio
          * Modifica: el dataTable dt
          */
-        internal DataTable seleccionarServicio(String id, String idserv, String fecha, String hora)
+        internal DataTable seleccionarServicio(String idComidaExtra)
         {
-            String consultaSQL = "select * from servicios_reservados.servicio_especial where idreservacion = '" + id + "' and idserviciosextras = '" + idserv + "' and fecha = '" + fecha + "' and hora = '" + hora +"'";
+            String consultaSQL = "select * from servicios_reservados.servicio_especial where id = '" + idComidaExtra + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
@@ -105,13 +105,12 @@ namespace Servicios_Reservados_2
         * Requiere: el id de la reservacion seleccionada y el id de la comida extra seleccionado.
         * Modifica: table de servicio_especial
        */
-        public String[] cancelarComidaExtra(String idReservacion, String idComidaExtra, String fecha, String hora)
+        public String[] cancelarComidaExtra(String idComidaExtra)
         {
             String[] respuesta = new String[3];
             try
             {
-                String consultaSQL = "update servicios_reservados.servicio_especial set estado = 'Cancelado'  where idReservacion = '" + idReservacion +
-                    "' and idserviciosextras = '" + idComidaExtra + "' and fecha = '" + fecha + "' and hora = '" + hora + "'";
+                String consultaSQL = "update servicios_reservados.servicio_especial set estado = 'Cancelado'  where id = '" + idComidaExtra +"'";
 
                 adaptador.insertar(consultaSQL);
 
