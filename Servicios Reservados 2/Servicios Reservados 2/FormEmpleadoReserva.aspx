@@ -28,7 +28,7 @@
                         Comidas desde el ultimo mes del empleado
                     </h4>
                 <section id="comidasReservadas">
-                    <asp:GridView ID="GridComidasReservadas" runat="server" AllowPaging="true" AllowSorting="true" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnSelectedIndexChanged="seleccionarComida" Width="100%">
+                    <asp:GridView ID="GridComidasReservadas" runat="server" AllowPaging="true" AllowSorting="true" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" Width="100%">
                        <Columns>
                             <asp:TemplateField>
                                 <ItemTemplate>
