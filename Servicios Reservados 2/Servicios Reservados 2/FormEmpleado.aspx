@@ -33,9 +33,8 @@
                     </div>
                     <div class="well bs-component">
                     <legend style="color: #7BC143">Listado de empleados</legend>
-                    <asp:GridView ID="GridViewEmpleados" runat="server" AllowPaging="true" AllowSorting="true" AutoGenerateSelectButton="True" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" OnRowCommand="seleccionarEmpleado" PageSize="20">
-                        <AlternatingRowStyle BorderStyle="None" />
-                        <HeaderStyle Font-Size="1.3em" />
+                    <asp:GridView ID="GridViewEmpleados" Class="Gridcontenedor" runat="server" AllowPaging="true" AllowSorting="true" AutoGenerateSelectButton="True" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" OnRowCommand="seleccionarEmpleado" PageSize="20">
+                        
                         <SelectedRowStyle BackColor="#7BC143" BorderStyle="Dotted" BorderWidth="1px" Font-Bold="true" ForeColor="Black" />
                     </asp:GridView>
                     
