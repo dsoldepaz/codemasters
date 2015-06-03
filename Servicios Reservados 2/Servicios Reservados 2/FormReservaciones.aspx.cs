@@ -115,8 +115,10 @@ namespace Servicios_Reservados_2
                         datos[1] = fila[2].ToString();
                         datos[2] = fila[3].ToString();
                         datos[3] = fila[4].ToString();
-                        datos[4] = fila[5].ToString();
-                        datos[5] = fila[6].ToString();
+                        DateTime entra = DateTime.Parse(fila[5].ToString());
+                        datos[4] = entra.ToString("MM/dd/yyyy");
+                        DateTime sale = DateTime.Parse(fila[6].ToString());
+                        datos[5] = sale.ToString("MM/dd/yyyy");
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
                     }
@@ -217,7 +219,7 @@ namespace Servicios_Reservados_2
                 Debug.WriteLine("entre al metodo de la estacion" + estacion);
                 estacion = cbxEstacion.Value.ToString();
           }
-            if (txtSolicitante.Value.ToString()=="")
+            if (txtSolicitante.Value.ToString()!=null)
             {
               solicitante = txtSolicitante.Value.ToString();
           }
@@ -242,8 +244,10 @@ namespace Servicios_Reservados_2
                           datos[1] = fila[2].ToString();
                           datos[2] = fila[3].ToString();
                           datos[3] = fila[4].ToString();
-                          datos[4] = fila[5].ToString();
-                          datos[5] = fila[6].ToString();
+                          DateTime entra = DateTime.Parse(fila[5].ToString());
+                          datos[4] = entra.ToString("MM/dd/yyyy");
+                          DateTime sale = DateTime.Parse(fila[6].ToString());
+                          datos[5] = sale.ToString("MM/dd/yyyy");
                             Debug.WriteLine("dato " + datos[0]);
                           tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                           i++;
