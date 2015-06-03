@@ -12,17 +12,17 @@
     </nav>
 
 
-    <legend>
-        <h2>Reservaciones</h2>
-    </legend>
+        <legend>
+            <h2>Reservaciones</h2>
+        </legend>
 
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <fieldset>
-                <div class="well bs-component">
-                    <legend style="color: #7BC143">Filtro de reservación</legend>
-                    <fieldset>
-                        <asp:Panel runat="server" DefaultButton="BotonBuscar">
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <fieldset>
+                    <div class="well bs-component">
+                        <legend style="color: #7BC143">Filtro de reservación</legend>
+                        <fieldset>
+                             <asp:Panel runat="server" DefaultButton="BotonBuscar">
                             <table>
                                 <tr>
                                     <td style="width: 10%">Anfitriona:</td>
@@ -34,53 +34,51 @@
                                         <select style="width: 176px" id="cbxEstacion" runat="server"></select>
                                     </td>
                                 </tr>
-                            </table>
-                            <table>
+                                </table>
+                             <table>
                                 <tr>
                                     <td>Solicitante:</td>
                                     <td>
-                                        <input class="textbox" style="width: 500px" id="txtSolicitante" runat="server" />
+                                        <input class="textbox" style="width:500px" id="txtSolicitante" runat="server" />
                                     </td>
                                     <td>
-                                        <asp:button text="Buscar" class="btn btn-success" id="BotonBuscar" OnClick="clickBuscar" runat="server"/>
+                                        <asp:button  text="Buscar" class="btn btn-success" id="BotonBuscar" OnClick="clickBuscar" runat="server"/>
                                         
                                     </td>
                                 </tr>
                             </table>
-                        </asp:Panel>
-                </div>
-                <div class="well bs-component">
-                    <legend style="color: #7BC143">Listado de reservaciones</legend>
-                    <table>
-                        <tr>
-                            <td>
+                                 </asp:Panel>
+                    </div>
+                    <div class="well bs-component">
+                        <legend style="color: #7BC143">Listado de reservaciones</legend>
+                        <table>
+                            <tr>
+                                <td>
 
-                                <asp:GridView ID="GridViewReservaciones" Class="Gridcontenedor" runat="server" AutoGenerateSelectButton="True" OnRowCommand="seleccionarReservacion" AllowPaging="true" AllowSorting="true" PageSize="20" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging">
-                                    
-                                    <SelectedRowStyle BackColor="#7BC143"
-                                        ForeColor="Black"
-                                        Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
-                                </asp:GridView>
-
-
-                            </td>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr>
-
-                            <td>
-
-                                <input type="button" runat="server" class="btn btn-success" id="botonServicioExtra" value="Agregar Servicios" onserverclick="clickAgregarServicioExtra" /></a>
-                            </td>
-                        </tr>
-                    </table>
+                                    <asp:GridView ID="GridViewReservaciones"  Class="Gridcontenedor" runat="server" OnClick="clickAgregarServicioExtra" AllowPaging="true" AllowSorting="true" PageSize="20" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging">
+                                        
+                                        <SelectedRowStyle BackColor="#7BC143"
+                                            ForeColor="Black"
+                                            Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
+                                         <Columns>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                      <asp:LinkButton  ID="btnConsultar" runat="server" OnClick="clickAgregarServicioExtra" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
 
 
-                </div>
-            </fieldset>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                    </div>
+                </fieldset>
+            </ContentTemplate>
+        </asp:UpdatePanel>
 
 </asp:Content>
 

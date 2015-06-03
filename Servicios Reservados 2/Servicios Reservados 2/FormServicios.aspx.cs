@@ -183,6 +183,7 @@ namespace Servicios_Reservados_2
                     }
                 }
 
+                GridServicios.AllowSorting = false;
                 GridServicios.DataBind();
 
             }
@@ -238,6 +239,7 @@ namespace Servicios_Reservados_2
             tabla.Columns.Add(columna);
 
             GridServicios.DataSource = tabla;
+            GridServicios.AllowSorting = false;
             GridServicios.DataBind();
 
             return tabla;
@@ -249,36 +251,18 @@ namespace Servicios_Reservados_2
          * Requiere: parametros evento de la interfaz grafica
          * Modifica: NA
          */
-        protected void seleccionarServicio(object sender, EventArgs e)
-        {         
+        protected void seleccionarServicio(int index)
+        {
+
+            GridServicios.SelectedIndex = index;
+
             // Decode the encoded string.
             StringWriter myWriter = new StringWriter();
             HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[1].Text, myWriter);
             String opcion = myWriter.ToString();
-
-            seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text, opcion);
             
-            if ("Incluido en Paquete".Equals(opcion))
-            {
-                btnActivarTiquete.Disabled = true;
-                btnCancelar.Disabled = false;
-                btnConsultar.Disabled = false;
-                btnModificar.Disabled = false;
-            }
-            else if ("Paquete".Equals(opcion))
-            {
-                btnActivarTiquete.Disabled = false;
-                btnCancelar.Disabled = true;
-                btnConsultar.Disabled = true;
-                btnModificar.Disabled = true;
-            }
-            else
-            {
-                btnActivarTiquete.Disabled = false;
-                btnCancelar.Disabled = false;
-                btnConsultar.Disabled = false;
-                btnModificar.Disabled = false;
-            }
+            seleccionado = controladora.crearServicio(ids[0], idServ[index], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text, opcion);
+            
 
         }
         /*
@@ -288,6 +272,8 @@ namespace Servicios_Reservados_2
          */
         protected void modificarServicio(object sender, EventArgs e)
         {
+
+             seleccionarServicio(obtenerIndex(sender, e));
             
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
@@ -391,8 +377,17 @@ namespace Servicios_Reservados_2
             alertAlerta.Attributes.Remove("hidden");
         }
 
+        protected int obtenerIndex(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            return i = Convert.ToInt32(row.RowIndex);
+
+        }
+
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
+          
             if(seleccionado!=null){
                 controladora.activarTiquete();
                 Response.Redirect("FormTiquete");
