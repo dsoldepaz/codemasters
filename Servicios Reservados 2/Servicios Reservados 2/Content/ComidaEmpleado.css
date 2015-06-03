@@ -31,7 +31,7 @@ ContentTemplate>div:first-of-type{
 div:first-of-type>input{
     width:110px;
 }
-#ContenedorManejoDeHorario{
+.well{
     margin-left:5%;
 }
 
@@ -71,4 +71,19 @@ section>div>input:disabled:hover:after{
 }
 ul{
     display:block;
+}
+input#MainContent_btnAceptar:disabled:hover {
+  cursor: not-allowed;
+}
+input#MainContent_btnAceptar:Disabled {
+  background-color: rgba(142, 200, 95, 0.76);
+}
+section.well{
+    display:-webkit-box;
+}
+input#MainContent_fecha {
+  width: 150px;
+}
+div#MainContent_UpdatePanel1 {
+  MARGIN-LEFT: 8%;
 }

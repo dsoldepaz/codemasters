@@ -26,10 +26,6 @@ a {
         color: #333;
     }
 
-    a:hover {
-        background-color: #c7d1d6;
-    }
-
 header, footer, hgroup,
 nav, section {
     display: block;
@@ -851,4 +847,8 @@ input#btnSalir:hover {
 }
 label.labelfont {
     font: normal 14px Arial !important;
+}
+li.item-navegacion:hover {
+  transition: font-size 1s;
+  font-size: 1.2em;
 }
