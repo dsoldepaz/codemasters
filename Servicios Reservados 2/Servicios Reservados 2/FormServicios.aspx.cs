@@ -403,29 +403,33 @@ namespace Servicios_Reservados_2
             Response.Redirect("FormServicios");
         }
 
-       /* protected void filaSeleccionada(object sender, GridViewRowEventArgs e)
+        protected void filaSeleccionada(object sender, GridViewRowEventArgs e)
         {
-            LinkButton btnConsultar = (LinkButton)e.Row.Cells[5].FindControl("btnConsultar");
-            LinkButton btnModificar = (LinkButton)e.Row.Cells[5].FindControl("btnModificar");
-            LinkButton btnCancelar = (LinkButton)e.Row.Cells[5].FindControl("btnCancelar");
-            LinkButton btnActivarTiquete = (LinkButton)e.Row.Cells[5].FindControl("btnActivarTiquete");
+         
+            LinkButton consultar = (LinkButton)e.Row.FindControl("btnConsultar");
+            LinkButton modificar = (LinkButton)e.Row.FindControl("btnModificar");
+            LinkButton cancelar = (LinkButton)e.Row.FindControl("btnCancelar");
+            LinkButton activarTiquete = (LinkButton)e.Row.FindControl("btnActivarTiquete");
 
-
-            if (e.Row.Cells[4].Text == "Paquete")
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                btnConsultar.Visible = false;
-                btnModificar.Visible = false;
-                btnCancelar.Visible = false;
-            }
-            else
-            {
-                btnConsultar.Visible = true;
-                btnModificar.Visible = true;
-                btnCancelar.Visible = true;
-                btnActivarTiquete.Visible = true;
+               
+                if (e.Row.Cells[0].Text == "Paquete")
+                {
+                    consultar.Visible = false;
+                    modificar.Visible = false;
+                    cancelar.Visible = false;
+                }
+                else
+                {
+                    consultar.Visible = true;
+                    modificar.Visible = true;
+                    cancelar.Visible = true;
+                    activarTiquete.Visible = true;
+                }
             }
 
-        }*/
+        }
 
     }
 }
