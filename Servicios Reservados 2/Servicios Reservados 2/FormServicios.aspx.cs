@@ -340,7 +340,7 @@ namespace Servicios_Reservados_2
                 
                 if ("Activo".Equals(seleccionado.Estado))
                 {
-                    mensaje = controladora.cancelarComidaExtra(idServ[GridServicios.SelectedIndex]);
+                     mensaje = controladora.cancelarComidaExtra(idServ[GridServicios.SelectedIndex]);
                     mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
                 }
                 else
