@@ -313,7 +313,20 @@ namespace Servicios_Reservados_2
                 Response.Redirect("FormTiquete");
             }
 
-        }   
+        }
+        /*
+         *  Requiere: Controladores de eventos de la interfaz.
+         *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
+         *  Retrona:  N/A
+         */
+        protected void GridViewReservaciones_PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
+
+            GridComidasReservadas.PageIndex = e.NewPageIndex;
+            GridComidasReservadas.DataSource = Session["tablaa"];
+            GridComidasReservadas.DataBind();
+
+        }
 
     }
 }
