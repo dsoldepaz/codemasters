@@ -804,11 +804,14 @@ h1{
     color:#7BC143;
 }
 tbody>tr>td{
-    padding:5px;
+    padding:10px;
+    text-align:left;
 }
 
-tbody>tr>th{
-  padding: 1px 0px 1px 6px;
+tbody>tr>th {
+  padding: 9px 9px 9px 9px;
+  text-align: center;
+  border: 1px dotted grey;
 }
 
 /*Cosas que importamos de Bootstrap y queremos que se vean asi siempre */
@@ -851,4 +854,10 @@ label.labelfont {
 li.item-navegacion:hover {
   transition: font-size 1s;
   font-size: 1.2em;
+}
+li.item-navegacion>a.seleccionado:hover {
+  background-color: transparent;
+}
+.Gridcontenedor > tbody > tr> td {
+  border: 1px dotted gray;
 }

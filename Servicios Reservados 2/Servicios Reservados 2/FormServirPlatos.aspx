@@ -3,8 +3,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <nav>
         <ul>
-            <li class="item-navegacion">Servir Platos</li>
-            <li class="item-navegacion">Reportes</li>
+            <li class="item-navegacion"><a class="seleccionado" href="FormServirPlatos.aspx">Servir Platos</a></li>
+            <li class="item-navegacion"><a href="FormReportesComedor.aspx">Reportes</a></li>
             <li class="item-navegacion">Horarios</li>
             <li class="item-navegacion">Notificaciones <span class="notificacion">0</span></li>
         </ul>

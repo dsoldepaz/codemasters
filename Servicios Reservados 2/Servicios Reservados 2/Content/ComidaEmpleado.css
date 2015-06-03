@@ -57,14 +57,6 @@ ContentTemplate{
 #ContenedorManejoDeHorario>div>*{
     padding: 2px;
 }
-
-section>div>input:disabled:hover:after{
-    content: "No se puede cancelar comidas consumidas";
-    background-color: #FDBB30;
-    padding: 5px;
-    color: #000000;
-    border: 1px solid #F26631;
-}
 [type="date"]{
     width:150px;
     float:none;

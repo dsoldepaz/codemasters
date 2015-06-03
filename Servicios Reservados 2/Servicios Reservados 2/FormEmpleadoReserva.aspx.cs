@@ -299,6 +299,8 @@ namespace Servicios_Reservados_2
             {
                 EntidadEmpleado empleado=controladora.obtenerEmpleado(idEmpleado);
                 this.lblNombre.InnerText = (empleado.Nombre + " " + empleado.Apellido);
+                txtApellido.Value = empleado.Apellido;
+                txtNombre.Value = empleado.Nombre;
             }
             else
             {

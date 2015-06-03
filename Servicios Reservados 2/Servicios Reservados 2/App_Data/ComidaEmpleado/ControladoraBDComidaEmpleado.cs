@@ -122,7 +122,7 @@ namespace Servicios_Reservados_2
         internal DataTable getReservacionesEmpleado(string idEmpleado)
         {
             DataTable dt = new DataTable();
-            String consulta = "SELECT IDCOMIDAEMPLEADO,'Comida regular',IDEMPLEADO,FECHA,PAGADO FROM servicios_reservados.RESERVA_EMPLEADO WHERE IDEMPLEADO = '" + idEmpleado + "'AND FECHA >= ADD_MONTHS(SYSDATE, - 1) ";
+            String consulta = "SELECT IDCOMIDAEMPLEADO,'Comida regular',IDEMPLEADO,FECHA,PAGADO FROM servicios_reservados.RESERVA_EMPLEADO WHERE IDEMPLEADO = '" + idEmpleado + "'AND FECHA >= ADD_MONTHS(SYSDATE, - 1) AND NOT(CENA='X' And ALMUERZO='X' AND DESAYUNO ='X' ) Order By IDCOMIDAEMPLEADO DESC";
             dt = adaptador.consultar(consulta);
             return dt;
         }
@@ -140,6 +140,7 @@ namespace Servicios_Reservados_2
                 else
                 {
                     String update = "UPDATE RESERVA_EMPLEADO SET Desayuno ='X', Almuerzo ='X', cena='X' WHERE IDCOMIDAEMPLEADO = " + entidadComidaEmpleado.IdComida ;
+                    adaptador.insertar(update);
                     resultado[0] = "SUCCESS";
                     resultado[1] = "Exito: ";
                     resultado[2] = "Los datos se Modificaron correctamente.";

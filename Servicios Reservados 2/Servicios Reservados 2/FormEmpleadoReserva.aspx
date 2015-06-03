@@ -14,6 +14,11 @@
         <div>
             <h2>Empleados</h2>
             <h3>Reservaciones del empleado:<span id="lblNombre" runat="server"></span> </h3>
+            <div class ="well">
+                Nombre: <input id="txtNombre" value="{Nombre No recuperado}" runat="server" />
+                Apellido:<input id="txtApellido" value="{Apellido No recuperado}" runat="server" />
+
+            </div>
             <div class="well">
                 <h4>
                     Agregar Servicios
@@ -28,7 +33,7 @@
                         Comidas desde el ultimo mes del empleado
                     </h4>
                 <section id="comidasReservadas">
-                    <asp:GridView ID="GridComidasReservadas" runat="server" AllowPaging="true" AllowSorting="true" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" Width="100%">
+                    <asp:GridView ID="GridComidasReservadas" Class="Gridcontenedor" runat="server" AllowPaging="true" AllowSorting="true" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" Width="100%">
                        <Columns>
                             <asp:TemplateField>
                                 <ItemTemplate>
