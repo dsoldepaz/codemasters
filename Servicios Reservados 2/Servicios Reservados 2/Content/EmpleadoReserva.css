@@ -15,9 +15,6 @@ h4{
 }
 
 
-#MainContent_GridComidasReservadas > tbody > tr > td:nth-child(2) {
-  padding-left: 9%;
-}
 .btn-group-vertical{
     margin-left:10%;
 }

@@ -28,15 +28,43 @@
                         Comidas desde el ultimo mes del empleado
                     </h4>
                 <section id="comidasReservadas">
-                    <asp:GridView ID="GridComidasReservadas" runat="server" AllowPaging="true" AllowSorting="true" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarComida" Width="100%">
-                     <SelectedRowStyle BackColor="#7BC143" />
+                    <asp:GridView ID="GridComidasReservadas" runat="server" AllowPaging="true" AllowSorting="true" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnSelectedIndexChanged="seleccionarComida" Width="100%">
+                       <Columns>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton  ID="btnActivarTiquete" runat="server" class="btn btn-default" OnClick="clickActivarTiquetes"><i  class="glyphicon glyphicon-tags"></i></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <Columns>
+                           <asp:TemplateField>
+                               <ItemTemplate>
+                                  <asp:LinkButton  ID="btnConsultar"  onclick="btnVer_Click"  runat="server" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
+                               </ItemTemplate>
+                           </asp:TemplateField>
+                       </Columns>
+                       <Columns>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnModificar" runat="server" class="btn btn-default" OnClick="btnEditar_Click"><i class="glyphicon glyphicon-edit"></i></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <Columns>
+                           <asp:TemplateField>
+                                 <ItemTemplate>
+                                    <asp:LinkButton  ID="btnCancelar" runat="server" class="btn btn-default" onclick="btnCancelar_Click"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                         </Columns>
+                        <SelectedRowStyle BackColor="#7BC143" />
                      </asp:GridView>
-                    <section id="seccionBotones" class="btn-group-vertical" runat="server">
-                        <input id="tiquetesBtn" type="button" class="btn btn-success tiquete" value="Activar Tiquete" runat="server" onserverclick="clickActivarTiquetes" />
-                        <input id="btnVer" type="button" class="btn btn-success" value="Consultar" runat="server" onserverclick="btnVer_Click" />
+                     <!--<section id="seccionBotones" class="btn-group-vertical" runat="server">
+                       <input id="tiquetesBtn" type="button" class="btn btn-success tiquete" value="Activar Tiquete" runat="server" onserverclick="clickActivarTiquetes" />
+                        <!--<input id="btnVer" type="button" class="btn btn-success" value="Consultar" runat="server" onserverclick="btnVer_Click" />
                         <input id="btnEditar" type="button" class="btn btn-success" value="Modificar" runat="server" onserverclick="btnEditar_Click"/>
                         <input id="btnCancelar" type="button" class="btn btn-success cancelar" value="Cancelar" runat="server" onserverclick="btnCancelar_Click"/>
-                    </section>
+                    </section>-->
                     
 
                 </section>
