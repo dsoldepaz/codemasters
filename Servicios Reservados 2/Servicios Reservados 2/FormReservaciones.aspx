@@ -22,6 +22,7 @@
                     <div class="well bs-component">
                         <legend style="color: #7BC143">Filtro de reservación</legend>
                         <fieldset>
+                             <asp:Panel runat="server" DefaultButton="BotonBuscar">
                             <table>
                                 <tr>
                                     <td style="width: 10%">Anfitriona:</td>
@@ -41,10 +42,12 @@
                                         <input class="textbox" style="width:500px" id="txtSolicitante" runat="server" />
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-success" id="BotonBuscar" onserverclick="clickBuscar" runat="server">Aplicar filtro</button>
+                                        <asp:button  text="Buscar" class="btn btn-success" id="BotonBuscar" OnClick="clickBuscar" runat="server"/>
+                                        
                                     </td>
                                 </tr>
                             </table>
+                                 </asp:Panel>
                     </div>
                     <div class="well bs-component">
                         <legend style="color: #7BC143">Listado de reservaciones</legend>
@@ -52,9 +55,8 @@
                             <tr>
                                 <td>
 
-                                    <asp:GridView ID="GridViewReservaciones" runat="server" OnClick="clickAgregarServicioExtra" AllowPaging="true" AllowSorting="true" PageSize="20" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
-                                        <AlternatingRowStyle BorderStyle="None" />
-                                        <HeaderStyle Font-Size="1.3em" />
+                                    <asp:GridView ID="GridViewReservaciones"  Class="Gridcontenedor" runat="server" OnClick="clickAgregarServicioExtra" AllowPaging="true" AllowSorting="true" PageSize="20" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging">
+                                        
                                         <SelectedRowStyle BackColor="#7BC143"
                                             ForeColor="Black"
                                             Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
