@@ -261,7 +261,7 @@ namespace Servicios_Reservados_2
             HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[1].Text, myWriter);
             String opcion = myWriter.ToString();
 
-           // seleccionado = controladora.crearServicio(ids[0], idServ[index], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text, opcion);
+            seleccionado = controladora.crearServicio(ids[0], idServ[index], GridServicios.SelectedRow.Cells[4].Text, opcion);
             
 
         }
@@ -408,7 +408,7 @@ namespace Servicios_Reservados_2
             Response.Redirect("FormServicios");
         }
             
-        protected void filaSeleccionada(object sender, GridViewRowEventArgs e)
+      /*  protected void filaSeleccionada(object sender, GridViewRowEventArgs e)
         {
          
             LinkButton consultar = (LinkButton)e.Row.FindControl("btnConsultar");
@@ -434,7 +434,7 @@ namespace Servicios_Reservados_2
                 }
         }   
 
-        }
+        }*/
 
     }
 }
