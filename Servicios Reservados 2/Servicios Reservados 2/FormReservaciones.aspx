@@ -55,7 +55,7 @@
                             <tr>
                                 <td>
 
-                                    <asp:GridView ID="GridViewReservaciones"  Class="Gridcontenedor" runat="server" OnClick="clickAgregarServicioExtra" AllowPaging="true" AllowSorting="true" PageSize="20" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging">
+                                    <asp:GridView ID="GridViewReservaciones"  Class="Gridcontenedor" runat="server" AllowPaging="true" AllowSorting="true" PageSize="20" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging">
                                         
                                         <SelectedRowStyle BackColor="#7BC143"
                                             ForeColor="Black"

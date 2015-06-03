@@ -13,7 +13,7 @@ namespace Servicios_Reservados_2
 {
     public partial class FormEmpleado : System.Web.UI.Page
     {
-        
+
         private static ControladoraEmpleado controladora = new ControladoraEmpleado();
         public static String[] ids;
         private static String id;
@@ -44,16 +44,9 @@ namespace Servicios_Reservados_2
         * retorna: N/A
         */
 
-        protected void seleccionarEmpleado(object sender, GridViewCommandEventArgs e)
+        protected void seleccionarEmpleado(int index)
         {
-            switch (e.CommandName)
-            {
-                case "Select":
-                    id = (ids[Convert.ToInt32(e.CommandArgument) + (this.GridViewEmpleados.PageIndex * 20)]);//se obtiene la cedula a consultar
-                    Debug.WriteLine(id);
-                    break;
-                    
-            }
+            id = (ids[index + (this.GridViewEmpleados.PageIndex * 20)]);//se obtiene la cedula a consultar
             try
             {
                 controladora.seleccionarEmpleado(id);
@@ -89,7 +82,7 @@ namespace Servicios_Reservados_2
                 int i = 0;
                 if (empleados.Rows.Count > 0)
                 {
-                    
+
                     foreach (DataRow fila in empleados.Rows)
                     {
 
@@ -139,23 +132,28 @@ namespace Servicios_Reservados_2
             columna.DataType = System.Type.GetType("System.String");
             columna.ColumnName = "Apellidos";
             tabla.Columns.Add(columna);
-                      
+
             GridViewEmpleados.DataSource = tabla;
             GridViewEmpleados.DataBind();
 
             return tabla;
         }
-        
+
         protected void clicAgregarServicio(object sender, EventArgs e)
         {
-            if (id!= "null")
+             LinkButton btn = (LinkButton)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+       int i = Convert.ToInt32(row.RowIndex);
+
+       seleccionarEmpleado(i);
+            if (id != "null")
             {
                 FormEmpleadoReserva.idEmpleado = id;
                 Response.Redirect("FormEmpleadoReserva");
             }
-            
-               
-        
+
+
+
         }
 
         /*
@@ -170,7 +168,7 @@ namespace Servicios_Reservados_2
             String iden = "vacio";
 
 
-            if (inputNombre.Value.ToString()!="")
+            if (inputNombre.Value.ToString() != "")
             {
                 nombre = inputNombre.Value.ToString();
             }
@@ -181,14 +179,14 @@ namespace Servicios_Reservados_2
             if (nombre.CompareTo("vacio") != 0 || iden.CompareTo("vacio") != 0)
             {
                 DataTable tabla = crearTablaEmpleados();
-                
+
                 try
                 {
 
                     Object[] datos = new Object[3];
-                    DataTable empleados = controladora.consultarEmpleados(nombre,iden);// se consultan todos
+                    DataTable empleados = controladora.consultarEmpleados(nombre, iden);// se consultan todos
                     ids = new String[empleados.Rows.Count]; //crear el vector para ids en el grid
-                    
+
                     int i = 0;
                     if (empleados.Rows.Count > 0)
                     {

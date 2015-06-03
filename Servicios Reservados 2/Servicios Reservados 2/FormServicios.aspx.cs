@@ -261,7 +261,7 @@ namespace Servicios_Reservados_2
             HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[1].Text, myWriter);
             String opcion = myWriter.ToString();
             
-            seleccionado = controladora.crearServicio(ids[0], idServ[index], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text, opcion);
+           // seleccionado = controladora.crearServicio(ids[0], idServ[index], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text, opcion);
             
 
         }
@@ -306,7 +306,7 @@ namespace Servicios_Reservados_2
             FormComidaCampo.modo = 1;
             FormComidaCampo.idReservacion = controladora.idSelected();
             FormComidaCampo.tipoComidaCampo = 0;
-            Response.Redirect("FormComidaCampo");
+            Response.Redirect("FormComidaCampo"); 
         }
 
       /*
@@ -323,8 +323,8 @@ namespace Servicios_Reservados_2
                 
                 if ("Activo".Equals(seleccionado.Estado))
                 {
-                    mensaje = controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], seleccionado.Fecha, seleccionado.Hora);
-                    mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
+                    //mensaje = controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], seleccionado.Fecha, seleccionado.Hora);
+                    //mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
                 }
                 else
                 { 
@@ -386,9 +386,11 @@ namespace Servicios_Reservados_2
 
         }
 
+
+
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
-          
+            seleccionarServicio(obtenerIndex(sender, e));
             if(seleccionado!=null){
                 controladora.activarTiquete();
                 Response.Redirect("FormTiquete");
@@ -400,6 +402,30 @@ namespace Servicios_Reservados_2
         {
             Response.Redirect("FormServicios");
         }
+
+       /* protected void filaSeleccionada(object sender, GridViewRowEventArgs e)
+        {
+            LinkButton btnConsultar = (LinkButton)e.Row.Cells[5].FindControl("btnConsultar");
+            LinkButton btnModificar = (LinkButton)e.Row.Cells[5].FindControl("btnModificar");
+            LinkButton btnCancelar = (LinkButton)e.Row.Cells[5].FindControl("btnCancelar");
+            LinkButton btnActivarTiquete = (LinkButton)e.Row.Cells[5].FindControl("btnActivarTiquete");
+
+
+            if (e.Row.Cells[4].Text == "Paquete")
+            {
+                btnConsultar.Visible = false;
+                btnModificar.Visible = false;
+                btnCancelar.Visible = false;
+            }
+            else
+            {
+                btnConsultar.Visible = true;
+                btnModificar.Visible = true;
+                btnCancelar.Visible = true;
+                btnActivarTiquete.Visible = true;
+            }
+
+        }*/
 
     }
 }

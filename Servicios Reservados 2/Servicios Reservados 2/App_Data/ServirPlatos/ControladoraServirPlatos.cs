@@ -79,12 +79,14 @@ namespace Servicios_Reservados_2
                 }
                 else if ("reservacion".Equals(tipoSolicitante) && "Comida Extra".Equals(categoria))
                 {
-                    EntidadComidaExtra comidaExtra = controladoraComidaExtra.guardarServicioSeleccionado(idSolicitante, idServicio, fecha, hora);
+                    /*
+                     * EntidadComidaExtra comidaExtra = controladoraComidaExtra.guardarServicioSeleccionado(idSolicitante, idServicio, fecha, hora);
                     notas = comidaExtra.Descripcion;                    
                     DataTable servicio = controladoraReservaciones.solicitarInfo(idSolicitante);
                     anfitriona = servicio.Rows[0][2].ToString();
                     estacion = servicio.Rows[0][3].ToString();
                     nombreSolicitante = servicio.Rows[0][4].ToString();
+                     * */
                     
                 }
                 else if ("reservacion".Equals(tipoSolicitante) && "Comida Campo".Equals(categoria))
@@ -132,9 +134,11 @@ namespace Servicios_Reservados_2
                 }
                 else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida Extra".Equals(seleccionado.Categoria))
                 {
-                    DataTable comidaExtra = controladoraComidaExtra.solicitarVecesConsumido(seleccionado.IdServicio, seleccionado.Solicitante, seleccionado.Fecha, seleccionado.Hora);
+                    /*
+                     * DataTable comidaExtra = controladoraComidaExtra.solicitarVecesConsumido(seleccionado.IdServicio, seleccionado.Solicitante, seleccionado.Fecha, seleccionado.Hora);
                     int vecesConsumido = int.Parse(comidaExtra.Rows[0][0].ToString()) + 1;
                     controladoraComidaExtra.actualizarVecesConsumido(seleccionado.IdServicio, vecesConsumido, seleccionado.Solicitante, seleccionado.Fecha, seleccionado.Hora);
+                     * */
                 }
                 else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida Campo".Equals(seleccionado.Categoria))
                 {
