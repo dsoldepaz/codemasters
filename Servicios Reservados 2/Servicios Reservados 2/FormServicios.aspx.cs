@@ -253,6 +253,7 @@ namespace Servicios_Reservados_2
          */
         protected void seleccionarServicio(int index)
         {
+
             GridServicios.SelectedIndex = index;
 
             // Decode the encoded string.
@@ -271,6 +272,8 @@ namespace Servicios_Reservados_2
          */
         protected void modificarServicio(object sender, EventArgs e)
         {
+
+             seleccionarServicio(obtenerIndex(sender, e));
             
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
@@ -374,12 +377,17 @@ namespace Servicios_Reservados_2
             alertAlerta.Attributes.Remove("hidden");
         }
 
-        protected void clickActivarTiquetes(object sender, EventArgs e)
+        protected int obtenerIndex(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
             GridViewRow row = (GridViewRow)btn.NamingContainer;
-            int i = Convert.ToInt32(row.RowIndex);
-            seleccionarServicio(i);
+            return i = Convert.ToInt32(row.RowIndex);
+
+        }
+
+        protected void clickActivarTiquetes(object sender, EventArgs e)
+        {
+          
             if(seleccionado!=null){
                 controladora.activarTiquete();
                 Response.Redirect("FormTiquete");

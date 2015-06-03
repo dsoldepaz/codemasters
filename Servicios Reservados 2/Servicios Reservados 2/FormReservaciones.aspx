@@ -52,24 +52,22 @@
                             <tr>
                                 <td>
 
-                                    <asp:GridView ID="GridViewReservaciones" runat="server" AutoGenerateSelectButton="True" OnRowCommand="seleccionarReservacion" AllowPaging="true" AllowSorting="true" PageSize="20" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
+                                    <asp:GridView ID="GridViewReservaciones" runat="server" OnClick="clickAgregarServicioExtra" AllowPaging="true" AllowSorting="true" PageSize="20" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
                                         <AlternatingRowStyle BorderStyle="None" />
                                         <HeaderStyle Font-Size="1.3em" />
                                         <SelectedRowStyle BackColor="#7BC143"
                                             ForeColor="Black"
                                             Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
+                                         <Columns>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                      <asp:LinkButton  ID="btnConsultar" runat="server" OnClick="clickAgregarServicioExtra" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
                                     </asp:GridView>
 
 
-                                </td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                
-                                <td>
-                                    
-                                        <input type="button" runat="server" class="btn btn-success" id="botonServicioExtra" value="Agregar Servicios" onserverclick="clickAgregarServicioExtra" /></a>
                                 </td>
                             </tr>
                         </table>
