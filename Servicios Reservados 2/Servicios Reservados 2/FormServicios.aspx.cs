@@ -324,7 +324,7 @@ namespace Servicios_Reservados_2
             FormComidaCampo.modo = 1;
             FormComidaCampo.idReservacion = controladora.idSelected();
             FormComidaCampo.tipoComidaCampo = 0;
-            Response.Redirect("FormComidaCampo");
+            Response.Redirect("FormComidaCampo"); 
         }
 
       /*
