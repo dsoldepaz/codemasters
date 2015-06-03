@@ -183,6 +183,7 @@ namespace Servicios_Reservados_2
                     }
                 }
 
+                GridServicios.AllowSorting = false;
                 GridServicios.DataBind();
 
             }
@@ -238,6 +239,7 @@ namespace Servicios_Reservados_2
             tabla.Columns.Add(columna);
 
             GridServicios.DataSource = tabla;
+            GridServicios.AllowSorting = false;
             GridServicios.DataBind();
 
             return tabla;
@@ -258,7 +260,7 @@ namespace Servicios_Reservados_2
 
             seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text, opcion);
             
-            if ("Incluido en Paquete".Equals(opcion))
+          /*  if ("Incluido en Paquete".Equals(opcion))
             {
                 btnActivarTiquete.Disabled = true;
                 btnCancelar.Disabled = false;
@@ -278,7 +280,7 @@ namespace Servicios_Reservados_2
                 btnCancelar.Disabled = false;
                 btnConsultar.Disabled = false;
                 btnModificar.Disabled = false;
-            }
+            }*/
 
         }
         /*
