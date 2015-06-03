@@ -81,7 +81,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" >
+                                    <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" onrowdatabound="filaSeleccionada" >
                                         <SelectedRowStyle BackColor="#7BC143" />
            
                                         
@@ -112,7 +112,7 @@
                                             <Columns>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
-                                                      <asp:LinkButton  ID="btnCancelar" runat="server" class="btn btn-default" data-toggle="modal" href="#modalConfirmacion"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+                                                      <asp:LinkButton  ID="btnCancelar" runat="server" class="btn btn-default" OnClick="clickEliminarServicio"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -128,24 +128,5 @@
 
         </ContentTemplate>
     </asp:UpdatePanel>
-
-    
-              <!--Modal ConfirmacionGuardar-->
-    <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Ventana de Confirmación</h4>
-                </div>
-                <div class="modal-body">
-                    ¿Está seguro que desea eliminar?                   
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" runat="server" onserverclick="clickCancelarModal" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" runat="server" OnClick="clickEliminarServicio">Eliminar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </asp:Content>

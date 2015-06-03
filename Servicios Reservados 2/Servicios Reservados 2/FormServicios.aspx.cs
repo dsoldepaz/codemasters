@@ -386,6 +386,8 @@ namespace Servicios_Reservados_2
 
         }
 
+
+
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
           
@@ -399,6 +401,30 @@ namespace Servicios_Reservados_2
         protected void clickCancelarModal(object sender, EventArgs e)
         {
             Response.Redirect("FormServicios");
+        }
+
+        protected void filaSeleccionada(object sender, GridViewRowEventArgs e)
+        {
+            LinkButton btnConsultar = (LinkButton)e.Row.Cells[5].FindControl("btnConsultar");
+            LinkButton btnModificar = (LinkButton)e.Row.Cells[5].FindControl("btnModificar");
+            LinkButton btnCancelar = (LinkButton)e.Row.Cells[5].FindControl("btnCancelar");
+            LinkButton btnActivarTiquete = (LinkButton)e.Row.Cells[5].FindControl("btnActivarTiquete");
+
+
+            if (e.Row.Cells[4].Text == "Paquete")
+            {
+                btnConsultar.Visible = false;
+                btnModificar.Visible = false;
+                btnCancelar.Visible = false;
+            }
+            else
+            {
+                btnConsultar.Visible = true;
+                btnModificar.Visible = true;
+                btnCancelar.Visible = true;
+                btnActivarTiquete.Visible = true;
+            }
+
         }
 
     }
