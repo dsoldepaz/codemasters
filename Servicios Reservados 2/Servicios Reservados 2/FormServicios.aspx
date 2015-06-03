@@ -81,7 +81,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarServicio">
+                                    <asp:GridView ID="GridServicios" Class="Gridcontenedor" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarServicio">
                                         <SelectedRowStyle BackColor="#7BC143" />
                                     </asp:GridView>
 

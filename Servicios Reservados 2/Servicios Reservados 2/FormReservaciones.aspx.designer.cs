@@ -55,7 +55,7 @@ namespace Servicios_Reservados_2 {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton BotonBuscar;
+        protected global::System.Web.UI.WebControls.Button BotonBuscar;
         
         /// <summary>
         /// Control GridViewReservaciones.

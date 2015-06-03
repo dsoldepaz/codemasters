@@ -28,7 +28,7 @@
                         Comidas desde el ultimo mes del empleado
                     </h4>
                 <section id="comidasReservadas">
-                    <asp:GridView ID="GridComidasReservadas" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarComida" Width="100%">
+                    <asp:GridView ID="GridComidasReservadas" Class="Gridcontenedor" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarComida" Width="100%">
                      <SelectedRowStyle BackColor="#7BC143" />
                      </asp:GridView>
                     <section id="seccionBotones" class="btn-group-vertical" runat="server">
