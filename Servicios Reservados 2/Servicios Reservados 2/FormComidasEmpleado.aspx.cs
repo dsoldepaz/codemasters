@@ -314,7 +314,9 @@ namespace Servicios_Reservados_2
                 if (identificacionEmpleado.Length > 0)
                 {
                     empleadoSeleccionado = controladora.getInformacionDelEmpleado(identificacionEmpleado);
-                    lblEmpleado.InnerText = empleadoSeleccionado.Id + "-" + empleadoSeleccionado.Nombre + " " + empleadoSeleccionado.Apellido;
+                    lblEmpleado.InnerText =  empleadoSeleccionado.Nombre + " " + empleadoSeleccionado.Apellido;
+                    txtApellido.Value = empleadoSeleccionado.Apellido;
+                    txtNombre.Value = empleadoSeleccionado.Nombre;
                 }else{
                     Debug.WriteLine("oops");
                 }
@@ -334,11 +336,11 @@ namespace Servicios_Reservados_2
                 
             DataTable tabla = crearTablaFechaComidaEmpleado();
             Object[] datos = new Object[1];
-            datos[0] = fecha.Value;
+            datos[0] = String.Format("{0:MM-dd-yyyy}", MyDateTime);
             tabla.Rows.Add(datos);
             foreach (DateTime dt in list)
             {
-                datos[0] = String.Format("{0:yyyy-dd-MM}", dt);          // "03/09/2008"
+                datos[0] = String.Format("{0:MM-dd-yyyy}", dt);          // "03/09/2008"
                 
                 tabla.Rows.Add(datos);
             }/*else{
