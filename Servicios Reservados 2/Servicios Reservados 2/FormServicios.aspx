@@ -81,21 +81,44 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarServicio">
+                                    <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" >
                                         <SelectedRowStyle BackColor="#7BC143" />
+           
+                                        
+                                          <Columns>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                      <asp:LinkButton  ID="btnActivarTiquete" runat="server" class="btn btn-default" OnClick="clickActivarTiquetes"><i  class="glyphicon glyphicon-tags"></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+
+                                        <Columns>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                      <asp:LinkButton  ID="btnConsultar"  onClick="clickConsultarServicio" runat="server" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+
+                                            <Columns>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                      <asp:LinkButton ID="btnModificar" runat="server" class="btn btn-default" OnClick="modificarServicio"><i class="glyphicon glyphicon-edit"></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+
+                                            <Columns>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                      <asp:LinkButton  ID="btnCancelar" runat="server" class="btn btn-default" data-toggle="modal" href="#modalConfirmacion"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+
                                     </asp:GridView>
 
-                                </td>
-                                <td>
-                                    <div class="btn-group-vertical">
-                                        <input type="button" class="btn btn-success" id="btnActivarTiquete" value="Activar Tiquete" runat="server" onserverclick="clickActivarTiquetes" />
-                                        <input type="button" class="btn btn-success" id="btnConsultar" value="Consultar" runat="server" onserverclick="clickConsultarServicio" />
-                                        <input type="button" class="btn btn-success" id="btnModificar" value="Modificar" runat="server" onserverclick="modificarServicio" />
-                                        <input type="button" class="btn btn-success" id="btnCancelar" value="Cancelar" runat="server" onserverclick="clickEliminarServicio" />
-
-                                    </div>
-                                </td>
-                            </tr>
                         </table>
                     </div>
 
@@ -103,10 +126,26 @@
             </div>
 
 
-
         </ContentTemplate>
     </asp:UpdatePanel>
 
-
+    
+              <!--Modal ConfirmacionGuardar-->
+    <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Ventana de Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que desea eliminar?                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" runat="server" onserverclick="clickCancelarModal" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" runat="server" OnClick="clickEliminarServicio">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </asp:Content>

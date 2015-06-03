@@ -122,7 +122,7 @@ namespace Servicios_Reservados_2
                     foreach (DataRow fila in servicios.Rows)
                     {
                         ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
-                        idServ[i] = fila[8].ToString();
+                        idServ[i] = fila[1].ToString();
                         datos[0] = "Comida Extra";
                         datos[1] = fila[2].ToString();//obtener los datos a mostrar
                         datos[2] = fila[3].ToString();
@@ -183,6 +183,7 @@ namespace Servicios_Reservados_2
                     }
                 }
 
+                GridServicios.AllowSorting = false;
                 GridServicios.DataBind();
 
             }
@@ -238,6 +239,7 @@ namespace Servicios_Reservados_2
             tabla.Columns.Add(columna);
 
             GridServicios.DataSource = tabla;
+            GridServicios.AllowSorting = false;
             GridServicios.DataBind();
 
             return tabla;
@@ -249,36 +251,18 @@ namespace Servicios_Reservados_2
          * Requiere: parametros evento de la interfaz grafica
          * Modifica: NA
          */
-        protected void seleccionarServicio(object sender, EventArgs e)
-        {         
+        protected void seleccionarServicio(int index)
+        {
+
+            GridServicios.SelectedIndex = index;
+
             // Decode the encoded string.
             StringWriter myWriter = new StringWriter();
             HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[1].Text, myWriter);
             String opcion = myWriter.ToString();
-
-            seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex], GridServicios.SelectedRow.Cells[4].Text, opcion);
             
-            if ("Incluido en Paquete".Equals(opcion))
-            {
-                btnActivarTiquete.Disabled = true;
-                btnCancelar.Disabled = false;
-                btnConsultar.Disabled = false;
-                btnModificar.Disabled = false;
-            }
-            else if ("Paquete".Equals(opcion))
-            {
-                btnActivarTiquete.Disabled = false;
-                btnCancelar.Disabled = true;
-                btnConsultar.Disabled = true;
-                btnModificar.Disabled = true;
-            }
-            else
-            {
-                btnActivarTiquete.Disabled = false;
-                btnCancelar.Disabled = false;
-                btnConsultar.Disabled = false;
-                btnModificar.Disabled = false;
-            }
+            seleccionado = controladora.crearServicio(ids[0], idServ[index], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text, opcion);
+            
 
         }
         /*
@@ -288,6 +272,9 @@ namespace Servicios_Reservados_2
          */
         protected void modificarServicio(object sender, EventArgs e)
         {
+
+             seleccionarServicio(obtenerIndex(sender, e));
+            
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
                 modo = 2; //modificar es 2
@@ -314,11 +301,6 @@ namespace Servicios_Reservados_2
             Response.Redirect("FormComidaExtra");
         }
 
-        /*
-        * Efecto: capta el evento del botón para agregar una comida de campo, cambia el modo y redirige a la interfaz de comida de campo.
-        * Requiere: presionar el botón.
-        * Modifica: la variable global modo.
-        */
         protected void cliclAgregarComidaCampo(object sender, EventArgs e)
         {
             FormComidaCampo.modo = 1;
@@ -334,13 +316,14 @@ namespace Servicios_Reservados_2
        */
         protected void clickEliminarServicio(object sender, EventArgs e)
         {
+            seleccionarServicio(obtenerIndex(sender, e));
             String[] mensaje;
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
                 
                 if ("Activo".Equals(seleccionado.Estado))
                 {
-                    mensaje = controladora.cancelarComidaExtra(idServ[GridServicios.SelectedIndex]);
+                    mensaje = controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], seleccionado.Fecha, seleccionado.Hora);
                     mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
                 }
                 else
@@ -370,7 +353,7 @@ namespace Servicios_Reservados_2
        */
         protected void clickConsultarServicio(object sender, EventArgs e)
         {
-            
+            seleccionarServicio(obtenerIndex(sender, e));
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
                 modo = 0;
@@ -395,15 +378,28 @@ namespace Servicios_Reservados_2
             alertAlerta.Attributes.Remove("hidden");
         }
 
+        protected int obtenerIndex(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            return i = Convert.ToInt32(row.RowIndex);
+
+        }
+
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
+            seleccionarServicio(obtenerIndex(sender, e));
             if(seleccionado!=null){
                 controladora.activarTiquete();
                 Response.Redirect("FormTiquete");
             }
             
-        }   
+        }
 
+        protected void clickCancelarModal(object sender, EventArgs e)
+        {
+            Response.Redirect("FormServicios");
+        }
 
     }
 }

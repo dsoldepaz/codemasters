@@ -33,13 +33,17 @@
                     </div>
                     <div class="well bs-component">
                     <legend style="color: #7BC143">Listado de empleados</legend>
-                    <asp:GridView ID="GridViewEmpleados" runat="server" AllowPaging="true" AllowSorting="true" AutoGenerateSelectButton="True" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" OnRowCommand="seleccionarEmpleado" PageSize="20">
-                        <AlternatingRowStyle BorderStyle="None" />
-                        <HeaderStyle Font-Size="1.3em" />
+                    <asp:GridView ID="GridViewEmpleados" Class="Gridcontenedor" runat="server" AllowPaging="true" AllowSorting="true" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging"  PageSize="20">
+                        
                         <SelectedRowStyle BackColor="#7BC143" BorderStyle="Dotted" BorderWidth="1px" Font-Bold="true" ForeColor="Black" />
+                                          <Columns>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                      <asp:LinkButton  ID="btnConsultar" runat="server" onclick="clicAgregarServicio" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
                     </asp:GridView>
-                    
-                    <input type="button" class="btn btn-success" id="botonServicioExtra" value="Agregar Servicios" runat="server" onserverclick="clicAgregarServicio"/>
                     
                     </div>
                 </fieldset>
