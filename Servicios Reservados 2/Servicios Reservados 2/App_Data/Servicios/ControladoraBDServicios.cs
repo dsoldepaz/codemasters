@@ -51,7 +51,7 @@ namespace Servicios_Reservados_2
          */
         internal DataTable solicitarServicios(String id)
         {
-            String consultaSQL = "select s.idreservacion, e.idservicio, e.tipo, s.descripcion, s.hora, s.fecha, s.estado, s.pax from servicios_reservados.servicio_especial s JOIN servicios_reservados.servicios_extras e ON e.idservicio = s.idserviciosextras AND s.idreservacion= '" + id + "' and s.estado <>  'Cancelado'";
+            String consultaSQL = "select s.idreservacion, e.idservicio, e.tipo, s.descripcion, s.hora, s.fecha, s.estado, s.pax, s.id from servicios_reservados.servicio_especial s JOIN servicios_reservados.servicios_extras e ON e.idservicio = s.idserviciosextras AND s.idreservacion= '" + id + "' and s.estado <>  'Cancelado'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
 

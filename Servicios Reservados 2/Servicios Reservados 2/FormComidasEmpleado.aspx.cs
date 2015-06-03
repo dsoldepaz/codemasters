@@ -82,7 +82,7 @@ namespace Servicios_Reservados_2
 
         private void cancelar()
         {
-            throw new NotImplementedException();
+            controladora.eliminar(seleccionada);
         }
         /*
          * Requiere: Parametros de eventos de la GUI
@@ -165,7 +165,7 @@ namespace Servicios_Reservados_2
                     break;
                 default: break;
             }
-            limpiarCalendario();
+            limpiarCalendario();   
         }
         /*
          * Requiere: N/A

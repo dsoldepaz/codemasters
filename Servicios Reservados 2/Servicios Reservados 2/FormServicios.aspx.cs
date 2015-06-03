@@ -390,7 +390,7 @@ namespace Servicios_Reservados_2
 
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
-          
+            seleccionarServicio(obtenerIndex(sender, e));
             if(seleccionado!=null){
                 controladora.activarTiquete();
                 Response.Redirect("FormTiquete");
