@@ -316,6 +316,7 @@ namespace Servicios_Reservados_2
        */
         protected void clickEliminarServicio(object sender, EventArgs e)
         {
+            seleccionarServicio(obtenerIndex(sender, e));
             String[] mensaje;
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
@@ -352,7 +353,7 @@ namespace Servicios_Reservados_2
        */
         protected void clickConsultarServicio(object sender, EventArgs e)
         {
-            
+            seleccionarServicio(obtenerIndex(sender, e));
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
                 modo = 0;
@@ -393,8 +394,12 @@ namespace Servicios_Reservados_2
                 Response.Redirect("FormTiquete");
             }
             
-        }   
+        }
 
+        protected void clickCancelarModal(object sender, EventArgs e)
+        {
+            Response.Redirect("FormServicios");
+        }
 
     }
 }

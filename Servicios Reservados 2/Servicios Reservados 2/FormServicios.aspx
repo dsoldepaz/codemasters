@@ -96,7 +96,7 @@
                                         <Columns>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
-                                                      <asp:LinkButton  ID="btnConsultar" runat="server" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
+                                                      <asp:LinkButton  ID="btnConsultar"  onClick="clickConsultarServicio" runat="server" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -112,7 +112,7 @@
                                             <Columns>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
-                                                      <asp:LinkButton  ID="btnCancelar" runat="server" class="btn btn-default"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+                                                      <asp:LinkButton  ID="btnCancelar" runat="server" class="btn btn-default" data-toggle="modal" href="#modalConfirmacion"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -126,10 +126,26 @@
             </div>
 
 
-
         </ContentTemplate>
     </asp:UpdatePanel>
 
-
+    
+              <!--Modal ConfirmacionGuardar-->
+    <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Ventana de Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que desea eliminar?                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" runat="server" onserverclick="clickCancelarModal" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" runat="server" OnClick="clickEliminarServicio">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </asp:Content>
