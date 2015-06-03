@@ -48,7 +48,7 @@
                 <div class="float-right">
                     <section id="login">
                         <asp:Literal ID="rol" runat="server" ></asp:Literal>
-                        <asp:Button id="btnSalir" runat="server" Text="Cerrar sesión" OnClick="btnSalir_Click"/>                      
+                        <asp:Button id="btnSalir" UseSubmitBehavior="false" runat="server" Text="Cerrar sesión" OnClick="btnSalir_Click"/>                      
                     </section>
                 </div>
                 <div class="float-right">

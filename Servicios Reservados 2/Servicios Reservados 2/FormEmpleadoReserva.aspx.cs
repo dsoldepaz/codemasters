@@ -166,12 +166,13 @@ namespace Servicios_Reservados_2
          */
         protected void btnVer_Click(object sender, EventArgs e)
         {
+            seleccionarComida(obtenerIndex(sender, e));
             GridViewRow row = GridComidasReservadas.SelectedRow;
-            String tipo = row.Cells[2].Text;
+            String tipo = row.Cells[5].Text;
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de consulta
-                FormComidasEmpleado.idComida=Int32.Parse( row.Cells[1].Text);//saca el id de la comida seleccionada.
+                FormComidasEmpleado.idComida=Int32.Parse( row.Cells[4].Text);//saca el id de la comida seleccionada.
                 Debug.WriteLine(FormComidasEmpleado.idComida);
                 FormComidasEmpleado.modo = 0;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
                 FormComidasEmpleado.identificacionEmpleado = idEmpleado;
@@ -217,12 +218,13 @@ namespace Servicios_Reservados_2
          */
         protected void btnEditar_Click(object sender, EventArgs e)
         {
+            seleccionarComida(obtenerIndex(sender, e));
             GridViewRow row = GridComidasReservadas.SelectedRow;
-            String tipo = row.Cells[2].Text;
+            String tipo = row.Cells[5].Text;
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de Editar
-                FormComidasEmpleado.idComida = Int32.Parse(row.Cells[1].Text);//saca el id de la comida seleccionada.
+                FormComidasEmpleado.idComida = Int32.Parse(row.Cells[4].Text);//saca el id de la comida seleccionada.
                 FormComidasEmpleado.modo = 2;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
                 FormComidasEmpleado.identificacionEmpleado = idEmpleado;
                 Response.Redirect("FormComidasEmpleado");
@@ -243,17 +245,20 @@ namespace Servicios_Reservados_2
          */
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
+            seleccionarComida(obtenerIndex(sender, e));
             GridViewRow row = GridComidasReservadas.SelectedRow;
-            String tipo = row.Cells[2].Text;
+            String tipo = row.Cells[5].Text;
             String[] mensaje;
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de cancelar
-                controladora.cancelarComidaRegular(Int32.Parse(row.Cells[1].Text));
+                controladora.cancelarComidaRegular(Int32.Parse(row.Cells[4].Text));
+                Response.Redirect(Request.Url.AbsoluteUri);
+
             }
             else
             {
-                String idComida = row.Cells[1].Text;
+                String idComida = row.Cells[4].Text;
                 mensaje = controladora.cancelarComidaCampo(idComida);
                 Response.Redirect(Request.Url.AbsoluteUri);
             }
@@ -264,20 +269,21 @@ namespace Servicios_Reservados_2
          * Retorna :N/A
          */
 
-        protected void seleccionarComida(object sender, EventArgs e)
+        protected void seleccionarComida(int index)
         {
+            GridComidasReservadas.SelectedIndex = index;
             btnVer.Disabled = false;
             btnEditar.Disabled = false;
             btnCancelar.Disabled = false;
 
-            if (GridComidasReservadas.SelectedRow.Cells[2].Text != "Comida regular")//* es mejor comparar strings con "mi string".equals()
+            if (GridComidasReservadas.SelectedRow.Cells[5].Text != "Comida regular")//* es mejor comparar strings con "mi string".equals()
             {
-                comidaCampoConsultada = controladora.consultarComidaCampoSeleccionada(idEmpleado, GridComidasReservadas.SelectedRow.Cells[1].Text);
+                comidaCampoConsultada = controladora.consultarComidaCampoSeleccionada(idEmpleado, GridComidasReservadas.SelectedRow.Cells[4].Text);
                 seleccionado = controladora.crearServicio(idEmpleado, int.Parse(comidaCampoConsultada.IdComidaCampo), comidaCampoConsultada.Fecha, "Comida Campo", "Notas no disponibles", comidaCampoConsultada.Estado, comidaCampoConsultada.Hora);
             }
             else
             {
-                comidaEmpleadoSeleccionado = controladora.consultarComida(Int32.Parse(GridComidasReservadas.SelectedRow.Cells[1].Text));
+                comidaEmpleadoSeleccionado = controladora.consultarComida(Int32.Parse(GridComidasReservadas.SelectedRow.Cells[4].Text));
                 seleccionado = controladora.crearServicio(idEmpleado, comidaEmpleadoSeleccionado.IdComida, comidaEmpleadoSeleccionado.Fechas[0].ToString(), "Comida regular", comidaEmpleadoSeleccionado.Notas, "Depende del turno", "Depende del turno");
             }
 
@@ -305,15 +311,37 @@ namespace Servicios_Reservados_2
             btnEditar.Disabled = true;
             btnCancelar.Disabled = true;
         }
+        protected int obtenerIndex(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            return Convert.ToInt32(row.RowIndex);
+
+        }
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
+            seleccionarComida(obtenerIndex(sender, e));
+
             if (seleccionado != null)
             {
                 controladora.activarTiquete();
                 Response.Redirect("FormTiquete");
             }
 
-        }   
+        }
+        /*
+         *  Requiere: Controladores de eventos de la interfaz.
+         *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
+         *  Retrona:  N/A
+         */
+        protected void GridViewReservaciones_PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
+
+            GridComidasReservadas.PageIndex = e.NewPageIndex;
+            GridComidasReservadas.DataSource = Session["tablaa"];
+            GridComidasReservadas.DataBind();
+
+        }
 
     }
 }

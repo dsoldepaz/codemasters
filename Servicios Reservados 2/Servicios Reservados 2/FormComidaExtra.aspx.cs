@@ -161,7 +161,7 @@ namespace Servicios_Reservados_2
             }
             else
             {
-                Object[] nuevoServicio = new Object[8];// objeto en el que se almacenan los datos para enviar a encapsular.
+                Object[] nuevoServicio = new Object[9];// objeto en el que se almacenan los datos para enviar a encapsular.
                 nuevoServicio[0] = controladora.informacionServicio().Id;//recuperamos el id de la reservación.
                 //en adelante se extrae la información de cada uno de los componentes de la interfaz.
                 int indice = cbxTipo.SelectedIndex - 1;
