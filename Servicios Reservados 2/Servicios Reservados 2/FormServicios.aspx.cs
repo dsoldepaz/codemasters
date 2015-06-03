@@ -290,6 +290,7 @@ namespace Servicios_Reservados_2
          */
         protected void modificarServicio(object sender, EventArgs e)
         {
+             seleccionarServicio(sender, e);
             
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
             {
