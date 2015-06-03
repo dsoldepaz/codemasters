@@ -116,7 +116,7 @@ namespace Servicios_Reservados_2
             else
             {
 
-            Object[] nuevoServicio = new Object[8];// objeto en el que se almacenan los datos para enviar a encapsular.
+            Object[] nuevoServicio = new Object[9];// objeto en el que se almacenan los datos para enviar a encapsular.
 
             nuevoServicio[0] = controladora.informacionServicio().Id;//recuperamos el id de la reservación
             //en adelante se extrae la información de cada uno de los componentes de la interfaz.
@@ -128,6 +128,7 @@ namespace Servicios_Reservados_2
             nuevoServicio[5] = txtPax.Value;
             nuevoServicio[6] = cbxHora.Value;
             nuevoServicio[7] = cbxTipoPago.Value;
+            nuevoServicio[8] = "";
 
  
             String[] error = controladora.agregarServicioExtra(nuevoServicio);// se le pide a la controladora que lo inserte
@@ -160,7 +161,7 @@ namespace Servicios_Reservados_2
             }
             else
             {
-                Object[] nuevoServicio = new Object[8];// objeto en el que se almacenan los datos para enviar a encapsular.
+                Object[] nuevoServicio = new Object[9];// objeto en el que se almacenan los datos para enviar a encapsular.
                 nuevoServicio[0] = controladora.informacionServicio().Id;//recuperamos el id de la reservación.
                 //en adelante se extrae la información de cada uno de los componentes de la interfaz.
                 int indice = cbxTipo.SelectedIndex - 1;
@@ -171,6 +172,7 @@ namespace Servicios_Reservados_2
                 nuevoServicio[5] = txtPax.Value;
                 nuevoServicio[6] = cbxHora.Value;
                 nuevoServicio[7] = cbxTipoPago.Value;
+                nuevoServicio[8] = "";
 
                 String[] error = controladora.modificarServicioExtra(nuevoServicio, entidadConsultada);// se le pide a la controladora que lo inserte
                 mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
