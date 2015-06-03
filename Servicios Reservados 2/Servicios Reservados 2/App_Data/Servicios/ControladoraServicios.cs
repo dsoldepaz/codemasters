@@ -109,7 +109,7 @@ namespace Servicios_Reservados_2
             return controladoraBD.obtenerPaquete(idReservacion);
         }
 
-        internal EntidadServicios crearServicio(string idRes, string id, String categoria)
+        internal EntidadServicios crearServicio(string idRes, string id, String hora, String categoria)
         {
              if (id.Contains("."))
             {

@@ -256,7 +256,7 @@ namespace Servicios_Reservados_2
             HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[1].Text, myWriter);
             String opcion = myWriter.ToString();
 
-            seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex], opcion);
+            seleccionado = controladora.crearServicio(ids[0], idServ[GridServicios.SelectedIndex], GridServicios.SelectedRow.Cells[4].Text, opcion);
             
             if ("Incluido en Paquete".Equals(opcion))
             {
@@ -279,6 +279,7 @@ namespace Servicios_Reservados_2
                 btnConsultar.Disabled = false;
                 btnModificar.Disabled = false;
             }
+
         }
         /*
          * Efecto: llama al metodo modificarServicio de la controladora y redirecciona la pagina al formComidaExtra

@@ -80,7 +80,7 @@ namespace Servicios_Reservados_2
       {
           DataTable servicios = controladoraBD.seleccionarServicio(idComidaExtra);
 
-          Object[] nuevoServicio = new Object[8];
+          Object[] nuevoServicio = new Object[9];
 
           nuevoServicio[0] = servicios.Rows[0][0];
           nuevoServicio[1] = servicios.Rows[0][1];
@@ -90,6 +90,7 @@ namespace Servicios_Reservados_2
           nuevoServicio[5] = servicios.Rows[0][2];
           nuevoServicio[7] = servicios.Rows[0][6];
           nuevoServicio[6] = servicios.Rows[0][7];
+          nuevoServicio[8] = servicios.Rows[0][9];
 
           servicioSeleccionado = new EntidadComidaExtra(nuevoServicio);
 
@@ -173,14 +174,14 @@ namespace Servicios_Reservados_2
 
 
 
-        internal DataTable solicitarVecesConsumido(string idServicio, string idRes, string fecha, string hora)
+        internal DataTable solicitarVecesConsumido(string idComidaExtra)
         {
-            return controladoraBD.vecesConsumido(idServicio, idRes, fecha, hora);
+            return controladoraBD.vecesConsumido(idComidaExtra);
         }
 
-        internal void actualizarVecesConsumido(string idServicio, int vecesConsumido, string idRes, string fecha, string hora)
+        internal void actualizarVecesConsumido(string idComidaExtra, int vecesConsumido)
         {
-            controladoraBD.actualizarVecesConsumido(idServicio, vecesConsumido, idRes, fecha, hora);
+            controladoraBD.actualizarVecesConsumido(idComidaExtra, vecesConsumido);
         }
     }
 }
