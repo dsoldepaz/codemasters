@@ -852,25 +852,3 @@ input#btnSalir:hover {
 label.labelfont {
     font: normal 14px Arial !important;
 }
-.Gridcontenedor> tbody>tr>td {
-  border: 1px solid black;
-}
-.Gridcontenedor>tbody>tr>th {
-  padding: 9px 15px 9px 13px;
-  text-align: center;
-  border-left: 1px dotted black;
-}
-.Gridcontenedor> tbody > tr:nth-child(1) > th:last-child {
-  border-right: 1px solid black;
-}
-.Gridcontenedor> tbody > tr:nth-child(1) > th:first-child {
-  border-left: 1px solid black;
-}
-.Gridcontenedor> tbody > tr:nth-child(1) {
-  border-top: 1px solid black;
-}
-.Gridcontenedor>tbody>tr>th {
-  padding: 9px 15px 9px 13px;
-  text-align: center;
-  border-left: 1px dotted black;
-}
