@@ -65,8 +65,8 @@ namespace Servicios_Reservados_2
                 radioFrijoles.Disabled = true;
                 radioMyM.Disabled = true;
                 radioOmelette.Disabled = true;
+                radioAtun.Disabled = true;
                 radioEnsaladaHuevo.Disabled = true;
-                //chGalloPinto.Disabled = true;
                 chEnsalada.Disabled = false;
                 chMayonesa.Disabled = false;
                 chConfites.Disabled = false;
@@ -101,9 +101,9 @@ namespace Servicios_Reservados_2
                 radioMyM.Disabled = true;
                 radioOmelette.Disabled = true;
                 radioEnsaladaHuevo.Disabled = true;
+                radioAtun.Disabled = true;
                 radioAgua.Disabled = true;
                 radioJugo.Disabled = true;
-                //chGalloPinto.Disabled = true;
                 CheckboxBebida.Enabled = true;
                 checkO2.Enabled = true;
                 checkO1.Enabled = true;
@@ -134,7 +134,7 @@ namespace Servicios_Reservados_2
                 radioMyM.Disabled = true;
                 radioOmelette.Disabled = true;
                 radioEnsaladaHuevo.Disabled = true;
-                //chGalloPinto.Disabled = true;
+                radioAtun.Disabled = true;
                 chEnsalada.Disabled = true;
                 chHuevoDuro.Disabled = true;
                 chMayonesa.Disabled = true;
@@ -158,19 +158,19 @@ namespace Servicios_Reservados_2
         }
         protected void limpiarCamposOpcion2()
         {
-            //cambiarModo();
+            limpiarComidas();
             radioDesayuno.Checked = false;
             radioAlmuerzo.Checked = false;
             radioCena.Checked = false;
-            //chGalloPinto.Checked = false;
             cbxHoraOpcion1.Items.Clear();
             cmbHoraSandwich.Items.Clear();
             cmbHoraGalloPinto.Items.Clear();
+            
         }
 
         protected void limpiarCamposOpcion1(){
 
-            //cambiarModo();
+            limpiarComidas();
             radioPanBlanco.Checked = false;
             radioPanBollo.Checked = false;
             radioPanInt.Checked = false;
@@ -180,14 +180,13 @@ namespace Servicios_Reservados_2
             radioAtun.Checked = false;
             radioOmelette.Checked = false;
             radioEnsaladaHuevo.Checked = false;
-            //chGalloPinto.Checked = false;
             cmbHoraSandwich.Items.Clear();
             cmbHoraGalloPinto.Items.Clear();
         }
 
         protected void limpiarCamposOpcion3()
         {
-            //cambiarModo();
+            limpiarComidas();
             radioDesayuno.Checked = false;
             radioAlmuerzo.Checked = false;
             radioAlmuerzo.Checked = false;
@@ -200,12 +199,34 @@ namespace Servicios_Reservados_2
             radioMyM.Checked = false;
             radioOmelette.Checked = false;
             radioEnsaladaHuevo.Checked = false;
-            //chGalloPinto.Checked = false;
             cmbHoraSandwich.Items.Clear();
             cbxHoraOpcion1.Items.Clear();
         }
 
-
+        protected void limpiarComidas()
+        {
+            radioDesayuno.Enabled = false;
+            radioAlmuerzo.Enabled = false;
+            radioCena.Enabled = false;
+            radioPanBlanco.Disabled = true;
+            radioPanBollo.Disabled = true;
+            radioPanInt.Disabled = true;
+            radioJamon.Disabled = true;
+            radioFrijoles.Disabled = true;
+            radioMyM.Disabled = true;
+            radioOmelette.Disabled = true;
+            radioEnsaladaHuevo.Disabled = true;
+            radioAtun.Disabled = true;
+            CheckboxBebida.Enabled = true;
+            checkO2.Enabled = true;
+            checkO1.Enabled = true;
+            checkO3.Enabled = true;
+            cmbHoraSandwich.Disabled = true;
+            cmbHoraGalloPinto.Disabled = true;
+            cmbHoraSandwich.Disabled = true;
+            cmbHoraGalloPinto.Disabled = true;
+            cbxHoraOpcion1.Disabled = true;
+        }
 
         protected void llenarHora()
         {
@@ -275,17 +296,34 @@ namespace Servicios_Reservados_2
             }
             if (checkO1.Checked)
             {
+                radioDesayuno.Checked = true;
                 radioDesayuno.Enabled = true;
                 radioAlmuerzo.Enabled = true;
                 radioCena.Enabled = true;
                 cbxHoraOpcion1.Disabled = false;
+                cbxHoraOpcion1.Items.Clear();
+                int inicio = 6;
+                int fin = 8;
+                for (int i = inicio; i <= fin; i++)
+                {
+                    String horas = i.ToString() + ":00";
+                    cbxHoraOpcion1.Items.Add(horas);
+                }       
             }
+            else
+            {
+                limpiarCamposOpcion3();
+                limpiarCamposOpcion1();
+                limpiarCamposOpcion2();
+            }
+            
         }
 
         protected void checkbebida(object sender, EventArgs e)
         {
             if (CheckboxBebida.Checked)
             {
+                radioAgua.Checked = true;
                 radioAgua.Disabled = false;
                 radioJugo.Disabled = false;
             }
@@ -293,6 +331,8 @@ namespace Servicios_Reservados_2
             {
                 radioAgua.Checked = false;
                 radioJugo.Checked = false;
+                radioAgua.Disabled = true;
+                radioJugo.Disabled = true;
             }
         }
 
@@ -308,9 +348,17 @@ namespace Servicios_Reservados_2
             {
                 checkO1.Checked = false;
             }
-            //chGalloPinto.Disabled = false;
-            cmbHoraGalloPinto.Disabled = false;
-               
+            if (checkO3.Checked)
+            {//chGalloPinto.Disabled = false;
+                cmbHoraGalloPinto.Disabled = false;
+            }
+            else
+            {
+                limpiarCamposOpcion3();
+                limpiarCamposOpcion1();
+                limpiarCamposOpcion2();
+            
+            }
         }
         protected void checkedO2(object sender, EventArgs e)
         {
@@ -324,16 +372,28 @@ namespace Servicios_Reservados_2
             {
                 checkO3.Checked = false;
             }
-           radioPanBlanco.Disabled = false;
-           radioPanBollo.Disabled = false;
-           radioPanInt.Disabled = false;
-           radioJamon.Disabled = false;
-           radioFrijoles.Disabled = false;
-           radioMyM.Disabled = false;
-           radioOmelette.Disabled = false;
-           radioEnsaladaHuevo.Disabled = false;
-           cmbHoraSandwich.Disabled = false;
-               
+            if (checkO2.Checked)
+            {
+                radioPanBlanco.Checked = true;
+                radioJamon.Checked = true;
+                radioPanBlanco.Disabled = false;
+                radioPanBollo.Disabled = false;
+                radioPanInt.Disabled = false;
+                radioJamon.Disabled = false;
+                radioFrijoles.Disabled = false;
+                radioMyM.Disabled = false;
+                radioAtun.Disabled = false;
+                radioOmelette.Disabled = false;
+                radioEnsaladaHuevo.Disabled = false;
+                cmbHoraSandwich.Disabled = false;
+            }
+            else
+            {
+                limpiarCamposOpcion3();
+                limpiarCamposOpcion1();
+                limpiarCamposOpcion2();
+
+            }
         }
 
         protected String getPan()
@@ -436,7 +496,7 @@ namespace Servicios_Reservados_2
                 DateTime fechaFinal = reservacionConsultada.FechaSalida;
                 if (fechaSeleccionada < fechaInicio || fechaSeleccionada > fechaFinal || fechaSeleccionada < fechaHoy)
                 {
-                        mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
+                      mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
                       correcta = false;
                 }
             }
@@ -643,7 +703,7 @@ namespace Servicios_Reservados_2
                 }
                 comidaModificar[10] = txtPax.Value;
 
-                if (checkO1.Checked || checkO2.Checked || checkO3.Checked)
+                if ((checkO1.Checked && (radioDesayuno.Checked || radioAlmuerzo.Checked || radioCena.Checked)) || (checkO2.Checked && getTipoSandwich() != "" && getPan() != "") || checkO3.Checked)
                 {
                     String[] error = controladora.modificarComidaCampo(comidaModificar, lista, entidadConsultada);// se le pide a la controladora que lo inserte
                     mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
@@ -708,7 +768,11 @@ namespace Servicios_Reservados_2
                     if (tipoComidaCampo == 1) //agregar la comida dependiendo si es para un empleado o una reservacion.
                     {
                         FormEmpleadoReserva.idEmpleado = idEmpleado;
-
+                        bool accion = modificarComidaCampo();
+                        if (accion)
+                        {
+                            Response.Redirect("FormEmpleadoReserva");
+                        }
 
                     }
                     else

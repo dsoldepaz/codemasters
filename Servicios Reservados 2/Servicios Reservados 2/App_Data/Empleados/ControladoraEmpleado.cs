@@ -27,7 +27,6 @@ namespace Servicios_Reservados_2
         internal DataTable solicitarTodosEmpleados()
         {
             DataTable todas = controladoraBD.consultarTodosEmpleados();
-
             return todas;
 
         }

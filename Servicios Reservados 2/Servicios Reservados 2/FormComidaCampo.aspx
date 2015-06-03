@@ -101,8 +101,7 @@
                                 <input id="radioPanBollo" runat="server" name="bread" type="radio" value="panbollo"></td><td class="auto-style4">Pan bollo</td>
                         </tr>
                     </table>
-                                            <label>
-                            Seleccione relleno</label>
+                    <label style="margin-bottom:8px">Seleccione relleno</label>
                     <table>
 
                         <tr>
@@ -201,14 +200,13 @@
                         </tr>
                     </table>
                 </fieldset>
-                <button class="btn btn-danger" name="cancel" type="button" runat="server" onserverclick="clickCancelar">Cancelar</button>
-                <input class="btn btn-success" id="btnAgregar" value="Aceptar" type="submit" runat="server" onserverclick="clickAceptar" />
 
             </div>
 
         </ContentTemplate>
     </asp:UpdatePanel>
-
+     <button class="btn btn-danger" name="cancel" type="button" runat="server" onserverclick="clickCancelar">Cancelar</button>
+     <input class="btn btn-success" id="btnAgregar" value="Aceptar" type="submit" runat="server" onserverclick="clickAceptar" />
 
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">

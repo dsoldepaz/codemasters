@@ -60,7 +60,8 @@ namespace Servicios_Reservados_2
                 datos[0] = fila[0].ToString(); //IDCOMIDAEMPLEADO
                 datos[1] = fila[1].ToString(); //Categoria
                 datos[2] = ""; //tipo
-                datos[3] = fila[3].ToString(); //FECHA
+                DateTime nuevo = DateTime.Parse(fila[3].ToString());
+                datos[3] = nuevo.ToString("MM/dd/yyyy"); //FECHA
                 datos[4] = (fila[4].ToString().CompareTo("T") == 0) ? "Efectivo" : "Deducción de Salario"; //PAGADO es un valor booleano a nivel logico.
 
                 tabla.Rows.Add(datos);
@@ -248,14 +249,13 @@ namespace Servicios_Reservados_2
             if (tipo.Contains("Comida regular"))
             {
                 //llama comida empleado en modo de cancelar
-                FormComidasEmpleado.idComida = Int32.Parse(row.Cells[1].Text);//saca el id de la comida seleccionada.
-                FormComidasEmpleado.modo = 3;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
-                Response.Redirect("FormComidasEmpleado");
+                controladora.cancelarComidaRegular(Int32.Parse(row.Cells[1].Text));
             }
             else
             {
                 String idComida = row.Cells[1].Text;
                 mensaje = controladora.cancelarComidaCampo(idComida);
+                Response.Redirect(Request.Url.AbsoluteUri);
             }
         }
         /*
@@ -292,7 +292,7 @@ namespace Servicios_Reservados_2
             if (idEmpleado.Length != 0)//la cadena tiene algo
             {
                 EntidadEmpleado empleado=controladora.obtenerEmpleado(idEmpleado);
-                this.lblNombre.InnerText = (empleado.Id + "-" + empleado.Nombre + " " + empleado.Apellido);
+                this.lblNombre.InnerText = (empleado.Nombre + " " + empleado.Apellido);
             }
             else
             {

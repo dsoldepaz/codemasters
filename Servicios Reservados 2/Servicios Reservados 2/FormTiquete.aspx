@@ -81,28 +81,23 @@
                                 </tr>
                             </table>
                                </asp:Panel>
-                        <table>
-                            <tr>
-                                <td>
+       
 
-                                    <asp:GridView ID="GridViewTiquetes" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarTiquete"  AllowSorting="true"  BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
+                                    <asp:GridView ID="GridViewTiquetes" runat="server" AutoGenerateSelectButton="True" AllowSorting="true"  BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
                                         <AlternatingRowStyle BorderStyle="None" />
                                         <HeaderStyle Font-Size="1.3em" />
                                         <SelectedRowStyle BackColor="#7BC143"
                                             ForeColor="Black"
                                             Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
+                                         <Columns>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                      <asp:LinkButton  ID="btnDesactivar" runat="server" class="btn btn-default" OnClick="clickQuitar"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
                                     </asp:GridView>
-                                </td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>      
-                                <td>                                    
-                                        <input type="button" class="btn btn-success" id="botonQuitar" value="Quitar tiquete"  onserverclick="clickQuitar" runat="server"/></a>
-                                </td>                          
-            
-                            </tr>
-                        </table>
+                         
 
                     </div>
 

@@ -35,9 +35,9 @@ namespace Servicios_Reservados_2
             return dt;
         }
 
-       /*
-       * Insertar se utiliza para enviar una string SQL con una inserción y el adaptador se encarga de realizar la inserción directamente en la base de datos.  
-       */
+        /*
+        * Insertar se utiliza para enviar una string SQL con una inserción y el adaptador se encarga de realizar la inserción directamente en la base de datos.  
+        */
         internal String[] insertar(String consultaSQL)
         {
             String[] respuesta = new String[3];
@@ -53,16 +53,16 @@ namespace Servicios_Reservados_2
                 respuesta[1] = "Exito. ";
                 respuesta[2] = "La comida extra se ha eliminado exitosamente";
             }
-            catch (SqlException e)
+            catch (OleDbException e)
             {
-                int r = e.Number;
+                int r = e.ErrorCode;
 
-                if (r == 2627)
+                if (r == -2147217873)
                 {
 
                     respuesta[0] = "danger";
                     respuesta[1] = "Error. ";
-                    respuesta[2] = "Informacion ingresada ya existe";
+                    respuesta[2] = "La informacion ingresada ya existe";
                 }
                 else
                 {

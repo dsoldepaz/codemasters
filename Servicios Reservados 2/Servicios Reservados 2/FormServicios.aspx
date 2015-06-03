@@ -6,7 +6,7 @@
     <nav>
         <ul>
             <li class="item-navegacion"><a href="FormReservaciones.aspx">Reservaciones</a></li>
-            <li class="item-navegacion"><a href="FormEmpleadoReserva.aspx">Empleados</a></li>
+            <li class="item-navegacion"><a href="FormEmpleado.aspx" class="seleccionado">Empleados</a></li>
             <li class="item-navegacion">Notificaciones <span class="notificacion">0</span></li>
         </ul>
     </nav>
@@ -16,14 +16,6 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <a href="">
-                <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>
-                        <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
-                </div>
-            </a>
-
             <div class="well bs-component">
                 <fieldset>
                     <legend style="color: #7BC143">Información de reservación</legend>
@@ -76,51 +68,63 @@
             </div>
             <div class="well bs-component">
                 <fieldset>
-
+                    <a href="">
+                        <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong>
+                                <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                        </div>
+                    </a>
                     <legend style="color: #7BC143">Listado de servicios</legend>
 
                     <div class="well bs-component" style="background-color: white">
                         <table>
                             <tr>
                                 <td>
-                                    <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarServicio">
+                                    <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" >
                                         <SelectedRowStyle BackColor="#7BC143" />
+           
+                                        
+                                          <Columns>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                      <asp:LinkButton  ID="btnActivarTiquete" runat="server" class="btn btn-default" OnClick="clickActivarTiquetes"><i  class="glyphicon glyphicon-tags"></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+
+                                        <Columns>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                      <asp:LinkButton  ID="btnConsultar" runat="server" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+
+                                            <Columns>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                      <asp:LinkButton ID="btnModificar" runat="server" class="btn btn-default" OnClick="modificarServicio"><i class="glyphicon glyphicon-edit"></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+
+                                            <Columns>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                      <asp:LinkButton  ID="btnCancelar" runat="server" class="btn btn-default"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+
                                     </asp:GridView>
 
-                                </td>
-                                <td>
-                                    <div class="btn-group-vertical">
-                                        <input type="button" class="btn btn-success" id="btnActivarTiquete" value="Activar Tiquete" runat="server" onserverclick="clickActivarTiquetes" />
-                                        <input type="button" class="btn btn-success" id="btnConsultar" value="Consultar" runat="server" onserverclick="clickConsultarServicio" />
-                                        <input type="button" class="btn btn-success" id="btnModificar" value="Modificar" runat="server" onserverclick="modificarServicio" />
-                                        <input type="button" class="btn btn-success" id="btnCancelar" value="Cancelar" runat="server" onserverclick="clickEliminarServicio" />
-
-                                    </div>
-                                </td>
-                            </tr>
                         </table>
                     </div>
 
                 </fieldset>
             </div>
 
-            <!-->MODAL<-->
- <div class="modal fade" id="modalCancelar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Ventana de Confirmación</h4>
-                </div>
-                <div class="modal-body">
-                    ¿Está seguro que desea cancelar?               
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" runat="server" onserverclick="clickEliminarServicio">Aceptar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
         </ContentTemplate>

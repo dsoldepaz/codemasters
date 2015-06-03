@@ -62,7 +62,7 @@ namespace Servicios_Reservados_2
             if (iden.CompareTo("vacio") != 0)
             {
 
-                consulta += condicional + "idempleado = '" + iden + "'";
+                consulta += condicional + "numempleado = '" + iden + "'";
                 condicional = " and ";
             }
             Debug.WriteLine(consulta);

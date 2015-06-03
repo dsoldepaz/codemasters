@@ -56,9 +56,9 @@ namespace Servicios_Reservados_2
             return consultada;
         }
 
-        internal void eliminar(EntidadComidaEmpleado entidadComidaEmpleado)
+        internal String[] eliminar(EntidadComidaEmpleado entidadComidaEmpleado)
         {
-            controladoraBD.cancelar(entidadComidaEmpleado);
+            return controladoraBD.cancelar(entidadComidaEmpleado);
         }
 
         internal DataTable getComidaEmpleado(string idEmpleado)

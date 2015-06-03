@@ -839,8 +839,16 @@ input.selectorDeFecha{
     background-image:url('../Images/imagenes_OET/DatePicker.gif');
     height:18px;
 }
-
-
+input#btnSalir {
+  background-color: rgb(123, 193, 67);
+  border: 0px;
+  color: white;
+}
+input#btnSalir:hover {
+  -webkit-transition: width 2s, height 4s;
+  transition: font-size 1s;
+  font-size: 1.5em;
+}
 label.labelfont {
     font: normal 14px Arial !important;
 }

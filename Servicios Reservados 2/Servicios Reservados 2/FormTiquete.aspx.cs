@@ -106,12 +106,16 @@ namespace Servicios_Reservados_2
             controladora.activarTiquete(int.Parse(numTiquete.Value));
             Response.Redirect(Request.Url.AbsoluteUri);
         }
-        protected void seleccionarTiquete(object sender, EventArgs e)
+        protected void seleccionarTiquete(int index)
         {
-          controladora.seleccionarTiquete(int.Parse(GridViewTiquetes.SelectedRow.Cells[1].Text));
+          controladora.seleccionarTiquete(index);
         }
         protected void clickQuitar(object sender, EventArgs e)
         {
+            LinkButton btn = (LinkButton)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            int i = Convert.ToInt32(row.RowIndex);
+            seleccionarTiquete(i);
             controladora.desactivarTiquete();
             Response.Redirect(Request.Url.AbsoluteUri);
 

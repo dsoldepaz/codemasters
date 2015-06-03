@@ -5,7 +5,7 @@
     <nav>
         <ul>
             <li class="item-navegacion"><a href="FormReservaciones.aspx" class="seleccionado">Reservaciones</a></li>
-            <li class="item-navegacion"><a href="FormEmpleadoReserva.aspx">Empleados</a></li>
+            <li class="item-navegacion"><a href="FormEmpleado.aspx">Empleados</a></li>
             <li class="item-navegacion">Notificaciones <span class="notificacion">0</span></li>
             <li class="item-navegacion"><a href="FormReportesComedor.aspx">Reportes</a></li>
         </ul>
@@ -52,7 +52,7 @@
                             <tr>
                                 <td>
 
-                                    <asp:GridView ID="GridViewReservaciones" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarReservacion" AllowPaging="true" AllowSorting="true" PageSize="20" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
+                                    <asp:GridView ID="GridViewReservaciones" runat="server" AutoGenerateSelectButton="True" OnRowCommand="seleccionarReservacion" AllowPaging="true" AllowSorting="true" PageSize="20" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
                                         <AlternatingRowStyle BorderStyle="None" />
                                         <HeaderStyle Font-Size="1.3em" />
                                         <SelectedRowStyle BackColor="#7BC143"

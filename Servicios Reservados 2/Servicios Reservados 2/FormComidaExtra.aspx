@@ -51,11 +51,12 @@
                     <table>
                         <tr>
                             <td>
-                                <input type="submit" class="btn btn-success" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" />
+                                <input type="button" class="btn btn-danger" id="Button1" value="Cancelar" runat="server" onserverclick="clickCancelar" />
+                                
 
                             </td>
                             <td>
-                                <input type="button" class="btn btn-danger" id="btnCancelar" value="Cancelar" runat="server" onserverclick="clickCancelar" />
+                               <input type="submit" class="btn btn-success" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" />
                             </td>
 
                         </tr>
