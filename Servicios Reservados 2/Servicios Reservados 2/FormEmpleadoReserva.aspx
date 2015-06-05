@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title="Reserva para empleados" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="FormEmpleadoReserva.aspx.cs" Inherits="Servicios_Reservados_2.FormEmpleadoReserva" %>
+﻿<%@ Page Language="C#" Title="Servicio para empleados" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="FormEmpleadoReserva.aspx.cs" Inherits="Servicios_Reservados_2.FormEmpleadoReserva" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <link rel="stylesheet" href="Content/EmpleadoReserva.css" />

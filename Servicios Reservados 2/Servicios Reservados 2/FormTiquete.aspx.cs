@@ -16,6 +16,7 @@ namespace Servicios_Reservados_2
         private static EntidadEmpleado empleado;
         private static EntidadServicios servicio;
         private static int modo;
+        public static string retorno;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -139,6 +140,11 @@ namespace Servicios_Reservados_2
             GridViewTiquetes.DataBind();
 
             return tabla;
+        }
+        protected void clickCancelar(object sender, EventArgs e)
+        {            
+            Response.Redirect(retorno);
+
         }
     }
 }

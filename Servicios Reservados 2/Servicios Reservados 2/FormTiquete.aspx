@@ -74,7 +74,7 @@
                                </asp:Panel>
        
 
-                                    <asp:GridView ID="GridViewTiquetes" runat="server" Class="Gridcontenedor" AutoGenerateSelectButton="True" AllowSorting="true"  BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
+                                    <asp:GridView ID="GridViewTiquetes" runat="server" Class="Gridcontenedor" AllowSorting="true" >
                                         <AlternatingRowStyle BorderStyle="None" />
                                         <HeaderStyle Font-Size="1.3em" />
                                         <SelectedRowStyle BackColor="#7BC143"
@@ -91,7 +91,7 @@
                                           
 
                     </div>
-                    <asp:button href="FormServicios" text="Cancelar" id="btnCancelar" class="btn btn-danger" UseSubmitBehavior="false" runat="server"/> 
+                    <asp:button href="FormServicios" text="Cancelar" id="btnCancelar" class="btn btn-danger" UseSubmitBehavior="false" runat="server" OnClick="clickCancelar"/> 
              
             </ContentTemplate>
         </asp:UpdatePanel>

@@ -326,6 +326,7 @@ namespace Servicios_Reservados_2
             if (seleccionado != null)
             {
                 controladora.activarTiquete();
+                FormTiquete.retorno = Request.Url.AbsoluteUri;
                 Response.Redirect("FormTiquete");
             }
 

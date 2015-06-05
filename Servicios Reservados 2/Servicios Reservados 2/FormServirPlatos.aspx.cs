@@ -138,6 +138,14 @@ namespace Servicios_Reservados_2
             modo = 0;
             cambiarModo();
         }
+        protected void clickServirDesactivar(object sender, EventArgs e)
+        {
+            controladora.servirTiquete();
+            verificar();
+            controladora.desactivarTiquete();
+            modo = 0;
+            cambiarModo();
+        }
 
     }
 }
