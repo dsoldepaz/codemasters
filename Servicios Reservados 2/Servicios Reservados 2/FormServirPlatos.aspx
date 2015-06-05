@@ -35,6 +35,14 @@
                 </asp:Panel>
             </div>
 
+            <a href="">
+                <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>
+                        <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                </div>
+            </a>
+
             <div class="well bs-component" runat="server" id="infoTiquete">
 
                 <legend style="color: #7BC143">Información de reservación</legend>
@@ -64,8 +72,6 @@
 
                 </table>
             </div>
-
-
 
         </ContentTemplate>
     </asp:UpdatePanel>

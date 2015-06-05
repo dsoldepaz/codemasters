@@ -151,7 +151,7 @@ namespace Servicios_Reservados_2
 
         internal void desactivarTiquete()
         {
-            throw new NotImplementedException();
+            controladoraBD.eliminarTiquete(seleccionado.Numero);
         }
     }
 }
