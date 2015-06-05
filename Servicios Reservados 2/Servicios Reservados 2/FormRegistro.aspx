@@ -10,7 +10,7 @@
 
 
                         <div class="well bs-component">
-                            <fieldset>
+                    
                                 <legend>
                                     <h4>Información personal </h4>
                                 </legend>
@@ -50,7 +50,7 @@
                                 </div>
                                 
                                 <div class="well bs-component">
-                                    <fieldset>
+                                  
                                         <legend>
                                             <h4>Roles</h4>
                                         </legend>
@@ -104,9 +104,9 @@
                                             </tr>
                                         </table>
 
-                                    </fieldset>
+
                                 </div>
-                            </fieldset>
+
                         </div>
         </ContentTemplate>
     </asp:UpdatePanel>

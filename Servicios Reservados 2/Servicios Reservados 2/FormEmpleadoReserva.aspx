@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title="Empleados" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="FormEmpleadoReserva.aspx.cs" Inherits="Servicios_Reservados_2.FormEmpleadoReserva" %>
+﻿<%@ Page Language="C#" Title="Reserva para empleados" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="FormEmpleadoReserva.aspx.cs" Inherits="Servicios_Reservados_2.FormEmpleadoReserva" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <link rel="stylesheet" href="Content/EmpleadoReserva.css" />
@@ -18,16 +18,13 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
     <div class="well bs-component">
-        <fieldset>
              <legend style="color: #7BC143">Información del empleado</legend>
             Nombre:
                 <input id="txtNombre" value="{Nombre No recuperado}" runat="server" />
             Apellido:<input id="txtApellido" value="{Apellido No recuperado}" runat="server" />
-        </fieldset>
     </div>
 
     <div class="well bs-component">
-        <fieldset>
             <legend style="color: #7BC143">Agregar Servicios</legend>
             <table>
                 <tr>
@@ -38,15 +35,12 @@
                         <input type="button" class="btn btn-Naranja" value="Comida de Campo" runat="server" onserverclick="btnAgregarCC_Click" />
                     </td>
                 </tr>
-            </table>       
-        
-        </fieldset>        
+            </table>        
     </div>
 
 
 
             <div class="well bs-component">
-                 <fieldset>
                 <legend style="color: #7BC143">Listado de servicios</legend>
 
                     <asp:GridView ID="GridComidasReservadas" Class="Gridcontenedor" runat="server" AllowPaging="true" AllowSorting="true" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" Width="100%">
@@ -80,8 +74,6 @@
                         </Columns>
                         <SelectedRowStyle BackColor="#7BC143" />
                     </asp:GridView>
-
-            </fieldset>
             </div>
            
         </ContentTemplate>

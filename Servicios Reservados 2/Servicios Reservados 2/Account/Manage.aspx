@@ -18,7 +18,7 @@
                 No dispone de contraseña local para este sitio. Agregue una contraseña
                 local para iniciar sesión sin que sea necesario ningún inicio de sesión externo.
             </p>
-            <fieldset>
+
                 <legend>Formulario para establecer contraseña</legend>
                 <ol>
                     <li>
@@ -44,7 +44,7 @@
                     </li>
                 </ol>
                 <asp:Button runat="server" Text="Establecer contraseña" ValidationGroup="SetPassword" OnClick="setPassword_Click" />
-            </fieldset>
+           
         </asp:PlaceHolder>
 
         <asp:PlaceHolder runat="server" ID="changePassword" Visible="false">
@@ -54,7 +54,7 @@
                     <p class="validation-summary-errors">
                         <asp:Literal runat="server" ID="FailureText" />
                     </p>
-                    <fieldset class="changePassword">
+                   
                         <legend>Cambiar detalles de contraseña</legend>
                         <ol>
                             <li>
@@ -83,7 +83,7 @@
                             </li>
                         </ol>
                         <asp:Button runat="server" CommandName="ChangePassword" Text="Cambiar contraseña" ValidationGroup="ChangePassword" />
-                    </fieldset>
+                
                 </ChangePasswordTemplate>
             </asp:ChangePassword>
         </asp:PlaceHolder>

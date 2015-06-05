@@ -18,10 +18,10 @@
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <fieldset>
+
                     <div class="well bs-component">
                         <legend style="color: #7BC143">Filtro de reservación</legend>
-                        <fieldset>
+
                              <asp:Panel runat="server" DefaultButton="BotonBuscar">
                             <table>
                                 <tr>
@@ -76,7 +76,6 @@
 
 
                     </div>
-                </fieldset>
             </ContentTemplate>
         </asp:UpdatePanel>
 

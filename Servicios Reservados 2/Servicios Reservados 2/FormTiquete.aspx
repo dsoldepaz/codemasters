@@ -11,10 +11,10 @@
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <fieldset>
+             
                     <div class="well bs-component">
                         <legend style="color: #7BC143">Información del servicio</legend>
-                        <fieldset>
+                      
                             <table>
                                 <tr>
                                     <td>Anfitriona:</td>
@@ -92,7 +92,7 @@
 
                     </div>
                     <asp:button href="FormServicios" text="Cancelar" id="btnCancelar" class="btn btn-danger" UseSubmitBehavior="false" runat="server"/> 
-                </fieldset>
+             
             </ContentTemplate>
         </asp:UpdatePanel>
 

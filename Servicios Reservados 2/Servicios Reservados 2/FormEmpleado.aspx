@@ -15,7 +15,6 @@
     <h2>Empleados</h2>
   <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <fieldset>
                     <div class="well bs-component">        
                      <legend style="color: #7BC143">Filtro de empleados</legend>
 
@@ -54,7 +53,6 @@
                     </asp:GridView>
                     
                     </div>
-                </fieldset>
             </ContentTemplate>
         </asp:UpdatePanel>
 

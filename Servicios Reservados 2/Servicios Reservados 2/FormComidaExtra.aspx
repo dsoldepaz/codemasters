@@ -5,7 +5,6 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <fieldset>
 
                 <div class="well bs-component">
 
@@ -91,8 +90,6 @@
                     </table>
 
                 </div>
-
-            </fieldset>
 
         </ContentTemplate>
     </asp:UpdatePanel>

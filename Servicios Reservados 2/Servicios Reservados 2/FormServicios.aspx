@@ -14,7 +14,7 @@
         <h2>Servicio para Reservaciones</h2>
     </legend>
     <div class="well bs-component">
-                <fieldset>
+               
                     <legend style="color: #7BC143">Información de reservación</legend>
 
                     <table>
@@ -46,14 +46,14 @@
                             </td>
                         </tr>
                     </table>
-                </fieldset>
+               
             </div>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             
             <div class="well bs-component">
-                <fieldset>
+               
                     <legend style="color: #7BC143">Agregar Servicios</legend>
                     <table>
                         <tr>
@@ -68,7 +68,7 @@
                     </table>
             </div>
             <div class="well bs-component">
-                <fieldset>
+              
                     <a href="">
                         <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -122,7 +122,6 @@
                         </table>
                     </div>
 
-                </fieldset>
             </div>
 
 

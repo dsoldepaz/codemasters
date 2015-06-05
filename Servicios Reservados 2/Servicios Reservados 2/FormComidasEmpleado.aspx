@@ -6,7 +6,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <fieldset>
         <legend>
             <h2>Comida de Empleado
             </h2>
@@ -77,6 +76,4 @@
                 </td>
             </tr>
         </table>
-
-    </fieldset>
 </asp:Content>

@@ -9,14 +9,14 @@
             <li class="item-navegacion">Notificaciones <span class="notificacion">0</span></li>
         </ul>
     </nav>
-    <fieldset>
+
         <legend>
             <h2>Servir Platos</h2>
         </legend>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <div class="well bs-component">
-                    <fieldset>
+             
                         <legend style="color: #7BC143">Servicio por tiquetes</legend>
 
 
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="well bs-component" runat="server" id="infoTiquete">
-                    <fieldset>
+                   
                         <legend style="color: #7BC143">Información de reservación</legend>
                         <table>
                             <tr>
@@ -64,9 +64,5 @@
 
             </ContentTemplate>
         </asp:UpdatePanel>
-
-    </fieldset>
-
-
-
+    
 </asp:Content>
