@@ -41,7 +41,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:GridView ID="GridViewTiquete" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
+                                    <asp:GridView ID="GridViewTiquete" Class="Gridcontenedor" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
                                         <AlternatingRowStyle BorderStyle="None" />
                                         <HeaderStyle Font-Size="1.3em" />
                                         <SelectedRowStyle BackColor="#7BC143"

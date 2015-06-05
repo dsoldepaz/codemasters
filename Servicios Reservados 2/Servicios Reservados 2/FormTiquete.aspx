@@ -74,7 +74,7 @@
                                </asp:Panel>
        
 
-                                    <asp:GridView ID="GridViewTiquetes" runat="server" AutoGenerateSelectButton="True" AllowSorting="true"  BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
+                                    <asp:GridView ID="GridViewTiquetes" runat="server" Class="Gridcontenedor" AutoGenerateSelectButton="True" AllowSorting="true"  BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
                                         <AlternatingRowStyle BorderStyle="None" />
                                         <HeaderStyle Font-Size="1.3em" />
                                         <SelectedRowStyle BackColor="#7BC143"
