@@ -1,11 +1,7 @@
 ﻿<%@ Page Title="Comida Extra" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormComidaExtra.aspx.cs" Inherits="Servicios_Reservados_2.FormComidaExtra" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-
     <link rel="stylesheet" href="Content/ComidasExtra.css" />
-
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
