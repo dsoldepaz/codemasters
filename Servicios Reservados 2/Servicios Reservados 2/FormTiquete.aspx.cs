@@ -107,7 +107,7 @@ namespace Servicios_Reservados_2
             String[] error = controladora.activarTiquete(int.Parse(numTiquete.Value));// se le pide a la controladora que lo inserte
             if ("La informacion ingresada ya existe".Equals(error[2]))
             {
-                mostrarMensaje(error[0], error[1], "Este tiquete ya se encuentra asociado a otro servicio"); // se muestra el resultado     
+                mostrarMensaje(error[0], error[1], "Este tiquete ya se encuentra asociado a un servicio"); // se muestra el resultado     
 
             }
             else {

@@ -84,7 +84,7 @@ namespace Servicios_Reservados_2
                 }
                 else
                 {
-
+                   mostrarMensaje("danger", "Error:", "Este tiquete no se encuentra asociado a un servicio"); // se muestra el resultado           
                     modo = 0;
                     cambiarModo();
                 }  
@@ -145,6 +145,13 @@ namespace Servicios_Reservados_2
             controladora.desactivarTiquete();
             modo = 0;
             cambiarModo();
+        }
+        protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
+        {
+            alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
+            labelTipoAlerta.Text = alerta + " ";
+            labelAlerta.Text = mensaje;
+            alertAlerta.Attributes.Remove("hidden");
         }
 
     }

@@ -33,15 +33,24 @@
 
                     </table>
                 </asp:Panel>
+
+                <a href="">
+                    <div id="Div1" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>
+                            <asp:Label ID="label1" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="label2" runat="server" Text="Mensaje de alerta"></asp:Label>
+                    </div>
+                </a>
+                <a href="">
+                    <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>
+                            <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                    </div>
+                </a>
             </div>
 
-            <a href="">
-                <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>
-                        <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
-                </div>
-            </a>
+
 
             <div class="well bs-component" runat="server" id="infoTiquete">
 
