@@ -728,7 +728,8 @@ tr.pager td {
 /*--Estilos personalizados--*/
 [type="button"]{
     border-radius:4px;
-    background-color:#7BC143;
+    background-color: #5CB85C;
+border-color: #4CAE4C;
     color: rgb(252, 247, 247);
     width: 150px;
 }
