@@ -47,10 +47,20 @@ namespace Servicios_Reservados_2
         void cargarDatos()
         {
             modo = FormServicios.modo;
+            llenarInfoServicio();
             llenarComboBoxTipo();
             llenarCbxTipoPago();
             cambiarModo();
         }
+        void llenarInfoServicio()
+        {
+            txtSolicitante.Disabled = true;
+            txtNumReservacion.Disabled = true;
+            EntidadReservaciones res= controladora.informacionServicio();
+            txtSolicitante.Value = res.Solicitante;
+            txtNumReservacion.Value = res.Numero;
+        }
+
 
         /*
          * Efecto: llena el cbxTipo con las diferentes opciones de comidas extras.
