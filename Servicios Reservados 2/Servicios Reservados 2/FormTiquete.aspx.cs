@@ -104,8 +104,16 @@ namespace Servicios_Reservados_2
         }
         protected void clickAgregar(object sender, EventArgs e)
         {
-            controladora.activarTiquete(int.Parse(numTiquete.Value));
-            Response.Redirect(Request.Url.AbsoluteUri);
+            String[] error = controladora.activarTiquete(int.Parse(numTiquete.Value));// se le pide a la controladora que lo inserte
+            if ("La informacion ingresada ya existe".Equals(error[2]))
+            {
+                mostrarMensaje(error[0], error[1], "Este tiquete ya se encuentra asociado a otro servicio"); // se muestra el resultado     
+
+            }
+            else {
+                Response.Redirect(Request.Url.AbsoluteUri);
+            }
+               
         }
         protected void seleccionarTiquete(int index)
         {
@@ -145,6 +153,13 @@ namespace Servicios_Reservados_2
         {            
             Response.Redirect(retorno);
 
+        }
+        protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
+        {
+            alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
+            labelTipoAlerta.Text = alerta + " ";
+            labelAlerta.Text = mensaje;
+            alertAlerta.Attributes.Remove("hidden");
         }
     }
 }

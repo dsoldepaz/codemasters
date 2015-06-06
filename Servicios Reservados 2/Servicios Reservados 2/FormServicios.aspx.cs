@@ -258,7 +258,7 @@ namespace Servicios_Reservados_2
 
             // Decode the encoded string.
             StringWriter myWriter = new StringWriter();
-            HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[1].Text, myWriter);
+            HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[4].Text, myWriter);
             String opcion = myWriter.ToString();
 
             seleccionado = controladora.crearServicio(ids[0], idServ[index], GridServicios.SelectedRow.Cells[4].Text, opcion);
