@@ -15,6 +15,7 @@ namespace Servicios_Reservados_2
     {
         private ControladoraBDComidaCampo controladoraBD;//instancia de la controladora de BD comida extra.
         private ControladoraReservaciones controladoraReserv;
+        private ControladoraEmpleado controladoraEmp;
         public static EntidadComidaCampo comidaCampoConsultada;
         private static List<String> adicionales;
 
@@ -22,7 +23,8 @@ namespace Servicios_Reservados_2
         {
             controladoraBD = new ControladoraBDComidaCampo();
             controladoraReserv = new ControladoraReservaciones();
-           
+            controladoraEmp = new ControladoraEmpleado();
+
         }
 
         public EntidadComidaCampo guardarComidaSeleccionada(String id, String idServ)
@@ -98,23 +100,24 @@ namespace Servicios_Reservados_2
             comidaCampoConsultada = new EntidadComidaCampo(nuevoComidaC, adicionales);
             return comidaCampoConsultada;
         }
-        public DataTable getComidaEmpleado(String id) {
+        public DataTable getComidaEmpleado(String id)
+        {
             DataTable dt = controladoraBD.getComidaEmpleado(id);
             return dt;
         }
-       public String[] agregarComidaCampo(Object[] dato,List<String> lista)
+        public String[] agregarComidaCampo(Object[] dato, List<String> lista)
         {
-            EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato,lista);
+            EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato, lista);
             String[] resultado = controladoraBD.agregarComidaCampo(nuevaComidaCampo);
             return resultado;
         }
 
-       public String[] modificarComidaCampo(Object[] dato, List<String> lista, EntidadComidaCampo entidadConsultada)
-       {
-           EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato, lista);
-           String[] resultado = controladoraBD.modificarComidaCampo(nuevaComidaCampo, entidadConsultada);
-           return resultado;
-       }
+        public String[] modificarComidaCampo(Object[] dato, List<String> lista, EntidadComidaCampo entidadConsultada)
+        {
+            EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato, lista);
+            String[] resultado = controladoraBD.modificarComidaCampo(nuevaComidaCampo, entidadConsultada);
+            return resultado;
+        }
 
         public EntidadComidaCampo entidadSeleccionada()
         {
@@ -137,19 +140,28 @@ namespace Servicios_Reservados_2
             return controladoraReserv.getReservacionSeleccionada();
         }
 
-       public String paxReserv(String id)
+        public String paxReserv(String id)
         {
             String pax = controladoraReserv.obtenerPax(id);
             return pax;
-        
+
         }
-       internal DataTable solicitarVecesConsumido(string idServicio)
-       {
-           return controladoraBD.vecesConsumido(idServicio);
-       }
-       internal void actualizarVecesConsumido(string idServicio, int vecesConsumido)
-       {
-           controladoraBD.actualizarVecesConsumido(idServicio, vecesConsumido);
-       }
+        internal DataTable solicitarVecesConsumido(string idServicio)
+        {
+            return controladoraBD.vecesConsumido(idServicio);
+        }
+        internal void actualizarVecesConsumido(string idServicio, int vecesConsumido)
+        {
+            controladoraBD.actualizarVecesConsumido(idServicio, vecesConsumido);
+        }
+        internal EntidadReservaciones infoServicioRes()
+        {
+            return controladoraReserv.getReservacionSeleccionada();
+
+        }
+        internal EntidadEmpleado infoServicioEmp()
+        {
+            return controladoraEmp.getEmpleadoSeleccionado();
+        }
     }
 }

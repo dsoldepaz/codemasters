@@ -58,6 +58,15 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtSolicitante;
         
         /// <summary>
+        /// Control txtIdSolicitante.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtIdSolicitante;
+        
+        /// <summary>
         /// Control txtNumReservacion.
         /// </summary>
         /// <remarks>
