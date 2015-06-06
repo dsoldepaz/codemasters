@@ -17,18 +17,22 @@
             <table>
                 <tr>
                     <td>
-                    Nombre:
+                    Solicitante:
                          <td>
-                             <input id="txtNombre" value="{Nombre No recuperado}" runat="server" />
+                             <input id="txtNombre" value="{Nombre No recuperado}" runat="server" style="width:350px" />
                          </td>
-                    <td>Apellido:
+                    <td>Carné de empleado:
                     </td>
                     <td>
-                        <input id="txtApellido" value="{Apellido No recuperado}" runat="server" />
+                        <input id="txtCarne" value="{Carné No recuperado}" runat="server" style="width:350px"/>
                     </td>
                 </tr>
 
             </table>
+
+
+
+
             <table>
                 <tr>
                     <td>

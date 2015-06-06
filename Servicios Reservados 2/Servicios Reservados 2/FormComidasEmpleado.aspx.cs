@@ -313,10 +313,10 @@ namespace Servicios_Reservados_2
             {
                 if (identificacionEmpleado.Length > 0)
                 {
-                    empleadoSeleccionado = controladora.getInformacionDelEmpleado(identificacionEmpleado);
-
-                    txtApellido.Value = empleadoSeleccionado.Apellido;
-                    txtNombre.Value = empleadoSeleccionado.Nombre;
+                    empleadoSeleccionado = controladora.getInformacionDelEmpleado(identificacionEmpleado); 
+                   
+                    txtNombre.Value = empleadoSeleccionado.Nombre + " " + empleadoSeleccionado.Apellido;
+                    txtCarne.Value = empleadoSeleccionado.Id;
                 }else{
                     Debug.WriteLine("oops");
                 }
