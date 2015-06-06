@@ -6,7 +6,19 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
-                <div class="well bs-component">
+                <a href="">
+                    <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>
+                            <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                    </div>
+                </a>
+
+
+                <legend>
+                    <h2>Comida Extra</h2>
+                </legend>
+              <div class="well bs-component">
 
                     <legend style="color: #7BC143">Información del servicio</legend>
                     <table>
@@ -35,19 +47,6 @@
                         </tr>
                     </table>
                 </div>
-
-                <a href="">
-                    <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>
-                            <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
-                    </div>
-                </a>
-
-
-                <legend>
-                    <h2>Comida Extra</h2>
-                </legend>
                 <div class="well bs-component">
                     <ul>
                         <li class="itemContenedor">Fecha:<input runat="server" id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
@@ -78,12 +77,13 @@
                     <table>
                         <tr>
                             <td>
-                                <input type="button" class="btn btn-danger" id="Button1" value="Cancelar" runat="server" onserverclick="clickCancelar" />
+                                <input type="submit" class="btn btn-success" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" />
 
 
                             </td>
                             <td>
-                                <input type="submit" class="btn btn-success" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" />
+                                
+                                <input type="button" class="btn btn-danger" id="Button1" value="Cancelar" runat="server" onserverclick="clickCancelar" />
                             </td>
 
                         </tr>

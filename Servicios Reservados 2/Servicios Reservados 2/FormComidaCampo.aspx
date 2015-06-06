@@ -240,8 +240,18 @@
 
         </ContentTemplate>
     </asp:UpdatePanel>
-     <button class="btn btn-danger" name="cancel" type="button" runat="server" onserverclick="clickCancelar">Cancelar</button>
-     <input class="btn btn-success" id="btnAgregar" value="Aceptar" type="submit" runat="server" onserverclick="clickAceptar" />
+    <table>
+        <tr>
+            <td>
+                 <input class="btn btn-success" id="btnAgregar" style="width:200px" value="Aceptar" type="submit" runat="server" onserverclick="clickAceptar" />
+            </td>
+            <td>
+                <button class="btn btn-danger" name="cancel" type="button" runat="server" onserverclick="clickCancelar">Cancelar</button>
+            </td>
+        </tr>
+    </table>    
+    
+     
 
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">

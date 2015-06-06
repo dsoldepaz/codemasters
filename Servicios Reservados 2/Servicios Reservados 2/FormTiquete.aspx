@@ -91,7 +91,7 @@
                                           
 
                     </div>
-                    <asp:button href="FormServicios" text="Cancelar" id="btnCancelar" class="btn btn-danger" UseSubmitBehavior="false" runat="server" OnClick="clickCancelar"/> 
+                    <asp:button href="FormServicios" text="Aceptar" id="btnCancelar" class="btn btn-succes" UseSubmitBehavior="false" runat="server" OnClick="clickCancelar"/> 
              
             </ContentTemplate>
         </asp:UpdatePanel>

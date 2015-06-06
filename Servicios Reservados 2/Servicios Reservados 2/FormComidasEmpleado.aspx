@@ -69,10 +69,11 @@
         <table>
             <tr>
                 <td>
-                    <input type="button" class="btn-danger" value="Cancelar" runat="server" onserverclick="clickCancelar" />
+                    <input type="button" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" disabled="disabled" />
                 </td>
                 <td>
-                    <input type="button" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" disabled="disabled" />
+                    
+                    <input type="button" class="btn-danger" value="Cancelar" runat="server" onserverclick="clickCancelar" />
                 </td>
             </tr>
         </table>
