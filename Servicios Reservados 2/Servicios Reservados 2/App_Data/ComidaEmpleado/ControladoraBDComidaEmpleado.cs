@@ -117,7 +117,11 @@ namespace Servicios_Reservados_2
             DataTable dt = adaptador.consultar(consulta);
             return dt;
         }
-
+        /*
+         * Requiere: una hilera con el identificador del empleado.
+         * Efectua : Crea una consulta para consultar los datos de las reservaciones de comida de un empleado. 
+         * Retorna : un data table con los estados de la  reservacion de los turnos y si ya fue pagado.
+        */
 
         internal DataTable getReservacionesEmpleado(string idEmpleado)
         {
@@ -126,6 +130,11 @@ namespace Servicios_Reservados_2
             dt = adaptador.consultar(consulta);
             return dt;
         }
+        /*
+        * Requiere: una entidad comida empleado.
+        * Efectua : Crea una consulta para poner en cancelado los datos de una comida empleado. 
+        * Retorna : un arreglo de hileras con el resultado.
+        */
         internal String[] cancelar(EntidadComidaEmpleado entidadComidaEmpleado)
         {
             String[] resultado = new String[3];
@@ -155,13 +164,21 @@ namespace Servicios_Reservados_2
             }
             return resultado;
         }
-
+        /*
+        * Requiere: una hilera con el idServicio.
+        * Efectua : Crea una consulta para consultar las veces consumido de un servico de comida empleado. 
+        * Retorna : un arreglo de hileras con el resultado.
+        */
         internal DataTable vecesConsumido(string idServicio)
         {
             String consultaSQL = "select vecesconsumido from servicios_reservados.reserva_empleado where idcomidaempleado ='" + idServicio+ "'";
             return adaptador.consultar(consultaSQL); 
         }
-
+        /*
+        * Requiere: una hilera con el idServicio y un entero con numero de veces.
+        * Efectua : Crea una consulta para actualizar las veces consumido de un servico de comida empleado. 
+        * Retorna : un arreglo de hileras con el resultado.
+        */
 
         internal void actualizarVecesConsumido(string idServicio, int vecesConsumido)
         {
