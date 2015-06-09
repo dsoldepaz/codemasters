@@ -853,7 +853,7 @@ label.labelfont {
     font: normal 14px Arial !important;
 }
 li.item-navegacion:hover {
-  transition: font-size 1s;
+  transition: font-size 0.125s;
   font-size: 1.2em;
 }
 li.item-navegacion>a.seleccionado:hover {

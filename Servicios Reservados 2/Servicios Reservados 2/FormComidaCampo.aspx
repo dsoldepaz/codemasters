@@ -68,7 +68,7 @@
                             <input style="width:50px" id="txtPax" runat="server" required="required" title="Inserte un número" pattern="^[0-9]+$"/>
                         </il>
                         <il class="itemFormulario">
-                            <label class="labelfont" id="labelPago" runat="server">Tipo Pago:</label>
+                            <span class="labelfont" id="labelPago" runat="server">Tipo Pago:</span>
                             <select id="cmbTipoPago" runat="server">
                             <option value="De contado">De contado</option>
                             <option value="Rebajo de planilla">Rebajo de planilla</option>
