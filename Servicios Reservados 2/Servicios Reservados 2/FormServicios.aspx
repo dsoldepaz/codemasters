@@ -62,8 +62,7 @@
                             <td>
                                 <input type="button" class="btn btn-Naranja" value="Comida De Campo" runat="server" onserverclick="cliclAgregarComidaCampo" />
                             </td>
-                            <td>
-                                <input type="button" class="btn btn-Naranja" value="Servicio de Guías" /></td>
+                           
                         </tr>
                     </table>
             </div>
