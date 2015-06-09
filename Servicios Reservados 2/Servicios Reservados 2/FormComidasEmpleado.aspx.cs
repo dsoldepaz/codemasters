@@ -316,7 +316,7 @@ namespace Servicios_Reservados_2
                     empleadoSeleccionado = controladora.getInformacionDelEmpleado(identificacionEmpleado); 
                    
                     txtNombre.Value = empleadoSeleccionado.Nombre + " " + empleadoSeleccionado.Apellido;
-                    txtCarne.Value = empleadoSeleccionado.Id;
+                    txtNombre.Disabled = true;
                 }else{
                     Debug.WriteLine("oops");
                 }

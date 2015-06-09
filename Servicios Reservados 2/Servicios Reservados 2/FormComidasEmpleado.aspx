@@ -21,11 +21,6 @@
                          <td>
                              <input id="txtNombre" value="{Nombre No recuperado}" runat="server" style="width:350px" />
                          </td>
-                    <td>Carné de empleado:
-                    </td>
-                    <td>
-                        <input id="txtCarne" value="{Carné No recuperado}" runat="server" style="width:350px"/>
-                    </td>
                 </tr>
 
             </table>
