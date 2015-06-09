@@ -148,5 +148,10 @@ namespace Servicios_Reservados_2
                 }
 
         }
+
+        internal void desactivarTiquete()
+        {
+            controladoraBD.eliminarTiquete(seleccionado.Numero);
+        }
     }
 }

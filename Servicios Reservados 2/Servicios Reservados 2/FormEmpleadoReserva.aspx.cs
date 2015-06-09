@@ -272,9 +272,9 @@ namespace Servicios_Reservados_2
         protected void seleccionarComida(int index)
         {
             GridComidasReservadas.SelectedIndex = index;
-            btnVer.Disabled = false;
-            btnEditar.Disabled = false;
-            btnCancelar.Disabled = false;
+           
+          //  btnEditar.Disabled = false;
+          //  btnCancelar.Disabled = false;
 
             if (GridComidasReservadas.SelectedRow.Cells[5].Text != "Comida regular")//* es mejor comparar strings con "mi string".equals()
             {
@@ -297,19 +297,20 @@ namespace Servicios_Reservados_2
         {
             if (idEmpleado.Length != 0)//la cadena tiene algo
             {
-                EntidadEmpleado empleado=controladora.obtenerEmpleado(idEmpleado);
-                this.lblNombre.InnerText = (empleado.Nombre + " " + empleado.Apellido);
+                EntidadEmpleado empleado=controladora.obtenerEmpleado(idEmpleado);                
+                txtApellido.Value = empleado.Apellido;
+                txtNombre.Value = empleado.Nombre;
             }
             else
             {
-                this.lblNombre.InnerText = "No se ha seleccionado ningun empleado";
+              
             }
         }
         private void deshabilitarBotones()
         {
-            btnVer.Disabled = true;
-            btnEditar.Disabled = true;
-            btnCancelar.Disabled = true;
+           // btnVer.Disabled = true;
+           // btnEditar.Disabled = true;
+           // btnCancelar.Disabled = true;
         }
         protected int obtenerIndex(object sender, EventArgs e)
         {
@@ -325,6 +326,7 @@ namespace Servicios_Reservados_2
             if (seleccionado != null)
             {
                 controladora.activarTiquete();
+                FormTiquete.retorno = Request.Url.AbsoluteUri;
                 Response.Redirect("FormTiquete");
             }
 

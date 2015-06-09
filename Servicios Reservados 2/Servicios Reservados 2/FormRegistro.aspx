@@ -10,7 +10,7 @@
 
 
                         <div class="well bs-component">
-                            <fieldset>
+                    
                                 <legend>
                                     <h4>Información personal </h4>
                                 </legend>
@@ -50,7 +50,7 @@
                                 </div>
                                 
                                 <div class="well bs-component">
-                                    <fieldset>
+                                  
                                         <legend>
                                             <h4>Roles</h4>
                                         </legend>
@@ -67,7 +67,7 @@
                                                         <tr>
                                                             <td>
 
-                                                                <asp:GridView CssClass="form-control" ID="rolesDisponiblesGrid" Style="width: 100%; height: 100%" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarDisponible">
+                                                                <asp:GridView CssClass="form-control" Class="Gridcontenedor" ID="rolesDisponiblesGrid" Style="width: 100%; height: 100%" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarDisponible">
                                                                     <SelectedRowStyle BackColor="LightCyan"
                                                                         ForeColor="DarkBlue"
                                                                         Font-Bold="true" />
@@ -92,7 +92,7 @@
                                                         <tr>
 
                                                             <td>
-                                                                <asp:GridView ID="rolesAsignadosGrid" CssClass="form-control" runat="server" Style="height: 100%" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarAsignado">
+                                                                <asp:GridView ID="rolesAsignadosGrid" CssClass="form-control" Class="Gridcontenedor" runat="server" Style="height: 100%" AutoGenerateSelectButton="True" OnSelectedIndexChanged="seleccionarAsignado">
                                                                     <SelectedRowStyle BackColor="LightCyan"
                                                                         ForeColor="DarkBlue"
                                                                         Font-Bold="true" />
@@ -104,9 +104,9 @@
                                             </tr>
                                         </table>
 
-                                    </fieldset>
+
                                 </div>
-                            </fieldset>
+
                         </div>
         </ContentTemplate>
     </asp:UpdatePanel>

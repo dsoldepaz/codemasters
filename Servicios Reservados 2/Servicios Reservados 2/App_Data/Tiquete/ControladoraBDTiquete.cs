@@ -56,17 +56,23 @@ namespace Servicios_Reservados_2
             return dt;
         }
 
-        internal void insertarTiquetes(string idServ, int numTiquete, String categoria, String idSolicitante, String tipoSolicitante, String fecha, String hora)
+        internal String[] insertarTiquetes(string idServ, int numTiquete, String categoria, String idSolicitante, String tipoSolicitante, String fecha, String hora)
         {
+            String[] respuesta = new String[3];
             String consultaSQL = "insert into tiquete values('" + numTiquete + "','" + idServ + "', 0,'" + categoria + "','" + idSolicitante + "','" + tipoSolicitante + "','" + fecha + "','" + hora + "')";
-            adaptador.insertar(consultaSQL);
+            return adaptador.insertar(consultaSQL);
         }
-
-        internal void eliminarTiquete(int numTiqueteSeleccionado)
+        /*
+        * Efecto: modifica los datos de la comida extra seleccionada.
+        * Requiere: la entidad de comida extra modificada, y la entidad "vieja", la entidad consultada.
+        * Modifica: la table de servicio_especial.
+       */
+        public String[] eliminarTiquete(int numTiqueteSeleccionado)
         {
+            String[] respuesta = new String[3];
             String consultaSQL = "delete FROM tiquete WHERE numero=" + numTiqueteSeleccionado.ToString();
-            adaptador.insertar(consultaSQL);
-
+            return adaptador.insertar(consultaSQL);
         }
+        
     }
 }

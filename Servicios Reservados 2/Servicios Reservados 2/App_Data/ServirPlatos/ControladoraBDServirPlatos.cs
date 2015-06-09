@@ -29,7 +29,7 @@ namespace Servicios_Reservados_2
          */
         internal DataTable consultarTiquete(int numTiquete)
         {
-            String consultaSQL = "SELECT idservicio, consumido, categoria, idsolicitante, tiposolicitante, fecha, hora FROM tiquete where numero ='"+numTiquete+"'";
+            String consultaSQL = "SELECT idservicio, consumido, categoria, idsolicitante, tiposolicitante, fecha, hora FROM tiquete where numero ='" + numTiquete + "'";
             dt = adaptador.consultar(consultaSQL);
 
             return dt;
@@ -37,8 +37,16 @@ namespace Servicios_Reservados_2
 
         internal void servirTiquete(int numTiquete, int vecesConsumido)
         {
-            String consultaSQL = "UPDATE tiquete SET consumido="+vecesConsumido+" WHERE numero ='" + numTiquete + "'";
+            String consultaSQL = "UPDATE tiquete SET consumido=" + vecesConsumido + " WHERE numero ='" + numTiquete + "'";
             adaptador.insertar(consultaSQL);
+        }
+
+        internal void eliminarTiquete(int numTiqueteSeleccionado)
+        {
+            String consultaSQL = "delete FROM tiquete WHERE numero=" + numTiqueteSeleccionado.ToString();
+            adaptador.insertar(consultaSQL);
+
+
         }
     }
 }

@@ -4,13 +4,13 @@
 
     <nav>
         <ul>
-            <li class="item-navegacion"><a href="FormReservaciones.aspx" class="seleccionado">Reservaciones</a></li>
-            <li class="item-navegacion"><a href="FormEmpleado.aspx">Empleados</a></li>
+            <li class="item-navegacion"><a href="Default.aspx" title="Página principal"><i  class="glyphicon glyphicon-home" ></i></a></li>
+            <li class="item-navegacion"><a href="FormReservaciones.aspx" title="Reservaciones" class="seleccionado">Reservaciones</a></li>
+            <li class="item-navegacion"><a href="FormEmpleado.aspx" title="Empleados">Empleados</a></li>
             <li class="item-navegacion">Notificaciones <span class="notificacion">0</span></li>
-            <li class="item-navegacion"><a href="FormReportesComedor.aspx">Reportes</a></li>
+            <li class="item-navegacion"><a href="FormReportesComedor.aspx" title="Reportes">Reportes</a></li>
         </ul>
     </nav>
-
 
         <legend>
             <h2>Reservaciones</h2>
@@ -18,10 +18,10 @@
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <fieldset>
+
                     <div class="well bs-component">
                         <legend style="color: #7BC143">Filtro de reservación</legend>
-                        <fieldset>
+
                              <asp:Panel runat="server" DefaultButton="BotonBuscar">
                             <table>
                                 <tr>
@@ -63,7 +63,7 @@
                                          <Columns>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
-                                                      <asp:LinkButton  ID="btnConsultar" runat="server" OnClick="clickAgregarServicioExtra" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
+                                                      <asp:LinkButton  ID="btnConsultar" ToolTip="Consultar" runat="server" OnClick="clickAgregarServicioExtra" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -76,7 +76,6 @@
 
 
                     </div>
-                </fieldset>
             </ContentTemplate>
         </asp:UpdatePanel>
 

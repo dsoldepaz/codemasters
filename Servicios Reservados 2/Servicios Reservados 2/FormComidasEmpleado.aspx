@@ -1,52 +1,84 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormComidasEmpleado.aspx.cs" Inherits="Servicios_Reservados_2.FormComidasEmpleado" %>
+﻿<%@ Page Title="Comida de Empleado" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormComidasEmpleado.aspx.cs" Inherits="Servicios_Reservados_2.FormComidasEmpleado" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" href="Content/ComidaEmpleado.css" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Comidas de Empleado <span id="lblEmpleado" runat="server">{nombre Empleado}</span></h1>
-    <fieldset class="contenedor">
-         
-            <div class ="well">
-                Nombre: <input id="txtNombre" value="{Nombre No recuperado}" runat="server" />
-                Apellido:<input id="txtApellido" value="{Apellido No recuperado}" runat="server" />
 
-            </div>
-            <div class ="well">
-             <h4>Seleccione una operacion sobre las reservaciones de comida</h4>
-                <input type="button" value="Agregar" runat="server" onserverclick="clickAgregar"/>
-                <input type="button" value="Editar" runat="server" onserverclick="clickModificar"/>
-                <input type="button" value="Eliminar" runat="server" onserverclick="clickEliminar"/>
-            </div>
-            <section id="ContenedorManejoDeHorario" runat="server" class="well">
-                    <div id="selectorDeHorario" runat="server" title="Seleccione el horario de comida">
-                        <input type="checkbox" id="checkboxDesayuno" runat="server" value="Desayuno" />Desayuno
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+        <legend>
+            <h2>Comida de Empleado
+            </h2>
+        </legend>
+
+        <div class="well bs-component">
+
+            <legend style="color: #7BC143">Información del servicio</legend>
+            <table>
+                <tr>
+                    <td>
+                    Solicitante:
+                         <td>
+                             <input id="txtNombre" value="{Nombre No recuperado}" runat="server" style="width:350px" />
+                         </td>
+                    <td>Carné de empleado:
+                    </td>
+                    <td>
+                        <input id="txtCarne" value="{Carné No recuperado}" runat="server" style="width:350px"/>
+                    </td>
+                </tr>
+
+            </table>
+
+
+
+
+            <table>
+                <tr>
+                    <td>
+                        <input type="button" value="Editar" runat="server" onserverclick="clickModificar" />
+                    </td>
+                    <td>
+                        <input type="button" value="Anular" runat="server" onserverclick="clickEliminar" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="ContenedorManejoDeHorario" runat="server" class="well bs-component">
+            <div id="selectorDeHorario" runat="server" title="Seleccione el horario de comida">
+                <input type="checkbox" id="checkboxDesayuno" runat="server" value="Desayuno" />Desayuno
                         <input type="checkbox" id="checkboxAlmuerzo" runat="server" value="Almuerzo" />Almuerzo
                         <input type="checkbox" id="checkboxCena" runat="server" value="Cena" />Cena
                         <select id="tipodePago" runat="server" title="Seleccione un metodo de pago">
-                          <option value="Efectivo">Efectivo</option>
-                          <option value="Decuento">Descuento de salario</option>
-                       </select>
-                        <div>
-                            <h4>Notas:</h4>
-                            <textarea id="notas" runat="server" title="Notas">
+                            <option value="Efectivo">Efectivo</option>
+                            <option value="Descuento">Descuento de salario</option>
+                        </select>
+
+                <h4>Notas:</h4>
+                <textarea id="notas" runat="server" title="Notas">
 
                             </textarea>
-                            <h4>
-                                Seleccione las fechas en las que desea reservar
-                            </h4>
-                            <input type="date" id="fecha" name="fechas" runat="server">
-                            <input type="button" id="btnFecha" class="btn btn-submmit" value="agregar fecha" runat="server" onserverclick="AgregarFecha_ServerClick"/>
-                        </div>
-                    </div>
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
-                             <asp:GridView ID="GridFechasReservadas" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateDeleteButton="False">
-                                <SelectedRowStyle BackColor="#7BC143" />
-                             </asp:GridView>
-                       </ContentTemplate>
-                </asp:UpdatePanel>
-            </section>
-       <input type="button" class="btn-danger" value="Cancelar" runat="server" onserverclick="clickCancelar"/>
-       <input type="button" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" disabled="disabled"/>
-    </fieldset>
+                <h4>Seleccione las fechas en las que desea reservar
+                </h4>
+                <input type="date" id="fecha" name="fechas" runat="server">
+                <input type="button" id="btnFecha" class="btn btn-submmit" value="Incluir fecha" runat="server" onserverclick="AgregarFecha_ServerClick" />
+            </div>
+            <asp:GridView ID="GridFechasReservadas" Class="Gridcontenedor" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" AutoGenerateDeleteButton="False">
+                <SelectedRowStyle BackColor="#7BC143" />
+            </asp:GridView>
+
+
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <input type="button" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" disabled="disabled" />
+                </td>
+                <td>
+                    
+                    <input type="button" class="btn-danger" value="Cancelar" runat="server" onserverclick="clickCancelar" />
+                </td>
+            </tr>
+        </table>
 </asp:Content>

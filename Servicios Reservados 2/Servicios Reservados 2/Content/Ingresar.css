@@ -45,8 +45,8 @@ h1{
   margin-right: 25%;
 }
 form{
-    display: -webkit-box;
-    margin: 24px;
+  display: flex;
+  margin: 24px;
 }
 .well{
   width: 45%;

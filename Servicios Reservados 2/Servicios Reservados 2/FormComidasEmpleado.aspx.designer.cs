@@ -13,15 +13,6 @@ namespace Servicios_Reservados_2 {
     public partial class FormComidasEmpleado {
         
         /// <summary>
-        /// Control lblEmpleado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblEmpleado;
-        
-        /// <summary>
         /// Control txtNombre.
         /// </summary>
         /// <remarks>
@@ -31,13 +22,13 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtNombre;
         
         /// <summary>
-        /// Control txtApellido.
+        /// Control txtCarne.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtApellido;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCarne;
         
         /// <summary>
         /// Control ContenedorManejoDeHorario.
@@ -119,15 +110,6 @@ namespace Servicios_Reservados_2 {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btnFecha;
-        
-        /// <summary>
-        /// Control UpdatePanel1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
         /// Control GridFechasReservadas.

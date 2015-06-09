@@ -1,4 +1,4 @@
-﻿<%@ Page Title="ComidaCampo" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormComidaCampo.aspx.cs" Inherits="Servicios_Reservados_2.FormComidaCampo" %>
+﻿<%@ Page Title="Comida de Campo" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormComidaCampo.aspx.cs" Inherits="Servicios_Reservados_2.FormComidaCampo" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -8,6 +8,8 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            
+
             <a href="">
                 <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -19,7 +21,37 @@
                 <h2>Comida Campo</h2>
             </legend>
             <div class="well bs-component">
-                <fieldset>
+
+                    <legend style="color: #7BC143">Información del servicio</legend>
+                    <table>
+                        <tr>
+                            <td>
+                            Solicitante:
+                         <td>
+                             <input id="txtSolicitante" value="{Nombre No recuperado}" runat="server" style="width:350px"/>
+                         </td>
+                            <td> 
+                                <asp:label id="txtIdSolicitante" runat="server" Text="Numero de Reservación:"/>
+                            </td>
+                            <td>
+                                <input id="txtNumReservacion" value="{Apellido No recuperado}" runat="server" style="width:350px"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="button" value="Editar" runat="server"  />
+                            </td>
+                            <td>
+                                <input type="button" value="Anular" runat="server"  />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            <div class="well bs-component">
+                
+                    <legend style="color: #7BC143">Selección de fecha</legend>
                     <ul>
                         <li class="itemContenedor">Fecha:<input runat="server" id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
                             <input id="fechaDeEntrada" class="selectorDeFecha" type="button" runat="server" onserverclick="fechaDeEntrada_ServerClick" />
@@ -45,17 +77,18 @@
                         </p>
                     </ul>
 
-                </fieldset>
             </div>
-            <div class="well bs-component">
-                <fieldset id="Fieldset1" runat="server">
+<div class="well bs-component">
+     <legend style="color: #7BC143">Selección de opciones</legend>
+    <div class="well bs-component">
+                
                     <table>
                         <tr>
                             <td>
                                 <asp:CheckBox ID="checkO1" runat="server" OnCheckedChanged="checkedO1" AutoPostBack="true" />
                             </td>
                             <td>
-                                <h4>Opción #1 Remplezar por:</h4>
+                                <legend>Opción #1 Remplezar por:</legend>
                             </td>
                         </tr>
                     </table>
@@ -74,7 +107,7 @@
                             </td>
                         </tr>
                     </table>
-                </fieldset>
+               
             </div>
 
             <div class="well bs-component">
@@ -84,11 +117,11 @@
                             <asp:CheckBox ID="checkO2" runat="server" OnCheckedChanged="checkedO2" AutoPostBack="true" />
                         </td>
                         <td>
-                            <h4>Opción #2 Sandwich [puede marcar dos opciones] </h4>
+                            <legend>Opción #2 Sandwich [puede marcar dos opciones] </legend>
                         </td>
                     </tr>
                 </table>
-                <fieldset id="fieldsetO2" runat="server">
+               
                                             <label>
                             Seleccione tipo Pan</label>
                     <table>
@@ -126,27 +159,50 @@
                             </td>
                         </tr>
                     </table>
-                </fieldset>
+               
             </div>
             <div class="well bs-component">
-                <fieldset id="opcion2Fieldset" runat="server">
+                
                     <table>
                         <tr>
                             <td>
                                 <asp:CheckBox ID="checkO3" runat="server" OnCheckedChanged="checkedO3" AutoPostBack="true" />
                             </td>
                             <td>
-                                <h4>Opción #3 Gallo Pinto [Debe aportar su propio recipiente]</h4>
+                                <legend>Opción #3 Gallo Pinto [Debe aportar su propio recipiente]</legend>
                             </td>
                         </tr>
                     </table>
                     <table>
                         <tr><td>Hora:<select id="cmbHoraGalloPinto" runat="server"></select></td></tr>
                     </table>
-                </fieldset>
+               
+            </div>
+    <div class="well bs-component">
+              
+                    <table>
+                        <tr>
+                            <td>
+                                <asp:CheckBox ID="CheckboxBebida" runat="server" OnCheckedChanged="checkbebida" AutoPostBack="true" />
+                            </td>
+                            <td>
+                                <legend>Agregar bebida</legend>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td class="auto-style5">
+                                <input type="radio" name="drink" value="agua" id="radioAgua" runat="server"></td><td class="auto-style4">Agua</td>
+                            <td class="auto-style5">
+                                <input type="radio" name="drink" value="jugo" id="radioJugo" runat="server"></td><td class="auto-style4">Jugo</td>
+                        </tr>
+                    </table>
+           
+
             </div>
             <div class="well bs-component">
-                <fieldset>
+                
                     <legend>Adicional</legend>
                     <table>
                         <tr>
@@ -177,50 +233,31 @@
                                 <input type="checkbox" name="adicional" value="platanos" id="chPlatanos" runat="server"></td><td class="auto-style4">Platanos
                             </td>
                     </table>
-                </fieldset>
+                
             </div>
-            <div class="well bs-component">
-                <fieldset>
-                    <table>
-                        <tr>
-                            <td>
-                                <asp:CheckBox ID="CheckboxBebida" runat="server" OnCheckedChanged="checkbebida" AutoPostBack="true" />
-                            </td>
-                            <td>
-                                <h4>Escoja la opción para bebida</h4>
-                            </td>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr>
-                            <td class="auto-style5">
-                                <input type="radio" name="drink" value="agua" id="radioAgua" runat="server"></td><td class="auto-style4">Agua</td>
-                            <td class="auto-style5">
-                                <input type="radio" name="drink" value="jugo" id="radioJugo" runat="server"></td><td class="auto-style4">Jugo</td>
-                        </tr>
-                    </table>
-                </fieldset>
-
+            
             </div>
+            
 
         </ContentTemplate>
     </asp:UpdatePanel>
-     <button class="btn btn-danger" name="cancel" type="button" runat="server" onserverclick="clickCancelar">Cancelar</button>
-     <input class="btn btn-success" id="btnAgregar" value="Aceptar" type="submit" runat="server" onserverclick="clickAceptar" />
+    <table>
+        <tr>
+            <td>
+                 <input class="btn btn-success" id="btnAgregar" style="width:200px" value="Aceptar" type="submit" runat="server" onserverclick="clickAceptar" />
+            </td>
+            <td>
+                <button class="btn btn-danger" name="cancel" type="button" runat="server" onserverclick="clickCancelar">Cancelar</button>
+            </td>
+        </tr>
+    </table>    
+    
+     
 
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="HeadContent">
 
     <style type="text/css">
-        .auto-style1 {
-            width: 30px;
-        }
-        .auto-style2 {
-            width: 16px;
-        }
-        .auto-style3 {
-            width: 46px;
-        }
         .auto-style4 {
             height: 36px;
         }

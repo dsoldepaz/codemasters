@@ -313,10 +313,10 @@ namespace Servicios_Reservados_2
             {
                 if (identificacionEmpleado.Length > 0)
                 {
-                    empleadoSeleccionado = controladora.getInformacionDelEmpleado(identificacionEmpleado);
-                    lblEmpleado.InnerText =  empleadoSeleccionado.Nombre + " " + empleadoSeleccionado.Apellido;
-                    txtApellido.Value = empleadoSeleccionado.Apellido;
-                    txtNombre.Value = empleadoSeleccionado.Nombre;
+                    empleadoSeleccionado = controladora.getInformacionDelEmpleado(identificacionEmpleado); 
+                   
+                    txtNombre.Value = empleadoSeleccionado.Nombre + " " + empleadoSeleccionado.Apellido;
+                    txtCarne.Value = empleadoSeleccionado.Id;
                 }else{
                     Debug.WriteLine("oops");
                 }
@@ -325,7 +325,7 @@ namespace Servicios_Reservados_2
             catch (Exception e)
             {
                 //No se selecciono un empleado.
-                lblEmpleado.InnerText = "ERROR NO SE SELECCIONO NINGUN EMPLEADO";
+
             }
         }
 
