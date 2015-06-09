@@ -2,7 +2,7 @@
 
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-
+    <link rel="stylesheet" href="Content/default.css" />
     <div class="jumbotron">
         <div class="container">
             <h1>Sistema de servicios reservados</h1>

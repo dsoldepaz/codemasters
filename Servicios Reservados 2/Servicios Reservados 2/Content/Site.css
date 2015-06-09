@@ -853,7 +853,7 @@ label.labelfont {
     font: normal 14px Arial !important;
 }
 li.item-navegacion:hover {
-  transition: font-size 1s;
+  transition: font-size 0.125s;
   font-size: 1.2em;
 }
 li.item-navegacion>a.seleccionado:hover {
@@ -861,4 +861,8 @@ li.item-navegacion>a.seleccionado:hover {
 }
 .Gridcontenedor > tbody > tr> td {
   border: 1px dotted gray;
+}
+
+.Gridcontenedor > tbody > tr > td:nth-child(4), #MainContent_GridComidasReservadas > tbody > tr > td:nth-child(3), #MainContent_GridComidasReservadas > tbody > tr > td:nth-child(2), #MainContent_GridComidasReservadas > tbody > tr > td:nth-child(1) {
+  width: 20px;
 }
