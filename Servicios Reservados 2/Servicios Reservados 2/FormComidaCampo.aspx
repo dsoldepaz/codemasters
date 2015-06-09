@@ -28,13 +28,13 @@
                             <td>
                             Solicitante:
                          <td>
-                             <input id="txtSolicitante" value="{Nombre No recuperado}" runat="server" style="width:350px"/>
+                             <input id="txtSolicitante" value="{Nombre No recuperado}" runat="server" style="width:350px" />
                          </td>
                             <td> 
-                                <asp:label id="txtIdSolicitante" runat="server" Text="Numero de Reservación:"/>
+                                <asp:label id="txtIdSolicitante" runat="server" Text="Numero de Reservación:" visible="false"/>
                             </td>
                             <td>
-                                <input id="txtNumReservacion" value="{Apellido No recuperado}" runat="server" style="width:350px"/>
+                                <input id="txtNumReservacion" value="{Apellido No recuperado}" runat="server" style="width:350px" visible="false"   />
                             </td>
                         </tr>
                     </table>
