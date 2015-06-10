@@ -177,6 +177,7 @@
     <Content Include="FormEmpleadoReserva.aspx" />
     <Content Include="FormRegistro.aspx" />
     <Content Include="FormReportesComedor.aspx" />
+    <Content Include="FormReportesFinanciero.aspx" />
     <Content Include="FormServirPlatos.aspx" />
     <Content Include="FormTiquete.aspx" />
     <Content Include="Images\editar.png" />
@@ -466,6 +467,13 @@
     </Compile>
     <Compile Include="FormReportesComedor.aspx.designer.cs">
       <DependentUpon>FormReportesComedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportesFinanciero.aspx.cs">
+      <DependentUpon>FormReportesFinanciero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormReportesFinanciero.aspx.designer.cs">
+      <DependentUpon>FormReportesFinanciero.aspx</DependentUpon>
     </Compile>
     <Compile Include="FormServirPlatos.aspx.cs">
       <DependentUpon>FormServirPlatos.aspx</DependentUpon>

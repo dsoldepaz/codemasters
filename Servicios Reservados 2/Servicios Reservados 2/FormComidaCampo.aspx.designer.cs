@@ -76,6 +76,24 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtNumReservacion;
         
         /// <summary>
+        /// Control txtFechaInicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaInicio;
+        
+        /// <summary>
+        /// Control textFechaFinal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText textFechaFinal;
+        
+        /// <summary>
         /// Control textFecha.
         /// </summary>
         /// <remarks>

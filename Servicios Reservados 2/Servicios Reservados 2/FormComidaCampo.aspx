@@ -28,17 +28,22 @@
                             <td>
                             Solicitante:
                          <td>
-                             <input id="txtSolicitante" value="{Nombre No recuperado}" runat="server" style="width:350px" />
+                             <input id="txtSolicitante" runat="server" style="width:280px" />
                          </td>
-                            <td> 
-                                <asp:label id="txtIdSolicitante" runat="server" Text="Numero de Reservación:" visible="false"/>
-                            </td>
+                            <td>Número de Reservación:</td> <!--<asp:label id="txtIdSolicitante" runat="server" Text="Numero de Reservación:" visible="false"/>-->
                             <td>
-                                <input id="txtNumReservacion" value="{Apellido No recuperado}" runat="server" style="width:350px" visible="false"   />
+                                <input id="txtNumReservacion" runat="server" style="width:200px"/>
+                            </td>
+                            <td> Fecha Inicio:
+                            <td>
+                                <input id="txtFechaInicio" runat="server" style="width:150px" />
+                            </td>
+                             <td> Fecha Final:
+                            <td>
+                                <input id="textFechaFinal" runat="server" style="width:150px"/>
                             </td>
                         </tr>
                     </table>
-                    <table>
                         <tr>
                             <td>
                                 <input type="button" value="Editar" runat="server" onserverclick="clickModificar" />
