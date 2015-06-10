@@ -79,7 +79,6 @@ ul>li>input.tiempo{
       height: 35PX;
       width: 150px;
 }
-
-#MainContent_fechaDeEntrada {
+input#MainContent_fechaDeEntrada {
   height: 18px;
 }

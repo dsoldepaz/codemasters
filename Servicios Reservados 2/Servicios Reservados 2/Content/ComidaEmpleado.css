@@ -25,19 +25,7 @@ ul{
       list-style-type: none;
       display:inline-block;
 }
-ContentTemplate>div:first-of-type{
-    padding:25px;
-}
-div:first-of-type>input{
-    width:110px;
-}
-.well{
-    margin-left:5%;
-}
 
-ContentTemplate{
-    margin-left:5%;
-}
 #ContenedorManejoDeHorario>input[type="button"]{
     float:right;
     margin-right: 25px;
@@ -57,14 +45,6 @@ ContentTemplate{
 #ContenedorManejoDeHorario>div>*{
     padding: 2px;
 }
-
-section>div>input:disabled:hover:after{
-    content: "No se puede cancelar comidas consumidas";
-    background-color: #FDBB30;
-    padding: 5px;
-    color: #000000;
-    border: 1px solid #F26631;
-}
 [type="date"]{
     width:150px;
     float:none;
@@ -78,12 +58,7 @@ input#MainContent_btnAceptar:disabled:hover {
 input#MainContent_btnAceptar:Disabled {
   background-color: rgba(142, 200, 95, 0.76);
 }
-section.well{
-    display:-webkit-box;
-}
+
 input#MainContent_fecha {
   width: 150px;
-}
-div#MainContent_UpdatePanel1 {
-  MARGIN-LEFT: 8%;
 }

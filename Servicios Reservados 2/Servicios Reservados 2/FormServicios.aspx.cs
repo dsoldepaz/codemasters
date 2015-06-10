@@ -122,7 +122,7 @@ namespace Servicios_Reservados_2
                     foreach (DataRow fila in servicios.Rows)
                     {
                         ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
-                        idServ[i] = fila[1].ToString();
+                        idServ[i] = fila[8].ToString();
                         datos[0] = "Comida Extra";
                         datos[1] = fila[2].ToString();//obtener los datos a mostrar
                         datos[2] = fila[3].ToString();
@@ -252,16 +252,16 @@ namespace Servicios_Reservados_2
          * Modifica: NA
          */
         protected void seleccionarServicio(int index)
-        {
+        {         
 
             GridServicios.SelectedIndex = index;
 
             // Decode the encoded string.
             StringWriter myWriter = new StringWriter();
-            HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[1].Text, myWriter);
+            HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[4].Text, myWriter);
             String opcion = myWriter.ToString();
-            
-           // seleccionado = controladora.crearServicio(ids[0], idServ[index], GridServicios.SelectedRow.Cells[5].Text, GridServicios.SelectedRow.Cells[4].Text, opcion);
+
+            seleccionado = controladora.crearServicio(ids[0], idServ[index], GridServicios.SelectedRow.Cells[4].Text, opcion);
             
 
         }
@@ -301,6 +301,11 @@ namespace Servicios_Reservados_2
             Response.Redirect("FormComidaExtra");
         }
 
+        /*
+        * Efecto: capta el evento del botón para agregar una comida de campo, cambia el modo y redirige a la interfaz de comida de campo.
+        * Requiere: presionar el botón.
+        * Modifica: la variable global modo.
+        */
         protected void cliclAgregarComidaCampo(object sender, EventArgs e)
         {
             FormComidaCampo.modo = 1;
@@ -323,8 +328,8 @@ namespace Servicios_Reservados_2
                 
                 if ("Activo".Equals(seleccionado.Estado))
                 {
-                    //mensaje = controladora.cancelarComidaExtra(ids[0], idServ[GridServicios.SelectedIndex], seleccionado.Fecha, seleccionado.Hora);
-                    //mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
+                    mensaje = controladora.cancelarComidaExtra(idServ[GridServicios.SelectedIndex]);
+                    mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
                 }
                 else
                 { 
@@ -393,6 +398,7 @@ namespace Servicios_Reservados_2
             seleccionarServicio(obtenerIndex(sender, e));
             if(seleccionado!=null){
                 controladora.activarTiquete();
+                FormTiquete.retorno = Request.Url.AbsoluteUri;
                 Response.Redirect("FormTiquete");
             }
             
@@ -402,28 +408,32 @@ namespace Servicios_Reservados_2
         {
             Response.Redirect("FormServicios");
         }
-
-       /* protected void filaSeleccionada(object sender, GridViewRowEventArgs e)
+            
+      /*  protected void filaSeleccionada(object sender, GridViewRowEventArgs e)
         {
-            LinkButton btnConsultar = (LinkButton)e.Row.Cells[5].FindControl("btnConsultar");
-            LinkButton btnModificar = (LinkButton)e.Row.Cells[5].FindControl("btnModificar");
-            LinkButton btnCancelar = (LinkButton)e.Row.Cells[5].FindControl("btnCancelar");
-            LinkButton btnActivarTiquete = (LinkButton)e.Row.Cells[5].FindControl("btnActivarTiquete");
+         
+            LinkButton consultar = (LinkButton)e.Row.FindControl("btnConsultar");
+            LinkButton modificar = (LinkButton)e.Row.FindControl("btnModificar");
+            LinkButton cancelar = (LinkButton)e.Row.FindControl("btnCancelar");
+            LinkButton activarTiquete = (LinkButton)e.Row.FindControl("btnActivarTiquete");
 
-
-            if (e.Row.Cells[4].Text == "Paquete")
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                btnConsultar.Visible = false;
-                btnModificar.Visible = false;
-                btnCancelar.Visible = false;
-            }
-            else
-            {
-                btnConsultar.Visible = true;
-                btnModificar.Visible = true;
-                btnCancelar.Visible = true;
-                btnActivarTiquete.Visible = true;
-            }
+               
+                if (e.Row.Cells[0].Text == "Paquete")
+                {
+                    consultar.Visible = false;
+                    modificar.Visible = false;
+                    cancelar.Visible = false;
+                }
+                else
+                {
+                    consultar.Visible = true;
+                    modificar.Visible = true;
+                    cancelar.Visible = true;
+                    activarTiquete.Visible = true;
+                }
+        }   
 
         }*/
 

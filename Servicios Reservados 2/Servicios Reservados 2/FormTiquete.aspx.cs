@@ -16,6 +16,7 @@ namespace Servicios_Reservados_2
         private static EntidadEmpleado empleado;
         private static EntidadServicios servicio;
         private static int modo;
+        public static string retorno;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,10 +41,13 @@ namespace Servicios_Reservados_2
 
         }
         protected void cambiarModo()
-        { 
-            if(modo==0){
-               
-            }else if(modo==1){
+        {
+            if (modo == 0)
+            {
+
+            }
+            else if (modo == 1)
+            {
 
             }
         }
@@ -68,8 +72,8 @@ namespace Servicios_Reservados_2
             {
                 foreach (DataRow fila in tiquetes.Rows)
                 {
-                    datos[0] = fila[0].ToString(); 
-                    datos[1] = fila[1].ToString(); 
+                    datos[0] = fila[0].ToString();
+                    datos[1] = fila[1].ToString();
                     tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                 }
             }
@@ -83,32 +87,45 @@ namespace Servicios_Reservados_2
             estado.Value = servicio.Estado;
             pax.Value = servicio.Pax.ToString();
 
-            if("empleado".Equals(servicio.TipoSolicitante)){
+            if ("empleado".Equals(servicio.TipoSolicitante))
+            {
                 empleado = controladora.solicitarInfoEmpleado();
                 anfitriona.Value = "No disponible";
                 estacion.Value = "No disponible";
                 numero.Value = empleado.Id;
                 solicitante.Value = empleado.Nombre + " " + empleado.Apellido;
 
-            
-            }else if("reservacion".Equals(servicio.TipoSolicitante)){
+
+            }
+            else if ("reservacion".Equals(servicio.TipoSolicitante))
+            {
                 reservacion = controladora.solicitarInfoReservacion();
                 anfitriona.Value = reservacion.Anfitriona;
                 estacion.Value = reservacion.Estacion;
                 numero.Value = reservacion.Numero;
                 solicitante.Value = reservacion.Solicitante;
             }
-            
-            
+
+
         }
         protected void clickAgregar(object sender, EventArgs e)
         {
-            controladora.activarTiquete(int.Parse(numTiquete.Value));
-            Response.Redirect(Request.Url.AbsoluteUri);
+            String[] error = controladora.activarTiquete(int.Parse(numTiquete.Value));// se le pide a la controladora que lo inserte
+            if ("La informacion ingresada ya existe".Equals(error[2]))
+            {
+                mostrarMensaje(error[0], error[1], "Este tiquete ya se encuentra asociado a un servicio"); // se muestra el resultado     
+
+            }
+            else
+            {
+                Response.Redirect(Request.Url.AbsoluteUri);
+            }
+
         }
         protected void seleccionarTiquete(int index)
         {
-          controladora.seleccionarTiquete(index);
+          GridViewTiquetes.SelectedIndex = index;
+          controladora.seleccionarTiquete(int.Parse(GridViewTiquetes.SelectedRow.Cells[1].Text));
         }
         protected void clickQuitar(object sender, EventArgs e)
         {
@@ -139,6 +156,18 @@ namespace Servicios_Reservados_2
             GridViewTiquetes.DataBind();
 
             return tabla;
+        }
+        protected void clickCancelar(object sender, EventArgs e)
+        {
+            Response.Redirect(retorno);
+
+        }
+        protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
+        {
+            alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
+            labelTipoAlerta.Text = alerta + " ";
+            labelAlerta.Text = mensaje;
+            alertAlerta.Attributes.Remove("hidden");
         }
     }
 }

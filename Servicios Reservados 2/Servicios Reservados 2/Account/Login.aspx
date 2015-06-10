@@ -12,7 +12,7 @@
                 <p class="validation-summary-errors">
                     <asp:Literal runat="server" ID="FailureText" />
                 </p>
-                <fieldset>
+                
                     <legend>Formulario de inicio de sesión</legend>
                     <ol>
                         <li>
@@ -31,7 +31,7 @@
                         </li>
                     </ol>
                     <asp:Button runat="server" CommandName="Login" Text="Iniciar sesión" />
-                </fieldset>
+                
             </LayoutTemplate>
         </asp:Login>
         <p>

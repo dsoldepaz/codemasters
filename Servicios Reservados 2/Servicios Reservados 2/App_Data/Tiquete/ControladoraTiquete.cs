@@ -49,14 +49,14 @@ namespace Servicios_Reservados_2
             return controladoraBD.obtenerTiquetes(idServ, idSolicitante,  fecha,  hora);
         }
 
-        internal void activarTiquete(int numTiquete)
+        internal String[] activarTiquete(int numTiquete)
         {
-            controladoraBD.insertarTiquetes(servicio.IdServicio, numTiquete, servicio.Categoria, servicio.IdSolicitante, servicio.TipoSolicitante, servicio.Fecha, servicio.Hora);
+            return controladoraBD.insertarTiquetes(servicio.IdServicio, numTiquete, servicio.Categoria, servicio.IdSolicitante, servicio.TipoSolicitante, servicio.Fecha, servicio.Hora);
         }
 
-        internal void desactivarTiquete()
+        internal String[] desactivarTiquete()
         {
-            controladoraBD.eliminarTiquete(numTiqueteSeleccionado);
+            return controladoraBD.eliminarTiquete(numTiqueteSeleccionado);
         }
 
         internal void seleccionarTiquete(int numTiquete)

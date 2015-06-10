@@ -47,10 +47,20 @@ namespace Servicios_Reservados_2
         void cargarDatos()
         {
             modo = FormServicios.modo;
+            llenarInfoServicio();
             llenarComboBoxTipo();
             llenarCbxTipoPago();
             cambiarModo();
         }
+        void llenarInfoServicio()
+        {
+            txtSolicitante.Disabled = true;
+            txtNumReservacion.Disabled = true;
+            EntidadReservaciones res= controladora.informacionServicio();
+            txtSolicitante.Value = res.Solicitante;
+            txtNumReservacion.Value = res.Numero;
+        }
+
 
         /*
          * Efecto: llena el cbxTipo con las diferentes opciones de comidas extras.
@@ -231,7 +241,7 @@ namespace Servicios_Reservados_2
         {
             switch (modo)
             {
-                case 0:
+                case 0: //consultar
                     cbxHora.Disabled = true;
                     txtPax.Disabled = true;
                     txaNotas.Disabled = true;
@@ -243,15 +253,26 @@ namespace Servicios_Reservados_2
                     consultarServicio();
                     fechaDeEntrada.Disabled = true;
                     break;
-                case 1:
+                case 1://agregar
                     txtPax.Value = controladora.paxConsultado(reservConsultada.Numero);
                     fechaDeEntradaCalendario.SelectedDate = DateTime.Today;
                     textFecha.Value = DateTime.Today.ToString("MM/dd/yyyy");
+                    btnAnular.Disabled = true;
+                    btnEditar.Disabled = true;
                     break;
-                case 2:
+                case 2://modificarcbxHora.Disabled = true;
+                    txtPax.Disabled = false;
+                    txaNotas.Disabled = false;
+                    textFecha.Disabled = false;
+                    cbxTipo.Enabled = true;
+                    cbxTipoPago.Disabled = false;
+                    btnAceptar.Disabled = false;
+                    fechaDeEntrada.Disabled = false;
                     consultarServicio();
+                    fechaDeEntrada.Disabled = false;
                     fechaDeEntradaCalendario.SelectedDate = DateTime.Parse(entidadConsultada.Fecha);
                     textFecha.Value = entidadConsultada.Fecha;
+                    btnEditar.Disabled = true;
                     break;
             }   
         }
@@ -326,6 +347,28 @@ namespace Servicios_Reservados_2
                 String horas = i.ToString() + ":00";
                 cbxHora.Items.Add(horas);
             }
+        }
+
+        /*
+         * Efecto: capta el evento al seleccionar el boton editar y hace el llamado a modificar.
+         * Requiere: presionar el boton editar.
+         * Modifica: la base de datos.
+        */
+        protected void clickModificar(object sender, EventArgs e)
+        {
+            modo = 2;
+            cambiarModo();
+        }
+
+        /*
+         * Efecto: capta el evento al seleccionar anular y pide a la controladora que cancele el servicio.
+         * Requiere: presionar el boton anular.
+         * Modifica: la base de datos.
+        */
+        protected void clickAnular(object sender, EventArgs e)
+        {
+            controladora.cancelarComidaExtra(entidadConsultada.IdComidaExtra);
+            Response.Redirect("FormServicios");
         }
     }
 }

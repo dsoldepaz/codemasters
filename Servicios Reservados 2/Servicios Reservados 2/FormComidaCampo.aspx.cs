@@ -35,8 +35,27 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
+                llenarInfoServicio();
                 cambiarModo();
             }
+        }
+        void llenarInfoServicio() {
+            
+            if(tipoComidaCampo==0){//reservacion
+                EntidadReservaciones res= controladora.infoServicioRes();
+                txtSolicitante.Value = res.Solicitante;
+                txtNumReservacion.Value = res.Numero;
+            }
+            else
+            {
+                EntidadEmpleado emp = controladora.infoServicioEmp();
+                txtSolicitante.Value = emp.Nombre + " " + emp.Apellido;
+                txtNumReservacion.Value = emp.Id;
+                txtIdSolicitante.Text = "Carné de empleado:";
+
+            }
+            
+
         }
 
         protected void cambiarModo()
@@ -114,7 +133,7 @@ namespace Servicios_Reservados_2
                 cmbHoraGalloPinto.Disabled = true;
                 cbxHoraOpcion1.Disabled = true;
                 consultarComidaCampo();
-                
+                btnAgregar.Disabled = false;
             }
             else if (modo == 4)
             {  //consultar
@@ -155,6 +174,8 @@ namespace Servicios_Reservados_2
                 cbxHoraOpcion1.Disabled = true;
                 cmbTipoPago.Disabled = true;
             }
+
+            
         }
         protected void limpiarCamposOpcion2()
         {
@@ -894,7 +915,6 @@ namespace Servicios_Reservados_2
                     radioJugo.Disabled = false;
                 }
             }
-
         }
 
         protected void tipoSandwich()
@@ -974,7 +994,12 @@ namespace Servicios_Reservados_2
         }
 
 
-
+        protected void clickModificar(object sender, EventArgs e)
+        {
+            modo = 2;
+            cambiarModo();
+            btnAgregar.Disabled = false;
+        }
 
 
 
