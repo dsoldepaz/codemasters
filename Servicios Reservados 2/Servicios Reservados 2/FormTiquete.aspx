@@ -97,7 +97,7 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
-                         
+                          <asp:button href="FormServicios" text="Cancelar" id="btnCancelar" class="btn btn-danger" UseSubmitBehavior="false" runat="server"/>                 
 
                     </div>
 

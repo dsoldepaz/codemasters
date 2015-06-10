@@ -28,7 +28,6 @@ namespace Servicios_Reservados_2
         {
             DataTable todas = controladoraBD.consultarTodosEmpleados();
             return todas;
-
         }
        
         /*

@@ -81,7 +81,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px" >
+                                    <asp:GridView ID="GridServicios" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="2px">
                                         <SelectedRowStyle BackColor="#7BC143" />
            
                                         
@@ -96,7 +96,7 @@
                                         <Columns>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
-                                                      <asp:LinkButton  ID="btnConsultar" runat="server" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
+                                                      <asp:LinkButton  ID="btnConsultar"  onClick="clickConsultarServicio" runat="server" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -112,7 +112,7 @@
                                             <Columns>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
-                                                      <asp:LinkButton  ID="btnCancelar" runat="server" class="btn btn-default"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+                                                      <asp:LinkButton  ID="btnCancelar" runat="server" class="btn btn-default" OnClick="clickEliminarServicio"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -126,10 +126,7 @@
             </div>
 
 
-
         </ContentTemplate>
     </asp:UpdatePanel>
-
-
 
 </asp:Content>

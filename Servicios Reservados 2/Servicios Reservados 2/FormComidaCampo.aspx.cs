@@ -502,7 +502,7 @@ namespace Servicios_Reservados_2
             }
             else
             {
-                if(fechaSeleccionada< fechaHoy){
+                if(fechaSeleccionada < fechaHoy){
                     mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, no es una fecha válida");
                     correcta = false;
                 }

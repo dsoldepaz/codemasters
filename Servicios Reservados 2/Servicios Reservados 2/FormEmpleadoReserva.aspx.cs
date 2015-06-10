@@ -264,8 +264,9 @@ namespace Servicios_Reservados_2
          * Retorna :N/A
          */
 
-        protected void seleccionarComida(object sender, EventArgs e)
+        protected void seleccionarComida(int index)
         {
+            GridComidasReservadas.SelectedIndex = index;
             btnVer.Disabled = false;
             btnEditar.Disabled = false;
             btnCancelar.Disabled = false;
@@ -307,13 +308,30 @@ namespace Servicios_Reservados_2
         }
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
+            LinkButton btn = (LinkButton)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            int i = Convert.ToInt32(row.RowIndex);
+            seleccionarComida(i);
             if (seleccionado != null)
             {
                 controladora.activarTiquete();
                 Response.Redirect("FormTiquete");
             }
 
-        }   
+        }
+        /*
+         *  Requiere: Controladores de eventos de la interfaz.
+         *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
+         *  Retrona:  N/A
+         */
+        protected void GridViewReservaciones_PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
+
+            GridComidasReservadas.PageIndex = e.NewPageIndex;
+            GridComidasReservadas.DataSource = Session["tablaa"];
+            GridComidasReservadas.DataBind();
+
+        }
 
     }
 }
