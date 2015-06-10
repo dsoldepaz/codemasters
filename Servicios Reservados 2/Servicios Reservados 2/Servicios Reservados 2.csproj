@@ -304,6 +304,7 @@
     <Content Include="Global.asax" />
     <Content Include="FormComidaCampo.aspx" />
     <Content Include="Ingresar.aspx" />
+    <Content Include="Notificaciones.aspx" />
     <Content Include="oet.ico" />
     <Content Include="packages.config" />
     <Content Include="FormComidaExtra.aspx" />
@@ -534,6 +535,13 @@
       <DependentUpon>Ingresar.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Data\Usuarios\LoginService.cs" />
+    <Compile Include="Notificaciones.aspx.cs">
+      <DependentUpon>Notificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Notificaciones.aspx.designer.cs">
+      <DependentUpon>Notificaciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Data\Servicios\ControladoraServicios.cs" />
     <Compile Include="App_Data\Servicios\ControladoraBDServicios.cs" />
