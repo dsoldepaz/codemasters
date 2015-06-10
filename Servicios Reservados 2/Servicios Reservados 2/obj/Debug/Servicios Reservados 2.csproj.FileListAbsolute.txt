@@ -838,3 +838,4 @@ C:\Users\jdpicado\Source\Repos\codemasters\Servicios Reservados 2\Servicios Rese
 C:\Users\jdpicado\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\es\System.Web.Providers.resources.dll
 C:\Users\jdpicado\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\es\Microsoft.AspNet.Membership.OpenAuth.resources.dll
 C:\Users\jdpicado\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
+C:\Users\b17013\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\obj\Debug\Servicios Reservados 2.csprojResolveAssemblyReference.cache

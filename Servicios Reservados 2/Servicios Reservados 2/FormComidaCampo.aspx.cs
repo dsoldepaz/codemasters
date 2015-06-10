@@ -45,6 +45,9 @@ namespace Servicios_Reservados_2
                 EntidadReservaciones res= controladora.infoServicioRes();
                 txtSolicitante.Value = res.Solicitante;
                 txtNumReservacion.Value = res.Numero;
+                txtIdSolicitante.Text = "Número Reservación";
+                txtFechaInicio.Value = res.FechaInicio.ToString("MM/dd/yyyy");
+                textFechaFinal.Value = res.FechaSalida.ToString("MM/dd/yyyy");
             }
             else
             {
