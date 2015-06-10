@@ -23,6 +23,7 @@ namespace Servicios_Reservados_2
             adaptador = new AdaptadorReservaciones();
             dt = new DataTable();
             fechaHoy = DateTime.Today;
+            
         }
         /*
          * Requiere: N/A
@@ -31,7 +32,8 @@ namespace Servicios_Reservados_2
          */
         internal DataTable consultarTodasReservaciones() {
             String fechaLocal = fechaHoy.ToString("MM/dd/yyyy");
-            String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero, c.nombre, r.entra, r.sale from reservas.reservacion r, reservas.anfitriona a, reservas.estacion e, reservas.contacto c WHERE sale >= TO_DATE('"+fechaLocal+"','MM/dd/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.estado = 'CNF' and r.solicitante = c.id  order by sale asc";
+            String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE v.sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and  v.estado = 'CNF' order by sale asc"; 
+            Debug.WriteLine(consultaSQL);
             dt = adaptador.consultar(consultaSQL);
             
             return dt;
@@ -43,7 +45,7 @@ namespace Servicios_Reservados_2
          */
         internal DataTable consultarUnaReservacion(String id)
         {
-            String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero, c.nombre, r.entra, r.sale FROM reservas.reservacion r, reservas.anfitriona a, reservas.estacion e,reservas.contacto c WHERE r.id = '" + id + "' and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id  order by entra desc";
+            String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE r.id = '" + id + "' order by sale asc";
             dt = adaptador.consultar(consultaSQL);
 
             return dt;
@@ -55,7 +57,7 @@ namespace Servicios_Reservados_2
          * retorna : La tabla de datos con los resultados de  la consulta.
          */
         internal DataTable solicitarAnfitriones(){
-            String consultaSQL = "select  nombre from reservas.anfitriona";
+            String consultaSQL = "select  siglas from reservas.vr_reservacion group by siglas";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
@@ -66,7 +68,7 @@ namespace Servicios_Reservados_2
          */
         internal DataTable solicitarEstaciones()
         {
-            String consultaSQL = "select  nombre from reservas.estacion";
+            String consultaSQL = "select  estacion from reservas.vr_reservacion group by estacion";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
@@ -78,7 +80,7 @@ namespace Servicios_Reservados_2
          */
         internal DataTable solicitarInfo(String id)
         {
-            String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero, c.nombre, r.entra, r.sale FROM reservas.reservacion r, reservas.anfitriona a, reservas.estacion e,reservas.contacto c WHERE r.id = '" + id + "' and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id  order by sale asc";
+            String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE r.id = '" + id + "' order by sale asc";
             dt = adaptador.consultar(consultaSQL);
             return dt;
 
@@ -102,48 +104,48 @@ namespace Servicios_Reservados_2
          * retorna : La tabla de datos con los resultados de  la consulta.
          */
         internal DataTable consultarReservaciones(String anfitriona,String estacion, String solicitante){
-            String fechaLocal = fechaHoy.ToString("dd/MM/yyyy");
+            String fechaLocal = fechaHoy.ToString("MM/dd/yyyy");
             if (anfitriona.CompareTo("vacio") != 0 && estacion.CompareTo("vacio") != 0 && solicitante.CompareTo("vacio") != 0){
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservas.reservacion r, reservas.anfitriona a, reservas.estacion e,reservas.contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' and e.nombre= '" + estacion + "' and LOWER(c.nombre) like '%" + solicitante + "%' and r.estado = 'CNF' order by sale asc";
+                String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE v.sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy')  and v.siglas ='" + anfitriona + "' and v.estacion= '" + estacion + "' and LOWER(c.nombre) like '%" + solicitante + "%' and v.estado = 'CNF' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
             else if (anfitriona.CompareTo("vacio") != 0 && estacion.CompareTo("vacio") != 0 && solicitante.CompareTo("vacio") == 0)
             {
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservas.reservacion r, reservas.anfitriona a, reservas.estacion e,reservas.contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' and e.nombre= '" + estacion + "' and r.estado = 'CNF'  order by sale asc";
+                String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE v.sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and v.siglas ='" + anfitriona + "' and v.estacion= '" + estacion + "' and v.estado = 'CNF'  order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             
             }
             else if (anfitriona.CompareTo("vacio") != 0 && estacion.CompareTo("vacio") == 0 && solicitante.CompareTo("vacio") != 0)
             {
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservas.reservacion r, reservas.anfitriona a, reservas.estacion e,reservas.contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' and LOWER(c.nombre) like '%" + solicitante + "%' and r.estado = 'CNF' order by sale asc";
+                String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE v.sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and v.siglas ='" + anfitriona + "' and LOWER(c.nombre) like '%" + solicitante + "%' and v.estado = 'CNF' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
             else if (anfitriona.CompareTo("vacio") == 0 && estacion.CompareTo("vacio") != 0 && solicitante.CompareTo("vacio") != 0)
             {
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservas.reservacion r, reservas.anfitriona a, reservas.estacion e,reservas.contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and e.nombre= '" + estacion + "' and LOWER(c.nombre) like '%" + solicitante + "%' and r.estado = 'CNF' order by sale asc";
+                String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE v.sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and v.estacion= '" + estacion + "' and LOWER(c.nombre) like '%" + solicitante + "%' and v.estado = 'CNF' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
             else if (anfitriona.CompareTo("vacio") != 0 && estacion.CompareTo("vacio") == 0 && solicitante.CompareTo("vacio") == 0)
             {
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservas.reservacion r, reservas.anfitriona a, reservas.estacion e,reservas.contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' and r.estado = 'CNF' order by sale asc";
+                String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE v.sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and v.siglas ='" + anfitriona + "' and v.estado = 'CNF' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
             else if (anfitriona.CompareTo("vacio") == 0 && estacion.CompareTo("vacio") != 0 && solicitante.CompareTo("vacio") == 0)
             {
                 Debug.WriteLine("si calcula bien este paso");
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservas.reservacion r, reservas.anfitriona a, reservas.estacion e,reservas.contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and e.nombre= '" + estacion + "' and r.estado = 'CNF' order by sale asc";
+                String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE v.sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and v.estacion= '" + estacion + "' and v.estado = 'CNF' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
 
             else if (anfitriona.CompareTo("vacio") == 0 && estacion.CompareTo("vacio") == 0 && solicitante.CompareTo("vacio") != 0)
             {
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservas.reservacion r, reservas.anfitriona a, reservas.estacion e,reservas.contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and  LOWER(c.nombre) like '%" + solicitante + "%' and r.estado = 'CNF' order by sale asc";
+                String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE v.sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and  LOWER(c.nombre) like '%" + solicitante + "%' and v.estado = 'CNF' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
 
             else if (anfitriona.CompareTo("vacio") != 0 && estacion.CompareTo("vacio") != 0 && solicitante.CompareTo("vacio") == 0)
             {
-                String consultaSQL = "select r.id, a.nombre, e.nombre, r.numero,c.nombre, r.entra, r.sale from reservas.reservacion r, reservas.anfitriona a, reservas.estacion e,reservas.contacto c WHERE sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and a.id = r.anfitriona  and r.estacion = e.id and r.solicitante = c.id and a.nombre ='" + anfitriona + "' and e.nombre= '" + estacion + "' and r.estado = 'CNF' order by sale asc";
+                String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE v.sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and v.siglas ='" + anfitriona + "' and v.estacion= '" + estacion + "' and v.estado = 'CNF' order by sale asc";
                 dt = adaptador.consultar(consultaSQL);
             }
            
@@ -152,3 +154,4 @@ namespace Servicios_Reservados_2
         
     }
 }
+
