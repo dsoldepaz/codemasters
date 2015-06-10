@@ -52,13 +52,25 @@ namespace Servicios_Reservados_2
             llenarCbxTipoPago();
             cambiarModo();
         }
+
+        /*
+         * Efecto: rellena los campos con la información de la reservación. 
+         * Requiere: iniciar el FormComidaExtra y la instancia de la controladora.
+         * Modifica: no realiza modificaciones, solo carga la pantalla.
+        */
         void llenarInfoServicio()
         {
             txtSolicitante.Disabled = true;
             txtNumReservacion.Disabled = true;
-            EntidadReservaciones res= controladora.informacionServicio();
+            EntidadReservaciones res = controladora.informacionServicio();
             txtSolicitante.Value = res.Solicitante;
             txtNumReservacion.Value = res.Numero;
+            DateTime fecha = DateTime.Parse(controladora.informacionServicio().FechaInicio.ToString());
+            txtFechaInicial.Value = fecha.ToString("MM/dd/yyyy");
+            fecha = DateTime.Parse(controladora.informacionServicio().FechaSalida.ToString());
+            txtFechaFinal.Value = fecha.ToString("MM/dd/yyyy");
+            txtEstacion.Value = controladora.informacionServicio().Estacion.ToString();
+            txtAnfitriona.Value = controladora.informacionServicio().Anfitriona.ToString();
         }
 
 
@@ -67,12 +79,15 @@ namespace Servicios_Reservados_2
          * Requiere: iniciar el FormComidaExtra.
          * Modifica: los valores del cbxTipo.
         */
-        void llenarComboBoxTipo() {
+        void llenarComboBoxTipo()
+        {
             tipo = controladora.solicitarTipo();// solicita los tipos a la controladora
             cbxTipo.Items.Clear();// limpiamos el combobox
             cbxTipo.Items.Add("Seleccionar");// agregamos seleccionar
-            if (tipo.Rows.Count > 0) {// agregamos cada uno de los tipos 
-                foreach (DataRow fila in tipo.Rows) {
+            if (tipo.Rows.Count > 0)
+            {// agregamos cada uno de los tipos 
+                foreach (DataRow fila in tipo.Rows)
+                {
                     cbxTipo.Items.Add(fila[1].ToString());
                 }
             }
@@ -126,27 +141,27 @@ namespace Servicios_Reservados_2
             else
             {
 
-            Object[] nuevoServicio = new Object[9];// objeto en el que se almacenan los datos para enviar a encapsular.
+                Object[] nuevoServicio = new Object[9];// objeto en el que se almacenan los datos para enviar a encapsular.
 
-            nuevoServicio[0] = controladora.informacionServicio().Id;//recuperamos el id de la reservación
-            //en adelante se extrae la información de cada uno de los componentes de la interfaz.
-            int indice = cbxTipo.SelectedIndex-1;
-            nuevoServicio[1] = tipo.Rows[indice][0];
-            nuevoServicio[2] = textFecha.Value;
-            nuevoServicio[3] = "Activo";
-            nuevoServicio[4] = txaNotas.Value;
-            nuevoServicio[5] = txtPax.Value;
-            nuevoServicio[6] = cbxHora.Value;
-            nuevoServicio[7] = cbxTipoPago.Value;
-            nuevoServicio[8] = "";
+                nuevoServicio[0] = controladora.informacionServicio().Id;//recuperamos el id de la reservación
+                //en adelante se extrae la información de cada uno de los componentes de la interfaz.
+                int indice = cbxTipo.SelectedIndex - 1;
+                nuevoServicio[1] = tipo.Rows[indice][0];
+                nuevoServicio[2] = textFecha.Value;
+                nuevoServicio[3] = "Activo";
+                nuevoServicio[4] = txaNotas.Value;
+                nuevoServicio[5] = txtPax.Value;
+                nuevoServicio[6] = cbxHora.Value;
+                nuevoServicio[7] = cbxTipoPago.Value;
+                nuevoServicio[8] = "";
 
- 
-            String[] error = controladora.agregarServicioExtra(nuevoServicio);// se le pide a la controladora que lo inserte
-                if("danger".Equals(error[0]))
+
+                String[] error = controladora.agregarServicioExtra(nuevoServicio);// se le pide a la controladora que lo inserte
+                if ("danger".Equals(error[0]))
                 {
                     res = false;
                 }
-            mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+                mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
             }
             return res;
         }
@@ -187,7 +202,7 @@ namespace Servicios_Reservados_2
                 String[] error = controladora.modificarServicioExtra(nuevoServicio, entidadConsultada);// se le pide a la controladora que lo inserte
                 mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
 
-                
+
             }
             return res;
         }
@@ -210,7 +225,7 @@ namespace Servicios_Reservados_2
                     }
                     break;
                 case 2://modificar
-                    
+
                     accion = modificarServicioExtra();
                     if (accion)
                     {
@@ -274,7 +289,7 @@ namespace Servicios_Reservados_2
                     textFecha.Value = entidadConsultada.Fecha;
                     btnEditar.Disabled = true;
                     break;
-            }   
+            }
         }
 
         /*

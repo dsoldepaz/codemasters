@@ -29,7 +29,7 @@ namespace Servicios_Reservados_2
          */
         internal DataTable consultarTodosEmpleados() {
 
-            String consultaSQL = "select idempleado,numempleado,nombre,apellidos from financiero.empleados order by apellidos desc";
+            String consultaSQL = "select idempleado,numempleado,nombre,apellidos from financiero.empleados where estado = 1 order by apellidos desc";
             dt = adaptador.consultar(consultaSQL);
             
             return dt;
@@ -51,7 +51,8 @@ namespace Servicios_Reservados_2
          * Efectúa : Crea la hilera de consulta a partir de los parámetros dados, valida uno a uno cuáles son diferentes de vacío y estos los agrega como parámetros a la consulta. Una vez creada la consulta, la efectúa con el adaptador y gurada el resultado en una tabla de datos.
          * retorna : La tabla de datos con los resultados de  la consulta.
          */
-        internal DataTable consultarEmpleados(String nombre,String iden){
+        internal DataTable consultarEmpleados(String nombre,String iden)
+        {
             String consulta = "select idempleado,numempleado,nombre,apellidos from financiero.empleados";
             String condicional = " where ";
             if (nombre.CompareTo("vacio") != 0) {
