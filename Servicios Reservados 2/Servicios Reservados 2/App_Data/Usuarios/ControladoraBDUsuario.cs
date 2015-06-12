@@ -10,7 +10,7 @@ namespace Servicios_Reservados_2
 {
     public class ControladoraBDUsuario
     {
-        private AdaptadorReservaciones adaptador;
+        private AdaptadorBD adaptador;
         DataTable dt;
     /*
      * Requiere: N/A
@@ -19,7 +19,7 @@ namespace Servicios_Reservados_2
      */
         public ControladoraBDUsuario()
         {
-            adaptador = new AdaptadorReservaciones();
+            adaptador = new AdaptadorBD();
             dt = new DataTable();
         }
 

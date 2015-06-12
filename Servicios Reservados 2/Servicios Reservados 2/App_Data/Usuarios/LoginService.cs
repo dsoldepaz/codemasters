@@ -9,7 +9,7 @@ namespace Servicios_Reservados_2
 {
     public class LoginService
     {
-        private AdaptadorReservaciones adaptadorBD = new AdaptadorReservaciones();
+        private AdaptadorBD adaptadorBD = new AdaptadorBD();
 
         public bool Autenticar(string usuario, string contraseña)
         {
