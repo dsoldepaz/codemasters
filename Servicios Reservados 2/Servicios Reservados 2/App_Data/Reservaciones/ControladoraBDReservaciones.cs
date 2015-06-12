@@ -11,7 +11,7 @@ namespace Servicios_Reservados_2
     public class ControladoraBDReservaciones
     {
         private DateTime fechaHoy;         
-        private AdaptadorReservaciones adaptador;
+        private AdaptadorBD adaptador;
         DataTable dt;
     /*
      * Requiere: N/A
@@ -20,7 +20,7 @@ namespace Servicios_Reservados_2
      */
         public ControladoraBDReservaciones()
         {
-            adaptador = new AdaptadorReservaciones();
+            adaptador = new AdaptadorBD();
             dt = new DataTable();
             fechaHoy = DateTime.Today;
             

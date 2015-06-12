@@ -360,8 +360,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Data\ComidaEmpleado\AdaptadorComidaEmpleado.cs" />
-    <Compile Include="App_Data\ComidaCampo\AdaptadorComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\ControladoraBDComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\ControladoraComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\EntidadComidaCampo.cs" />
@@ -420,7 +418,6 @@
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Data\Reservaciones\AdaptadorReservaciones.cs" />
     <Compile Include="App_Data\Reservaciones\ControladoraBDReservaciones.cs" />
     <Compile Include="App_Data\Reservaciones\ControladoraReservaciones.cs" />
     <Compile Include="App_Data\Reservaciones\EntidadReservaciones.cs" />
