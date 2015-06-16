@@ -19,22 +19,17 @@ namespace Servicios_Reservados_2
         {
             controladoraBD = new ControladoraBDUsuario();
         }
-        /**
-* Requiere: nada.
-* Efectua: pide los datos de los roles disponibles .
-* retorna:  un dato del tipo DataTable con los roles .
-*/
-        public DataTable solicitarRolesDisponibles()
-        {
-
-            return controladoraBD.obtenerRolesDisponibles();
-        }
 
 
 
         internal DataTable solicitarRolesAsignados()
         {
             return controladoraBD.obtenerRolesAsignados();
+        }
+
+        internal DataTable solicitarUsuarios()
+        {
+            return controladoraBD.consultarUsuarios();
         }
     }
 }

@@ -63,7 +63,7 @@
                         <a href="FormNotificaciones.aspx">Notificaciones</a>
                     </h4>
                     <h4 id="Usuario" runat="server">
-                        <a href="FormUsuarios.aspx">Administración de usuarios</a>
+                        <a href="FormUsuario.aspx">Administración de usuarios</a>
                     </h4>
 
                 </div>

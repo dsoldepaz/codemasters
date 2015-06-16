@@ -171,6 +171,7 @@
     <Content Include="Content\EmpleadoReserva.css" />
     <Content Include="Content\formEmpleado.css" />
     <Content Include="Content\Reservacion.css" />
+    <Content Include="Content\Usuario.css" />
     <Content Include="ErrorPermiso.aspx" />
     <Content Include="faviconOET.ico" />
     <Content Include="FormComidasEmpleado.aspx" />
