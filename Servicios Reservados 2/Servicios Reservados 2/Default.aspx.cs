@@ -28,11 +28,11 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("~/Ingresar.aspx");
                 }
-                if (listaRoles.Contains("admin") || listaRoles.Contains("recepcion"))
+                if (listaRoles.Contains("administrador sistema") || listaRoles.Contains("recepcion"))
                 {
                     Recepcionista.Visible = true;
                 }
-                if (listaRoles.Contains("admin") || listaRoles.Contains("cocina"))
+                if (listaRoles.Contains("administrador sistema") || listaRoles.Contains("encargado cocina"))
                 {
                     Cocina.Visible = true;
                 }

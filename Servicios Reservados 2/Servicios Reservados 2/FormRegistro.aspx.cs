@@ -30,7 +30,7 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("~/Ingresar.aspx");
                 }
-                if (!listaRoles.Contains("admin"))
+                if (!listaRoles.Contains("administrador sistema"))
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
