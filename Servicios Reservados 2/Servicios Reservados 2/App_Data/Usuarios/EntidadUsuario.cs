@@ -11,6 +11,7 @@ namespace Servicios_Reservados_2
         private String nombre;
         private String correo;
         private String estado;
+        private String estacion;
         List<string> rol;
         
         public EntidadUsuario(Object[] datos)
@@ -19,6 +20,7 @@ namespace Servicios_Reservados_2
             this.nombre = datos[1].ToString();
             this.correo = datos[2].ToString();
             this.estado = datos[3].ToString();
+            this.estacion = datos[3].ToString();
             this.rol = (List<string>)datos[4];                     
         }
 
@@ -44,6 +46,11 @@ namespace Servicios_Reservados_2
         {
             get { return estado; }
             set { estado = value; }
+        }
+        public String Estacion
+        {
+            get { return estacion; }
+            set { estacion = value; }
         }
         public List<string> Rol
         {

@@ -40,9 +40,15 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 10%;">Correo electronico:</td>
+                            <td style="width: 10%;">Estado:</td>
                             <td>
                                 <asp:DropDownList ID="estado" runat="server"></asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%;">Estacion:</td>
+                            <td>
+                                <asp:DropDownList ID="estacion" runat="server"></asp:DropDownList>
                             </td>
                         </tr>
                     </table>

@@ -31,6 +31,7 @@ namespace Servicios_Reservados_2
                 modo = 1;//0 consulta, 1 agrega, 2 modifica, 3 elimina
                 llenarRoles();
                 llenarEstados();
+                llenarEstaciones();
             }
         }
 
@@ -38,6 +39,15 @@ namespace Servicios_Reservados_2
         {
             estado.Items.Add("Activo");
             estado.Items.Add("Inactivo");
+        }
+        private void llenarEstaciones()
+        {
+            estacion.Items.Add("La Selva");
+            estacion.Items.Add("Palo Verde");
+            estacion.Items.Add("Las Cruces");
+            estacion.Items.Add("Palo Verde");
+            estacion.Items.Add("North American Offices");
+            estacion.Items.Add("Costa Rican Offices");
         }
         /*
          * Efecto: cambia de modo de acuerdo a la operación a realizar (consultar=0, agrgar=1, modificar=2 y eliminar=3).
@@ -53,6 +63,7 @@ namespace Servicios_Reservados_2
                     nombre.Disabled = true;
                     correo.Disabled = true;
                     estado.Enabled = false;
+                    estacion.Enabled = false;
                     rolesGrid.Enabled = false;
                     break;
                 case 1://agregar
@@ -60,6 +71,7 @@ namespace Servicios_Reservados_2
                     nombre.Disabled = false;
                     correo.Disabled = false;
                     estado.Enabled = true;
+                    estacion.Enabled = true;
                     rolesGrid.Enabled = true;
                     break;
                 case 2://modificar
@@ -67,6 +79,7 @@ namespace Servicios_Reservados_2
                     nombre.Disabled = false;
                     correo.Disabled = false;
                     estado.Enabled = true;
+                    estacion.Enabled = true;
                     rolesGrid.Enabled = true;
                     break;
             }
@@ -182,12 +195,13 @@ namespace Servicios_Reservados_2
             else
             {
                 //extraer la informacion personal
-                Object[] nuevoUsuario= new Object[5];// objeto en el que se almacenan los datos para enviar a encapsular.
+                Object[] nuevoUsuario= new Object[6];// objeto en el que se almacenan los datos para enviar a encapsular.
                 nuevoUsuario[0] = username.Value.ToString();
                 nuevoUsuario[1] = nombre.Value.ToString();
-                nuevoUsuario[2] = correo.Value.ToString();
+                nuevoUsuario[2] = correo.Value.ToString();                
                 nuevoUsuario[3] = estado.SelectedItem.ToString();
-                nuevoUsuario[4] = rol;
+                nuevoUsuario[4] = estacion.SelectedItem.ToString();
+                nuevoUsuario[5] = rol;
 
                 String[] error = controladora.agregarUsuario(nuevoUsuario);// se le pide a la controladora que lo inserte
                 if ("danger".Equals(error[0]))
@@ -195,43 +209,7 @@ namespace Servicios_Reservados_2
                     res = false;
                 }
                 mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
-
-            }
-
-            
-           
-
-            /*
-            if (todos Loscheckbox vacios)
-            {
-                mostrarMensaje("danger", "Error:", "Debe seleccionar al menos un rol");
-                res = false;
-            }
-            else
-            {
-
-                Object[] nuevoServicio = new Object[9];// objeto en el que se almacenan los datos para enviar a encapsular.
-
-                nuevoUsuario[0] = username.Value.ToString();//recuperamos el id de la reservación
-                //en adelante se extrae la información de cada uno de los componentes de la interfaz.
-                int indice = cbxTipo.SelectedIndex - 1;
-                nuevoServicio[1] = tipo.Rows[indice][0];
-                nuevoServicio[2] = textFecha.Value;
-                nuevoServicio[3] = "Activo";
-                nuevoServicio[4] = txaNotas.Value;
-                nuevoServicio[5] = txtPax.Value;
-                nuevoServicio[6] = cbxHora.Value;
-                nuevoServicio[7] = cbxTipoPago.Value;
-                nuevoServicio[8] = "";
-
-
-                String[] error = controladora.agregarServicioExtra(nuevoServicio);// se le pide a la controladora que lo inserte
-                if ("danger".Equals(error[0]))
-                {
-                    res = false;
-                }
-                mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
-            }*/
+            }           
             return res;
         }
 
