@@ -21,7 +21,7 @@ namespace Servicios_Reservados_2
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
-                } if (!listaRoles.Contains("administrador local") && !listaRoles.Contains("recepcion"))
+                } if (!listaRoles.Contains("administrador local") && !listaRoles.Contains("recepcion") &&!listaRoles.Contains("administrador global"))
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
