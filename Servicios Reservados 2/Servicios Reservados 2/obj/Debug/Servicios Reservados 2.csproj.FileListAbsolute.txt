@@ -174,7 +174,6 @@ C:\Users\b14709\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reserv
 C:\Users\b14709\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.ScriptManager.WebForms.dll
 C:\Users\b14709\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\b14709\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\Newtonsoft.Json.dll
-C:\Users\b14709\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\Oracle.DataAccess.dll
 C:\Users\b14709\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\System.Net.Http.Formatting.dll
 C:\Users\b14709\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Http.dll
 C:\Users\b14709\Source\Repos\codemasters\Servicios Reservados 2\Servicios Reservados 2\bin\System.Web.Http.WebHost.dll
