@@ -15,7 +15,7 @@ namespace Servicios_Reservados_2
 
         protected void Page_Load(object sender, EventArgs e)
         {
-                        ArrayList listaRoles = (ArrayList)Session["Roles"];
+            ArrayList listaRoles = (ArrayList)Session["Roles"];
             string userid = (string)Session["username"];
 
             if (!IsPostBack)
