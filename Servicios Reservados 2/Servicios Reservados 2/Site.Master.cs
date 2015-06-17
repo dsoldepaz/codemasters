@@ -69,26 +69,21 @@ namespace Servicios_Reservados_2
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
-            string userid = (string)Session["username"];
+            string username = (string)Session["username"];
+            string estacion = (string)Session["Estacion"];
+            string roles = "";
+            foreach (object rol in listaRoles) {
+             roles += (string)rol+" ";
+            }
+            
+            
             if (!IsPostBack)
             {
-                if (listaRoles.Contains("cocina"))
-                {
-                    this.rol.Text = string.Format(@"<a>"+userid+" (cocina)</a>");
-
-                } if (listaRoles.Contains("recepcion"))
-                {
-                    this.rol.Text = string.Format(@"<a>" + userid + " (recepción)</a>");
-
-                }
-                if (listaRoles.Contains("admin"))
-                {
-                    this.rol.Text = string.Format(@"<a>" + userid + " (admin)</a>");
-
-                }
+                this.InfoUsuario.InnerText= string.Format(username + " ( " + roles + ")"+ " en " + estacion);               
             }
         }
-        protected void btnSalir_Click(object sender, EventArgs e)
+        
+        protected void clickSalir(object sender, EventArgs e)
         {
             Session["username"] = null;
             Response.Redirect("~/ingresar.aspx");
