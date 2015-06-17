@@ -40,7 +40,7 @@ namespace Servicios_Reservados_2
         }
         /**
         * Requiere: N/A.
-        * Efectua: rellena los campos de la interfaz con los datos de las reservaciones.
+        * Efectua: selecciona el empleado en el grid y obtiene su id.
         * retorna: N/A
         */
 

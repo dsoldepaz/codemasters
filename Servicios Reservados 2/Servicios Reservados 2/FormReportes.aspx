@@ -31,7 +31,7 @@
                             </td>
                              <td class="auto-style6">Número Reservación:</td>
                             <td class="auto-style7">
-                                <input style="width: 150px" id="Select1" runat="server"></input>
+                                <input style="width: 150px" id="txtReservacion" runat="server"></input>
                             </td>
                         </tr>
                     </table>
@@ -39,17 +39,23 @@
                         <tr>
                             <td>Fechas</td>
                             <td>
-                                <asp:DropDownList ID="cbxFecha" runat="server" AutoPostBack="true" Height="20px" Width="120px"></asp:DropDownList>
+                                <asp:DropDownList ID="cbxFecha" runat="server" Height="20px" Width="140px" AutoPostBack="true" OnSelectedIndexChanged="mostrarFechas">
+                                    <asp:ListItem>Seleccionar</asp:ListItem>
+                                    <asp:ListItem>Día</asp:ListItem>
+                                    <asp:ListItem>Semana</asp:ListItem>
+                                    <asp:ListItem>Mes</asp:ListItem>
+                                    <asp:ListItem>Personalizado</asp:ListItem>
+                                </asp:DropDownList>
                             </td>
 
-                           <td>Fecha Inicio</td>
-                            <td>
+                           <td id="textFechaInicio" runat="server">Fecha Inicio</td>
+                            <td id="textFechaInicioInput" runat="server">
                                  <input style="width: 150px" type="date" id="FechaInicial" name="fechas" runat="server">
                            </td>
 
                           
-                           <td>Fecha Final</td>
-                            <td>
+                           <td id="textFechaFinal" runat="server">Fecha Final</td>
+                            <td id="textFechaFinalInput" runat="server">
                                <input style="width: 150px" type="date" id="FechaFinal" name="fechas" runat="server">
                            </td>
 

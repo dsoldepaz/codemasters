@@ -46,6 +46,7 @@ namespace Servicios_Reservados_2
         {
             if (estacion == "todas")
             {
+                cbxEstacion.Items.Clear();
                 cbxEstacion.Items.Add(estacion);
             }
             else
@@ -53,15 +54,24 @@ namespace Servicios_Reservados_2
                 cargarEstaciones();
             }
 
+            cbxAnfitriona.Items.Clear();
             cbxAnfitriona.Items.Add("Seleccionar");
             cbxAnfitriona.Items.Add("OET");
             cbxAnfitriona.Items.Add("ESINTRO");
+            /*
+            cbxFecha.Items.Clear();
+            cbxFecha.Items.Add("Seleccionar");
+            cbxFecha.Items.Add("Hoy");
+            cbxFecha.Items.Add("Semana");
+            cbxFecha.Items.Add("Mes");
+            cbxFecha.Items.Add("Personalizado");
+             * */
         }
 
         /*
-         * Efecto: llena el cbxEstacion con las diferentes opciones de comidas extras.
-         * Requiere: iniciar el FormComidaExtra.
-         * Modifica: los valores del cbxTipo.
+         * Efecto: llena el cbxEstacion con las diferentes estaciones.
+         * Requiere: iniciar el FormReportes.
+         * Modifica: los valores del cbxEstacion.
         */
         private void cargarEstaciones()
         {
@@ -174,11 +184,6 @@ namespace Servicios_Reservados_2
                             datos[0] = "Incluido en Paquete";
                             datos[1] = "Cena";
                         }
-                        if (int.Parse(fila[4].ToString()) == 4)
-                        {
-                            datos[0] = "Comida Campo";
-                            datos[1] = "Sandwich";
-                        }
                         if (int.Parse(fila[4].ToString()) == 5)
                         {
                             datos[0] = "Comida Campo";
@@ -203,6 +208,49 @@ namespace Servicios_Reservados_2
                 Debug.WriteLine("No se pudo cargar las reservaciones");
             }
         }
+
+  
+
+
+                
+
+
+      
+
+
+
+
+        /*
+         * Efecto: modifica la interfaz de acuerdo a lo selecionado en las opciones de filtro.
+         * Requiere: iniciar el FormReportes y seleccionar el combobox.
+         * Modifica: el FormReportes.
+        */
+        protected void mostrarFechas(object sender, EventArgs e)
+        {
+            String s = cbxFecha.Text;
+            s = DateTime.Today.ToString("MM/dd/yyyy");
+            int indice = cbxFecha.SelectedIndex;
+            switch (indice)
+            {
+                case (1):
+                    FechaInicial.Value = DateTime.Today.ToString("MM/dd/yyyy");
+                    FechaFinal.Value = DateTime.Today.ToString("MM/dd/yyyy");
+                    break;
+                case(2):
+                    FechaInicial.Value = DateTime.Today.ToString("MM/dd/yyyy");
+                    FechaFinal.Value = DateTime.Today.AddDays(7).ToString("MM/dd/yyyy");
+                    break;
+                case(3):
+                    FechaInicial.Value = DateTime.Today.ToString("YYYY-MM-DD");
+                    FechaFinal.Value = DateTime.Today.AddMonths(7).ToString("MM/dd/yyyy");
+                    break;
+            }
+            FechaFinal.Disabled = true;
+            FechaInicial.Disabled = true;
+            txtReservacion.Value = "cosa";
+
+        }
+                       
 
 
 

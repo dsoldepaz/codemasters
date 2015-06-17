@@ -10,60 +10,87 @@
 namespace Servicios_Reservados_2 {
     
     
-    public partial class FormRegistro {
+    public partial class FormReporteCocina {
         
         /// <summary>
-        /// Control UpdatePanel1.
+        /// Control txtEstacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtEstacion;
         
         /// <summary>
-        /// Control username.
+        /// Control cbxFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText username;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect cbxFecha;
         
         /// <summary>
-        /// Control nombre.
+        /// Control FechaInicial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText nombre;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl FechaInicial;
         
         /// <summary>
-        /// Control correo.
+        /// Control FechaFinal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText correo;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl FechaFinal;
         
         /// <summary>
-        /// Control rolesGrid.
+        /// Control BotonGenerar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView rolesGrid;
+        protected global::System.Web.UI.WebControls.Button BotonGenerar;
         
         /// <summary>
-        /// Control btnAceptar.
+        /// Control GridViewTotal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnAceptar;
+        protected global::System.Web.UI.WebControls.GridView GridViewTotal;
+        
+        /// <summary>
+        /// Control GridViewTurnos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewTurnos;
+        
+        /// <summary>
+        /// Control GridViewSnacks.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewSnacks;
+        
+        /// <summary>
+        /// Control GridViewBebidas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewBebidas;
     }
 }
