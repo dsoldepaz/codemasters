@@ -51,5 +51,12 @@ namespace Servicios_Reservados_2
             string sql = "SELECT rol FROM UsuarioRol WHERE usuario = '" + usuario + "'";
             return adaptadorBD.consultar(sql);
         }
+
+        internal DataTable estacionUsuario(string usuario)
+        {
+            //Declaramos la sentencia SQL
+            string sql = "SELECT estacion FROM Usuario WHERE Username = '" + usuario + "'";
+            return adaptadorBD.consultar(sql);
+        }
     }
 }

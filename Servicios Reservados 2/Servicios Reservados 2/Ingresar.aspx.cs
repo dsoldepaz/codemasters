@@ -36,6 +36,8 @@ namespace Servicios_Reservados_2
                 listaRoles.Add(rol[0].ToString());
             }
             Session["Roles"] = listaRoles;
+            DataTable estacion = login.estacionUsuario(usuario);
+            Session["Estacion"] = estacion.Rows[0]["estacion"].ToString();
             //Manda a la principal en caso de ser correcto el login
             Response.Redirect("Default.aspx");
         }
