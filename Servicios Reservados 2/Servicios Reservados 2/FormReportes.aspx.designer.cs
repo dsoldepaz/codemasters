@@ -31,13 +31,13 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlSelect cbxAnfitriona;
         
         /// <summary>
-        /// Control Select1.
+        /// Control txtReservacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Select1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtReservacion;
         
         /// <summary>
         /// Control cbxFecha.
@@ -49,6 +49,24 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.WebControls.DropDownList cbxFecha;
         
         /// <summary>
+        /// Control textFechaInicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell textFechaInicio;
+        
+        /// <summary>
+        /// Control textFechaInicioInput.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell textFechaInicioInput;
+        
+        /// <summary>
         /// Control FechaInicial.
         /// </summary>
         /// <remarks>
@@ -56,6 +74,24 @@ namespace Servicios_Reservados_2 {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl FechaInicial;
+        
+        /// <summary>
+        /// Control textFechaFinal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell textFechaFinal;
+        
+        /// <summary>
+        /// Control textFechaFinalInput.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell textFechaFinalInput;
         
         /// <summary>
         /// Control FechaFinal.
