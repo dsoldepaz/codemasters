@@ -23,7 +23,7 @@
                         <a href="FormEmpleado.aspx">Empleados</a>
                     </h4>
                     <h4>
-                        <a href="FormReportesFinanciero.aspx">Reportes estadistícos</a>
+                        <a href="FormReportesFinanciero.aspx">Reportes general</a>
                     </h4>
 
                 </div>
@@ -39,16 +39,16 @@
                         <a href="FormReportesCocina.aspx">Reportes de cocina</a>
                     </h4>
                     <h4>
-                        <a href="FormReportesFinanciero.aspx">Reportes estadistícos</a>
+                        <a href="FormReportesFinanciero.aspx">Reportes general</a>
                     </h4>
                 </div>
             </td>
             <td>
                 <div class="well bs-component" id="Financiero" runat="server">
                     <h2>Administración</h2>
-                    <p>Consulte información estadística que ayudará en la toma de decisiones</p>
+                    <p>Consulte información que ayudará en la toma de decisiones</p>
                     <h4>
-                        <a href="FormReportesFinanciero.aspx">Reportes estadistícos</a>
+                        <a href="FormReportesFinanciero.aspx">Reportes general</a>
                     </h4>
                 </div>
             </td>
