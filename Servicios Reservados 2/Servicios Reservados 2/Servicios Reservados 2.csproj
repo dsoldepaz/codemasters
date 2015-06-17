@@ -582,6 +582,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
+    <Folder Include="App_Data\Reportes\" />
     <Folder Include="Scripts\fechas\" />
   </ItemGroup>
   <ItemGroup>
