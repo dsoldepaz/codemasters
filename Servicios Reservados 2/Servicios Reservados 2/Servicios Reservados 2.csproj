@@ -178,7 +178,7 @@
     <Content Include="FormEmpleadoReserva.aspx" />
     <Content Include="FormUsuario.aspx" />
     <Content Include="FormRegistro.aspx" />
-    <Content Include="FormReportesFinanciero.aspx" />
+    <Content Include="FormReportes.aspx" />
     <Content Include="FormServirPlatos.aspx" />
     <Content Include="FormTiquete.aspx" />
     <Content Include="Images\editar.png" />
@@ -431,6 +431,9 @@
     <Compile Include="App_Data\ComidaEmpleado\EntidadComidaEmpleado.cs" />
     <Compile Include="App_Data\ComidaEmpleado\ControladoraBDComidaEmpleado.cs" />
     <Compile Include="App_Data\EmpleadoReserva\ControladoraEmpleadoReserva.cs" />
+    <Compile Include="App_Data\Reportes\ControladoraReportes.cs" />
+    <Compile Include="App_Data\Reportes\EntidadReportes.cs" />
+    <Compile Include="App_Data\Reportes\ControladoraBDReportes.cs" />
     <Compile Include="ErrorPermiso.aspx.cs">
       <DependentUpon>ErrorPermiso.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -467,12 +470,12 @@
     <Compile Include="FormRegistro.aspx.designer.cs">
       <DependentUpon>FormRegistro.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FormReportesFinanciero.aspx.cs">
-      <DependentUpon>FormReportesFinanciero.aspx</DependentUpon>
+    <Compile Include="FormReportes.aspx.cs">
+      <DependentUpon>FormReportes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FormReportesFinanciero.aspx.designer.cs">
-      <DependentUpon>FormReportesFinanciero.aspx</DependentUpon>
+    <Compile Include="FormReportes.aspx.designer.cs">
+      <DependentUpon>FormReportes.aspx</DependentUpon>
     </Compile>
     <Compile Include="FormServirPlatos.aspx.cs">
       <DependentUpon>FormServirPlatos.aspx</DependentUpon>
@@ -582,7 +585,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
-    <Folder Include="App_Data\Reportes\" />
     <Folder Include="Scripts\fechas\" />
   </ItemGroup>
   <ItemGroup>

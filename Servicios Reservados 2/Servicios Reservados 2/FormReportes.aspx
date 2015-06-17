@@ -1,4 +1,4 @@
-﻿<%@ Page Title="ReportesFinanciero" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormReportesFinanciero.aspx.cs" Inherits="Servicios_Reservados_2.FormReportesFinanciero" %>
+﻿<%@ Page Title="ReportesFinanciero" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormReportes.aspx.cs" Inherits="Servicios_Reservados_2.FormReportes" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -13,7 +13,7 @@
     </nav>
 
     <legend>
-        <h2>Reportes Financiero</h2>
+        <h2>Reportes</h2>
     </legend>
 
     <ContentTemplate>
@@ -21,13 +21,17 @@
                 <legend style="color: #7BC143">Criterios del reporte</legend>
                     <table>
                         <tr>
+                             <td class="auto-style6">Estación:</td>
+                            <td class="auto-style7">
+                                <select style="width: 150px" id="cbxEstacion" runat="server"></select>
+                            </td>
                             <td class="auto-style6">Anfitriona:</td>
                             <td class="auto-style7">
-                                <select style="width: 176px" id="cbxAnfitriona" runat="server"></select>
+                                <select style="width: 150px" id="cbxAnfitriona" runat="server"></select>
                             </td>
-                            <td class="auto-style6">Estación:</td>
+                             <td class="auto-style6">Número Reservación:</td>
                             <td class="auto-style7">
-                                <select style="width: 176px" id="cbxEstacion" runat="server"></select>
+                                <input style="width: 150px" id="Select1" runat="server"></input>
                             </td>
                         </tr>
                     </table>
@@ -35,18 +39,18 @@
                         <tr>
                             <td>Fechas</td>
                             <td>
-                                <select style="width: 176px" id="cmbFechas" runat="server"></select>
+                                <asp:DropDownList ID="cbxFecha" runat="server" AutoPostBack="true" Height="20px" Width="120px"></asp:DropDownList>
                             </td>
 
                            <td>Fecha Inicio</td>
                             <td>
-                                 <input type="date" id="FechaInicial" name="fechas" runat="server">
+                                 <input style="width: 150px" type="date" id="FechaInicial" name="fechas" runat="server">
                            </td>
 
                           
                            <td>Fecha Final</td>
                             <td>
-                               <input type="date" id="FechaFinal" name="fechas" runat="server">
+                               <input style="width: 150px" type="date" id="FechaFinal" name="fechas" runat="server">
                            </td>
 
                             <td>
