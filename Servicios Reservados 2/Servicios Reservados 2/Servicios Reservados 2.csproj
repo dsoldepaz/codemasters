@@ -431,7 +431,7 @@
     <Compile Include="App_Data\ComidaEmpleado\EntidadComidaEmpleado.cs" />
     <Compile Include="App_Data\ComidaEmpleado\ControladoraBDComidaEmpleado.cs" />
     <Compile Include="App_Data\EmpleadoReserva\ControladoraEmpleadoReserva.cs" />
-    <Compile Include="App_Data\Reportes\ControladoraReporte.cs" />
+    <Compile Include="App_Data\Reportes\ControladoraReportes.cs" />
     <Compile Include="App_Data\Reportes\EntidadReportes.cs" />
     <Compile Include="App_Data\Reportes\ControladoraBDReportes.cs" />
     <Compile Include="ErrorPermiso.aspx.cs">

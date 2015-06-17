@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Servicios_Reservados_2
 {
-    public class ControladoraReporte
+    public class ControladoraReportes
     {
     }
 }
