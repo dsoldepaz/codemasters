@@ -42,20 +42,17 @@
                 <div class="float-left">
                     <p class="site-title">
                         <a runat="server" href="~/">
-                            <img src="/Images/logo_oet_español_todo_blanco.png" style="width:225px" title="Página principal"></a>
+                            <img src="/Images/logo_oet_español_todo_blanco.png" style="width: 225px" title="Página principal"></a>
                     </p>
                 </div>
                 <div class="float-right">
-                    <section id="login">
-                        <asp:Literal ID="rol" runat="server" ></asp:Literal>
-                        <asp:Button id="btnSalir" ToolTip="Salir del sistema" UseSubmitBehavior="false" runat="server" Text="Cerrar sesión" OnClick="btnSalir_Click"/>                      
-                    </section>
-                </div>
-                <div class="float-right">
-                    <section id="ayuda">
-                        <a href="https://docs.google.com/document/d/1PPBB83dv5V64j8iNPMfEayC5TYZj0PGjs_wwYcnV5zk/edit?usp=sharing" title="Manual de usuario" target="_blank" class="btn btn-link" role="button">
-                            <img src="/Images/help.png" height="25px"></a>
-                    </section>
+                    <!-- info de usuario -->
+                    <button type="button" id="InfoUsuario" runat="server" class="btn btn-default" style="width:500px"></button>
+                        <asp:LinkButton runat="server" OnClientClick="window.open('https://docs.google.com/document/d/1PPBB83dv5V64j8iNPMfEayC5TYZj0PGjs_wwYcnV5zk/edit?usp=sharing')" CssClass="btn btn-default" UseSubmitBehavior="false" ToolTip="Ayuda"><i class="glyphicon glyphicon-question-sign"></i></asp:LinkButton>
+
+                    <asp:LinkButton runat="server" OnClick="clickSalir" CssClass="btn btn-default" UseSubmitBehavior="false" ToolTip="Salir del sistema"><i class="glyphicon glyphicon-log-out"></i></asp:LinkButton>
+
+
                 </div>
             </div>
         </header>
