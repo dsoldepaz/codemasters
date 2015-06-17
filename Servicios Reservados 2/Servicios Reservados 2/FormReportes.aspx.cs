@@ -93,7 +93,9 @@ namespace Servicios_Reservados_2
             switch (indice)
             {
                 case (1):
-                    FechaInicial.Value = DateTime.Today.ToString("MM/dd/yyyy");
+                    FechaInicial.Value = DateTime.Now.Day.ToString() + "/" + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Year.ToString();
+
+                    // = DateTime.Today.ToString("MM/dd/yyyy");
                     FechaFinal.Value = DateTime.Today.ToString("MM/dd/yyyy");
                     break;
                 case(2):
