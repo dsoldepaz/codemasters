@@ -14,7 +14,7 @@
             <td>
                 <div class="well bs-component" id="Recepcionista" runat="server">
 
-                    <h2>Recepcionista</h2>
+                    <h2>Recepcion</h2>
                     <p>Reserve servicios de alimentación</p>
                     <h4>
                         <a href="FormReservaciones.aspx">Reservaciones</a>
@@ -22,26 +22,48 @@
                     <h4>
                         <a href="FormEmpleado.aspx">Empleados</a>
                     </h4>
-
-                </div>
-            </td>
-            <td>
-                <div class="well bs-component" id="Cocina" runat="server">
-                    <h2>Encargado de Cocina</h2>
-                    <p>Lleve el control de los servicios consumidos</p>
                     <h4>
-                        <a href="FormServirPlatos.aspx">Servir platos</a>
-
+                        <a href="FormReportesFinanciero.aspx">Reportes estadistícos</a>
                     </h4>
 
                 </div>
             </td>
             <td>
-                <div class="well bs-component" id="Admin" runat="server">
-                    <h2>Administrador del Sistema</h2>
-                    <p>Maneje los perfiles de usuario y  sus roles</p>
+                <div class="well bs-component" id="Cocina" runat="server">
+                    <h2>Cocina</h2>
+                    <p>Lleve el control de los servicios consumidos</p>
                     <h4>
-                        <a href="FormRegistro.aspx">Administración de usuarios</a>
+                        <a href="FormServirPlatos.aspx">Servir platos</a>
+                    </h4>
+                    <h4>
+                        <a href="FormReportesCocina.aspx">Reportes de cocina</a>
+                    </h4>
+                    <h4>
+                        <a href="FormReportesFinanciero.aspx">Reportes estadistícos</a>
+                    </h4>
+                </div>
+            </td>
+            <td>
+                <div class="well bs-component" id="Financiero" runat="server">
+                    <h2>Administración</h2>
+                    <p>Consulte información estadística que ayudará en la toma de decisiones</p>
+                    <h4>
+                        <a href="FormReportesFinanciero.aspx">Reportes estadistícos</a>
+                    </h4>
+                </div>
+            </td>
+            <td>
+                <div class="well bs-component" runat="server">
+                    <h2>Sistema</h2>
+                    <p>Maneje los usuario y sus roles dentro del sistema</p>
+                    <h4>
+                        <a href="FormMiPerfil.aspx">Mi perfil</a>
+                    </h4>
+                    <h4>
+                        <a href="FormNotificaciones.aspx">Notificaciones</a>
+                    </h4>
+                    <h4 id="Usuario" runat="server">
+                        <a href="FormUsuario.aspx">Administración de usuarios</a>
                     </h4>
 
                 </div>

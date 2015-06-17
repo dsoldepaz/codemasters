@@ -30,7 +30,7 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("~/Ingresar.aspx");
                 }
-                if (!listaRoles.Contains("admin"))
+                if (!listaRoles.Contains("administrador sistema"))
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
@@ -63,7 +63,7 @@ namespace Servicios_Reservados_2
             rolesAsignadosGrid.DataBind();
 
             tabla = crearTablaUsuarios();
-            roles = controladora.solicitarRolesDisponibles();// se consultan todos
+
 
             i = 0;
             if (roles.Rows.Count > 0)

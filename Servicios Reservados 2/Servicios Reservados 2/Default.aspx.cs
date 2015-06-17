@@ -16,7 +16,8 @@ namespace Servicios_Reservados_2
             //roles y permisos
             Recepcionista.Visible=false;
             Cocina.Visible=false;
-            Admin.Visible = false;
+            Financiero.Visible = false;
+            Usuario.Visible = false;
 
             string userid = (string)Session["username"];
             ArrayList listaRoles = (ArrayList)Session["Roles"];
@@ -28,13 +29,21 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("~/Ingresar.aspx");
                 }
-                if (listaRoles.Contains("admin") || listaRoles.Contains("recepcion"))
+                if (listaRoles.Contains("administrador sistema") || listaRoles.Contains("recepcion"))
                 {
                     Recepcionista.Visible = true;
                 }
-                if (listaRoles.Contains("admin") || listaRoles.Contains("cocina"))
+                if (listaRoles.Contains("administrador sistema") || listaRoles.Contains("encargado cocina"))
                 {
                     Cocina.Visible = true;
+                }
+                if (listaRoles.Contains("administrador sistema") || listaRoles.Contains("administrador local") || listaRoles.Contains("administrador global"))
+                {
+                    Financiero.Visible = true;
+                }
+                if (listaRoles.Contains("administrador sistema") )
+                {
+                    Usuario.Visible = true;
                 }
                 
             }

@@ -38,5 +38,13 @@ namespace Servicios_Reservados_2
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
+
+        internal DataTable consultarUsuarios()
+        {
+            dt = new DataTable();
+            String consultaSQL = "select username, Nombre, estacion from usuario";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
     }
 }

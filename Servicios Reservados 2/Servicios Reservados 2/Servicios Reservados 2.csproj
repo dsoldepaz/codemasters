@@ -171,12 +171,13 @@
     <Content Include="Content\EmpleadoReserva.css" />
     <Content Include="Content\formEmpleado.css" />
     <Content Include="Content\Reservacion.css" />
+    <Content Include="Content\Usuario.css" />
     <Content Include="ErrorPermiso.aspx" />
     <Content Include="faviconOET.ico" />
     <Content Include="FormComidasEmpleado.aspx" />
     <Content Include="FormEmpleadoReserva.aspx" />
+    <Content Include="FormUsuario.aspx" />
     <Content Include="FormRegistro.aspx" />
-    <Content Include="FormReportesComedor.aspx" />
     <Content Include="FormReportesFinanciero.aspx" />
     <Content Include="FormServirPlatos.aspx" />
     <Content Include="FormTiquete.aspx" />
@@ -452,19 +453,19 @@
       <DependentUpon>FormEmpleadoReserva.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Data\Servicios\EntidadServicios.cs" />
+    <Compile Include="FormUsuario.aspx.cs">
+      <DependentUpon>FormUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormUsuario.aspx.designer.cs">
+      <DependentUpon>FormUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FormRegistro.aspx.cs">
       <DependentUpon>FormRegistro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="FormRegistro.aspx.designer.cs">
       <DependentUpon>FormRegistro.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="FormReportesComedor.aspx.cs">
-      <DependentUpon>FormReportesComedor.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FormReportesComedor.aspx.designer.cs">
-      <DependentUpon>FormReportesComedor.aspx</DependentUpon>
     </Compile>
     <Compile Include="FormReportesFinanciero.aspx.cs">
       <DependentUpon>FormReportesFinanciero.aspx</DependentUpon>

@@ -27,7 +27,7 @@ namespace Servicios_Reservados_2
                     {
                         Response.Redirect("~/Ingresar.aspx");
                     }
-                    if (!listaRoles.Contains("admin") && !listaRoles.Contains("recepcion"))
+                    if (!listaRoles.Contains("administrador sistema") && !listaRoles.Contains("recepcion"))
                     {
                         Response.Redirect("ErrorPermiso.aspx");
                     }
