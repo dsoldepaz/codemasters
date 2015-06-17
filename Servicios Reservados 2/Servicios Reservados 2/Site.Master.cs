@@ -79,7 +79,7 @@ namespace Servicios_Reservados_2
             
             if (!IsPostBack)
             {
-                this.InfoUsuario.InnerText= string.Format(username + " ( " + roles + ")"+ " en " + estacion);               
+                this.InfoUsuario.Text= string.Format(username + " ( " + roles + ")"+ " en " + estacion);               
             }
         }
         
@@ -87,6 +87,10 @@ namespace Servicios_Reservados_2
         {
             Session["username"] = null;
             Response.Redirect("~/ingresar.aspx");
+        }
+        protected void clickPerfil(object sender, EventArgs e)
+        {
+            Response.Redirect("FormRegistro");
         }
     }
 }
