@@ -83,7 +83,7 @@ namespace Servicios_Reservados_2
         {
             tipo = controladora.solicitarTipo();// solicita los tipos a la controladora
             cbxTipo.Items.Clear();// limpiamos el combobox
-            cbxTipo.Items.Add("Seleccionar");// agregamos seleccionar
+            //cbxTipo.Items.Add("Seleccionar");// agregamos seleccionar
             if (tipo.Rows.Count > 0)
             {// agregamos cada uno de los tipos 
                 foreach (DataRow fila in tipo.Rows)
