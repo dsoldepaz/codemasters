@@ -46,5 +46,13 @@ namespace Servicios_Reservados_2
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
+
+        internal DataTable consultarTodosRoles()
+        {
+            dt = new DataTable();
+            String consultaSQL = "select nombre from rol";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
     }
 }

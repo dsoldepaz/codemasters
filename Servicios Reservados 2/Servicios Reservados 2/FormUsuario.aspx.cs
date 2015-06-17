@@ -88,6 +88,7 @@ namespace Servicios_Reservados_2
 
         protected void clickAgregar(object sender, EventArgs e)
         {
+            FormRegistro.modo = 1;
             Response.Redirect("FormRegistro");
         }
         /*

@@ -3,6 +3,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+
+             <a href="">
+                <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>
+                        <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                </div>
+            </a>
+
+
                 <legend style="color: #7BC143">Registro de usuarios</legend>
 
                 <div class="well bs-component">
@@ -27,6 +37,12 @@
                             <td style="width: 10%;">Correo electronico:</td>
                             <td>
                                 <input class="textbox" style="width: 500px" id="correo" runat="server" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%;">Correo electronico:</td>
+                            <td>
+                                <asp:DropDownList ID="estado" runat="server"></asp:DropDownList>
                             </td>
                         </tr>
                     </table>

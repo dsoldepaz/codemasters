@@ -31,5 +31,22 @@ namespace Servicios_Reservados_2
         {
             return controladoraBD.consultarUsuarios();
         }
+
+        internal DataTable solicitarTodosRoles()
+        {
+            return controladoraBD.consultarTodosRoles();
+        }
+
+        /*
+       * Efecto: encapsula los datos y los envía a la controladora para que sean insertados.
+       * Requiere: un objeto con los datos.
+       * Modifica: pasa los datos de un objeto a una entidad (encapsularlos).
+      */
+        public String[] agregarUsuario(Object[] datos)
+        {
+            EntidadUsuario entidad = new EntidadUsuario(datos);
+            String[] resultado = controladoraBD.agregarUsuario(entidad);//llamado a la controladora de base de datos
+            return resultado;
+        }
     }
 }
