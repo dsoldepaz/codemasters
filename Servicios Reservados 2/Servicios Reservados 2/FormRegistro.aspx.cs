@@ -188,15 +188,17 @@ namespace Servicios_Reservados_2
                 nuevoUsuario[2] = correo.Value.ToString();
                 nuevoUsuario[3] = estado.SelectedItem.ToString();
                 nuevoUsuario[4] = rol;
+
+                String[] error = controladora.agregarUsuario(nuevoUsuario);// se le pide a la controladora que lo inserte
+                if ("danger".Equals(error[0]))
+                {
+                    res = false;
+                }
+                mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+
             }
 
-            String[] error = controladora.agregarUsuario(nuevoUsuario);// se le pide a la controladora que lo inserte
-            if ("danger".Equals(error[0]))
-            {
-                res = false;
-            }
-            mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
-
+            
            
 
             /*

@@ -54,5 +54,10 @@ namespace Servicios_Reservados_2
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
+
+        internal string[] agregarUsuario(EntidadUsuario entidad)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
