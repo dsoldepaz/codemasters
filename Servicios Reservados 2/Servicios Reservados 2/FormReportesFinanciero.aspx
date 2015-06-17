@@ -13,7 +13,7 @@
     </nav>
 
     <legend>
-        <h2>Reportes Financiero</h2>
+        <h2>Reportes</h2>
     </legend>
 
     <ContentTemplate>
@@ -21,13 +21,17 @@
                 <legend style="color: #7BC143">Criterios del reporte</legend>
                     <table>
                         <tr>
+                             <td class="auto-style6">Estación:</td>
+                            <td class="auto-style7">
+                                <select style="width: 176px" id="cbxEstacion" runat="server"></select>
+                            </td>
                             <td class="auto-style6">Anfitriona:</td>
                             <td class="auto-style7">
                                 <select style="width: 176px" id="cbxAnfitriona" runat="server"></select>
                             </td>
-                            <td class="auto-style6">Estación:</td>
+                             <td class="auto-style6">Número Reservación:</td>
                             <td class="auto-style7">
-                                <select style="width: 176px" id="cbxEstacion" runat="server"></select>
+                                <input style="width: 176px" id="Select1" runat="server"></input>
                             </td>
                         </tr>
                     </table>

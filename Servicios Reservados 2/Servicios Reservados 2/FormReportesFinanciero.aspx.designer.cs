@@ -13,6 +13,15 @@ namespace Servicios_Reservados_2 {
     public partial class FormReportesFinanciero {
         
         /// <summary>
+        /// Control cbxEstacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect cbxEstacion;
+        
+        /// <summary>
         /// Control cbxAnfitriona.
         /// </summary>
         /// <remarks>
@@ -22,13 +31,13 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlSelect cbxAnfitriona;
         
         /// <summary>
-        /// Control cbxEstacion.
+        /// Control Select1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect cbxEstacion;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Select1;
         
         /// <summary>
         /// Control cmbFechas.
