@@ -88,7 +88,7 @@ namespace Servicios_Reservados_2
 
         protected void clickAgregar(object sender, EventArgs e)
         {
-
+            Response.Redirect("FormRegistro");
         }
         /*
       * Efecto: capta el evento del botón para consultar 

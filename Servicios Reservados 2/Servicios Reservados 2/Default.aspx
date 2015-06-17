@@ -57,7 +57,7 @@
                     <h2>Sistema</h2>
                     <p>Maneje los usuario y sus roles dentro del sistema</p>
                     <h4>
-                        <a href="FormMiPerfil.aspx">Mi perfil</a>
+                        <a href="FormRegistro.aspx">Mi perfil</a>
                     </h4>
                     <h4>
                         <a href="FormNotificaciones.aspx">Notificaciones</a>

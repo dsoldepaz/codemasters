@@ -8,7 +8,18 @@
                 <h2>Administración de usuarios</h2>
             </legend>
 
+           
             <div class="well bs-component">
+                <legend style="color: #7BC143">Agregar</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="button" class="btn btn-Naranja" value="Usuario" runat="server" onserverclick="clickAgregar" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+             <div class="well bs-component">
                 <legend style="color: #7BC143">Filtro de usuarios</legend>
                 <asp:Panel runat="server" DefaultButton="BotonBuscar">
                     <table>
@@ -28,18 +39,6 @@
                     </table>
                 </asp:Panel>
 
-            </div>
-            <div class="well bs-component">
-                <legend style="color: #7BC143">Agregar</legend>
-                <table>
-                    <tr>
-                        <td>
-                            <input type="button" class="btn btn-Naranja" value="Usuario" runat="server" onserverclick="clickAgregar" />
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="well bs-component">
                 <legend style="color: #7BC143">Listado de usuarios</legend>
 
                 <asp:GridView ID="GridUsuarios" runat="server" Class="Gridcontenedor" AllowSorting="true">
