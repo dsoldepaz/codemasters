@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Servicios_Reservados_2
 {
-	public partial class FormReportesFinanciero : System.Web.UI.Page
+	public partial class FormReportes : System.Web.UI.Page
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{

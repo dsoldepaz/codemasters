@@ -10,7 +10,7 @@
 namespace Servicios_Reservados_2 {
     
     
-    public partial class FormReportesFinanciero {
+    public partial class FormReportes {
         
         /// <summary>
         /// Control cbxEstacion.
@@ -40,13 +40,13 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText Select1;
         
         /// <summary>
-        /// Control cmbFechas.
+        /// Control cbxFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect cmbFechas;
+        protected global::System.Web.UI.WebControls.DropDownList cbxFecha;
         
         /// <summary>
         /// Control FechaInicial.
