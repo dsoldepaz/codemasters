@@ -54,7 +54,7 @@
                            </td>
 
                             <td>
-                                <asp:Button Text="Generar Reporte" class="btn btn-success" ID="BotonGenerar" runat="server" />
+                                <asp:Button Text="Generar Reporte" class="btn btn-success" ID="BotonGenerar" runat="server" OnClick="BotonGenerar_Click" />
 
                             </td>
                         </tr>
