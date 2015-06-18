@@ -11,8 +11,7 @@ namespace Servicios_Reservados_2
 {
     public partial class FormUsuario : System.Web.UI.Page
     {
-        private ControladoraUsuario controladora = new ControladoraUsuario();
-        private string usernameSeleccionado = "";
+        private ControladoraUsuario controladora = new ControladoraUsuario();        
         public static String[] ids;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -49,9 +48,10 @@ namespace Servicios_Reservados_2
                     ids[i++] = fila[0].ToString();//username
                     datos[0] = fila[0].ToString();//username
                     datos[1] = fila[1].ToString();//nombre
+
                     datos[2] = "rol dummy";//rol
                     datos[3] = fila[2].ToString();//estacion
-                    datos[4] = "estado dummy";//estado
+                    datos[4] = fila[2].ToString();//estado
 
                     tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
 
@@ -103,6 +103,7 @@ namespace Servicios_Reservados_2
      */
         protected void clickAgregar(object sender, EventArgs e)
         {
+            FormRegistro.usernameSeleccionado = "";
             FormRegistro.modo = 1;
             Response.Redirect("FormRegistro");
         }
@@ -114,7 +115,7 @@ namespace Servicios_Reservados_2
         protected void clickConsultar(object sender, EventArgs e)
         {
             int indice = obtenerIndex(sender, e) + (GridUsuarios.PageIndex * 20);//se obtiene la cedula a consultar
-            usernameSeleccionado = ids[indice];
+            FormRegistro.usernameSeleccionado = ids[indice];
             FormRegistro.modo = 0;
             Response.Redirect("FormRegistro");
         }

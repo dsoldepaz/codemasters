@@ -9,6 +9,8 @@ namespace Servicios_Reservados_2
 {
     public class ControladoraUsuario
     {
+        EntidadUsuario entidadSeleccionada = null;
+
         private static ControladoraBDUsuario controladoraBD;
         /*
          * Requiere: N/A
@@ -50,6 +52,29 @@ namespace Servicios_Reservados_2
                 controladoraBD.agregarUsuarioRol(entidad.Username, rol);
             }
             return resultado;
+        }
+
+        internal EntidadUsuario solicitarUsuario(string usernameSeleccionado)
+        {
+             DataTable tablaUsuario =controladoraBD.consultarUsuario(usernameSeleccionado);
+             DataTable tablaRol = controladoraBD.consultarUsuarioRol(usernameSeleccionado);             
+
+             Object[] usuario = new Object[6];// objeto en el que se almacenan los datos para enviar a encapsular.
+             usuario[0] = tablaUsuario.Rows[0][0].ToString();//username
+             usuario[1] = tablaUsuario.Rows[0][1].ToString();//nombre
+             usuario[2] = tablaUsuario.Rows[0][2].ToString();//correo
+             usuario[3] = tablaUsuario.Rows[0][3].ToString();//estado
+             usuario[4] = tablaUsuario.Rows[0][4].ToString();//estacion
+
+             List<string> rol = new List<string>();
+             for (int i = 0; i < tablaRol.Rows.Count; i++ )
+             {
+                 rol.Add(tablaRol.Rows[i][0].ToString());
+             }
+             usuario[5] = rol;
+             entidadSeleccionada = new EntidadUsuario(usuario);
+
+             return entidadSeleccionada;
         }
     }
 }

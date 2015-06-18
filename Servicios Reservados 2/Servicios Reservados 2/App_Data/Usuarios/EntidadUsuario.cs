@@ -20,7 +20,8 @@ namespace Servicios_Reservados_2
             this.nombre = datos[1].ToString();
             this.correo = datos[2].ToString();
             this.estado = 1;
-            if ("Inactivo".Equals(datos[2].ToString())) {
+            if ("Inactivo".Equals(datos[2].ToString()) || "0".Equals(datos[2].ToString()))
+            {
                 this.estado = 0;
             }            
             this.estacion = datos[4].ToString();

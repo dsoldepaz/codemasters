@@ -42,7 +42,7 @@ namespace Servicios_Reservados_2
         internal DataTable consultarUsuarios()
         {
             dt = new DataTable();
-            String consultaSQL = "select username, Nombre, estacion from usuario";
+            String consultaSQL = "select username, Nombre, estacion, estado from usuario";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
@@ -84,5 +84,18 @@ namespace Servicios_Reservados_2
             return respuesta;
         }
 
+
+        internal DataTable consultarUsuario(string usernameSeleccionado)
+        {
+            dt = new DataTable();
+            String consultaSQL = "select username, Nombre, email, activo, estacion from usuario where username='" + usernameSeleccionado + "'";
+            return adaptador.consultar(consultaSQL);
+        }
+        internal DataTable consultarUsuarioRol(string usernameSeleccionado)
+        {
+            dt = new DataTable();
+            String consultaSQL = "select rol from usuariorol where usuario='" + usernameSeleccionado + "'";
+            return adaptador.consultar(consultaSQL);
+        }
     }
 }
