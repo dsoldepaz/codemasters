@@ -1,14 +1,14 @@
 ﻿<%@ Page Title="Usuarios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormUsuario.aspx.cs" Inherits="Servicios_Reservados_2.FormUsuario" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-      <link rel="stylesheet" href="Content/Servicios.css" />
+    <link rel="stylesheet" href="Content/Servicios.css" />
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <legend>
                 <h2>Administración de usuarios</h2>
             </legend>
 
-           
+
             <div class="well bs-component">
                 <legend style="color: #7BC143">Agregar</legend>
                 <table>
@@ -19,7 +19,7 @@
                     </tr>
                 </table>
             </div>
-             <div class="well bs-component">
+            <div class="well bs-component">
                 <legend style="color: #7BC143">Filtro de usuarios</legend>
                 <asp:Panel runat="server" DefaultButton="BotonBuscar">
                     <table>
@@ -51,6 +51,21 @@
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:LinkButton ID="btnConsultar" CommandName="consultar" OnClick="clickConsultar" runat="server" class="btn btn-default" ToolTip="Consultar"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                    <Columns>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="btnModificar" runat="server" CommandName="modificar" class="btn btn-default" OnClick="clickModificar" ToolTip="Editar"><i class="glyphicon glyphicon-edit"></i></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+
+                    <Columns>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="btnCancelar" runat="server" CommandName="cancelar" class="btn btn-default" OnClick="clickDesactivar" ToolTip="Desactivar"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

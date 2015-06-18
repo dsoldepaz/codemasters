@@ -66,11 +66,11 @@ namespace Servicios_Reservados_2
             string hashContrasena = LoginService.EncodePassword(string.Concat(entidad.Username, entidad.Username));
             String consultaSQL = "insert into usuario values('" + entidad.Username + "','" + hashContrasena + "','" +
                     entidad.Correo + "', sysdate,'" + entidad.Estado + "','" + entidad.Estacion + "', 1,'" + entidad.Nombre + "')";
-
             respuesta = adaptador.insertar(consultaSQL);
 
             return respuesta;
         }
+
         /*
         * Efecto: inserta en la tabla de usuariorol
         * Requiere: la entidad de usuario (datos encapsulados), el rol
