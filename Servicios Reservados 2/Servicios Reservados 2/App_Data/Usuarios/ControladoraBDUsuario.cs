@@ -71,6 +71,18 @@ namespace Servicios_Reservados_2
 
             return respuesta;
         }
+        /*
+        * Efecto: inserta en la tabla de usuariorol
+        * Requiere: la entidad de usuario (datos encapsulados), el rol
+        * Modifica: la tabla usuariorol
+       */
+        public String[] agregarUsuarioRol(string usuario, string rol)
+        {
+            String[] respuesta = new String[3];            
+            String consultaSQL = "insert into usuariorol values('" + usuario + "','" + rol + "')";
+            respuesta = adaptador.insertar(consultaSQL);
+            return respuesta;
+        }
 
     }
 }

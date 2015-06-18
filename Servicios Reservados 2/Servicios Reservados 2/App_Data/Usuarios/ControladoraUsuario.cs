@@ -46,6 +46,9 @@ namespace Servicios_Reservados_2
         {
             EntidadUsuario entidad = new EntidadUsuario(datos);
             String[] resultado = controladoraBD.agregarUsuario(entidad);//llamado a la controladora de base de datos
+            foreach(string rol in entidad.Rol){
+                controladoraBD.agregarUsuarioRol(entidad.Username, rol);
+            }
             return resultado;
         }
     }
