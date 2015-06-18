@@ -76,5 +76,17 @@ namespace Servicios_Reservados_2
 
              return entidadSeleccionada;
         }
+
+        internal string[] modificarUsuario(object[] nuevoUsuario)
+        {
+            EntidadUsuario entidad = new EntidadUsuario(nuevoUsuario);
+            String[] resultado = controladoraBD.modificarUsuario(entidad);//llamado a la controladora de base de datos
+            controladoraBD.limpiarRoles(entidad.Username);
+            foreach (string rol in entidad.Rol)
+            {
+                controladoraBD.agregarUsuarioRol(entidad.Username, rol);
+            }
+            return resultado;
+        }
     }
 }

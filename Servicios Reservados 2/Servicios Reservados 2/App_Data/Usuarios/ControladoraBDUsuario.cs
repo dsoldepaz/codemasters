@@ -42,7 +42,7 @@ namespace Servicios_Reservados_2
         internal DataTable consultarUsuarios()
         {
             dt = new DataTable();
-            String consultaSQL = "select username, Nombre, estacion, estado from usuario";
+            String consultaSQL = "select username, Nombre, estacion, activo from usuario";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
@@ -96,6 +96,23 @@ namespace Servicios_Reservados_2
             dt = new DataTable();
             String consultaSQL = "select rol from usuariorol where usuario='" + usernameSeleccionado + "'";
             return adaptador.consultar(consultaSQL);
+        }
+
+        internal string[] modificarUsuario(EntidadUsuario entidad)
+        {
+            String[] respuesta = new String[3];
+            String consultaSQL = "update usuario set nombre='" + entidad.Nombre + "', correo='" + entidad.Correo + "', estado='" + entidad.Estado +
+                "', estacion='" + entidad.Estacion + "' where username='" + entidad.Username + "'";
+            respuesta = adaptador.insertar(consultaSQL);
+            return respuesta;
+        }
+
+        internal string[] limpiarRoles(string usernameSeleccionado)
+        {
+            String[] respuesta = new String[3];
+            String consultaSQL = "delete from usuariorol where usuario='" + usernameSeleccionado + "'";
+            respuesta = adaptador.insertar(consultaSQL);
+            return respuesta;          
         }
     }
 }

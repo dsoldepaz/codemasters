@@ -12,7 +12,7 @@ namespace Servicios_Reservados_2
     public partial class FormRegistro : System.Web.UI.Page
     {
         ControladoraUsuario controladora = new ControladoraUsuario();
-        public static int modo = 0;//variable para controlar el modo en el que se encuentra el sistema: 0 consulta, 1 agrega, 2modifica, 3 elimina
+        public static int modo = 0;//variable para controlar el modo en el que se encuentra el sistema: 0 consulta, 1 agrega, 2 modifica, 3 elimina
         public static string usernameSeleccionado = "";
         private static EntidadUsuario entidadSeleccionada;
 
@@ -112,7 +112,7 @@ namespace Servicios_Reservados_2
                     rolesGrid.Enabled = true;
                     break;
                 case 2://modificar
-                    username.Disabled = false;
+                    username.Disabled = true;
                     nombre.Disabled = false;
                     correo.Disabled = false;
                     estado.Enabled = true;
@@ -189,7 +189,9 @@ namespace Servicios_Reservados_2
                     accion = modificarUsuario();
                     if (accion)
                     {
-                        //Response.Redirect("FormServicios");
+                        mostrarMensaje("succes", "Exito:", "Se modificó el usuario correctamente");
+                        modo = 0;
+                        cambiarModo();
                     }
                     break;
             }
@@ -197,7 +199,45 @@ namespace Servicios_Reservados_2
 
         private bool modificarUsuario()
         {
-            throw new NotImplementedException();
+            //extraer roles seleccionados por el usuario
+            Boolean res = true;
+            List<string> rol = new List<string>();
+
+            for (int row = 0; row < rolesGrid.Rows.Count; row++)
+            {
+                if (rolesGrid.Rows[row].RowType == DataControlRowType.DataRow)
+                {
+                    CheckBox chkRow = (rolesGrid.Rows[row].Cells[0].FindControl("chkRol") as CheckBox);
+                    if (chkRow.Checked)
+                    {
+                        rol.Add(rolesGrid.Rows[row].Cells[1].Text);
+                    }
+                }
+            }
+            if (rol.Count == 0)
+            {
+                mostrarMensaje("danger", "Error:", "Debe seleccionar al menos un rol");
+                res = false;
+            }
+            else
+            {
+                //extraer la informacion personal
+                Object[] nuevoUsuario = new Object[6];// objeto en el que se almacenan los datos para enviar a encapsular.
+                nuevoUsuario[0] = username.Value.ToString();
+                nuevoUsuario[1] = nombre.Value.ToString();
+                nuevoUsuario[2] = correo.Value.ToString();
+                nuevoUsuario[3] = estado.SelectedItem.ToString();
+                nuevoUsuario[4] = estacion.SelectedItem.ToString();
+                nuevoUsuario[5] = rol;
+
+                String[] error = controladora.modificarUsuario(nuevoUsuario);// se le pide a la controladora que lo inserte
+                if ("danger".Equals(error[0]))
+                {
+                    res = false;
+                }
+                mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+            }
+            return res;
         }
 
         /*

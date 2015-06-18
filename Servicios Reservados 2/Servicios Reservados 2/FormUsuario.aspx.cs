@@ -11,7 +11,7 @@ namespace Servicios_Reservados_2
 {
     public partial class FormUsuario : System.Web.UI.Page
     {
-        private ControladoraUsuario controladora = new ControladoraUsuario();        
+        private ControladoraUsuario controladora = new ControladoraUsuario();
         public static String[] ids;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -48,10 +48,21 @@ namespace Servicios_Reservados_2
                     ids[i++] = fila[0].ToString();//username
                     datos[0] = fila[0].ToString();//username
                     datos[1] = fila[1].ToString();//nombre
-
-                    datos[2] = "rol dummy";//rol
+                    EntidadUsuario usuarioSeleccionado = controladora.solicitarUsuario(fila[0].ToString());
+                    string roles = "";
+                    foreach (string rol in usuarioSeleccionado.Rol)
+                    {
+                        roles += rol + ", ";
+                    }
+                    datos[2] = roles;//rol
                     datos[3] = fila[2].ToString();//estacion
-                    datos[4] = fila[2].ToString();//estado
+
+                    datos[4] = "Activo";//estado
+                    if ("0".Equals(fila[3].ToString()))
+                    {
+                        datos[4] = "Inactivo";//estado
+                    }
+
 
                     tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
 
@@ -144,6 +155,10 @@ namespace Servicios_Reservados_2
         }
         protected void clickModificar(object sender, EventArgs e)
         {
+            int indice = obtenerIndex(sender, e) + (GridUsuarios.PageIndex * 20);//se obtiene la cedula a consultar
+            FormRegistro.usernameSeleccionado = ids[indice];
+            FormRegistro.modo = 2;
+            Response.Redirect("FormRegistro");
         }
         protected void clickDesactivar(object sender, EventArgs e)
         {

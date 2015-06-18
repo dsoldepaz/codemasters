@@ -58,7 +58,7 @@ namespace Servicios_Reservados_2
 
                 respuesta[0] = "success";
                 respuesta[1] = "Exito. ";
-                respuesta[2] = "La comida extra se ha eliminado exitosamente";
+                respuesta[2] = "Se ha eliminado exitosamente";
             }
             catch (OracleException e)
             {
