@@ -27,6 +27,12 @@
                                 <input class="textbox" style="width: 500px" id="username" runat="server" />
                             </td>
                         </tr>
+                         <tr>
+                            <td style="width: 10%;">Contraseña:</td>
+                            <td>
+                                <input type="button" id="reestablecer" value="Reestablecer" runat="server" onserverclick="clickReestablecer"/>
+                            </td>
+                        </tr>
                         <tr>
                             <td style="width: 10%;">Nombre:</td>
                             <td>
@@ -51,6 +57,7 @@
                                 <asp:DropDownList ID="estacion" runat="server"></asp:DropDownList>
                             </td>
                         </tr>
+                       
                     </table>
                 </div>
 

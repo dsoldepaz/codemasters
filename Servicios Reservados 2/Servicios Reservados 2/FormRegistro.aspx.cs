@@ -217,6 +217,10 @@ namespace Servicios_Reservados_2
         {
 
         }
+        protected void clickReestablecer(object sender, EventArgs e)
+        {
+
+        }
 
         /*
          * Efecto: mostrar en pantalla los mensajes del sistema, ya sean de error o de éxito.
