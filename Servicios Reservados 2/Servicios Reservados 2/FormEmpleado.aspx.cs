@@ -67,7 +67,7 @@ namespace Servicios_Reservados_2
 
         }
 
-        void llenarGridEmpleados()
+        protected void llenarGridEmpleados()
         {
             id = "null";
             DataTable tabla = crearTablaEmpleados();

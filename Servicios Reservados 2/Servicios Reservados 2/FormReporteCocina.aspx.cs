@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,13 +13,14 @@ namespace Servicios_Reservados_2
     public partial class FormReporteCocina : System.Web.UI.Page
     {
         private static ControladoraReporteCocina controladora = new ControladoraReporteCocina();
-
+        private static String estacion; 
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
             string userid = (string)Session["username"];
             if (!IsPostBack)
             {
+                estacion =  (string)Session["Estacion"];
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
@@ -155,6 +157,55 @@ namespace Servicios_Reservados_2
             GridViewBebidas.DataBind();
 
             return tabla;
+        }
+
+        protected void llenarGridTotal()
+        {
+            DataTable tabla = crearTablaTotal();
+            String sigla="";
+            if (estacion == "Las Cruces")
+            {
+                sigla = "LC";
+            }
+            else if(estacion == "Palo Verde"){
+                sigla = "PV";
+
+            }
+            else
+            {
+                sigla = "LS";
+            }
+
+            try
+            {
+
+                Object[] datos = new Object[2];
+                DataTable turnos = controladora.solicitarTurnos(sigla);// se consultan todos
+                
+                int i = 0;
+                if (turnos.Rows.Count > 0)
+                {
+
+                    foreach (DataRow fila in turnos.Rows)
+                    {
+                                                
+                        datos[0] = fila[0].ToString();//obtener los datos a mostrar
+                        datos[1] = fila[1].ToString();
+                        tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
+                        i++;
+                    }
+                    
+                }
+
+                 GridViewTotal.DataBind();
+               
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("No se pudo cargar el total de comidas");
+            }
+
+
         }
     }
 }
