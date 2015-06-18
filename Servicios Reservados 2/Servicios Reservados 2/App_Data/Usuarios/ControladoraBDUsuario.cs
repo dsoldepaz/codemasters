@@ -64,8 +64,8 @@ namespace Servicios_Reservados_2
         {
             String[] respuesta = new String[3];
             string hashContrasena=LoginService.EncodePassword(entidad.Username);
-            String consultaSQL = "insert into usuario values('" + entidad.Username + "','" + hashContrasena + "'," +
-                    entidad.Correo + ", sysdate,'" + entidad.Estado + "','" + entidad.Estacion + "', 0,' " + entidad.Nombre + "'";
+            String consultaSQL = "insert into usuario values('" + entidad.Username + "','" + hashContrasena + "','" +
+                    entidad.Correo + "', sysdate,'" + entidad.Estado + "','" + entidad.Estacion + "', 0,'" + entidad.Nombre + "')";
 
             respuesta = adaptador.insertar(consultaSQL);
 

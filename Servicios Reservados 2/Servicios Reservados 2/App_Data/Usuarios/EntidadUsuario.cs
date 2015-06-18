@@ -10,7 +10,7 @@ namespace Servicios_Reservados_2
         private String username;
         private String nombre;
         private String correo;
-        private String estado;
+        private int estado;
         private String estacion;
         List<string> rol;
         
@@ -19,9 +19,12 @@ namespace Servicios_Reservados_2
             this.username = datos[0].ToString();
             this.nombre = datos[1].ToString();
             this.correo = datos[2].ToString();
-            this.estado = datos[3].ToString();
-            this.estacion = datos[3].ToString();
-            this.rol = (List<string>)datos[4];                     
+            this.estado = 1;
+            if ("Inactivo".Equals(datos[2].ToString())) {
+                this.estado = 0;
+            }            
+            this.estacion = datos[4].ToString();
+            this.rol = (List<string>)datos[5];                     
         }
 
         public String Username
@@ -42,7 +45,7 @@ namespace Servicios_Reservados_2
             set { correo = value; }
         }
 
-        public String Estado
+        public int Estado
         {
             get { return estado; }
             set { estado = value; }

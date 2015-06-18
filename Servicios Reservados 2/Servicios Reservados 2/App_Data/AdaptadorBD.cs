@@ -76,7 +76,7 @@ namespace Servicios_Reservados_2
 
                     respuesta[0] = "danger";
                     respuesta[1] = "Error. ";
-                    respuesta[2] = "No se pudo agregar el servicio extra";
+                    respuesta[2] = "No se pudo agregar";
                 }
             }
             return respuesta;

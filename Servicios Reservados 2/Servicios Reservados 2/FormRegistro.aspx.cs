@@ -178,12 +178,12 @@ namespace Servicios_Reservados_2
 
             for (int row = 0; row < rolesGrid.Rows.Count; row++)
             {
-                if (rolesGrid.Rows[0].RowType == DataControlRowType.DataRow)
+                if (rolesGrid.Rows[row].RowType == DataControlRowType.DataRow)
                 {
-                    CheckBox chkRow = (rolesGrid.Rows[0].Cells[0].FindControl("chkRol") as CheckBox);
+                    CheckBox chkRow = (rolesGrid.Rows[row].Cells[0].FindControl("chkRol") as CheckBox);
                     if (chkRow.Checked)
                     {
-                        rol.Add(rolesGrid.Rows[0].Cells[1].Text);                        
+                        rol.Add(rolesGrid.Rows[row].Cells[1].Text);                        
                     }
                 }                
             }
