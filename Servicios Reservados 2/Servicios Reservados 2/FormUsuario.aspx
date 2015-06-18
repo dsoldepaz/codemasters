@@ -41,7 +41,7 @@
 
                 <legend style="color: #7BC143">Listado de usuarios</legend>
 
-                <asp:GridView ID="GridUsuarios" runat="server" Class="Gridcontenedor" AllowSorting="true">
+                <asp:GridView ID="GridUsuarios" runat="server" Class="Gridcontenedor" AllowSorting="true" AllowPaging="true" PageSize="20" OnPageIndexChanging="PageIndexChanging">
                     <AlternatingRowStyle BorderStyle="None" />
                     <HeaderStyle Font-Size="1.3em" />
                     <SelectedRowStyle BackColor="#7BC143"

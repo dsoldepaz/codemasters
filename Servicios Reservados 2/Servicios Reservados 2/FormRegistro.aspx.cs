@@ -12,7 +12,7 @@ namespace Servicios_Reservados_2
     public partial class FormRegistro : System.Web.UI.Page
     {
         ControladoraUsuario controladora = new ControladoraUsuario();
-        public static int modo;//variable para controlar el modo en el que se encuentra el sistema: 0 consulta, 1 agrega, 2modifica, 3 elimina
+        public static int modo = 0;//variable para controlar el modo en el que se encuentra el sistema: 0 consulta, 1 agrega, 2modifica, 3 elimina
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,11 +27,11 @@ namespace Servicios_Reservados_2
                 if (!listaRoles.Contains("administrador sistema"))
                 {
                     Response.Redirect("ErrorPermiso.aspx");
-                }
-                modo = 1;//0 consulta, 1 agrega, 2 modifica, 3 elimina
+                }                
                 llenarRoles();
                 llenarEstados();
                 llenarEstaciones();
+                cambiarModo();
             }
         }
 
@@ -215,7 +215,7 @@ namespace Servicios_Reservados_2
 
         protected void clickCancelar(object sender, EventArgs e)
         {
-
+            Response.Redirect("FormUsuario");
         }
         protected void clickReestablecer(object sender, EventArgs e)
         {

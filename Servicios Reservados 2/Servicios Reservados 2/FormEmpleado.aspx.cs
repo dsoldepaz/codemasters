@@ -141,11 +141,11 @@ namespace Servicios_Reservados_2
 
         protected void clicAgregarServicio(object sender, EventArgs e)
         {
-             LinkButton btn = (LinkButton)sender;
+            LinkButton btn = (LinkButton)sender;
             GridViewRow row = (GridViewRow)btn.NamingContainer;
-       int i = Convert.ToInt32(row.RowIndex);
+            int i = Convert.ToInt32(row.RowIndex);
 
-       seleccionarEmpleado(i);
+            seleccionarEmpleado(i);
             if (id != "null")
             {
                 FormEmpleadoReserva.idEmpleado = id;
