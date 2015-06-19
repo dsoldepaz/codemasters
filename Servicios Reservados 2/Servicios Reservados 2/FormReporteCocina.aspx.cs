@@ -20,16 +20,36 @@ namespace Servicios_Reservados_2
             string userid = (string)Session["username"];
             if (!IsPostBack)
             {
-                estacion =  (string)Session["Estacion"];
+                estacion =  "Las Cruces";
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
-                } if (!listaRoles.Contains("administrador local") && !listaRoles.Contains("encargado cocina") && !listaRoles.Contains("administrador global"))
+                } if (!listaRoles.Contains("administrador sistema") && !listaRoles.Contains("encargado cocina") && !listaRoles.Contains("administrador global"))
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
+                llenarGridTotal();
             }
         }
+
+        protected void GridViewSnacks_PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
+
+            GridViewSnacks.PageIndex = e.NewPageIndex;
+            GridViewSnacks.DataSource = Session["tablaS"];
+            GridViewSnacks.DataBind();
+
+        }
+
+        protected void GridViewBebidas_PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
+
+            GridViewBebidas.PageIndex = e.NewPageIndex;
+            GridViewBebidas.DataSource = Session["tablaB"];
+            GridViewBebidas.DataBind();
+
+        }
+
 
         /**
       * Requiere: n/a
@@ -163,6 +183,9 @@ namespace Servicios_Reservados_2
         {
             DataTable tabla = crearTablaTotal();
             String sigla="";
+            int desayunos;
+            int almuerzos;
+            int cena;
             if (estacion == "Las Cruces")
             {
                 sigla = "LC";
@@ -180,31 +203,66 @@ namespace Servicios_Reservados_2
             {
 
                 Object[] datos = new Object[2];
-                DataTable turnos = controladora.solicitarTurnos(sigla);// se consultan todos
-                
-                int i = 0;
-                if (turnos.Rows.Count > 0)
+                DataTable turnosDiaTres = controladora.solicitarTurnoDiaTresComidas(sigla);
+                desayunos = (turnosDiaTres.Rows[0].Field<int>(0)) * (turnosDiaTres.Rows[0].Field<int>(1));
+                Debug.WriteLine("consulta turnos dias 3 exitosa");
+                almuerzos = desayunos;
+                cena = desayunos;
+                DataTable reservaEntrante = controladora.reservaEntrante(sigla);
+            
+                if (reservaEntrante.Rows.Count > 0)
                 {
 
-                    foreach (DataRow fila in turnos.Rows)
+                    foreach (DataRow fila in reservaEntrante.Rows)
                     {
-                                                
-                        datos[0] = fila[0].ToString();//obtener los datos a mostrar
-                        datos[1] = fila[1].ToString();
-                        tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
-                        i++;
-                    }
+                        String turno;
+                        int cantidad;
+                        turno = fila[0].ToString();
+                        cantidad = (int.Parse(fila[1].ToString())) * (int.Parse(fila[2].ToString()));
+                        if(turno == "ALMUERZO"){
+                            desayunos = desayunos - cantidad;  
+                        }
+                        else if(turno =="CENA"){
+                            desayunos = desayunos - cantidad;
+                            almuerzos = almuerzos - cantidad;
+                        }
+                        Debug.WriteLine(turno + " " + cantidad);
                     
+                    }
+
+                }
+                
+                for(int i = 0; i< 3;i++){
+                    switch (i)
+                    {
+                        case 0:
+                            datos[0]="Desayuno";
+                            datos[1]= desayunos;
+                            break;
+                        case 1:
+                            datos[0]="Almuerzo";
+                            datos[1]= almuerzos;
+                            break;
+
+                        case 2:
+                            datos[0]="Cena";
+                            datos[1]= cena;
+                            break;
+                        default:
+                            break;
+
+                    }
+                    tabla.Rows.Add(datos);
                 }
 
-                 GridViewTotal.DataBind();
-               
+                GridViewTotal.DataBind();
+            
+            
             }
             catch (Exception e)
             {
                 Debug.WriteLine("No se pudo cargar el total de comidas");
             }
-
 
         }
     }

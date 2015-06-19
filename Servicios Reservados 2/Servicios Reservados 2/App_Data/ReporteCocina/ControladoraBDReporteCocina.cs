@@ -15,13 +15,21 @@ namespace Servicios_Reservados_2
         {
             adaptador = new AdaptadorBD();
             dt = new DataTable();
+            fechaHoy = DateTime.Today;
         }
 
-        internal DataTable solicitarTurnos(String sigla)
+        internal DataTable solicitarTurnoDiaTresComidas(String sigla)
         {
             String fechaLocal = fechaHoy.ToString("MM/dd/yyyy");
-            String consultaSQL2 = "select ri.id, vr.nombre, ri.pax from reservas.reservacionitem ri, reservas.v_reservable vr where ri.reservable= vr.id and vr.categoria='ANURA7249245184.5851916019'";
-            String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE v.sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and  v.estado = 'CNF' order by sale asc"; 
+            String consultaSQL = "select count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra = TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and vr.nombre = '3 Comidas (" + sigla + ")'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+        internal DataTable reservaEntrante(String sigla)
+        {
+            String fechaLocal = fechaHoy.ToString("MM/dd/yyyy");
+            String consultaSQL = "select r.primera_comida,count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra = TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and (vr.nombre = '3 Comidas (" + sigla + ")' or vr.nombre = '2 Comidas (" + sigla + ")') group by r.primera_comida'";
+            dt = adaptador.consultar(consultaSQL);
             return dt;
         }
     }

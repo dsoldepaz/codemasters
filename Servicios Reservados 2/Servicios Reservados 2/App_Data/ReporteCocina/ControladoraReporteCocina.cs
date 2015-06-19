@@ -14,11 +14,14 @@ namespace Servicios_Reservados_2
         {
             controladoraBD = new ControladoraBDReporteCocina();
         }
-        internal DataTable solicitarTurnos(String sigla)
+        internal DataTable solicitarTurnoDiaTresComidas(String sigla)
         {
-            return controladoraBD.solicitarTurnos(sigla);
+            return controladoraBD.solicitarTurnoDiaTresComidas(sigla);
         }
 
-        
+        internal DataTable reservaEntrante(String sigla)
+        {
+            return controladoraBD.reservaEntrante(sigla);
+        }
     }
 }
