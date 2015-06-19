@@ -36,7 +36,7 @@
                         <a href="FormServirPlatos.aspx">Servir platos</a>
                     </h4>
                     <h4>
-                        <a href="FormReportesCocina.aspx">Reportes de cocina</a>
+                        <a href="FormReporteCocina.aspx">Reportes de cocina</a>
                     </h4>
                     <h4>
                         <a href="FormReportes.aspx">Reportes general</a>

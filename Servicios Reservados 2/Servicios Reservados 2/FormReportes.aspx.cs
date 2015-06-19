@@ -18,7 +18,7 @@ namespace Servicios_Reservados_2
         private String fechaSeleccionda;
         private String fechaInicio;
         private String fechaFinal;
-
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -99,32 +99,32 @@ namespace Servicios_Reservados_2
             if (fechaSeleccionda.Equals("Hoy"))
             {
                 fechaInicio = DateTime.Today.ToString("mm/dd/yyyy");
-            }
         }
-        
+        }
+
 
         /*Efecto: Crea la tabla de servicios
          * Requiere: NA
          * Modifica: la tabla servicios, si la reservacion tiene servicios asociados
          * */
-        void llenarGridReportes()
-          {
-              DataTable tabla = crearTablaServicios();
-              try
-              {
+        /*void llenarGridReportes()
+        {
+            DataTable tabla = crearTablaServicios();
+            try
+            {
 
                   Object[] datos = new Object[13];
                   DataTable pax = controladora.obtenerComidaPax(estacion, anfitriona, fechaInicio);// se consultan todos
                   int i=0;
                   if (pax.Rows.Count > 0)
-                  {
+                {
                       foreach (DataRow fila in pax.Rows)
-                      {
+                    {
                           datos[0] = fechaInicio;
                           datos[1] = fila[0].ToString();
                           datos[2] = "-";
-                          datos[3] = "-";
-                          datos[4] = "-";
+                        datos[3] = "-";
+                        datos[4] = "-";
                           datos[5] = "-";
                           datos[6] = "-";
                           datos[7] = "-";
@@ -133,22 +133,22 @@ namespace Servicios_Reservados_2
                           datos[10] = "-";
                           datos[11] = "-";                     
                           datos[12] = "-";
-                          tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
-                          i++;
-                      }
-                  }
-                
-                  GridViewReportes.AllowSorting = false;
-                  GridViewReportes.DataBind();
+                        tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
+                        i++;
+                    }
+                }
 
-              }
-              catch (Exception e)
-              {
-                  Debug.WriteLine("No se pudo cargar las reservaciones");
-              }
-          }
+                GridViewReportes.AllowSorting = false;
+                GridViewReportes.DataBind();*/
 
+            }
+            catch (Exception e)
+            {
+                //Debug.WriteLine("No se pudo cargar las reservaciones");
+            }
+        }*/
 
+  
 
         /*
          * Efecto: modifica la interfaz de acuerdo a lo selecionado en las opciones de filtro.
@@ -161,7 +161,7 @@ namespace Servicios_Reservados_2
             txtReservacion.Value = "cosa";
 
         }
-
+                       
 
 
 
@@ -253,7 +253,7 @@ namespace Servicios_Reservados_2
         protected void BotonGenerar_Click(object sender, EventArgs e)
         {
             obtenerFiltros();
-            llenarGridReportes();
+            //llenarGridReportes();
         }
 
 

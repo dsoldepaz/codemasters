@@ -14,130 +14,130 @@
     <legend>
         <h2>Reportes</h2>
     </legend>
-    <div class="well bs-component">
-        <legend style="color: #7BC143">Criterios del reporte</legend>
-        <table>
-            <tr>
-                <td class="auto-style6">Estación:</td>
-                <td class="auto-style7">
-                    <select style="width: 150px" id="cbxEstacion" runat="server"></select>
-                </td>
-                <td class="auto-style6">Anfitriona:</td>
-                <td class="auto-style7">
-                    <select style="width: 150px" id="cbxAnfitriona" runat="server"></select>
-                </td>
-                <td class="auto-style6">Número Reservación:</td>
-                <td class="auto-style7">
+            <div class="well bs-component">
+                <legend style="color: #7BC143">Criterios del reporte</legend>
+                    <table>
+                        <tr>
+                             <td class="auto-style6">Estación:</td>
+                            <td class="auto-style7">
+                                <select style="width: 150px" id="cbxEstacion" runat="server"></select>
+                            </td>
+                            <td class="auto-style6">Anfitriona:</td>
+                            <td class="auto-style7">
+                                <select style="width: 150px" id="cbxAnfitriona" runat="server"></select>
+                            </td>
+                             <td class="auto-style6">Número Reservación:</td>
+                            <td class="auto-style7">
                     <input style="width: 150px" id="txtReservacion" runat="server"/>
-                </td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td>Fechas</td>
-                <td>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>Fechas</td>
+                            <td>
                     <select id="cbxFecha" runat="server"></select>
-                </td>
+                            </td>
                 <td>Fecha Inicio</td>
                 <td>
                     <input type="date" id ="fechaInicio" runat="server" name="fechaIn">
-                </td> 
+                           </td>
                 <td>Fecha Final</td>
                 <td>
                 <input type="date" id="fechaFinal" name="fechaFin" runat="server">
-                </td>
-                <td>
-                    <asp:Button Text="Generar Reporte" class="btn btn-success" ID="BotonGenerar" runat="server" OnClick="BotonGenerar_Click" />
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="well bs-component">
-        <legend style="color: #7BC143">Reporte Generado</legend>
-        <table>
-            <tr>
-                <td style="width: 10%">Anfitriona:</td>
-                <td>
+                           </td>
+                            <td>
+                                <asp:Button Text="Generar Reporte" class="btn btn-success" ID="BotonGenerar" runat="server" OnClick="BotonGenerar_Click" />
+                            </td>
+                        </tr>
+                    </table>
+            </div>
+            <div class="well bs-component">
+                <legend style="color: #7BC143">Reporte Generado</legend>
+                <table>
+                        <tr>
+                            <td style="width: 10%">Anfitriona:</td>
+                            <td>
                     <input style="width: 176px" id="txtAnfitriona" runat="server" />
-                </td>
-                <td style="width: 10%;">Estación:</td>
-                <td>
+                            </td>
+                            <td style="width: 10%;">Estación:</td>
+                            <td>
                     <input style="width: 176px" id="txtEstacion" runat="server" />
-                </td>
-                <td style="width: 10%;">Fecha Inicio:</td>
-                <td>
+                            </td>
+                             <td style="width: 10%;">Fecha Inicio:</td>
+                            <td>
                     <input style="width: 176px" id="txtFechaInicio" runat="server" />
-                </td>
-                <td style="width: 10%;">Fecha Final:</td>
-                <td>
+                            </td>
+                             <td style="width: 10%;">Fecha Final:</td>
+                            <td>
                     <input style="width: 176px" id="txtFechaFinal" runat="server" />
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="well bs-component">
-        <legend style="color: #7BC143">Desglose</legend>
-        <table>
-            <tr>
-                <td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            <div class="well bs-component">
+                <legend style="color: #7BC143">Desglose</legend>
+                <table>
+                    <tr>
+                        <td>
 
                     <asp:GridView ID="GridViewReportes" runat="server" AllowPaging="true" AllowSorting="true" PageSize="20">
-                        <SelectedRowStyle BackColor="#7BC143"
-                            ForeColor="Black"
-                            Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
-                        <Columns>
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <asp:LinkButton ID="btnConsultar" ToolTip="Consultar" runat="server" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
+                                <SelectedRowStyle BackColor="#7BC143"
+                                    ForeColor="Black"
+                                    Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
+                                <Columns>
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btnConsultar" ToolTip="Consultar" runat="server" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
 
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="well bs-component">
-        <legend style="color: #7BC143">Detalle</legend>
-        <table>
-            <tr>
-                <td class="auto-style3">Tipo Servicios:</td>
-                <td class="auto-style5">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+               <div class="well bs-component">
+                <legend style="color: #7BC143">Detalle</legend>
+                    <table>
+                        <tr>
+                            <td class="auto-style3">Tipo Servicios:</td>
+                            <td class="auto-style5">
                     <input type="button" id="btnDesayunar" class="btn btn-Naranja" value="Desayuno" runat="server" />
-                </td>
-                <td class="auto-style1">
+                            </td>
+                            <td class="auto-style1">
                     <input type="button" id="btnAlmuerzo" class="btn btn-Naranja" value="Almuerzo" runat="server" />
-                </td>
-                <td class="auto-style4">
+                            </td>
+                             <td class="auto-style4">
                     <input type="button" id="btnCena" class="btn btn-Naranja" value="Cena" runat="server" />
-                </td>
-            </tr>
-        </table>
-        <table>
+                            </td>
+                        </tr>
+                    </table>
+                <table>
+                    <tr>
+                        <td>
+
+                            <asp:GridView ID="GridViewDetalles" Class="Gridcontenedor" runat="server" AllowPaging="true" AllowSorting="true" PageSize="20">
+                                <SelectedRowStyle BackColor="#7BC143"
+                                    ForeColor="Black"
+                            Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
+                            </asp:GridView>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+         <table>
             <tr>
                 <td>
-
-                    <asp:GridView ID="GridViewDetalles" Class="Gridcontenedor" runat="server" AllowPaging="true" AllowSorting="true" PageSize="20">
-                        <SelectedRowStyle BackColor="#7BC143"
-                            ForeColor="Black"
-                            Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
-                    </asp:GridView>
-
+                <input type="button" id="btnImprimir" value="Imprimir" runat="server" />
+                </td>
+                <td>
+                <input type="button" class="btn-danger" value="Cancelar" runat="server" />
                 </td>
             </tr>
         </table>
-    </div>
-    <table>
-        <tr>
-            <td>
-                <input type="button" id="btnImprimir" value="Imprimir" runat="server" />
-            </td>
-            <td>
-                <input type="button" class="btn-danger" value="Cancelar" runat="server" />
-            </td>
-        </tr>
-    </table>
 
 </asp:Content>
 

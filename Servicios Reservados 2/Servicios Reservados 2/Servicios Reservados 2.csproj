@@ -377,6 +377,7 @@
     <Compile Include="App_Data\ServirPlatos\ControladoraBDServirPlatos.cs" />
     <Compile Include="App_Data\ServirPlatos\ControladoraServirPlatos.cs" />
     <Compile Include="App_Data\AdaptadorBD.cs" />
+    <Compile Include="App_Data\Usuarios\EntidadUsuario.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="About.aspx.cs">
