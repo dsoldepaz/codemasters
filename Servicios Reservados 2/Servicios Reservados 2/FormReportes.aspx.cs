@@ -111,7 +111,7 @@ namespace Servicios_Reservados_2
             try
             {
 
-                Object[] datos = new Object[7];
+              /*  Object[] datos = new Object[7];
                 DataTable paquete = controladora.solicitarPaquete(controladora.idSelected());// se consultan todos
                 DataTable servicios = controladora.solicitarServicios(controladora.idSelected());// se consultan todos
                 DataTable comidaCampo = controladora.solicitarComidaCampo(controladora.idSelected());// se consultan todos   
@@ -155,7 +155,7 @@ namespace Servicios_Reservados_2
                         i++;
                     }
                 }
-
+                
                 //agrega los servicios de comida de campo
 
                 if (comidaCampo.Rows.Count > 0)
@@ -200,12 +200,12 @@ namespace Servicios_Reservados_2
                 }
 
                 GridViewReportes.AllowSorting = false;
-                GridViewReportes.DataBind();
+                GridViewReportes.DataBind();*/
 
             }
             catch (Exception e)
             {
-                Debug.WriteLine("No se pudo cargar las reservaciones");
+                //Debug.WriteLine("No se pudo cargar las reservaciones");
             }
         }*/
 
