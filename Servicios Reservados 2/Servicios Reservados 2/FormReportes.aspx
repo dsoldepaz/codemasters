@@ -1,4 +1,4 @@
-﻿<%@ Page Title="ReportesFinanciero" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormReportes.aspx.cs" Inherits="Servicios_Reservados_2.FormReportes" %>
+﻿<%@ Page Title="Reportes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormReportes.aspx.cs" Inherits="Servicios_Reservados_2.FormReportes" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -31,7 +31,7 @@
                             </td>
                              <td class="auto-style6">Número Reservación:</td>
                             <td class="auto-style7">
-                                <input style="width: 150px" id="txtReservacion" runat="server"></input>
+                                <input style="width: 150px" id="txtReservacion" runat="server">
                             </td>
                         </tr>
                     </table>
@@ -50,13 +50,13 @@
 
                            <td id="textFechaInicio" runat="server">Fecha Inicio</td>
                             <td id="textFechaInicioInput" runat="server">
-                                 <input style="width: 150px" type="date" id="FechaInicial" name="fechas" runat="server">
+                                 <input style="width: 150px" type="date" id="FechaInicial" name="fechaInit" runat="server">
                            </td>
 
                           
                            <td id="textFechaFinal" runat="server">Fecha Final</td>
                             <td id="textFechaFinalInput" runat="server">
-                               <input style="width: 150px" type="date" id="FechaFinal" name="fechas" runat="server">
+                               <input style="width: 150px" type="date" id="FechaFinal" name="fechaFin" runat="server">
                            </td>
 
                             <td>
