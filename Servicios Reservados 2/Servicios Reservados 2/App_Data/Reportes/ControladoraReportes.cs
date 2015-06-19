@@ -14,5 +14,11 @@ namespace Servicios_Reservados_2
         {
             return controladoraBD.cargarEstaciones();
         }
+
+
+        internal DataTable obtenerComidaPax(String estacion, String anfitriona, String fecha)
+        {
+           return controladoraBD.obtenerComidaPax(estacion, anfitriona, fecha);
+        }
     }
 }

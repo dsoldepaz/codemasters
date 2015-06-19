@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Diagnostics;
 
 namespace Servicios_Reservados_2
 {
@@ -14,10 +15,10 @@ namespace Servicios_Reservados_2
         private static ControladoraReportes controladora = new ControladoraReportes();
         private String estacion;
         private String anfitriona;
-        private String fecha;
+        private String fechaSeleccionda;
         private String fechaInicio;
         private String fechaFinal;
-        
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -55,17 +56,15 @@ namespace Servicios_Reservados_2
             }
 
             cbxAnfitriona.Items.Clear();
-            cbxAnfitriona.Items.Add("Seleccionar");
             cbxAnfitriona.Items.Add("OET");
             cbxAnfitriona.Items.Add("ESINTRO");
-            /*
+            
             cbxFecha.Items.Clear();
-            cbxFecha.Items.Add("Seleccionar");
             cbxFecha.Items.Add("Hoy");
             cbxFecha.Items.Add("Semana");
             cbxFecha.Items.Add("Mes");
             cbxFecha.Items.Add("Personalizado");
-             * */
+             
         }
 
         /*
@@ -96,127 +95,58 @@ namespace Servicios_Reservados_2
         {
             anfitriona = cbxAnfitriona.Value;
             estacion = cbxEstacion.Value;
-            fechaInicio = FechaInicial.Value;
-            fechaFinal = FechaFinal.Value;
+            fechaSeleccionda = cbxFecha.Value;
+            if (fechaSeleccionda.Equals("Hoy"))
+            {
+                fechaInicio = DateTime.Today.ToString("mm/dd/yyyy");
+            }
         }
-
+        
 
         /*Efecto: Crea la tabla de servicios
          * Requiere: NA
          * Modifica: la tabla servicios, si la reservacion tiene servicios asociados
          * */
         void llenarGridReportes()
-        {
-            DataTable tabla = crearTablaServicios();
-            try
-            {
+          {
+              DataTable tabla = crearTablaServicios();
+              try
+              {
 
-                Object[] datos = new Object[7];
-                DataTable paquete = controladora.solicitarPaquete(controladora.idSelected());// se consultan todos
-                DataTable servicios = controladora.solicitarServicios(controladora.idSelected());// se consultan todos
-                DataTable comidaCampo = controladora.solicitarComidaCampo(controladora.idSelected());// se consultan todos   
-
-                ids = new String[paquete.Rows.Count + servicios.Rows.Count + comidaCampo.Rows.Count + 1]; //crear el vector para ids en el grid
-                idServ = new String[paquete.Rows.Count + servicios.Rows.Count + servicios.Rows.Count + comidaCampo.Rows.Count + 1];
-
-                //agrega los servicios incluidos en el paquete
-                if (paquete.Rows.Count > 0)
-                {
-                    foreach (DataRow fila in paquete.Rows)
-                    {
-                        ids[i] = controladora.idSelected();// guardar el id para su posterior consulta
-                        idServ[i] = fila[0].ToString();
-                        datos[0] = "Paquete";
-                        datos[1] = fila[1].ToString();
-                        datos[2] = "Alimentación incluída en el paquete de reservación";
-                        datos[3] = "-";
-                        datos[4] = "-";
-                        datos[5] = "No disponible";
-                        datos[6] = fila[2].ToString();
-                        tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
-                        i++;
-                    }
-                }
-                //agrega los servicios de comida extra
-                if (servicios.Rows.Count > 0)
-                {
-                    foreach (DataRow fila in servicios.Rows)
-                    {
-                        ids[i] = fila[0].ToString();// guardar el id para su posterior consulta
-                        idServ[i] = fila[8].ToString();
-                        datos[0] = "Comida Extra";
-                        datos[1] = fila[2].ToString();//obtener los datos a mostrar
-                        datos[2] = fila[3].ToString();
-                        datos[3] = fila[4].ToString();
-                        datos[4] = fila[5].ToString();//DateTime.Parse(fila[5].ToString());
-                        datos[5] = fila[6].ToString();
-                        datos[6] = fila[7].ToString();
-                        tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
-                        i++;
-                    }
-                }
-
-                //agrega los servicios de comida de campo
-
-                if (comidaCampo.Rows.Count > 0)
-                {
-
-
-                    foreach (DataRow fila in comidaCampo.Rows)
-                    {
-
-                        idServ[i] = fila[0].ToString();
-                        ids[i] = fila[1].ToString();
-                        // datos[0] = "Comida Campo";
-                        if (int.Parse(fila[4].ToString()) == 1)
-                        {
-                            datos[0] = "Incluido en Paquete";
-                            datos[1] = "Desayuno";
-
-                        }
-                        if (int.Parse(fila[4].ToString()) == 2)
-                        {
-                            datos[0] = "Incluido en Paquete";
-                            datos[1] = "Almuerzo";
-                        }
-                        if (int.Parse(fila[4].ToString()) == 3)
-                        {
-                            datos[0] = "Incluido en Paquete";
-                            datos[1] = "Cena";
-                        }
-                        if (int.Parse(fila[4].ToString()) == 5)
-                        {
-                            datos[0] = "Comida Campo";
-                            datos[1] = "Gallo Pinto";
-                        }
-                        datos[2] = fila[5].ToString();
-                        datos[3] = fila[9].ToString();
-                        datos[4] = fila[2].ToString();//DateTime.Parse(fila[5].ToString());
-                        datos[5] = fila[3].ToString();
-                        datos[6] = fila[8].ToString();
-                        tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
-                        i++;
-                    }
-                }
-
-                GridViewReportes.AllowSorting = false;
-                GridViewReportes.DataBind();
-
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("No se pudo cargar las reservaciones");
-            }
-        }
-
-  
-
-
+                  Object[] datos = new Object[13];
+                  DataTable pax = controladora.obtenerComidaPax(estacion, anfitriona, fechaInicio);// se consultan todos
+                  int i=0;
+                  if (pax.Rows.Count > 0)
+                  {
+                      foreach (DataRow fila in pax.Rows)
+                      {
+                          datos[0] = fechaInicio;
+                          datos[1] = fila[0].ToString();
+                          datos[2] = "-";
+                          datos[3] = "-";
+                          datos[4] = "-";
+                          datos[5] = "-";
+                          datos[6] = "-";
+                          datos[7] = "-";
+                          datos[8] = "-";
+                          datos[9] = "-";
+                          datos[10] = "-";
+                          datos[11] = "-";                     
+                          datos[12] = "-";
+                          tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
+                          i++;
+                      }
+                  }
                 
+                  GridViewReportes.AllowSorting = false;
+                  GridViewReportes.DataBind();
 
-
-      
-
+              }
+              catch (Exception e)
+              {
+                  Debug.WriteLine("No se pudo cargar las reservaciones");
+              }
+          }
 
 
 
@@ -227,30 +157,11 @@ namespace Servicios_Reservados_2
         */
         protected void mostrarFechas(object sender, EventArgs e)
         {
-            String s = cbxFecha.Text;
-            s = DateTime.Today.ToString("MM/dd/yyyy");
-            int indice = cbxFecha.SelectedIndex;
-            switch (indice)
-            {
-                case (1):
-                    FechaInicial.Value = DateTime.Today.ToString("MM/dd/yyyy");
-                    FechaFinal.Value = DateTime.Today.ToString("MM/dd/yyyy");
-                    break;
-                case(2):
-                    FechaInicial.Value = DateTime.Today.ToString("MM/dd/yyyy");
-                    FechaFinal.Value = DateTime.Today.AddDays(7).ToString("MM/dd/yyyy");
-                    break;
-                case(3):
-                    FechaInicial.Value = DateTime.Today.ToString("YYYY-MM-DD");
-                    FechaFinal.Value = DateTime.Today.AddMonths(7).ToString("MM/dd/yyyy");
-                    break;
-            }
-            FechaFinal.Disabled = true;
-            FechaInicial.Disabled = true;
+      
             txtReservacion.Value = "cosa";
 
         }
-                       
+
 
 
 
@@ -335,6 +246,7 @@ namespace Servicios_Reservados_2
             GridViewReportes.AllowSorting = false;
             GridViewReportes.DataBind();
 
+           
             return tabla;
         }
 

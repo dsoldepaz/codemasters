@@ -178,9 +178,9 @@
     <Content Include="FormComidasEmpleado.aspx" />
     <Content Include="FormEmpleadoReserva.aspx" />
     <Content Include="FormReporteCocina.aspx" />
+    <Content Include="FormReportes.aspx" />
     <Content Include="FormUsuario.aspx" />
     <Content Include="FormRegistro.aspx" />
-    <Content Include="FormReportes.aspx" />
     <Content Include="FormServirPlatos.aspx" />
     <Content Include="FormTiquete.aspx" />
     <Content Include="Images\editar.png" />
@@ -468,6 +468,13 @@
     <Compile Include="FormReporteCocina.aspx.designer.cs">
       <DependentUpon>FormReporteCocina.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FormReportes.aspx.cs">
+      <DependentUpon>FormReportes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormReportes.aspx.designer.cs">
+      <DependentUpon>FormReportes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FormUsuario.aspx.cs">
       <DependentUpon>FormUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -481,13 +488,6 @@
     </Compile>
     <Compile Include="FormRegistro.aspx.designer.cs">
       <DependentUpon>FormRegistro.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="FormReportes.aspx.cs">
-      <DependentUpon>FormReportes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FormReportes.aspx.designer.cs">
-      <DependentUpon>FormReportes.aspx</DependentUpon>
     </Compile>
     <Compile Include="FormServirPlatos.aspx.cs">
       <DependentUpon>FormServirPlatos.aspx</DependentUpon>
