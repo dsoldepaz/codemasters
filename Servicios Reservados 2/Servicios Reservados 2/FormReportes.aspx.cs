@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
+using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -139,7 +139,7 @@ namespace Servicios_Reservados_2
                 }
 
                 GridViewReportes.AllowSorting = false;
-                GridViewReportes.DataBind();*/
+                GridViewReportes.DataBind();
 
             }
             catch (Exception e)

@@ -183,9 +183,9 @@ namespace Servicios_Reservados_2
         {
             DataTable tabla = crearTablaTotal();
             String sigla="";
-            int desayunos;
-            int almuerzos;
-            int cena;
+            int desayunos=0;
+            int almuerzos=0;
+            int cena=0;
             if (estacion == "Las Cruces")
             {
                 sigla = "LC";
@@ -204,7 +204,15 @@ namespace Servicios_Reservados_2
 
                 Object[] datos = new Object[2];
                 DataTable turnosDiaTres = controladora.solicitarTurnoDiaTresComidas(sigla);
-                desayunos = (turnosDiaTres.Rows[0].Field<int>(0)) * (turnosDiaTres.Rows[0].Field<int>(1));
+
+                if (turnosDiaTres.Rows.Count > 0)
+                {
+                    foreach (DataRow fila in turnosDiaTres.Rows)
+                    {
+                        desayunos = int.Parse(fila[0].ToString())*int.Parse(fila[1].ToString());
+                    }
+                }
+                           
                 Debug.WriteLine("consulta turnos dias 3 exitosa");
                 almuerzos = desayunos;
                 cena = desayunos;
