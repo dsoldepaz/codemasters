@@ -24,7 +24,7 @@
                             </td>
                             <td class="auto-style6">Anfitriona:</td>
                             <td class="auto-style7">
-                                <select style="width: 150px" id="cbxAnfitriona" runat="server"></select>
+                                <asp:DropDownList ID="listAnfitriona" runat="server"></asp:DropDownList>
                             </td>
                              <td class="auto-style6">Número Reservación:</td>
                             <td class="auto-style7">

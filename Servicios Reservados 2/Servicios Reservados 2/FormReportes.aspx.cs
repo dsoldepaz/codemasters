@@ -27,6 +27,7 @@ namespace Servicios_Reservados_2
             string userid = (string)Session["username"];
             if (!IsPostBack)
             {
+            
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
@@ -34,8 +35,9 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
+                cargarDatos();
             }
-            cargarDatos();
+          
         }
 
         /*
@@ -55,9 +57,9 @@ namespace Servicios_Reservados_2
                 cargarEstaciones();
             }
 
-            cbxAnfitriona.Items.Clear();
-            cbxAnfitriona.Items.Add("OET");
-            cbxAnfitriona.Items.Add("ESINTRO");
+            listAnfitriona.Items.Clear();
+            listAnfitriona.Items.Add("OET");
+            listAnfitriona.Items.Add("ESINTRO");
             
             cbxFecha.Items.Clear();
             cbxFecha.Items.Add("Hoy");
@@ -93,12 +95,12 @@ namespace Servicios_Reservados_2
         */
         protected void obtenerFiltros()
         {
-            anfitriona = cbxAnfitriona.Value;
+            anfitriona = listAnfitriona.SelectedValue;
             estacion = cbxEstacion.Value;
             fechaSeleccionda = cbxFecha.Value;
             if (fechaSeleccionda.Equals("Hoy"))
             {
-                fechaInicio = DateTime.Today.ToString("mm/dd/yyyy");
+                fechaInicio = DateTime.Today.ToString("MM/dd/yyyy");
         }
         }
 
@@ -123,8 +125,8 @@ namespace Servicios_Reservados_2
                           datos[0] = fechaInicio;
                           datos[1] = fila[0].ToString();
                           datos[2] = "-";
-                        datos[3] = "-";
-                        datos[4] = "-";
+                          datos[3] = "-";
+                          datos[4] = "-";
                           datos[5] = "-";
                           datos[6] = "-";
                           datos[7] = "-";
