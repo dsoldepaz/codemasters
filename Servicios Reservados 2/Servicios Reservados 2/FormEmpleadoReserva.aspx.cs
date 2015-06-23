@@ -344,6 +344,19 @@ namespace Servicios_Reservados_2
             GridComidasReservadas.DataBind();
 
         }
+        /*
+         * 
+         * 
+         * 
+         */
+        private void obtenerNotificaciones(){
+            int numNotificaciones = controladora.getNotificaciones();
+            contador.InnerText = numNotificaciones+"";
+            if (numNotificaciones > 0)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('tiene " + numNotificaciones + " notificaciones nuevas');", true);
+            }
+        }
 
     }
 }
