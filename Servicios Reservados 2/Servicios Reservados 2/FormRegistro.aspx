@@ -51,7 +51,10 @@
                             <asp:DropDownList ID="estado" runat="server"></asp:DropDownList>
                         </td>
                     </tr>
-
+                     <tr>
+                        <td>
+                            <input id="btnEditar" type="button" value="Editar" runat="server" onserverclick="clickModificar" />
+                        </td>
                 </table>
             </div>
 

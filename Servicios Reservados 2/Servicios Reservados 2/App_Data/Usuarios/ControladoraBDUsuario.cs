@@ -101,8 +101,8 @@ namespace Servicios_Reservados_2
         internal string[] modificarUsuario(EntidadUsuario entidad)
         {
             String[] respuesta = new String[3];
-            String consultaSQL = "update usuario set nombre='" + entidad.Nombre + "', correo='" + entidad.Correo + "', estado='" + entidad.Estado +
-                "', estacion='" + entidad.Estacion + "' where username='" + entidad.Username + "'";
+            String consultaSQL = "update usuario set nombre='" + entidad.Nombre + "', email='" + entidad.Correo + "', activo=" + entidad.Estado +
+                ", estacion='" + entidad.Estacion + "' where username='" + entidad.Username + "'";
             respuesta = adaptador.insertar(consultaSQL);
             return respuesta;
         }
