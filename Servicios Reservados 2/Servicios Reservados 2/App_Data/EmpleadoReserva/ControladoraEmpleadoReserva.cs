@@ -24,7 +24,7 @@ namespace Servicios_Reservados_2
             controladoraEmpleado = new ControladoraEmpleado();
             controladoraComidaEmpleado = new ControladoraComidaEmpleado();
             controladoraComidaCampo = new ControladoraComidaCampo();
-            controladoraNotificaciones = new ControladoraDeNotificaciones();
+            //controladoraNotificaciones = new ControladoraDeNotificaciones();
         }
         /*
          * Requiere: Una hilera con el identificador del empleado

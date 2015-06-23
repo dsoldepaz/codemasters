@@ -44,8 +44,14 @@ namespace Servicios_Reservados_2
             set { notas = value; }
             get { return notas; }
         }
+        private String estacion;
+        internal String Estacion
+        {
+            set { estacion = value; }
+            get { return estacion; }
+        }
 
-        public EntidadComidaEmpleado(String idEmpleado, List<DateTime> fechasReserva, char[] turnos, bool pagado, String notas, int id = -1)
+        public EntidadComidaEmpleado(String idEmpleado, String estacion, List<DateTime> fechasReserva, char[] turnos, bool pagado, String notas, int id = -1)
         {
             this.idComida = id;
             this.idEmpleado = idEmpleado;
@@ -60,6 +66,7 @@ namespace Servicios_Reservados_2
             this.turnos[2] = turnos[2];
             this.pagado = pagado;
             this.notas = notas;
+            this.estacion = estacion;
         }
 
     }

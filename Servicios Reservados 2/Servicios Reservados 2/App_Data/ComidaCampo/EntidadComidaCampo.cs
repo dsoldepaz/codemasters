@@ -21,6 +21,7 @@ namespace Servicios_Reservados_2
         private String tipoPago;
         private int pax;
         private String hora;
+        private String estacion;
         private List<String> adicionales;
 
         public EntidadComidaCampo(Object[] datos, List<String>lista)
@@ -37,6 +38,7 @@ namespace Servicios_Reservados_2
             this.tipoPago = datos[9].ToString();
             this.pax = int.Parse(datos[10].ToString());
             this.hora = datos[11].ToString();
+            this.estacion = datos[12].ToString();
             adicionales = lista;
         }
 
@@ -103,6 +105,11 @@ namespace Servicios_Reservados_2
         {
             get { return hora; }
             set { Hora = value; }
+        }
+        public String Estacion
+        {
+            get { return estacion; }
+            set { estacion = value; }
         }
         public List<String> Adicionales 
         {
