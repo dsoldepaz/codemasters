@@ -66,7 +66,7 @@ namespace Servicios_Reservados_2
             cbxFecha.Items.Add("Semana");
             cbxFecha.Items.Add("Mes");
             cbxFecha.Items.Add("Personalizado");
-             
+
         }
 
         /*
@@ -159,9 +159,24 @@ namespace Servicios_Reservados_2
         */
         protected void mostrarFechas(object sender, EventArgs e)
         {
-      
+            int indice = cbxFecha.SelectedIndex;
+            switch (indice)
+            {
+                case (1):
+                    dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+                    break;
+                case (2):
+                    dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+                    dateFechaFin.Value = DateTime.Today.AddDays(7).ToString("MM/dd/yyyy");
+                    break;
+                case (3):
+                    dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+                    dateFechaFin.Value = DateTime.Today.AddMonths(7).ToString("MM/dd/yyyy");
+                    break;
+            }
+            dateFechaFin.Disabled = true;
+            dateFechaInicio.Disabled = true;
             txtReservacion.Value = "cosa";
-
         }
                        
 
