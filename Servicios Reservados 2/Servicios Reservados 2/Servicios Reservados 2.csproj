@@ -440,6 +440,8 @@
     <Compile Include="App_Data\Reportes\ControladoraBDReportes.cs" />
     <Compile Include="App_Data\ReporteCocina\ControladoraBDReporteCocina.cs" />
     <Compile Include="App_Data\ReporteCocina\ControladoraReporteCocina.cs" />
+    <Compile Include="App_Data\Notificaciones\ControladoraDeNotificaciones.cs" />
+    <Compile Include="App_Data\Notificaciones\ControladoraDeBDDeNotificaciones.cs" />
     <Compile Include="ErrorPermiso.aspx.cs">
       <DependentUpon>ErrorPermiso.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

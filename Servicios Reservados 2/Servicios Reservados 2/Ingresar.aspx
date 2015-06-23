@@ -33,5 +33,10 @@
              
         </form>
     </section>
+    <script type="text/javascript">
+        function alertMe(x) {
+            alert('Ústed tiene '+x+' notificaciones nuevas');
+        }
+    </script>
 </body>
 </html>

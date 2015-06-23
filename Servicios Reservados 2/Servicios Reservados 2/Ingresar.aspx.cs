@@ -14,10 +14,12 @@ namespace Servicios_Reservados_2
         LoginService login= new LoginService();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
+            
         }
         protected void btnIniciar_Click(object sender, EventArgs e)
     {
+
         //se declara la variable usuario de tipo string y se le indica que reemplaze los carácteres que sean:
         // ; y -- para evitar sql inyection lo mismo para contraseña.
         string usuario = this.txtUsuario.Text.Replace(";","").Replace("--","");

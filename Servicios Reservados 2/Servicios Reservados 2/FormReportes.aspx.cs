@@ -139,10 +139,10 @@ namespace Servicios_Reservados_2
                 }
 
                 GridViewReportes.AllowSorting = false;
-                GridViewReportes.DataBind();*/
+                GridViewReportes.DataBind();
 
             }
-            catch (Exception e)
+            //catch (Exception e)
             {
                 //Debug.WriteLine("No se pudo cargar las reservaciones");
             }

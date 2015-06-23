@@ -11,6 +11,7 @@ namespace Servicios_Reservados_2
         private ControladoraEmpleado controladoraEmpleado;
         private ControladoraComidaEmpleado controladoraComidaEmpleado;
         private ControladoraComidaCampo controladoraComidaCampo;
+        private ControladoraDeNotificaciones controladoraNotificaciones;
         private static EntidadServicios seleccionado;
         private static EntidadComidaCampo comidaSeleccionada;
         /*
@@ -23,6 +24,7 @@ namespace Servicios_Reservados_2
             controladoraEmpleado = new ControladoraEmpleado();
             controladoraComidaEmpleado = new ControladoraComidaEmpleado();
             controladoraComidaCampo = new ControladoraComidaCampo();
+            controladoraNotificaciones = new ControladoraDeNotificaciones();
         }
         /*
          * Requiere: Una hilera con el identificador del empleado
@@ -125,6 +127,12 @@ namespace Servicios_Reservados_2
             resultado =controladoraComidaEmpleado.eliminar(cancelar);
            
             return resultado;
+        }
+
+        internal int getNotificaciones()
+        {
+            return controladoraNotificaciones.getNumeroDeNotificaciones();
+
         }
     }
 }
