@@ -162,6 +162,8 @@ namespace Servicios_Reservados_2
         }
         protected void clickDesactivar(object sender, EventArgs e)
         {
+            int indice = obtenerIndex(sender, e) + (GridUsuarios.PageIndex * 20);//se obtiene la cedula a consultar
+
         }
 
     }
