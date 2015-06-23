@@ -165,7 +165,6 @@ namespace Servicios_Reservados_2
         {
             controladora.desactivarUsuario(ids[indice]);
             Response.Redirect("FormUsuario");
-
         }
 
         protected void seleccionarDesactivar(object sender, EventArgs e)
