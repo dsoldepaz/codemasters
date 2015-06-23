@@ -114,5 +114,13 @@ namespace Servicios_Reservados_2
             respuesta = adaptador.insertar(consultaSQL);
             return respuesta;          
         }
+
+        internal string[] desactivarUsuario(string username)
+        {
+            String[] respuesta = new String[3];
+            String consultaSQL = "update usuario set activo =" + 0 + " where username='" + username + "'";
+            respuesta = adaptador.insertar(consultaSQL);
+            return respuesta; 
+        }
     }
 }
