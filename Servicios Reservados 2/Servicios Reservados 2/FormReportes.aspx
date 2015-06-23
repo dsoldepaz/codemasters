@@ -39,13 +39,9 @@
                     <select id="cbxFecha" runat="server"></select>
                             </td>
                 <td>Fecha Inicio</td>
-                <td>
-                    <input type="date" id ="fechaInicio" runat="server" name="fechaIn">
-                           </td>
+                <td><input id="dateFechaInicio" type="date" runat="server" /></td>
                 <td>Fecha Final</td>
-                <td>
-                <input type="date" id="fechaFinal" name="fechaFin" runat="server">
-                           </td>
+                <td><input id="dateFechaFin" type="date" runat="server" /></td>
                             <td>
                                 <asp:Button Text="Generar Reporte" class="btn btn-success" ID="BotonGenerar" runat="server" OnClick="BotonGenerar_Click" />
                             </td>
