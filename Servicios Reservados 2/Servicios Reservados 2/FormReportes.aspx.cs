@@ -107,7 +107,7 @@ namespace Servicios_Reservados_2
          * Requiere: NA
          * Modifica: la tabla servicios, si la reservacion tiene servicios asociados
          * */
-        /*void llenarGridReportes()
+        void llenarGridReportes()
         {
             DataTable tabla = crearTablaServicios();
             try
@@ -142,11 +142,11 @@ namespace Servicios_Reservados_2
                 GridViewReportes.DataBind();
 
             }
-            //catch (Exception e)
+            catch (Exception e)
             {
                 //Debug.WriteLine("No se pudo cargar las reservaciones");
             }
-        }*/
+        }
 
   
 
@@ -253,7 +253,7 @@ namespace Servicios_Reservados_2
         protected void BotonGenerar_Click(object sender, EventArgs e)
         {
             obtenerFiltros();
-            //llenarGridReportes();
+            llenarGridReportes();
         }
 
 

@@ -21,7 +21,7 @@ namespace Servicios_Reservados_2
         internal DataTable obtenerComidaPax(String estacion, String anfitriona, String fecha)
         {
             DataTable comidaCampo;
-            String consultaSQL = "select SUM(campo.pax) from reservas.vr_reservacion vista JOIN reservas.reservacion reserva ON vista.numero = reserva.numero JOIN comida_campo campo ON reserva.id = campo.idreservacion WHERE opcion = 1 and vista.estacion = '" + estacion + "' and vista.idanfitriona = 1 and to_date(campo.fecha, 'mm/dd/yyyy') = '"+ fecha+ "' ";
+            String consultaSQL = "select SUM(campo.pax) from reservas.vr_reservacion vista JOIN reservas.reservacion reserva ON vista.numero = reserva.numero JOIN comida_campo campo ON reserva.id = campo.idreservacion WHERE opcion = 1 and vista.estacion = '" + estacion + "' and vista.idanfitriona = 1 and to_date(campo.fecha, 'mm/dd/yyyy') = '" + fecha + "' ";
             comidaCampo = adaptador.consultar(consultaSQL);
             return comidaCampo;
 
