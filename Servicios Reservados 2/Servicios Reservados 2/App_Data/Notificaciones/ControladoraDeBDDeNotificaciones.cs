@@ -6,10 +6,10 @@ using System.Web;
 
 namespace Servicios_Reservados_2
 {
-    public class ControladoraDeBDDeNotificaciones
+    public class ControladoraBDNotificaciones
     {
         private AdaptadorBD adaptador;
-        public ControladoraDeBDDeNotificaciones()
+        public ControladoraBDNotificaciones()
         {
             adaptador = new AdaptadorBD();
         }

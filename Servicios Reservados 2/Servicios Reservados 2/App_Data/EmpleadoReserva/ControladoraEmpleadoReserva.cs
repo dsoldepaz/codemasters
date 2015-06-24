@@ -11,7 +11,7 @@ namespace Servicios_Reservados_2
         private ControladoraEmpleado controladoraEmpleado;
         private ControladoraComidaEmpleado controladoraComidaEmpleado;
         private ControladoraComidaCampo controladoraComidaCampo;
-        private ControladoraDeNotificaciones controladoraNotificaciones;
+        private ControladoraNotificaciones controladoraNotificaciones;
         private static EntidadServicios seleccionado;
         private static EntidadComidaCampo comidaSeleccionada;
         /*

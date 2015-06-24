@@ -60,7 +60,7 @@
                         <a href="FormRegistro.aspx">Mi perfil</a>
                     </h4>
                     <h4>
-                        <a href="FormNotificaciones.aspx">Notificaciones</a>
+                        <a href="Notificaciones.aspx">Notificaciones</a>
                     </h4>
                     <h4 id="Usuario" runat="server">
                         <a href="FormUsuario.aspx">Administración de usuarios</a>
