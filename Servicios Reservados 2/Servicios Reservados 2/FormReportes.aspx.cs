@@ -47,6 +47,7 @@ namespace Servicios_Reservados_2
         */
         void cargarDatos()
         {
+            //se rellena el cbxEstación
             if (estacion == "todas")
             {
                 cbxEstacion.Items.Clear();
@@ -57,20 +58,25 @@ namespace Servicios_Reservados_2
                 cargarEstaciones();
             }
 
+            //se rellena el cbxAnfitriona
             listAnfitriona.Items.Clear();
             listAnfitriona.Items.Add("OET");
             listAnfitriona.Items.Add("ESINTRO");
 
+            //se rellena el cbxFecha
             cbxFecha.Items.Clear();
             cbxFecha.Items.Add("Hoy");
             cbxFecha.Items.Add("Semana");
             cbxFecha.Items.Add("Mes");
             cbxFecha.Items.Add("Personalizado");
 
-            //para que siempre esten desactivados 
+            //para que siempre esten desactivados los calendarios
             dateFechaFin.Disabled = true;
             dateFechaInicio.Disabled = true;
 
+            //para que los calendarios se activen con la fecha del día
+            dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+            dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today); 
         }
 
         /*
