@@ -19,8 +19,7 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("~/Ingresar.aspx");
                 }                
-            }            
-        
+            }         
        }
 
         protected void clickReestablecer(object sender, EventArgs e)
@@ -31,7 +30,7 @@ namespace Servicios_Reservados_2
             {
                 mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
             }
-           
+            Response.Redirect("Default");
         }
         protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
         {

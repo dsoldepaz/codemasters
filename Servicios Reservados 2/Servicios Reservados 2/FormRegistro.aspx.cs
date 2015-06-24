@@ -294,7 +294,7 @@ namespace Servicios_Reservados_2
         }
         protected void clickReestablecer(object sender, EventArgs e)
         {
-
+            controladora.reestablecerContrasena(entidadSeleccionada.Username, entidadSeleccionada.Username);
         }
 
         /*
