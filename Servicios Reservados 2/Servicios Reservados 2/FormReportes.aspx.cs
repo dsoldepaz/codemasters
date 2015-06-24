@@ -73,6 +73,8 @@ namespace Servicios_Reservados_2
             //para que siempre esten desactivados 
             dateFechaFin.Disabled = true;
             dateFechaInicio.Disabled = true;
+            dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+            dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
 
         }
 
@@ -113,7 +115,7 @@ namespace Servicios_Reservados_2
             estacion = cbxEstacion.Value;
             DateTime fechTemp = DateTime.Parse(dateFechaInicio.Value);
             Debug.WriteLine("FECHA: " + dateFechaInicio.Value);
-            fechaSeleccionda = cbxFecha.Value;
+            fechaSeleccionda = cbxFecha.Text;
             fechaInicio = fechTemp.ToString("MM/dd/yyyy");
             fechTemp = DateTime.Parse(dateFechaFin.Value);
             fechaFinal = fechTemp.ToString("MM/dd/yyyy");
@@ -211,7 +213,6 @@ namespace Servicios_Reservados_2
                     dateFechaInicio.Disabled = false;
                     break;
             }
-            txtReservacion.Value = "cosa";
         }
                        
 
