@@ -31,22 +31,22 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlSelect cbxFecha;
         
         /// <summary>
-        /// Control FechaInicial.
+        /// Control txtFechaInicial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl FechaInicial;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtFechaInicial;
         
         /// <summary>
-        /// Control FechaFinal.
+        /// Control txtFechaFinal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl FechaFinal;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtFechaFinal;
         
         /// <summary>
         /// Control BotonGenerar.

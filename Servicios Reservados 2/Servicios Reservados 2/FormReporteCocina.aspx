@@ -40,7 +40,7 @@
 
                            <td>Fecha Inicio</td>
                             <td>
-                                  <input style="width: 150px" type="date" id="FechaInicial" name="fechas" runat="server">
+                                  <input style="width: 150px" type="date" id="txtFechaInicial" name="fechas" runat="server">
                                 
                             
                            </td>
@@ -48,7 +48,7 @@
                           
                            <td>Fecha Final</td>
                             <td>
-                               <input style="width: 150px" type="date" id="FechaFinal" name="fechas" runat="server">
+                               <input style="width: 150px" type="date" id="txtFechaFinal" name="fechas" runat="server">
                            </td>
 
                             <td>
