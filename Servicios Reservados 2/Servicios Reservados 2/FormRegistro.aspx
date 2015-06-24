@@ -24,7 +24,7 @@
                     <tr>
                         <td style="width: 10%;">Username:</td>
                         <td>
-                            <input class="textbox" style="width: 500px" id="username" runat="server" />
+                            <input class="textbox" style="width: 500px" id="username" runat="server" required="required" title="Debe tener de 4 a 15 caracteres, solo letras sín tilde o números" pattern="^[a-zA-Z0-9]{4,15}$" />
                         </td>
                     </tr>
                     <tr>
@@ -36,13 +36,13 @@
                     <tr>
                         <td style="width: 10%;">Nombre:</td>
                         <td>
-                            <input class="textbox" style="width: 500px" id="nombre" runat="server" />
+                            <input class="textbox" style="width: 500px" id="nombre" runat="server" required="required" title="El nombre no debe estar vacío" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.-]+$" />
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 10%;">Correo electronico:</td>
                         <td>
-                            <input class="textbox" style="width: 500px" id="correo" runat="server" />
+                            <input class="textbox" style="width: 500px" id="correo" runat="server" required="required" title="Debe ser una dirección de correo válida ej: usuario@dominio.com" pattern="[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}"  />
                         </td>
                     </tr>
                     <tr>
@@ -92,7 +92,7 @@
             <table>
                 <tr>
                     <td>
-                        <input type="button" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" />
+                        <input type="submit" id="btnAceptar" class="btn btn-success" value="Aceptar" runat="server" onserverclick="clickAceptar" />                        
                     </td>
                     <td>
                         <input type="button" class="btn-danger" value="Cancelar" runat="server" onserverclick="clickCancelar" />

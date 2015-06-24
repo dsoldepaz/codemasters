@@ -91,7 +91,6 @@
                         <td>
                             <input type="submit" class="btn btn-success" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" />
 
-
                         </td>
                         <td>
 
