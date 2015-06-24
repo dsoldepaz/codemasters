@@ -12,9 +12,9 @@
     <h2>Reestablecer contraseña</h2>
         <div class="well bs-component" >
             <legend style="color: #7BC143">Intruduzca una nueva contraseña</legend>
-            <p>Su nueva contraseña debe contener: al menos una letra mayúscula, al menos una letra minúscula, al menos un numero y al menos 8 caracteres. Ej: codeMasters9001</p>
+            <p>Debe tener de 8 a 20 caracteres, al menos una mayúscula, al menos una minúscula y al menos un número. Ej: codeMasters9001</p>
                     <h5>Nueva contraseña:</h5>
-                    <asp:TextBox ID="txtContraseña" TextMode="Password" runat="server"></asp:TextBox>     
+                    <asp:TextBox ID="txtContraseña" TextMode="Password" runat="server" required="required" title="Debe tener de 8 a 20 caracteres, al menos una mayúscula, al menos una minúscula y al menos un número" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})$" ></asp:TextBox> 
                     <asp:Button id="btnReestablecer" class="btn btn-success" runat="server" Text="Aceptar" OnClick="clickReestablecer"/> 
                     <asp:Label ID="lblMensaje" runat="server" ForeColor="#996600"></asp:Label>
              </div>
