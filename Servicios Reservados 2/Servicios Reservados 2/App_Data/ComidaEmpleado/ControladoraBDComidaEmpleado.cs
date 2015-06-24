@@ -31,7 +31,7 @@ namespace Servicios_Reservados_2
                     //Crea la sentencia en sql para insertar.
                     String insercion = " Insert into Reserva_EMPLEADO (idEmpleado,fecha, Pagado, notas, desayuno, almuerzo, cena, estacion)values (";
                     insercion += ("'" + nuevo.IdEmpleado + "',");
-                    insercion += ("TO_DATE('" + fecha.ToString() + "' ,'MM/DD/YYYY hh:mi:ss AM') ,");
+                    insercion += ("TO_DATE('" + fecha.ToString() + "' ,'MM/dd/yyyy hh:mi:ss AM') ,");
                     insercion += ("'" + ((nuevo.Pagado)?'T':'F') + "',");
                     insercion += ("'" + nuevo.Notas + "',");
                     insercion += turnos + ", '";
