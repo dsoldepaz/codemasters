@@ -135,11 +135,13 @@ namespace Servicios_Reservados_2
                   Object[] datos = new Object[13];
                   if (estacion != null && fechaInicio != null && fechaFinal != null)
                   {
-                      DataTable paxReserv = controladora.obtenerComidaPax(estacion, anfitriona, fechaInicio, fechaFinal);// se consultan desayunos de comida de campo dependiendo de fecha con estacion y anfitriona.
+                      int opcion = 1; //desayuno
+                      DataTable paxReserv = controladora.obtenerComidaPax(estacion, opcion, anfitriona, fechaInicio, fechaFinal);// se consultan desayunos de comida de campo dependiendo de fecha con estacion y anfitriona.
                       contar = paxReserv.Rows.Count;
 
                       if (anfitriona == 1)
                       {
+                         
                           DataTable paxEmp = controladora.obtenerComidaPaxEmp(estacion, fechaInicio, fechaFinal); //desayuno comida campo reserv
                           DataTable comidaEmp = controladora.obtenerComidaEmp(estacion, fechaInicio, fechaFinal); //desayuno comida campo de empleados
                           sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][0].ToString()) + int.Parse(paxEmp.Rows[0][0].ToString()) + int.Parse(comidaEmp.Rows[0][0].ToString());    //suma total desayuno  
