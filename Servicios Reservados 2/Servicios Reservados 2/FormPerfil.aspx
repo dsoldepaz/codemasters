@@ -26,13 +26,7 @@
                         <td>
                             <input class="textbox" style="width: 500px" id="username" runat="server" />
                         </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 10%;">Contraseña:</td>
-                        <td>
-                            <input type="button" id="reestablecer" value="Reestablecer" runat="server" onserverclick="clickReestablecer" />
-                        </td>
-                    </tr>
+                    </tr>                   
                     <tr>
                         <td style="width: 10%;">Nombre:</td>
                         <td>
@@ -45,17 +39,6 @@
                             <input class="textbox" style="width: 500px" id="correo" runat="server" />
                         </td>
                     </tr>
-                    <tr>
-                        <td style="width: 10%;">Estado:</td>
-                        <td>
-                            <asp:DropDownList ID="estado" runat="server"></asp:DropDownList>
-                        </td>
-                    </tr>
-                     <tr>
-                        <td>
-                            <input id="btnEditar" type="button" value="Editar" runat="server" onserverclick="clickEditar" />
-                        </td>
-                </table>
             </div>
 
             <div class="well bs-component">
@@ -92,9 +75,6 @@
                 <tr>
                     <td>
                         <input type="button" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" />
-                    </td>
-                    <td>
-                        <input type="button" class="btn-danger" value="Cancelar" runat="server" onserverclick="clickCancelar" />
                     </td>
                 </tr>
             </table>
