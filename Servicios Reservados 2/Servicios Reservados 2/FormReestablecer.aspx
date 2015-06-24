@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
      <div class="jumbotron">
         <div class="container">
-            <h1>Reestablecer contraseña</h1>
+            <h1>Reestablecer contraseña.</h1>
             <p>Redireccionando a la página principal...</p>
         </div>
     </div>
