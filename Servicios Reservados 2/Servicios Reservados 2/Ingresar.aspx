@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="Content/Ingresar.css" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>
-        Inicio de sesion-Reservados
+        Inicio de sesion
     </title>
 </head>
 <body>
@@ -19,6 +19,7 @@
     <section>
         <form id="form1" runat="server">
             <div class="well bs-component" >
+                 <legend style="color: #7BC143">Inicio de sesión</legend>
                     <h5>Usuario:</h5>
                     <asp:TextBox ID="txtUsuario" runat="server"></asp:TextBox>
                     <h5>Contraseña:</h5>           
@@ -33,10 +34,5 @@
              
         </form>
     </section>
-    <script type="text/javascript">
-        function alertMe(x) {
-            alert('Ústed tiene '+x+' notificaciones nuevas');
-        }
-    </script>
 </body>
 </html>

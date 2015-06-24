@@ -17,9 +17,14 @@ namespace Servicios_Reservados_2
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
-                }
-                Response.AddHeader("REFRESH", "3;URL=Default.aspx");
+                }                
             }            
+        
+       }
+
+        protected void clickReestablecer(object sender, EventArgs e)
+        {
+
         }
     }
 }
