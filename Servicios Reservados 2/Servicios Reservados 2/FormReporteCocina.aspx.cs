@@ -13,14 +13,19 @@ namespace Servicios_Reservados_2
     public partial class FormReporteCocina : System.Web.UI.Page
     {
         private static ControladoraReporteCocina controladora = new ControladoraReporteCocina();
-        private static String estacion; 
+        private static String estacion;
+        private String fechaInicio;
+        private String fechaFinal;
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
             string userid = (string)Session["username"];
             if (!IsPostBack)
             {
+                
                 estacion =  "Las Cruces";
+                fechaInicio = DateTime.Today.ToString("MM/dd/yyyy");
+                fechaFinal = DateTime.Today.ToString("MM/dd/yyyy");
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
@@ -207,7 +212,7 @@ namespace Servicios_Reservados_2
             {
 
                 Object[] datos = new Object[2];
-                DataTable turnosDiaTres = controladora.solicitarTurnoDiaTresComidas(sigla);
+                DataTable turnosDiaTres = controladora.solicitarTurnoDiaTresComidas(sigla,fechaInicio,fechaFinal);
 
                 if (turnosDiaTres.Rows.Count > 0)
                 {
@@ -217,10 +222,40 @@ namespace Servicios_Reservados_2
                     }
                 }
                            
-                Debug.WriteLine("consulta turnos dias 3 exitosa");
+                
                 almuerzos = desayunos;
                 cena = desayunos;
-                DataTable reservaEntrante = controladora.reservaEntrante(sigla);
+
+                DataTable turnosDiaDos = controladora.solicitarTurnoDiaDosComidas(sigla, fechaInicio, fechaFinal);
+                if (turnosDiaDos.Rows.Count > 0)
+                {
+                    foreach (DataRow fila in turnosDiaDos.Rows)
+                    {
+                        String turno;
+                        int cantidad;
+                        turno = fila[0].ToString();
+                        cantidad = (int.Parse(fila[1].ToString())) * (int.Parse(fila[2].ToString()));
+                        if (turno == "ALMUERZO")
+                        {
+                            almuerzos += cantidad;
+                            cena += cantidad;
+                        }
+                        else if (turno == "CENA")
+                        {
+                            desayunos += cantidad;
+                            cena +=cantidad;
+                        }
+                        else
+                        {
+                            desayunos += cantidad;
+                            almuerzos += cantidad;
+                        }
+                        
+                    }
+                }
+
+
+                DataTable reservaEntrante = controladora.reservaEntrante(sigla, fechaInicio, fechaFinal);
             
                 if (reservaEntrante.Rows.Count > 0)
                 {
@@ -228,18 +263,63 @@ namespace Servicios_Reservados_2
                     foreach (DataRow fila in reservaEntrante.Rows)
                     {
                         String turno;
+                        String tipoC;
                         int cantidad;
                         turno = fila[0].ToString();
-                        cantidad = (int.Parse(fila[1].ToString())) * (int.Parse(fila[2].ToString()));
-                        if(turno == "ALMUERZO"){
+                        tipoC = fila[1].ToString();
+                        cantidad = (int.Parse(fila[2].ToString())) * (int.Parse(fila[3].ToString()));
+                        if(turno == "ALMUERZO" && tipoC=="3 Comidas ("+sigla+")"){
                             desayunos = desayunos - cantidad;  
                         }
                         else if(turno =="CENA"){
-                            desayunos = desayunos - cantidad;
-                            almuerzos = almuerzos - cantidad;
+                            if (tipoC == "3 Comidas (" + sigla + ")")
+                            {
+                                desayunos = desayunos - cantidad;
+                                almuerzos = almuerzos - cantidad;
+                            }
+                            else
+                            {
+                                desayunos = desayunos - cantidad;
+                            }
+                            
                         }
-                        Debug.WriteLine(turno + " " + cantidad);
+                       
                     
+                    }
+
+                }
+
+                DataTable comidasE = controladora.solicitarCE(estacion, fechaInicio, fechaFinal);
+
+                if (reservaEntrante.Rows.Count > 0)
+                {
+
+                    foreach (DataRow fila in comidasE.Rows)
+                    {
+                        String tipoC;
+                        int cantidad;
+                        tipoC = fila[0].ToString();
+                        cantidad = (int.Parse(fila[1].ToString())) * (int.Parse(fila[2].ToString()));
+                        if (tipoC == "Desayuno")
+                        {
+                            desayunos += cantidad;
+                        }
+                        else if (tipoC == "Almuerzo")
+                        {
+                            almuerzos += cantidad;
+
+                        }
+                        else if (tipoC == "Cena")
+                        {
+                            cena += cantidad;
+                        }
+                        else {
+                            datos[0] = tipoC;
+                            datos[1] = cantidad;
+                            tabla.Rows.Add(datos);
+                        }
+
+
                     }
 
                 }
@@ -276,6 +356,16 @@ namespace Servicios_Reservados_2
                 Debug.WriteLine("No se pudo cargar el total de comidas");
             }
 
+        }
+        protected void clickBuscar(object sender, EventArgs e)
+        {
+            DateTime mañana = DateTime.Now.AddDays(1);
+            if (cbxFecha.Value.ToString() == "Día siguiente")
+            {
+                fechaInicio = mañana.ToString("MM/dd/yyyy");
+                fechaFinal = mañana.ToString("MM/dd/yyyy");
+            }
+            llenarGridTotal();
         }
     }
 }
