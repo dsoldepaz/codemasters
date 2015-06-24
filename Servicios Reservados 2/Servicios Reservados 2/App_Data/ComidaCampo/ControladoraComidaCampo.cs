@@ -33,7 +33,7 @@ namespace Servicios_Reservados_2
             DataTable adicional = controladoraBD.seleccionarAdicional(idServ);
             adicionales = new List<String>();
 
-            Object[] nuevoComidaC = new Object[12];
+            Object[] nuevoComidaC = new Object[13];
 
             nuevoComidaC[0] = comidaCampo.Rows[0][0];
             nuevoComidaC[1] = comidaCampo.Rows[0][1];
@@ -47,6 +47,7 @@ namespace Servicios_Reservados_2
             nuevoComidaC[9] = comidaCampo.Rows[0][9];
             nuevoComidaC[10] = comidaCampo.Rows[0][10];
             nuevoComidaC[11] = comidaCampo.Rows[0][11];
+            nuevoComidaC[12] = comidaCampo.Rows[0][12];
             int i = 0;
             if (adicional.Rows.Count > 0)
             {
@@ -70,7 +71,7 @@ namespace Servicios_Reservados_2
             DataTable adicional = controladoraBD.seleccionarAdicional(idServicio);
             adicionales = new List<String>();
 
-            Object[] nuevoComidaC = new Object[12];
+            Object[] nuevoComidaC = new Object[13];
 
             nuevoComidaC[0] = comidaCampo.Rows[0][0];
             nuevoComidaC[1] = comidaCampo.Rows[0][1];
@@ -84,6 +85,7 @@ namespace Servicios_Reservados_2
             nuevoComidaC[9] = comidaCampo.Rows[0][9];
             nuevoComidaC[10] = comidaCampo.Rows[0][10];
             nuevoComidaC[11] = comidaCampo.Rows[0][11];
+            nuevoComidaC[12] = comidaCampo.Rows[0][12];
             int i = 0;
             if (adicional.Rows.Count > 0)
             {

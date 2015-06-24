@@ -14,11 +14,14 @@ namespace Servicios_Reservados_2
     {
         private static ControladoraReportes controladora = new ControladoraReportes();
         private String estacion;
-        private String anfitriona;
+        private int anfitriona;
         private String fechaSeleccionda;
         private String fechaInicio;
         private String fechaFinal;
-
+        private int sumaTotalDesayuno;
+        private int sumaTotalConsumidosDesayuno;
+        private int contar;
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,7 +30,7 @@ namespace Servicios_Reservados_2
             string userid = (string)Session["username"];
             if (!IsPostBack)
             {
-
+            
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
@@ -37,7 +40,7 @@ namespace Servicios_Reservados_2
                 }
                 cargarDatos();
             }
-
+          
         }
 
         /*
@@ -60,7 +63,7 @@ namespace Servicios_Reservados_2
             listAnfitriona.Items.Clear();
             listAnfitriona.Items.Add("OET");
             listAnfitriona.Items.Add("ESINTRO");
-
+            
             cbxFecha.Items.Clear();
             cbxFecha.Items.Add("Hoy");
             cbxFecha.Items.Add("Semana");
@@ -99,13 +102,21 @@ namespace Servicios_Reservados_2
         */
         protected void obtenerFiltros()
         {
-            anfitriona = listAnfitriona.SelectedValue;
-            estacion = cbxEstacion.Value;
-            fechaSeleccionda = cbxFecha.Text;
-            if (fechaSeleccionda.Equals("Hoy"))
+            if (listAnfitriona.SelectedValue.Equals("OET"))
             {
-                fechaInicio = DateTime.Today.ToString("MM/dd/yyyy");
-            }
+                anfitriona = 01;
+        }
+            else
+            {
+                anfitriona = 02;
+        }
+            estacion = cbxEstacion.Value;
+            DateTime fechTemp = DateTime.Parse(dateFechaInicio.Value);
+            Debug.WriteLine("FECHA: " + dateFechaInicio.Value);
+            fechaSeleccionda = cbxFecha.Value;
+            fechaInicio = fechTemp.ToString("MM/dd/yyyy");
+            fechTemp = DateTime.Parse(dateFechaFin.Value);
+            fechaFinal = fechTemp.ToString("MM/dd/yyyy");
         }
 
 
@@ -119,28 +130,43 @@ namespace Servicios_Reservados_2
             try
             {
 
-                Object[] datos = new Object[13];
-                DataTable pax = controladora.obtenerComidaPax(estacion, anfitriona, fechaInicio);// se consultan todos
-                int i = 0;
-                if (pax.Rows.Count > 0)
+                  Object[] datos = new Object[13];
+                  if (estacion != null && fechaInicio != null && fechaFinal != null)
+                  {
+                      DataTable paxReserv = controladora.obtenerComidaPax(estacion, anfitriona, fechaInicio, fechaFinal);// se consultan desayunos de comida de campo dependiendo de fecha con estacion y anfitriona.
+                      contar = paxReserv.Rows.Count;
+
+                      if (anfitriona == 1)
+                      {
+                          DataTable paxEmp = controladora.obtenerComidaPaxEmp(estacion, fechaInicio, fechaFinal); //desayuno comida campo reserv
+                          DataTable comidaEmp = controladora.obtenerComidaEmp(estacion, fechaInicio, fechaFinal); //desayuno comida campo de empleados
+                          sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][0].ToString()) + int.Parse(paxEmp.Rows[0][0].ToString()) + int.Parse(comidaEmp.Rows[0][0].ToString());    //suma total desayuno  
+                          sumaTotalConsumidosDesayuno = int.Parse(paxReserv.Rows[0][1].ToString()) + int.Parse(paxEmp.Rows[0][1].ToString()) + int.Parse(comidaEmp.Rows[0][1].ToString());
+                      }
+                      else
+                      {
+                          sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][0].ToString());    //suma total desayuno  
+                          sumaTotalConsumidosDesayuno = int.Parse(paxReserv.Rows[0][1].ToString());
+                      }
+                  }
+
+                  if (contar > 0)
                 {
-                    foreach (DataRow fila in pax.Rows)
+                       for (int i = 0; i < contar; i++)
                     {
-                        datos[0] = fechaInicio;
-                        datos[1] = fila[0].ToString();
-                        datos[2] = "-";
-                        datos[3] = "-";
-                        datos[4] = "-";
-                        datos[5] = "-";
-                        datos[6] = "-";
-                        datos[7] = "-";
-                        datos[8] = "-";
-                        datos[9] = "-";
-                        datos[10] = "-";
-                        datos[11] = "-";
-                        datos[12] = "-";
+                          datos[0] = fechaInicio;
+                           datos[1] = sumaTotalDesayuno;
+                           datos[2] = sumaTotalConsumidosDesayuno;
+                          datos[4] = "-";
+                          datos[5] = "-";
+                          datos[6] = "-";
+                          datos[7] = "-";
+                          datos[8] = "-";
+                          datos[9] = "-";
+                          datos[10] = "-";
+                          datos[11] = "-";                     
+                          datos[12] = "-";
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
-                        i++;
                     }
                 }
 
@@ -154,7 +180,7 @@ namespace Servicios_Reservados_2
             }
         }
 
-
+  
 
         /*
          * Efecto: modifica la interfaz de acuerdo a lo selecionado en las opciones de filtro.
@@ -187,7 +213,7 @@ namespace Servicios_Reservados_2
             }
             txtReservacion.Value = "cosa";
         }
-
+                       
 
 
 
@@ -272,7 +298,7 @@ namespace Servicios_Reservados_2
             GridViewReportes.AllowSorting = false;
             GridViewReportes.DataBind();
 
-
+           
             return tabla;
         }
 
