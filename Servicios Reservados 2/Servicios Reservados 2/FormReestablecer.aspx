@@ -16,6 +16,5 @@
                     <h5>Nueva contraseña:</h5>
                     <asp:TextBox ID="txtContraseña" TextMode="Password" runat="server" required="required" title="Debe tener de 8 a 20 caracteres, al menos una mayúscula, al menos una minúscula y al menos un número" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})$" ></asp:TextBox> 
                     <asp:Button id="btnReestablecer" class="btn btn-success" runat="server" Text="Aceptar" OnClick="clickReestablecer"/> 
-                    <asp:Label ID="lblMensaje" runat="server" ForeColor="#996600"></asp:Label>
              </div>
 </asp:Content>
