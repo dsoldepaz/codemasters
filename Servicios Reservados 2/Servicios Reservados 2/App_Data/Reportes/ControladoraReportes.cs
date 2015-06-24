@@ -16,9 +16,19 @@ namespace Servicios_Reservados_2
         }
 
 
-        internal DataTable obtenerComidaPax(String estacion, String anfitriona, String fecha)
+        internal DataTable obtenerComidaPax(String estacion, int anfitriona, String fecha, String fechaFinal)
         {
-           return controladoraBD.obtenerComidaPax(estacion, anfitriona, fecha);
+           return controladoraBD.obtenerComidaPax(estacion, anfitriona, fecha, fechaFinal);
         }
+        internal DataTable obtenerComidaPaxEmp(String estacion, String fecha, String fechaFinal)
+        {
+            return controladoraBD.obtenerComidaPaxEmp(estacion, fecha, fechaFinal);
+        }
+        internal DataTable obtenerComidaEmp(String estacion, String fecha, String fechaFinal)
+        {
+            return controladoraBD.obtenerComidaEmp(estacion, fecha, fechaFinal);
+        }
+        
+
     }
 }
