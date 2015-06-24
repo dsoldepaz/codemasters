@@ -70,6 +70,10 @@ namespace Servicios_Reservados_2
             cbxFecha.Items.Add("Mes");
             cbxFecha.Items.Add("Personalizado");
 
+            //para que siempre esten desactivados 
+            dateFechaFin.Disabled = true;
+            dateFechaInicio.Disabled = true;
+
         }
 
         /*
@@ -101,11 +105,11 @@ namespace Servicios_Reservados_2
             if (listAnfitriona.SelectedValue.Equals("OET"))
             {
                 anfitriona = 01;
-            }
+        }
             else
             {
                 anfitriona = 02;
-            }
+        }
             estacion = cbxEstacion.Value;
             DateTime fechTemp = DateTime.Parse(dateFechaInicio.Value);
             Debug.WriteLine("FECHA: " + dateFechaInicio.Value);
@@ -147,23 +151,23 @@ namespace Servicios_Reservados_2
                   }
 
                   if (contar > 0)
-                   {
+                {
                        for (int i = 0; i < contar; i++)
-                       {
-                           datos[0] = fechaInicio;
+                    {
+                          datos[0] = fechaInicio;
                            datos[1] = sumaTotalDesayuno;
                            datos[2] = sumaTotalConsumidosDesayuno;
-                           datos[4] = "-";
-                           datos[5] = "-";
-                           datos[6] = "-";
-                           datos[7] = "-";
-                           datos[8] = "-";
-                           datos[9] = "-";
-                           datos[10] = "-";
-                           datos[11] = "-";
-                           datos[12] = "-";
-                           tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
-                       }
+                          datos[4] = "-";
+                          datos[5] = "-";
+                          datos[6] = "-";
+                          datos[7] = "-";
+                          datos[8] = "-";
+                          datos[9] = "-";
+                          datos[10] = "-";
+                          datos[11] = "-";                     
+                          datos[12] = "-";
+                        tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
+                    }
                 }
 
                 GridViewReportes.AllowSorting = false;
@@ -188,20 +192,25 @@ namespace Servicios_Reservados_2
             int indice = cbxFecha.SelectedIndex;
             switch (indice)
             {
-                case (1):
+                case (0):
+                    dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
                     dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+                    break;
+                case (1):
+                    dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+                    dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(7));
                     break;
                 case (2):
                     dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
-                    dateFechaFin.Value = DateTime.Today.AddDays(7).ToString("MM/dd/yyyy");
+                    dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddMonths(1));
                     break;
                 case (3):
                     dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
-                    dateFechaFin.Value = DateTime.Today.AddMonths(7).ToString("MM/dd/yyyy");
+                    dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+                    dateFechaFin.Disabled = false;
+                    dateFechaInicio.Disabled = false;
                     break;
             }
-            dateFechaFin.Disabled = true;
-            dateFechaInicio.Disabled = true;
             txtReservacion.Value = "cosa";
         }
                        

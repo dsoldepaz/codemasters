@@ -13,6 +13,7 @@ namespace Servicios_Reservados_2
     {
         private ControladoraUsuario controladora = new ControladoraUsuario();
         public static String[] ids;
+        private static int indice = -1;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -125,7 +126,7 @@ namespace Servicios_Reservados_2
       */
         protected void clickConsultar(object sender, EventArgs e)
         {
-            int indice = obtenerIndex(sender, e) + (GridUsuarios.PageIndex * 20);//se obtiene la cedula a consultar
+            indice = obtenerIndex(sender, e) + (GridUsuarios.PageIndex * 20);//se obtiene la cedula a consultar
             FormRegistro.usernameSeleccionado = ids[indice];
             FormRegistro.modo = 0;
             Response.Redirect("FormRegistro");
@@ -155,13 +156,21 @@ namespace Servicios_Reservados_2
         }
         protected void clickModificar(object sender, EventArgs e)
         {
-            int indice = obtenerIndex(sender, e) + (GridUsuarios.PageIndex * 20);//se obtiene la cedula a consultar
+            indice = obtenerIndex(sender, e) + (GridUsuarios.PageIndex * 20);//se obtiene la cedula a consultar
             FormRegistro.usernameSeleccionado = ids[indice];
             FormRegistro.modo = 2;
             Response.Redirect("FormRegistro");
         }
         protected void clickDesactivar(object sender, EventArgs e)
         {
+            controladora.desactivarUsuario(ids[indice]);
+            Response.Redirect("FormUsuario");
+        }
+
+        protected void seleccionarDesactivar(object sender, EventArgs e)
+        {
+            indice = obtenerIndex(sender, e) + (GridUsuarios.PageIndex * 20);//se obtiene la cedula a consultar
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>$('#modalDesactivar').modal('show');</script>", false);
         }
 
     }

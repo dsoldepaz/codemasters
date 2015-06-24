@@ -60,11 +60,10 @@ namespace Servicios_Reservados_2
         * Requiere: la entidad de usuario (datos encapsulados)
         * Modifica: la tabla usuario 
        */
-        public String[] agregarUsuario(EntidadUsuario entidad)
+        public String[] agregarUsuario(EntidadUsuario entidad, String contrasena)
         {
             String[] respuesta = new String[3];
-            string hashContrasena = LoginService.EncodePassword(string.Concat(entidad.Username, entidad.Username));
-            String consultaSQL = "insert into usuario values('" + entidad.Username + "','" + hashContrasena + "','" +
+            String consultaSQL = "insert into usuario values('" + entidad.Username + "','" + contrasena + "','" +
                     entidad.Correo + "', sysdate,'" + entidad.Estado + "','" + entidad.Estacion + "', 1,'" + entidad.Nombre + "')";
             respuesta = adaptador.insertar(consultaSQL);
 
@@ -113,6 +112,22 @@ namespace Servicios_Reservados_2
             String consultaSQL = "delete from usuariorol where usuario='" + usernameSeleccionado + "'";
             respuesta = adaptador.insertar(consultaSQL);
             return respuesta;          
+        }
+
+        internal string[] desactivarUsuario(string username)
+        {
+            String[] respuesta = new String[3];
+            String consultaSQL = "update usuario set activo =" + 0 + " where username='" + username + "'";
+            respuesta = adaptador.insertar(consultaSQL);
+            return respuesta; 
+        }
+
+        internal string[] actualizarContrasena(string username, string contrasena)
+        {
+            String[] respuesta = new String[3];            
+            String consultaSQL = "update usuario set contrasena ='" + contrasena + "' where username='" + username + "'";
+            respuesta = adaptador.insertar(consultaSQL);
+            return respuesta; 
         }
     }
 }

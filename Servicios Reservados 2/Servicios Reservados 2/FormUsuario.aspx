@@ -2,6 +2,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="Content/Servicios.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <legend>
@@ -65,7 +70,24 @@
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:LinkButton ID="btnCancelar" runat="server" CommandName="cancelar" class="btn btn-default" OnClick="clickDesactivar" ToolTip="Desactivar"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+                                <asp:LinkButton ID="btnCancelar" runat="server" CommandName="cancelar" class="btn btn-default" ToolTip="Desactivar" OnClick="seleccionarDesactivar"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modalDesactivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel">Desactivar usuario</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>¿Desea desactivar este usuario?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-danger" runat="server" onserverclick="clickDesactivar">Desactivar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -74,5 +96,7 @@
             </div>
 
         </ContentTemplate>
+
     </asp:UpdatePanel>
+
 </asp:Content>
