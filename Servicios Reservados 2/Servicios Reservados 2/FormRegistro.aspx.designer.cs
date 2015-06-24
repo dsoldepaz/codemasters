@@ -58,15 +58,6 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText username;
         
         /// <summary>
-        /// Control reestablecer.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton reestablecer;
-        
-        /// <summary>
         /// Control nombre.
         /// </summary>
         /// <remarks>
@@ -94,6 +85,15 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.WebControls.DropDownList estado;
         
         /// <summary>
+        /// Control acciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow acciones;
+        
+        /// <summary>
         /// Control btnEditar.
         /// </summary>
         /// <remarks>
@@ -101,6 +101,15 @@ namespace Servicios_Reservados_2 {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btnEditar;
+        
+        /// <summary>
+        /// Control reestablecer.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton reestablecer;
         
         /// <summary>
         /// Control rolesGrid.

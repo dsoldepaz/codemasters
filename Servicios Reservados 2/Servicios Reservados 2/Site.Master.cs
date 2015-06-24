@@ -81,6 +81,7 @@ namespace Servicios_Reservados_2
             {
                 this.InfoUsuario.Text= string.Format(username + " ( " + roles + ")"+ " en " + estacion);               
             }
+            this.InfoUsuario.Enabled = false;
         }
         
         protected void clickSalir(object sender, EventArgs e)

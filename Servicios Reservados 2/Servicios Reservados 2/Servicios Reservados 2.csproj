@@ -178,7 +178,6 @@
     <Content Include="faviconOET.ico" />
     <Content Include="FormComidasEmpleado.aspx" />
     <Content Include="FormEmpleadoReserva.aspx" />
-    <Content Include="FormPerfil.aspx" />
     <Content Include="FormReporteCocina.aspx" />
     <Content Include="FormReportes.aspx" />
     <Content Include="FormUsuario.aspx" />
@@ -472,13 +471,6 @@
       <DependentUpon>FormEmpleadoReserva.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Data\Servicios\EntidadServicios.cs" />
-    <Compile Include="FormPerfil.aspx.cs">
-      <DependentUpon>FormPerfil.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FormPerfil.aspx.designer.cs">
-      <DependentUpon>FormPerfil.aspx</DependentUpon>
-    </Compile>
     <Compile Include="FormReporteCocina.aspx.cs">
       <DependentUpon>FormReporteCocina.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

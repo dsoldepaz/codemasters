@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Registro de usuarios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormRegistro.aspx.cs" Inherits="Servicios_Reservados_2.FormRegistro" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <div id="top"></div>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -26,13 +27,7 @@
                         <td>
                             <input class="textbox" style="width: 500px" id="username" runat="server" required="required" title="Debe tener de 4 a 15 caracteres, solo letras sín tilde o números" pattern="^[a-zA-Z0-9]{4,15}$" />
                         </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 10%;">Contraseña:</td>
-                        <td>
-                            <input type="button" id="reestablecer" value="Reestablecer" runat="server" onserverclick="clickReestablecer" />
-                        </td>
-                    </tr>
+                    </tr>                    
                     <tr>
                         <td style="width: 10%;">Nombre:</td>
                         <td>
@@ -51,11 +46,14 @@
                             <asp:DropDownList ID="estado" runat="server"></asp:DropDownList>
                         </td>
                     </tr>
-                    <tr>
+                        <tr id="acciones" runat="server">
                         <td>
-                            <input id="btnEditar" type="button" value="Editar" runat="server" onserverclick="clickEditar" />
+                            <input id="btnEditar" type="button" value="Editar" runat="server" onserverclick="clickEditar"/>
                         </td>
-                    </tr>
+                        <td>
+                            <input type="button" id="reestablecer" value="Reestablecer Contraseña" runat="server" onserverclick="clickReestablecer" style="width:200px"/>
+                        </td>
+                    </tr>                    
                 </table>
             </div>
 
@@ -75,7 +73,7 @@
                                 <Columns>
                                     <asp:TemplateField>
                                         <ItemTemplate>
-                                            <asp:CheckBox ID="chkRol" runat="server" />
+                                            <asp:CheckBox ID="chkRol" runat="server"/>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
@@ -92,7 +90,7 @@
             <table>
                 <tr>
                     <td>
-                        <input type="submit" id="btnAceptar" class="btn btn-success" value="Aceptar" runat="server" onserverclick="clickAceptar" />                        
+                            <input type="submit" id="btnAceptar" class="btn btn-success" value="Aceptar" runat="server" onserverclick="clickAceptar" on/>                                                
                     </td>
                     <td>
                         <input type="button" class="btn-danger" value="Cancelar" runat="server" onserverclick="clickCancelar" />

@@ -102,6 +102,10 @@ namespace Servicios_Reservados_2
                     estado.Enabled = false;
                     estacion.Enabled = false;
                     rolesGrid.Enabled = false;
+                    acciones.Visible = true;
+                    btnEditar.Disabled = false;
+                    btnEditar.Value = "Editar";
+                    reestablecer.Disabled = true;
                     break;
                 case 1://agregar
                     username.Disabled = false;
@@ -110,6 +114,10 @@ namespace Servicios_Reservados_2
                     estado.Enabled = true;
                     estacion.Enabled = true;
                     rolesGrid.Enabled = true;
+                    acciones.Visible = false;
+                    btnEditar.Disabled = true;
+                    btnEditar.Value = "Editar";
+                    reestablecer.Disabled = true;
                     break;
                 case 2://modificar
                     username.Disabled = true;
@@ -118,6 +126,10 @@ namespace Servicios_Reservados_2
                     estado.Enabled = true;
                     estacion.Enabled = true;
                     rolesGrid.Enabled = true;
+                    acciones.Visible = true;
+                    btnEditar.Disabled = true;
+                    btnEditar.Value = "Editando...";
+                    reestablecer.Disabled = false;
                     break;
             }
         }
@@ -166,6 +178,7 @@ namespace Servicios_Reservados_2
         }
         protected void clickAceptar(object sender, EventArgs e)
         {
+
             bool accion;
             switch (modo)
             {
@@ -180,7 +193,7 @@ namespace Servicios_Reservados_2
                     accion = agregarUsuario();
                     if (accion)
                     {
-                        mostrarMensaje("succes", "Exito:", "Se agregó el usuario correctamente");
+                        mostrarMensaje("success", "Exito:", "Se agregó el usuario correctamente");
                         modo = 0;
                         cambiarModo();
                     }
@@ -189,12 +202,13 @@ namespace Servicios_Reservados_2
                     accion = modificarUsuario();
                     if (accion)
                     {
-                        mostrarMensaje("succes", "Exito:", "Se modificó el usuario correctamente");
+                        mostrarMensaje("success", "Exito:", "Se modificó el usuario correctamente");
                         modo = 0;
                         cambiarModo();
                     }
                     break;
             }
+            this.SetFocus(alertAlerta);
         }
 
         private bool modificarUsuario()
@@ -221,21 +235,30 @@ namespace Servicios_Reservados_2
             }
             else
             {
-                //extraer la informacion personal
-                Object[] nuevoUsuario = new Object[6];// objeto en el que se almacenan los datos para enviar a encapsular.
-                nuevoUsuario[0] = username.Value.ToString();
-                nuevoUsuario[1] = nombre.Value.ToString();
-                nuevoUsuario[2] = correo.Value.ToString();
-                nuevoUsuario[3] = estado.SelectedItem.ToString();
-                nuevoUsuario[4] = estacion.SelectedItem.ToString();
-                nuevoUsuario[5] = rol;
-
-                String[] error = controladora.modificarUsuario(nuevoUsuario);// se le pide a la controladora que lo inserte
-                if ("danger".Equals(error[0]))
+                if (!rol.Contains("administrador sistema") && "Todas".Equals(estacion.SelectedItem.ToString()))
                 {
+                    mostrarMensaje("danger", "Error:", "Solo el administrador de sistema puede estar asociado a Todas las estaciones");
                     res = false;
                 }
-                mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+                else {
+                    //extraer la informacion personal
+                    Object[] nuevoUsuario = new Object[6];// objeto en el que se almacenan los datos para enviar a encapsular.
+                    nuevoUsuario[0] = username.Value.ToString();
+                    nuevoUsuario[1] = nombre.Value.ToString();
+                    nuevoUsuario[2] = correo.Value.ToString();
+                    nuevoUsuario[3] = estado.SelectedItem.ToString();
+                    nuevoUsuario[4] = estacion.SelectedItem.ToString();
+                    nuevoUsuario[5] = rol;
+
+                    String[] error = controladora.modificarUsuario(nuevoUsuario);// se le pide a la controladora que lo inserte
+                    if ("danger".Equals(error[0]))
+                    {
+                        res = false;
+                    }
+                    mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+
+                }
+               
             }
             return res;
         }
@@ -269,21 +292,29 @@ namespace Servicios_Reservados_2
             }
             else
             {
-                //extraer la informacion personal
-                Object[] nuevoUsuario = new Object[6];// objeto en el que se almacenan los datos para enviar a encapsular.
-                nuevoUsuario[0] = username.Value.ToString();
-                nuevoUsuario[1] = nombre.Value.ToString();
-                nuevoUsuario[2] = correo.Value.ToString();
-                nuevoUsuario[3] = estado.SelectedItem.ToString();
-                nuevoUsuario[4] = estacion.SelectedItem.ToString();
-                nuevoUsuario[5] = rol;
-
-                String[] error = controladora.agregarUsuario(nuevoUsuario);// se le pide a la controladora que lo inserte
-                if ("danger".Equals(error[0]))
+                if (!rol.Contains("administrador sistema") && "Todas".Equals(estacion.SelectedItem.ToString()))
                 {
+                    mostrarMensaje("danger", "Error:", "Solo el administrador de sistema puede estar asociado a Todas las estaciones");
                     res = false;
                 }
-                mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+                else
+                {
+                    //extraer la informacion personal
+                    Object[] nuevoUsuario = new Object[6];// objeto en el que se almacenan los datos para enviar a encapsular.
+                    nuevoUsuario[0] = username.Value.ToString();
+                    nuevoUsuario[1] = nombre.Value.ToString();
+                    nuevoUsuario[2] = correo.Value.ToString();
+                    nuevoUsuario[3] = estado.SelectedItem.ToString();
+                    nuevoUsuario[4] = estacion.SelectedItem.ToString();
+                    nuevoUsuario[5] = rol;
+
+                    String[] error = controladora.agregarUsuario(nuevoUsuario);// se le pide a la controladora que lo inserte
+                    if ("danger".Equals(error[0]))
+                    {
+                        res = false;
+                    }
+                    mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
+                }
             }
             return res;
         }
