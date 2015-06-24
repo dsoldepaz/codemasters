@@ -441,8 +441,8 @@
     <Compile Include="App_Data\Reportes\ControladoraBDReportes.cs" />
     <Compile Include="App_Data\ReporteCocina\ControladoraBDReporteCocina.cs" />
     <Compile Include="App_Data\ReporteCocina\ControladoraReporteCocina.cs" />
-    <Compile Include="App_Data\Notificaciones\ControladoraDeNotificaciones.cs" />
     <Compile Include="App_Data\Notificaciones\ControladoraDeBDDeNotificaciones.cs" />
+    <Compile Include="App_Data\Notificaciones\ControladoraNotificaciones.cs" />
     <Compile Include="FormReestablecer.aspx.cs">
       <DependentUpon>FormReestablecer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
