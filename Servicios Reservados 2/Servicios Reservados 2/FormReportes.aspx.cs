@@ -18,7 +18,7 @@ namespace Servicios_Reservados_2
         private String fechaSeleccionda;
         private String fechaInicio;
         private String fechaFinal;
-        
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,7 +27,7 @@ namespace Servicios_Reservados_2
             string userid = (string)Session["username"];
             if (!IsPostBack)
             {
-            
+
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
@@ -37,7 +37,7 @@ namespace Servicios_Reservados_2
                 }
                 cargarDatos();
             }
-          
+
         }
 
         /*
@@ -60,12 +60,16 @@ namespace Servicios_Reservados_2
             listAnfitriona.Items.Clear();
             listAnfitriona.Items.Add("OET");
             listAnfitriona.Items.Add("ESINTRO");
-            
+
             cbxFecha.Items.Clear();
             cbxFecha.Items.Add("Hoy");
             cbxFecha.Items.Add("Semana");
             cbxFecha.Items.Add("Mes");
             cbxFecha.Items.Add("Personalizado");
+
+            //para que siempre esten desactivados 
+            dateFechaFin.Disabled = true;
+            dateFechaInicio.Disabled = true;
 
         }
 
@@ -97,11 +101,11 @@ namespace Servicios_Reservados_2
         {
             anfitriona = listAnfitriona.SelectedValue;
             estacion = cbxEstacion.Value;
-            fechaSeleccionda = cbxFecha.Value;
+            fechaSeleccionda = cbxFecha.Text;
             if (fechaSeleccionda.Equals("Hoy"))
             {
                 fechaInicio = DateTime.Today.ToString("MM/dd/yyyy");
-        }
+            }
         }
 
 
@@ -115,26 +119,26 @@ namespace Servicios_Reservados_2
             try
             {
 
-                  Object[] datos = new Object[13];
-                  DataTable pax = controladora.obtenerComidaPax(estacion, anfitriona, fechaInicio);// se consultan todos
-                  int i=0;
-                  if (pax.Rows.Count > 0)
+                Object[] datos = new Object[13];
+                DataTable pax = controladora.obtenerComidaPax(estacion, anfitriona, fechaInicio);// se consultan todos
+                int i = 0;
+                if (pax.Rows.Count > 0)
                 {
-                      foreach (DataRow fila in pax.Rows)
+                    foreach (DataRow fila in pax.Rows)
                     {
-                          datos[0] = fechaInicio;
-                          datos[1] = fila[0].ToString();
-                          datos[2] = "-";
-                          datos[3] = "-";
-                          datos[4] = "-";
-                          datos[5] = "-";
-                          datos[6] = "-";
-                          datos[7] = "-";
-                          datos[8] = "-";
-                          datos[9] = "-";
-                          datos[10] = "-";
-                          datos[11] = "-";                     
-                          datos[12] = "-";
+                        datos[0] = fechaInicio;
+                        datos[1] = fila[0].ToString();
+                        datos[2] = "-";
+                        datos[3] = "-";
+                        datos[4] = "-";
+                        datos[5] = "-";
+                        datos[6] = "-";
+                        datos[7] = "-";
+                        datos[8] = "-";
+                        datos[9] = "-";
+                        datos[10] = "-";
+                        datos[11] = "-";
+                        datos[12] = "-";
                         tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
                         i++;
                     }
@@ -150,7 +154,7 @@ namespace Servicios_Reservados_2
             }
         }
 
-  
+
 
         /*
          * Efecto: modifica la interfaz de acuerdo a lo selecionado en las opciones de filtro.
@@ -162,23 +166,28 @@ namespace Servicios_Reservados_2
             int indice = cbxFecha.SelectedIndex;
             switch (indice)
             {
-                case (1):
+                case (0):
+                    dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
                     dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+                    break;
+                case (1):
+                    dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+                    dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(7));
                     break;
                 case (2):
                     dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
-                    dateFechaFin.Value = DateTime.Today.AddDays(7).ToString("MM/dd/yyyy");
+                    dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddMonths(1));
                     break;
                 case (3):
                     dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
-                    dateFechaFin.Value = DateTime.Today.AddMonths(7).ToString("MM/dd/yyyy");
+                    dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+                    dateFechaFin.Disabled = false;
+                    dateFechaInicio.Disabled = false;
                     break;
             }
-            dateFechaFin.Disabled = true;
-            dateFechaInicio.Disabled = true;
             txtReservacion.Value = "cosa";
         }
-                       
+
 
 
 
@@ -263,7 +272,7 @@ namespace Servicios_Reservados_2
             GridViewReportes.AllowSorting = false;
             GridViewReportes.DataBind();
 
-           
+
             return tabla;
         }
 
