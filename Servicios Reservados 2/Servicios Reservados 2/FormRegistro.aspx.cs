@@ -309,9 +309,10 @@ namespace Servicios_Reservados_2
             labelAlerta.Text = mensaje;
             alertAlerta.Attributes.Remove("hidden");
         }
-        protected void clickModificar(object sender, EventArgs e)
+        protected void clickEditar(object sender, EventArgs e)
         {
-
+            modo = 2;
+            cambiarModo();
         }
 
     }

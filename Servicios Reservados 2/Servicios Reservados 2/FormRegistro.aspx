@@ -53,7 +53,7 @@
                     </tr>
                      <tr>
                         <td>
-                            <input id="btnEditar" type="button" value="Editar" runat="server" onserverclick="clickModificar" />
+                            <input id="btnEditar" type="button" value="Editar" runat="server" onserverclick="clickEditar" />
                         </td>
                 </table>
             </div>
