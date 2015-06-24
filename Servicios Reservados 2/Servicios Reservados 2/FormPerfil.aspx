@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Registro de usuarios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormRegistro.aspx.cs" Inherits="Servicios_Reservados_2.FormRegistro" %>
+﻿<%@ Page Title="Perfil de usuario" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormPerfil.aspx.cs" Inherits="Servicios_Reservados_2.FormPerfil" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -13,7 +13,7 @@
             </a>
 
 
-            <legend style="color: #7BC143">Registro de usuarios</legend>
+            <legend style="color: #7BC143">Perfil de usuario</legend>
 
             <div class="well bs-component">
                 <legend>
@@ -26,13 +26,7 @@
                         <td>
                             <input class="textbox" style="width: 500px" id="username" runat="server" />
                         </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 10%;">Contraseña:</td>
-                        <td>
-                            <input type="button" id="reestablecer" value="Reestablecer" runat="server" onserverclick="clickReestablecer" />
-                        </td>
-                    </tr>
+                    </tr>                   
                     <tr>
                         <td style="width: 10%;">Nombre:</td>
                         <td>
@@ -45,18 +39,6 @@
                             <input class="textbox" style="width: 500px" id="correo" runat="server" />
                         </td>
                     </tr>
-                    <tr>
-                        <td style="width: 10%;">Estado:</td>
-                        <td>
-                            <asp:DropDownList ID="estado" runat="server"></asp:DropDownList>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input id="btnEditar" type="button" value="Editar" runat="server" onserverclick="clickEditar" />
-                        </td>
-                    </tr>
-                </table>
             </div>
 
             <div class="well bs-component">
@@ -93,9 +75,6 @@
                 <tr>
                     <td>
                         <input type="button" id="btnAceptar" value="Aceptar" runat="server" onserverclick="clickAceptar" />
-                    </td>
-                    <td>
-                        <input type="button" class="btn-danger" value="Cancelar" runat="server" onserverclick="clickCancelar" />
                     </td>
                 </tr>
             </table>

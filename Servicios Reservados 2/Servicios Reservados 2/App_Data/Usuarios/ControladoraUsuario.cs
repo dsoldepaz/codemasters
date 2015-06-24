@@ -47,7 +47,8 @@ namespace Servicios_Reservados_2
         public String[] agregarUsuario(Object[] datos)
         {
             EntidadUsuario entidad = new EntidadUsuario(datos);
-            String[] resultado = controladoraBD.agregarUsuario(entidad);//llamado a la controladora de base de datos
+            String hashContrasena = LoginService.EncodePassword(string.Concat(entidad.Username, entidad.Username));
+            String[] resultado = controladoraBD.agregarUsuario(entidad, hashContrasena);//llamado a la controladora de base de datos
             foreach(string rol in entidad.Rol){
                 controladoraBD.agregarUsuarioRol(entidad.Username, rol);
             }
@@ -89,10 +90,15 @@ namespace Servicios_Reservados_2
             return resultado;
         }
 
-        internal string[] desactivarUsuario(string username)
-        {
+        internal string[] desactivarUsuario(string username)        {
 
-            return controladoraBD.desactivarUsuario(username); ;
+            return controladoraBD.desactivarUsuario(username); 
+        }
+
+        internal string[] reestablecerContrasena(String username, String contrasena)
+        {
+            string hashContrasena = LoginService.EncodePassword(string.Concat(username, contrasena));
+            return controladoraBD.actualizarContrasena(username, hashContrasena);
         }
     }
 }

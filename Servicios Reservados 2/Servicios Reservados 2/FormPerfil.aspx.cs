@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Servicios_Reservados_2
 {
-    public partial class FormRegistro : System.Web.UI.Page
+    public partial class FormPerfil : System.Web.UI.Page
     {
         ControladoraUsuario controladora = new ControladoraUsuario();
         public static int modo = 0;//variable para controlar el modo en el que se encuentra el sistema: 0 consulta, 1 agrega, 2 modifica, 3 elimina

@@ -6,17 +6,27 @@ using System.Web;
 
 namespace Servicios_Reservados_2
 {
-    public class ControladoraDeNotificaciones
+    public class ControladoraNotificaciones
     {
-        private ControladoraDeBDDeNotificaciones controladoraNotificaciones;
-        static public DateTime ultimaRevision = new DateTime().AddHours(-12);
+        private ControladoraBDNotificaciones controladoraNotificaciones;
+        static public DateTime ultimaRevision=new DateTime() ;
+
+
+        public ControladoraNotificaciones()
+        {
+            controladoraNotificaciones = new ControladoraBDNotificaciones();
+            ultimaRevision = ultimaRevision.AddHours(-12);
+          
+        }
+
         /*
          * Requiere: N/A
          * Efectua : pide el conteo de notificaciones desde la ultima vez a la controladora de base de datos
          * Retorna : un entero con el numero de notificaciones.
          */
-        public int getNumeroDeNotificaciones(){
-            DataTable resultado= controladoraNotificaciones.numeroDeNotificaciones(ultimaRevision);
+        public int getNumeroDeNotificaciones()
+        {
+            DataTable resultado = controladoraNotificaciones.numeroDeNotificaciones(ultimaRevision);
             int notificaiones = int.Parse(resultado.Rows[0][0].ToString());
             ultimaRevision = DateTime.Now;
             return notificaiones;
