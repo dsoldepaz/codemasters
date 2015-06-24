@@ -364,7 +364,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Data\ReporteCocina\AdaptadorBDReporteCocina.cs" />
     <Compile Include="App_Data\ComidaCampo\ControladoraBDComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\ControladoraComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\EntidadComidaCampo.cs" />

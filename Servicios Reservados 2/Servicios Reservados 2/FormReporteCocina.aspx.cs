@@ -178,7 +178,11 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
-
+        /**
+   * Requiere: n/a
+   * Efectua: Llena la tabla  GridTotal
+   * retorna:  N/A
+   */
         protected void llenarGridTotal()
         {
             DataTable tabla = crearTablaTotal();
