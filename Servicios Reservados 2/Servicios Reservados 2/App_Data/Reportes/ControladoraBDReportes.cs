@@ -39,7 +39,7 @@ namespace Servicios_Reservados_2
         {
             DataTable comidaCampoEmp;
 
-            String consultaSQL = "select distinct fecha, count("+opcion+"), count(vecesconsumido) from reserva_empleado where '"+opcion+"' = 'R' and fecha >= to_date('" + fecha + "', 'mm/dd/yyyy') and fecha <= to_date('"+fechaFinal+"', 'mm/dd/yyyy') and estacion ='" + estacion + "' group by fecha";
+            String consultaSQL = "select distinct fecha, count("+opcion+"), count(vecesconsumido) from reserva_empleado where "+opcion+" = 'R' and fecha >= to_date('" + fecha + "', 'mm/dd/yyyy') and fecha <= to_date('"+fechaFinal+"', 'mm/dd/yyyy') and estacion ='" + estacion + "' group by fecha";
             comidaCampoEmp = adaptador.consultar(consultaSQL);
             return comidaCampoEmp;
         }

@@ -20,7 +20,11 @@ namespace Servicios_Reservados_2
         private String fechaFinal;
         private int sumaTotalDesayuno;
         private int sumaTotalConsumidosDesayuno;
+        private int sumaTotalAlmuerzo;
+        private int sumaTotalConsumidosAlmuerzo;
         private int contar;
+        private DataTable fechas;
+        
         
 
         protected void Page_Load(object sender, EventArgs e)
@@ -131,26 +135,43 @@ namespace Servicios_Reservados_2
             DataTable tabla = crearTablaServicios();
             try
             {
+                 
 
                   Object[] datos = new Object[13];
                   if (estacion != null && fechaInicio != null && fechaFinal != null)
                   {
-                      int opcion = 1; //desayuno
-                      DataTable paxReserv = controladora.obtenerComidaPax(estacion, opcion, anfitriona, fechaInicio, fechaFinal);// se consultan desayunos de comida de campo dependiendo de fecha con estacion y anfitriona.
+                    
+                      DataTable paxReserv = controladora.obtenerComidaPax(estacion, 1, anfitriona, fechaInicio, fechaFinal);// se consultan desayunos de comida de campo dependiendo de fecha con estacion y anfitriona.
+                      DataTable paxReservAlmuerzo = controladora.obtenerComidaPax(estacion, 2, anfitriona, fechaInicio, fechaFinal);
+                      sumaTotalAlmuerzo= int.Parse(paxReservAlmuerzo.Rows[0][1].ToString());
+                      sumaTotalConsumidosAlmuerzo = int.Parse(paxReservAlmuerzo.Rows[0][2].ToString());
                       contar = paxReserv.Rows.Count;
+                      fechas = paxReserv;
+                      
 
                       if (anfitriona == 1)
                       {
                          
-                          DataTable paxEmp = controladora.obtenerComidaPaxEmp(estacion, fechaInicio, fechaFinal); //desayuno comida campo reserv
-                          DataTable comidaEmp = controladora.obtenerComidaEmp(estacion, fechaInicio, fechaFinal); //desayuno comida campo de empleados
-                          sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][0].ToString()) + int.Parse(paxEmp.Rows[0][0].ToString()) + int.Parse(comidaEmp.Rows[0][0].ToString());    //suma total desayuno  
-                          sumaTotalConsumidosDesayuno = int.Parse(paxReserv.Rows[0][1].ToString()) + int.Parse(paxEmp.Rows[0][1].ToString()) + int.Parse(comidaEmp.Rows[0][1].ToString());
+                          DataTable paxEmp = controladora.obtenerComidaPaxEmp(estacion, 1, fechaInicio, fechaFinal); //desayuno comida campo reserv
+                          DataTable comidaEmp = controladora.obtenerComidaEmp(estacion, "desayuno", fechaInicio, fechaFinal); //desayuno comida campo de empleados
+                          int contador = comidaEmp.Rows.Count;
+                          if (contador > 0)
+                          {
+                              sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][1].ToString()) + int.Parse(paxEmp.Rows[0][1].ToString()) + int.Parse(comidaEmp.Rows[0][1].ToString());    //suma total desayuno  
+                              sumaTotalConsumidosDesayuno = int.Parse(paxReserv.Rows[0][2].ToString()) + int.Parse(paxEmp.Rows[0][2].ToString()) + int.Parse(comidaEmp.Rows[0][2].ToString());
+                          }
+                          else
+                          {
+                              sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][1].ToString()) + int.Parse(paxEmp.Rows[0][1].ToString());
+                              sumaTotalConsumidosDesayuno = int.Parse(paxReserv.Rows[0][2].ToString()) + int.Parse(paxEmp.Rows[0][2].ToString());
+                            
+                          }
+                          
                       }
                       else
                       {
-                          sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][0].ToString());    //suma total desayuno  
-                          sumaTotalConsumidosDesayuno = int.Parse(paxReserv.Rows[0][1].ToString());
+                          sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][1].ToString());    //suma total desayuno  
+                          sumaTotalConsumidosDesayuno = int.Parse(paxReserv.Rows[0][2].ToString());
                       }
                   }
 
@@ -158,10 +179,11 @@ namespace Servicios_Reservados_2
                 {
                        for (int i = 0; i < contar; i++)
                     {
-                          datos[0] = fechaInicio;
-                           datos[1] = sumaTotalDesayuno;
-                           datos[2] = sumaTotalConsumidosDesayuno;
-                          datos[4] = "-";
+                          datos[0] = fechas.Rows[i][0];
+                          datos[1] = sumaTotalDesayuno;
+                          datos[2] = sumaTotalConsumidosDesayuno;
+                          datos[3] = sumaTotalAlmuerzo;
+                          datos[4] = sumaTotalConsumidosAlmuerzo;
                           datos[5] = "-";
                           datos[6] = "-";
                           datos[7] = "-";
