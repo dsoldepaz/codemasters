@@ -24,7 +24,7 @@ namespace Servicios_Reservados_2
             String[] respuesta = new String[3];
             String consultaSQL = "insert into servicios_reservados.comida_campo values('" + entidad.IdComidaCampo + "','" + entidad.IdEmpleado + "','" +
                 entidad.IdReservacion + "','" + entidad.Fecha + "','" + entidad.Estado + "'," + entidad.Opcion + ",'" + entidad.Relleno + "','" + entidad.Pan + "','"
-                + entidad.Bebida + "','" + entidad.TipoPago + "'," + entidad.Pax + ",'" + entidad.Hora + "', 0, null)";
+                + entidad.Bebida + "','" + entidad.TipoPago + "'," + entidad.Pax + ",'" + entidad.Hora + "', 0, '" + entidad.Estacion + "')";
             respuesta = adaptador.insertar(consultaSQL);
             List<String> lista = entidad.Adicionales;
             int cantAdicionales = lista.Count;
@@ -46,7 +46,7 @@ namespace Servicios_Reservados_2
         public String[] modificarComidaCampo(EntidadComidaCampo entidad, EntidadComidaCampo entidadVieja)
         {
             String[] respuesta = new String[3];
-            String consultaSQL = "update servicios_reservados.comida_campo set idcomidacampo = '" + entidadVieja.IdComidaCampo + "', idempleado = '" + entidad.IdEmpleado + "', idreservacion = '" + entidad.IdReservacion + "', estado = '" + entidad.Estado + "', fecha = '" + entidad.Fecha + "', opcion = '" + entidad.Opcion + "', relleno = '" + entidad.Relleno + "', pan = '" + entidad.Pan + "', bebida = '" + entidad.Bebida + "', tipopago = '" + entidad.TipoPago + "', pax = '" + entidad.Pax + "', hora = '" + entidad.Hora + "'" +
+            String consultaSQL = "update servicios_reservados.comida_campo set idcomidacampo = '" + entidadVieja.IdComidaCampo + "', idempleado = '" + entidad.IdEmpleado + "', idreservacion = '" + entidad.IdReservacion + "', estado = '" + entidad.Estado + "', fecha = '" + entidad.Fecha + "', opcion = '" + entidad.Opcion + "', relleno = '" + entidad.Relleno + "', pan = '" + entidad.Pan + "', bebida = '" + entidad.Bebida + "', tipopago = '" + entidad.TipoPago + "', pax = '" + entidad.Pax + "', hora = '" + entidad.Hora + "', estacion = '" + entidad.Estacion + "' " +
                                       "where idcomidacampo = '" + entidadVieja.IdComidaCampo + "'";
             respuesta = adaptador.insertar(consultaSQL);
             String borrarAdicional = "delete from servicios_reservados.adicional where idcomidacampo = '" + entidadVieja.IdComidaCampo + "'";

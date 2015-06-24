@@ -546,7 +546,7 @@ namespace Servicios_Reservados_2
             }
             else
             {
-                Object[] nuevaComidaCampo = new Object[12];// objeto en el que se almacenan los datos para enviar a encapsular.
+                Object[] nuevaComidaCampo = new Object[13];// objeto en el que se almacenan los datos para enviar a encapsular.
                 List<String> lista = listaAdicionales();
                 nuevaComidaCampo[0] = "";
                 if (tipoComidaCampo == 0)
@@ -626,6 +626,15 @@ namespace Servicios_Reservados_2
                 }
                 nuevaComidaCampo[10] = txtPax.Value;
 
+                if (tipoComidaCampo == 0)
+                {
+                    nuevaComidaCampo[12] = reservacionConsultada.Estacion;
+                }
+                else
+                {
+                    nuevaComidaCampo[12] = (string)Session["Estacion"];
+                }
+
                 if ((checkO1.Checked && (radioDesayuno.Checked || radioAlmuerzo.Checked || radioCena.Checked)) || (checkO2.Checked && getTipoSandwich()!= "" && getPan() != "") || checkO3.Checked)
                 {
                     String[] error = controladora.agregarComidaCampo(nuevaComidaCampo, lista);// se le pide a la controladora que lo inserte
@@ -650,7 +659,7 @@ namespace Servicios_Reservados_2
             }
             else
             {
-                Object[] comidaModificar = new Object[12];// objeto en el que se almacenan los datos para enviar a encapsular.
+                Object[] comidaModificar = new Object[13];// objeto en el que se almacenan los datos para enviar a encapsular.
                 List<String> lista = listaAdicionales();
                 comidaModificar[0] = "";
                 if (tipoComidaCampo == 0)
@@ -726,6 +735,15 @@ namespace Servicios_Reservados_2
                     comidaModificar[9] = cmbTipoPago.Value.ToString(); ;
                 }
                 comidaModificar[10] = txtPax.Value;
+
+                if (tipoComidaCampo == 0)
+                {
+                    comidaModificar[12] = reservacionConsultada.Estacion;
+                }
+                else
+                {
+                    comidaModificar[12] = (string)Session["Estacion"];
+                }
 
                 if ((checkO1.Checked && (radioDesayuno.Checked || radioAlmuerzo.Checked || radioCena.Checked)) || (checkO2.Checked && getTipoSandwich() != "" && getPan() != "") || checkO3.Checked)
                 {

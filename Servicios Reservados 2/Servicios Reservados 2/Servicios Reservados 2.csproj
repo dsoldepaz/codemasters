@@ -173,6 +173,7 @@
     <Content Include="Content\formEmpleado.css" />
     <Content Include="Content\Reservacion.css" />
     <Content Include="Content\Usuario.css" />
+    <Content Include="FormReestablecer.aspx" />
     <Content Include="ErrorPermiso.aspx" />
     <Content Include="faviconOET.ico" />
     <Content Include="FormComidasEmpleado.aspx" />
@@ -363,7 +364,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Data\ReporteCocina\AdaptadorBDReporteCocina.cs" />
     <Compile Include="App_Data\ComidaCampo\ControladoraBDComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\ControladoraComidaCampo.cs" />
     <Compile Include="App_Data\ComidaCampo\EntidadComidaCampo.cs" />
@@ -442,6 +442,13 @@
     <Compile Include="App_Data\ReporteCocina\ControladoraReporteCocina.cs" />
     <Compile Include="App_Data\Notificaciones\ControladoraDeNotificaciones.cs" />
     <Compile Include="App_Data\Notificaciones\ControladoraDeBDDeNotificaciones.cs" />
+    <Compile Include="FormReestablecer.aspx.cs">
+      <DependentUpon>FormReestablecer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormReestablecer.aspx.designer.cs">
+      <DependentUpon>FormReestablecer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ErrorPermiso.aspx.cs">
       <DependentUpon>ErrorPermiso.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

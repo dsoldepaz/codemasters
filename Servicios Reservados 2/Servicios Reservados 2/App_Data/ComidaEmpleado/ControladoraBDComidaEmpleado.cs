@@ -29,12 +29,13 @@ namespace Servicios_Reservados_2
                 foreach (DateTime fecha in nuevo.Fechas)
                 {
                     //Crea la sentencia en sql para insertar.
-                    String insercion = " Insert into Reserva_EMPLEADO (idEmpleado,fecha, Pagado, notas, desayuno, almuerzo, cena)values (";
+                    String insercion = " Insert into Reserva_EMPLEADO (idEmpleado,fecha, Pagado, notas, desayuno, almuerzo, cena, estacion)values (";
                     insercion += ("'" + nuevo.IdEmpleado + "',");
                     insercion += ("TO_DATE('" + fecha.ToString() + "' ,'MM/DD/YYYY hh:mi:ss AM') ,");
                     insercion += ("'" + ((nuevo.Pagado)?'T':'F') + "',");
                     insercion += ("'" + nuevo.Notas + "',");
-                    insercion += turnos + ")";
+                    insercion += turnos + ", '";
+                    insercion += nuevo.Estacion + "' )";
                     resultado=adaptador.insertar(insercion);
                 }
             }
@@ -89,6 +90,7 @@ namespace Servicios_Reservados_2
                     }
                     update += (nuevo.Pagado) ? "'T'," : "'F',";//Si esta o no pagado.
                     update += " notas = '" + nuevo.Notas + "' "; // predicado del update completo.
+                    update += "estacion = '" + nuevo.Estacion + "' ";
 
                     //----------------------------------------------------------------------
                     update += "WHERE IDCOMIDAEMPLEADO =" + seleccionada.IdComida ;
@@ -113,7 +115,7 @@ namespace Servicios_Reservados_2
         */
         internal DataTable getInformacionReservacionEmpleado(int idReservacionComida)
         {
-            string consulta = "SELECT IDEMPLEADO, FECHA, PAGADO, NOTAS, DESAYUNO, ALMUERZO, CENA, IDCOMIDAEMPLEADO  FROM RESERVA_EMPLEADO Where idcomidaempleado =" + idReservacionComida ;
+            string consulta = "SELECT IDEMPLEADO, FECHA, PAGADO, NOTAS, DESAYUNO, ALMUERZO, CENA, IDCOMIDAEMPLEADO, ESTACION FROM RESERVA_EMPLEADO Where idcomidaempleado =" + idReservacionComida ;
             DataTable dt = adaptador.consultar(consulta);
             return dt;
         }

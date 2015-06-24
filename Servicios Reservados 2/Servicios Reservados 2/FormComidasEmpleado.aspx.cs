@@ -27,6 +27,7 @@ namespace Servicios_Reservados_2
         private char[] turnosViejo;
         private bool pagadoViejo;
         private String notasViejo;
+        public String estacion;
 
         /*
          * Requiere: Parametros de eventos de la GUI
@@ -36,6 +37,7 @@ namespace Servicios_Reservados_2
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
+            estacion = (string)Session["Estacion"];
             string userid = (string)Session["username"];
             if (!IsPostBack)
             {
@@ -146,7 +148,7 @@ namespace Servicios_Reservados_2
          */
         protected void clickEliminar(object sender, EventArgs e)
         {
-            EntidadComidaEmpleado aCancelar = new EntidadComidaEmpleado(seleccionada.IdEmpleado, seleccionada.Fechas, seleccionada.Turnos, seleccionada.Pagado, seleccionada.Notas, seleccionada.IdComida);
+            EntidadComidaEmpleado aCancelar = new EntidadComidaEmpleado(seleccionada.IdEmpleado, seleccionada.Estacion, seleccionada.Fechas, seleccionada.Turnos, seleccionada.Pagado, seleccionada.Notas, seleccionada.IdComida);
             controladora.eliminar(aCancelar);
         }
         /*
@@ -191,7 +193,7 @@ namespace Servicios_Reservados_2
                 Turnos[0] = (this.checkboxDesayuno.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
                 Turnos[1] = (this.checkboxAlmuerzo.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
                 Turnos[2] = (this.checkboxCena.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
-                String[] resultado = controladora.agregar(identificacionEmpleado, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
+                String[] resultado = controladora.agregar(identificacionEmpleado, estacion, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
                 modo = 5;
                 ponerModo();
             }
@@ -235,7 +237,7 @@ namespace Servicios_Reservados_2
                 valor = (seleccionada.Turnos[1] == 'N') ? 'N' : 'X';//Si estaba consumida, reservada o cancelada, los errores los manejaran las controladoras e informaran.
             }
             Turnos[2] = valor;
-            controladora.modificar(seleccionada, empleadoSeleccionado.Id, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
+            controladora.modificar(seleccionada, empleadoSeleccionado.Id, estacion, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
         }
         /* Requiere: N/A
          * Efectua : pide los datos a la controladora y los coloca en su posicion en la GUI.

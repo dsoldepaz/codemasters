@@ -88,5 +88,11 @@ namespace Servicios_Reservados_2
             }
             return resultado;
         }
+
+        internal string[] desactivarUsuario(string username)
+        {
+
+            return controladoraBD.desactivarUsuario(username); ;
+        }
     }
 }
