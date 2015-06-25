@@ -207,8 +207,7 @@ namespace Servicios_Reservados_2
                         cambiarModo();
                     }
                     break;
-            }
-            this.SetFocus(alertAlerta);
+            }            
         }
 
         private bool modificarUsuario()
@@ -339,6 +338,7 @@ namespace Servicios_Reservados_2
             labelTipoAlerta.Text = alerta + " ";
             labelAlerta.Text = mensaje;
             alertAlerta.Attributes.Remove("hidden");
+            this.SetFocus(alertAlerta);
         }
         protected void clickEditar(object sender, EventArgs e)
         {

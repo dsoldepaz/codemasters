@@ -12,11 +12,11 @@ namespace Servicios_Reservados_2
     {
         private AdaptadorBD adaptador;
         DataTable dt;
-    /*
-     * Requiere: N/A
-     * Efectúa : inicializa las variables globales de la clase
-     * retorna : N/A
-     */
+        /*
+         * Requiere: N/A
+         * Efectúa : inicializa las variables globales de la clase
+         * retorna : N/A
+         */
         public ControladoraBDUsuario()
         {
             adaptador = new AdaptadorBD();
@@ -77,7 +77,7 @@ namespace Servicios_Reservados_2
        */
         public String[] agregarUsuarioRol(string usuario, string rol)
         {
-            String[] respuesta = new String[3];            
+            String[] respuesta = new String[3];
             String consultaSQL = "insert into usuariorol values('" + usuario + "','" + rol + "')";
             respuesta = adaptador.insertar(consultaSQL);
             return respuesta;
@@ -111,7 +111,7 @@ namespace Servicios_Reservados_2
             String[] respuesta = new String[3];
             String consultaSQL = "delete from usuariorol where usuario='" + usernameSeleccionado + "'";
             respuesta = adaptador.insertar(consultaSQL);
-            return respuesta;          
+            return respuesta;
         }
 
         internal string[] desactivarUsuario(string username)
@@ -119,15 +119,52 @@ namespace Servicios_Reservados_2
             String[] respuesta = new String[3];
             String consultaSQL = "update usuario set activo =" + 0 + " where username='" + username + "'";
             respuesta = adaptador.insertar(consultaSQL);
-            return respuesta; 
+            return respuesta;
         }
 
         internal string[] actualizarContrasena(string username, string contrasena)
         {
-            String[] respuesta = new String[3];            
+            String[] respuesta = new String[3];
             String consultaSQL = "update usuario set contrasena ='" + contrasena + "' where username='" + username + "'";
             respuesta = adaptador.insertar(consultaSQL);
-            return respuesta; 
+            return respuesta;
+        }
+
+        internal DataTable seleccionarUsuariosFiltro(string estacion, string nombreUsuario, string nombre)
+        {
+            dt = new DataTable();
+            String consultaSQL = "select username, Nombre, estacion, activo from usuario";
+            //en caso de filtros
+            if (!"".Equals(estacion) && "".Equals(nombreUsuario) && "".Equals(nombre))//un flitro
+            {
+                consultaSQL = "select username, Nombre, estacion, activo from usuario where estacion='" + estacion + "'";
+            }
+            else if ("".Equals(estacion) && !"".Equals(nombreUsuario) && "".Equals(nombre))
+            {
+                consultaSQL = "select username, Nombre, estacion, activo from usuario where LOWER(username) like '%" + nombreUsuario.ToLower() + "%'";
+            }
+            else if ("".Equals(estacion) && "".Equals(nombreUsuario) && !"".Equals(nombre))
+            {
+                consultaSQL = "select username, Nombre, estacion, activo from usuario where LOWER(nombre) like '%" + nombre.ToLower() + "%'";
+            }
+            else if (!"".Equals(estacion) && !"".Equals(nombreUsuario) && "".Equals(nombre))//dos filtros
+            {
+                consultaSQL = "select username, Nombre, estacion, activo from usuario where estacion='" + estacion + "' and LOWER(username) like '%" + nombreUsuario.ToLower() + "%'";
+            }
+            else if (!"".Equals(estacion) && "".Equals(nombreUsuario) && !"".Equals(nombre))
+            {
+                consultaSQL = "select username, Nombre, estacion, activo from usuario where estacion='" + estacion + "' and LOWER(nombre) like '%" + nombre.ToLower() + "%'";
+            }
+            else if ("".Equals(estacion) && !"".Equals(nombreUsuario) && !"".Equals(nombre))
+            {
+                consultaSQL = "select username, Nombre, estacion, activo from usuario where LOWER(username) like '%" + nombreUsuario.ToLower() + "%' and LOWER(nombre) like '%" + nombre.ToLower() + "%'";
+            }
+            else if (!"".Equals(estacion) && !"".Equals(nombreUsuario) && !"".Equals(nombre))//tres filtros
+            {
+                consultaSQL = "select username, Nombre, estacion, activo from usuario where estacion='" + estacion + "' and LOWER(username) like '%" + nombreUsuario.ToLower() + "%' and LOWER(nombre) like '%" + nombre.ToLower() + "%'";
+            }
+
+            return adaptador.consultar(consultaSQL);
         }
     }
 }

@@ -12,8 +12,7 @@
                         <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
                 </div>
             </a>
-
-
+            
             <legend style="color: #7BC143">Registro de usuarios</legend>
 
             <div class="well bs-component">

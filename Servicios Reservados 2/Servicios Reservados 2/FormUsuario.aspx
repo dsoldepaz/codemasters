@@ -1,14 +1,23 @@
 ﻿<%@ Page Title="Usuarios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormUsuario.aspx.cs" Inherits="Servicios_Reservados_2.FormUsuario" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <link rel="stylesheet" href="Content/Servicios.css" />
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+
+             <a href="#">
+                <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>
+                        <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                </div>
+            </a>
+
             <legend>
                 <h2>Administración de usuarios</h2>
             </legend>
@@ -35,7 +44,11 @@
                             </td>
                             <td>Username:</td>
                             <td>
-                                <input class="textbox" style="width: 500px" id="txtUsername" runat="server" />
+                                <input class="textbox" style="width: 200px" id="txtUsername" runat="server" />
+                            </td>
+                            <td>Nombre:</td>
+                            <td>
+                                <input class="textbox" style="width: 200px" id="txtNombre" runat="server" />
                             </td>
                             <td>
                                 <asp:Button Text="Buscar" class="btn btn-success" ID="BotonBuscar" OnClick="clickBuscar" runat="server" />
@@ -82,8 +95,8 @@
                                                 <p>¿Desea desactivar este usuario?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                <button type="button" class="btn btn-danger" runat="server" onserverclick="clickDesactivar">Desactivar</button>
+                                                <button type="button" class="btn btn-success" runat="server" onserverclick="clickDesactivar">Aceptar</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>                                                
                                             </div>
                                         </div>
                                     </div>

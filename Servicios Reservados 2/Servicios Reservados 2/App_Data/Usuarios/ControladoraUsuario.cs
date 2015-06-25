@@ -100,5 +100,10 @@ namespace Servicios_Reservados_2
             string hashContrasena = LoginService.EncodePassword(string.Concat(username, contrasena));
             return controladoraBD.actualizarContrasena(username, hashContrasena);
         }
+
+        internal DataTable solicitarUsuariosFiltro(string estacion, string nombreUsuario, string nombre)
+        {
+            return controladoraBD.seleccionarUsuariosFiltro(estacion, nombreUsuario, nombre);
+        }
     }
 }

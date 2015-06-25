@@ -31,12 +31,13 @@ namespace Servicios_Reservados_2
                     Response.Redirect("ErrorPermiso.aspx");
                 }
                 llenarGridUsuarios();
+                llenarEstaciones();
             }
         }
 
         private void llenarGridUsuarios()
         {
-            DataTable tabla = crearTablaServicios();
+            DataTable tabla = crearTablaUsuarios();
             Object[] datos = new Object[5];
             DataTable usuarios = controladora.solicitarUsuarios();// se consultan todos
             ids = new String[usuarios.Rows.Count];
@@ -71,8 +72,18 @@ namespace Servicios_Reservados_2
                 GridUsuarios.DataBind();
             }
         }
+        private void llenarEstaciones()
+        {
+            cbxEstacion.Items.Add("Todas");
+            cbxEstacion.Items.Add("La Selva");
+            cbxEstacion.Items.Add("Palo Verde");
+            cbxEstacion.Items.Add("Las Cruces");
+            cbxEstacion.Items.Add("Palo Verde");
+            cbxEstacion.Items.Add("North American Offices");
+            cbxEstacion.Items.Add("Costa Rican Offices");            
+        }
 
-        private DataTable crearTablaServicios()
+        private DataTable crearTablaUsuarios()
         {
             DataTable tabla = new DataTable();
             DataColumn columna;
@@ -153,6 +164,56 @@ namespace Servicios_Reservados_2
         }
         protected void clickBuscar(object sender, EventArgs e)
         {
+            String estacion = "";
+            String nombre = "";
+            String nombreUsuario = "";
+            if (cbxEstacion.SelectedIndex != 0)
+            {
+                estacion = cbxEstacion.Value.ToString();
+            }
+            if (!"".Equals(txtUsername.Value.ToString()))
+            {
+                nombreUsuario = txtUsername.Value.ToString();
+            }
+            if (!"".Equals(txtNombre.Value.ToString()))
+            {
+                nombre = txtNombre.Value.ToString();
+            }
+
+            DataTable tabla = crearTablaUsuarios();
+            Object[] datos = new Object[5];
+            DataTable usuarios = controladora.solicitarUsuariosFiltro(estacion, nombreUsuario, nombre);// se consultan todos
+            ids = new String[usuarios.Rows.Count];
+
+            if (usuarios.Rows.Count > 0)
+            {
+                int i = 0;
+                foreach (DataRow fila in usuarios.Rows)
+                {
+                    ids[i++] = fila[0].ToString();//username
+                    datos[0] = fila[0].ToString();//username
+                    datos[1] = fila[1].ToString();//nombre
+                    EntidadUsuario usuarioSeleccionado = controladora.solicitarUsuario(fila[0].ToString());
+                    string roles = "";
+                    foreach (string rol in usuarioSeleccionado.Rol)
+                    {
+                        roles += rol + ", ";
+                    }
+                    datos[2] = roles;//rol
+                    datos[3] = fila[2].ToString();//estacion
+
+                    datos[4] = "Activo";//estado
+                    if ("0".Equals(fila[3].ToString()))
+                    {
+                        datos[4] = "Inactivo";//estado
+                    }
+
+
+                    tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
+
+                }
+                GridUsuarios.DataBind();
+            }
         }
         protected void clickModificar(object sender, EventArgs e)
         {
@@ -163,7 +224,8 @@ namespace Servicios_Reservados_2
         }
         protected void clickDesactivar(object sender, EventArgs e)
         {
-            controladora.desactivarUsuario(ids[indice]);
+            String[] error= controladora.desactivarUsuario(ids[indice]);
+            mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
             Response.Redirect("FormUsuario");
         }
 
@@ -171,6 +233,20 @@ namespace Servicios_Reservados_2
         {
             indice = obtenerIndex(sender, e) + (GridUsuarios.PageIndex * 20);//se obtiene la cedula a consultar
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>$('#modalDesactivar').modal('show');</script>", false);
+        }
+
+        /*
+         * Efecto: mostrar en pantalla los mensajes del sistema, ya sean de error o de éxito.
+         * Requiere: que se inicie y se active alguna de las funcionalidades.
+         * Modifica: 
+        */
+        protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
+        {
+            alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
+            labelTipoAlerta.Text = alerta + " ";
+            labelAlerta.Text = mensaje;
+            alertAlerta.Attributes.Remove("hidden");
+            this.SetFocus(alertAlerta);
         }
 
     }
