@@ -32,9 +32,9 @@
                             <td>Fechas</td>
                             <td>
                                 <select ID="cbxFecha" runat="server" AutoPostBack="true" Height="20px" Width="120px">
-                                    <option value="De contado">Hoy</option>
-                                    <option value="Rebajo de planilla">Día siguiente</option>
-                                    <option value="Rebajo de planilla">Personalizado</option>
+                                    <option value="Hoy">Hoy</option>
+                                    <option value="Día siguiente">Día siguiente</option>
+                                    <option value="Personalizado">Personalizado</option>
                                 </select>
                             </td>
 
@@ -53,7 +53,7 @@
 
                             <td>
                                 
-                                <asp:Button Text="Generar Reporte" class="btn btn-success" ID="BotonGenerar" runat="server" />
+                                <asp:Button Text="Generar Reporte" class="btn btn-success" ID="BotonGenerar"  Onclick="clickBuscar" runat="server" />
 
                             </td>
                         </tr>

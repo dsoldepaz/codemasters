@@ -50,13 +50,27 @@ namespace Servicios_Reservados_2
 
         internal DataTable solicitarCE(String estacion, String inicio, String final)
         {
-            String consultaSQL="";
-            if(inicio==final){
-                consultaSQL = "select e.tipo,count(*),sum(s.pax) from servicios_reservados.servicio_especial s join servicios_reservados.servicios_extras e on s.idserviciosextras=e.idservicio join reservas.reservacion r on s.idreservacion=r.id join reservas.vr_reservacion v ON v.numero = r.numero where s.estado = 'Activo' and v.estacion='"+estacion+"' and s.fecha= '"+inicio+"' group by e.tipo";
-            }
-            else{
+            String consultaSQL = "select e.tipo,count(*),sum(s.pax) from servicios_reservados.servicio_especial s join servicios_reservados.servicios_extras e on s.idserviciosextras=e.idservicio join reservas.reservacion r on s.idreservacion=r.id join reservas.vr_reservacion v ON v.numero = r.numero where s.estado = 'Activo' and v.estacion='" + estacion + "' and s.fecha>= '" + inicio + "'  and s.fecha<= '" + final + "' group by e.tipo";
+           dt = adaptador.consultar(consultaSQL);
+           return dt;
+        }
 
-            }
+        internal DataTable solicitarCC(String estacion,String inicio, String final){
+            String consultaSQL = "select opcion,sum(pax) from servicios_reservados.comida_campo where fecha >= '"+inicio+"' and fecha <= '"+final+"' and estacion = '"+estacion+"' and estado= 'Activo' group by opcion";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        internal DataTable solicitarBebidas(String estacion, String inicio, String final)
+        {
+            String consultaSQL = "select bebida,sum(pax) from servicios_reservados.comida_campo where fecha >= '" + inicio + "' and estacion = '" + estacion + "' and fecha <= '" + final + "'  and estado='Activo'  and bebida is not null group by bebida";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        internal DataTable solicitarAdicionales(String estacion, String inicio, String final)
+        {
+            String consultaSQL = "select ad.nombre, SUM(cc.pax) from servicios_reservados.adicional ad join servicios_reservados.comida_campo cc on ad.idcomidacampo = cc.idcomidacampo where cc.fecha >= '" + inicio + "' and cc.estacion = '" + estacion + "' and cc.fecha <= '" + final + "'  and estado='Activo' group by ad.nombre";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }

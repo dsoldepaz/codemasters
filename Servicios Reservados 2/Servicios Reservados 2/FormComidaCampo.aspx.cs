@@ -539,7 +539,7 @@ namespace Servicios_Reservados_2
         protected Boolean agregarComidaCampo()
         {
             Boolean res = true;
-          
+         
             if (!revisarFechas())
             {
                 res = false;
@@ -548,6 +548,7 @@ namespace Servicios_Reservados_2
             {
                 Object[] nuevaComidaCampo = new Object[13];// objeto en el que se almacenan los datos para enviar a encapsular.
                 List<String> lista = listaAdicionales();
+                
                 nuevaComidaCampo[0] = "";
                 if (tipoComidaCampo == 0)
                 {
@@ -605,6 +606,7 @@ namespace Servicios_Reservados_2
                 else {
                     res = false;
                 }
+                
                 nuevaComidaCampo[8] = "";
                 if (CheckboxBebida.Checked)
                 {

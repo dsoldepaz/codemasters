@@ -35,5 +35,23 @@ namespace Servicios_Reservados_2
             return controladoraBD.solicitarCE(estacion,inicio,final);
 
         }
+
+        internal DataTable solicitarCC(String estacion, String inicio, String final)
+        {
+            return controladoraBD.solicitarCC(estacion, inicio, final);
+
+        }
+
+        internal DataTable solicitarBebidas(String estacion, String inicio, String final)
+        {
+            return controladoraBD.solicitarBebidas(estacion, inicio, final);
+
+        }
+
+        internal DataTable solicitarAdicionales(String estacion, String inicio, String final)
+        {
+            return controladoraBD.solicitarAdicionales(estacion, inicio, final);
+
+        }
     }
 }

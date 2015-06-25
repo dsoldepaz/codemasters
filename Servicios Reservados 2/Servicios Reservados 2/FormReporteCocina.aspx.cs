@@ -195,6 +195,21 @@ namespace Servicios_Reservados_2
             int desayunos=0;
             int almuerzos=0;
             int cena=0;
+            int queque = 0;
+            int cafe = 0;
+            int sandwich = 0;
+            int galloPinto = 0;
+            int jugo = 0;
+            int agua = 0;
+            int ensalada = 0;
+            int mayonesa = 0;
+            int confites = 0;
+            int frutas = 0;
+            int salsa= 0;
+            int huevoDuro = 0;
+            int galletas = 0;
+            int platanos=0;
+            
             if (estacion == "Las Cruces")
             {
                 sigla = "LC";
@@ -212,6 +227,8 @@ namespace Servicios_Reservados_2
             {
 
                 Object[] datos = new Object[2];
+
+                //Obtiene los datos de las reservaciones que reservan las 3 comidas por dia
                 DataTable turnosDiaTres = controladora.solicitarTurnoDiaTresComidas(sigla,fechaInicio,fechaFinal);
 
                 if (turnosDiaTres.Rows.Count > 0)
@@ -225,7 +242,7 @@ namespace Servicios_Reservados_2
                 
                 almuerzos = desayunos;
                 cena = desayunos;
-
+                //Obtiene los datos de reservaciones que reservan solo 2 comidas por dia
                 DataTable turnosDiaDos = controladora.solicitarTurnoDiaDosComidas(sigla, fechaInicio, fechaFinal);
                 if (turnosDiaDos.Rows.Count > 0)
                 {
@@ -254,7 +271,7 @@ namespace Servicios_Reservados_2
                     }
                 }
 
-
+                //Obtener reservaciones entrantes para calculos mas exactos de platos a cocinar
                 DataTable reservaEntrante = controladora.reservaEntrante(sigla, fechaInicio, fechaFinal);
             
                 if (reservaEntrante.Rows.Count > 0)
@@ -288,10 +305,10 @@ namespace Servicios_Reservados_2
                     }
 
                 }
-
+                //solicitar datos de comidaExtra
                 DataTable comidasE = controladora.solicitarCE(estacion, fechaInicio, fechaFinal);
 
-                if (reservaEntrante.Rows.Count > 0)
+                if (comidasE.Rows.Count > 0)
                 {
 
                     foreach (DataRow fila in comidasE.Rows)
@@ -313,18 +330,137 @@ namespace Servicios_Reservados_2
                         {
                             cena += cantidad;
                         }
-                        else {
-                            datos[0] = tipoC;
-                            datos[1] = cantidad;
-                            tabla.Rows.Add(datos);
+                        else if(tipoC == "Queque"){
+                            queque = cantidad;
+                            
+                        }
+                        else if (tipoC == "Café")
+                        {
+                            cafe = cantidad;
                         }
 
 
                     }
 
                 }
+                //solicitar datos de comida campo
+                DataTable comidasC = controladora.solicitarCC(estacion, fechaInicio, fechaFinal);
+
+                if (comidasC.Rows.Count > 0)
+                {
+
+                    foreach (DataRow fila in comidasC.Rows)
+                    {
+                        int opcion;
+                        int cantidad;
+                        opcion = int.Parse(fila[0].ToString());
+                        cantidad = (int.Parse(fila[1].ToString()));
+                        if (opcion == 1)
+                        {
+                            desayunos += cantidad;
+                        }
+                        else if (opcion == 2)
+                        {
+                            almuerzos += cantidad;
+
+                        }
+                        else if (opcion == 3)
+                        {
+                            cena += cantidad;
+                        }
+                        else if (opcion == 4)
+                        {
+                            sandwich = cantidad;
+
+                        }
+                        else if (opcion == 5)
+                        {
+                            galloPinto = cantidad;
+                        }
+
+
+                    }
+
+                }
+                //Obtener cantidad de bebidas
+                DataTable bebidas = controladora.solicitarBebidas(estacion, fechaInicio, fechaFinal);
+
+                if (bebidas.Rows.Count > 0)
+                {
+
+                    foreach (DataRow fila in bebidas.Rows)
+                    {
+                        String tipo;
+                        int cantidad;
+                        tipo = fila[0].ToString();
+                        cantidad = (int.Parse(fila[1].ToString()));
+                        if (tipo == "Agua")
+                        {
+                            agua = cantidad;
+                        }
+                        else 
+                        {
+                            jugo = cantidad;
+                        }
+
+                    }
+
+                }
+                //Obtener cantidad de adicionales
+                DataTable adicionales = controladora.solicitarAdicionales(estacion, fechaInicio, fechaFinal);
+
+                if (adicionales.Rows.Count > 0)
+                {
+                                      
+                    foreach (DataRow fila in adicionales.Rows)
+                    {
+                        String tipo;
+                        int cantidad;
+                        tipo = fila[0].ToString();
+                        cantidad = (int.Parse(fila[1].ToString()));
+                        if (tipo == "Ensalada")
+                        {
+                            ensalada = cantidad;
+                        }
+                        else if (tipo == "Mayonesa")
+                        {
+                            mayonesa = cantidad;
+
+                        }
+                        else if (tipo == "Confites")
+                        {
+                            confites = cantidad;
+                        }
+                        else if (tipo == "Frutas")
+                        {
+                            frutas = cantidad;
+
+                        }
+                        else if (tipo == "Salsa de tomate")
+                        {
+                            salsa = cantidad;
+                        }
+
+                        else if (tipo == "Huevos duros")
+                        {
+                            huevoDuro = cantidad;
+                        }
+
+                        else if (tipo == "Galletas")
+                        {
+                            galletas = cantidad;
+                        }
+
+                        else if (tipo == "Platanos")
+                        {
+                            platanos = cantidad;
+                        }
+
+                    }
+
+                }
                 
-                for(int i = 0; i< 3;i++){
+                for(int i = 0; i< 17;i++){
                     switch (i)
                     {
                         case 0:
@@ -340,6 +476,73 @@ namespace Servicios_Reservados_2
                             datos[0]="Cena";
                             datos[1]= cena;
                             break;
+                        case 3:
+                            datos[0] = "Queque";
+                            datos[1] = queque;
+                            break;
+                        case 4:
+                            datos[0] = "Café";
+                            datos[1] = cafe;
+                            break;
+
+                        case 5:
+                            datos[0] = "Sandwich";
+                            datos[1] = sandwich;
+                            break;
+
+                        case 6:
+                            datos[0] = "Gallo Pinto";
+                            datos[1] = galloPinto;
+                            break;
+                        case 7:
+                            datos[0] = "Agua";
+                            datos[1] = agua;
+                            break;
+                        case 8:
+                            datos[0] = "Jugo";
+                            datos[1] = jugo;
+                            break;
+
+                        case 9:
+                            datos[0] = "Ensalada";
+                            datos[1] = ensalada;
+                            break;
+
+                        case 10:
+                            datos[0] = "Mayonesa";
+                            datos[1] = mayonesa;
+                            break;
+
+                        case 11:
+                            datos[0] = "Confites";
+                            datos[1] = confites;
+                            break;
+                        case 12:
+                            datos[0] = "Frutas";
+                            datos[1] = frutas;
+                            break;
+
+                        case 13:
+                            datos[0] = "Salsa de tomate";
+                            datos[1] = salsa;
+                            break;
+
+                        case 14:
+                            datos[0] = "Huevos Duros";
+                            datos[1] = huevoDuro;
+                            break;
+
+                        case 15:
+                            datos[0] = "Galletas";
+                            datos[1] = galletas;
+                            break;
+
+                        case 16:
+                            datos[0] = "Platanos";
+                            datos[1] = platanos;
+                            break;
+                            
+                            
                         default:
                             break;
 
@@ -364,6 +567,12 @@ namespace Servicios_Reservados_2
             {
                 fechaInicio = mañana.ToString("MM/dd/yyyy");
                 fechaFinal = mañana.ToString("MM/dd/yyyy");
+            }
+
+            if (cbxFecha.Value.ToString() == "Hoy")
+            {
+                fechaInicio = DateTime.Today.ToString("MM/dd/yyyy");
+                fechaFinal = DateTime.Today.ToString("MM/dd/yyyy");
             }
             llenarGridTotal();
         }
