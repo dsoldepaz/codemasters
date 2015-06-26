@@ -28,7 +28,11 @@ namespace Servicios_Reservados_2
         {
             return controladoraBD.obtenerComidaEmp(estacion,opcion, fecha, fechaFinal);
         }
-        
+
+        internal DataTable obtenerComidaExtraEstacionAnfitrionaFecha(String estacion, String opcion, int anfitriona, String fecha, String fechaFinal)
+        {
+            return controladoraBD.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, opcion, anfitriona, fecha, fechaFinal);
+        }
 
     }
 }

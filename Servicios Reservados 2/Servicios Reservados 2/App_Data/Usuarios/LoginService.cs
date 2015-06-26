@@ -55,7 +55,7 @@ namespace Servicios_Reservados_2
         internal DataTable infoUsuario(string usuario)
         {
             //Declaramos la sentencia SQL
-            string sql = "SELECT estacion, reestablecer, activo FROM Usuario WHERE Username = '" + usuario + "'";
+            string sql = "SELECT estacion, reestablecer, activo, nombre FROM Usuario WHERE Username = '" + usuario + "'";
             return adaptadorBD.consultar(sql);
         }
     }

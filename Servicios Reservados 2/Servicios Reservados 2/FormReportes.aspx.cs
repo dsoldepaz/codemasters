@@ -117,9 +117,8 @@ namespace Servicios_Reservados_2
                 anfitriona = 02;
         }
             estacion = cbxEstacion.Value;
-            DateTime fechTemp = DateTime.Parse(dateFechaInicio.Value);
-            Debug.WriteLine("FECHA: " + dateFechaInicio.Value);
             fechaSeleccionda = cbxFecha.Text;
+            DateTime fechTemp = DateTime.Parse(dateFechaInicio.Value);
             fechaInicio = fechTemp.ToString("MM/dd/yyyy");
             fechTemp = DateTime.Parse(dateFechaFin.Value);
             fechaFinal = fechTemp.ToString("MM/dd/yyyy");
@@ -138,13 +137,13 @@ namespace Servicios_Reservados_2
                  
 
                   Object[] datos = new Object[13];
-                  
 
+                  filtroEstacionAnfitrionaFecha();
                   if (contar > 0)
                  {
                        for (int i = 0; i < contar; i++)
                     {
-                          datos[0] = fechas.Rows[i][0];
+                          datos[0] = fechaInicio;
                           datos[1] = sumaTotalDesayuno;
                           datos[2] = sumaTotalConsumidosDesayuno;
                           datos[3] = sumaTotalAlmuerzo;
@@ -307,26 +306,27 @@ namespace Servicios_Reservados_2
                 DataTable comidaCampoReservAlmuerzo = controladora.obtenerComidaPax(estacion, 2, anfitriona, fechaInicio, fechaFinal); //almuerzo de comidaCampo reservado
                 DataTable comidaCampoReservCena = controladora.obtenerComidaPax(estacion, 3, anfitriona, fechaInicio, fechaFinal); //cena de comidaCampo reservado
             
-                DataTable comidaExtraDesayuno=controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Desayuno",fechaInicio, fechaFinal); //desayuno comida extra
-                DataTable comidaExtraAlmuerzo = obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Almuerzo", fechaInicio, fechaFinal);             //almuerzo comida extra
-                DataTable comidaExtraCena = obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Cena", fechaInicio, fechaFinal);                   //cena comida extra
+                DataTable comidaExtraDesayuno=controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Desayuno", anfitriona, fechaInicio, fechaFinal); //desayuno comida extra
+                DataTable comidaExtraAlmuerzo = controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Almuerzo", anfitriona, fechaInicio, fechaFinal);             //almuerzo comida extra
+                DataTable comidaExtraCena = controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Cena", anfitriona, fechaInicio, fechaFinal);                   //cena comida extra
                 
             
-                contar = comidaCampoReserv.Rows.Count;
-                fechas = comidaCampoReserv;
+               // contar = comidaCampoReserv.Rows.Count;
+                //fechas = comidaCampoReserv;
 
 
                 if (anfitriona == 1)
                 {
 
-                    DataTable comidaCampoDesayunoEmp = controladora.obtenerComidaPaxEmp(estacion, 1, fechaInicio, fechaFinal); //desayuno comida campo empleado
+                   DataTable comidaCampoDesayunoEmp = controladora.obtenerComidaPaxEmp(estacion, 1, fechaInicio, fechaFinal); //desayuno comida campo empleado
                     DataTable comidaCampoAlmuerzoEmp = controladora.obtenerComidaPaxEmp(estacion, 2, fechaInicio, fechaFinal); //almuerzo comida campo empleado
                     DataTable comidaCampoCenaEmp = controladora.obtenerComidaPaxEmp(estacion, 3, fechaInicio, fechaFinal); //cena comida campo empleado
 
                     DataTable comidaDesayunoEmp = controladora.obtenerComidaEmp(estacion, "desayuno", fechaInicio, fechaFinal); //desayuno comida campo de empleados
                     DataTable comidaAlmuerzoEmp = controladora.obtenerComidaEmp(estacion, "almuerzo", fechaInicio, fechaFinal); //almuerzo comida campo de empleados
                     DataTable comidaCenaEmp = controladora.obtenerComidaEmp(estacion, "cena", fechaInicio, fechaFinal); //cena comida campo de empleados
-
+                    sumaTotalDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][0].ToString() + 1);    //suma total desayuno  
+                    sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][1].ToString() + 1);
                  
                     int contador = comidaEmp.Rows.Count;
                     if (contador > 0)
@@ -343,8 +343,8 @@ namespace Servicios_Reservados_2
                 }
                 else
                 {
-                    sumaTotalDesayuno = int.Parse(comidaCampoReserv.Rows[0][1].ToString());    //suma total desayuno  
-                    sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReserv.Rows[0][2].ToString());
+                    sumaTotalDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][0].ToString() + 1);    //suma total desayuno  
+                    sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][1].ToString() + 1);
                 }
             }
 

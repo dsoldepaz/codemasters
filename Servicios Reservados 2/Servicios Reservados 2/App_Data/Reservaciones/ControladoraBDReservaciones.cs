@@ -30,10 +30,12 @@ namespace Servicios_Reservados_2
          * Efectúa : Obtiene la fecha actual. Crea la consulta para obtener las cosultas activas con la fecha actual. Guarda en una tabla de datos el resultado a la consulta al adaptador.
          * Retorna : la tabla de datos con el resultado de la consulta.
          */
-        internal DataTable consultarTodasReservaciones() {
+        internal DataTable consultarTodasReservaciones(String estacion) {
             String fechaLocal = fechaHoy.ToString("MM/dd/yyyy");
-            String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE v.sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and  v.estado = 'CNF' order by sale asc"; 
-            Debug.WriteLine(consultaSQL);
+            String consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE v.sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and  v.estado = 'CNF' and v.estacion = '" + estacion + "' order by sale asc"; 
+            if("Todas".Equals(estacion)){
+                consultaSQL = "select r.id, v.siglas, v.estacion, v.numero, c.nombre, v.entra, v.sale FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.contacto c ON r.solicitante = c.id WHERE v.sale >= TO_DATE('" + fechaLocal + "','MM/dd/yyyy') and  v.estado = 'CNF' order by sale asc";
+            }
             dt = adaptador.consultar(consultaSQL);
             
             return dt;
