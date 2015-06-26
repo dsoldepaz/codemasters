@@ -98,7 +98,6 @@ namespace Servicios_Reservados_2
             cbxTipoPago.Items.Clear();// limpiamos el combobox
             cbxTipoPago.Items.Add("Efectivo");
             cbxTipoPago.Items.Add("Tarjeta");
-            cbxTipoPago.Items.Add("Deducción de planilla");
         }
 
         /*
