@@ -9,6 +9,6 @@
         <asp:GridView ID="GridNotificaciones" Class="Gridcontenedor" runat="server"  Width="80%">
 
         </asp:GridView>
-            <input type="button" value="cancelar" class="btn btn-danger" />
+            <input type="button" value="cancelar" class="btn btn-danger" runat="server" id="cancelar" onclick="bntCancelarClick" />
     </div>
 </asp:Content>
