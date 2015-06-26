@@ -306,10 +306,10 @@ namespace Servicios_Reservados_2
                 DataTable comidaCampoReservAlmuerzo = controladora.obtenerComidaPax(estacion, 2, anfitriona, fechaInicio, fechaFinal); //almuerzo de comidaCampo reservado
                 DataTable comidaCampoReservCena = controladora.obtenerComidaPax(estacion, 3, anfitriona, fechaInicio, fechaFinal); //cena de comidaCampo reservado
             
-              /*  DataTable comidaExtraDesayuno=controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Desayuno",fechaInicio, fechaFinal); //desayuno comida extra
-                DataTable comidaExtraAlmuerzo = obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Almuerzo", fechaInicio, fechaFinal);             //almuerzo comida extra
-                DataTable comidaExtraCena = obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Cena", fechaInicio, fechaFinal);                   //cena comida extra
-                */
+                DataTable comidaExtraDesayuno=controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Desayuno", anfitriona, fechaInicio, fechaFinal); //desayuno comida extra
+                DataTable comidaExtraAlmuerzo = controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Almuerzo", anfitriona, fechaInicio, fechaFinal);             //almuerzo comida extra
+                DataTable comidaExtraCena = controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Cena", anfitriona, fechaInicio, fechaFinal);                   //cena comida extra
+                
             
                // contar = comidaCampoReserv.Rows.Count;
                 //fechas = comidaCampoReserv;
@@ -328,7 +328,7 @@ namespace Servicios_Reservados_2
                     sumaTotalDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][0].ToString() + 1);    //suma total desayuno  
                     sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][1].ToString() + 1);
                  
-                    /*int contador = comidaEmp.Rows.Count;
+                    int contador = comidaEmp.Rows.Count;
                     if (contador > 0)
                     {
                         sumaTotalDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][1].ToString()) + int.Parse(comidaCampoDesayunoEmp.Rows[0][1].ToString()) + int.Parse(comidaDesayunoEmp.Rows[0][1].ToString());    //suma total desayuno  
@@ -338,7 +338,7 @@ namespace Servicios_Reservados_2
                     {
                         sumaTotalDesayuno = int.Parse(comidaCampoReserv.Rows[0][1].ToString()) + int.Parse(paxEmp.Rows[0][1].ToString());
                         sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReserv.Rows[0][2].ToString()) + int.Parse(paxEmp.Rows[0][2].ToString());
-                    }*/
+                    }
 
                 }
                 else
