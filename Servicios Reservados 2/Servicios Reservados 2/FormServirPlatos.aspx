@@ -6,15 +6,31 @@
             <li class="item-navegacion"><a href="Default.aspx" title="Página principal"><i class="glyphicon glyphicon-home"></i></a></li>
             <li class="item-navegacion"><a class="seleccionado" title="Servir platos" href="FormServirPlatos.aspx">Servir platos</a></li>
             <li class="item-navegacion"><a href="FormReportesComedor.aspx" title="Reportes">Reportes</a></li>
-            <li class="item-navegacion"><a href="Notificaciones.aspx">Notificaciones <span class="notificacion" id="contador" runat="server">0</span><a/></li>
+            <li class="item-navegacion"><a href="Notificaciones.aspx">Notificaciones <span class="notificacion" id="contador" runat="server">0</span><a /></li>
         </ul>
     </nav>
-
-    <legend>
-        <h2>Servir Platos</h2>
-    </legend>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <table>
+                <tr>
+                    <td>
+                        <legend>
+                            <h2>Servir Platos</h2>
+                        </legend>
+                    </td>
+                    <td>
+                        <a href="">
+                            <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>
+                                    <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+
             <div class="well bs-component">
 
                 <legend style="color: #7BC143">Servicio por tiquetes</legend>
@@ -34,20 +50,6 @@
                     </table>
                 </asp:Panel>
 
-                <a href="">
-                    <div id="Div1" class="alert alert-danger fade in" runat="server" hidden="hidden">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>
-                            <asp:Label ID="label1" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="label2" runat="server" Text="Mensaje de alerta"></asp:Label>
-                    </div>
-                </a>
-                <a href="">
-                    <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>
-                            <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
-                    </div>
-                </a>
             </div>
 
 

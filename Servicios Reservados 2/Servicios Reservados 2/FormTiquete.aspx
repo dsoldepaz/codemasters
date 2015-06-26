@@ -9,10 +9,24 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-
-            <legend>
-                <h2>Activar tiquetes</h2>
-            </legend>
+            <table>
+                <tr>
+                    <td>
+                        <legend>
+                            <h2>Activar tiquetes</h2>
+                        </legend>
+                    </td>
+                    <td>
+                        <a href="">
+                            <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>
+                                    <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            </table>
 
             <div class="well bs-component">
                 <legend style="color: #7BC143">Información del servicio</legend>
@@ -75,13 +89,7 @@
                     </table>
                 </asp:Panel>
 
-                <a href="">
-                    <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>
-                            <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
-                    </div>
-                </a>
+
 
                 <asp:GridView ID="GridViewTiquetes" runat="server" Class="Gridcontenedor" AllowSorting="true">
                     <AlternatingRowStyle BorderStyle="None" />
