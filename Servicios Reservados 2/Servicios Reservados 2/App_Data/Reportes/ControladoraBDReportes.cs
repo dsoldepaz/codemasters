@@ -50,13 +50,13 @@ namespace Servicios_Reservados_2
             String consultaSQL="";
             if (consulta == 1)
             {
-                consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from servicio_especial s join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fecha + "','mm/dd/yyyy') and " +
-                            "to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fechaFinal + "','mm/dd/yyyy') and se.tipo = '" + opcion + "' group by s.fecha";
+                consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from servicio_especial s join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and " +
+                            "to_date(s.fecha,'mm/dd/yyyy') <= to_date('" + fechaFinal + "','mm/dd/yyyy') and se.tipo = '" + opcion + "' group by s.fecha";
             }
             else
             {
-                consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from servicio_especial s join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fecha + "','mm/dd/yyyy') and " +
-                            "to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fechaFinal + "','mm/dd/yyyy') and se.tipo <> 'Cena' and se.tipo <> 'Desayuno' and se.tipo <> 'Almuerzo' group by s.fecha";
+                consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from servicio_especial s join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and " +
+                            "to_date(s.fecha,'mm/dd/yyyy') <= to_date('" + fechaFinal + "','mm/dd/yyyy') and se.tipo <> 'Cena' and se.tipo <> 'Desayuno' and se.tipo <> 'Almuerzo' group by s.fecha";
             }
 
 
@@ -71,14 +71,14 @@ namespace Servicios_Reservados_2
             if (consulta == 1)
             {
                 consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from ((RESERVAS.reservacion r join RESERVAS.vr_reservacion vr on r.numero = vr.numero ) join servicio_especial s on s.idreservacion = r.id) join " +
-                    "servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fecha + "','mm/dd/yyyy') and " +
-                    "to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fechaFinal + "','mm/dd/yyyy') and r.anfitriona=" + anfitriona + " and vr.estacion = '" + estacion + "' and se.tipo = '" + opcion + "' group by s.fecha";
+                    "servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and " +
+                    "to_date(s.fecha,'mm/dd/yyyy') <= to_date('" + fechaFinal + "','mm/dd/yyyy') and r.anfitriona=" + anfitriona + " and vr.estacion = '" + estacion + "' and se.tipo = '" + opcion + "' group by s.fecha";
             }
             else
             {
                 consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from ((RESERVAS.reservacion r join RESERVAS.vr_reservacion vr on r.numero = vr.numero ) join servicio_especial s on s.idreservacion = r.id) join " +
-                    "servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fecha + "','mm/dd/yyyy') and " +
-                    "to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fechaFinal + "','mm/dd/yyyy') and r.anfitriona=" + anfitriona + " and vr.estacion = '" + estacion + "' and se.tipo <> 'Cena' and se.tipo <> 'Desayuno' and se.tipo <> 'Almuerzo' group by s.fecha";
+                    "servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and " +
+                    "to_date(s.fecha,'mm/dd/yyyy') <= to_date('" + fechaFinal + "','mm/dd/yyyy') and r.anfitriona=" + anfitriona + " and vr.estacion = '" + estacion + "' and se.tipo <> 'Cena' and se.tipo <> 'Desayuno' and se.tipo <> 'Almuerzo' group by s.fecha";
             }
             comidaExtra = adaptador.consultar(consultaSQL);
             return comidaExtra;
@@ -91,14 +91,14 @@ namespace Servicios_Reservados_2
             if (consulta == 1)
             {
                 consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from ((RESERVAS.reservacion r join RESERVAS.vr_reservacion vr on r.numero = vr.numero ) join servicio_especial s on s.idreservacion " +
-                   "= r.id) join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fecha + "','mm/dd/yyyy') and" +
-                   "to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fechaFinal + "','mm/dd/yyyy') and vr.estacion = '" + estacion + "' and se.tipo = '" + opcion + "' group by s.fecha";
+                   "= r.id) join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and" +
+                   "to_date(s.fecha,'mm/dd/yyyy') <= to_date('" + fechaFinal + "','mm/dd/yyyy') and vr.estacion = '" + estacion + "' and se.tipo = '" + opcion + "' group by s.fecha";
             }
             else
             {
                 consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from ((RESERVAS.reservacion r join RESERVAS.vr_reservacion vr on r.numero = vr.numero ) join servicio_especial s on s.idreservacion " +
-                "= r.id) join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fecha + "','mm/dd/yyyy') and" +
-                   "to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fechaFinal + "','mm/dd/yyyy') and vr.estacion = '" + estacion + "' and se.tipo <> 'Cena' and se.tipo <> 'Desayuno' and se.tipo <> 'Almuerzo' group by s.fecha";
+                "= r.id) join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and" +
+                   "to_date(s.fecha,'mm/dd/yyyy') <= to_date('" + fechaFinal + "','mm/dd/yyyy') and vr.estacion = '" + estacion + "' and se.tipo <> 'Cena' and se.tipo <> 'Desayuno' and se.tipo <> 'Almuerzo' group by s.fecha";
             }
             comidaExtra = adaptador.consultar(consultaSQL);
             return comidaExtra;
@@ -111,14 +111,14 @@ namespace Servicios_Reservados_2
             if (consulta == 1)
             {
                 consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from (servicio_especial s join RESERVAS.reservacion r on s.idreservacion = r.id)join servicios_extras se on se.idservicio = " +
-               "s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fecha + "','mm/dd/yyyy') and " +
-               "to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fechaFinal + "','mm/dd/yyyy') and r.anfitriona=" + anfitriona + " and se.tipo = '" + opcion + "' group by s.fecha";
+               "s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and " +
+               "to_date(s.fecha,'mm/dd/yyyy') <= to_date('" + fechaFinal + "','mm/dd/yyyy') and r.anfitriona=" + anfitriona + " and se.tipo = '" + opcion + "' group by s.fecha";
             }
             else
             {
                 consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from (servicio_especial s join RESERVAS.reservacion r on s.idreservacion = r.id)join servicios_extras se on se.idservicio = " +
-               "s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fecha + "','mm/dd/yyyy') and " +
-               "to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fechaFinal + "','mm/dd/yyyy') and r.anfitriona=" + anfitriona + " and se.tipo <> 'Cena' and se.tipo <> 'Desayuno' and se.tipo <> 'Almuerzo' group by s.fecha";
+               "s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and " +
+               "to_date(s.fecha,'mm/dd/yyyy') <= to_date('" + fechaFinal + "','mm/dd/yyyy') and r.anfitriona=" + anfitriona + " and se.tipo <> 'Cena' and se.tipo <> 'Desayuno' and se.tipo <> 'Almuerzo' group by s.fecha";
             }
             comidaExtra = adaptador.consultar(consultaSQL);
             return comidaExtra;
