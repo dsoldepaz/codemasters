@@ -66,5 +66,29 @@ namespace Servicios_Reservados_2
             return comidaExtra;
         }
 
+        internal DataTable obtenerComidaExtraEstacionFecha(String estacion, String opcion, String fecha, String fechaFinal)
+        {
+            DataTable comidaExtra;
+
+            String consultaSQL = "select sum(s.pax), sum(s.vecesconsumido) from ((RESERVAS.reservacion r join RESERVAS.vr_reservacion vr on r.numero = vr.numero ) join servicio_especial s on s.idreservacion" +
+                "= r.id) join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fecha + "','mm/dd/yyyy') and" +
+                "to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fechaFinal + "','mm/dd/yyyy') and vr.estacion = '" + estacion + "' and se.tipo = '" + opcion + "'";
+
+            comidaExtra = adaptador.consultar(consultaSQL);
+            return comidaExtra;
+        }
+
+        internal DataTable obtenerComidaExtraAnfitrionaFecha(String opcion, int anfitriona, String fecha, String fechaFinal)
+        {
+            DataTable comidaExtra;
+
+            String consultaSQL = "select sum(s.pax), sum(s.vecesconsumido) from (servicio_especial s join RESERVAS.reservacion r on s.idreservacion = r.id)join servicios_extras se on se.idservicio =" +
+            "s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fecha + "','mm/dd/yyyy') and" +
+            "to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fechaFinal + "','mm/dd/yyyy') and r.anfitriona=" + anfitriona + " and se.tipo = '" + opcion + "'";
+
+            comidaExtra = adaptador.consultar(consultaSQL);
+            return comidaExtra;
+        }
+
     }
 }
