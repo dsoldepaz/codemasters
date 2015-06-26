@@ -186,7 +186,6 @@
     <Content Include="FormTiquete.aspx" />
     <Content Include="Images\editar.png" />
     <Content Include="Images\help.png" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\comedor.css" />
     <Content Include="Content\ComidasExtra.css" />
     <Content Include="Content\reset.css" />
@@ -310,7 +309,6 @@
     <Content Include="FormComidaCampo.aspx" />
     <Content Include="Ingresar.aspx" />
     <Content Include="Notificaciones.aspx" />
-    <Content Include="oet.ico" />
     <Content Include="packages.config" />
     <Content Include="FormComidaExtra.aspx" />
     <Content Include="Content\bootstrap-3.3.4-dist\css\bootstrap-theme.css.map" />
@@ -505,13 +503,6 @@
     </Compile>
     <Compile Include="FormServirPlatos.aspx.designer.cs">
       <DependentUpon>FormServirPlatos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

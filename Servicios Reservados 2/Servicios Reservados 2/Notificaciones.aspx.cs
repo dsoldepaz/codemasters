@@ -13,6 +13,7 @@ namespace Servicios_Reservados_2
     public partial class Notificaciones : System.Web.UI.Page
     {
        private static ControladoraNotificaciones controladora = new ControladoraNotificaciones();
+       static internal int ultimaRevision = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             llenarNotificaciones();

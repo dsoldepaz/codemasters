@@ -41,6 +41,7 @@ namespace Servicios_Reservados_2
                 Session["Roles"] = listaRoles;
                 DataTable info = login.infoUsuario(usuario);
                 Session["Estacion"] = info.Rows[0]["estacion"].ToString();
+                Session["Nombre"] = info.Rows[0]["nombre"].ToString();
                 if ("1".Equals(info.Rows[0]["activo"].ToString()))
                 {
                     if ("1".Equals(info.Rows[0]["reestablecer"].ToString()))
