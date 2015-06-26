@@ -150,7 +150,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
+    <Content Include="AcercaDe.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Manage.aspx" />
     <Content Include="Account\OpenAuthProviders.ascx" />
@@ -186,7 +186,6 @@
     <Content Include="FormTiquete.aspx" />
     <Content Include="Images\editar.png" />
     <Content Include="Images\help.png" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\comedor.css" />
     <Content Include="Content\ComidasExtra.css" />
     <Content Include="Content\reset.css" />
@@ -310,7 +309,6 @@
     <Content Include="FormComidaCampo.aspx" />
     <Content Include="Ingresar.aspx" />
     <Content Include="Notificaciones.aspx" />
-    <Content Include="oet.ico" />
     <Content Include="packages.config" />
     <Content Include="FormComidaExtra.aspx" />
     <Content Include="Content\bootstrap-3.3.4-dist\css\bootstrap-theme.css.map" />
@@ -380,12 +378,12 @@
     <Compile Include="App_Data\Usuarios\EntidadUsuario.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="AcercaDe.aspx.cs">
+      <DependentUpon>AcercaDe.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="AcercaDe.aspx.designer.cs">
+      <DependentUpon>AcercaDe.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -505,13 +503,6 @@
     </Compile>
     <Compile Include="FormServirPlatos.aspx.designer.cs">
       <DependentUpon>FormServirPlatos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
