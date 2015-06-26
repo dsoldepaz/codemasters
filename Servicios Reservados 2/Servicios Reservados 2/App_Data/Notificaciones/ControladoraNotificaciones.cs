@@ -36,18 +36,19 @@ namespace Servicios_Reservados_2
          */
         public DataTable getNotificaciones()
         {
+            DataTable notif =controladoraNotificaciones.getNotificaciones();
             Notificaciones.ultimaRevision = getUltimaNotificacion();
-            return controladoraNotificaciones.getNotificaciones();
+            return notif;
         }
         /*
          * Requiere: N/A
          * Efectua : Pide a la controladora el numero de la ultima notificacion consultada.
          * Retorna : un entero con el numero
          */
-        private int getUltimaNotificacion()
+        private String getUltimaNotificacion()
         {
             DataTable resultado = controladoraNotificaciones.numeroUltimaNotificacion();
-            int notificaciones = int.Parse(resultado.Rows[0][0].ToString());
+            String notificaciones = resultado.Rows[0][0].ToString();
             return notificaciones;
         }
 
