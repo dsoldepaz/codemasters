@@ -301,8 +301,17 @@ namespace Servicios_Reservados_2
 
             if (estacion != null && fechaInicio != null && fechaFinal != null) //si se selecciona una estacion, fecha y anfitriona
             {
+                Object[] datos = new Object[2];
+                datos[0] = 0;
+                datos[1] = 0;
 
                 DataTable comidaCampoReservDesayuno = controladora.obtenerComidaPax(estacion, 1, anfitriona, fechaInicio, fechaFinal);// se consultan desayunos de comida de campo dependiendo de fecha con estacion y anfitriona.
+                int contador = comidaCampoReservDesayuno.Rows.Count;
+                if (contador == 0)
+                {
+                    comidaCampoReservDesayuno.Rows.Add(datos);
+
+                }
                 DataTable comidaCampoReservAlmuerzo = controladora.obtenerComidaPax(estacion, 2, anfitriona, fechaInicio, fechaFinal); //almuerzo de comidaCampo reservado
                 DataTable comidaCampoReservCena = controladora.obtenerComidaPax(estacion, 3, anfitriona, fechaInicio, fechaFinal); //cena de comidaCampo reservado
             
@@ -311,14 +320,11 @@ namespace Servicios_Reservados_2
                 DataTable comidaExtraCena = controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Cena", anfitriona, fechaInicio, fechaFinal);                   //cena comida extra
                 
             
-               // contar = comidaCampoReserv.Rows.Count;
-                //fechas = comidaCampoReserv;
-
-
                 if (anfitriona == 1)
                 {
 
-                   DataTable comidaCampoDesayunoEmp = controladora.obtenerComidaPaxEmp(estacion, 1, fechaInicio, fechaFinal); //desayuno comida campo empleado
+                    DataTable comidaCampoDesayunoEmp = controladora.obtenerComidaPaxEmp(estacion, 1, fechaInicio, fechaFinal); //desayuno comida campo empleado
+                    
                     DataTable comidaCampoAlmuerzoEmp = controladora.obtenerComidaPaxEmp(estacion, 2, fechaInicio, fechaFinal); //almuerzo comida campo empleado
                     DataTable comidaCampoCenaEmp = controladora.obtenerComidaPaxEmp(estacion, 3, fechaInicio, fechaFinal); //cena comida campo empleado
 
@@ -328,8 +334,8 @@ namespace Servicios_Reservados_2
                     sumaTotalDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][0].ToString() + 1);    //suma total desayuno  
                     sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][1].ToString() + 1);
                  
-                    int contador = comidaEmp.Rows.Count;
-                    if (contador > 0)
+                   
+                    /*if (contador > 0)
                     {
                         sumaTotalDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][1].ToString()) + int.Parse(comidaCampoDesayunoEmp.Rows[0][1].ToString()) + int.Parse(comidaDesayunoEmp.Rows[0][1].ToString());    //suma total desayuno  
                         sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][2].ToString()) + int.Parse(comidaCampoDesayunoEmp.Rows[0][2].ToString()) + int.Parse(comidaDesayunoEmp.Rows[0][2].ToString());
@@ -338,7 +344,7 @@ namespace Servicios_Reservados_2
                     {
                         sumaTotalDesayuno = int.Parse(comidaCampoReserv.Rows[0][1].ToString()) + int.Parse(paxEmp.Rows[0][1].ToString());
                         sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReserv.Rows[0][2].ToString()) + int.Parse(paxEmp.Rows[0][2].ToString());
-                    }
+                    }*/
 
                 }
                 else

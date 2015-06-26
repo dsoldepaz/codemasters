@@ -187,5 +187,38 @@ namespace Servicios_Reservados_2
             String consultaSQL = "update servicios_reservados.reserva_empleado set vecesconsumido= " + vecesConsumido + " where idcomidaempleado ='" + idServicio +  "'";
             adaptador.consultar(consultaSQL); 
         }
+
+        /*
+         * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+         * Efectua : Crea una consulta para consultar el total de desayunos para las fechas dadas
+         * Retorna : un arreglo de hileras con el resultado.
+         */
+        internal DataTable getDesayunos(String estacion, String fechaInicio, String fechaFinal)
+        {
+            String consultaSQL = "select desayuno, count(*) from servicios_reservados.reserva_empleado where desayuno ='R' and fecha <= TO_DATE('" + fechaInicio + "','MM/dd/yyyy') and fecha>= TO_DATE('" + fechaFinal + "','MM/dd/yyyy') and estacion = '"+estacion+"' group by desayuno";
+            return adaptador.consultar(consultaSQL); 
+        }
+
+        /*
+         * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+         * Efectua : Crea una consulta para consultar el total de almuerzos para las fechas dadas
+         * Retorna : un arreglo de hileras con el resultado.
+         */
+        internal DataTable getAlmuerzos(String estacion, String fechaInicio, String fechaFinal)
+        {
+            String consultaSQL = "select almuerzo, count(*) from servicios_reservados.reserva_empleado where almuerzo ='R' and fecha <= TO_DATE('" + fechaInicio + "','MM/dd/yyyy') and fecha>= TO_DATE('" + fechaFinal + "','MM/dd/yyyy') and estacion = '" + estacion + "' group by almuerzo";
+            return adaptador.consultar(consultaSQL);
+        }
+
+        /*
+         * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+         * Efectua : Crea una consulta para consultar el total de cenas para las fechas dadas
+         * Retorna : un arreglo de hileras con el resultado.
+         */
+        internal DataTable getCenas(String estacion, String fechaInicio, String fechaFinal)
+        {
+            String consultaSQL = "select cena, count(*) from servicios_reservados.reserva_empleado where cena ='R' and fecha <= TO_DATE('" + fechaInicio + "','MM/dd/yyyy') and fecha>= TO_DATE('" + fechaFinal + "','MM/dd/yyyy') and estacion = '" + estacion + "' group by cena";
+            return adaptador.consultar(consultaSQL);
+        }
     }
 }

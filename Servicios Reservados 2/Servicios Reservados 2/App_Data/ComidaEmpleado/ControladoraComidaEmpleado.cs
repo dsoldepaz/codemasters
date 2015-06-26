@@ -111,5 +111,35 @@ namespace Servicios_Reservados_2
         {
             controladoraBD.actualizarVecesConsumido(idServicio, vecesConsumido);
         }
+
+        /*
+         * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+         * Efectua : llama a getDesayunos de la controladora de base de datos con el parametro dado. 
+         * Retorna :  El datatable retornado por la controladora.
+         */
+        internal DataTable getDesayunos(String estacion,String inicio,String final)
+        {
+            return controladoraBD.getDesayunos(estacion, inicio, final);
+        }
+
+        /*
+        * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+        * Efectua : llama a getAlmuerzos de la controladora de base de datos con el parametro dado. 
+        * Retorna :  El datatable retornado por la controladora.
+        */
+        internal DataTable getAlmuerzos(String estacion, String inicio, String final)
+        {
+            return controladoraBD.getAlmuerzos(estacion,inicio,final);
+        }
+
+        /*
+        * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+        * Efectua : llama a getAlmuerzos de la controladora de base de datos con el parametro dado. 
+        * Retorna :  El datatable retornado por la controladora.
+        */
+        internal DataTable getCenas(String estacion, String inicio, String final)
+        {
+            return controladoraBD.getCenas(estacion,inicio,final);
+        }
     }
 }

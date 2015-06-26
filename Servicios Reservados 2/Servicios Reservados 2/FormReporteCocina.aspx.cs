@@ -382,6 +382,52 @@ namespace Servicios_Reservados_2
                     }
 
                 }
+
+                //Obteber cantidad de comidas para empleado
+                DataTable comidasEmpleado = controladora.getDesayunos(estacion, fechaInicio, fechaFinal);
+                if (comidasEmpleado.Rows.Count > 0)
+                {
+
+                    foreach (DataRow fila in comidasEmpleado.Rows)
+                    {
+                        int cantidad;
+                        cantidad = int.Parse(fila[1].ToString());
+                        desayunos += cantidad;
+
+
+
+                    }
+                }
+                //Obtiene los almuerzos
+                comidasEmpleado = controladora.getAlmuerzos(estacion, fechaInicio, fechaFinal);
+                if (comidasEmpleado.Rows.Count > 0)
+                {
+
+                    foreach (DataRow fila in comidasEmpleado.Rows)
+                    {
+                        int cantidad;
+                        cantidad = int.Parse(fila[1].ToString());
+                        almuerzos += cantidad;
+
+
+
+                    }
+                }
+                //Obtiene las cenas      
+                comidasEmpleado = controladora.getCenas(estacion, fechaInicio, fechaFinal);
+                if (comidasEmpleado.Rows.Count > 0)
+                {
+
+                    foreach (DataRow fila in comidasEmpleado.Rows)
+                    {
+                        int cantidad;
+                        cantidad = int.Parse(fila[1].ToString());
+                        cena += cantidad;
+
+
+
+                    }
+                }
                 //Obtener cantidad de bebidas
                 DataTable bebidas = controladora.solicitarBebidas(estacion, fechaInicio, fechaFinal);
 

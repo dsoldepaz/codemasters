@@ -9,13 +9,12 @@ namespace Servicios_Reservados_2
     public class ControladoraNotificaciones
     {
         private ControladoraBDNotificaciones controladoraNotificaciones;
-        static public DateTime ultimaRevision=new DateTime() ;
+        
 
 
         public ControladoraNotificaciones()
         {
             controladoraNotificaciones = new ControladoraBDNotificaciones();
-            ultimaRevision = ultimaRevision.AddHours(-12);
           
         }
 
@@ -26,9 +25,8 @@ namespace Servicios_Reservados_2
          */
         public int getNumeroDeNotificaciones()
         {
-            DataTable resultado = controladoraNotificaciones.numeroDeNotificaciones(ultimaRevision);
+            DataTable resultado = controladoraNotificaciones.numeroDeNotificaciones(Notificaciones.ultimaRevision);
             int notificaiones = int.Parse(resultado.Rows[0][0].ToString());
-            ultimaRevision = DateTime.Now;
             return notificaiones;
         }
         /*
@@ -38,7 +36,20 @@ namespace Servicios_Reservados_2
          */
         public DataTable getNotificaciones()
         {
+            Notificaciones.ultimaRevision = getUltimaNotificacion();
             return controladoraNotificaciones.getNotificaciones();
         }
+        /*
+         * Requiere: N/A
+         * Efectua : Pide a la controladora el numero de la ultima notificacion consultada.
+         * Retorna : un entero con el numero
+         */
+        private int getUltimaNotificacion()
+        {
+            DataTable resultado = controladoraNotificaciones.numeroUltimaNotificacion();
+            int notificaciones = int.Parse(resultado.Rows[0][0].ToString());
+            return notificaciones;
+        }
+
     }
 }
