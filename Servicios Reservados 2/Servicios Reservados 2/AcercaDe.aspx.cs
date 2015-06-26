@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Servicios_Reservados_2
 {
-    public partial class About : Page
+    public partial class AcercaDe : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
