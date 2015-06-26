@@ -30,7 +30,7 @@ namespace Servicios_Reservados_2
         {
             DataTable comidaCampoEmp;
 
-            String consultaSQL = "select sum(pax), sum(vecesconsumido) from comida_campo where estacion = '" + estacion + "' and opcion = " + opcion + " and to_date(fecha, 'MM/dd/yyyy') <= to_date('" + fechaFinal + "', 'MM/dd/yyyy') and to_date(fecha, 'MM/dd/yyyy') >= to_date('" + fecha + "', 'MM/dd/yyyy') and idempleado is not null";
+            String consultaSQL = "select distinct fecha, sum(pax), sum(vecesconsumido) from comida_campo where estacion = '" + estacion + "' and opcion = " + opcion + " and to_date(fecha, 'MM/dd/yyyy') <= to_date('" + fechaFinal + "', 'MM/dd/yyyy') and to_date(fecha, 'MM/dd/yyyy') >= to_date('" + fecha + "', 'MM/dd/yyyy') and idempleado is not null group by fecha";
             comidaCampoEmp = adaptador.consultar(consultaSQL);
             return comidaCampoEmp;
         }
@@ -39,7 +39,7 @@ namespace Servicios_Reservados_2
         {
             DataTable comidaCampoEmp;
 
-            String consultaSQL = "select count(" + opcion + "), count(vecesconsumido) from reserva_empleado where " + opcion + " = 'R' and fecha >= to_date('" + fecha + "', 'mm/dd/yyyy') and fecha <= to_date('" + fechaFinal + "', 'mm/dd/yyyy') and estacion ='" + estacion + "'";
+            String consultaSQL = "select distinct fecha, count(" + opcion + "), count(vecesconsumido) from reserva_empleado where " + opcion + " = 'R' and fecha >= to_date('" + fecha + "', 'mm/dd/yyyy') and fecha <= to_date('" + fechaFinal + "', 'mm/dd/yyyy') and estacion ='" + estacion + "'group by fecha";
             comidaCampoEmp = adaptador.consultar(consultaSQL);
             return comidaCampoEmp;
         }
@@ -48,8 +48,8 @@ namespace Servicios_Reservados_2
         {
             DataTable comidaExtra;
 
-            String consultaSQL = "select sum(s.pax), sum(s.vecesconsumido) from servicio_especial s join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fecha + "','mm/dd/yyyy') and" +
-            "to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fechaFinal + "','mm/dd/yyyy') and se.tipo = '" + opcion + "'";
+            String consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from servicio_especial s join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fecha + "','mm/dd/yyyy') and" +
+            "to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fechaFinal + "','mm/dd/yyyy') and se.tipo = '" + opcion + "' group by s.fecha";
             comidaExtra = adaptador.consultar(consultaSQL);
             return comidaExtra;
         }
@@ -58,9 +58,9 @@ namespace Servicios_Reservados_2
         {
             DataTable comidaExtra;
 
-            String consultaSQL = "select sum(s.pax), sum(s.vecesconsumido) from ((RESERVAS.reservacion r join RESERVAS.vr_reservacion vr on r.numero = vr.numero ) join servicio_especial s on s.idreservacion = r.id) join " +
-                "servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fecha + "','mm/dd/yyyy') and" +
-                "to_date(s.fecha,'mm/dd/yyyy') < to_date('" + fechaFinal + "','mm/dd/yyyy') and r.anfitriona=" + anfitriona + " and vr.estacion = '" + estacion + "' and se.tipo = '" + opcion + "'";
+            String consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from ((RESERVAS.reservacion r join RESERVAS.vr_reservacion vr on r.numero = vr.numero ) join servicio_especial s on s.idreservacion = r.id) join " +
+                "servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and " +
+                "to_date(s.fecha,'mm/dd/yyyy') <= to_date('" + fechaFinal + "','mm/dd/yyyy') and r.anfitriona=" + anfitriona + " and vr.estacion = '" + estacion + "' and se.tipo = '" + opcion + "' group by s.fecha";
 
             comidaExtra = adaptador.consultar(consultaSQL);
             return comidaExtra;
