@@ -138,45 +138,10 @@ namespace Servicios_Reservados_2
                  
 
                   Object[] datos = new Object[13];
-                  if (estacion != null && fechaInicio != null && fechaFinal != null)
-                  {
-                    
-                      DataTable paxReserv = controladora.obtenerComidaPax(estacion, 1, anfitriona, fechaInicio, fechaFinal);// se consultan desayunos de comida de campo dependiendo de fecha con estacion y anfitriona.
-                      DataTable paxReservAlmuerzo = controladora.obtenerComidaPax(estacion, 2, anfitriona, fechaInicio, fechaFinal);
-                      sumaTotalAlmuerzo= int.Parse(paxReservAlmuerzo.Rows[0][1].ToString());
-                      sumaTotalConsumidosAlmuerzo = int.Parse(paxReservAlmuerzo.Rows[0][2].ToString());
-                      contar = paxReserv.Rows.Count;
-                      fechas = paxReserv;
-                      
-
-                      if (anfitriona == 1)
-                      {
-                         
-                          DataTable paxEmp = controladora.obtenerComidaPaxEmp(estacion, 1, fechaInicio, fechaFinal); //desayuno comida campo reserv
-                          DataTable comidaEmp = controladora.obtenerComidaEmp(estacion, "desayuno", fechaInicio, fechaFinal); //desayuno comida campo de empleados
-                          int contador = comidaEmp.Rows.Count;
-                          if (contador > 0)
-                          {
-                              sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][1].ToString()) + int.Parse(paxEmp.Rows[0][1].ToString()) + int.Parse(comidaEmp.Rows[0][1].ToString());    //suma total desayuno  
-                              sumaTotalConsumidosDesayuno = int.Parse(paxReserv.Rows[0][2].ToString()) + int.Parse(paxEmp.Rows[0][2].ToString()) + int.Parse(comidaEmp.Rows[0][2].ToString());
-                          }
-                          else
-                          {
-                              sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][1].ToString()) + int.Parse(paxEmp.Rows[0][1].ToString());
-                              sumaTotalConsumidosDesayuno = int.Parse(paxReserv.Rows[0][2].ToString()) + int.Parse(paxEmp.Rows[0][2].ToString());
-                            
-                          }
-                          
-                      }
-                      else
-                      {
-                          sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][1].ToString());    //suma total desayuno  
-                          sumaTotalConsumidosDesayuno = int.Parse(paxReserv.Rows[0][2].ToString());
-                      }
-                  }
+                  
 
                   if (contar > 0)
-                {
+                 {
                        for (int i = 0; i < contar; i++)
                     {
                           datos[0] = fechas.Rows[i][0];
@@ -333,6 +298,46 @@ namespace Servicios_Reservados_2
             llenarGridReportes();
         }
 
+        protected void filtroEstacionAnfitrionaFecha(){
+
+            if (estacion != null && fechaInicio != null && fechaFinal != null) //si se selecciona una estacion, fecha y anfitriona
+            {
+
+                DataTable paxReserv = controladora.obtenerComidaPax(estacion, 1, anfitriona, fechaInicio, fechaFinal);// se consultan desayunos de comida de campo dependiendo de fecha con estacion y anfitriona.
+                DataTable paxReservAlmuerzo = controladora.obtenerComidaPax(estacion, 2, anfitriona, fechaInicio, fechaFinal);
+                sumaTotalAlmuerzo = int.Parse(paxReservAlmuerzo.Rows[0][1].ToString());
+                sumaTotalConsumidosAlmuerzo = int.Parse(paxReservAlmuerzo.Rows[0][2].ToString());
+                contar = paxReserv.Rows.Count;
+                fechas = paxReserv;
+
+
+                if (anfitriona == 1)
+                {
+
+                    DataTable paxEmp = controladora.obtenerComidaPaxEmp(estacion, 1, fechaInicio, fechaFinal); //desayuno comida campo reserv
+                    DataTable comidaEmp = controladora.obtenerComidaEmp(estacion, "desayuno", fechaInicio, fechaFinal); //desayuno comida campo de empleados
+                    int contador = comidaEmp.Rows.Count;
+                    if (contador > 0)
+                    {
+                        sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][1].ToString()) + int.Parse(paxEmp.Rows[0][1].ToString()) + int.Parse(comidaEmp.Rows[0][1].ToString());    //suma total desayuno  
+                        sumaTotalConsumidosDesayuno = int.Parse(paxReserv.Rows[0][2].ToString()) + int.Parse(paxEmp.Rows[0][2].ToString()) + int.Parse(comidaEmp.Rows[0][2].ToString());
+                    }
+                    else
+                    {
+                        sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][1].ToString()) + int.Parse(paxEmp.Rows[0][1].ToString());
+                        sumaTotalConsumidosDesayuno = int.Parse(paxReserv.Rows[0][2].ToString()) + int.Parse(paxEmp.Rows[0][2].ToString());
+                    }
+
+                }
+                else
+                {
+                    sumaTotalDesayuno = int.Parse(paxReserv.Rows[0][1].ToString());    //suma total desayuno  
+                    sumaTotalConsumidosDesayuno = int.Parse(paxReserv.Rows[0][2].ToString());
+                }
+            }
+
+        
+        }
 
 
 
