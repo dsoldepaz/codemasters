@@ -129,7 +129,11 @@ namespace Servicios_Reservados_2
             respuesta = adaptador.insertar(consultaSQL);
             return respuesta;
         }
-
+        /*
+         * Requiere: parametros: estación, nombre de usuario y nombre
+         * Modifica : nada
+         * retorna : DataTable con la lista de usuarios filtardos
+         */
         internal DataTable seleccionarUsuariosFiltro(string estacion, string nombreUsuario, string nombre)
         {
             dt = new DataTable();
