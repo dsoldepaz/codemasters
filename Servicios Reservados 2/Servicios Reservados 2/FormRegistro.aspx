@@ -24,7 +24,7 @@
                     <tr>
                         <td style="width: 10%;">Username:</td>
                         <td>
-                            <input class="textbox" style="width: 500px" id="username" runat="server" required="required" title="Debe tener de 4 a 15 caracteres, solo letras sín tilde o números" pattern="^[a-zA-Z0-9]{4,15}$" />
+                            <input class="textbox" style="width: 500px" id="username" runat="server" required="required" title="Debe tener de 4 a 15 caracteres, solo letras minúsculas sín tilde o números" pattern="^[a-z0-9]{4,15}$" />
                         </td>
                     </tr>                    
                     <tr>
