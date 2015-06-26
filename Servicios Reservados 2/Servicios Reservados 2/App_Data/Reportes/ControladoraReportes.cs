@@ -15,11 +15,11 @@ namespace Servicios_Reservados_2
             return controladoraBD.cargarEstaciones();
         }
 
-
         internal DataTable obtenerComidaPax(String estacion, int opcion,  int anfitriona, String fecha, String fechaFinal)
         {
            return controladoraBD.obtenerComidaPax(estacion, opcion, anfitriona, fecha, fechaFinal);
         }
+
         internal DataTable obtenerComidaPaxEmp(String estacion, int opcion, String fecha, String fechaFinal)
         {
             return controladoraBD.obtenerComidaPaxEmp(estacion, opcion, fecha, fechaFinal);
@@ -34,5 +34,19 @@ namespace Servicios_Reservados_2
             return controladoraBD.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, opcion, anfitriona, fecha, fechaFinal);
         }
 
+        internal DataTable obtenerComidaExtraAnfitrionaFecha(String opcion, int anfitriona, String fecha, String fechaFinal)
+        {
+            return controladoraBD.obtenerComidaExtraAnfitrionaFecha(opcion, anfitriona, fecha, fechaFinal);
+        }
+
+        internal DataTable obtenerComidaExtraEstacionFecha(String estacion, String opcion, String fecha, String fechaFinal)
+        {
+            return controladoraBD.obtenerComidaExtraEstacionFecha(estacion, opcion,fecha, fechaFinal);
+        }
+
+        internal DataTable obtenerComidaExtraFechas(String opcion, String fecha, String fechaFinal)
+        {
+            return controladoraBD.obtenerComidaExtraFechas(opcion, fecha, fechaFinal);
+        }
     }
 }
