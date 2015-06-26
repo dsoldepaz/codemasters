@@ -73,7 +73,7 @@ namespace Servicios_Reservados_2
             string nombre = (string)Session["Nombre"];
             string roles = "";
             foreach (object rol in listaRoles) {
-             roles += (string)rol+" ";
+             roles += (string)rol+", ";
             }
             
             
