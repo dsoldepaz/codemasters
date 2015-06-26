@@ -34,6 +34,8 @@ namespace Servicios_Reservados_2
                     Response.Redirect("ErrorPermiso.aspx");
                 }
                 llenarGridTotal();
+                llenarGridTurnos();
+                llenarGridSnacks();
             }
         }
 
@@ -236,7 +238,7 @@ namespace Servicios_Reservados_2
                 {
                     foreach (DataRow fila in turnosDiaTres.Rows)
                     {
-                        desayunos = int.Parse(fila[0].ToString()) * int.Parse(fila[1].ToString());
+                        desayunos = int.Parse(fila[1].ToString());
                     }
                 }
 
@@ -252,7 +254,7 @@ namespace Servicios_Reservados_2
                         String turno;
                         int cantidad;
                         turno = fila[0].ToString();
-                        cantidad = (int.Parse(fila[1].ToString())) * (int.Parse(fila[2].ToString()));
+                        cantidad = (int.Parse(fila[2].ToString()));
                         if (turno == "ALMUERZO")
                         {
                             almuerzos += cantidad;
@@ -285,7 +287,7 @@ namespace Servicios_Reservados_2
                         int cantidad;
                         turno = fila[0].ToString();
                         tipoC = fila[1].ToString();
-                        cantidad = (int.Parse(fila[2].ToString())) * (int.Parse(fila[3].ToString()));
+                        cantidad = (int.Parse(fila[3].ToString()));
                         if (turno == "ALMUERZO" && tipoC == "3 Comidas (" + sigla + ")")
                         {
                             desayunos = desayunos - cantidad;
@@ -319,7 +321,7 @@ namespace Servicios_Reservados_2
                         String tipoC;
                         int cantidad;
                         tipoC = fila[0].ToString();
-                        cantidad = (int.Parse(fila[1].ToString())) * (int.Parse(fila[2].ToString()));
+                        cantidad = (int.Parse(fila[2].ToString()));
                         if (tipoC == "Desayuno")
                         {
                             desayunos += cantidad;
@@ -611,6 +613,67 @@ namespace Servicios_Reservados_2
             }
 
         }
+
+        /**
+        * Requiere: n/a
+        * Efectua: Llena la tabla de GridSnacks
+        * retorna:  N/A
+        */
+        protected void llenarGridSnacks()
+        {
+            DataTable tabla = crearTablaSnacks();
+            String descripcion = "";
+            Object [] datos = new Object[4];
+            DataTable datosCC = controladora.getComidasCampo(estacion, fechaInicio, fechaFinal);
+            if (datosCC.Rows.Count > 0)
+            {
+
+                foreach (DataRow fila in datosCC.Rows)
+                {
+                    int opcion = int.Parse(fila[1].ToString());
+                    if (opcion == 4)
+                    {
+                        descripcion = fila[2].ToString()+ " con relleno de "+fila[3].ToString();
+                        datos[0] = fila[0].ToString();
+                        datos[1] = "Sandwich";
+                        datos[2] = descripcion;
+                        datos[3] = fila[4].ToString();
+                        
+                    }
+                    else if (opcion == 5)
+                    {
+                        datos[0] = fila[0].ToString();
+                        datos[1] = "Gallo Pinto";
+                        datos[2] = "-";
+                        datos[3] = fila[4].ToString();
+
+                    }
+                    tabla.Rows.Add(datos);   
+                }
+                
+            }
+
+            DataTable datosCE = controladora.getComidasExtra(estacion, fechaInicio, fechaFinal);
+            if (datosCC.Rows.Count > 0)
+            {
+
+                foreach (DataRow fila in datosCE.Rows)
+                {
+                        
+                      datos[0] = fila[0].ToString();
+                      datos[1] = fila[1].ToString();
+                      datos[2] = fila[2].ToString();
+                      datos[3] = fila[3].ToString();
+                      tabla.Rows.Add(datos);
+                }
+
+            }
+            Session["tablaS"]=tabla;         
+            GridViewSnacks.DataBind();
+
+
+
+        }
         /**
         * Requiere: n/a
         * Efectua: Llena la tabla  GridTurnos
@@ -672,7 +735,7 @@ namespace Servicios_Reservados_2
                     case 0:
                         datos[0] = "Desayuno";
                         datos[1] = desayunos;
-                        datos[3] = desayunosC;
+                        datos[2] = desayunosC;
                         break;
                     case 1:
                         datos[0] = "Almuerzo";
@@ -709,6 +772,8 @@ namespace Servicios_Reservados_2
                 fechaFinal = DateTime.Today.ToString("MM/dd/yyyy");
             }
             llenarGridTotal();
+            llenarGridTurnos();
+            llenarGridSnacks();
         }
     }
 }

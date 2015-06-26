@@ -165,5 +165,15 @@ namespace Servicios_Reservados_2
         {
             return controladoraEmp.getEmpleadoSeleccionado();
         }
+
+        /*
+       * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+       * Efectua : llama a getComidasCampo de la controladora de base de datos con el parametro dado. 
+       * Retorna :  El datatable retornado por la controladora.
+       */
+        internal DataTable getComidasCampo(String estacion, String inicio, String final)
+        {
+            return controladoraBD.getComidasCampo(estacion, inicio, final);
+        }
     }
 }

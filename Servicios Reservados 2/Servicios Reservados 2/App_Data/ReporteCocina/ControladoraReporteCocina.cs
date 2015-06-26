@@ -10,9 +10,12 @@ namespace Servicios_Reservados_2
     {
         private static ControladoraBDReporteCocina controladoraBD;
         private static ControladoraComidaEmpleado controladoraComdiaEmpleado;
-
+        private static ControladoraComidaCampo controladoraCC;
+        private static ControladoraComidaExtra controladoraCE;
         public ControladoraReporteCocina()
         {
+            controladoraCE = new ControladoraComidaExtra();
+            controladoraCC = new ControladoraComidaCampo();
             controladoraComdiaEmpleado = new ControladoraComidaEmpleado();
             controladoraBD = new ControladoraBDReporteCocina();
         }
@@ -84,6 +87,26 @@ namespace Servicios_Reservados_2
         internal DataTable getCenas(String estacion, String inicio, String final)
         {
             return controladoraComdiaEmpleado.getCenas(estacion, inicio, final);
+        }
+
+        /*
+        * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+        * Efectua : llama a getComidasCampo de la controladora de comida campo. 
+        * Retorna :  El datatable retornado por la controladora.
+        */
+        internal DataTable getComidasCampo(String estacion, String inicio, String final)
+        {
+            return controladoraCC.getComidasCampo(estacion, inicio, final);
+        }
+
+        /*
+        * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+        * Efectua : llama a getComidasCampo de la controladora de comida campo. 
+        * Retorna :  El datatable retornado por la controladora.
+        */
+        internal DataTable getComidasExtra(String estacion, String inicio, String final)
+        {
+            return controladoraCE.getComidasExtra(estacion, inicio, final);
         }
     }
 }

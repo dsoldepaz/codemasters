@@ -100,7 +100,7 @@
                     <tr>
                         <td>
 
-                            <asp:GridView ID="GridViewSnacks" Class="Gridcontenedor" runat="server" AllowSorting="true" AllowPaging="true" OnPageIndexChanging="GridViewSnacks_PageIndexChanging" PageSize="10">
+                            <asp:GridView ID="GridViewSnacks" Class="Gridcontenedor" runat="server" AllowSorting="true" AllowPaging="true" OnPageIndexChanging="GridViewSnacks_PageIndexChanging" PageSize="5">
 
                                 <SelectedRowStyle BackColor="#7BC143"
                                     ForeColor="Black"
@@ -116,7 +116,7 @@
                     <tr>
                         <td>
 
-                            <asp:GridView ID="GridViewBebidas" Class="Gridcontenedor" runat="server" AllowSorting="true" AllowPaging="true" OnPageIndexChanging="GridViewBebidas_PageIndexChanging" PageSize="10">
+                            <asp:GridView ID="GridViewBebidas" Class="Gridcontenedor" runat="server" AllowSorting="true" AllowPaging="true" OnPageIndexChanging="GridViewBebidas_PageIndexChanging" PageSize="5">
 
                                 <SelectedRowStyle BackColor="#7BC143"
                                     ForeColor="Black"
