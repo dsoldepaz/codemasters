@@ -78,7 +78,6 @@ namespace Servicios_Reservados_2
             cbxEstacion.Items.Add("La Selva");
             cbxEstacion.Items.Add("Palo Verde");
             cbxEstacion.Items.Add("Las Cruces");
-            cbxEstacion.Items.Add("Palo Verde");
             cbxEstacion.Items.Add("North American Offices");
             cbxEstacion.Items.Add("Costa Rican Offices");            
         }

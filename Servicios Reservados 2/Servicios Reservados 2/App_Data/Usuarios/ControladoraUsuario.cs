@@ -54,7 +54,11 @@ namespace Servicios_Reservados_2
             }
             return resultado;
         }
-
+        /*
+      * Efecto: Solicita a la base de datos el usuario seleccionado
+      * Requiere: username
+      * Modifica: nada
+     */
         internal EntidadUsuario solicitarUsuario(string usernameSeleccionado)
         {
              DataTable tablaUsuario =controladoraBD.consultarUsuario(usernameSeleccionado);
@@ -77,7 +81,11 @@ namespace Servicios_Reservados_2
 
              return entidadSeleccionada;
         }
-
+        /*
+      * Efecto: Actuliza los datos del usuario
+      * Requiere: los datos del usuario modificado
+      * Modifica: Los datos del usuario mediante llamada a la base de datos
+     */
         internal string[] modificarUsuario(object[] nuevoUsuario)
         {
             EntidadUsuario entidad = new EntidadUsuario(nuevoUsuario);
