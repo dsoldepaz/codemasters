@@ -13,7 +13,8 @@ namespace Servicios_Reservados_2
         {
             adaptador = new AdaptadorBD();
         }
-        public DataTable numeroDeNotificaciones(int ultima){
+        public DataTable numeroDeNotificaciones(String ultima)
+        {
             String consulta = "Select COUNT (*)  From notificaciones Where NUMERODENOTIFICACION > " + ultima ;
             DataTable resultado = adaptador.consultar(consulta);
             return resultado;
@@ -25,14 +26,14 @@ namespace Servicios_Reservados_2
          */
         internal DataTable getNotificaciones()
         {
-            string consulta = "SELECT MOMENTO, ESTACION, TIPODESERVICIO, TIPODECAMBIO, VALORANTERIOR, VALORACTUAL, IDSERVICIO FROM NOTIFICACIONES Where momento> CURRENT_TIMESTAMP-interval '18' hour (1) AND  momento< CURRENT_TIMESTAMP+interval '12' hour (1)";
+            string consulta = "SELECT MOMENTO, ESTACION, TIPODESERVICIO, TIPODECAMBIO, VALORANTERIOR, VALORACTUAL, IDSERVICIO FROM servicios_reservados.Notificaciones Where momento> CURRENT_TIMESTAMP-interval '18' hour (1)";
             return adaptador.consultar(consulta);
         }
 
         //
         public DataTable numeroUltimaNotificacion()
         {
-            String consulta = "Select max (NUMERODENOTIFICACION) From Notificaciones";
+            String consulta = "Select max (NUMERODENOTIFICACION) From servicios_reservados.Notificaciones";
             DataTable resultado = adaptador.consultar(consulta);
             return resultado;
         }
