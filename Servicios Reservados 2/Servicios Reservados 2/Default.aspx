@@ -62,7 +62,9 @@
                     <h4 id="Usuario" runat="server">
                         <a href="FormUsuario.aspx">Administración de usuarios</a>
                     </h4>
-
+                    <h4>
+                        <a href="AcercaDe.aspx">Acerca de</a>
+                    </h4>
                 </div>
 
             </td>
