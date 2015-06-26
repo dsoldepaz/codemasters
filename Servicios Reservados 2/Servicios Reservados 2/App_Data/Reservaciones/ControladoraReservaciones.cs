@@ -25,9 +25,9 @@ namespace Servicios_Reservados_2
          * Efectúa : Pide a la controladora de base de datos la información de todas las reservaciones y las guarda en una tabla de datos. 
          * Retorna : la tabla de datos que se crea.
          */
-        internal DataTable solicitarTodasReservaciones()
+        internal DataTable solicitarTodasReservaciones(String estacion)
         {
-            DataTable todas = controladoraBD.consultarTodasReservaciones();
+            DataTable todas = controladoraBD.consultarTodasReservaciones(estacion);
 
             return todas;
 
