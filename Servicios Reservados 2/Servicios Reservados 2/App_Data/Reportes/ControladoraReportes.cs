@@ -29,24 +29,24 @@ namespace Servicios_Reservados_2
             return controladoraBD.obtenerComidaEmp(estacion,opcion, fecha, fechaFinal);
         }
 
-        internal DataTable obtenerComidaExtraEstacionAnfitrionaFecha(String estacion, String opcion, int anfitriona, String fecha, String fechaFinal)
+        internal DataTable obtenerComidaExtraEstacionAnfitrionaFecha(String estacion, String opcion, int anfitriona, String fecha, String fechaFinal, int consulta)
         {
-            return controladoraBD.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, opcion, anfitriona, fecha, fechaFinal);
+            return controladoraBD.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, opcion, anfitriona, fecha, fechaFinal, consulta);
         }
 
-        internal DataTable obtenerComidaExtraAnfitrionaFecha(String opcion, int anfitriona, String fecha, String fechaFinal)
+        internal DataTable obtenerComidaExtraAnfitrionaFecha(String opcion, int anfitriona, String fecha, String fechaFinal, int consulta)
         {
-            return controladoraBD.obtenerComidaExtraAnfitrionaFecha(opcion, anfitriona, fecha, fechaFinal);
+            return controladoraBD.obtenerComidaExtraAnfitrionaFecha(opcion, anfitriona, fecha, fechaFinal,consulta);
         }
 
-        internal DataTable obtenerComidaExtraEstacionFecha(String estacion, String opcion, String fecha, String fechaFinal)
+        internal DataTable obtenerComidaExtraEstacionFecha(String estacion, String opcion, String fecha, String fechaFinal, int consulta)
         {
-            return controladoraBD.obtenerComidaExtraEstacionFecha(estacion, opcion,fecha, fechaFinal);
+            return controladoraBD.obtenerComidaExtraEstacionFecha(estacion, opcion,fecha, fechaFinal, consulta);
         }
 
-        internal DataTable obtenerComidaExtraFechas(String opcion, String fecha, String fechaFinal)
+        internal DataTable obtenerComidaExtraFechas(String opcion, String fecha, String fechaFinal, int consulta)
         {
-            return controladoraBD.obtenerComidaExtraFechas(opcion, fecha, fechaFinal);
+            return controladoraBD.obtenerComidaExtraFechas(opcion, fecha, fechaFinal,consulta);
         }
     }
 }

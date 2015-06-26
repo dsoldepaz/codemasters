@@ -315,9 +315,9 @@ namespace Servicios_Reservados_2
                 DataTable comidaCampoReservAlmuerzo = controladora.obtenerComidaPax(estacion, 2, anfitriona, fechaInicio, fechaFinal); //almuerzo de comidaCampo reservado
                 DataTable comidaCampoReservCena = controladora.obtenerComidaPax(estacion, 3, anfitriona, fechaInicio, fechaFinal); //cena de comidaCampo reservado
             
-                DataTable comidaExtraDesayuno=controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Desayuno", anfitriona, fechaInicio, fechaFinal); //desayuno comida extra
-                DataTable comidaExtraAlmuerzo = controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Almuerzo", anfitriona, fechaInicio, fechaFinal);             //almuerzo comida extra
-                DataTable comidaExtraCena = controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Cena", anfitriona, fechaInicio, fechaFinal);                   //cena comida extra
+                DataTable comidaExtraDesayuno=controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Desayuno", anfitriona, fechaInicio, fechaFinal,1); //desayuno comida extra
+                DataTable comidaExtraAlmuerzo = controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Almuerzo", anfitriona, fechaInicio, fechaFinal,1);             //almuerzo comida extra
+                DataTable comidaExtraCena = controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Cena", anfitriona, fechaInicio, fechaFinal,1);                   //cena comida extra
                 
             
                 if (anfitriona == 1)
