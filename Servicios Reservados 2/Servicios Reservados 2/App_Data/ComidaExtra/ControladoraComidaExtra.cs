@@ -183,5 +183,15 @@ namespace Servicios_Reservados_2
         {
             controladoraBD.actualizarVecesConsumido(idComidaExtra, vecesConsumido);
         }
+
+        /*
+      * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+      * Efectua : llama a getComidasExtra de la controladora de base de datos con el parametro dado. 
+      * Retorna :  El datatable retornado por la controladora.
+      */
+        internal DataTable getComidasExtra(String estacion, String inicio, String final)
+        {
+            return controladoraBD.getComidasExtra(estacion, inicio, final);
+        }
     }
 }

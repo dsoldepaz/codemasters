@@ -142,5 +142,17 @@ namespace Servicios_Reservados_2
             String consultaSQL = "update servicios_reservados.servicio_especial set vecesconsumido= " + vecesConsumido + " where id ='" + idComidaExtra + "'";
             adaptador.insertar(consultaSQL);
         }
+
+        /*
+         * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+         * Efectua : Crea una consulta para consultar las comidas extra
+         * Retorna : un arreglo de hileras con el resultado.
+         */
+        internal DataTable getComidasExtra(String estacion, String fechaInicio, String fechaFinal)
+        {
+            String consultaSQL = "select s.hora,e.tipo,s.descripcion,s.pax from servicios_reservados.servicio_especial s join servicios_reservados.servicios_extras e on s.idserviciosextras=e.idservicio join reservas.reservacion r on s.idreservacion=r.id join reservas.vr_reservacion v ON v.numero = r.numero where s.estado = 'Activo' and fecha >= '" + fechaInicio + "' and fecha <= '" + fechaFinal + "' and v.estacion='" + estacion + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
     }
 }
