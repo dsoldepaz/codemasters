@@ -13,7 +13,7 @@ namespace Servicios_Reservados_2
     public partial class Notificaciones : System.Web.UI.Page
     {
        private static ControladoraNotificaciones controladora = new ControladoraNotificaciones();
-       static internal int ultimaRevision = 0;
+       static internal String ultimaRevision = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
             llenarNotificaciones();
@@ -25,7 +25,7 @@ namespace Servicios_Reservados_2
             DataTable notificaciones = controladora.getNotificaciones();
             foreach (DataRow fila in notificaciones.Rows)
             {
-                Object[] datos = new Object[8];
+                Object[] datos = new Object[7];
                 datos[0] = fila[0];//Momento
                 datos[1] = fila[1];//Estacion
                 datos[2] = fila[2];//Tipo De Servicio
@@ -84,6 +84,7 @@ namespace Servicios_Reservados_2
             columna.DataType = System.Type.GetType("System.String");
             columna.ColumnName = "Numero de Reserva / carne de empleado";
             tabla.Columns.Add(columna);
+
 
             GridNotificaciones.DataSource = tabla;
             GridNotificaciones.DataBind();

@@ -119,5 +119,17 @@ namespace Servicios_Reservados_2
             String consultaSQL = "update servicios_reservados.comida_campo set vecesconsumido= " + vecesConsumido + " where idcomidacampo ='" + idServicio + "'";
             dt = adaptador.consultar(consultaSQL);
         }
+
+        /*
+         * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+         * Efectua : Crea una consulta para consultar las comidas campo
+         * Retorna : un arreglo de hileras con el resultado.
+         */
+        internal DataTable getComidasCampo(String estacion, String fechaInicio, String fechaFinal)
+        {
+            String consultaSQL = "select hora,opcion,pan,relleno,pax from servicios_reservados.comida_campo where estado ='Activo' and estacion= '" + estacion + "' and fecha >= '" + fechaInicio+"' and fecha <= '" + fechaFinal + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
     }
 }

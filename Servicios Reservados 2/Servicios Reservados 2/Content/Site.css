@@ -866,3 +866,9 @@ li.item-navegacion>a.seleccionado:hover {
 .Gridcontenedor > tbody > tr > td:nth-child(4), #MainContent_GridComidasReservadas > tbody > tr > td:nth-child(3), #MainContent_GridComidasReservadas > tbody > tr > td:nth-child(2), #MainContent_GridComidasReservadas > tbody > tr > td:nth-child(1) {
   width: 20px;
 }
+
+/*Respon sive n stuff*/
+
+body {
+  min-width: 1080px;
+}

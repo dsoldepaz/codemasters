@@ -1,27 +1,32 @@
 ﻿<%@ Page Title="Usuarios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormUsuario.aspx.cs" Inherits="Servicios_Reservados_2.FormUsuario" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-
-             <a href="#">
-                <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>
-                        <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
-                </div>
-            </a>
-
-            <legend>
-                <h2>Administración de usuarios</h2>
-            </legend>
-
+            <table>
+                <tr>
+                    <td>
+                        <legend>
+                            <h2>Administración de usuarios</h2>
+                        </legend>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>
+                                    <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            </table>
 
             <div class="well bs-component">
                 <legend style="color: #7BC143">Agregar</legend>
@@ -59,7 +64,7 @@
 
                 <legend style="color: #7BC143">Listado de usuarios</legend>
 
-                <asp:GridView ID="GridUsuarios" runat="server" Class="Gridcontenedor" AllowSorting="true" AllowPaging="true" PageSize="20" OnPageIndexChanging="PageIndexChanging">
+                <asp:GridView ID="GridUsuarios" runat="server" Class="Gridcontenedor" AllowSorting="true" AllowPaging="true" PageSize="10" OnPageIndexChanging="PageIndexChanging">
                     <AlternatingRowStyle BorderStyle="None" />
                     <HeaderStyle Font-Size="1.3em" />
                     <SelectedRowStyle BackColor="#7BC143"
@@ -96,7 +101,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-success" runat="server" onserverclick="clickDesactivar">Aceptar</button>
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>                                                
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                             </div>
                                         </div>
                                     </div>

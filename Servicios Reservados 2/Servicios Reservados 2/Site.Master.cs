@@ -73,7 +73,7 @@ namespace Servicios_Reservados_2
             string nombre = (string)Session["Nombre"];
             string roles = "";
             foreach (object rol in listaRoles) {
-             roles += (string)rol+" ";
+             roles += (string)rol+", ";
             }
             
             
@@ -89,9 +89,9 @@ namespace Servicios_Reservados_2
             Session["username"] = null;
             Response.Redirect("~/ingresar.aspx");
         }
-        protected void clickPerfil(object sender, EventArgs e)
+        protected void clickAyuda(object sender, EventArgs e)
         {
-            Response.Redirect("FormRegistro");
+            Response.Redirect("Default.aspx");
         }
     }
 }

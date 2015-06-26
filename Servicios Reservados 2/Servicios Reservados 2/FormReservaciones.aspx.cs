@@ -255,7 +255,7 @@ namespace Servicios_Reservados_2
                       }
                   }
                   Session["tablaa"] = tabla;
-                    //GridViewReservaciones.DataSource = tabla;
+                  GridViewReservaciones.DataSource = tabla;
                   GridViewReservaciones.DataBind();
 
               }

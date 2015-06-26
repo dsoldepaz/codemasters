@@ -52,8 +52,8 @@
                 </div>
                 <div class="float-right">
                     <!-- info de usuario -->
-                    <asp:Button id="InfoUsuario" runat="server" CssClass="btn btn-default" UseSubmitBehavior="false" style="width: 500px"></asp:Button>
-                    <asp:LinkButton runat="server" OnClientClick="window.open('https://docs.google.com/document/d/1PPBB83dv5V64j8iNPMfEayC5TYZj0PGjs_wwYcnV5zk/edit?usp=sharing')" CssClass="btn btn-default" UseSubmitBehavior="false" ToolTip="Ayuda"><i class="glyphicon glyphicon-question-sign"></i></asp:LinkButton>
+                    <asp:Button id="InfoUsuario" runat="server" CssClass="btn btn-default" UseSubmitBehavior="false" style="width: auto"></asp:Button>
+                    <asp:LinkButton runat="server" OnClick="clickAyuda" OnClientClick="window.open('https://docs.google.com/document/d/1PPBB83dv5V64j8iNPMfEayC5TYZj0PGjs_wwYcnV5zk/edit?usp=sharing')" CssClass="btn btn-default" UseSubmitBehavior="false" ToolTip="Ayuda"><i class="glyphicon glyphicon-question-sign"></i></asp:LinkButton>
                     <asp:LinkButton runat="server" OnClick="clickSalir" CssClass="btn btn-default" UseSubmitBehavior="false" ToolTip="Salir del sistema"><i class="glyphicon glyphicon-log-out"></i></asp:LinkButton>
                 </div>
             </div>
