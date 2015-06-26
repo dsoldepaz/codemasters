@@ -15,7 +15,6 @@ namespace Servicios_Reservados_2
         public ControladoraNotificaciones()
         {
             controladoraNotificaciones = new ControladoraBDNotificaciones();
-            ultimaRevision = ultimaRevision.AddHours(-12);
           
         }
 
@@ -40,5 +39,6 @@ namespace Servicios_Reservados_2
         {
             return controladoraNotificaciones.getNotificaciones();
         }
+
     }
 }
