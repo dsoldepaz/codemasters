@@ -60,10 +60,10 @@
                 </table>
                 <tr>
                     <td>
-                        <input type="button" value="Editar" runat="server" onserverclick="clickModificar" />
+                        <input id="btnEditar" type="button" value="Editar" runat="server" onserverclick="clickModificar" />
                     </td>
                     <td>
-                        <input type="button" value="Anular" runat="server" />
+                        <input id="btnAnular" type="button" value="Anular" runat="server" onserverclick="clickAnular"/>
                     </td>
                 </tr>
                 </table>

@@ -36,12 +36,12 @@
                         <td>Solicitante:
                         </td>
                         <td>
-                            <input id="txtSolicitante" value="{Nombre No recuperado}" runat="server" style="width: 230px" />
+                            <input id="txtSolicitante" runat="server" style="width: 230px" />
                         </td>
                         <td>Numero de Reservación:
                         </td>
                         <td>
-                            <input id="txtNumReservacion" value="{Apellido No recuperado}" runat="server" style="width: 200px" />
+                            <input id="txtNumReservacion" runat="server" style="width: 200px" />
                         </td>
                         <td>Fecha de entrada:
                         </td>

@@ -20,7 +20,7 @@ namespace Servicios_Reservados_2
         internal static int modo = 0;//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
         internal static int idComida = -1;
         private ControladoraComidaEmpleado controladora = new ControladoraComidaEmpleado();
-       //Atributos consultados
+        //Atributos consultados
         private int idComidaViejo;
         private String idEmpleadoViejo;
         private List<DateTime> fechasViejo;
@@ -64,7 +64,7 @@ namespace Servicios_Reservados_2
         private void ponerModo()
         {
             ContenedorManejoDeHorario.Visible = true;
-            Debug.WriteLine("Modo: "+modo);
+            Debug.WriteLine("Modo: " + modo);
 
             switch (modo)//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
             {
@@ -167,7 +167,7 @@ namespace Servicios_Reservados_2
                     break;
                 default: break;
             }
-            limpiarCalendario();   
+            limpiarCalendario();
         }
         /*
          * Requiere: N/A
@@ -197,7 +197,7 @@ namespace Servicios_Reservados_2
                 modo = 5;
                 ponerModo();
             }
-            }
+        }
 
         /*
          * Requiere: Parametros de eventos de la GUI
@@ -248,16 +248,16 @@ namespace Servicios_Reservados_2
             seleccionada = controladora.consultar(idComida);
             /****************************<guardarDatosViejos>********************************************/
             idComidaViejo = seleccionada.IdComida;
-            idEmpleadoViejo= seleccionada.IdEmpleado;
+            idEmpleadoViejo = seleccionada.IdEmpleado;
             fechasViejo = seleccionada.Fechas;
-            turnosViejo= seleccionada.Turnos;
-            pagadoViejo= seleccionada.Pagado;
-            notasViejo= seleccionada.Notas;
+            turnosViejo = seleccionada.Turnos;
+            pagadoViejo = seleccionada.Pagado;
+            notasViejo = seleccionada.Notas;
             /****************************</guardarDatosViejos>*******************************************/
-            
+
             list = seleccionada.Fechas;
             notas.Value = seleccionada.Notas;
-            Debug.WriteLine("notas: "+seleccionada.Notas);
+            Debug.WriteLine("notas: " + seleccionada.Notas);
             this.checkboxDesayuno.Checked = (seleccionada.Turnos[0] == 'R' || seleccionada.Turnos[0] == 'C');
             this.checkboxDesayuno.Disabled = (seleccionada.Turnos[0] == 'C');
             this.checkboxAlmuerzo.Checked = (seleccionada.Turnos[1] == 'R' || seleccionada.Turnos[1] == 'C');
@@ -272,36 +272,50 @@ namespace Servicios_Reservados_2
 
         private void bloquearInterfaz()
         {
-           switch (modo){//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
-               case 1:    this.fecha.Disabled = false;
-                           this.btnFecha.Disabled = false;
-                           this.notas.Disabled = false;
-                           this.checkboxAlmuerzo.Disabled = false;
-                           this.checkboxCena.Disabled = false;
-                           this.checkboxDesayuno.Disabled = false;
-                           this.tipodePago.Disabled = false;
-                           this.btnAceptar.Disabled = false;
-                           break;
-               case 2:     this.fecha.Disabled = true;
-                           this.btnFecha.Disabled = true;
-                           this.notas.Disabled = false;
-                           this.tipodePago.Disabled = false;
-                           this.btnAceptar.Disabled = false;
-                           this.checkboxCena.Disabled = (seleccionada.Turnos[2] == 'C');
-                           this.checkboxDesayuno.Disabled = (seleccionada.Turnos[0] == 'C');
-                           this.checkboxAlmuerzo.Disabled = (seleccionada.Turnos[2] == 'C');     
-                           break;     
-               default :this.fecha.Disabled = true;
-                        this.btnFecha.Disabled = true;
-                        this.notas.Disabled = true;
-                        this.checkboxAlmuerzo.Disabled = true;
-                        this.checkboxCena.Disabled = true;
-                        this.checkboxDesayuno.Disabled = true;
-                        this.tipodePago.Disabled = true;
-                        this.btnAceptar.Disabled = true;
-               break;
-                
-           }
+            switch (modo)
+            {//0= Consultado; 1-Agregar Reservacion; 2-Modificar reservacion; 3-Cancelar
+                case 1: this.fecha.Disabled = false;
+                    this.btnFecha.Disabled = false;
+                    this.notas.Disabled = false;
+                    this.checkboxAlmuerzo.Disabled = false;
+                    this.checkboxCena.Disabled = false;
+                    this.checkboxDesayuno.Disabled = false;
+                    this.tipodePago.Disabled = false;
+                    this.btnAceptar.Disabled = false;
+                    btnAnular.Visible = false;
+                    btnEditar.Visible = false;
+                    btnAnular.Disabled = true;
+                    btnEditar.Disabled = true;
+                    break;
+                case 2: this.fecha.Disabled = true;
+                    this.btnFecha.Disabled = true;
+                    this.notas.Disabled = false;
+                    this.tipodePago.Disabled = false;
+                    this.btnAceptar.Disabled = false;
+                    this.checkboxCena.Disabled = (seleccionada.Turnos[2] == 'C');
+                    this.checkboxDesayuno.Disabled = (seleccionada.Turnos[0] == 'C');
+                    this.checkboxAlmuerzo.Disabled = (seleccionada.Turnos[2] == 'C');
+                    btnAnular.Visible = true;
+                    btnEditar.Visible = true;
+                    btnAnular.Disabled = false;
+                    btnEditar.Disabled = true;
+                    break;
+                default: 
+                    this.fecha.Disabled = true;
+                    this.btnFecha.Disabled = true;
+                    this.notas.Disabled = true;
+                    this.checkboxAlmuerzo.Disabled = true;
+                    this.checkboxCena.Disabled = true;
+                    this.checkboxDesayuno.Disabled = true;
+                    this.tipodePago.Disabled = true;
+                    this.btnAceptar.Disabled = true;
+                    btnAnular.Visible = true;
+                    btnEditar.Visible = true;
+                    btnAnular.Disabled = false;
+                    btnEditar.Disabled = false;
+                    break;
+
+            }
 
         }
         /*
@@ -310,19 +324,21 @@ namespace Servicios_Reservados_2
          * Retrona :N/A
          */
         private void iniciarEmpleado()
-        {            
+        {
             try
             {
                 if (identificacionEmpleado.Length > 0)
                 {
-                    empleadoSeleccionado = controladora.getInformacionDelEmpleado(identificacionEmpleado); 
-                   
+                    empleadoSeleccionado = controladora.getInformacionDelEmpleado(identificacionEmpleado);
+
                     txtNombre.Value = empleadoSeleccionado.Nombre + " " + empleadoSeleccionado.Apellido;
                     txtNombre.Disabled = true;
-                }else{
+                }
+                else
+                {
                     Debug.WriteLine("oops");
                 }
-                
+
             }
             catch (Exception e)
             {
@@ -334,23 +350,24 @@ namespace Servicios_Reservados_2
         protected void AgregarFecha_ServerClick(object sender, EventArgs e)
         {
             DateTime MyDateTime = DateTime.Parse(fecha.Value);
-            if(MyDateTime.Date >DateTime.Now.Date ){
-                
-            DataTable tabla = crearTablaFechaComidaEmpleado();
-            Object[] datos = new Object[1];
-            datos[0] = String.Format("{0:MM-dd-yyyy}", MyDateTime);
-            tabla.Rows.Add(datos);
-            foreach (DateTime dt in list)
+            if (MyDateTime.Date > DateTime.Now.Date)
             {
-                datos[0] = String.Format("{0:MM-dd-yyyy}", dt);          // "03/09/2008"
-                
+
+                DataTable tabla = crearTablaFechaComidaEmpleado();
+                Object[] datos = new Object[1];
+                datos[0] = String.Format("{0:MM-dd-yyyy}", MyDateTime);
                 tabla.Rows.Add(datos);
-            }/*else{
+                foreach (DateTime dt in list)
+                {
+                    datos[0] = String.Format("{0:MM-dd-yyyy}", dt);          // "03/09/2008"
+
+                    tabla.Rows.Add(datos);
+                }/*else{
                 //deberia de enviar un error
             }*/
-            GridFechasReservadas.DataBind();
-            list.Add(MyDateTime);
-            btnAceptar.Disabled = false;
+                GridFechasReservadas.DataBind();
+                list.Add(MyDateTime);
+                btnAceptar.Disabled = false;
             }
         }
         /**

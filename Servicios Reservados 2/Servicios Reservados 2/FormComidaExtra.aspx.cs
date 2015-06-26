@@ -267,6 +267,10 @@ namespace Servicios_Reservados_2
                     fechaDeEntrada.Disabled = true;
                     consultarServicio();
                     fechaDeEntrada.Disabled = true;
+                    btnAnular.Visible = true;
+                    btnEditar.Visible = true;
+                    btnAnular.Disabled = false;
+                    btnEditar.Disabled = false;
                     break;
                 case 1://agregar
                     txtPax.Value = controladora.paxConsultado(reservConsultada.Numero);
@@ -274,6 +278,8 @@ namespace Servicios_Reservados_2
                     textFecha.Value = DateTime.Today.ToString("MM/dd/yyyy");
                     btnAnular.Disabled = true;
                     btnEditar.Disabled = true;
+                    btnAnular.Visible = false;
+                    btnEditar.Visible = false;
                     break;
                 case 2://modificarcbxHora.Disabled = true;
                     txtPax.Disabled = false;
@@ -288,6 +294,8 @@ namespace Servicios_Reservados_2
                     fechaDeEntradaCalendario.SelectedDate = DateTime.Parse(entidadConsultada.Fecha);
                     textFecha.Value = entidadConsultada.Fecha;
                     btnEditar.Disabled = true;
+                    btnAnular.Visible = true;
+                    btnEditar.Visible = true;
                     break;
             }
         }
