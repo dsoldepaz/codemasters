@@ -69,8 +69,8 @@ namespace Servicios_Reservados_2
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
-            string username = (string)Session["username"];
             string estacion = (string)Session["Estacion"];
+            string nombre = (string)Session["Nombre"];
             string roles = "";
             foreach (object rol in listaRoles) {
              roles += (string)rol+" ";
@@ -79,7 +79,7 @@ namespace Servicios_Reservados_2
             
             if (!IsPostBack)
             {
-                this.InfoUsuario.Text= string.Format(username + " ( " + roles + ")"+ " en " + estacion);               
+                this.InfoUsuario.Text= string.Format(nombre + " ( " + roles + ")"+ " en " + estacion);               
             }
             this.InfoUsuario.Enabled = false;
         }

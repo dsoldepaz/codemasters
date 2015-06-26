@@ -101,7 +101,8 @@ namespace Servicios_Reservados_2
             {
 
                 Object[] datos = new Object[6];
-                DataTable reservaciones = controladora.solicitarTodasReservaciones();// se consultan todos
+                String estacion = (String)Session["Estacion"];
+                DataTable reservaciones = controladora.solicitarTodasReservaciones(estacion);// se consultan todos
                 ids = new String[reservaciones.Rows.Count]; //crear el vector para ids en el grid
 
                 int i = 0;
