@@ -89,9 +89,9 @@ namespace Servicios_Reservados_2
             Session["username"] = null;
             Response.Redirect("~/ingresar.aspx");
         }
-        protected void clickPerfil(object sender, EventArgs e)
+        protected void clickAyuda(object sender, EventArgs e)
         {
-            Response.Redirect("FormRegistro");
+            Response.Redirect("Default.aspx");
         }
     }
 }
