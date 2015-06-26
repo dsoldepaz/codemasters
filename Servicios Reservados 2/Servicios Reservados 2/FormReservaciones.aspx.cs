@@ -222,7 +222,7 @@ namespace Servicios_Reservados_2
           }
             if (txtSolicitante.Value.ToString()!=null)
             {
-              solicitante = txtSolicitante.Value.ToString();
+              solicitante = txtSolicitante.Value.ToString().ToLower();
           }
             if (anfitriona.CompareTo("vacio") != 0 || estacion.CompareTo("vacio") != 0 || solicitante.CompareTo("vacio") != 0)
           {
