@@ -58,7 +58,7 @@ namespace Servicios_Reservados_2
                 else
                 {
                     //Mensaje de error en caso de no ser usuario registrado
-                    lblMensaje.Text = "Usuario inactivo, contacte al administrador del sistema.";
+                    mostrarMensaje("Usuario inactivo, contacte al administrador del sistema.");
                 }
                
 
@@ -66,8 +66,15 @@ namespace Servicios_Reservados_2
             else
             {
                 //Mensaje de error en caso de no ser usuario registrado
-                lblMensaje.Text = "Usuario/Contraseña incorrecta verifique por favor.";
+                mostrarMensaje("Usuario/Contraseña incorrecta verifique por favor.");
             }
+        }
+        protected void mostrarMensaje(String mensaje)
+        {
+            alertAlerta.Attributes["class"] = "alert alert-danger alert-dismissable fade in";
+            labelTipoAlerta.Text =  "Error: ";
+            labelAlerta.Text = mensaje;
+            alertAlerta.Attributes.Remove("hidden");
         }
     }
 }

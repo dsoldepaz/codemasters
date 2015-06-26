@@ -17,7 +17,7 @@
                         </legend>
                     </td>
                     <td>
-                        <a href="#">
+                        <a href="">
                             <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                 <strong>
@@ -114,7 +114,6 @@
             </div>
 
         </ContentTemplate>
-
     </asp:UpdatePanel>
 
 </asp:Content>
