@@ -17,6 +17,8 @@ namespace Servicios_Reservados_2
         private static ControladoraReservaciones controladoraReservaciones;
         private static ControladoraServicios controladoraServicios;
         private static ControladoraComidaCampo controladoraComidaCampo;
+        private ControladoraNotificaciones notificaciones;
+
         /*
          * Requiere: N/A
          * Efectúa : Inicializa las variables globales de la clase. 
@@ -31,6 +33,7 @@ namespace Servicios_Reservados_2
             controladoraComidaEmp = new ControladoraComidaEmpleado();
             controladoraEmp = new ControladoraEmpleado();
             controladoraComidaCampo = new ControladoraComidaCampo();
+            notificaciones = new ControladoraNotificaciones();
         }
         /*
          * Requiere: N/A
@@ -152,6 +155,11 @@ namespace Servicios_Reservados_2
         internal void desactivarTiquete()
         {
             controladoraBD.eliminarTiquete(seleccionado.Numero);
+        }
+
+        internal int getNotificaciones()
+        {
+            return notificaciones.getNumeroDeNotificaciones();
         }
     }
 }
