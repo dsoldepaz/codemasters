@@ -146,9 +146,9 @@ namespace Servicios_Reservados_2
 
                   int contador = filtroEstacionAnfitrionaFecha();
                   if (contador > 0)
-                  {
-                      for (int i = 0; i < contar; i++)
-                      {
+                 {
+                       for (int i = 0; i < contar; i++)
+                    {
                           datos[0] = fechaInicio;
                           datos[1] = sumaTotalDesayuno;
                           datos[2] = sumaTotalConsumidosDesayuno;
@@ -162,10 +162,10 @@ namespace Servicios_Reservados_2
                           datos[10] = sumaTotalComidasCampoServidos;
                           datos[11] = sumaTotalDesayuno + sumaTotalAlmuerzo + sumaTotalCena + sumaTotalComidasCampo;
                           datos[12] = sumaTotalConsumidosDesayuno + sumaTotalConsumidosAlmuerzo + sumaTotalConsumidosCena + sumaTotalComidasCampoServidos;
-                          tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
-                      }
-                  }
-                
+                        tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
+                    }
+                }
+
 
                 GridViewReportes.AllowSorting = false;
                 GridViewReportes.DataBind();
@@ -305,7 +305,7 @@ namespace Servicios_Reservados_2
         }
 
         protected int filtroEstacionAnfitrionaFecha(){
-           
+
             if (estacion != null && fechaInicio != null && fechaFinal != null) //si se selecciona una estacion, fecha y anfitriona
             {
               
@@ -315,17 +315,20 @@ namespace Servicios_Reservados_2
                 contar = comidaCampoReservDesayuno.Rows.Count;
                 DataTable comidaCampoReservAlmuerzo = verificarDataTable(controladora.obtenerComidaPax(estacion, 2, anfitriona, fechaInicio, fechaFinal)); //almuerzo de comidaCampo reservado
                 DataTable comidaCampoReservCena = verificarDataTable(controladora.obtenerComidaPax(estacion, 3, anfitriona, fechaInicio, fechaFinal)); //cena de comidaCampo reservado
+                DataTable comidaExtraDesayuno = verificarDataTable(controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Desayuno", anfitriona, fechaInicio, fechaFinal,1)); //desayuno comida extra
+                DataTable comidaExtraAlmuerzo = verificarDataTable(controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Almuerzo", anfitriona, fechaInicio, fechaFinal,1));             //almuerzo comida extra
+                DataTable comidaExtraCena = verificarDataTable(controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Cena", anfitriona, fechaInicio, fechaFinal,1));                  //cena comida extra
                 DataTable comidaExtraDesayuno = verificarDataTable(controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Desayuno", anfitriona, fechaInicio, fechaFinal)); //desayuno comida extra
                 DataTable comidaExtraAlmuerzo = verificarDataTable(controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Almuerzo", anfitriona, fechaInicio, fechaFinal)); //almuerzo comida extra
                 DataTable comidaExtraCena = verificarDataTable(controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Cena", anfitriona, fechaInicio, fechaFinal)); //cena comida extra
                 DataTable comidaCampoReservaSandiwch = verificarDataTable(controladora.obtenerComidaPax(estacion, 4, anfitriona, fechaInicio, fechaFinal)); //sandwiches de reservacion
                 DataTable comidaCampoReservaPinto = verificarDataTable(controladora.obtenerComidaPax(estacion, 5, anfitriona, fechaInicio, fechaFinal)); //gallo pinto de reservacion
-
+             
                 if (anfitriona == 1)
                 {
 
-                    DataTable comidaCampoDesayunoEmp =  verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 1, fechaInicio, fechaFinal)); //desayuno comida campo empleado                 
-                    DataTable comidaCampoAlmuerzoEmp = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 2, fechaInicio, fechaFinal));//almuerzo comida campo empleado              
+                    DataTable comidaCampoDesayunoEmp =  verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 1, fechaInicio, fechaFinal)); //desayuno comida campo empleado
+                    DataTable comidaCampoAlmuerzoEmp = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 2, fechaInicio, fechaFinal));//almuerzo comida campo empleado
                     DataTable comidaCampoCenaEmp = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 3, fechaInicio, fechaFinal)); //cena comida campo empleado
                     DataTable comidaDesayunoEmp = verificarDataTableEmp(controladora.obtenerComidaEmp(estacion, "desayuno", fechaInicio, fechaFinal)); //desayuno comida campo de empleados
                     DataTable comidaAlmuerzoEmp = verificarDataTableEmp(controladora.obtenerComidaEmp(estacion, "almuerzo", fechaInicio, fechaFinal)); //almuerzo comida campo de empleados
@@ -354,10 +357,10 @@ namespace Servicios_Reservados_2
                     sumaTotalComidasCampoServidos = int.Parse(comidaCampoReservaSandiwch.Rows[0][2].ToString()) + int.Parse(comidaCampoReservaPinto.Rows[0][2].ToString());
 
                 }
-            }
+                }
             return contar;
         
-        }
+            }
 
         protected DataTable verificarDataTable(DataTable datos)
         {
@@ -370,8 +373,8 @@ namespace Servicios_Reservados_2
             if (contador == 0)
             {
                 resultante.Rows.Add(objeto);
-                
-            }
+        
+        }
             return resultante;
         }
 
@@ -386,7 +389,7 @@ namespace Servicios_Reservados_2
             if (contador == 0)
             {
                 resultante.Rows.Add(objeto);
-
+                
             }
             return resultante;
         }

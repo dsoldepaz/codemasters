@@ -168,6 +168,7 @@ namespace Servicios_Reservados_2
             labelTipoAlerta.Text = alerta + " ";
             labelAlerta.Text = mensaje;
             alertAlerta.Attributes.Remove("hidden");
+            this.SetFocus(alertAlerta);
         }
     }
 }

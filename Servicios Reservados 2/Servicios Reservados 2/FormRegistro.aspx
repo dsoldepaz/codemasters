@@ -4,16 +4,24 @@
     <div id="top"></div>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-
-            <a href="">
-                <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>
-                        <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
-                </div>
-            </a>
-            
-            <legend style="color: #7BC143">Registro de usuarios</legend>
+            <table>
+                <tr>
+                    <td>
+                        <legend>
+                            <h2>Registro de usuarios</h2>
+                        </legend>
+                    </td>
+                    <td>
+                        <a href="">
+                            <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>
+                                    <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            </table>
 
             <div class="well bs-component">
                 <legend>
@@ -26,7 +34,7 @@
                         <td>
                             <input class="textbox" style="width: 500px" id="username" runat="server" required="required" title="Debe tener de 4 a 15 caracteres, solo letras minúsculas sín tilde o números" pattern="^[a-z0-9]{4,15}$" />
                         </td>
-                    </tr>                    
+                    </tr>
                     <tr>
                         <td style="width: 10%;">Nombre:</td>
                         <td>
@@ -36,7 +44,7 @@
                     <tr>
                         <td style="width: 10%;">Correo electronico:</td>
                         <td>
-                            <input class="textbox" style="width: 500px" id="correo" runat="server" required="required" title="Debe ser una dirección de correo válida ej: usuario@dominio.com" pattern="[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}"  />
+                            <input class="textbox" style="width: 500px" id="correo" runat="server" required="required" title="Debe ser una dirección de correo válida ej: usuario@dominio.com" pattern="[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}" />
                         </td>
                     </tr>
                     <tr>
@@ -45,14 +53,14 @@
                             <asp:DropDownList ID="estado" runat="server"></asp:DropDownList>
                         </td>
                     </tr>
-                        <tr id="acciones" runat="server">
+                    <tr id="acciones" runat="server">
                         <td>
-                            <input id="btnEditar" type="button" value="Editar" runat="server" onserverclick="clickEditar"/>
+                            <input id="btnEditar" type="button" value="Editar" runat="server" onserverclick="clickEditar" />
                         </td>
                         <td>
-                            <input type="button" id="reestablecer" value="Reestablecer Contraseña" runat="server" onserverclick="clickReestablecer" style="width:200px"/>
+                            <input type="button" id="reestablecer" value="Reestablecer Contraseña" runat="server" onserverclick="clickReestablecer" style="width: 200px" />
                         </td>
-                    </tr>                    
+                    </tr>
                 </table>
             </div>
 
@@ -72,7 +80,7 @@
                                 <Columns>
                                     <asp:TemplateField>
                                         <ItemTemplate>
-                                            <asp:CheckBox ID="chkRol" runat="server"/>
+                                            <asp:CheckBox ID="chkRol" runat="server" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
@@ -89,7 +97,7 @@
             <table>
                 <tr>
                     <td>
-                            <input type="submit" id="btnAceptar" class="btn btn-success" value="Aceptar" runat="server" onserverclick="clickAceptar" on/>                                                
+                        <input type="submit" id="btnAceptar" class="btn btn-success" value="Aceptar" runat="server" onserverclick="clickAceptar" on />
                     </td>
                     <td>
                         <input type="button" class="btn-danger" value="Cancelar" runat="server" onserverclick="clickCancelar" />
