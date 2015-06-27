@@ -10,6 +10,11 @@ namespace Servicios_Reservados_2
     {
         AdaptadorBD adaptador = new AdaptadorBD();
 
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica : 
+         */
         internal DataTable cargarEstaciones()
         {
             DataTable estaciones;
@@ -18,6 +23,11 @@ namespace Servicios_Reservados_2
             return estaciones;
         }
 
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica : 
+         */
         internal DataTable obtenerComidaPax(String estacion, int opcion, int anfitriona, String fecha, String fechaFinal)
         {
             DataTable comidaCampo;
@@ -26,6 +36,12 @@ namespace Servicios_Reservados_2
             comidaCampo = adaptador.consultar(consultaSQL);
             return comidaCampo;
         }
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica : 
+         */
         internal DataTable obtenerComidaPaxEmp(String estacion, int opcion, String fecha, String fechaFinal)
         {
             DataTable comidaCampoEmp;
@@ -35,6 +51,11 @@ namespace Servicios_Reservados_2
             return comidaCampoEmp;
         }
 
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica : 
+         */
         internal DataTable obtenerComidaEmp(String estacion, String opcion, String fecha, String fechaFinal)
         {
             DataTable comidaCampoEmp;
@@ -44,6 +65,11 @@ namespace Servicios_Reservados_2
             return comidaCampoEmp;
         }
 
+        /* 
+         * Efecto: crea la consulta que filtra comida extra por un rango de fecha.
+         * Requiere: la entrada de las variables que realizan el filtrado.
+         * Modifica : N/A
+         */
         internal DataTable obtenerComidaExtraFechas(String opcion, String fecha, String fechaFinal, int consulta)
         {
             DataTable comidaExtra;
@@ -64,6 +90,11 @@ namespace Servicios_Reservados_2
             return comidaExtra;
         }
 
+        /* 
+         * Efecto: crea la consulta que filtra comida extra por anfitriona, estación y fecha.
+         * Requiere: la entrada de las variables que realizan el filtrado.
+         * Modifica : N/A
+         */
         internal DataTable obtenerComidaExtraEstacionAnfitrionaFecha(String estacion, String opcion, int anfitriona, String fecha, String fechaFinal, int consulta)
         {
             DataTable comidaExtra;
@@ -84,6 +115,11 @@ namespace Servicios_Reservados_2
             return comidaExtra;
         }
 
+        /* 
+         * Efecto: crea la consulta que filtra comida extra por estaciòn y fecha.
+         * Requiere: la entrada de las variables que realizan el filtrado.
+         * Modifica : N/A
+         */
         internal DataTable obtenerComidaExtraEstacionFecha(String estacion, String opcion, String fecha, String fechaFinal, int consulta)
         {
             DataTable comidaExtra;
@@ -104,6 +140,11 @@ namespace Servicios_Reservados_2
             return comidaExtra;
         }
 
+        /* 
+         * Efecto: crea la consulta que filtra comida extra por anfitriona y fecha.
+         * Requiere: la entrada de las variables que realizan el filtrado.
+         * Modifica : N/A
+         */
         internal DataTable obtenerComidaExtraAnfitrionaFecha(String opcion, int anfitriona, String fecha, String fechaFinal, int consulta)
         {
             DataTable comidaExtra;
