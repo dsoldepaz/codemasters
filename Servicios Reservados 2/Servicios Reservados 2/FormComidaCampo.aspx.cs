@@ -48,6 +48,10 @@ namespace Servicios_Reservados_2
                 txtIdSolicitante.Text = "Número Reservación";
                 txtFechaInicio.Value = res.FechaInicio.ToString("MM/dd/yyyy");
                 textFechaFinal.Value = res.FechaSalida.ToString("MM/dd/yyyy");
+                txtSolicitante.Disabled = true;
+                txtNumReservacion.Disabled = true;
+                txtFechaInicio.Disabled = true;
+                textFechaFinal.Disabled = true;
             }
             else
             {
@@ -71,7 +75,7 @@ namespace Servicios_Reservados_2
                 txtPax.Value = controladora.paxReserv(reservacionConsultada.Numero);
             }
 
-            if (modo == 1)
+            if (modo == 1)//insertar
             {
                 fechaDeEntradaCalendario.SelectedDate = DateTime.Today; //ver al insertar fecha
                 textFecha.Value = DateTime.Today.ToString("MM/dd/yyyy");
@@ -106,6 +110,10 @@ namespace Servicios_Reservados_2
                 cmbHoraSandwich.Disabled = true;
                 cmbHoraGalloPinto.Disabled = true;
                 cbxHoraOpcion1.Disabled = true;
+                btnAnular.Disabled = true;
+                btnEditar.Disabled = true;
+                btnAnular.Visible = false;
+                btnEditar.Visible = false;
 
             }
             else if (modo == 2)
@@ -137,6 +145,10 @@ namespace Servicios_Reservados_2
                 cbxHoraOpcion1.Disabled = true;
                 consultarComidaCampo();
                 btnAgregar.Disabled = false;
+                btnAnular.Disabled = false;
+                btnEditar.Disabled = true;
+                btnAnular.Visible = true;
+                btnEditar.Visible = true;
             }
             else if (modo == 4)
             {  //consultar
@@ -176,6 +188,10 @@ namespace Servicios_Reservados_2
                 cmbHoraGalloPinto.Disabled = true;
                 cbxHoraOpcion1.Disabled = true;
                 cmbTipoPago.Disabled = true;
+                btnAnular.Disabled = false;
+                btnEditar.Disabled = false;
+                btnAnular.Visible = true;
+                btnEditar.Visible = true;
             }
 
             
@@ -1024,7 +1040,10 @@ namespace Servicios_Reservados_2
             cambiarModo();
             btnAgregar.Disabled = false;
         }
+        protected void clickAnular(object sender, EventArgs e)
+        {
 
+        }
 
 
 
