@@ -119,7 +119,7 @@ namespace Servicios_Reservados_2
       * Requiere: 
       * Modifica: 
       */
-        internal DataTable obtenerComidaEmpEstacionFechas(String opcion, String fecha, String fechaFinal) //comida campo empleado con todo. o solo con anfitriona y fechas porque anfitriona = ESINTRO.
+        internal DataTable obtenerComidaEmpEstacionFechas(String opcion, String fecha, String fechaFinal) //comida campo empleado con fechas o solo con anfitriona y fechas porque anfitriona = ESINTRO.
         {
             DataTable comidaCampoEmp;
 
@@ -127,19 +127,7 @@ namespace Servicios_Reservados_2
             comidaCampoEmp = adaptador.consultar(consultaSQL);
             return comidaCampoEmp;
         }
-        /* 
-      * Efecto: 
-      * Requiere: 
-      * Modifica: 
-      */
-        internal DataTable obtenerComidaEmp(String estacion, String opcion, String fecha, String fechaFinal) //comida campo empleado con todo.
-        {
-            DataTable comidaCampoEmp;
-
-            String consultaSQL = "select distinct fecha, count(" + opcion + "), count(vecesconsumido) from reserva_empleado where " + opcion + " = 'R' and fecha >= to_date('" + fecha + "', 'mm/dd/yyyy') and fecha <= to_date('" + fechaFinal + "', 'mm/dd/yyyy') and estacion ='" + estacion + "'group by fecha";
-            comidaCampoEmp = adaptador.consultar(consultaSQL);
-            return comidaCampoEmp;
-        }
+     
         /* 
          * Efecto: crea la consulta que filtra comida extra por un rango de fecha.
          * Requiere: la entrada de las variables que realizan el filtrado.
