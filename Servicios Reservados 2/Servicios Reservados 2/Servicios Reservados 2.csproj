@@ -440,6 +440,7 @@
     <Compile Include="App_Data\ReporteCocina\ControladoraReporteCocina.cs" />
     <Compile Include="App_Data\Notificaciones\ControladoraDeBDDeNotificaciones.cs" />
     <Compile Include="App_Data\Notificaciones\ControladoraNotificaciones.cs" />
+    <Compile Include="DataGridViewRow.cs" />
     <Compile Include="FormReestablecer.aspx.cs">
       <DependentUpon>FormReestablecer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
