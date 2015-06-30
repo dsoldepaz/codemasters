@@ -146,7 +146,7 @@ namespace Servicios_Reservados_2
 
             if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect < fechaActual)
             {
-                mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación y solo puede reservar de hoy en adelante");
+                mostrarMensaje("danger", "Error:", "Revise la fecha seleccionada, debe estar dentro de la reservación y solo puede reservar de hoy en adelante");
                 res = false;
             }
             else
@@ -197,7 +197,7 @@ namespace Servicios_Reservados_2
 
             if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect < fechaActual)
             {
-                mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de lás fechas reservadas-");
+                mostrarMensaje("danger", "Error:", "Revise la fecha seleccionada, debe estar dentro de la reservación y solo puede reservar de hoy en adelante");
                 res = false;
             }
             else

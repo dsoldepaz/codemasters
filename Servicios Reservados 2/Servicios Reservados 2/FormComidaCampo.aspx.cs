@@ -528,22 +528,37 @@ namespace Servicios_Reservados_2
         {
             
             DateTime fechaSeleccionada = fechaDeEntradaCalendario.SelectedDate;
-            DateTime fechaHoy = DateTime.Today;
+            if (checkO1.Checked)
+            {
+                fechaSeleccionada = fechaSeleccionada.AddHours(int.Parse(cbxHoraOpcion1.Value.ToString().Split(':')[0]));
+            }
+            else if (checkO2.Checked)
+            {
+                fechaSeleccionada = fechaSeleccionada.AddHours(int.Parse(cmbHoraSandwich.Value.ToString().Split(':')[0]));
+            }
+            else if (checkO3.Checked)
+            {
+                fechaSeleccionada = fechaSeleccionada.AddHours(int.Parse(cmbHoraGalloPinto.Value.ToString().Split(':')[0]));
+            }
+
+            DateTime fechaHoy = DateTime.Now;
             Boolean correcta = true;
             if (tipoComidaCampo == 0)
             {
                 DateTime fechaInicio = reservacionConsultada.FechaInicio;
+                fechaInicio = fechaInicio.AddHours(6);
                 DateTime fechaFinal = reservacionConsultada.FechaSalida;
+                fechaFinal = fechaFinal.AddHours(23);
                 if (fechaSeleccionada < fechaInicio || fechaSeleccionada > fechaFinal || fechaSeleccionada < fechaHoy)
                 {
-                      mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
+                    mostrarMensaje("danger", "Error:", "Revise la fecha seleccionada, debe estar dentro de la reservación y solo puede reservar de hoy en adelante");
                       correcta = false;
                 }
             }
             else
             {
                 if(fechaSeleccionada < fechaHoy){
-                    mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, no es una fecha válida");
+                    mostrarMensaje("danger", "Error:", "Revise la fecha seleccionada, debe estar dentro de la reservación y solo puede reservar de hoy en adelante");
                     correcta = false;
                 }
             }
