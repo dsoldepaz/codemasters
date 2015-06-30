@@ -335,7 +335,7 @@ namespace Servicios_Reservados_2
                 mostrarMensaje(error[0], error[1], "No se ha podido reestablecer la contraseña"); // se muestra el resultado
             }
             else {
-                mostrarMensaje(error[0], error[1], "Se ha reestablacido la contraseña correctamente"); // se muestra el resultado
+                mostrarMensaje(error[0], error[1], "Se ha reestablecido la contraseña correctamente"); // se muestra el resultado
             }            
         }
 

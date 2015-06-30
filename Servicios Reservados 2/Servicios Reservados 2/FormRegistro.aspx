@@ -70,7 +70,7 @@
                                                 <h4 class="modal-title" id="myModalLabel">Reestablecer contraseña</h4>
                                             </div>
                                             <div class="modal-body">
-                                                <p>¿Desea reestablecer la contraseña? Se reestablecerá la contrseña usando el mismo nombre de usuario</p>
+                                                <p>¿Desea reestablecer la contraseña? Se reestablecerá usando el mismo nombre de usuario</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-success" runat="server" onserverclick="clickReestablecer" data-dismiss="modal">Aceptar</button>
