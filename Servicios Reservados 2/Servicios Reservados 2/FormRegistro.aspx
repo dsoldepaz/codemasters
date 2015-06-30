@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="Registro de usuarios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormRegistro.aspx.cs" Inherits="Servicios_Reservados_2.FormRegistro" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <div id="top"></div>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -58,7 +61,26 @@
                             <input id="btnEditar" type="button" value="Editar" runat="server" onserverclick="clickEditar" />
                         </td>
                         <td>
-                            <input type="button" id="reestablecer" value="Reestablecer Contraseña" runat="server" onserverclick="clickReestablecer" style="width: 200px" />
+                            <input type="button" id="reestablecer" value="Reestablecer Contraseña" runat="server" onserverclick="seleccionarReestablecer" style="width: 200px" />
+                                <!-- Modal -->
+                                <div class="modal fade" id="modalReestablecer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel">Reestablecer contraseña</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>¿Desea reestablecer la contraseña? Se reestablecerá la contrseña usando el mismo nombre de usuario</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success" runat="server" onserverclick="clickReestablecer" data-dismiss="modal">Aceptar</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                         </td>
                     </tr>
                 </table>
