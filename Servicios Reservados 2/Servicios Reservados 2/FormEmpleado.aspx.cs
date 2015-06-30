@@ -34,7 +34,7 @@ namespace Servicios_Reservados_2
                 }
                 llenarGridEmpleados();
             }
-
+            obtenerNotificaciones();
 
             // ponerModo();
         }
@@ -215,6 +215,16 @@ namespace Servicios_Reservados_2
             {
                 llenarGridEmpleados();
             }
+        }
+        /*
+         * Requiere: N/A
+         * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
+         * Retoirna: N/A
+         */
+        private void obtenerNotificaciones()
+        {
+            int numNotificaciones = controladora.getNotificaciones();
+            contador.InnerText = numNotificaciones + "";
         }
     }
 }

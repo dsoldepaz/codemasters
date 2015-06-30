@@ -31,6 +31,7 @@ namespace Servicios_Reservados_2
                 }
                 cambiarModo();
             }
+            obtenerNotificaciones();
 
         }
         protected void cambiarModo()

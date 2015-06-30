@@ -50,6 +50,7 @@ namespace Servicios_Reservados_2
                 }
                 cargarDatos();
             }
+            obtenerNotificaciones();
 
         }
 
@@ -135,15 +136,16 @@ namespace Servicios_Reservados_2
          * Requiere: NA
          * Modifica: la tabla servicios, si la reservacion tiene servicios asociados
          * */
-        void llenarGridReportes()
+        void llenarGridReportes(String fecha)
         {
             DataTable tabla = crearTablaServicios();
             try
             {
 
+              
                 Object[] datos = new Object[13];
-
-                datos[0] = fechaInicial;
+    
+                datos[0] = fecha;
                 datos[1] = sumaTotalDesayuno;
                 datos[2] = sumaTotalConsumidosDesayuno;
                 datos[3] = sumaTotalAlmuerzo;
@@ -306,7 +308,7 @@ namespace Servicios_Reservados_2
                 while (inicio <= fin)//se realiza el for en el rango de fechas especificado
                 {
                     filtroEstacionAnfitrionaFecha(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
-                    llenarGridReportes();
+                    llenarGridReportes(inicio.ToString("MM/dd/yyyy"));
                     inicio =  DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
                 }
             }
@@ -326,7 +328,7 @@ namespace Servicios_Reservados_2
             DataTable comidaCampoReservaPinto = verificarDataTable(controladora.obtenerComidaPax(estacion, 5, anfitriona, fechaInicio, fechaFinal)); //gallo pinto de reservacion
             DataTable comidaExtraSnack = verificarDataTable(controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Cena", anfitriona, fechaInicio, fechaFinal, 2));
 
-            if (anfitriona == 1)
+            if (anfitriona == 2)
             {
 
                 DataTable comidaCampoDesayunoEmp = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 1, fechaInicio, fechaFinal)); //desayuno comida campo empleado
@@ -398,7 +400,16 @@ namespace Servicios_Reservados_2
             }
             return resultante;
         }
-
+        /*
+        * Requiere: N/A
+        * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
+        * Retoirna: N/A
+        */
+        private void obtenerNotificaciones()
+        {
+            int numNotificaciones = controladora.getNotificaciones();
+            contador.InnerText = numNotificaciones + "";
+        }
 
 
     }

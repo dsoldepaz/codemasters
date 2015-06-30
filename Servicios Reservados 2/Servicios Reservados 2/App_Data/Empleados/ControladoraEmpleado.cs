@@ -10,6 +10,7 @@ namespace Servicios_Reservados_2
     {
         private static EntidadEmpleado empleadoSeleccionado;
         private static ControladoraBDEmpleado controladoraBD;
+        private ControladoraNotificaciones controladoraNotificaciones;
         /*
          * Requiere: N/A
          * Efectúa : Inicializa las variables globales de la clase. 
@@ -18,6 +19,7 @@ namespace Servicios_Reservados_2
         public ControladoraEmpleado()
         {
             controladoraBD = new ControladoraBDEmpleado();
+            controladoraNotificaciones = new ControladoraNotificaciones();
         }
         /*
          * Requiere: N/A
@@ -65,5 +67,10 @@ namespace Servicios_Reservados_2
             return empleadoSeleccionado;
         }
 
+
+        internal int getNotificaciones()
+        {
+            return controladoraNotificaciones.getNumeroDeNotificaciones();
+        }
     }
 }

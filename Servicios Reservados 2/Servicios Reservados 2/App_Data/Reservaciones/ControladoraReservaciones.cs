@@ -11,6 +11,7 @@ namespace Servicios_Reservados_2
     {
         private static EntidadReservaciones reservacionSeleccionada;
         private static ControladoraBDReservaciones controladoraBD;
+        private ControladoraNotificaciones controladoraNotificaciones; 
         /*
          * Requiere: N/A
          * Efectúa : Inicializa las variables globales de la clase. 
@@ -19,6 +20,7 @@ namespace Servicios_Reservados_2
         public ControladoraReservaciones()
         {
             controladoraBD = new ControladoraBDReservaciones();
+            controladoraNotificaciones = new ControladoraNotificaciones();
         }
         /*
          * Requiere: N/A
@@ -109,6 +111,11 @@ namespace Servicios_Reservados_2
             String pax = paxConsultado.Rows[0][0].ToString();
             return pax;
 
+        }
+
+        internal int getNotificaciones()
+        {
+           return controladoraNotificaciones.getNumeroDeNotificaciones();
         }
     }
 }

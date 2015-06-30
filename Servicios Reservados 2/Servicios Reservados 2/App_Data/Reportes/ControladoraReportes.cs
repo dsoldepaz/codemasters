@@ -9,7 +9,7 @@ namespace Servicios_Reservados_2
     public class ControladoraReportes
     {
         ControladoraBDReportes controladoraBD = new ControladoraBDReportes();
-
+        ControladoraNotificaciones controladoraNotificaciones = new ControladoraNotificaciones();
         /* 
          * Efecto: 
          * Requiere: 
@@ -89,6 +89,11 @@ namespace Servicios_Reservados_2
         internal DataTable obtenerComidaExtraFechas(String opcion, String fecha, String fechaFinal, int consulta)
         {
             return controladoraBD.obtenerComidaExtraFechas(opcion, fecha, fechaFinal,consulta);
+        }
+
+        internal int getNotificaciones()
+        {
+            return controladoraNotificaciones.getNumeroDeNotificaciones();
         }
     }
 }
