@@ -185,10 +185,15 @@ namespace Servicios_Reservados_2
         protected Boolean modificarServicioExtra()
         {
             Boolean res = true;
+
             DateTime fechaInicio = DateTime.Parse(reservConsultada.FechaInicio.ToString());
+            fechaInicio = fechaInicio.AddHours(6);
             DateTime fechaFin = DateTime.Parse(reservConsultada.FechaSalida.ToString());
-            DateTime fechaSelect = DateTime.Parse(textFecha.Value);
-            DateTime fechaActual = DateTime.Today;
+            fechaFin = fechaFin.AddHours(23);
+            DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;
+            string[] hora = cbxHora.Value.ToString().Split(':');
+            fechaSelect = fechaSelect.AddHours(int.Parse(hora[0]));
+            DateTime fechaActual = DateTime.Now;
 
             if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect < fechaActual)
             {
