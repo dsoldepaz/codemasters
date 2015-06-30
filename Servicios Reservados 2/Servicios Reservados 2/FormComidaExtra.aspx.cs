@@ -49,6 +49,7 @@ namespace Servicios_Reservados_2
             modo = FormServicios.modo;
             llenarInfoServicio();
             llenarComboBoxTipo();
+            llenarComboBoxHora();
             llenarCbxTipoPago();
             cambiarModo();
         }
@@ -92,6 +93,13 @@ namespace Servicios_Reservados_2
                 }
             }
         }
+        void llenarComboBoxHora()
+        {
+            cbxHora.Items.Add("6:00");
+            cbxHora.Items.Add("7:00");
+            cbxHora.Items.Add("8:00");
+            cbxHora.Items.Add("9:00");
+        }
 
         void llenarCbxTipoPago()
         {
@@ -128,13 +136,17 @@ namespace Servicios_Reservados_2
         {
             Boolean res = true;
             DateTime fechaInicio = DateTime.Parse(reservConsultada.FechaInicio.ToString());
+            fechaInicio = fechaInicio.AddHours(6);
             DateTime fechaFin = DateTime.Parse(reservConsultada.FechaSalida.ToString());
+            fechaFin = fechaFin.AddHours(23);
             DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;
-            DateTime fechaActual = DateTime.Today;
+            string [] hora = cbxHora.Value.ToString().Split(':');
+            fechaSelect = fechaSelect.AddHours(int.Parse(hora[0]));
+            DateTime fechaActual = DateTime.Now;
 
             if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect < fechaActual)
             {
-                mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación");
+                mostrarMensaje("danger", "Error:", "Revise la fecha selccionada, debe estar dentro de la reservación y solo puede reservar de hoy en adelante");
                 res = false;
             }
             else
@@ -224,7 +236,6 @@ namespace Servicios_Reservados_2
                     }
                     break;
                 case 2://modificar
-
                     accion = modificarServicioExtra();
                     if (accion)
                     {

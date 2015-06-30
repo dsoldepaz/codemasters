@@ -24,7 +24,6 @@
                 </tr>
             </table>
 
-
             <div class="well bs-component">
                 <legend style="color: #7BC143">Intruduzca una nueva contraseña</legend>
                 <p>Debe tener de 8 a 20 caracteres, al menos una mayúscula, al menos una minúscula y al menos un número. Ej: codeMasters9001</p>
