@@ -16,6 +16,7 @@ namespace Servicios_Reservados_2
         private static String estacion;
         private String fechaInicio;
         private String fechaFinal;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
@@ -623,7 +624,7 @@ namespace Servicios_Reservados_2
         {
             DataTable tabla = crearTablaSnacks();
             String descripcion = "";
-            Object [] datos = new Object[4];
+            Object[] datos = new Object[4];
             DataTable datosCC = controladora.getComidasCampo(estacion, fechaInicio, fechaFinal);
             if (datosCC.Rows.Count > 0)
             {
@@ -633,12 +634,12 @@ namespace Servicios_Reservados_2
                     int opcion = int.Parse(fila[1].ToString());
                     if (opcion == 4)
                     {
-                        descripcion = fila[2].ToString()+ " con relleno de "+fila[3].ToString();
+                        descripcion = fila[2].ToString() + " con relleno de " + fila[3].ToString();
                         datos[0] = fila[0].ToString();
                         datos[1] = "Sandwich";
                         datos[2] = descripcion;
                         datos[3] = fila[4].ToString();
-                        
+
                     }
                     else if (opcion == 5)
                     {
@@ -648,9 +649,9 @@ namespace Servicios_Reservados_2
                         datos[3] = fila[4].ToString();
 
                     }
-                    tabla.Rows.Add(datos);   
+                    tabla.Rows.Add(datos);
                 }
-                
+
             }
 
             DataTable datosCE = controladora.getComidasExtra(estacion, fechaInicio, fechaFinal);
@@ -659,16 +660,16 @@ namespace Servicios_Reservados_2
 
                 foreach (DataRow fila in datosCE.Rows)
                 {
-                        
-                      datos[0] = fila[0].ToString();
-                      datos[1] = fila[1].ToString();
-                      datos[2] = fila[2].ToString();
-                      datos[3] = fila[3].ToString();
-                      tabla.Rows.Add(datos);
+
+                    datos[0] = fila[0].ToString();
+                    datos[1] = fila[1].ToString();
+                    datos[2] = fila[2].ToString();
+                    datos[3] = fila[3].ToString();
+                    tabla.Rows.Add(datos);
                 }
 
             }
-            Session["tablaS"]=tabla;         
+            Session["tablaS"] = tabla;
             GridViewSnacks.DataBind();
 
 
