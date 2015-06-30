@@ -12,12 +12,14 @@ namespace Servicios_Reservados_2
         private static ControladoraComidaEmpleado controladoraComdiaEmpleado;
         private static ControladoraComidaCampo controladoraCC;
         private static ControladoraComidaExtra controladoraCE;
+        private ControladoraNotificaciones controladoraNotificaciones;
         public ControladoraReporteCocina()
         {
             controladoraCE = new ControladoraComidaExtra();
             controladoraCC = new ControladoraComidaCampo();
             controladoraComdiaEmpleado = new ControladoraComidaEmpleado();
             controladoraBD = new ControladoraBDReporteCocina();
+            controladoraNotificaciones = new ControladoraNotificaciones();
         }
 
         internal DataTable solicitarTurnoDiaTresComidas(String sigla, String inicio, String final)
@@ -107,6 +109,11 @@ namespace Servicios_Reservados_2
         internal DataTable getComidasExtra(String estacion, String inicio, String final)
         {
             return controladoraCE.getComidasExtra(estacion, inicio, final);
+        }
+
+        internal int getNotificaciones()
+        {
+            return controladoraNotificaciones.getNumeroDeNotificaciones();
         }
     }
 }

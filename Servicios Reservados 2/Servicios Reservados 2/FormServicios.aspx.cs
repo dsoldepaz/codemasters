@@ -46,6 +46,7 @@ namespace Servicios_Reservados_2
                 llenarCampos();
                 llenarGridServicios();
             }
+            obtenerNotificaciones();
         }
 
         protected void clickAceptar(object sender, EventArgs e)
@@ -438,6 +439,15 @@ namespace Servicios_Reservados_2
         }   
 
         }*/
-
+        /*
+         * Requiere: N/A
+         * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
+         * Retoirna: N/A
+         */
+        private void obtenerNotificaciones()
+        {
+            int numNotificaciones = controladora.getNotificaciones();
+            contador.InnerText = numNotificaciones + "";
+        }
     }
 }

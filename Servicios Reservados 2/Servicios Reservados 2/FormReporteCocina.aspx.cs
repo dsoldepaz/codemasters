@@ -776,5 +776,19 @@ namespace Servicios_Reservados_2
             llenarGridTurnos();
             llenarGridSnacks();
         }
+        /*
+         * Requiere: N/A
+         * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
+         * Retoirna: N/A
+         */
+        private void obtenerNotificaciones()
+        {
+            int numNotificaciones = controladora.getNotificaciones();
+            contador.InnerText = numNotificaciones + "";
+            if (numNotificaciones > 0)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('tiene " + numNotificaciones + " notificaciones nuevas');", true);
+            }
+        }
     }
 }

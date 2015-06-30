@@ -18,6 +18,7 @@ namespace Servicios_Reservados_2
         public static ControladoraComidaCampo controladoraComidaCampo;
         public List<String> adicionales;
         private static EntidadServicios seleccionado;
+        private ControladoraNotificaciones controlNotificaciones;
 
 
 
@@ -27,6 +28,7 @@ namespace Servicios_Reservados_2
             controladoraReserv = new ControladoraReservaciones();
             controladoraCE = new ControladoraComidaExtra();
             controladoraComidaCampo = new ControladoraComidaCampo();
+            controlNotificaciones = new ControladoraNotificaciones();
         }
 
         public EntidadReservaciones informacionServicio()
@@ -152,6 +154,11 @@ namespace Servicios_Reservados_2
         internal void actualizarVecesConsumidoPaquete(string idServicio, int vecesConsumido)
         {
             controladoraBD.actualizarVecesConsumidoPaquete(idServicio, vecesConsumido);
+        }
+
+        internal int getNotificaciones()
+        {
+            return controlNotificaciones.getNumeroDeNotificaciones();
         }
     }
 }
