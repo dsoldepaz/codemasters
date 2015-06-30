@@ -321,9 +321,22 @@ namespace Servicios_Reservados_2
         {
             Response.Redirect("FormUsuario");
         }
+        protected void seleccionarReestablecer(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>$('#modalReestablecer').modal('show');</script>", false);
+        }
         protected void clickReestablecer(object sender, EventArgs e)
         {
-            controladora.reestablecerContrasena(entidadSeleccionada.Username, entidadSeleccionada.Username);
+            
+            String[] error = controladora.reestablecerContrasena(entidadSeleccionada.Username, entidadSeleccionada.Username);
+            
+            if ("danger".Equals(error[0]))
+            {
+                mostrarMensaje(error[0], error[1], "No se ha podido reestablecer la contraseña"); // se muestra el resultado
+            }
+            else {
+                mostrarMensaje(error[0], error[1], "Se ha reestablacido la contraseña correctamente"); // se muestra el resultado
+            }            
         }
 
         /*
