@@ -21,6 +21,7 @@ namespace Servicios_Reservados_2
             controladoraComdiaEmpleado = new ControladoraComidaEmpleado();
             controladoraBD = new ControladoraBDReporteCocina();
             controladoraNotificaciones = new ControladoraNotificaciones();
+            controladoraR = new ControladoraReservaciones();
         }
 
         internal DataTable solicitarTurnoDiaTresComidas(String sigla, String fecha)

@@ -12,12 +12,26 @@
         </ul>
     </nav>
 
-    <legend>
-        <h2>Reportes de Cocina:</h2>
-    </legend>
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <table>
+                <tr>
+                    <td>
+                        <legend>
+                            <h2>Reportes de Cocina:</h2>
+                        </legend>
+                    </td>
+                    <td>
+                        <a href="">
+                            <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>
+                                    <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            </table>
             <div class="well bs-component">
                 <legend style="color: #7BC143">Criterios del reporte</legend>
                 <table>
@@ -32,12 +46,10 @@
                     <tr>
                         <td>Fechas</td>
                         <td>
-                            <select id="cbxFecha" runat="server" autopostback="true" height="20px" width="120px">
-                                <option value="Hoy">Hoy</option>
-                                <option value="Día siguiente">Día siguiente</option>
-                                <option value="Personalizado">Personalizado</option>
-                            </select>
+                            <asp:DropDownList ID="cbxFecha" runat="server" OnSelectedIndexChanged="fecha_SelectedIndexChanged" AutoPostBack="true" Height="20px" Width="120px">
+                            </asp:DropDownList>
                         </td>
+
 
                         <td>Fecha Inicio</td>
                         <td>
@@ -132,7 +144,9 @@
             <table>
                 <tr>
                     <td>
+                        <a href ="Default.aspx" >
                         <input type="button" class="btn-danger" value="Cancelar" runat="server" />
+                        </a>
                     </td>
                 </tr>
             </table>

@@ -106,6 +106,11 @@ namespace Servicios_Reservados_2
         internal string[] reestablecerContrasena(String username, String contrasena)
         {
             string hashContrasena = LoginService.EncodePassword(string.Concat(username, contrasena));
+            return controladoraBD.reestablecerContrasena(username, hashContrasena);
+        }
+        internal string[] actualizarContrasena(String username, String contrasena)
+        {
+            string hashContrasena = LoginService.EncodePassword(string.Concat(username, contrasena));
             return controladoraBD.actualizarContrasena(username, hashContrasena);
         }
 

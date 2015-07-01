@@ -125,7 +125,14 @@ namespace Servicios_Reservados_2
         internal string[] actualizarContrasena(string username, string contrasena)
         {
             String[] respuesta = new String[3];
-            String consultaSQL = "update usuario set contrasena ='" + contrasena + "' where username='" + username + "'";
+            String consultaSQL = "update usuario set contrasena ='" + contrasena + "', reestablecer=0 where username='" + username + "'";
+            respuesta = adaptador.insertar(consultaSQL);
+            return respuesta;
+        }
+        internal string[] reestablecerContrasena(string username, string contrasena)
+        {
+            String[] respuesta = new String[3];
+            String consultaSQL = "update usuario set contrasena ='" + contrasena + "', reestablecer=1 where username='" + username + "'";
             respuesta = adaptador.insertar(consultaSQL);
             return respuesta;
         }
