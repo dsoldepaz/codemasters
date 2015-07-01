@@ -24,7 +24,7 @@ namespace Servicios_Reservados_2
         public static String categoria = "Comida Extra";
         public static EntidadComidaCampo comidaCampoConsultada;
         public static EntidadComidaExtra comidaExtraConsultada;
-
+        private static DataTable todos;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -184,7 +184,7 @@ namespace Servicios_Reservados_2
                     }
                 }
 
-                GridServicios.AllowSorting = false;
+                todos = tabla;
                 GridServicios.DataBind();
 
             }
@@ -256,13 +256,13 @@ namespace Servicios_Reservados_2
         {         
 
             GridServicios.SelectedIndex = index;
-
+            int indiceTabla = index + (GridServicios.PageIndex * 10);
             // Decode the encoded string.
             StringWriter myWriter = new StringWriter();
             HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[4].Text, myWriter);
             String opcion = myWriter.ToString();
 
-            seleccionado = controladora.crearServicio(ids[0], idServ[index], GridServicios.SelectedRow.Cells[4].Text, opcion);
+            seleccionado = controladora.crearServicio(ids[0], idServ[indiceTabla], GridServicios.SelectedRow.Cells[4].Text, opcion);
             
 
         }
@@ -273,7 +273,7 @@ namespace Servicios_Reservados_2
          */
         protected void modificarServicio(object sender, EventArgs e)
         {
-
+            
              seleccionarServicio(obtenerIndex(sender, e));
             
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
