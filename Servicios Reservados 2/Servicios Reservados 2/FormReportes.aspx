@@ -11,7 +11,6 @@
             <li class="item-navegacion"><a href="FormReportesComedor.aspx" title="Reportes">Reportes</a></li>
         </ul>
     </nav>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <table>
                 <tr>
@@ -45,7 +44,10 @@
                         <td class="auto-style7">
                             <asp:DropDownList ID="listAnfitriona" runat="server"></asp:DropDownList>
                         </td>
-                     
+                        <td class="auto-style6">Número Reservación:</td>
+                        <td class="auto-style7">
+                            <input style="width: 150px" id="txtReservacion" runat="server" />
+                        </td>
                     </tr>
                 </table>
                 <table>
@@ -60,6 +62,9 @@
                         <td>Fecha Final</td>
                         <td>
                             <input id="dateFechaFin" type="date" runat="server" /></td>
+
+
+
                         <td>
                             <asp:Button Text="Generar Reporte" class="btn btn-success" ID="BotonGenerar" runat="server" OnClick="BotonGenerar_Click" />
                         </td>
@@ -95,11 +100,47 @@
                     <tr>
                         <td>
 
-                            <asp:GridView ID="GridViewReportes" Class="Gridcontenedor" runat="server" AllowPaging="true" AllowSorting="true" PageSize="10" OnPageIndexChanging="GridViewReporte_PageIndexChanging">
+                            <asp:GridView ID="GridViewReportes" runat="server" AllowPaging="true" AllowSorting="true" PageSize="10" OnPageIndexChanging="GridViewReporte_PageIndexChanging">
                                 <SelectedRowStyle BackColor="#7BC143"
                                     ForeColor="Black"
                                     Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
-                              
+                                <Columns>
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btnConsultar" ToolTip="Consultar" runat="server" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="well bs-component">
+                <legend style="color: #7BC143">Detalle</legend>
+                <table>
+                    <tr>
+                        <td class="auto-style3">Tipo Servicios:</td>
+                        <td class="auto-style5">
+                            <input type="button" id="btnDesayunar" class="btn btn-Naranja" value="Desayuno" runat="server" />
+                        </td>
+                        <td class="auto-style1">
+                            <input type="button" id="btnAlmuerzo" class="btn btn-Naranja" value="Almuerzo" runat="server" />
+                        </td>
+                        <td class="auto-style4">
+                            <input type="button" id="btnCena" class="btn btn-Naranja" value="Cena" runat="server" />
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+
+                            <asp:GridView ID="GridViewDetalles" Class="Gridcontenedor" runat="server" AllowPaging="true" AllowSorting="true" PageSize="10">
+                                <SelectedRowStyle BackColor="#7BC143"
+                                    ForeColor="Black"
+                                    Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
                             </asp:GridView>
 
                         </td>
@@ -109,12 +150,14 @@
             <table>
                 <tr>
                     <td>
-                         <input type="button" class="btn btn-danger" id="BtnCancelar" value="Cancelar" runat="server" onserverclick="clickCancelar" />
+                        <input type="button" id="btnImprimir" value="Imprimir" runat="server" />
+                    </td>
+                    <td>
+                        <input type="button" class="btn-danger" value="Cancelar" runat="server" />
                     </td>
                 </tr>
             </table>
         </ContentTemplate>
-    </asp:UpdatePanel>
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">

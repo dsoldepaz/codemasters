@@ -24,7 +24,7 @@
                     <tr>
                         <td class="auto-style6">Estación:</td>
                         <td class="auto-style7">
-                            <input style="width: 150px" id="txtEstacion" runat="server"></input>
+                            <select style="width: 150px" id="cbxEstacion" runat="server"></select>
                         </td>
                     </tr>
                 </table>
