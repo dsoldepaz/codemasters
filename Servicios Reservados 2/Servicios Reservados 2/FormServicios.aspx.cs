@@ -266,7 +266,7 @@ namespace Servicios_Reservados_2
         {         
 
             GridServicios.SelectedIndex = index;
-            int indiceTabla = index + (GridServicios.PageIndex * 20);
+            int indiceTabla = index + (GridServicios.PageIndex * 10);
             // Decode the encoded string.
             StringWriter myWriter = new StringWriter();
             HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[4].Text, myWriter);
