@@ -91,5 +91,10 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
+        protected void bntCancelarClick(object sender, EventArgs e)
+        {
+            String previa = Page.PreviousPage.Request.Url.AbsoluteUri;
+            Response.Redirect( previa );
+        }
     }
 }
