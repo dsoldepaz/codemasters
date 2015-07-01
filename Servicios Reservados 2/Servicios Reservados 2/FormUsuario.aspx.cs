@@ -228,8 +228,14 @@ namespace Servicios_Reservados_2
         protected void clickDesactivar(object sender, EventArgs e)
         {
             String[] error= controladora.desactivarUsuario(ids[indice]);
-            mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
-            Response.Redirect("FormUsuario");
+            if ("danger".Equals(error[0]))
+            {
+                mostrarMensaje(error[0], error[1], "No se ha podido desactivar el usuario"); // se muestra el resultado
+            }
+            else
+            {
+                mostrarMensaje(error[0], error[1], "Se ha deasactivado correctamente"); // se muestra el resultado
+            }     
         }
 
         protected void seleccionarDesactivar(object sender, EventArgs e)
