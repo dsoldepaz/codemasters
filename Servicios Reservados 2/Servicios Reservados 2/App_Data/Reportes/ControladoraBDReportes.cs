@@ -70,7 +70,8 @@ namespace Servicios_Reservados_2
    * Requiere: 
    * Modifica : 
    */
-        internal DataTable obtenerComidaPaxFechas(int opcion, String fecha, String fechaFinal){ //comida campo reservacion con solo fechas.
+        internal DataTable obtenerComidaPaxFechas(int opcion, String fecha, String fechaFinal)
+        { //comida campo reservacion con solo fechas.
             DataTable comidaCampo;
 
             String consultaSQL = "select distinct campo.fecha, sum(campo.pax), sum(vecesconsumido) from (reservas.vr_reservacion vista JOIN reservas.reservacion reserva ON vista.numero = reserva.numero) JOIN comida_campo campo ON reserva.id = campo.idreservacion WHERE opcion = " + opcion + " and to_date(campo.fecha, 'MM/dd/yyyy') <= to_date('" + fechaFinal + "', 'MM/dd/yyyy') and to_date(campo.fecha, 'MM/dd/yyyy') >= to_date('" + fecha + "', 'MM/dd/yyyy') group by campo.fecha";
@@ -91,7 +92,7 @@ namespace Servicios_Reservados_2
             comidaCampoEmp = adaptador.consultar(consultaSQL);
             return comidaCampoEmp;
         }
-       
+
         internal DataTable obtenerComidaPaxEmpFechas(int opcion, String fecha, String fechaFinal) //comida campo empleado con solo fechas o con anfitriona, pero siempre es ESINTRO.
         {
             DataTable comidaCampoEmp;
@@ -127,7 +128,7 @@ namespace Servicios_Reservados_2
             comidaCampoEmp = adaptador.consultar(consultaSQL);
             return comidaCampoEmp;
         }
-     
+
         /* 
          * Efecto: crea la consulta que filtra comida extra por un rango de fecha.
          * Requiere: la entrada de las variables que realizan el filtrado.
@@ -136,7 +137,7 @@ namespace Servicios_Reservados_2
         internal DataTable obtenerComidaExtraFechas(String opcion, String fecha, String fechaFinal, int consulta)
         {
             DataTable comidaExtra;
-            String consultaSQL="";
+            String consultaSQL = "";
             if (consulta == 1)
             {
                 consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from servicio_especial s join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and " +
@@ -161,7 +162,7 @@ namespace Servicios_Reservados_2
         internal DataTable obtenerComidaExtraEstacionAnfitrionaFecha(String estacion, String opcion, int anfitriona, String fecha, String fechaFinal, int consulta)
         {
             DataTable comidaExtra;
-            String consultaSQL="";
+            String consultaSQL = "";
             if (consulta == 1)
             {
                 consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from ((RESERVAS.reservacion r join RESERVAS.vr_reservacion vr on r.numero = vr.numero ) join servicio_especial s on s.idreservacion = r.id) join " +
@@ -186,7 +187,7 @@ namespace Servicios_Reservados_2
         internal DataTable obtenerComidaExtraEstacionFecha(String estacion, String opcion, String fecha, String fechaFinal, int consulta)
         {
             DataTable comidaExtra;
-            String consultaSQL="";
+            String consultaSQL = "";
             if (consulta == 1)
             {
                 consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from ((RESERVAS.reservacion r join RESERVAS.vr_reservacion vr on r.numero = vr.numero ) join servicio_especial s on s.idreservacion " +
@@ -211,7 +212,7 @@ namespace Servicios_Reservados_2
         internal DataTable obtenerComidaExtraAnfitrionaFecha(String opcion, int anfitriona, String fecha, String fechaFinal, int consulta)
         {
             DataTable comidaExtra;
-            String consultaSQL="";
+            String consultaSQL = "";
             if (consulta == 1)
             {
                 consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from (servicio_especial s join RESERVAS.reservacion r on s.idreservacion = r.id)join servicios_extras se on se.idservicio = " +
@@ -228,12 +229,14 @@ namespace Servicios_Reservados_2
             return comidaExtra;
         }
 
+        //estacion y fecha
+
         /* 
          * Efecto: 
          * Requiere: 
          * Modifica: 
          */
-        internal DataTable solicitarTurnoDiaTresComidas(String sigla, String inicio, String final)
+        internal DataTable solicitarTurnoDiaTresComidasEstacionFecha(String sigla, String inicio, String final)
         {
             DataTable dt;
             String consultaSQL = "select count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra <= TO_DATE('" + inicio + "','MM/dd/yyyy') and v.sale >= TO_DATE('" + final + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and vr.nombre = '3 Comidas (" + sigla + ")'";
@@ -246,7 +249,7 @@ namespace Servicios_Reservados_2
          * Requiere: 
          * Modifica: 
          */
-        internal DataTable reservaEntrante(String sigla, String inicio, String final)
+        internal DataTable reservaEntranteEstacionFecha(String sigla, String inicio, String final)
         {
             DataTable dt;
             String consultaSQL = "";
@@ -267,7 +270,7 @@ namespace Servicios_Reservados_2
          * Requiere: 
          * Modifica: 
          */
-        internal DataTable solicitarTurnoDiaDosComidas(String sigla, String inicio, String final)
+        internal DataTable solicitarTurnoDiaDosComidasEstacionFecha(String sigla, String inicio, String final)
         {
             DataTable dt;
             String consultaSQL = "select r.primera_comida, count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra <= TO_DATE('" + inicio + "','MM/dd/yyyy') and v.sale >= TO_DATE('" + final + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and vr.nombre = '2 Comidas (" + sigla + ")' group by r.primera_comida";
@@ -275,5 +278,151 @@ namespace Servicios_Reservados_2
             return dt;
         }
 
+        //anfitriona y fecha
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable solicitarTurnoDiaTresComidasAnfitrionaFecha(int anfitriona, String inicio, String final)
+        {
+            DataTable dt;
+            String consultaSQL = "select count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra <= TO_DATE('" + inicio + "','MM/dd/yyyy') and v.sale >= TO_DATE('" + final + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and vr.nombre like '3 Comidas%' and v.idanfitriona = " + anfitriona;
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        /* 
+ * Efecto: 
+ * Requiere: 
+ * Modifica: 
+ */
+        internal DataTable reservaEntranteAnfitrionaFecha(int anfitriona, String inicio, String final)
+        {
+            DataTable dt;
+            String consultaSQL = "";
+            if (inicio == final)
+            {
+                consultaSQL = "select r.primera_comida,vr.nombre,count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra = TO_DATE('" + inicio + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and (vr.nombre like '3 Comidas%' or vr.nombre like '2 Comidas%') and v.idanfitriona = " + anfitriona + "group by r.primera_comida,vr.nombre";
+            }
+            else
+            {
+
+            }
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable solicitarTurnoDiaDosComidasAnfitrionaFecha(int anfitriona, String inicio, String final)
+        {
+            DataTable dt;
+            String consultaSQL = "select r.primera_comida, count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra <= TO_DATE('" + inicio + "','MM/dd/yyyy') and v.sale >= TO_DATE('" + final + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and vr.nombre like '2 Comidas%' and v.idanfitriona = " + anfitriona+" group by r.primera_comida";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        //estacion, fecha y anfitriona
+
+        /* 
+ * Efecto: 
+ * Requiere: 
+ * Modifica: 
+ */
+        internal DataTable solicitarTurnoDiaTresComidasEstacionAnfitrionaFecha(String sigla, String inicio, String final, int anfitriona)
+        {
+            DataTable dt;
+            String consultaSQL = "select count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra <= TO_DATE('" + inicio + "','MM/dd/yyyy') and v.sale >= TO_DATE('" + final + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and vr.nombre = '3 Comidas (" + sigla + ")' and v.idanfitriona = " + anfitriona;
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable reservaEntranteEstacionAnfitrionaFecha(String sigla, String inicio, String final, int anfitriona)
+        {
+            DataTable dt;
+            String consultaSQL = "";
+            if (inicio == final)
+            {
+                consultaSQL = "select r.primera_comida,vr.nombre,count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra = TO_DATE('" + inicio + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and (vr.nombre = '3 Comidas (" + sigla + ")' or vr.nombre = '2 Comidas (" + sigla + ")') and v.idanfitriona = " + anfitriona + " group by r.primera_comida,vr.nombre";
+            }
+            else
+            {
+
+            }
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable solicitarTurnoDiaDosComidasEstacionAnfitrionaFecha(String sigla, String inicio, String final, int anfitriona)
+        {
+            DataTable dt;
+            String consultaSQL = "select r.primera_comida, count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra <= TO_DATE('" + inicio + "','MM/dd/yyyy') and v.sale >= TO_DATE('" + final + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and vr.nombre = '2 Comidas (" + sigla + ")' and v.idanfitriona = " + anfitriona + " group by r.primera_comida";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        //solo fechas
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable solicitarTurnoDiaTresComidasFecha(String inicio, String final)
+        {
+            DataTable dt;
+            String consultaSQL = "select count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra <= TO_DATE('" + inicio + "','MM/dd/yyyy') and v.sale >= TO_DATE('" + final + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and vr.nombre like '3 Comidas%'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        /* 
+ * Efecto: 
+ * Requiere: 
+ * Modifica: 
+ */
+        internal DataTable reservaEntranteFecha(String inicio, String final)
+        {
+            DataTable dt;
+            String consultaSQL = "";
+            if (inicio == final)
+            {
+                consultaSQL = "select r.primera_comida,vr.nombre,count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra = TO_DATE('" + inicio + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and (vr.nombre like '3 Comidas%' or vr.nombre like '2 Comidas%') group by r.primera_comida,vr.nombre";
+            }
+            else
+            {
+
+            }
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable solicitarTurnoDiaDosComidasFecha(String inicio, String final)
+        {
+            DataTable dt;
+            String consultaSQL = "select r.primera_comida, count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra <= TO_DATE('" + inicio + "','MM/dd/yyyy') and v.sale >= TO_DATE('" + final + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and vr.nombre like '2 Comidas%' group by r.primera_comida";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
     }
 }

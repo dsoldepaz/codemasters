@@ -157,9 +157,9 @@ namespace Servicios_Reservados_2
          * Requiere: 
          * Modifica: 
          */
-        internal DataTable solicitarTurnoDiaTresComidas(String sigla, String inicio, String final)
+        internal DataTable solicitarTurnoDiaTresComidasEstacionFecha(String sigla, String inicio, String final)
         {
-            return controladoraBD.solicitarTurnoDiaTresComidas(sigla, inicio, final);
+            return controladoraBD.solicitarTurnoDiaTresComidasEstacionFecha(sigla, inicio, final);
         }
 
         /* 
@@ -167,9 +167,9 @@ namespace Servicios_Reservados_2
          * Requiere: 
          * Modifica: 
          */
-        internal DataTable solicitarTurnoDiaDosComidas(String sigla, String inicio, String final)
+        internal DataTable solicitarTurnoDiaDosComidasEstacionFecha(String sigla, String inicio, String final)
         {
-            return controladoraBD.solicitarTurnoDiaDosComidas(sigla, inicio, final);
+            return controladoraBD.solicitarTurnoDiaDosComidasEstacionFecha(sigla, inicio, final);
         }
 
         /* 
@@ -177,9 +177,56 @@ namespace Servicios_Reservados_2
          * Requiere: 
          * Modifica: 
          */
-        internal DataTable reservaEntrante(String sigla, String inicio, String final)
+        internal DataTable reservaEntranteEstacionFecha(String sigla, String inicio, String final)
         {
-            return controladoraBD.reservaEntrante(sigla, inicio, final);
+            return controladoraBD.reservaEntranteEstacionFecha(sigla, inicio, final);
+        }
+
+
+        internal DataTable solicitarTurnoDiaTresComidasAnfitrionaFecha(int anfitriona, String inicio, String final)
+        {
+            return controladoraBD.solicitarTurnoDiaTresComidasAnfitrionaFecha(anfitriona, inicio, final);
+        }
+
+        internal DataTable reservaEntranteAnfitrionaFecha(int anfitriona, String inicio, String final)
+        {
+            return controladoraBD.reservaEntranteAnfitrionaFecha(anfitriona, inicio, final);
+        }
+
+        internal DataTable solicitarTurnoDiaDosComidasAnfitrionaFecha(int anfitriona, String inicio, String final)
+        {
+            return controladoraBD.solicitarTurnoDiaDosComidasAnfitrionaFecha(anfitriona, inicio, final);
+        }
+
+        internal DataTable solicitarTurnoDiaTresComidasEstacionAnfitrionaFecha(String sigla, String inicio, String final, int anfitriona)
+        {
+            return controladoraBD.solicitarTurnoDiaTresComidasEstacionAnfitrionaFecha(sigla, inicio, final, anfitriona);
+        }
+
+        internal DataTable reservaEntranteEstacionAnfitrionaFecha(String sigla, String inicio, String final, int anfitriona)
+        {
+            return controladoraBD.reservaEntranteEstacionAnfitrionaFecha(sigla, inicio, final, anfitriona);
+        }
+
+        internal DataTable solicitarTurnoDiaDosComidasEstacionAnfitrionaFecha(String sigla, String inicio, String final, int anfitriona)
+        {
+            return controladoraBD.solicitarTurnoDiaDosComidasEstacionAnfitrionaFecha(sigla, inicio, final, anfitriona);
+        }
+
+        //dolo fechas
+        internal DataTable solicitarTurnoDiaTresComidasFecha(String inicio, String final)
+        {
+            return controladoraBD.solicitarTurnoDiaTresComidasFecha(inicio, final);
+        }
+
+        internal DataTable reservaEntranteFecha(String inicio, String final)
+        {
+            return controladoraBD.reservaEntranteFecha(inicio, final);
+        }
+
+        internal DataTable solicitarTurnoDiaDosComidasFecha(String inicio, String final)
+        {
+            return controladoraBD.solicitarTurnoDiaDosComidasFecha(inicio, final);
         }
     }
 }
