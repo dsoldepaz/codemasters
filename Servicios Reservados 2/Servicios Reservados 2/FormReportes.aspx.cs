@@ -30,6 +30,9 @@ namespace Servicios_Reservados_2
         private int sumaTotalComidasCampo;
         private int sumaTotalComidasCampoServidos;
         private DataTable fechas;
+        private int desayunos;
+        private int almuerzos;
+        private int cena;
 
 
 
@@ -534,6 +537,7 @@ namespace Servicios_Reservados_2
             }
             return resultante;
         }
+
         /*
         * Requiere: N/A
         * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
@@ -557,6 +561,111 @@ namespace Servicios_Reservados_2
             GridViewReportes.DataSource = Session["tablaa"];
             GridViewReportes.DataBind();
 
-        } 
+        }
+
+
+        /*
+        * Requiere: N/A
+        * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
+        * Retoirna: N/A
+        */
+        private void obtenerServiciosReservaciones(String fechaInicio, String fechaFinal)
+        {
+            string sigla;
+            string estacionSeleccionada = cbxEstacion.Value;
+
+            if (estacionSeleccionada == "Las Cruces")
+            {
+                sigla = "LC";
+            }
+            else if (estacionSeleccionada == "Palo Verde")
+            {
+                sigla = "PV";
+
+            }
+            else
+            {
+                sigla = "LS";
+            }
+            //Obtiene los datos de las reservaciones que reservan las 3 comidas por dia
+            DataTable turnosDiaTres = controladora.solicitarTurnoDiaTresComidas(sigla, fechaInicio, fechaFinal);
+
+            if (turnosDiaTres.Rows.Count > 0)
+            {
+                foreach (DataRow fila in turnosDiaTres.Rows)
+                {
+                    desayunos = int.Parse(fila[1].ToString());
+                }
+            }
+
+
+            almuerzos = desayunos;
+            cena = desayunos;
+            //Obtiene los datos de reservaciones que reservan solo 2 comidas por dia
+            DataTable turnosDiaDos = controladora.solicitarTurnoDiaDosComidas(sigla, fechaInicio, fechaFinal);
+            if (turnosDiaDos.Rows.Count > 0)
+            {
+                foreach (DataRow fila in turnosDiaDos.Rows)
+                {
+                    String turno;
+                    int cantidad;
+                    turno = fila[0].ToString();
+                    cantidad = (int.Parse(fila[2].ToString()));
+                    if (turno == "ALMUERZO")
+                    {
+                        almuerzos += cantidad;
+                        cena += cantidad;
+                    }
+                    else if (turno == "CENA")
+                    {
+                        desayunos += cantidad;
+                        cena += cantidad;
+                    }
+                    else
+                    {
+                        desayunos += cantidad;
+                        almuerzos += cantidad;
+                    }
+
+                }
+            }
+
+            //Obtener reservaciones entrantes para calculos mas exactos de platos a cocinar
+            DataTable reservaEntrante = controladora.reservaEntrante(sigla, fechaInicio, fechaFinal);
+
+            if (reservaEntrante.Rows.Count > 0)
+            {
+
+                foreach (DataRow fila in reservaEntrante.Rows)
+                {
+                    String turno;
+                    String tipoC;
+                    int cantidad;
+                    turno = fila[0].ToString();
+                    tipoC = fila[1].ToString();
+                    cantidad = (int.Parse(fila[3].ToString()));
+                    if (turno == "ALMUERZO" && tipoC == "3 Comidas (" + sigla + ")")
+                    {
+                        desayunos = desayunos - cantidad;
+                    }
+                    else if (turno == "CENA")
+                    {
+                        if (tipoC == "3 Comidas (" + sigla + ")")
+                        {
+                            desayunos = desayunos - cantidad;
+                            almuerzos = almuerzos - cantidad;
+                        }
+                        else
+                        {
+                            desayunos = desayunos - cantidad;
+                        }
+
+                    }
+
+
+                }
+
+            }
+        }
     }
 }

@@ -228,5 +228,52 @@ namespace Servicios_Reservados_2
             return comidaExtra;
         }
 
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable solicitarTurnoDiaTresComidas(String sigla, String inicio, String final)
+        {
+            DataTable dt;
+            String consultaSQL = "select count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra <= TO_DATE('" + inicio + "','MM/dd/yyyy') and v.sale >= TO_DATE('" + final + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and vr.nombre = '3 Comidas (" + sigla + ")'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable reservaEntrante(String sigla, String inicio, String final)
+        {
+            DataTable dt;
+            String consultaSQL = "";
+            if (inicio == final)
+            {
+                consultaSQL = "select r.primera_comida,vr.nombre,count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra = TO_DATE('" + inicio + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and (vr.nombre = '3 Comidas (" + sigla + ")' or vr.nombre = '2 Comidas (" + sigla + ")') group by r.primera_comida,vr.nombre";
+            }
+            else
+            {
+
+            }
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable solicitarTurnoDiaDosComidas(String sigla, String inicio, String final)
+        {
+            DataTable dt;
+            String consultaSQL = "select r.primera_comida, count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra <= TO_DATE('" + inicio + "','MM/dd/yyyy') and v.sale >= TO_DATE('" + final + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and vr.nombre = '2 Comidas (" + sigla + ")' group by r.primera_comida";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
     }
 }
