@@ -16,7 +16,7 @@ namespace Servicios_Reservados_2
         static DataTable tipo;//contiene los diferentes tipos de comida extra
 
         private static ControladoraComidaExtra controladora = new ControladoraComidaExtra();//instancia de la controladora de comida extra
-        EntidadComidaExtra entidadConsultada;//buscamos el servicio consultado en la controladora
+        private static EntidadComidaExtra entidadConsultada;//buscamos el servicio consultado en la controladora
         public static EntidadReservaciones reservConsultada = controladora.reservacionSeleccionada();
 
         private static String[] idReservacion = FormReservaciones.ids;
@@ -398,6 +398,7 @@ namespace Servicios_Reservados_2
         {
             modo = 2;
             cambiarModo();
+            Response.Redirect("FormComidaExtra");
         }
 
         /*
