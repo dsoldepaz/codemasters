@@ -33,7 +33,7 @@ namespace Servicios_Reservados_2
                 {
                     Recepcionista.Visible = true;
                 }
-                if (listaRoles.Contains("administrador sistema") || listaRoles.Contains("encargado cocina"))
+                if (listaRoles.Contains("administrador sistema") || listaRoles.Contains("encargado cocina") || listaRoles.Contains("cocinero"))
                 {
                     Cocina.Visible = true;
                 }
