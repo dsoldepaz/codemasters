@@ -51,6 +51,8 @@
                         </td>
                     </tr>
                 </table>
+                </ContentTemplate>
+                </asp:UpdatePanel>
                 <table>
                     <tr>
                         <td>Fechas</td>
@@ -63,12 +65,17 @@
                         <td>Fecha Final</td>
                         <td>
                             <input id="dateFechaFin" type="date" runat="server" /></td>
+
+
+
                         <td>
                             <asp:Button Text="Generar Reporte" class="btn btn-success" ID="BotonGenerar" runat="server" OnClick="BotonGenerar_Click" />
                         </td>
                     </tr>
                 </table>
             </div>
+            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                <ContentTemplate>
             <div class="well bs-component">
                 <legend style="color: #7BC143">Reporte Generado</legend>
                 <table>
@@ -98,7 +105,7 @@
                     <tr>
                         <td>
 
-                            <asp:GridView ID="GridViewReportes" runat="server" AllowPaging="true" AllowSorting="true" PageSize="20">
+                            <asp:GridView ID="GridViewReportes" runat="server" AllowPaging="true" AllowSorting="true" PageSize="10" OnPageIndexChanging="GridViewReporte_PageIndexChanging">
                                 <SelectedRowStyle BackColor="#7BC143"
                                     ForeColor="Black"
                                     Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
@@ -135,7 +142,7 @@
                     <tr>
                         <td>
 
-                            <asp:GridView ID="GridViewDetalles" Class="Gridcontenedor" runat="server" AllowPaging="true" AllowSorting="true" PageSize="20">
+                            <asp:GridView ID="GridViewDetalles" Class="Gridcontenedor" runat="server" AllowPaging="true" AllowSorting="true" PageSize="10">
                                 <SelectedRowStyle BackColor="#7BC143"
                                     ForeColor="Black"
                                     Font-Bold="true" BorderStyle="Dotted" BorderWidth="1px" />
@@ -155,7 +162,6 @@
                     </td>
                 </tr>
             </table>
-
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
