@@ -46,7 +46,7 @@ namespace Servicios_Reservados_2
                 llenarCampos();
                 llenarGridServicios();
             }
-            obtenerNotificaciones();
+            //obtenerNotificaciones();//en recepcion no son urgentes las notificaciones
         }
 
         protected void clickAceptar(object sender, EventArgs e)

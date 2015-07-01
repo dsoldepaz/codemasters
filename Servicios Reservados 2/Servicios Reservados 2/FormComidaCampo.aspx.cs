@@ -550,14 +550,14 @@ namespace Servicios_Reservados_2
                 fechaFinal = fechaFinal.AddHours(23);
                 if (fechaSeleccionada < fechaInicio || fechaSeleccionada > fechaFinal || fechaSeleccionada < fechaHoy)
                 {
-                    mostrarMensaje("danger", "Error:", "Revise la fecha seleccionada, debe estar dentro de la reservación y solo puede reservar de hoy en adelante");
+                    mostrarMensaje("danger", "Error:", "Revise la fecha y hora seleccionadas, debe estar dentro de la reservación y a futuro");
                       correcta = false;
                 }
             }
             else
             {
                 if(fechaSeleccionada < fechaHoy){
-                    mostrarMensaje("danger", "Error:", "Revise la fecha seleccionada, debe estar dentro de la reservación y solo puede reservar de hoy en adelante");
+                    mostrarMensaje("danger", "Error:", "Revise la fecha y hora seleccionadas, debe estar dentro de la reservación y a futuro");
                     correcta = false;
                 }
             }

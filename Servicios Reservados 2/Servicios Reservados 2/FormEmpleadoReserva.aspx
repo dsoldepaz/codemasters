@@ -61,7 +61,7 @@
             <div class="well bs-component">
                 <legend style="color: #7BC143">Listado de servicios</legend>
 
-                <asp:GridView ID="GridComidasReservadas" Class="Gridcontenedor" runat="server" AllowPaging="true" AllowSorting="true" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" Width="100%">
+                <asp:GridView ID="GridComidasReservadas" Class="Gridcontenedor" runat="server" AllowPaging="true" PageSize="10" OnPageIndexChanging="PageIndexChanging" Width="100%">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>

@@ -16,7 +16,8 @@ namespace Servicios_Reservados_2
         private ControladoraEmpleadoReserva controladora = new ControladoraEmpleadoReserva();
         private static EntidadServicios seleccionado = null;
         public static EntidadComidaCampo comidaCampoConsultada;
-        public static EntidadComidaEmpleado comidaEmpleadoSeleccionado; 
+        public static EntidadComidaEmpleado comidaEmpleadoSeleccionado;
+        private static DataTable todos;
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
@@ -34,7 +35,7 @@ namespace Servicios_Reservados_2
                 cargarComidas();
                 deshabilitarBotones();
             }
-            obtenerNotificaciones();
+            //obtenerNotificaciones();//en recepcion no son urgentes las notificaciones
         }
 
         protected void llenarCampos()
