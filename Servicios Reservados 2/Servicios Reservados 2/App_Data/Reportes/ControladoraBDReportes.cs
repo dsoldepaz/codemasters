@@ -119,7 +119,7 @@ namespace Servicios_Reservados_2
       * Requiere: 
       * Modifica: 
       */
-        internal DataTable obtenerComidaEmpEstacionFechas(String opcion, String fecha, String fechaFinal) //comida campo empleado con fechas o solo con anfitriona y fechas porque anfitriona = ESINTRO.
+        internal DataTable obtenerComidaEmpFechas(String opcion, String fecha, String fechaFinal) //comida campo empleado con fechas o solo con anfitriona y fechas porque anfitriona = ESINTRO.
         {
             DataTable comidaCampoEmp;
 
