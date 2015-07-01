@@ -245,7 +245,17 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
-
+        /*
+         *  Requiere: Controladores de eventos de la interfaz.
+         *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
+         *  Retrona:  N/A
+         */
+        protected void PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
+            GridServicios.PageIndex = e.NewPageIndex;
+            GridServicios.DataSource = todos;
+            GridServicios.DataBind();
+        }
 
 
         /*Efecto: obtiene el id del servicio seleccionado y de la reservacion a la que pertence el servicio 
@@ -256,7 +266,7 @@ namespace Servicios_Reservados_2
         {         
 
             GridServicios.SelectedIndex = index;
-            int indiceTabla = index + (GridServicios.PageIndex * 10);
+            int indiceTabla = index + (GridServicios.PageIndex * 20);
             // Decode the encoded string.
             StringWriter myWriter = new StringWriter();
             HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[4].Text, myWriter);
