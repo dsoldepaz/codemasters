@@ -13,9 +13,7 @@
     <link href="~/faviconOET.ico" rel="shortcut icon" type="image/x-icon" />
         <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="Content/bootstrap-3.3.4-dist/css/bootstrap.css" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
@@ -66,10 +64,10 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; 2015 - Servicios Reservados</p>
+                    <p>2015 - Servicios Reservados</p>
                 </div>
                 <div class="float-right">
-                    <p>Code Masters en colaboracion la Universidad de Costa Rica para OET</p>
+                    <p>Code Masters en colaboracion con la Universidad de Costa Rica para OET</p>
                 </div>
             </div>
         </footer>

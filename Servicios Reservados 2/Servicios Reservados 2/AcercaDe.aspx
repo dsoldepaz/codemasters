@@ -1,26 +1,39 @@
 ﻿<%@ Page Title="Acerca de" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AcercaDe.aspx.cs" Inherits="Servicios_Reservados_2.AcercaDe" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-     <h2>Acerca De</h2>
+     <table>
+                <tr>
+                    <td>
+                        <legend>
+                            <h2>Acerca de</h2>
+                        </legend>
+                    </td>
+                    <td>
+                        <a href="">
+                            <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>
+                                    <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            </table>
     <div class="well bs-component">
-        <legend style="color: #7BC143">Sistema de servicios reservados</legend>
+        <legend>Sistema de servicios reservados</legend>
 
         <p>
-            Se puede asignar platos a clientes y empleados.
-            Se puede controlar la cantidad de platos reservados y realmente consumidos.
-            Se provee reportes acerca de los servicios reservados.
+            El control de servicios de alimentación para clientes y empleados se basa en la asignación previa 
+            Con estas reservaciones se 
         </p>
 
-        <h3>Diseñado e implementado por:</h3>
-        <p>
-            Universidad de Costa Rica
-        </p>
+        <h3>Diseñado e implementado por Code Masters en colaboracion con la Universidad de Costa Rica para OET</h3>
         <ul>
-            <li>David</li>
-            <li>Dalila</li>
-            <li>Armando</li>
-            <li>Picado</li>
-            <li>Vitaly</li>
+            <li>José Vitaly Mayorga Jvozt</li>
+            <li>Armando Nevares Luis</li>
+            <li>José Daniel Picado Hidalgo</li>
+            <li>David Solís De la Paz</li>
+            <li>Dalila Vásquez Barrantes</li>
         </ul>
 
     </div>
