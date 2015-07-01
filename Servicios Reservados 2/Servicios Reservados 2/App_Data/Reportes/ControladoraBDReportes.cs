@@ -190,13 +190,13 @@ namespace Servicios_Reservados_2
             if (consulta == 1)
             {
                 consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from ((RESERVAS.reservacion r join RESERVAS.vr_reservacion vr on r.numero = vr.numero ) join servicio_especial s on s.idreservacion " +
-                   "= r.id) join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and" +
+                   "= r.id) join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and " +
                    "to_date(s.fecha,'mm/dd/yyyy') <= to_date('" + fechaFinal + "','mm/dd/yyyy') and vr.estacion = '" + estacion + "' and se.tipo = '" + opcion + "' group by s.fecha";
             }
             else
             {
                 consultaSQL = "select distinct s.fecha, sum(s.pax), sum(s.vecesconsumido) from ((RESERVAS.reservacion r join RESERVAS.vr_reservacion vr on r.numero = vr.numero ) join servicio_especial s on s.idreservacion " +
-                "= r.id) join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and" +
+                "= r.id) join servicios_extras se on se.idservicio = s.idserviciosextras where to_date(s.fecha,'mm/dd/yyyy') >= to_date('" + fecha + "','mm/dd/yyyy') and " +
                    "to_date(s.fecha,'mm/dd/yyyy') <= to_date('" + fechaFinal + "','mm/dd/yyyy') and vr.estacion = '" + estacion + "' and se.tipo <> 'Cena' and se.tipo <> 'Desayuno' and se.tipo <> 'Almuerzo' group by s.fecha";
             }
             comidaExtra = adaptador.consultar(consultaSQL);
@@ -226,6 +226,53 @@ namespace Servicios_Reservados_2
             }
             comidaExtra = adaptador.consultar(consultaSQL);
             return comidaExtra;
+        }
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable solicitarTurnoDiaTresComidas(String sigla, String inicio, String final)
+        {
+            DataTable dt;
+            String consultaSQL = "select count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra <= TO_DATE('" + inicio + "','MM/dd/yyyy') and v.sale >= TO_DATE('" + final + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and vr.nombre = '3 Comidas (" + sigla + ")'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable reservaEntrante(String sigla, String inicio, String final)
+        {
+            DataTable dt;
+            String consultaSQL = "";
+            if (inicio == final)
+            {
+                consultaSQL = "select r.primera_comida,vr.nombre,count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra = TO_DATE('" + inicio + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and (vr.nombre = '3 Comidas (" + sigla + ")' or vr.nombre = '2 Comidas (" + sigla + ")') group by r.primera_comida,vr.nombre";
+            }
+            else
+            {
+
+            }
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable solicitarTurnoDiaDosComidas(String sigla, String inicio, String final)
+        {
+            DataTable dt;
+            String consultaSQL = "select r.primera_comida, count(*),SUM(v.pax) as cantidad_de_pax FROM reservas.vr_reservacion v JOIN reservas.reservacion r ON v.numero = r.numero JOIN reservas.reservacionitem ri ON r.id = ri.reservacion JOIN reservas.v_reservable vr ON ri.reservable= vr.id WHERE v.entra <= TO_DATE('" + inicio + "','MM/dd/yyyy') and v.sale >= TO_DATE('" + final + "','MM/dd/yyyy') and  v.estado = 'CNF' and vr.categoria='ANURA7249245184.5851916019' and vr.nombre = '2 Comidas (" + sigla + ")' group by r.primera_comida";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
         }
 
     }
