@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -30,6 +31,7 @@ namespace Servicios_Reservados_2
                 int notificaiones = int.Parse(resultado.Rows[0][0].ToString());
                 return notificaiones;
             }catch(Exception e){
+                Debug.WriteLine(e.ToString());
                 return 0;
             }
         }
@@ -40,7 +42,7 @@ namespace Servicios_Reservados_2
          */
         public DataTable getNotificaciones()
         {
-            DataTable notif =controladoraNotificaciones.getNotificaciones();
+            DataTable notif = controladoraNotificaciones.getNotificaciones(Notificaciones.ultimaRevision);
             Notificaciones.ultimaRevision = getUltimaNotificacion();
             return notif;
         }
