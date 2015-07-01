@@ -16,17 +16,22 @@ namespace Servicios_Reservados_2
         private static String estacion;
         private String fechaInicio;
         private String fechaFinal;
-
+        private static DataTable snacks;
+        private static DataTable bebidas;
+        private DateTime fechaInicioConsulta;
+        private DateTime fechaDia;
+        private DateTime fechaUltima;
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
             string userid = (string)Session["username"];
             if (!IsPostBack)
             {
-
-                estacion = "Las Cruces";
+                               
                 fechaInicio = DateTime.Today.ToString("MM/dd/yyyy");
                 fechaFinal = DateTime.Today.ToString("MM/dd/yyyy");
+                fechaDia = DateTime.Today;
+                fechaUltima = DateTime.Today;
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
@@ -34,17 +39,40 @@ namespace Servicios_Reservados_2
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
-                llenarGridTotal();
-                llenarGridTurnos();
-                llenarGridSnacks();
+                cargarDatos();
+                if (listaRoles.Contains("administrador sistema"))
+                {
+                    
+                }
             }
         }
+        /**
+        * Requiere: n/a
+        * Efectua: Inicializa los datos necesarios en la pagina
+        * retorna:  N/A
+        */
+        protected void cargarDatos()
+        {
+            DataTable estacion = controladora.llenarEstaciones();
+            cbxEstacion.Items.Clear();
+            cbxEstacion.Items.Add("Seleccionar");
+            if (estacion.Rows.Count > 0)
+            {
+                foreach (DataRow fila2 in estacion.Rows)
+                {
+                    cbxEstacion.Items.Add(fila2[0].ToString());
+                }
+            }
 
+
+           
+
+        }
         protected void GridViewSnacks_PageIndexChanging(Object sender, GridViewPageEventArgs e)
         {
 
             GridViewSnacks.PageIndex = e.NewPageIndex;
-            GridViewSnacks.DataSource = Session["tablaS"];
+            GridViewSnacks.DataSource = snacks;
             GridViewSnacks.DataBind();
 
         }
@@ -53,7 +81,7 @@ namespace Servicios_Reservados_2
         {
 
             GridViewBebidas.PageIndex = e.NewPageIndex;
-            GridViewBebidas.DataSource = Session["tablaB"];
+            GridViewBebidas.DataSource = bebidas;
             GridViewBebidas.DataBind();
 
         }
@@ -193,6 +221,7 @@ namespace Servicios_Reservados_2
    */
         protected void llenarGridTotal()
         {
+            String fecha;
             DataTable tabla = crearTablaTotal();
             String sigla = "";
             int desayunos = 0;
@@ -212,7 +241,7 @@ namespace Servicios_Reservados_2
             int huevoDuro = 0;
             int galletas = 0;
             int platanos = 0;
-
+            int cont = 1;        
             if (estacion == "Las Cruces")
             {
                 sigla = "LC";
@@ -231,287 +260,297 @@ namespace Servicios_Reservados_2
             {
 
                 Object[] datos = new Object[2];
-
+                
                 //Obtiene los datos de las reservaciones que reservan las 3 comidas por dia
-                DataTable turnosDiaTres = controladora.solicitarTurnoDiaTresComidas(sigla, fechaInicio, fechaFinal);
+                while(fechaDia <= fechaUltima){
+                    fecha = fechaDia.ToString("MM/dd/yyyy");
+                    fechaInicio = fecha;
+                    fechaFinal = fecha;
+                    DataTable turnosDiaTres = controladora.solicitarTurnoDiaTresComidas(sigla, fecha);
 
-                if (turnosDiaTres.Rows.Count > 0)
-                {
-                    foreach (DataRow fila in turnosDiaTres.Rows)
+                    if (turnosDiaTres.Rows.Count > 0)
                     {
-                        desayunos = int.Parse(fila[1].ToString());
+                        foreach (DataRow fila in turnosDiaTres.Rows)
+                        {
+                            desayunos+= int.Parse(fila[0].ToString());
+                            almuerzos += int.Parse(fila[0].ToString());
+                            cena += int.Parse(fila[0].ToString());
+                        }
                     }
-                }
 
 
-                almuerzos = desayunos;
-                cena = desayunos;
-                //Obtiene los datos de reservaciones que reservan solo 2 comidas por dia
-                DataTable turnosDiaDos = controladora.solicitarTurnoDiaDosComidas(sigla, fechaInicio, fechaFinal);
-                if (turnosDiaDos.Rows.Count > 0)
-                {
-                    foreach (DataRow fila in turnosDiaDos.Rows)
+                    
+                    //Obtiene los datos de reservaciones que reservan solo 2 comidas por dia
+                    DataTable turnosDiaDos = controladora.solicitarTurnoDiaDosComidas(sigla, fecha);
+                    if (turnosDiaDos.Rows.Count > 0)
                     {
-                        String turno;
-                        int cantidad;
-                        turno = fila[0].ToString();
-                        cantidad = (int.Parse(fila[2].ToString()));
-                        if (turno == "ALMUERZO")
+                        foreach (DataRow fila in turnosDiaDos.Rows)
                         {
-                            almuerzos += cantidad;
-                            cena += cantidad;
-                        }
-                        else if (turno == "CENA")
-                        {
-                            desayunos += cantidad;
-                            cena += cantidad;
-                        }
-                        else
-                        {
-                            desayunos += cantidad;
-                            almuerzos += cantidad;
-                        }
-
-                    }
-                }
-
-                //Obtener reservaciones entrantes para calculos mas exactos de platos a cocinar
-                DataTable reservaEntrante = controladora.reservaEntrante(sigla, fechaInicio, fechaFinal);
-
-                if (reservaEntrante.Rows.Count > 0)
-                {
-
-                    foreach (DataRow fila in reservaEntrante.Rows)
-                    {
-                        String turno;
-                        String tipoC;
-                        int cantidad;
-                        turno = fila[0].ToString();
-                        tipoC = fila[1].ToString();
-                        cantidad = (int.Parse(fila[3].ToString()));
-                        if (turno == "ALMUERZO" && tipoC == "3 Comidas (" + sigla + ")")
-                        {
-                            desayunos = desayunos - cantidad;
-                        }
-                        else if (turno == "CENA")
-                        {
-                            if (tipoC == "3 Comidas (" + sigla + ")")
+                            String turno;
+                            int cantidad;
+                            turno = fila[0].ToString();
+                            cantidad = (int.Parse(fila[1].ToString()));
+                            if (turno == "ALMUERZO")
                             {
-                                desayunos = desayunos - cantidad;
-                                almuerzos = almuerzos - cantidad;
+                                almuerzos += cantidad;
+                                cena += cantidad;
+                            }
+                            else if (turno == "CENA")
+                            {
+                                desayunos += cantidad;
+                                cena += cantidad;
                             }
                             else
                             {
+                                desayunos += cantidad;
+                                almuerzos += cantidad;
+                            }
+
+                        }
+                    }
+
+                    //Obtener reservaciones entrantes para calculos mas exactos de platos a cocinar
+                    DataTable reservaEntrante = controladora.reservaEntrante(sigla, fecha);
+
+                    if (reservaEntrante.Rows.Count > 0)
+                    {
+
+                        foreach (DataRow fila in reservaEntrante.Rows)
+                        {
+                            String turno;
+                            String tipoC;
+                            int cantidad;
+                            turno = fila[0].ToString();
+                            tipoC = fila[1].ToString();
+                            cantidad = (int.Parse(fila[2].ToString()));
+                            if (turno == "ALMUERZO" && tipoC == "3 Comidas (" + sigla + ")")
+                            {
                                 desayunos = desayunos - cantidad;
+                            }
+                            else if (turno == "CENA")
+                            {
+                                if (tipoC == "3 Comidas (" + sigla + ")")
+                                {
+                                    desayunos = desayunos - cantidad;
+                                    almuerzos = almuerzos - cantidad;
+                                }
+                                else
+                                {
+                                    desayunos = desayunos - cantidad;
+                                }
+
+                            }
+
+
+                        }
+
+                    }
+                 
+               
+                //solicitar datos de comidaExtra
+                    DataTable comidasE = controladora.solicitarCE(estacion, fechaInicio, fechaFinal);
+
+                    if (comidasE.Rows.Count > 0)
+                    {
+
+                        foreach (DataRow fila in comidasE.Rows)
+                        {
+                            String tipoC;
+                            int cantidad;
+                            tipoC = fila[0].ToString();
+                            cantidad = (int.Parse(fila[1].ToString()));
+                            if (tipoC == "Desayuno")
+                            {
+                                desayunos += cantidad;
+                            }
+                            else if (tipoC == "Almuerzo")
+                            {
+                                almuerzos += cantidad;
+
+                            }
+                            else if (tipoC == "Cena")
+                            {
+                                cena += cantidad;
+                            }
+                            else if (tipoC == "Queque")
+                            {
+                                queque = cantidad;
+
+                            }
+                            else if (tipoC == "Café")
+                            {
+                                cafe = cantidad;
+                            }
+
+
+                        }
+
+                    }
+                    //solicitar datos de comida campo
+                    DataTable comidasC = controladora.solicitarCC(estacion, fechaInicio, fechaFinal);
+
+                    if (comidasC.Rows.Count > 0)
+                    {
+
+                        foreach (DataRow fila in comidasC.Rows)
+                        {
+                            int opcion;
+                            int cantidad;
+                            opcion = int.Parse(fila[0].ToString());
+                            cantidad = (int.Parse(fila[1].ToString()));
+                            if (opcion == 1)
+                            {
+                                desayunos += cantidad;
+                            }
+                            else if (opcion == 2)
+                            {
+                                almuerzos += cantidad;
+
+                            }
+                            else if (opcion == 3)
+                            {
+                                cena += cantidad;
+                            }
+                            else if (opcion == 4)
+                            {
+                                sandwich = cantidad;
+
+                            }
+                            else if (opcion == 5)
+                            {
+                                galloPinto = cantidad;
+                            }
+
+
+                        }
+
+                    }
+
+                    //Obteber cantidad de comidas para empleado
+                    DataTable comidasEmpleado = controladora.getDesayunos(estacion, fechaInicio, fechaFinal);
+                    if (comidasEmpleado.Rows.Count > 0)
+                    {
+
+                        foreach (DataRow fila in comidasEmpleado.Rows)
+                        {
+                            int cantidad;
+                            cantidad = int.Parse(fila[1].ToString());
+                            desayunos += cantidad;
+
+
+
+                        }
+                    }
+                    //Obtiene los almuerzos
+                    comidasEmpleado = controladora.getAlmuerzos(estacion, fechaInicio, fechaFinal);
+                    if (comidasEmpleado.Rows.Count > 0)
+                    {
+
+                        foreach (DataRow fila in comidasEmpleado.Rows)
+                        {
+                            int cantidad;
+                            cantidad = int.Parse(fila[1].ToString());
+                            almuerzos += cantidad;
+
+
+
+                        }
+                    }
+                    //Obtiene las cenas      
+                    comidasEmpleado = controladora.getCenas(estacion, fechaInicio, fechaFinal);
+                    if (comidasEmpleado.Rows.Count > 0)
+                    {
+
+                        foreach (DataRow fila in comidasEmpleado.Rows)
+                        {
+                            int cantidad;
+                            cantidad = int.Parse(fila[1].ToString());
+                            cena += cantidad;
+
+
+
+                        }
+                    }
+                    //Obtener cantidad de bebidas
+                    DataTable bebidas = controladora.solicitarBebidas(estacion, fechaInicio, fechaFinal);
+
+                    if (bebidas.Rows.Count > 0)
+                    {
+
+                        foreach (DataRow fila in bebidas.Rows)
+                        {
+                            String tipo;
+                            int cantidad;
+                            tipo = fila[0].ToString();
+                            cantidad = (int.Parse(fila[1].ToString()));
+                            if (tipo == "Agua")
+                            {
+                                agua = cantidad;
+                            }
+                            else
+                            {
+                                jugo = cantidad;
                             }
 
                         }
 
-
                     }
+                    //Obtener cantidad de adicionales
+                    DataTable adicionales = controladora.solicitarAdicionales(estacion, fechaInicio, fechaFinal);
 
-                }
-                //solicitar datos de comidaExtra
-                DataTable comidasE = controladora.solicitarCE(estacion, fechaInicio, fechaFinal);
-
-                if (comidasE.Rows.Count > 0)
-                {
-
-                    foreach (DataRow fila in comidasE.Rows)
+                    if (adicionales.Rows.Count > 0)
                     {
-                        String tipoC;
-                        int cantidad;
-                        tipoC = fila[0].ToString();
-                        cantidad = (int.Parse(fila[2].ToString()));
-                        if (tipoC == "Desayuno")
+
+                        foreach (DataRow fila in adicionales.Rows)
                         {
-                            desayunos += cantidad;
-                        }
-                        else if (tipoC == "Almuerzo")
-                        {
-                            almuerzos += cantidad;
+                            String tipo;
+                            int cantidad;
+                            tipo = fila[0].ToString();
+                            cantidad = (int.Parse(fila[1].ToString()));
+                            if (tipo == "Ensalada")
+                            {
+                                ensalada = cantidad;
+                            }
+                            else if (tipo == "Mayonesa")
+                            {
+                                mayonesa = cantidad;
 
-                        }
-                        else if (tipoC == "Cena")
-                        {
-                            cena += cantidad;
-                        }
-                        else if (tipoC == "Queque")
-                        {
-                            queque = cantidad;
+                            }
+                            else if (tipo == "Confites")
+                            {
+                                confites = cantidad;
+                            }
+                            else if (tipo == "Frutas")
+                            {
+                                frutas = cantidad;
 
-                        }
-                        else if (tipoC == "Café")
-                        {
-                            cafe = cantidad;
-                        }
+                            }
+                            else if (tipo == "Salsa de tomate")
+                            {
+                                salsa = cantidad;
+                            }
 
+                            else if (tipo == "Huevos duros")
+                            {
+                                huevoDuro = cantidad;
+                            }
 
-                    }
+                            else if (tipo == "Galletas")
+                            {
+                                galletas = cantidad;
+                            }
 
-                }
-                //solicitar datos de comida campo
-                DataTable comidasC = controladora.solicitarCC(estacion, fechaInicio, fechaFinal);
+                            else if (tipo == "Platanos")
+                            {
+                                platanos = cantidad;
+                            }
 
-                if (comidasC.Rows.Count > 0)
-                {
-
-                    foreach (DataRow fila in comidasC.Rows)
-                    {
-                        int opcion;
-                        int cantidad;
-                        opcion = int.Parse(fila[0].ToString());
-                        cantidad = (int.Parse(fila[1].ToString()));
-                        if (opcion == 1)
-                        {
-                            desayunos += cantidad;
-                        }
-                        else if (opcion == 2)
-                        {
-                            almuerzos += cantidad;
-
-                        }
-                        else if (opcion == 3)
-                        {
-                            cena += cantidad;
-                        }
-                        else if (opcion == 4)
-                        {
-                            sandwich = cantidad;
-
-                        }
-                        else if (opcion == 5)
-                        {
-                            galloPinto = cantidad;
-                        }
-
-
-                    }
-
-                }
-
-                //Obteber cantidad de comidas para empleado
-                DataTable comidasEmpleado = controladora.getDesayunos(estacion, fechaInicio, fechaFinal);
-                if (comidasEmpleado.Rows.Count > 0)
-                {
-
-                    foreach (DataRow fila in comidasEmpleado.Rows)
-                    {
-                        int cantidad;
-                        cantidad = int.Parse(fila[1].ToString());
-                        desayunos += cantidad;
-
-
-
-                    }
-                }
-                //Obtiene los almuerzos
-                comidasEmpleado = controladora.getAlmuerzos(estacion, fechaInicio, fechaFinal);
-                if (comidasEmpleado.Rows.Count > 0)
-                {
-
-                    foreach (DataRow fila in comidasEmpleado.Rows)
-                    {
-                        int cantidad;
-                        cantidad = int.Parse(fila[1].ToString());
-                        almuerzos += cantidad;
-
-
-
-                    }
-                }
-                //Obtiene las cenas      
-                comidasEmpleado = controladora.getCenas(estacion, fechaInicio, fechaFinal);
-                if (comidasEmpleado.Rows.Count > 0)
-                {
-
-                    foreach (DataRow fila in comidasEmpleado.Rows)
-                    {
-                        int cantidad;
-                        cantidad = int.Parse(fila[1].ToString());
-                        cena += cantidad;
-
-
-
-                    }
-                }
-                //Obtener cantidad de bebidas
-                DataTable bebidas = controladora.solicitarBebidas(estacion, fechaInicio, fechaFinal);
-
-                if (bebidas.Rows.Count > 0)
-                {
-
-                    foreach (DataRow fila in bebidas.Rows)
-                    {
-                        String tipo;
-                        int cantidad;
-                        tipo = fila[0].ToString();
-                        cantidad = (int.Parse(fila[1].ToString()));
-                        if (tipo == "Agua")
-                        {
-                            agua = cantidad;
-                        }
-                        else
-                        {
-                            jugo = cantidad;
                         }
 
                     }
+                    fechaDia = fechaDia.AddDays(cont);
 
-                }
-                //Obtener cantidad de adicionales
-                DataTable adicionales = controladora.solicitarAdicionales(estacion, fechaInicio, fechaFinal);
-
-                if (adicionales.Rows.Count > 0)
-                {
-
-                    foreach (DataRow fila in adicionales.Rows)
-                    {
-                        String tipo;
-                        int cantidad;
-                        tipo = fila[0].ToString();
-                        cantidad = (int.Parse(fila[1].ToString()));
-                        if (tipo == "Ensalada")
-                        {
-                            ensalada = cantidad;
-                        }
-                        else if (tipo == "Mayonesa")
-                        {
-                            mayonesa = cantidad;
-
-                        }
-                        else if (tipo == "Confites")
-                        {
-                            confites = cantidad;
-                        }
-                        else if (tipo == "Frutas")
-                        {
-                            frutas = cantidad;
-
-                        }
-                        else if (tipo == "Salsa de tomate")
-                        {
-                            salsa = cantidad;
-                        }
-
-                        else if (tipo == "Huevos duros")
-                        {
-                            huevoDuro = cantidad;
-                        }
-
-                        else if (tipo == "Galletas")
-                        {
-                            galletas = cantidad;
-                        }
-
-                        else if (tipo == "Platanos")
-                        {
-                            platanos = cantidad;
-                        }
-
-                    }
-
-                }
+               }
                 //crea la tabla que se mostrara en pantalla
                 for (int i = 0; i < 17; i++)
                 {
@@ -625,55 +664,122 @@ namespace Servicios_Reservados_2
             DataTable tabla = crearTablaSnacks();
             String descripcion = "";
             Object[] datos = new Object[4];
-            DataTable datosCC = controladora.getComidasCampo(estacion, fechaInicio, fechaFinal);
-            if (datosCC.Rows.Count > 0)
-            {
-
-                foreach (DataRow fila in datosCC.Rows)
-                {
-                    int opcion = int.Parse(fila[1].ToString());
-                    if (opcion == 4)
-                    {
-                        descripcion = fila[2].ToString() + " con relleno de " + fila[3].ToString();
-                        datos[0] = fila[0].ToString();
-                        datos[1] = "Sandwich";
-                        datos[2] = descripcion;
-                        datos[3] = fila[4].ToString();
-
-                    }
-                    else if (opcion == 5)
-                    {
-                        datos[0] = fila[0].ToString();
-                        datos[1] = "Gallo Pinto";
-                        datos[2] = "-";
-                        datos[3] = fila[4].ToString();
-
-                    }
-                    tabla.Rows.Add(datos);
-                }
-
-            }
-
-            DataTable datosCE = controladora.getComidasExtra(estacion, fechaInicio, fechaFinal);
-            if (datosCC.Rows.Count > 0)
-            {
-
-                foreach (DataRow fila in datosCE.Rows)
+            fechaDia = fechaInicioConsulta;
+             while(fechaDia <= fechaUltima){
+                    
+                fechaInicio =fechaDia.ToString("MM/dd/yyyy");
+                fechaFinal = fechaDia.ToString("MM/dd/yyyy");
+                DataTable datosCC = controladora.getComidasCampo(estacion, fechaInicio, fechaFinal);
+                if (datosCC.Rows.Count > 0)
                 {
 
-                    datos[0] = fila[0].ToString();
-                    datos[1] = fila[1].ToString();
-                    datos[2] = fila[2].ToString();
-                    datos[3] = fila[3].ToString();
-                    tabla.Rows.Add(datos);
+                    foreach (DataRow fila in datosCC.Rows)
+                    {
+                        int opcion = int.Parse(fila[1].ToString());
+                        if (opcion == 4)
+                        {
+                            descripcion = fila[2].ToString() + " con relleno de " + fila[3].ToString();
+                            datos[0] = fila[0].ToString();
+                            datos[1] = "Sandwich";
+                            datos[2] = descripcion;
+                            datos[3] = fila[4].ToString();
+
+                        }
+                        else if (opcion == 5)
+                        {
+                            datos[0] = fila[0].ToString();
+                            datos[1] = "Gallo Pinto";
+                            datos[2] = "-";
+                            datos[3] = fila[4].ToString();
+
+                        }
+                        tabla.Rows.Add(datos);
+                    }
+             
+                    
                 }
 
-            }
-            Session["tablaS"] = tabla;
+                DataTable datosCE = controladora.getComidasExtra(estacion, fechaInicio, fechaFinal);
+                if (datosCC.Rows.Count > 0)
+                {
+
+                    foreach (DataRow fila in datosCE.Rows)
+                    {
+                        String tipo = fila[1].ToString();
+                        if(tipo=="Queque"){
+                            datos[0] = fila[0].ToString();
+                            datos[1] = fila[1].ToString();
+                            datos[2] = fila[2].ToString();
+                            datos[3] = fila[3].ToString();
+                            tabla.Rows.Add(datos);
+                        }
+                   
+                    }
+
+                }
+          fechaDia = fechaDia.AddDays(1);
+
+          }
+            snacks = tabla;
             GridViewSnacks.DataBind();
 
 
 
+        }
+        /**
+        * Requiere: n/a
+        * Efectua: Llena la tabla  GridBebidas
+        * retorna:  N/A
+        */
+        protected void llenarGridBebidas()
+        {
+            DataTable tabla = crearTablaSnacks();
+            String descripcion = "";
+            Object[] datos = new Object[4];
+            fechaDia = fechaInicioConsulta;
+            while(fechaDia <= fechaUltima){
+                fechaInicio = fechaDia.ToString("MM/dd/yyyy");
+                fechaFinal = fechaDia.ToString("MM/dd/yyyy");
+                DataTable datosCC = controladora.getBebidas(estacion, fechaInicio, fechaFinal);
+                if (datosCC.Rows.Count > 0)
+                {
+
+                    foreach (DataRow fila in datosCC.Rows)
+                    {
+                        descripcion ="-";
+                        datos[0] = fila[0].ToString();
+                        datos[1] = fila[1].ToString();
+                        datos[2] = descripcion;
+                        datos[3] = fila[2].ToString();
+                        tabla.Rows.Add(datos);
+                    }
+
+
+                }
+                DataTable datosCE = controladora.getComidasExtra(estacion, fechaInicio, fechaFinal);
+                if (datosCC.Rows.Count > 0)
+                {
+
+                    foreach (DataRow fila in datosCE.Rows)
+                    {
+                        String tipo = fila[1].ToString();
+                        if (tipo == "Queque")
+                        {
+                            datos[0] = fila[0].ToString();
+                            datos[1] = fila[1].ToString();
+                            datos[2] = fila[2].ToString();
+                            datos[3] = fila[3].ToString();
+                            tabla.Rows.Add(datos);
+                        }
+
+                    }
+
+                }
+            fechaDia = fechaDia.AddDays(1);
+
+         }
+           bebidas = tabla;
+           GridViewBebidas.DataBind();
         }
         /**
         * Requiere: n/a
@@ -688,93 +794,142 @@ namespace Servicios_Reservados_2
             int desayunosC = 0;
             int almuerzosC = 0;
             int cenasC = 0;
-
+            fechaDia = fechaInicioConsulta;
             Object[] datos = new Object[3];
-            DataTable tabla = crearTablaTurnos();
-            desayunos = Convert.ToInt32(GridViewTotal.Rows[0].Cells[1].Text);
-            almuerzos = Convert.ToInt32(GridViewTotal.Rows[1].Cells[1].Text);
-            cenas = Convert.ToInt32(GridViewTotal.Rows[2].Cells[1].Text);
+            while(fechaDia <= fechaUltima){
+                fechaInicio = fechaDia.ToString("MM/dd/yyyy");
+                fechaFinal = fechaDia.ToString("MM/dd/yyyy");
+                DataTable tabla = crearTablaTurnos();
+                desayunos = Convert.ToInt32(GridViewTotal.Rows[0].Cells[1].Text);
+                almuerzos = Convert.ToInt32(GridViewTotal.Rows[1].Cells[1].Text);
+                cenas = Convert.ToInt32(GridViewTotal.Rows[2].Cells[1].Text);
 
-            DataTable comidaCampo = controladora.solicitarCC(estacion, fechaInicio, fechaFinal);
+                DataTable comidaCampo = controladora.solicitarCC(estacion, fechaInicio, fechaFinal);
 
-            if (comidaCampo.Rows.Count > 0)
-            {
-
-                foreach (DataRow fila in comidaCampo.Rows)
+                if (comidaCampo.Rows.Count > 0)
                 {
-                    int opcion;
-                    int cantidad;
-                    opcion = int.Parse(fila[0].ToString());
-                    cantidad = (int.Parse(fila[1].ToString()));
-                    if (opcion == 1)
+
+                    foreach (DataRow fila in comidaCampo.Rows)
                     {
-                        desayunosC = cantidad;
-                        desayunos -= cantidad;
-                    }
-                    else if (opcion == 2)
-                    {
-                        almuerzosC = cantidad;
-                        almuerzos -= cantidad;
+                        int opcion;
+                        int cantidad;
+                        opcion = int.Parse(fila[0].ToString());
+                        cantidad = (int.Parse(fila[1].ToString()));
+                        if (opcion == 1)
+                        {
+                            desayunosC = cantidad;
+                            desayunos -= cantidad;
+                        }
+                        else if (opcion == 2)
+                        {
+                            almuerzosC = cantidad;
+                            almuerzos -= cantidad;
+
+                        }
+                        else if (opcion == 3)
+                        {
+                            cenasC = cantidad;
+                            cenas -= cantidad;
+                        }
+
+
 
                     }
-                    else if (opcion == 3)
-                    {
-                        cenasC = cantidad;
-                        cenas -= cantidad;
-                    }
-
-
 
                 }
 
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-                switch (i)
+                for (int i = 0; i < 3; i++)
                 {
-                    case 0:
-                        datos[0] = "Desayuno";
-                        datos[1] = desayunos;
-                        datos[2] = desayunosC;
-                        break;
-                    case 1:
-                        datos[0] = "Almuerzo";
-                        datos[1] = almuerzos;
-                        datos[2] = almuerzosC;
-                        break;
+                    switch (i)
+                    {
+                        case 0:
+                            datos[0] = "Desayuno";
+                            datos[1] = desayunos;
+                            datos[2] = desayunosC;
+                            break;
+                        case 1:
+                            datos[0] = "Almuerzo";
+                            datos[1] = almuerzos;
+                            datos[2] = almuerzosC;
+                            break;
 
-                    case 2:
-                        datos[0] = "Cena";
-                        datos[1] = cenas;
-                        datos[2] = cenasC;
-                        break;
+                        case 2:
+                            datos[0] = "Cena";
+                            datos[1] = cenas;
+                            datos[2] = cenasC;
+                            break;
 
-                    default:
-                        break;
+                        default:
+                            break;
+                    }
+                    tabla.Rows.Add(datos);
                 }
-                tabla.Rows.Add(datos);
-            }
+          fechaDia = fechaDia.AddDays(1);
+
+         }
             GridViewTurnos.DataBind();
 
         }
         protected void clickBuscar(object sender, EventArgs e)
         {
-            DateTime mañana = DateTime.Now.AddDays(1);
-            if (cbxFecha.Value.ToString() == "Día siguiente")
-            {
-                fechaInicio = mañana.ToString("MM/dd/yyyy");
-                fechaFinal = mañana.ToString("MM/dd/yyyy");
-            }
+            
+                DateTime mañana = DateTime.Now.AddDays(1);
+                if (cbxFecha.Value.ToString() == "Día siguiente")
+                {
+                    fechaInicio = mañana.ToString("MM/dd/yyyy");
+                    fechaFinal = mañana.ToString("MM/dd/yyyy");
+                    fechaDia = mañana;
+                    fechaUltima = mañana;
+                    fechaInicioConsulta = mañana;
+                    llenarGridTotal();
+                    llenarGridTurnos();
+                    llenarGridSnacks();
+                    llenarGridBebidas();
+                }
 
-            if (cbxFecha.Value.ToString() == "Hoy")
-            {
-                fechaInicio = DateTime.Today.ToString("MM/dd/yyyy");
-                fechaFinal = DateTime.Today.ToString("MM/dd/yyyy");
-            }
-            llenarGridTotal();
-            llenarGridTurnos();
-            llenarGridSnacks();
+                if (cbxFecha.Value.ToString() == "Hoy")
+                {
+                    fechaInicio = DateTime.Today.ToString("MM/dd/yyyy");
+                    fechaFinal = DateTime.Today.ToString("MM/dd/yyyy");
+                    fechaDia = DateTime.Today;
+                    fechaUltima = DateTime.Today;
+                    fechaInicioConsulta = DateTime.Today;
+                    llenarGridTotal();
+                    llenarGridTurnos();
+                    llenarGridSnacks();
+                    llenarGridBebidas();
+                }
+                if (cbxFecha.Value.ToString() == "Personalizado")
+                {
+                    if (fechaValida())
+                    {
+                        DateTime fechTemp = DateTime.Parse(txtFechaInicial.Value);
+                        fechaDia = fechTemp;
+                        fechaInicio = fechTemp.ToString("MM/dd/yyyy");
+                        fechTemp = DateTime.Parse(txtFechaFinal.Value);
+                        fechaUltima = fechTemp;
+                        fechaInicioConsulta = fechaDia;
+                        fechaFinal = fechTemp.ToString("MM/dd/yyyy");
+                        llenarGridTotal();
+                        llenarGridTurnos();
+                        llenarGridSnacks();
+                        llenarGridBebidas();
+                    }
+                    else
+                    {
+                        //mensaje de error
+                    }
+                }
+                
+
+
+            
+            
+        }
+        protected Boolean fechaValida()
+        {
+            Boolean valido = true;
+            return valido;
         }
         /*
          * Requiere: N/A

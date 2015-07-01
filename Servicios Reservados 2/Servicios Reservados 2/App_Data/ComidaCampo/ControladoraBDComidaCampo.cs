@@ -131,5 +131,17 @@ namespace Servicios_Reservados_2
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
+
+        /*
+         * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+         * Efectua : Crea una consulta para consultar las bebidas de comida campo
+         * Retorna : un arreglo de hileras con el resultado.
+         */
+        internal DataTable getBebidas(String estacion, String fechaInicio, String fechaFinal)
+        {
+            String consultaSQL = "select hora,bebida,pax from servicios_reservados.comida_campo where estado ='Activo' and estacion= '" + estacion + "' and fecha >= '" + fechaInicio+"' and fecha <= '" + fechaFinal + "'";
+            dt = adaptador.consultar(consultaSQL);
+            return dt;
+        }
     }
 }

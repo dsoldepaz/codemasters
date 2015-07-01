@@ -92,8 +92,7 @@ namespace Servicios_Reservados_2
             //para que siempre esten desactivados 
             dateFechaFin.Disabled = true;
             dateFechaInicio.Disabled = true;
-            dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
-            dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+            
 
         }
 
