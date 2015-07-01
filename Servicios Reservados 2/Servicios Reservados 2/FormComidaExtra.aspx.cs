@@ -297,7 +297,8 @@ namespace Servicios_Reservados_2
                     btnAnular.Visible = false;
                     btnEditar.Visible = false;
                     break;
-                case 2://modificarcbxHora.Disabled = true;
+                case 2://modificar
+                    cbxHora.Disabled = false;
                     txtPax.Disabled = false;
                     txaNotas.Disabled = false;
                     textFecha.Disabled = false;
@@ -398,7 +399,6 @@ namespace Servicios_Reservados_2
         {
             modo = 2;
             cambiarModo();
-            Response.Redirect("FormComidaExtra");
         }
 
         /*
