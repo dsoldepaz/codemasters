@@ -21,6 +21,8 @@ namespace Servicios_Reservados_2
         private DateTime fechaInicioConsulta;
         private DateTime fechaDia;
         private DateTime fechaUltima;
+        public static string retorno;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
@@ -32,18 +34,29 @@ namespace Servicios_Reservados_2
                 fechaFinal = DateTime.Today.ToString("MM/dd/yyyy");
                 fechaDia = DateTime.Today;
                 fechaUltima = DateTime.Today;
+                fechaInicioConsulta = DateTime.Today;
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
-                } if (!listaRoles.Contains("administrador sistema") && !listaRoles.Contains("encargado cocina") && !listaRoles.Contains("administrador global"))
+                } if (!listaRoles.Contains("administrador sistema") && !listaRoles.Contains("encargado cocina") && !listaRoles.Contains("administrador global") && !listaRoles.Contains("cocinero"))
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
-                cargarDatos();
-                if (listaRoles.Contains("administrador sistema"))
+                if (listaRoles.Contains("cocinero"))
                 {
+                    cargarDatos(0);
+                }
+                else if (listaRoles.Contains("administrador sistema"))
+                {
+                    cargarDatos(1);
                     
                 }
+                else if (listaRoles.Contains("encargado cocina") || listaRoles.Contains("administrador global"))
+                {
+                    cargarDatos(2);
+                }
+                
+                
             }
         }
         /**
@@ -51,17 +64,50 @@ namespace Servicios_Reservados_2
         * Efectua: Inicializa los datos necesarios en la pagina
         * retorna:  N/A
         */
-        protected void cargarDatos()
+        protected void cargarDatos(int valor)
         {
-            DataTable estacion = controladora.llenarEstaciones();
+            DataTable estaciones = controladora.llenarEstaciones();
             cbxEstacion.Items.Clear();
             cbxEstacion.Items.Add("Seleccionar");
-            if (estacion.Rows.Count > 0)
+            if (estaciones.Rows.Count > 0)
             {
-                foreach (DataRow fila2 in estacion.Rows)
+                foreach (DataRow fila2 in estaciones.Rows)
                 {
                     cbxEstacion.Items.Add(fila2[0].ToString());
                 }
+            }
+            
+            cbxFecha.Items.Clear();
+            cbxFecha.Items.Add("Hoy");
+            cbxFecha.Items.Add("Día siguiente");
+            if (valor!=0)
+            {
+                cbxFecha.Items.Add("Personalizado");
+            }
+            cbxFecha.SelectedIndex = 0;
+            cbxEstacion.Disabled = true;
+            txtFechaInicial.Disabled = true;
+            txtFechaFinal.Disabled = true;
+            if (valor == 1)
+            {
+                cbxEstacion.Disabled = false;
+            }
+            else
+            {
+                estacion = (String)Session["Estacion"];
+                for (int i = 1; i < 4; i++)
+                {
+                    cbxEstacion.SelectedIndex = i;
+                    if (cbxEstacion.Value.ToString() == estacion)
+                    {
+                        i = 4;
+                    }
+                    
+                }
+                llenarGridTotal();
+                llenarGridTurnos();
+                llenarGridSnacks();
+                llenarGridBebidas();
             }
 
 
@@ -870,56 +916,115 @@ namespace Servicios_Reservados_2
             GridViewTurnos.DataBind();
 
         }
+
+        protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
+        {
+            alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
+            labelTipoAlerta.Text = alerta + " ";
+            labelAlerta.Text = mensaje;
+            alertAlerta.Attributes.Remove("hidden");
+            this.SetFocus(alertAlerta);
+        }
+        protected void fecha_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxFecha.SelectedIndex == 2)
+            {
+                txtFechaInicial.Disabled = false;
+                txtFechaFinal.Disabled = false;
+                txtFechaInicial.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+                txtFechaFinal.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+            }
+            else
+            {
+                txtFechaInicial.Disabled = true;
+                txtFechaFinal.Disabled = true;
+                txtFechaInicial.Value = null;
+                txtFechaFinal.Value = null;
+            }
+            
+        }
+                     
         protected void clickBuscar(object sender, EventArgs e)
         {
-            
-                DateTime mañana = DateTime.Now.AddDays(1);
-                if (cbxFecha.Value.ToString() == "Día siguiente")
+                Boolean correcta = true;
+                String estacionSeleccionada = "vacio";
+                String tipoFecha = "vacio";
+                Debug.WriteLine(cbxEstacion.SelectedIndex);
+
+                if (cbxEstacion.SelectedIndex != 0)
                 {
-                    fechaInicio = mañana.ToString("MM/dd/yyyy");
-                    fechaFinal = mañana.ToString("MM/dd/yyyy");
-                    fechaDia = mañana;
-                    fechaUltima = mañana;
-                    fechaInicioConsulta = mañana;
-                    llenarGridTotal();
-                    llenarGridTurnos();
-                    llenarGridSnacks();
-                    llenarGridBebidas();
+                    estacionSeleccionada = cbxEstacion.Value.ToString();
+                    estacion = estacionSeleccionada;
+                }
+                else{
+                    mostrarMensaje("danger", "Error:", "Seleccione una estación");
+                    correcta = false;
                 }
 
-                if (cbxFecha.Value.ToString() == "Hoy")
+                if (cbxFecha.SelectedIndex == 0)
                 {
-                    fechaInicio = DateTime.Today.ToString("MM/dd/yyyy");
-                    fechaFinal = DateTime.Today.ToString("MM/dd/yyyy");
-                    fechaDia = DateTime.Today;
-                    fechaUltima = DateTime.Today;
-                    fechaInicioConsulta = DateTime.Today;
-                    llenarGridTotal();
-                    llenarGridTurnos();
-                    llenarGridSnacks();
-                    llenarGridBebidas();
+                    tipoFecha = "Hoy";
                 }
-                if (cbxFecha.Value.ToString() == "Personalizado")
+                else if (cbxFecha.SelectedIndex == 1)
                 {
-                    if (fechaValida())
+                    tipoFecha = "Día siguiente"; 
+                }
+                else
+                {
+                    tipoFecha = "Personalizado";
+                }
+                DateTime mañana = DateTime.Now.AddDays(1);
+                if (correcta)
+                {
+                    if (tipoFecha == "Día siguiente")
                     {
-                        DateTime fechTemp = DateTime.Parse(txtFechaInicial.Value);
-                        fechaDia = fechTemp;
-                        fechaInicio = fechTemp.ToString("MM/dd/yyyy");
-                        fechTemp = DateTime.Parse(txtFechaFinal.Value);
-                        fechaUltima = fechTemp;
-                        fechaInicioConsulta = fechaDia;
-                        fechaFinal = fechTemp.ToString("MM/dd/yyyy");
+                        fechaInicio = mañana.ToString("MM/dd/yyyy");
+                        fechaFinal = mañana.ToString("MM/dd/yyyy");
+                        fechaDia = mañana;
+                        fechaUltima = mañana;
+                        fechaInicioConsulta = mañana;
                         llenarGridTotal();
                         llenarGridTurnos();
                         llenarGridSnacks();
                         llenarGridBebidas();
                     }
-                    else
+
+                    if (tipoFecha == "Hoy")
                     {
-                        //mensaje de error
+                        fechaInicio = DateTime.Today.ToString("MM/dd/yyyy");
+                        fechaFinal = DateTime.Today.ToString("MM/dd/yyyy");
+                        fechaDia = DateTime.Today;
+                        fechaUltima = DateTime.Today;
+                        fechaInicioConsulta = DateTime.Today;
+                        llenarGridTotal();
+                        llenarGridTurnos();
+                        llenarGridSnacks();
+                        llenarGridBebidas();
+                    }
+                    if (tipoFecha == "Personalizado")
+                    {
+                        if (fechaValida())
+                        {
+                            DateTime fechTemp = DateTime.Parse(txtFechaInicial.Value);
+                            fechaDia = fechTemp;
+                            fechaInicio = fechTemp.ToString("MM/dd/yyyy");
+                            fechTemp = DateTime.Parse(txtFechaFinal.Value);
+                            fechaUltima = fechTemp;
+                            fechaInicioConsulta = fechaDia;
+                            fechaFinal = fechTemp.ToString("MM/dd/yyyy");
+                            llenarGridTotal();
+                            llenarGridTurnos();
+                            llenarGridSnacks();
+                            llenarGridBebidas();
+                        }
+                        else
+                        {
+                            mostrarMensaje("danger", "Error:", "Seleccione un rango de fechas válido");
+                            
+                        }
                     }
                 }
+                
                 
 
 
@@ -929,8 +1034,14 @@ namespace Servicios_Reservados_2
         protected Boolean fechaValida()
         {
             Boolean valido = true;
+            if (fechaDia > fechaUltima)
+            {
+                valido = false;
+            }
             return valido;
         }
+
+       
         /*
          * Requiere: N/A
          * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
