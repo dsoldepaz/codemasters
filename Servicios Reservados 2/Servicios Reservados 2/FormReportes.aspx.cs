@@ -545,6 +545,18 @@ namespace Servicios_Reservados_2
             contador.InnerText = numNotificaciones + "";
         }
 
+        /*
+        *  Requiere: Controladores de eventos de la interfaz.
+        *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
+        *  Retrona:  N/A
+        */
+        protected void GridViewReporte_PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
 
+            GridViewReportes.PageIndex = e.NewPageIndex;
+            GridViewReportes.DataSource = Session["tablaa"];
+            GridViewReportes.DataBind();
+
+        } 
     }
 }

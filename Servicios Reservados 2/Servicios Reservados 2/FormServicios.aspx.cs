@@ -24,7 +24,7 @@ namespace Servicios_Reservados_2
         public static String categoria = "Comida Extra";
         public static EntidadComidaCampo comidaCampoConsultada;
         public static EntidadComidaExtra comidaExtraConsultada;
-
+        private static DataTable todos;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -99,24 +99,7 @@ namespace Servicios_Reservados_2
                 ids = new String[paquete.Rows.Count + servicios.Rows.Count + comidaCampo.Rows.Count + 1]; //crear el vector para ids en el grid
                 idServ = new String[paquete.Rows.Count + servicios.Rows.Count + servicios.Rows.Count + comidaCampo.Rows.Count + 1];
 
-                //agrega los servicios incluidos en el paquete
-                if (paquete.Rows.Count > 0)
-                {
-                    foreach (DataRow fila in paquete.Rows)
-                    {
-                        ids[i] = controladora.idSelected();// guardar el id para su posterior consulta
-                        idServ[i] = fila[0].ToString();
-                        datos[0] = "Paquete";
-                        datos[1] = fila[1].ToString();
-                        datos[2] = "Alimentación incluída en el paquete de reservación";
-                        datos[3] = "-";
-                        datos[4] = "-";
-                        datos[5] = "No disponible";
-                        datos[6] = fila[2].ToString();
-                        tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
-                        i++;
-                    }
-                }
+                
                 //agrega los servicios de comida extra
                 if (servicios.Rows.Count > 0)
                 {
@@ -183,8 +166,25 @@ namespace Servicios_Reservados_2
                         i++;
                     }
                 }
-
-                GridServicios.AllowSorting = false;
+                //agrega los servicios incluidos en el paquete
+                if (paquete.Rows.Count > 0)
+                {
+                    foreach (DataRow fila in paquete.Rows)
+                    {
+                        ids[i] = controladora.idSelected();// guardar el id para su posterior consulta
+                        idServ[i] = fila[0].ToString();
+                        datos[0] = "Paquete";
+                        datos[1] = fila[1].ToString();
+                        datos[2] = "Alimentación incluída en el paquete de reservación";
+                        datos[3] = "-";
+                        datos[4] = "-";
+                        datos[5] = "No disponible";
+                        datos[6] = fila[2].ToString();
+                        tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
+                        i++;
+                    }
+                }
+                todos = tabla;
                 GridServicios.DataBind();
 
             }
@@ -245,7 +245,17 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
-
+        /*
+         *  Requiere: Controladores de eventos de la interfaz.
+         *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
+         *  Retrona:  N/A
+         */
+        protected void PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
+            GridServicios.PageIndex = e.NewPageIndex;
+            GridServicios.DataSource = todos;
+            GridServicios.DataBind();
+        }
 
 
         /*Efecto: obtiene el id del servicio seleccionado y de la reservacion a la que pertence el servicio 
@@ -256,13 +266,13 @@ namespace Servicios_Reservados_2
         {         
 
             GridServicios.SelectedIndex = index;
-
+            int indiceTabla = index + (GridServicios.PageIndex * 10);
             // Decode the encoded string.
             StringWriter myWriter = new StringWriter();
             HttpUtility.HtmlDecode(GridServicios.SelectedRow.Cells[4].Text, myWriter);
             String opcion = myWriter.ToString();
 
-            seleccionado = controladora.crearServicio(ids[0], idServ[index], GridServicios.SelectedRow.Cells[4].Text, opcion);
+            seleccionado = controladora.crearServicio(ids[0], idServ[indiceTabla], GridServicios.SelectedRow.Cells[4].Text, opcion);
             
 
         }
@@ -273,7 +283,7 @@ namespace Servicios_Reservados_2
          */
         protected void modificarServicio(object sender, EventArgs e)
         {
-
+            
              seleccionarServicio(obtenerIndex(sender, e));
             
             if (idServ[GridServicios.SelectedIndex].Contains("S"))
