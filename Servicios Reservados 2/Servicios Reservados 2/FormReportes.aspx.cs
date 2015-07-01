@@ -61,17 +61,20 @@ namespace Servicios_Reservados_2
         */
         void cargarDatos()
         {
-            if (estacion == "todas")
-            {
-                cbxEstacion.Items.Clear();
-                cbxEstacion.Items.Add(estacion);
-            }
-            else
+            if (estacion == "Todas")
             {
                 cargarEstaciones();
             }
+            else
+            {
+                cbxEstacion.Items.Clear();
+                cbxFecha.Items.Add("Seleccionar");
+                cbxEstacion.Items.Add(estacion);
+                
+            }
 
             listAnfitriona.Items.Clear();
+            listAnfitriona.Items.Add("Seleccionar");
             listAnfitriona.Items.Add("OET");
             listAnfitriona.Items.Add("ESINTRO");
 
@@ -79,7 +82,9 @@ namespace Servicios_Reservados_2
             cbxFecha.Items.Add("Hoy");
             cbxFecha.Items.Add("Semana");
             cbxFecha.Items.Add("Mes");
+            cbxFecha.Items.Add("Año Fiscal");
             cbxFecha.Items.Add("Personalizado");
+            
 
             //para que siempre esten desactivados 
             dateFechaFin.Disabled = true;
@@ -98,6 +103,7 @@ namespace Servicios_Reservados_2
         {
             DataTable estaciones = controladora.cargarEstaciones();
             cbxEstacion.Items.Clear();// limpiamos el combobox
+            cbxEstacion.Items.Add("Seleccionar");
             if (estaciones.Rows.Count > 0)
             {// agregamos cada uno de los tipos 
                 foreach (DataRow fila in estaciones.Rows)
@@ -205,10 +211,6 @@ namespace Servicios_Reservados_2
         }
 
 
-
-
-
-
         /**
      * Requiere: n/a
      * Efectua: Crea la DataTable para desplegar.
@@ -296,17 +298,17 @@ namespace Servicios_Reservados_2
         {
             obtenerFiltros();
             cicloFechas();
-            //llenarGridReportes();
         }
+
 
         protected void cicloFechas()
         {
             DataTable tabla = crearTablaServicios();
+            DateTime fin = DateTime.Parse(dateFechaFin.Value);
+            DateTime inicio = DateTime.Parse(dateFechaInicio.Value);
+
             if (estacion != null && fechaInicial != null && fechaFin != null) //si se selecciona una estacion, fecha y anfitriona
             {
-                DateTime fin = DateTime.Parse(dateFechaFin.Value);
-                DateTime inicio = DateTime.Parse(dateFechaInicio.Value);
-
                 while (inicio <= fin)//se realiza el for en el rango de fechas especificado
                 {
                     filtroEstacionAnfitrionaFecha(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
@@ -314,13 +316,15 @@ namespace Servicios_Reservados_2
                     inicio = DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
                 }
             }
+
+
+
         }
 
         protected void filtroEstacionAnfitrionaFecha(String fechaInicio, String fechaFinal)
         {
 
             DataTable comidaCampoReservDesayuno = verificarDataTable(controladora.obtenerComidaPax(estacion, 1, anfitriona, fechaInicio, fechaFinal));
-            contar = comidaCampoReservDesayuno.Rows.Count;
             DataTable comidaCampoReservAlmuerzo = verificarDataTable(controladora.obtenerComidaPax(estacion, 2, anfitriona, fechaInicio, fechaFinal)); //almuerzo de comidaCampo reservado
             DataTable comidaCampoReservCena = verificarDataTable(controladora.obtenerComidaPax(estacion, 3, anfitriona, fechaInicio, fechaFinal)); //cena de comidaCampo reservado
             DataTable comidaExtraDesayuno = verificarDataTable(controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Desayuno", anfitriona, fechaInicio, fechaFinal, 1)); //desayuno comida extra
@@ -356,9 +360,9 @@ namespace Servicios_Reservados_2
             {
                 sumaTotalDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][1].ToString()) + int.Parse(comidaExtraDesayuno.Rows[0][1].ToString());    //suma total desayuno  
                 sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][2].ToString()) + int.Parse(comidaExtraDesayuno.Rows[0][2].ToString());
-                sumaTotalAlmuerzo = int.Parse(comidaCampoReservAlmuerzo.Rows[0][1].ToString() + comidaExtraAlmuerzo.Rows[0][1].ToString()); //suma total de almuerzos
+                sumaTotalAlmuerzo = int.Parse(comidaCampoReservAlmuerzo.Rows[0][1].ToString()) + int.Parse(comidaExtraAlmuerzo.Rows[0][1].ToString()); //suma total de almuerzos
                 sumaTotalConsumidosAlmuerzo = int.Parse(comidaCampoReservAlmuerzo.Rows[0][2].ToString()) + int.Parse(comidaExtraAlmuerzo.Rows[0][2].ToString()); //suma total almuerzo servidos 
-                sumaTotalCena = int.Parse(comidaCampoReservCena.Rows[0][1].ToString() + comidaExtraCena.Rows[0][1].ToString()); //suma total de cena
+                sumaTotalCena = int.Parse(comidaCampoReservCena.Rows[0][1].ToString()) + int.Parse(comidaExtraCena.Rows[0][1].ToString()); //suma total de cena
                 sumaTotalConsumidosCena = int.Parse(comidaCampoReservCena.Rows[0][2].ToString()) + int.Parse(comidaExtraCena.Rows[0][2].ToString()); //suma total cena servidos 
                 sumaTotalComidasCampo = int.Parse(comidaCampoReservaSandiwch.Rows[0][1].ToString()) + int.Parse(comidaCampoReservaPinto.Rows[0][1].ToString());
                 sumaTotalComidasCampoServidos = int.Parse(comidaCampoReservaSandiwch.Rows[0][2].ToString()) + int.Parse(comidaCampoReservaPinto.Rows[0][2].ToString());
@@ -450,7 +454,7 @@ namespace Servicios_Reservados_2
                 sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][2].ToString()) + int.Parse(comidaExtraDesayuno.Rows[0][2].ToString());
                 sumaTotalAlmuerzo = int.Parse(comidaCampoReservAlmuerzo.Rows[0][1].ToString() + comidaExtraAlmuerzo.Rows[0][1].ToString()); //suma total de almuerzos
                 sumaTotalConsumidosAlmuerzo = int.Parse(comidaCampoReservAlmuerzo.Rows[0][2].ToString()) + int.Parse(comidaExtraAlmuerzo.Rows[0][2].ToString()); //suma total almuerzo servidos 
-                sumaTotalCena = int.Parse(comidaCampoReservCena.Rows[0][1].ToString() + comidaExtraCena.Rows[0][1].ToString()); //suma total de cena
+                sumaTotalCena = int.Parse(comidaCampoReservCena.Rows[0][1].ToString()) + int.Parse(comidaExtraCena.Rows[0][1].ToString()); //suma total de cena
                 sumaTotalConsumidosCena = int.Parse(comidaCampoReservCena.Rows[0][2].ToString()) + int.Parse(comidaExtraCena.Rows[0][2].ToString()); //suma total cena servidos 
                 sumaTotalComidasCampo = int.Parse(comidaCampoReservaSandiwch.Rows[0][1].ToString()) + int.Parse(comidaCampoReservaPinto.Rows[0][1].ToString());
                 sumaTotalComidasCampoServidos = int.Parse(comidaCampoReservaSandiwch.Rows[0][2].ToString()) + int.Parse(comidaCampoReservaPinto.Rows[0][2].ToString());
