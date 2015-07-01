@@ -56,7 +56,7 @@ namespace Servicios_Reservados_2
       * Requiere: 
       * Modifica : 
       */
-        internal DataTable obtenerComidaPaxAnfitrionaFecha(int opcion, int anfitriona, String fecha, String fechaFinal) //comida campo con todo reservacin
+        internal DataTable obtenerComidaPaxAnfitrionaFecha(int opcion, int anfitriona, String fecha, String fechaFinal) //comida campo reservacion con anfitriona y fechas
         {
             DataTable comidaCampo;
 
