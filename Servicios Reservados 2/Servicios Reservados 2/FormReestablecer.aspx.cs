@@ -30,7 +30,10 @@ namespace Servicios_Reservados_2
             {
                 mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
             }
-            Response.Redirect("Default");
+            else {
+                Response.Redirect("Default");
+            }
+            
         }
         protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
         {
