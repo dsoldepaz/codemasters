@@ -11,7 +11,6 @@
             <li class="item-navegacion"><a href="FormReportesComedor.aspx" title="Reportes">Reportes</a></li>
         </ul>
     </nav>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <table>
                 <tr>
@@ -51,8 +50,6 @@
                         </td>
                     </tr>
                 </table>
-                </ContentTemplate>
-                </asp:UpdatePanel>
                 <table>
                     <tr>
                         <td>Fechas</td>
@@ -74,8 +71,6 @@
                     </tr>
                 </table>
             </div>
-            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                <ContentTemplate>
             <div class="well bs-component">
                 <legend style="color: #7BC143">Reporte Generado</legend>
                 <table>
@@ -163,7 +158,6 @@
                 </tr>
             </table>
         </ContentTemplate>
-    </asp:UpdatePanel>
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
