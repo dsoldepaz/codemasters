@@ -136,13 +136,13 @@ namespace Servicios_Reservados_2
          * Requiere: NA
          * Modifica: la tabla servicios, si la reservacion tiene servicios asociados
          * */
-        void llenarGridReportes(String fecha)
+        void llenarGridReportes(String fecha, DataTable tabla)
         {
-            DataTable tabla = crearTablaServicios();
+
             try
             {
 
-
+                DataRow fila = tabla.NewRow();
                 Object[] datos = new Object[13];
 
                 datos[0] = fecha;
@@ -158,7 +158,8 @@ namespace Servicios_Reservados_2
                 datos[10] = sumaTotalComidasCampoServidos;
                 datos[11] = sumaTotalDesayuno + sumaTotalAlmuerzo + sumaTotalCena + sumaTotalComidasCampo;
                 datos[12] = sumaTotalConsumidosDesayuno + sumaTotalConsumidosAlmuerzo + sumaTotalConsumidosCena + sumaTotalComidasCampoServidos;
-                tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
+
+                tabla.Rows.Add(datos);
 
                 GridViewReportes.AllowSorting = false;
                 GridViewReportes.DataBind();
@@ -300,6 +301,7 @@ namespace Servicios_Reservados_2
 
         protected void cicloFechas()
         {
+            DataTable tabla = crearTablaServicios();
             if (estacion != null && fechaInicial != null && fechaFin != null) //si se selecciona una estacion, fecha y anfitriona
             {
                 DateTime fin = DateTime.Parse(dateFechaFin.Value);
@@ -308,7 +310,7 @@ namespace Servicios_Reservados_2
                 while (inicio <= fin)//se realiza el for en el rango de fechas especificado
                 {
                     filtroEstacionAnfitrionaFecha(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
-                    llenarGridReportes(inicio.ToString("MM/dd/yyyy"));
+                    llenarGridReportes(inicio.ToString("MM/dd/yyyy"), tabla);
                     inicio = DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
                 }
             }
