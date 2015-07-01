@@ -76,7 +76,7 @@
                             <input id="btnServir" runat="server" type="button" class="btn btn-success" value="Servir" onserverclick="clickServir" />
                         </td>
                         <td>
-                            <input id="btnServirDesactivar" runat="server" type="button" class="btn btn-danger" value="Servir y desactivar" onserverclick="clickServirDesactivar" />
+                            <input id="btnServirDesactivar" runat="server" type="button" class="btn btn-danger" value="Desactivar" onserverclick="clickServirDesactivar" />
                         </td>
                     </tr>
 

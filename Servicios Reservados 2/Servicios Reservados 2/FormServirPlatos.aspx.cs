@@ -141,7 +141,6 @@ namespace Servicios_Reservados_2
         }
         protected void clickServirDesactivar(object sender, EventArgs e)
         {
-            controladora.servirTiquete();
             verificar();
             controladora.desactivarTiquete();
             modo = 0;
