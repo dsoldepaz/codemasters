@@ -82,7 +82,15 @@ namespace Servicios_Reservados_2
         {
             return controladoraBD.obtenerComidaPaxEmp(estacion, opcion, fecha, fechaFinal);
         }
-
+        /* 
+        * Efecto: consulta las comida de empleado con filtros de estacion, anfitriona y  fechas.
+        * Requiere: los valores de los filtros a aplicar
+        * Modifica : la consulta que se pide a la base de datos. 
+         */
+        internal DataTable obtenerComidaEmp(String estacion, String opcion, String fecha, String fechaFinal)
+        {
+            return controladoraBD.obtenerComidaEmp(estacion, opcion, fecha, fechaFinal);
+        }
         /* 
         * Efecto: consulta las comida de empleado con filtros de fechas.
         * Requiere: los valores de los filtros a aplicar
@@ -92,7 +100,6 @@ namespace Servicios_Reservados_2
         {
             return controladoraBD.obtenerComidaEmpFechas(opcion, fecha, fechaFinal);
         }
-
 
 
         /* 
