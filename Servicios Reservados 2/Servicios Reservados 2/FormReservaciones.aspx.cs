@@ -177,6 +177,7 @@ namespace Servicios_Reservados_2
             columna.DataType = System.Type.GetType("System.DateTime");
             columna.ColumnName = "Sale";
             tabla.Columns.Add(columna);
+
             GridViewReservaciones.DataSource = tabla;
             GridViewReservaciones.DataBind();
 

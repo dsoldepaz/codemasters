@@ -142,9 +142,44 @@ namespace Servicios_Reservados_2
             return controladoraBD.obtenerComidaExtraFechas(opcion, fecha, fechaFinal,consulta);
         }
 
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
         internal int getNotificaciones()
         {
             return controladoraNotificaciones.getNumeroDeNotificaciones();
+        }
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable solicitarTurnoDiaTresComidas(String sigla, String inicio, String final)
+        {
+            return controladoraBD.solicitarTurnoDiaTresComidas(sigla, inicio, final);
+        }
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable solicitarTurnoDiaDosComidas(String sigla, String inicio, String final)
+        {
+            return controladoraBD.solicitarTurnoDiaDosComidas(sigla, inicio, final);
+        }
+
+        /* 
+         * Efecto: 
+         * Requiere: 
+         * Modifica: 
+         */
+        internal DataTable reservaEntrante(String sigla, String inicio, String final)
+        {
+            return controladoraBD.reservaEntrante(sigla, inicio, final);
         }
     }
 }

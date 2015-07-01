@@ -12,6 +12,7 @@ namespace Servicios_Reservados_2
         private static ControladoraComidaEmpleado controladoraComdiaEmpleado;
         private static ControladoraComidaCampo controladoraCC;
         private static ControladoraComidaExtra controladoraCE;
+        private static ControladoraReservaciones controladoraR;
         private ControladoraNotificaciones controladoraNotificaciones;
         public ControladoraReporteCocina()
         {
@@ -22,19 +23,19 @@ namespace Servicios_Reservados_2
             controladoraNotificaciones = new ControladoraNotificaciones();
         }
 
-        internal DataTable solicitarTurnoDiaTresComidas(String sigla, String inicio, String final)
+        internal DataTable solicitarTurnoDiaTresComidas(String sigla, String fecha)
         {
-            return controladoraBD.solicitarTurnoDiaTresComidas(sigla, inicio, final);
+            return controladoraBD.solicitarTurnoDiaTresComidas(sigla, fecha);
         }
 
-        internal DataTable solicitarTurnoDiaDosComidas(String sigla, String inicio, String final)
+        internal DataTable solicitarTurnoDiaDosComidas(String sigla, String fecha)
         {
-            return controladoraBD.solicitarTurnoDiaDosComidas(sigla,inicio,final);
+            return controladoraBD.solicitarTurnoDiaDosComidas(sigla, fecha);
         }
 
-        internal DataTable reservaEntrante(String sigla, String inicio, String final)
+        internal DataTable reservaEntrante(String sigla, String fecha)
         {
-            return controladoraBD.reservaEntrante(sigla, inicio, final);
+            return controladoraBD.reservaEntrante(sigla, fecha);
         }
 
         internal DataTable solicitarCE(String estacion, String inicio, String final)
@@ -61,6 +62,15 @@ namespace Servicios_Reservados_2
 
         }
 
+        /*
+        * Requiere: N/A
+        * Efectúa : Pide a la controladora de reservaciones todas las estaciones. 
+        * Retorna : el datatable con las estaciones.
+        */
+        internal DataTable llenarEstaciones()
+        {
+            return controladoraR.solicitarEstaciones();
+        }
         /*
          * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
          * Efectua : llama a getDesayunos de la controladora de comida de empleado. 
@@ -103,12 +113,22 @@ namespace Servicios_Reservados_2
 
         /*
         * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
-        * Efectua : llama a getComidasCampo de la controladora de comida campo. 
+        * Efectua : llama a getComidasCampo de la controladora de comida extra. 
         * Retorna :  El datatable retornado por la controladora.
         */
         internal DataTable getComidasExtra(String estacion, String inicio, String final)
         {
             return controladoraCE.getComidasExtra(estacion, inicio, final);
+        }
+
+        /*
+        * Requiere: hilera con el identificador de la estacion, de la fecha inicio, de la fecha final
+        * Efectua : llama a getBebidas de la controladora de comida campo. 
+        * Retorna :  El datatable retornado por la controladora.
+        */
+        internal DataTable getBebidas(String estacion, String inicio, String final)
+        {
+            return controladoraCC.getBebidas(estacion, inicio, final);
         }
 
         internal int getNotificaciones()

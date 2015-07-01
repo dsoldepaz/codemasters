@@ -30,6 +30,9 @@ namespace Servicios_Reservados_2
         private int sumaTotalComidasCampo;
         private int sumaTotalComidasCampoServidos;
         private DataTable fechas;
+        private int desayunos;
+        private int almuerzos;
+        private int cena;
 
 
 
@@ -61,17 +64,20 @@ namespace Servicios_Reservados_2
         */
         void cargarDatos()
         {
-            if (estacion == "todas")
-            {
-                cbxEstacion.Items.Clear();
-                cbxEstacion.Items.Add(estacion);
-            }
-            else
+            if (estacion == "Todas")
             {
                 cargarEstaciones();
             }
+            else
+            {
+                cbxEstacion.Items.Clear();
+                cbxFecha.Items.Add("Seleccionar");
+                cbxEstacion.Items.Add(estacion);
+                
+            }
 
             listAnfitriona.Items.Clear();
+            listAnfitriona.Items.Add("Seleccionar");
             listAnfitriona.Items.Add("OET");
             listAnfitriona.Items.Add("ESINTRO");
 
@@ -79,13 +85,16 @@ namespace Servicios_Reservados_2
             cbxFecha.Items.Add("Hoy");
             cbxFecha.Items.Add("Semana");
             cbxFecha.Items.Add("Mes");
+            cbxFecha.Items.Add("Año Fiscal");
             cbxFecha.Items.Add("Personalizado");
+            
 
             //para que siempre esten desactivados 
             dateFechaFin.Disabled = true;
             dateFechaInicio.Disabled = true;
             dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
             dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+
 
         }
 
@@ -98,6 +107,7 @@ namespace Servicios_Reservados_2
         {
             DataTable estaciones = controladora.cargarEstaciones();
             cbxEstacion.Items.Clear();// limpiamos el combobox
+            cbxEstacion.Items.Add("Seleccionar");
             if (estaciones.Rows.Count > 0)
             {// agregamos cada uno de los tipos 
                 foreach (DataRow fila in estaciones.Rows)
@@ -119,7 +129,7 @@ namespace Servicios_Reservados_2
             {
                 anfitriona = 01;
             }
-            else
+            else if (listAnfitriona.SelectedValue.Equals("ESINTRO"))
             {
                 anfitriona = 02;
             }
@@ -161,7 +171,7 @@ namespace Servicios_Reservados_2
 
                 tabla.Rows.Add(datos);
 
-                GridViewReportes.AllowSorting = false;
+                Session["tabla"] = tabla;
                 GridViewReportes.DataBind();
 
             }
@@ -197,16 +207,16 @@ namespace Servicios_Reservados_2
                     break;
                 case (3):
                     dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+                    dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddMonths(12));  //año fiscal
+                    break;
+                case (4):
+                    dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
                     dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
                     dateFechaFin.Disabled = false;
                     dateFechaInicio.Disabled = false;
                     break;
             }
         }
-
-
-
-
 
 
         /**
@@ -285,28 +295,49 @@ namespace Servicios_Reservados_2
             tabla.Columns.Add(columna);
 
             GridViewReportes.DataSource = tabla;
-            GridViewReportes.AllowSorting = false;
             GridViewReportes.DataBind();
 
 
             return tabla;
         }
+        protected void llenarDatos()
+        {
+            if (listAnfitriona.SelectedValue != "Seleccionar")
+            {
+                txtAnfitriona.Value = listAnfitriona.SelectedValue;
+            }
+            else
+            {
+                txtAnfitriona.Value = "No se seleccionó";
+            }
+            if (cbxEstacion.Value != "Seleccionar")
+            {
+                txtEstacion.Value = cbxEstacion.Value;
+            }
+            else
+            {
+                txtEstacion.Value = "No se seleccionó";
+            }
+            txtFechaInicio.Value = fechaInicial;
+            txtFechaFinal.Value = fechaFin;
+        }
 
         protected void BotonGenerar_Click(object sender, EventArgs e)
         {
             obtenerFiltros();
+            llenarDatos();
             cicloFechas();
-            //llenarGridReportes();
         }
+
 
         protected void cicloFechas()
         {
             DataTable tabla = crearTablaServicios();
-            if (estacion != null && fechaInicial != null && fechaFin != null) //si se selecciona una estacion, fecha y anfitriona
-            {
-                DateTime fin = DateTime.Parse(dateFechaFin.Value);
-                DateTime inicio = DateTime.Parse(dateFechaInicio.Value);
+            DateTime fin = DateTime.Parse(dateFechaFin.Value);
+            DateTime inicio = DateTime.Parse(dateFechaInicio.Value);
 
+            if (estacion != "Sleccionar" && anfitriona != 0 && fechaInicial != null && fechaFin != null) //si se selecciona una estacion, fecha y anfitriona
+            {
                 while (inicio <= fin)//se realiza el for en el rango de fechas especificado
                 {
                     filtroEstacionAnfitrionaFecha(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
@@ -314,13 +345,43 @@ namespace Servicios_Reservados_2
                     inicio = DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
                 }
             }
+            else if (estacion != "Seleccionar" && anfitriona == 0 && fechaInicial != null && fechaFin != null) //si se selecciona solo una estacion y fechas.
+            {
+                while (inicio <= fin)//se realiza el for en el rango de fechas especificado
+                {
+                    filtroEstacionFecha(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
+                    llenarGridReportes(inicio.ToString("MM/dd/yyyy"), tabla);
+                    inicio = DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
+                }
+            }
+            else if (estacion.Equals("Seleccionar") && anfitriona != 0 && fechaInicial != null && fechaFin != null) //si se seleccciona fecha y anfitriona.
+            {
+                while (inicio <= fin)//se realiza el for en el rango de fechas especificado
+                {
+                    filtroEstacionAnfitrionaFecha(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
+                    llenarGridReportes(inicio.ToString("MM/dd/yyyy"), tabla);
+                    inicio = DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
+                }
+            }
+            else if (estacion.Equals("Seleccionar") && anfitriona == 0 && fechaInicial != null && fechaFin != null) //si se seleccioa solo fechas
+            {
+                while (inicio <= fin)//se realiza el for en el rango de fechas especificado
+                {
+                    filtroEstacionFecha(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
+                    llenarGridReportes(inicio.ToString("MM/dd/yyyy"), tabla);
+                    inicio = DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
+                }
+            
+            }
+
+
+
         }
 
         protected void filtroEstacionAnfitrionaFecha(String fechaInicio, String fechaFinal)
         {
 
             DataTable comidaCampoReservDesayuno = verificarDataTable(controladora.obtenerComidaPax(estacion, 1, anfitriona, fechaInicio, fechaFinal));
-            contar = comidaCampoReservDesayuno.Rows.Count;
             DataTable comidaCampoReservAlmuerzo = verificarDataTable(controladora.obtenerComidaPax(estacion, 2, anfitriona, fechaInicio, fechaFinal)); //almuerzo de comidaCampo reservado
             DataTable comidaCampoReservCena = verificarDataTable(controladora.obtenerComidaPax(estacion, 3, anfitriona, fechaInicio, fechaFinal)); //cena de comidaCampo reservado
             DataTable comidaExtraDesayuno = verificarDataTable(controladora.obtenerComidaExtraEstacionAnfitrionaFecha(estacion, "Desayuno", anfitriona, fechaInicio, fechaFinal, 1)); //desayuno comida extra
@@ -356,9 +417,9 @@ namespace Servicios_Reservados_2
             {
                 sumaTotalDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][1].ToString()) + int.Parse(comidaExtraDesayuno.Rows[0][1].ToString());    //suma total desayuno  
                 sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][2].ToString()) + int.Parse(comidaExtraDesayuno.Rows[0][2].ToString());
-                sumaTotalAlmuerzo = int.Parse(comidaCampoReservAlmuerzo.Rows[0][1].ToString() + comidaExtraAlmuerzo.Rows[0][1].ToString()); //suma total de almuerzos
+                sumaTotalAlmuerzo = int.Parse(comidaCampoReservAlmuerzo.Rows[0][1].ToString()) + int.Parse(comidaExtraAlmuerzo.Rows[0][1].ToString()); //suma total de almuerzos
                 sumaTotalConsumidosAlmuerzo = int.Parse(comidaCampoReservAlmuerzo.Rows[0][2].ToString()) + int.Parse(comidaExtraAlmuerzo.Rows[0][2].ToString()); //suma total almuerzo servidos 
-                sumaTotalCena = int.Parse(comidaCampoReservCena.Rows[0][1].ToString() + comidaExtraCena.Rows[0][1].ToString()); //suma total de cena
+                sumaTotalCena = int.Parse(comidaCampoReservCena.Rows[0][1].ToString()) + int.Parse(comidaExtraCena.Rows[0][1].ToString()); //suma total de cena
                 sumaTotalConsumidosCena = int.Parse(comidaCampoReservCena.Rows[0][2].ToString()) + int.Parse(comidaExtraCena.Rows[0][2].ToString()); //suma total cena servidos 
                 sumaTotalComidasCampo = int.Parse(comidaCampoReservaSandiwch.Rows[0][1].ToString()) + int.Parse(comidaCampoReservaPinto.Rows[0][1].ToString());
                 sumaTotalComidasCampoServidos = int.Parse(comidaCampoReservaSandiwch.Rows[0][2].ToString()) + int.Parse(comidaCampoReservaPinto.Rows[0][2].ToString());
@@ -450,7 +511,7 @@ namespace Servicios_Reservados_2
                 sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][2].ToString()) + int.Parse(comidaExtraDesayuno.Rows[0][2].ToString());
                 sumaTotalAlmuerzo = int.Parse(comidaCampoReservAlmuerzo.Rows[0][1].ToString() + comidaExtraAlmuerzo.Rows[0][1].ToString()); //suma total de almuerzos
                 sumaTotalConsumidosAlmuerzo = int.Parse(comidaCampoReservAlmuerzo.Rows[0][2].ToString()) + int.Parse(comidaExtraAlmuerzo.Rows[0][2].ToString()); //suma total almuerzo servidos 
-                sumaTotalCena = int.Parse(comidaCampoReservCena.Rows[0][1].ToString() + comidaExtraCena.Rows[0][1].ToString()); //suma total de cena
+                sumaTotalCena = int.Parse(comidaCampoReservCena.Rows[0][1].ToString()) + int.Parse(comidaExtraCena.Rows[0][1].ToString()); //suma total de cena
                 sumaTotalConsumidosCena = int.Parse(comidaCampoReservCena.Rows[0][2].ToString()) + int.Parse(comidaExtraCena.Rows[0][2].ToString()); //suma total cena servidos 
                 sumaTotalComidasCampo = int.Parse(comidaCampoReservaSandiwch.Rows[0][1].ToString()) + int.Parse(comidaCampoReservaPinto.Rows[0][1].ToString());
                 sumaTotalComidasCampoServidos = int.Parse(comidaCampoReservaSandiwch.Rows[0][2].ToString()) + int.Parse(comidaCampoReservaPinto.Rows[0][2].ToString());
@@ -530,6 +591,7 @@ namespace Servicios_Reservados_2
             }
             return resultante;
         }
+
         /*
         * Requiere: N/A
         * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
@@ -541,6 +603,123 @@ namespace Servicios_Reservados_2
             contador.InnerText = numNotificaciones + "";
         }
 
+        /*
+        *  Requiere: Controladores de eventos de la interfaz.
+        *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
+        *  Retrona:  N/A
+        */
+        protected void GridViewReporte_PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
 
+            GridViewReportes.PageIndex = e.NewPageIndex;
+            GridViewReportes.DataSource = Session["tabla"];
+            GridViewReportes.DataBind();
+
+        }
+
+
+        /*
+        * Requiere: N/A
+        * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
+        * Retoirna: N/A
+        */
+        private void obtenerServiciosReservaciones(String fechaInicio, String fechaFinal)
+        {
+            string sigla;
+            string estacionSeleccionada = cbxEstacion.Value;
+
+            if (estacionSeleccionada == "Las Cruces")
+            {
+                sigla = "LC";
+            }
+            else if (estacionSeleccionada == "Palo Verde")
+            {
+                sigla = "PV";
+
+            }
+            else
+            {
+                sigla = "LS";
+            }
+            //Obtiene los datos de las reservaciones que reservan las 3 comidas por dia
+            DataTable turnosDiaTres = controladora.solicitarTurnoDiaTresComidas(sigla, fechaInicio, fechaFinal);
+
+            if (turnosDiaTres.Rows.Count > 0)
+            {
+                foreach (DataRow fila in turnosDiaTres.Rows)
+                {
+                    desayunos = int.Parse(fila[1].ToString());
+                }
+            }
+
+
+            almuerzos = desayunos;
+            cena = desayunos;
+            //Obtiene los datos de reservaciones que reservan solo 2 comidas por dia
+            DataTable turnosDiaDos = controladora.solicitarTurnoDiaDosComidas(sigla, fechaInicio, fechaFinal);
+            if (turnosDiaDos.Rows.Count > 0)
+            {
+                foreach (DataRow fila in turnosDiaDos.Rows)
+                {
+                    String turno;
+                    int cantidad;
+                    turno = fila[0].ToString();
+                    cantidad = (int.Parse(fila[2].ToString()));
+                    if (turno == "ALMUERZO")
+                    {
+                        almuerzos += cantidad;
+                        cena += cantidad;
+                    }
+                    else if (turno == "CENA")
+                    {
+                        desayunos += cantidad;
+                        cena += cantidad;
+                    }
+                    else
+                    {
+                        desayunos += cantidad;
+                        almuerzos += cantidad;
+                    }
+
+                }
+            }
+
+            //Obtener reservaciones entrantes para calculos mas exactos de platos a cocinar
+            DataTable reservaEntrante = controladora.reservaEntrante(sigla, fechaInicio, fechaFinal);
+
+            if (reservaEntrante.Rows.Count > 0)
+            {
+
+                foreach (DataRow fila in reservaEntrante.Rows)
+                {
+                    String turno;
+                    String tipoC;
+                    int cantidad;
+                    turno = fila[0].ToString();
+                    tipoC = fila[1].ToString();
+                    cantidad = (int.Parse(fila[3].ToString()));
+                    if (turno == "ALMUERZO" && tipoC == "3 Comidas (" + sigla + ")")
+                    {
+                        desayunos = desayunos - cantidad;
+                    }
+                    else if (turno == "CENA")
+                    {
+                        if (tipoC == "3 Comidas (" + sigla + ")")
+                        {
+                            desayunos = desayunos - cantidad;
+                            almuerzos = almuerzos - cantidad;
+                        }
+                        else
+                        {
+                            desayunos = desayunos - cantidad;
+                        }
+
+                    }
+
+
+                }
+
+        } 
     }
+}
 }

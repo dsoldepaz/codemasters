@@ -46,7 +46,7 @@ namespace Servicios_Reservados_2
         }
         /*
          * Requiere: N/A
-         * Efectúa : Pide a la controladora de base de datos la información de todas las reservaciones y las guarda en una tabla de datos. 
+         * Efectúa : Pide a la controladora de base de datos la información de todas las estaciones y las guarda en una tabla de datos. 
          * Retorna : la tabla de datos que se crea.
          */
         internal DataTable solicitarEstaciones()
