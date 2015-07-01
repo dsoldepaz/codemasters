@@ -762,11 +762,12 @@ li.item-navegacion>a{
     font-weight:bolder;
 }
 li.item-navegacion>a.seleccionado{
-    font-size:1.2em;
-    font-weight:bold;
-    word-spacing:0.2em;
-    background-color: #3F8C00;
-    border-radius:3px;
+  font-size: 1.2em;
+  font-weight: bold;
+  word-spacing: 0.2em;
+  /* background-color: #3F8C00; */
+  border-radius: 3px;
+  color: #FDBB30;
 }
 span.notificacion{
     background-color: #F26631;
@@ -852,10 +853,10 @@ input#btnSalir:hover {
 label.labelfont {
     font: normal 14px Arial !important;
 }
-li.item-navegacion:hover {
+/*li.item-navegacion:hover {
   transition: font-size 0.125s;
   font-size: 1.2em;
-}
+}*/
 li.item-navegacion>a.seleccionado:hover {
   background-color: transparent;
 }
