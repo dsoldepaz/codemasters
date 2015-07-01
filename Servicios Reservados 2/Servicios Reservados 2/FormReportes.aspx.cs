@@ -125,7 +125,7 @@ namespace Servicios_Reservados_2
             {
                 anfitriona = 01;
             }
-            else
+            else if (listAnfitriona.SelectedValue.Equals("ESINTRO"))
             {
                 anfitriona = 02;
             }
@@ -167,7 +167,7 @@ namespace Servicios_Reservados_2
 
                 tabla.Rows.Add(datos);
 
-                GridViewReportes.AllowSorting = false;
+                Session["tabla"] = tabla;
                 GridViewReportes.DataBind();
 
             }
@@ -202,6 +202,10 @@ namespace Servicios_Reservados_2
                     dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddMonths(1));
                     break;
                 case (3):
+                    dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
+                    dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddMonths(12));  //año fiscal
+                    break;
+                case (4):
                     dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
                     dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
                     dateFechaFin.Disabled = false;
@@ -287,16 +291,37 @@ namespace Servicios_Reservados_2
             tabla.Columns.Add(columna);
 
             GridViewReportes.DataSource = tabla;
-            GridViewReportes.AllowSorting = false;
             GridViewReportes.DataBind();
 
 
             return tabla;
         }
+        protected void llenarDatos()
+        {
+            if (listAnfitriona.SelectedValue != "Seleccionar")
+            {
+                txtAnfitriona.Value = listAnfitriona.SelectedValue;
+            }
+            else
+            {
+                txtAnfitriona.Value = "No se seleccionó";
+            }
+            if (cbxEstacion.Value != "Seleccionar")
+            {
+                txtEstacion.Value = cbxEstacion.Value;
+            }
+            else
+            {
+                txtEstacion.Value = "No se seleccionó";
+            }
+            txtFechaInicio.Value = fechaInicial;
+            txtFechaFinal.Value = fechaFin;
+        }
 
         protected void BotonGenerar_Click(object sender, EventArgs e)
         {
             obtenerFiltros();
+            llenarDatos();
             cicloFechas();
         }
 
@@ -307,7 +332,7 @@ namespace Servicios_Reservados_2
             DateTime fin = DateTime.Parse(dateFechaFin.Value);
             DateTime inicio = DateTime.Parse(dateFechaInicio.Value);
 
-            if (estacion != null && fechaInicial != null && fechaFin != null) //si se selecciona una estacion, fecha y anfitriona
+            if (estacion != "Sleccionar" && anfitriona != 0 && fechaInicial != null && fechaFin != null) //si se selecciona una estacion, fecha y anfitriona
             {
                 while (inicio <= fin)//se realiza el for en el rango de fechas especificado
                 {
@@ -315,6 +340,34 @@ namespace Servicios_Reservados_2
                     llenarGridReportes(inicio.ToString("MM/dd/yyyy"), tabla);
                     inicio = DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
                 }
+            }
+            else if (estacion != "Seleccionar" && anfitriona == 0 && fechaInicial != null && fechaFin != null) //si se selecciona solo una estacion y fechas.
+            {
+                while (inicio <= fin)//se realiza el for en el rango de fechas especificado
+                {
+                    filtroEstacionFecha(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
+                    llenarGridReportes(inicio.ToString("MM/dd/yyyy"), tabla);
+                    inicio = DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
+                }
+            }
+            else if (estacion.Equals("Seleccionar") && anfitriona != 0 && fechaInicial != null && fechaFin != null) //si se seleccciona fecha y anfitriona.
+            {
+                while (inicio <= fin)//se realiza el for en el rango de fechas especificado
+                {
+                    filtroEstacionAnfitrionaFecha(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
+                    llenarGridReportes(inicio.ToString("MM/dd/yyyy"), tabla);
+                    inicio = DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
+                }
+            }
+            else if (estacion.Equals("Seleccionar") && anfitriona == 0 && fechaInicial != null && fechaFin != null) //si se seleccioa solo fechas
+            {
+                while (inicio <= fin)//se realiza el for en el rango de fechas especificado
+                {
+                    filtroEstacionFecha(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
+                    llenarGridReportes(inicio.ToString("MM/dd/yyyy"), tabla);
+                    inicio = DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
+                }
+            
             }
 
 
@@ -554,9 +607,14 @@ namespace Servicios_Reservados_2
         {
 
             GridViewReportes.PageIndex = e.NewPageIndex;
-            GridViewReportes.DataSource = Session["tablaa"];
+            GridViewReportes.DataSource = Session["tabla"];
             GridViewReportes.DataBind();
 
+        }
+
+        protected void clickCancelar(object sender, EventArgs e)
+        {
+            Response.Redirect("Default");
         } 
     }
 }
