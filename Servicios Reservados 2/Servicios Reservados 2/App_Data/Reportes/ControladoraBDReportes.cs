@@ -56,7 +56,7 @@ namespace Servicios_Reservados_2
       * Requiere: 
       * Modifica : 
       */
-        internal DataTable obtenerComidaPaxAnfitrionaFecha(int opcion, int anfitriona, String fecha, String fechaFinal) //comida campo con todo reservacin
+        internal DataTable obtenerComidaPaxAnfitrionaFecha(int opcion, int anfitriona, String fecha, String fechaFinal) //comida campo reservacion con anfitriona y fechas
         {
             DataTable comidaCampo;
 
@@ -119,7 +119,7 @@ namespace Servicios_Reservados_2
       * Requiere: 
       * Modifica: 
       */
-        internal DataTable obtenerComidaEmpEstacionFechas(String opcion, String fecha, String fechaFinal) //comida campo empleado con fechas o solo con anfitriona y fechas porque anfitriona = ESINTRO.
+        internal DataTable obtenerComidaEmpFechas(String opcion, String fecha, String fechaFinal) //comida campo empleado con fechas o solo con anfitriona y fechas porque anfitriona = ESINTRO.
         {
             DataTable comidaCampoEmp;
 

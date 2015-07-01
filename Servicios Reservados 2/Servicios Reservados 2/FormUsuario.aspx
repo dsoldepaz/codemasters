@@ -100,7 +100,7 @@
                                                 <p>¿Desea desactivar este usuario?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-success" runat="server" onserverclick="clickDesactivar">Aceptar</button>
+                                                <button type="button" class="btn btn-success" data-dismiss="modal" runat="server" onserverclick="clickDesactivar">Aceptar</button>
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                             </div>
                                         </div>

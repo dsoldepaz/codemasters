@@ -114,7 +114,6 @@ namespace Servicios_Reservados_2
                 btnEditar.Disabled = true;
                 btnAnular.Visible = false;
                 btnEditar.Visible = false;
-
             }
             else if (modo == 2)
             { //modificar

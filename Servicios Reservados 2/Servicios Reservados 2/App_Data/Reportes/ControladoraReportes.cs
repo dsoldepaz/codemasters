@@ -21,9 +21,9 @@ namespace Servicios_Reservados_2
         }
 
         /* 
-         * Efecto: 
-         * Requiere: 
-         * Modifica : 
+         * Efecto: consulta las comida de campo de una reservacion con filtros de estacion, anfitriona, y fechas.
+         * Requiere: los valores de los filtros a aplicar
+         * Modifica : la consulta que se pide a la base de datos.
          */
         internal DataTable obtenerComidaPax(String estacion, int opcion,  int anfitriona, String fecha, String fechaFinal)
         {
@@ -31,23 +31,74 @@ namespace Servicios_Reservados_2
         }
 
         /* 
-         * Efecto: 
-         * Requiere: 
-         * Modifica : 
+         * Efecto: consulta las comida de campo de una reservacion con filtros de esatcion, y fechas.
+         * Requiere: los valores de los filtros a aplicar
+         * Modifica : la consulta que se pide a la base de datos. 
+       */
+        internal DataTable obtenerComidaPaxEstacionFechas(String estacion, int opcion, String fecha, String fechaFinal)
+        {
+            return controladoraBD.obtenerComidaPaxEstacionFecha(estacion, opcion,fecha, fechaFinal);
+        }
+
+        /* 
+           * Efecto: consulta las comida de campo de una reservacion con filtros de anfitriona, y fechas.
+           * Requiere: los valores de los filtros a aplicar
+           * Modifica : la consulta que se pide a la base de datos. 
          */
+        internal DataTable obtenerComidaPaxAnfitrionaFecha(int opcion, int anfitriona, String fecha, String fechaFinal)
+        {
+            return controladoraBD.obtenerComidaPaxAnfitrionaFecha(opcion, anfitriona, fecha, fechaFinal);
+        }
+
+        /* 
+           * Efecto: consulta las comida de campo de una reservacion con filtros de fechas.
+           * Requiere: los valores de los filtros a aplicar
+           * Modifica : la consulta que se pide a la base de datos. 
+
+   */
+        internal DataTable obtenerComidaPaxFechas(int opcion, String fecha, String fechaFinal)
+        {
+            return controladoraBD.obtenerComidaPaxFechas(opcion, fecha, fechaFinal);
+        }
+
+
+        /* 
+           * Efecto: consulta las comida de campo de un empleado con filtros de fechas.
+           * Requiere: los valores de los filtros a aplicar
+           * Modifica : la consulta que se pide a la base de datos. 
+
+         */
+        internal DataTable obtenerComidaPaxEmpFechas(int opcion, String fecha, String fechaFinal)
+        {
+            return controladoraBD.obtenerComidaPaxEmpFechas(opcion, fecha, fechaFinal);
+        }
+
+        /* 
+        * Efecto: consulta las comida de empleado con filtros de estacion, anfitriona, y fechas.
+        * Requiere: los valores de los filtros a aplicar
+        * Modifica : la consulta que se pide a la base de datos. 
+        */
         internal DataTable obtenerComidaPaxEmp(String estacion, int opcion, String fecha, String fechaFinal)
         {
             return controladoraBD.obtenerComidaPaxEmp(estacion, opcion, fecha, fechaFinal);
         }
-
         /* 
-         * Efecto: 
-         * Requiere: 
-         * Modifica : 
+        * Efecto: consulta las comida de empleado con filtros de estacion, anfitriona y  fechas.
+        * Requiere: los valores de los filtros a aplicar
+        * Modifica : la consulta que se pide a la base de datos. 
          */
         internal DataTable obtenerComidaEmp(String estacion, String opcion, String fecha, String fechaFinal)
         {
-            return controladoraBD.obtenerComidaEmp(estacion,opcion, fecha, fechaFinal);
+            return controladoraBD.obtenerComidaEmp(estacion, opcion, fecha, fechaFinal);
+        }
+        /* 
+        * Efecto: consulta las comida de empleado con filtros de fechas.
+        * Requiere: los valores de los filtros a aplicar
+        * Modifica : la consulta que se pide a la base de datos. 
+         */
+        internal DataTable obtenerComidaEmpFechas(String opcion, String fecha, String fechaFinal)
+        {
+            return controladoraBD.obtenerComidaEmpFechas(opcion, fecha, fechaFinal);
         }
 
 
