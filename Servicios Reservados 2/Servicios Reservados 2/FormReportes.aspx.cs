@@ -29,7 +29,6 @@ namespace Servicios_Reservados_2
         private int sumaTotalConsumidosSnacks;
         private int sumaTotalComidasCampo;
         private int sumaTotalComidasCampoServidos;
-        private DataTable fechas;
         private int desayunos;
         private int almuerzos;
         private int cena;
@@ -73,7 +72,7 @@ namespace Servicios_Reservados_2
                 cbxEstacion.Items.Clear();
                 cbxFecha.Items.Add("Seleccionar");
                 cbxEstacion.Items.Add(estacion);
-                
+
             }
 
             listAnfitriona.Items.Clear();
@@ -87,7 +86,7 @@ namespace Servicios_Reservados_2
             cbxFecha.Items.Add("Mes");
             cbxFecha.Items.Add("Año Fiscal");
             cbxFecha.Items.Add("Personalizado");
-            
+
 
             //para que siempre esten desactivados 
             dateFechaFin.Disabled = true;
@@ -206,6 +205,9 @@ namespace Servicios_Reservados_2
                     dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddMonths(1));
                     break;
                 case (3):
+                    DateTime inicioAno = new DateTime();
+                    inicioAno = DateTime.Parse("");
+
                     dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
                     dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddMonths(12));  //año fiscal
                     break;
@@ -349,6 +351,7 @@ namespace Servicios_Reservados_2
             {
                 while (inicio <= fin)//se realiza el for en el rango de fechas especificado
                 {
+                    obtenerServiciosReservaciones(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
                     filtroEstacionFecha(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
                     llenarGridReportes(inicio.ToString("MM/dd/yyyy"), tabla);
                     inicio = DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
@@ -371,7 +374,7 @@ namespace Servicios_Reservados_2
                     llenarGridReportes(inicio.ToString("MM/dd/yyyy"), tabla);
                     inicio = DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
                 }
-            
+
             }
 
 
@@ -401,7 +404,7 @@ namespace Servicios_Reservados_2
                 DataTable comidaAlmuerzoEmp = verificarDataTableEmp(controladora.obtenerComidaEmp(estacion, "almuerzo", fechaInicio, fechaFinal)); //almuerzo comida campo de empleados
                 DataTable comidaCenaEmp = verificarDataTableEmp(controladora.obtenerComidaEmp(estacion, "cena", fechaInicio, fechaFinal)); //cena comida campo de empleados
                 DataTable comidaCampoEmpSandiwch = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 4, fechaInicio, fechaFinal)); //sandwiches de empleado
-                DataTable comidaCampoEmpPinto = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 5,fechaInicio, fechaFinal)); // gallo pinto de empleados
+                DataTable comidaCampoEmpPinto = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 5, fechaInicio, fechaFinal)); // gallo pinto de empleados
 
                 sumaTotalDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][1].ToString()) + int.Parse(comidaExtraDesayuno.Rows[0][1].ToString()) + int.Parse(comidaCampoDesayunoEmp.Rows[0][1].ToString()) + int.Parse(comidaDesayunoEmp.Rows[0][1].ToString());    //suma total desayuno  
                 sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][2].ToString()) + int.Parse(comidaExtraDesayuno.Rows[0][2].ToString()) + int.Parse(comidaCampoDesayunoEmp.Rows[0][2].ToString()) + int.Parse(comidaDesayunoEmp.Rows[0][2].ToString()); //suma total desayuno servidos 
@@ -445,21 +448,21 @@ namespace Servicios_Reservados_2
             DataTable comidaCampoReservaSandiwch = verificarDataTable(controladora.obtenerComidaPaxEstacionFechas(estacion, 4, fechaInicio, fechaFinal)); //sandwiches de reservacion
             DataTable comidaCampoReservaPinto = verificarDataTable(controladora.obtenerComidaPaxEstacionFechas(estacion, 5, fechaInicio, fechaFinal)); //gallo pinto de reservacion
             DataTable comidaExtraSnack = verificarDataTable(controladora.obtenerComidaExtraEstacionFecha(estacion, "Cena", fechaInicio, fechaFinal, 2));
-           
+
             DataTable comidaCampoDesayunoEmp = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 1, fechaInicio, fechaFinal)); //desayuno comida campo empleado
             DataTable comidaCampoAlmuerzoEmp = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 2, fechaInicio, fechaFinal));//almuerzo comida campo empleado
             DataTable comidaCampoCenaEmp = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 3, fechaInicio, fechaFinal)); //cena comida campo empleado
             DataTable comidaDesayunoEmp = verificarDataTableEmp(controladora.obtenerComidaEmp(estacion, "desayuno", fechaInicio, fechaFinal)); //desayuno comida campo de empleados
             DataTable comidaAlmuerzoEmp = verificarDataTableEmp(controladora.obtenerComidaEmp(estacion, "almuerzo", fechaInicio, fechaFinal)); //almuerzo comida campo de empleados
             DataTable comidaCenaEmp = verificarDataTableEmp(controladora.obtenerComidaEmp(estacion, "cena", fechaInicio, fechaFinal)); //cena comida campo de empleados
-            DataTable comidaCampoEmpSandiwch = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 4,fechaInicio, fechaFinal)); //sandwiches de empleado
-            DataTable comidaCampoEmpPinto = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 5,fechaInicio, fechaFinal)); // gallo pinto de empleados
+            DataTable comidaCampoEmpSandiwch = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 4, fechaInicio, fechaFinal)); //sandwiches de empleado
+            DataTable comidaCampoEmpPinto = verificarDataTable(controladora.obtenerComidaPaxEmp(estacion, 5, fechaInicio, fechaFinal)); // gallo pinto de empleados
 
-            sumaTotalDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][1].ToString()) + int.Parse(comidaExtraDesayuno.Rows[0][1].ToString()) + int.Parse(comidaCampoDesayunoEmp.Rows[0][1].ToString()) + int.Parse(comidaDesayunoEmp.Rows[0][1].ToString());    //suma total desayuno  
+            sumaTotalDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][1].ToString()) + int.Parse(comidaExtraDesayuno.Rows[0][1].ToString()) + int.Parse(comidaCampoDesayunoEmp.Rows[0][1].ToString()) + int.Parse(comidaDesayunoEmp.Rows[0][1].ToString()) + desayunos;    //suma total desayuno  
             sumaTotalConsumidosDesayuno = int.Parse(comidaCampoReservDesayuno.Rows[0][2].ToString()) + int.Parse(comidaExtraDesayuno.Rows[0][2].ToString()) + int.Parse(comidaCampoDesayunoEmp.Rows[0][2].ToString()) + int.Parse(comidaDesayunoEmp.Rows[0][2].ToString()); //suma total desayuno servidos 
-            sumaTotalAlmuerzo = int.Parse(comidaCampoReservAlmuerzo.Rows[0][1].ToString()) + int.Parse(comidaExtraAlmuerzo.Rows[0][1].ToString()) + int.Parse(comidaCampoAlmuerzoEmp.Rows[0][1].ToString()) + int.Parse(comidaAlmuerzoEmp.Rows[0][1].ToString()); //suma total de almuerzos
+            sumaTotalAlmuerzo = int.Parse(comidaCampoReservAlmuerzo.Rows[0][1].ToString()) + int.Parse(comidaExtraAlmuerzo.Rows[0][1].ToString()) + int.Parse(comidaCampoAlmuerzoEmp.Rows[0][1].ToString()) + int.Parse(comidaAlmuerzoEmp.Rows[0][1].ToString()) + almuerzos; //suma total de almuerzos
             sumaTotalConsumidosAlmuerzo = int.Parse(comidaCampoReservAlmuerzo.Rows[0][2].ToString()) + int.Parse(comidaExtraAlmuerzo.Rows[0][2].ToString()) + int.Parse(comidaCampoAlmuerzoEmp.Rows[0][2].ToString()) + int.Parse(comidaAlmuerzoEmp.Rows[0][2].ToString()); //suma total almuerzo servidos 
-            sumaTotalCena = int.Parse(comidaCampoReservCena.Rows[0][1].ToString()) + int.Parse(comidaExtraCena.Rows[0][1].ToString()) + int.Parse(comidaCampoCenaEmp.Rows[0][1].ToString()) + int.Parse(comidaCenaEmp.Rows[0][1].ToString()); //suma total de cena
+            sumaTotalCena = int.Parse(comidaCampoReservCena.Rows[0][1].ToString()) + int.Parse(comidaExtraCena.Rows[0][1].ToString()) + int.Parse(comidaCampoCenaEmp.Rows[0][1].ToString()) + int.Parse(comidaCenaEmp.Rows[0][1].ToString()) + cena; //suma total de cena
             sumaTotalConsumidosCena = int.Parse(comidaCampoReservCena.Rows[0][2].ToString()) + int.Parse(comidaExtraCena.Rows[0][2].ToString()) + int.Parse(comidaCampoCenaEmp.Rows[0][2].ToString()) + int.Parse(comidaCenaEmp.Rows[0][2].ToString()); //suma total cena servidos 
             sumaTotalComidasCampo = int.Parse(comidaCampoReservaSandiwch.Rows[0][1].ToString()) + int.Parse(comidaCampoReservaPinto.Rows[0][1].ToString()) + int.Parse(comidaCampoEmpSandiwch.Rows[0][1].ToString()) + int.Parse(comidaCampoEmpPinto.Rows[0][1].ToString()); //suma total de snacks
             sumaTotalComidasCampoServidos = int.Parse(comidaCampoReservaSandiwch.Rows[0][2].ToString()) + int.Parse(comidaCampoReservaPinto.Rows[0][2].ToString()) + int.Parse(comidaCampoEmpSandiwch.Rows[0][2].ToString()) + int.Parse(comidaCampoEmpPinto.Rows[0][2].ToString()); //suma total de snacks servidos
@@ -476,7 +479,7 @@ namespace Servicios_Reservados_2
             contar = comidaCampoReservDesayuno.Rows.Count;
             DataTable comidaCampoReservAlmuerzo = verificarDataTable(controladora.obtenerComidaPaxAnfitrionaFecha(2, anfitriona, fechaInicio, fechaFinal)); //almuerzo de comidaCampo reservado
             DataTable comidaCampoReservCena = verificarDataTable(controladora.obtenerComidaPaxAnfitrionaFecha(3, anfitriona, fechaInicio, fechaFinal)); //cena de comidaCampo reservado
-            DataTable comidaExtraDesayuno = verificarDataTable(controladora.obtenerComidaExtraAnfitrionaFecha("Desayuno",anfitriona, fechaInicio, fechaFinal, 1)); //desayuno comida extra
+            DataTable comidaExtraDesayuno = verificarDataTable(controladora.obtenerComidaExtraAnfitrionaFecha("Desayuno", anfitriona, fechaInicio, fechaFinal, 1)); //desayuno comida extra
             DataTable comidaExtraAlmuerzo = verificarDataTable(controladora.obtenerComidaExtraAnfitrionaFecha("Almuerzo", anfitriona, fechaInicio, fechaFinal, 1)); //almuerzo comida extra
             DataTable comidaExtraCena = verificarDataTable(controladora.obtenerComidaExtraAnfitrionaFecha("Cena", anfitriona, fechaInicio, fechaFinal, 1)); //cena comida extra
             DataTable comidaCampoReservaSandiwch = verificarDataTable(controladora.obtenerComidaPaxAnfitrionaFecha(4, anfitriona, fechaInicio, fechaFinal)); //sandwiches de reservacion
@@ -719,7 +722,7 @@ namespace Servicios_Reservados_2
 
                 }
 
-        } 
+            }
+        }
     }
-}
 }
