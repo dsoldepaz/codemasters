@@ -15,7 +15,7 @@ namespace Servicios_Reservados_2
         }
         public DataTable numeroDeNotificaciones(String ultima)
         {
-            String consulta = "Select COUNT (*)  From notificaciones Where NUMERODENOTIFICACION > " + ultima ;
+            String consulta = "Select COUNT (*)  From notificaciones Where momento> CURRENT_TIMESTAMP-interval '18' hour (1) AND NUMERODENOTIFICACION > " + ultima;
             DataTable resultado = adaptador.consultar(consulta);
             return resultado;
         }
@@ -24,7 +24,7 @@ namespace Servicios_Reservados_2
          * Efectua : Pide al adaptador las notificaciones de las comidas entre las ultimas 12 horas y las proximas 12 horas.
          * Retorna : un data table con las notificaciones.
          */
-        internal DataTable getNotificaciones()
+        internal DataTable getNotificaciones(String ultima)
         {
             string consulta = "SELECT MOMENTO, ESTACION, TIPODESERVICIO, TIPODECAMBIO, VALORANTERIOR, VALORACTUAL, IDSERVICIO FROM servicios_reservados.Notificaciones Where momento> CURRENT_TIMESTAMP-interval '18' hour (1)";
             return adaptador.consultar(consulta);
@@ -37,5 +37,6 @@ namespace Servicios_Reservados_2
             DataTable resultado = adaptador.consultar(consulta);
             return resultado;
         }
+
     }
 }

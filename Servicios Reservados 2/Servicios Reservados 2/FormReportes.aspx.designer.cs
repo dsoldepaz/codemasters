@@ -67,15 +67,6 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.WebControls.DropDownList listAnfitriona;
         
         /// <summary>
-        /// Control txtReservacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtReservacion;
-        
-        /// <summary>
         /// Control cbxFecha.
         /// </summary>
         /// <remarks>
@@ -157,48 +148,12 @@ namespace Servicios_Reservados_2 {
         protected global::System.Web.UI.WebControls.GridView GridViewReportes;
         
         /// <summary>
-        /// Control btnDesayunar.
+        /// Control btnCancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnDesayunar;
-        
-        /// <summary>
-        /// Control btnAlmuerzo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnAlmuerzo;
-        
-        /// <summary>
-        /// Control btnCena.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnCena;
-        
-        /// <summary>
-        /// Control GridViewDetalles.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewDetalles;
-        
-        /// <summary>
-        /// Control btnImprimir.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnImprimir;
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnCancelar;
     }
 }

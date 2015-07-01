@@ -370,7 +370,7 @@ namespace Servicios_Reservados_2
             {
                 while (inicio <= fin)//se realiza el for en el rango de fechas especificado
                 {
-                    filtroEstacionFecha(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
+                    filtroFechas(inicio.ToString("MM/dd/yyyy"), inicio.ToString("MM/dd/yyyy"));
                     llenarGridReportes(inicio.ToString("MM/dd/yyyy"), tabla);
                     inicio = DateTime.Parse(inicio.AddDays(1).ToString("MM/dd/yyyy"));
                 }
@@ -618,6 +618,11 @@ namespace Servicios_Reservados_2
             GridViewReportes.DataSource = Session["tabla"];
             GridViewReportes.DataBind();
 
+        }
+
+        protected void clickCancelar(object sender, EventArgs e)
+        {
+            Response.Redirect("Default");
         }
 
 
