@@ -21,12 +21,12 @@
                     </td>
                     <td>
                         <a href="">
-                            <div id="Div1" class="alert alert-danger fade in" runat="server" hidden="hidden">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <strong>
-                                    <asp:Label ID="label1" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="label2" runat="server" Text="Mensaje de alerta"></asp:Label>
-                            </div>
-                        </a>
+                    <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>
+                            <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
+                    </div>
+                </a>
                     </td>
                 </tr>
             </table>
@@ -85,13 +85,7 @@
             </div>
             <div class="well bs-component">
 
-                <a href="">
-                    <div id="alertAlerta" class="alert alert-danger fade in" runat="server" hidden="hidden">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>
-                            <asp:Label ID="labelTipoAlerta" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="labelAlerta" runat="server" Text="Mensaje de alerta"></asp:Label>
-                    </div>
-                </a>
+                
                 <legend style="color: #7BC143">Listado de servicios</legend>
 
                 <div class="well bs-component" style="background-color: white">

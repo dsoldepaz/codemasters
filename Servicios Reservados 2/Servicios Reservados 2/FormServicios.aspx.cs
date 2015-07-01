@@ -29,7 +29,7 @@ namespace Servicios_Reservados_2
         protected void Page_Load(object sender, EventArgs e)
         {
             i = 0;
-            
+
             ArrayList listaRoles = (ArrayList)Session["Roles"];
             string userid = (string)Session["username"];
 
@@ -99,7 +99,7 @@ namespace Servicios_Reservados_2
                 ids = new String[paquete.Rows.Count + servicios.Rows.Count + comidaCampo.Rows.Count + 1]; //crear el vector para ids en el grid
                 idServ = new String[paquete.Rows.Count + servicios.Rows.Count + servicios.Rows.Count + comidaCampo.Rows.Count + 1];
 
-                
+
                 //agrega los servicios de comida extra
                 if (servicios.Rows.Count > 0)
                 {
@@ -120,7 +120,7 @@ namespace Servicios_Reservados_2
                 }
 
                 //agrega los servicios de comida de campo
-                
+
                 if (comidaCampo.Rows.Count > 0)
                 {
 
@@ -263,7 +263,7 @@ namespace Servicios_Reservados_2
          * Modifica: NA
          */
         protected void seleccionarServicio(int index)
-        {         
+        {
 
             GridServicios.SelectedIndex = index;
             int indiceTabla = index + (GridServicios.PageIndex * 10);
@@ -273,7 +273,7 @@ namespace Servicios_Reservados_2
             String opcion = myWriter.ToString();
 
             seleccionado = controladora.crearServicio(ids[0], idServ[indiceTabla], GridServicios.SelectedRow.Cells[4].Text, opcion);
-            
+
 
         }
         /*
@@ -283,13 +283,15 @@ namespace Servicios_Reservados_2
          */
         protected void modificarServicio(object sender, EventArgs e)
         {
-            
-             seleccionarServicio(obtenerIndex(sender, e));
-            
-            if (idServ[GridServicios.SelectedIndex].Contains("S"))
+            seleccionarServicio(obtenerIndex(sender, e));
+            if ("Comida Extra".Equals(seleccionado.Categoria))
             {
                 modo = 2; //modificar es 2
                 Response.Redirect("FormComidaExtra");
+            }
+            else if ("Paquete".Equals(seleccionado.Categoria))
+            {
+                mostrarMensaje("danger", "Error: ", "No se puede eliminar elementos de esta categoría");
             }
             else
             {
@@ -298,7 +300,6 @@ namespace Servicios_Reservados_2
                 FormComidaCampo.tipoComidaCampo = 0;
                 Response.Redirect("FormComidaCampo");
             }
-
         }
 
         /*
@@ -322,45 +323,55 @@ namespace Servicios_Reservados_2
             FormComidaCampo.modo = 1;
             FormComidaCampo.idReservacion = controladora.idSelected();
             FormComidaCampo.tipoComidaCampo = 0;
-            Response.Redirect("FormComidaCampo"); 
-           
+            Response.Redirect("FormComidaCampo");
+
         }
 
-      /*
-       * Efecto: capta el evento del botón para cancelar una comida extra, cambia el modo y redirige a la interfaz de comida extra.
-       * Requiere: presionar el botón.
-       * Modifica: la variable global modo.
-       */
+        /*
+         * Efecto: capta el evento del botón para cancelar una comida extra, cambia el modo y redirige a la interfaz de comida extra.
+         * Requiere: presionar el botón.
+         * Modifica: la variable global modo.
+         */
         protected void clickEliminarServicio(object sender, EventArgs e)
         {
             seleccionarServicio(obtenerIndex(sender, e));
             String[] mensaje;
-            if (idServ[GridServicios.SelectedIndex].Contains("S"))
+            if ("Paquete".Equals(seleccionado.Categoria))
             {
-                
-                if ("Activo".Equals(seleccionado.Estado))
-                {
-                    mensaje = controladora.cancelarComidaExtra(idServ[GridServicios.SelectedIndex]);
-                    mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
-                }
-                else
-                { 
-                    //error
-                }
+                mostrarMensaje("danger", "Error: ", "No se puede eliminar elementos de esta categoría");
             }
             else
             {
-                if ("Activo".Equals(seleccionado.Estado))
+
+                if (idServ[GridServicios.SelectedIndex].Contains("S"))
                 {
-                   mensaje= controladora.cancelarComidaCampo(idServ[GridServicios.SelectedIndex]);
-                   mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
+
+                    if ("Activo".Equals(seleccionado.Estado))
+                    {
+                        mensaje = controladora.cancelarComidaExtra(idServ[GridServicios.SelectedIndex]);
+                        mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
+                    }
+                    else
+                    {
+                        //error
+                    }
                 }
                 else
                 {
-                    //error
+                    if ("Activo".Equals(seleccionado.Estado))
+                    {
+                        mensaje = controladora.cancelarComidaCampo(idServ[GridServicios.SelectedIndex]);
+                        mostrarMensaje(mensaje[0], mensaje[1], mensaje[2]);
+                    }
+                    else
+                    {
+                        //error
+                    }
                 }
-            }  
-            llenarGridServicios();
+                llenarGridServicios();
+            }
+
+
         }
 
         /*
@@ -371,10 +382,14 @@ namespace Servicios_Reservados_2
         protected void clickConsultarServicio(object sender, EventArgs e)
         {
             seleccionarServicio(obtenerIndex(sender, e));
-            if (idServ[GridServicios.SelectedIndex].Contains("S"))
+            if ("Comida Extra".Equals(seleccionado.Categoria))
             {
                 modo = 0;
-                Response.Redirect("FormComidaExtra"); ;
+                Response.Redirect("FormComidaExtra");
+            }
+            else if ("Paquete".Equals(seleccionado.Categoria))
+            {
+                mostrarMensaje("danger", "Error: ", "No se puede consultar elementos de esta categoría");
             }
             else
             {
@@ -385,7 +400,7 @@ namespace Servicios_Reservados_2
 
         }
 
-      
+
 
         protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
         {
@@ -409,46 +424,47 @@ namespace Servicios_Reservados_2
         protected void clickActivarTiquetes(object sender, EventArgs e)
         {
             seleccionarServicio(obtenerIndex(sender, e));
-            if(seleccionado!=null){
+            if (seleccionado != null)
+            {
                 controladora.activarTiquete();
                 FormTiquete.retorno = Request.Url.AbsoluteUri;
                 Response.Redirect("FormTiquete");
             }
-            
+
         }
 
         protected void clickCancelarModal(object sender, EventArgs e)
         {
             Response.Redirect("FormServicios");
         }
-            
-      /*  protected void filaSeleccionada(object sender, GridViewRowEventArgs e)
-        {
+
+        /*  protected void filaSeleccionada(object sender, GridViewRowEventArgs e)
+          {
          
-            LinkButton consultar = (LinkButton)e.Row.FindControl("btnConsultar");
-            LinkButton modificar = (LinkButton)e.Row.FindControl("btnModificar");
-            LinkButton cancelar = (LinkButton)e.Row.FindControl("btnCancelar");
-            LinkButton activarTiquete = (LinkButton)e.Row.FindControl("btnActivarTiquete");
+              LinkButton consultar = (LinkButton)e.Row.FindControl("btnConsultar");
+              LinkButton modificar = (LinkButton)e.Row.FindControl("btnModificar");
+              LinkButton cancelar = (LinkButton)e.Row.FindControl("btnCancelar");
+              LinkButton activarTiquete = (LinkButton)e.Row.FindControl("btnActivarTiquete");
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
+              if (e.Row.RowType == DataControlRowType.DataRow)
+              {
                
-                if (e.Row.Cells[0].Text == "Paquete")
-                {
-                    consultar.Visible = false;
-                    modificar.Visible = false;
-                    cancelar.Visible = false;
-                }
-                else
-                {
-                    consultar.Visible = true;
-                    modificar.Visible = true;
-                    cancelar.Visible = true;
-                    activarTiquete.Visible = true;
-                }
-        }   
+                  if (e.Row.Cells[0].Text == "Paquete")
+                  {
+                      consultar.Visible = false;
+                      modificar.Visible = false;
+                      cancelar.Visible = false;
+                  }
+                  else
+                  {
+                      consultar.Visible = true;
+                      modificar.Visible = true;
+                      cancelar.Visible = true;
+                      activarTiquete.Visible = true;
+                  }
+          }   
 
-        }*/
+          }*/
         /*
          * Requiere: N/A
          * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
