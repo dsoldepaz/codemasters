@@ -56,12 +56,17 @@ namespace Servicios_Reservados_2
                 String anfitriona = "No disponible";
                 String estacion = "No disponible";
                 String nombreSolicitante = "No disponible";
+                String reservaConsumida = "No disponible";
+                String pax = "No disponible";
 
-                if ("empleado".Equals(tipoSolicitante) && "Comida de campo".Equals(categoria))
+                if ("empleado".Equals(tipoSolicitante) && ("Comida de campo".Equals(categoria) || "Incluido en Paquete".Equals(categoria)))
                 {
                     EntidadEmpleado empleado = controladoraComidaEmp.getInformacionDelEmpleado(idSolicitante);
                     nombreSolicitante = empleado.Nombre + " " + empleado.Apellido;
-
+                    EntidadComidaCampo serv = controladoraComidaCampo.guardarComidaSeleccionada(idSolicitante, idServicio);
+                    estacion = serv.Estacion;
+                    anfitriona = "ESINTRO";
+                    pax = serv.Pax.ToString();
                 }
                 else if ("empleado".Equals(tipoSolicitante) && "Comida regular".Equals(categoria))
                 {
@@ -69,7 +74,10 @@ namespace Servicios_Reservados_2
                     EntidadEmpleado empleado = controladoraComidaEmp.getInformacionDelEmpleado(idSolicitante);
                     nombreSolicitante = empleado.Nombre + " " + empleado.Apellido;
                     notas = comidaEmp.Notas;
-
+                    EntidadComidaCampo serv = controladoraComidaCampo.guardarComidaSeleccionada(idSolicitante, idServicio);
+                    estacion = serv.Estacion;
+                    anfitriona = "ESINTRO";
+                    pax = serv.Pax.ToString();
                 }
                 else if ("reservacion".Equals(tipoSolicitante) && "Paquete".Equals(categoria))
                 {
@@ -78,6 +86,7 @@ namespace Servicios_Reservados_2
                     anfitriona = paquete.Rows[0][2].ToString();
                     estacion = paquete.Rows[0][3].ToString();
                     nombreSolicitante = paquete.Rows[0][4].ToString();
+                    pax = paquete.Rows[0][0].ToString();
 
                 }
                 else if ("reservacion".Equals(tipoSolicitante) && "Comida Extra".Equals(categoria))
@@ -88,19 +97,21 @@ namespace Servicios_Reservados_2
                     anfitriona = servicio.Rows[0][2].ToString();
                     estacion = servicio.Rows[0][3].ToString();
                     nombreSolicitante = servicio.Rows[0][4].ToString();
+                    pax = comidaExtra.Pax.ToString();
 
                 }
-                else if ("reservacion".Equals(tipoSolicitante) && "Comida Campo".Equals(categoria))
+                else if ("reservacion".Equals(tipoSolicitante) && ("Comida de campo".Equals(categoria) || "Incluido en Paquete".Equals(categoria)))
                 {
                     EntidadComidaCampo comidaCampo = controladoraComidaCampo.guardarComidaSeleccionada(idSolicitante, idServicio);
-
                     DataTable servicio = controladoraReservaciones.solicitarInfo(idSolicitante);
                     anfitriona = servicio.Rows[0][2].ToString();
                     estacion = servicio.Rows[0][3].ToString();
                     nombreSolicitante = servicio.Rows[0][4].ToString();
+                    pax = comidaCampo.Pax.ToString();
+
                 }
 
-                seleccionado = new EntidadTiquete(numTiquete, idServicio, tipoSolicitante, consumido, idSolicitante, categoria, notas, anfitriona, estacion, nombreSolicitante, fecha, hora);
+                seleccionado = new EntidadTiquete(numTiquete, idServicio, tipoSolicitante, consumido, idSolicitante, categoria, notas, anfitriona, estacion, nombreSolicitante, fecha, hora, reservaConsumida, pax);
 
             }
             else
@@ -115,7 +126,7 @@ namespace Servicios_Reservados_2
         {
             int vecesConsumidoTiquete = seleccionado.Consumido + 1;
             controladoraBD.servirTiquete(seleccionado.Numero, vecesConsumidoTiquete);
-            if ("empleado".Equals(seleccionado.TipoSolicitante) && "Comida de campo".Equals(seleccionado.Categoria))
+            if ("empleado".Equals(seleccionado.TipoSolicitante) && ("Comida de campo".Equals(seleccionado.Categoria) || "Incluido en Paquete".Equals(seleccionado.Categoria)))
             {
                 DataTable comidaCampoEmp = controladoraComidaCampo.solicitarVecesConsumido(seleccionado.IdServicio);
                 int vecesConsumido = int.Parse(comidaCampoEmp.Rows[0][0].ToString()) + 1;
@@ -141,7 +152,7 @@ namespace Servicios_Reservados_2
                 controladoraComidaExtra.actualizarVecesConsumido(seleccionado.IdServicio, vecesConsumido, seleccionado.Solicitante, seleccionado.Fecha, seleccionado.Hora);
                  * */
             }
-            else if ("reservacion".Equals(seleccionado.TipoSolicitante) && "Comida Campo".Equals(seleccionado.Categoria))
+            else if ("reservacion".Equals(seleccionado.TipoSolicitante) && ("Comida de campo".Equals(seleccionado.Categoria) || "Incluido en Paquete".Equals(seleccionado.Categoria)))
             {
                 DataTable comidaCampoRes = controladoraComidaCampo.solicitarVecesConsumido(seleccionado.IdServicio);
                 int vecesConsumido = int.Parse(comidaCampoRes.Rows[0][0].ToString()) + 1;
@@ -159,5 +170,6 @@ namespace Servicios_Reservados_2
         {
             return notificaciones.getNumeroDeNotificaciones();
         }
+
     }
 }

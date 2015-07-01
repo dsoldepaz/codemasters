@@ -19,13 +19,15 @@ namespace Servicios_Reservados_2
         private String nombreSolicitante;
         private String fecha;
         private String hora;
+        private String reservaConsumida;
+        private String pax;
 
         /*
          * Requiere:
          * Efectúa : Inicializa las variables globales de la clase con los parámetros.
          * Retorna : N/A.
          */
-        public EntidadTiquete(int numero, String idServicio, String tipoSolicitante, int consumido, String solicitante, String categoria, String notas, String anfitriona, String estacion, String nombreSolicitante, String fecha, String hora)
+        public EntidadTiquete(int numero, String idServicio, String tipoSolicitante, int consumido, String solicitante, String categoria, String notas, String anfitriona, String estacion, String nombreSolicitante, String fecha, String hora, String reservaConsumida, String pax)
         {
             this.numero = numero;
             this.idServicio = idServicio;
@@ -39,6 +41,8 @@ namespace Servicios_Reservados_2
             this.nombreSolicitante = nombreSolicitante;
             this.fecha = fecha;
             this.hora = hora;
+            this.reservaConsumida = reservaConsumida;
+            this.pax = pax;
 
         }
         /*
@@ -130,6 +134,16 @@ namespace Servicios_Reservados_2
         {
             get { return nombreSolicitante; }
             set { nombreSolicitante = value; }
+        }
+        public String ReservaConsumida
+        {
+            get { return reservaConsumida; }
+            set { reservaConsumida = value; }
+        }
+        public String Pax
+        {
+            get { return pax; }
+            set { pax = value; }
         }
     }
 
