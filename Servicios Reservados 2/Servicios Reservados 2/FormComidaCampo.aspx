@@ -41,9 +41,9 @@
                          <td>
                              <input id="txtSolicitante" runat="server" style="width: 280px" />
                          </td>
-                        <td>Número de Reservación:</td>
-                        <!--<asp:label id="txtIdSolicitante" runat="server" Text="Numero de Reservación:" visible="false"/>-->
-                        <td>
+                        <div runat="server" id="infoReservacion">
+                        <td>Número de Reservación:</td>                               
+                             <td>
                             <input id="txtNumReservacion" runat="server" style="width: 200px" />
                         </td>
                         <td>
@@ -56,6 +56,8 @@
                             <td>
                                 <input id="textFechaFinal" runat="server" style="width: 150px" />
                             </td>
+                        </div>
+                       
                     </tr>
                 </table>
                 <tr>
