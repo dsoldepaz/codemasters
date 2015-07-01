@@ -99,24 +99,7 @@ namespace Servicios_Reservados_2
                 ids = new String[paquete.Rows.Count + servicios.Rows.Count + comidaCampo.Rows.Count + 1]; //crear el vector para ids en el grid
                 idServ = new String[paquete.Rows.Count + servicios.Rows.Count + servicios.Rows.Count + comidaCampo.Rows.Count + 1];
 
-                //agrega los servicios incluidos en el paquete
-                if (paquete.Rows.Count > 0)
-                {
-                    foreach (DataRow fila in paquete.Rows)
-                    {
-                        ids[i] = controladora.idSelected();// guardar el id para su posterior consulta
-                        idServ[i] = fila[0].ToString();
-                        datos[0] = "Paquete";
-                        datos[1] = fila[1].ToString();
-                        datos[2] = "Alimentación incluída en el paquete de reservación";
-                        datos[3] = "-";
-                        datos[4] = "-";
-                        datos[5] = "No disponible";
-                        datos[6] = fila[2].ToString();
-                        tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
-                        i++;
-                    }
-                }
+                
                 //agrega los servicios de comida extra
                 if (servicios.Rows.Count > 0)
                 {
@@ -183,7 +166,24 @@ namespace Servicios_Reservados_2
                         i++;
                     }
                 }
-
+                //agrega los servicios incluidos en el paquete
+                if (paquete.Rows.Count > 0)
+                {
+                    foreach (DataRow fila in paquete.Rows)
+                    {
+                        ids[i] = controladora.idSelected();// guardar el id para su posterior consulta
+                        idServ[i] = fila[0].ToString();
+                        datos[0] = "Paquete";
+                        datos[1] = fila[1].ToString();
+                        datos[2] = "Alimentación incluída en el paquete de reservación";
+                        datos[3] = "-";
+                        datos[4] = "-";
+                        datos[5] = "No disponible";
+                        datos[6] = fila[2].ToString();
+                        tabla.Rows.Add(datos);// cargar en la tabla los datos de cada proveedor
+                        i++;
+                    }
+                }
                 todos = tabla;
                 GridServicios.DataBind();
 
