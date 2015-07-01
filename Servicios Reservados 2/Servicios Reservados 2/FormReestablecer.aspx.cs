@@ -25,7 +25,7 @@ namespace Servicios_Reservados_2
         protected void clickReestablecer(object sender, EventArgs e)
         {
             string username = (string)Session["username"];
-            String[] error = controladora.reestablecerContrasena(username, txtContraseña.Text);
+            String[] error = controladora.actualizarContrasena(username, txtContraseña.Text);
             if ("danger".Equals(error[0]))
             {
                 mostrarMensaje(error[0], error[1], error[2]); // se muestra el resultado
