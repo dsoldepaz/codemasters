@@ -7,7 +7,7 @@
             <li class="item-navegacion"><a href="Default.aspx" title="Página principal"><i class="glyphicon glyphicon-home"></i></a></li>
             <li class="item-navegacion"><a href="FormReservaciones.aspx" title="Reservaciones">Reservaciones</a></li>
             <li class="item-navegacion"><a href="FormEmpleadoReserva.aspx" class="seleccionado" title="Empleados">Empleados</a></li>
-            <li class="item-navegacion"><a href="Notificaciones.aspx">Notificaciones <span class="notificacion" id="contador" runat="server">0</span><a /></li>
+            <li class="item-navegacion"><a href="Notificaciones.aspx">Notificaciones <span class="notificacion" id="contador" runat="server">0</span></a></li>
         </ul>
     </nav>
     <div>

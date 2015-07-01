@@ -25,9 +25,13 @@ namespace Servicios_Reservados_2
          */
         public int getNumeroDeNotificaciones()
         {
-            DataTable resultado = controladoraNotificaciones.numeroDeNotificaciones(Notificaciones.ultimaRevision);
-            int notificaiones = int.Parse(resultado.Rows[0][0].ToString());
-            return notificaiones;
+            try { 
+                DataTable resultado = controladoraNotificaciones.numeroDeNotificaciones(Notificaciones.ultimaRevision);
+                int notificaiones = int.Parse(resultado.Rows[0][0].ToString());
+                return notificaiones;
+            }catch(Exception e){
+                return 0;
+            }
         }
         /*
          * Requiere:N/A
