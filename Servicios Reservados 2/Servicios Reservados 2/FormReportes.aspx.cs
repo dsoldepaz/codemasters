@@ -339,12 +339,18 @@ namespace Servicios_Reservados_2
 
         protected void BotonGenerar_Click(object sender, EventArgs e)
         {
-                 
-            GridViewReportes.DataSource = null;
-            GridViewReportes.DataBind();
-            obtenerFiltros();
-            llenarDatos();
-            cicloFechas();
+            if (DateTime.Parse(dateFechaFin.Value) < DateTime.Parse(dateFechaInicio.Value))
+            {
+                mostrarMensaje("danger", "Error:", "Revise las fechas seleccionadas, la fecha final debe ser mayor que la inicial.");
+            }
+            else
+            {
+                GridViewReportes.DataSource = null;
+                GridViewReportes.DataBind();
+                obtenerFiltros();
+                llenarDatos();
+                cicloFechas();
+            }
         }
 
 
@@ -697,7 +703,7 @@ namespace Servicios_Reservados_2
             almuerzos = desayunos;
             cena = desayunos;
             //Obtiene los datos de reservaciones que reservan solo 2 comidas por dia
-            DataTable turnosDiaDos = verificarComidasReservaciones(controladora.solicitarTurnoDiaDosComidasEstacionFecha(sigla, fechaInicio, fechaFinal));
+            DataTable turnosDiaDos = controladora.solicitarTurnoDiaDosComidasEstacionFecha(sigla, fechaInicio, fechaFinal);// verificarComidasReservaciones(controladora.solicitarTurnoDiaDosComidasEstacionFecha(sigla, fechaInicio, fechaFinal));
             if (turnosDiaDos.Rows.Count > 0)
             {
                 foreach (DataRow fila in turnosDiaDos.Rows)
@@ -726,7 +732,7 @@ namespace Servicios_Reservados_2
             }
 
             //Obtener reservaciones entrantes para calculos mas exactos de platos a cocinar
-            DataTable reservaEntrante = verificarComidasReservaciones(controladora.reservaEntranteEstacionFecha(sigla, fechaInicio, fechaFinal));
+            DataTable reservaEntrante = controladora.reservaEntranteEstacionFecha(sigla, fechaInicio, fechaFinal);// verificarComidasReservaciones(controladora.reservaEntranteEstacionFecha(sigla, fechaInicio, fechaFinal));
 
             if (reservaEntrante.Rows.Count > 0)
             {
@@ -786,7 +792,7 @@ namespace Servicios_Reservados_2
             almuerzos = desayunos;
             cena = desayunos;
             //Obtiene los datos de reservaciones que reservan solo 2 comidas por dia
-            DataTable turnosDiaDos = verificarComidasReservaciones(controladora.solicitarTurnoDiaDosComidasAnfitrionaFecha(anfitriona, fechaInicio, fechaFinal));
+            DataTable turnosDiaDos = controladora.solicitarTurnoDiaDosComidasAnfitrionaFecha(anfitriona, fechaInicio, fechaFinal);//verificarComidasReservaciones(controladora.solicitarTurnoDiaDosComidasAnfitrionaFecha(anfitriona, fechaInicio, fechaFinal));
             if (turnosDiaDos.Rows.Count > 0)
             {
                 foreach (DataRow fila in turnosDiaDos.Rows)
@@ -814,7 +820,7 @@ namespace Servicios_Reservados_2
             }
 
             //Obtener reservaciones entrantes para calculos mas exactos de platos a cocinar
-            DataTable reservaEntrante = verificarComidasReservaciones(controladora.reservaEntranteAnfitrionaFecha(anfitriona, fechaInicio, fechaFinal));
+            DataTable reservaEntrante = controladora.reservaEntranteAnfitrionaFecha(anfitriona, fechaInicio, fechaFinal);//verificarComidasReservaciones(controladora.reservaEntranteAnfitrionaFecha(anfitriona, fechaInicio, fechaFinal));
 
             if (reservaEntrante.Rows.Count > 0)
             {
@@ -889,7 +895,7 @@ namespace Servicios_Reservados_2
             almuerzos = desayunos;
             cena = desayunos;
             //Obtiene los datos de reservaciones que reservan solo 2 comidas por dia
-            DataTable turnosDiaDos = verificarComidasReservaciones(controladora.solicitarTurnoDiaDosComidasEstacionAnfitrionaFecha(sigla, fechaInicio, fechaFinal, anfitriona));
+            DataTable turnosDiaDos = controladora.solicitarTurnoDiaDosComidasEstacionAnfitrionaFecha(sigla, fechaInicio, fechaFinal, anfitriona);//verificarComidasReservaciones(controladora.solicitarTurnoDiaDosComidasEstacionAnfitrionaFecha(sigla, fechaInicio, fechaFinal, anfitriona));
             if (turnosDiaDos.Rows.Count > 0)
             {
                 foreach (DataRow fila in turnosDiaDos.Rows)
@@ -918,7 +924,7 @@ namespace Servicios_Reservados_2
             }
 
             //Obtener reservaciones entrantes para calculos mas exactos de platos a cocinar
-            DataTable reservaEntrante = verificarComidasReservaciones(controladora.reservaEntranteEstacionAnfitrionaFecha(sigla, fechaInicio, fechaFinal, anfitriona));
+            DataTable reservaEntrante = controladora.reservaEntranteEstacionAnfitrionaFecha(sigla, fechaInicio, fechaFinal, anfitriona);// verificarComidasReservaciones(controladora.reservaEntranteEstacionAnfitrionaFecha(sigla, fechaInicio, fechaFinal, anfitriona));
 
             if (reservaEntrante.Rows.Count > 0)
             {
@@ -973,7 +979,7 @@ namespace Servicios_Reservados_2
             almuerzos = desayunos;
             cena = desayunos;
             //Obtiene los datos de reservaciones que reservan solo 2 comidas por dia
-            DataTable turnosDiaDos = verificarComidasReservaciones(controladora.solicitarTurnoDiaDosComidasFecha(fechaInicio, fechaFinal));
+            DataTable turnosDiaDos = controladora.solicitarTurnoDiaDosComidasFecha(fechaInicio, fechaFinal);// verificarComidasReservaciones(controladora.solicitarTurnoDiaDosComidasFecha(fechaInicio, fechaFinal));
             if (turnosDiaDos.Rows.Count > 0)
             {
                 foreach (DataRow fila in turnosDiaDos.Rows)
@@ -1001,7 +1007,7 @@ namespace Servicios_Reservados_2
             }
 
             //Obtener reservaciones entrantes para calculos mas exactos de platos a cocinar
-            DataTable reservaEntrante = verificarComidasReservaciones(controladora.reservaEntranteFecha(fechaInicio, fechaFinal));
+            DataTable reservaEntrante = controladora.reservaEntranteFecha(fechaInicio, fechaFinal);//verificarComidasReservaciones(controladora.reservaEntranteFecha(fechaInicio, fechaFinal));
 
             if (reservaEntrante.Rows.Count > 0)
             {
@@ -1031,6 +1037,20 @@ namespace Servicios_Reservados_2
                     }
                 }
             }
+        }
+
+        /*
+         * Efecto: mostrar en pantalla los mensajes del sistema, ya sean de error o de éxito.
+         * Requiere: que se inicie el FormComidaExtra y se active alguna de las funcionalidades.
+         * Modifica: 
+        */
+        protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
+        {
+            alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
+            labelTipoAlerta.Text = alerta + " ";
+            labelAlerta.Text = mensaje;
+            alertAlerta.Attributes.Remove("hidden");
+            this.SetFocus(alertAlerta);
         }
     }
 }
