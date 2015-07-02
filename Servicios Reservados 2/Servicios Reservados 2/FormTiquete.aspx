@@ -5,7 +5,14 @@
 
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-
+    <nav>
+        <ul>
+            <li class="item-navegacion"><a href="Default.aspx" title="Página principal"><i class="glyphicon glyphicon-home"></i></a></li>
+            <li class="item-navegacion"><a href="FormReservaciones.aspx">Reservaciones</a></li>
+            <li class="item-navegacion"><a href="FormEmpleado.aspx">Empleados</a></li>
+            <li class="item-navegacion"><a href="Notificaciones.aspx" title="Notificaciones">Notificaciones <span class="notificacion" id="contador" runat="server">0</span></a></li>
+        </ul>
+    </nav>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>

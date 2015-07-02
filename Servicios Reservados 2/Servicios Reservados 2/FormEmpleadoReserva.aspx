@@ -7,9 +7,8 @@
             <li class="item-navegacion"><a href="Default.aspx" title="Página principal"><i class="glyphicon glyphicon-home"></i></a></li>
             <li class="item-navegacion"><a href="FormReservaciones.aspx" title="Reservaciones">Reservaciones</a></li>
             <li class="item-navegacion"><a href="FormEmpleado.aspx" title="Empleados" class="seleccionado">Empleados</a></li>
-            <li class="item-navegacion"><a href="Notificaciones.aspx">Notificaciones <span class="notificacion" id="contador" runat="server">0</span></a></li>
-            <li class="item-navegacion"><a href="FormReportesComedor.aspx" title="Reportes">Reportes</a></li>
-
+            <li class="item-navegacion"><a href="FormReportes.aspx" title="Reportes">Reportes</a></li>
+            <li class="item-navegacion"><a href="Notificaciones.aspx" title="Notificaciones">Notificaciones <span class="notificacion" id="contador" runat="server">0</span></a></li>
         </ul>
     </nav>
 
@@ -61,7 +60,7 @@
             <div class="well bs-component">
                 <legend style="color: #7BC143">Listado de servicios</legend>
 
-                <asp:GridView ID="GridComidasReservadas" Class="Gridcontenedor" runat="server" AllowPaging="true" AllowSorting="true" OnPageIndexChanging="GridViewReservaciones_PageIndexChanging" Width="100%">
+                <asp:GridView ID="GridComidasReservadas" Class="Gridcontenedor" runat="server" AllowPaging="true" PageSize="10" OnPageIndexChanging="PageIndexChanging" Width="100%">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>

@@ -5,10 +5,9 @@
     <nav>
         <ul>
             <li class="item-navegacion"><a href="Default.aspx" title="Página principal"><i class="glyphicon glyphicon-home"></i></a></li>
-            <li class="item-navegacion"><a href="FormReservaciones.aspx" title="Reservaciones" class="seleccionado">Reservaciones</a></li>
-            <li class="item-navegacion"><a href="FormEmpleado.aspx" title="Empleados">Empleados</a></li>
-            <li class="item-navegacion"><a href="Notificaciones.aspx">Notificaciones <span class="notificacion" id="contador" runat="server">0</span></a></li>
-            <li class="item-navegacion"><a href="FormReportesComedor.aspx" title="Reportes">Reportes</a></li>
+             <li class="item-navegacion"><a href="FormServirPlatos.aspx" title="Servir platos">Servir platos</a></li>
+            <li class="item-navegacion"><a href="FormReportesCocina.aspx" title="Reportes" class="seleccionado">Reportes de cocina</a></li>
+            <li class="item-navegacion"><a href="Notificaciones.aspx" title="Notificaciones">Notificaciones <span class="notificacion" id="contador" runat="server">0</span></a></li>
         </ul>
     </nav>
 
@@ -111,7 +110,7 @@
                         <tr>
                             <td>
 
-                                <asp:GridView ID="GridViewSnacks" Class="Gridcontenedor" runat="server" AllowSorting="true" AllowPaging="true" OnPageIndexChanging="GridViewSnacks_PageIndexChanging" PageSize="5">
+                                <asp:GridView ID="GridViewSnacks" Class="Gridcontenedor" AutoGenerateColumns="True" ViewStateMode="Enabled" runat="server" AllowSorting="true" AllowPaging="true" OnPageIndexChanging="GridViewSnacks_PageIndexChanging" PageSize="5">
 
                                     <SelectedRowStyle BackColor="#7BC143"
                                         ForeColor="Black"
@@ -144,8 +143,8 @@
             <table>
                 <tr>
                     <td>
-                        <a href ="Default.aspx" >
-                        <input type="button" class="btn-danger" value="Cancelar" runat="server" />
+                        <a href="Default.aspx">
+                            <input type="button" class="btn-danger" value="Cancelar" runat="server" />
                         </a>
                     </td>
                 </tr>

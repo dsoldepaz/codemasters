@@ -64,7 +64,7 @@ namespace Servicios_Reservados_2
             {
                 DataTable tabla = crearTablaTiquete();
                 int numTiquete = int.Parse(tiquete.Value);
-                Object[] datos = new Object[6];
+                Object[] datos = new Object[8];
 
                 EntidadTiquete datosTiquete = controladora.solicitarTiquete(numTiquete);// se consulta
                 if (datosTiquete != null)
@@ -73,9 +73,10 @@ namespace Servicios_Reservados_2
                     datos[1] = datosTiquete.Estacion;
                     datos[2] = datosTiquete.NombreSolicitante;
                     datos[3] = datosTiquete.Categoria;
-                    datos[4] = datosTiquete.Consumido;
-                    datos[5] = datosTiquete.Notas;
-                    
+                    datos[4] = datosTiquete.Pax;
+                    datos[5] = datosTiquete.Consumido;
+                    datos[6] = datosTiquete.ReservaConsumida;
+                    datos[7] = datosTiquete.Notas;
 
                     tabla.Rows.Add(datos);// cargar en la tabla los datos 
 
@@ -119,7 +120,17 @@ namespace Servicios_Reservados_2
 
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Consumido";
+            columna.ColumnName = "PAX reservados";
+            tabla.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Tiquete Consumido";
+            tabla.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Reservacion Consumida";
             tabla.Columns.Add(columna);
 
             columna = new DataColumn();
@@ -141,7 +152,6 @@ namespace Servicios_Reservados_2
         }
         protected void clickServirDesactivar(object sender, EventArgs e)
         {
-            controladora.servirTiquete();
             verificar();
             controladora.desactivarTiquete();
             modo = 0;

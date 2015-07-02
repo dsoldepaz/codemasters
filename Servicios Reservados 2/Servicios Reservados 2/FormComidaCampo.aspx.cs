@@ -50,8 +50,7 @@ namespace Servicios_Reservados_2
                 textFechaFinal.Value = res.FechaSalida.ToString("MM/dd/yyyy");
                 txtSolicitante.Disabled = true;
                 txtNumReservacion.Disabled = true;
-                txtFechaInicio.Disabled = true;
-                textFechaFinal.Disabled = true;
+                infoReservacion.Visible = true;
             }
             else
             {
@@ -59,6 +58,8 @@ namespace Servicios_Reservados_2
                 txtSolicitante.Value = emp.Nombre + " " + emp.Apellido;
                 txtNumReservacion.Value = emp.Id;
                 txtIdSolicitante.Text = "Carné de empleado:";
+                txtSolicitante.Disabled = true;
+                infoReservacion.Visible = false;
 
             }
             
@@ -67,7 +68,7 @@ namespace Servicios_Reservados_2
 
         protected void cambiarModo()
         {
-
+            txtPax.Value = "1";
             if (tipoComidaCampo == 0)
             {
                 cmbTipoPago.Visible = false;
@@ -550,14 +551,14 @@ namespace Servicios_Reservados_2
                 fechaFinal = fechaFinal.AddHours(23);
                 if (fechaSeleccionada < fechaInicio || fechaSeleccionada > fechaFinal || fechaSeleccionada < fechaHoy)
                 {
-                    mostrarMensaje("danger", "Error:", "Revise la fecha seleccionada, debe estar dentro de la reservación y solo puede reservar de hoy en adelante");
+                    mostrarMensaje("danger", "Error:", "Revise la fecha y hora seleccionadas, debe estar dentro de la reservación y a futuro");
                       correcta = false;
                 }
             }
             else
             {
                 if(fechaSeleccionada < fechaHoy){
-                    mostrarMensaje("danger", "Error:", "Revise la fecha seleccionada, debe estar dentro de la reservación y solo puede reservar de hoy en adelante");
+                    mostrarMensaje("danger", "Error:", "Revise la fecha y hora seleccionadas, debe estar dentro de la reservación y a futuro");
                     correcta = false;
                 }
             }
