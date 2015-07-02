@@ -158,7 +158,7 @@ namespace Servicios_Reservados_2
                 nuevoServicio[0] = controladora.informacionServicio().Id;//recuperamos el id de la reservación
                 //en adelante se extrae la información de cada uno de los componentes de la interfaz.
                 int indice = cbxTipo.SelectedIndex - 1;
-                nuevoServicio[1] = tipo.Rows[indice][0];
+                nuevoServicio[1] = tipo.Rows[indice][0];//SE CAE AQUI
                 nuevoServicio[2] = textFecha.Value;
                 nuevoServicio[3] = "Activo";
                 nuevoServicio[4] = txaNotas.Value;

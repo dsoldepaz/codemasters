@@ -110,7 +110,7 @@
                         <tr>
                             <td>
 
-                                <asp:GridView ID="GridViewSnacks" Class="Gridcontenedor" runat="server" AllowSorting="true" AllowPaging="true" OnPageIndexChanging="GridViewSnacks_PageIndexChanging" PageSize="5">
+                                <asp:GridView ID="GridViewSnacks" Class="Gridcontenedor" AutoGenerateColumns="True" ViewStateMode="Enabled" runat="server" AllowSorting="true" AllowPaging="true" OnPageIndexChanging="GridViewSnacks_PageIndexChanging" PageSize="5">
 
                                     <SelectedRowStyle BackColor="#7BC143"
                                         ForeColor="Black"
