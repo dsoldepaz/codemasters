@@ -16,10 +16,12 @@ namespace Servicios_Reservados_2
         public static String[] ids;
         DataTable tablaP;
         private static Boolean seConsulto = false;
+        private static String estaciones;
 
         protected void Page_Load(object sender, EventArgs e)
         {
                 string userid = (string)Session["username"];
+                estaciones = (string)Session["Estacion"];
                 ArrayList listaRoles = (ArrayList)Session["Roles"];
                 if (!IsPostBack)
                 {
@@ -80,14 +82,22 @@ namespace Servicios_Reservados_2
                     cbxAnfitriona.Items.Add(fila[0].ToString());
                 }
             }
-            if (estacion.Rows.Count > 0)
-            {
+
+            if(estaciones == "Todas" && estacion.Rows.Count > 0){
                 foreach (DataRow fila2 in estacion.Rows)
                 {
                     cbxEstacion.Items.Add(fila2[0].ToString());
                 }
+            }else{
+                cbxEstacion.Items.Clear();
+                cbxEstacion.Items.Add(estaciones);
+            
             }
+
         }
+
+
+
         /**
          * Requiere: N/A
          * Efectúa:  Pide los datos a la controladora y rellena la tabla con los datos de las reservaciones.
