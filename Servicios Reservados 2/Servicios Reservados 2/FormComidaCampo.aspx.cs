@@ -906,6 +906,12 @@ namespace Servicios_Reservados_2
             return res;
         }
 
+
+        /*
+      * Efecto: despliga el mensaje de error.
+      * Requiere: 
+      * Modifica: el atributo de la alerta desplegado.
+     */
         protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
         {
             alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
@@ -977,6 +983,11 @@ namespace Servicios_Reservados_2
             }
         }
 
+        /*
+      * Efecto: cancela una comida de campo, no la elimina de la base de datos. 
+      * Requiere: la comida de campo a cancelar.
+      * Modifica: la grid de servicios.
+     */
         protected void clickCancelar(object sender, EventArgs e)
         {
             switch (tipoComidaCampo)
