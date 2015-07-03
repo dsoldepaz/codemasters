@@ -107,26 +107,10 @@ namespace Servicios_Reservados_2
        */
         public String[] cancelarComidaExtra(String idComidaExtra)
         {
-            String[] respuesta = new String[3];
-            try
-            {
+            
                 String consultaSQL = "update servicios_reservados.servicio_especial set estado = 'Cancelado'  where id = '" + idComidaExtra +"'";
 
-                adaptador.insertar(consultaSQL);
-
-                respuesta[0] = "success";
-                respuesta[1] = "Exito. ";
-                respuesta[2] = "La comida extra se ha eliminado exitosamente";
-            }
-            catch (SqlException e)
-            {
-                respuesta[0] = "danger";
-                respuesta[1] = "Error. ";
-                respuesta[2] = "No se pudo eliminar la comida extra";
-                
-
-            }
-            return respuesta;
+                return adaptador.insertar(consultaSQL);
         }
 
         internal DataTable vecesConsumido(string idComidaExtra)

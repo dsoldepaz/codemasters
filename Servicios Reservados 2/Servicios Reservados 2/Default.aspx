@@ -2,6 +2,12 @@
 
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+     <nav>
+        <ul>
+            <li class="item-navegacion"><a href="Default.aspx" title="Página principal" class="seleccionado"><i class="glyphicon glyphicon-home"></i></a></li>           
+            <li class="item-navegacion"><a href="Notificaciones.aspx" title="Notificaciones">Notificaciones <span class="notificacion" id="contador" runat="server">0</span></a></li>
+        </ul>
+    </nav>
     <link rel="stylesheet" href="Content/default.css" />
     <div class="jumbotron">
         <div class="container">

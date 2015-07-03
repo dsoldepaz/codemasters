@@ -767,7 +767,7 @@ li.item-navegacion>a.seleccionado{
   word-spacing: 0.2em;
   /* background-color: #3F8C00; */
   border-radius: 3px;
-  color: #FDBB30;
+  color: rgba(35, 82, 124, 1);
 }
 span.notificacion{
     background-color: #F26631;

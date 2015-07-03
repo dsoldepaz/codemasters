@@ -10,7 +10,7 @@ namespace Servicios_Reservados_2
     public class AdaptadorBD
     {
 
-        OracleConnection adaptador= new OracleConnection();
+        OracleConnection adaptador = new OracleConnection();
         DataTable dt;
 
         /*
@@ -20,7 +20,7 @@ namespace Servicios_Reservados_2
          */
         public AdaptadorBD()
         {
-             adaptador.ConnectionString = "Data Source=10.1.4.93:1521/XE;User ID=servicios_reservados;Password=servicios;Unicode=True";   
+            adaptador.ConnectionString = "Data Source=10.1.4.93:1521/XE;User ID=servicios_reservados;Password=servicios;Unicode=True";
         }
 
 
@@ -36,7 +36,7 @@ namespace Servicios_Reservados_2
             OracleCommand comando = adaptador.CreateCommand();
             comando.CommandText = consultaSQL;
             OracleDataReader reader = comando.ExecuteReader();
-            dt.Load(reader);           
+            dt.Load(reader);
             adaptador.Close();
             return dt;
         }
@@ -76,7 +76,7 @@ namespace Servicios_Reservados_2
 
                     respuesta[0] = "danger";
                     respuesta[1] = "Error. ";
-                    respuesta[2] = "No se pudo agregar";
+                    respuesta[2] = "No se pudo agregar, " + e.Message + ".";
                 }
             }
             return respuesta;

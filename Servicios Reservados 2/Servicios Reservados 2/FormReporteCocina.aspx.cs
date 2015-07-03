@@ -118,7 +118,7 @@ namespace Servicios_Reservados_2
         {
 
             GridViewSnacks.PageIndex = e.NewPageIndex;
-            GridViewSnacks.DataSource = snacks;
+            GridViewSnacks.DataSource = Session["snacks"];
             GridViewSnacks.DataBind();
 
         }
@@ -127,7 +127,7 @@ namespace Servicios_Reservados_2
         {
 
             GridViewBebidas.PageIndex = e.NewPageIndex;
-            GridViewBebidas.DataSource = bebidas;
+            GridViewBebidas.DataSource = Session["bebidas"];
             GridViewBebidas.DataBind();
 
         }
@@ -420,12 +420,12 @@ namespace Servicios_Reservados_2
                             }
                             else if (tipoC == "Queque")
                             {
-                                queque = cantidad;
+                                queque += cantidad;
 
                             }
                             else if (tipoC == "Café")
                             {
-                                cafe = cantidad;
+                                cafe += cantidad;
                             }
 
 
@@ -459,12 +459,12 @@ namespace Servicios_Reservados_2
                             }
                             else if (opcion == 4)
                             {
-                                sandwich = cantidad;
+                                sandwich += cantidad;
 
                             }
                             else if (opcion == 5)
                             {
-                                galloPinto = cantidad;
+                                galloPinto += cantidad;
                             }
 
 
@@ -531,11 +531,11 @@ namespace Servicios_Reservados_2
                             cantidad = (int.Parse(fila[1].ToString()));
                             if (tipo == "Agua")
                             {
-                                agua = cantidad;
+                                agua += cantidad;
                             }
                             else
                             {
-                                jugo = cantidad;
+                                jugo += cantidad;
                             }
 
                         }
@@ -555,40 +555,40 @@ namespace Servicios_Reservados_2
                             cantidad = (int.Parse(fila[1].ToString()));
                             if (tipo == "Ensalada")
                             {
-                                ensalada = cantidad;
+                                ensalada += cantidad;
                             }
                             else if (tipo == "Mayonesa")
                             {
-                                mayonesa = cantidad;
+                                mayonesa += cantidad;
 
                             }
                             else if (tipo == "Confites")
                             {
-                                confites = cantidad;
+                                confites += cantidad;
                             }
                             else if (tipo == "Frutas")
                             {
-                                frutas = cantidad;
+                                frutas += cantidad;
 
                             }
                             else if (tipo == "Salsa de tomate")
                             {
-                                salsa = cantidad;
+                                salsa += cantidad;
                             }
 
                             else if (tipo == "Huevos duros")
                             {
-                                huevoDuro = cantidad;
+                                huevoDuro += cantidad;
                             }
 
                             else if (tipo == "Galletas")
                             {
-                                galletas = cantidad;
+                                galletas += cantidad;
                             }
 
                             else if (tipo == "Platanos")
                             {
-                                platanos = cantidad;
+                                platanos += cantidad;
                             }
 
                         }
@@ -766,7 +766,8 @@ namespace Servicios_Reservados_2
           fechaDia = fechaDia.AddDays(1);
 
           }
-            snacks = tabla;
+            Session["snacks"] = tabla;
+            GridViewSnacks.DataSource = tabla;
             GridViewSnacks.DataBind();
 
 
@@ -809,7 +810,7 @@ namespace Servicios_Reservados_2
                     foreach (DataRow fila in datosCE.Rows)
                     {
                         String tipo = fila[1].ToString();
-                        if (tipo == "Queque")
+                        if (tipo == "Café")
                         {
                             datos[0] = fila[0].ToString();
                             datos[1] = fila[1].ToString();
@@ -824,7 +825,8 @@ namespace Servicios_Reservados_2
             fechaDia = fechaDia.AddDays(1);
 
          }
-           bebidas = tabla;
+            Session["bebidas"] = tabla;
+            GridViewBebidas.DataSource = tabla;
            GridViewBebidas.DataBind();
         }
         /**
@@ -863,18 +865,18 @@ namespace Servicios_Reservados_2
                         cantidad = (int.Parse(fila[1].ToString()));
                         if (opcion == 1)
                         {
-                            desayunosC = cantidad;
+                            desayunosC += cantidad;
                             desayunos -= cantidad;
                         }
                         else if (opcion == 2)
                         {
-                            almuerzosC = cantidad;
+                            almuerzosC += cantidad;
                             almuerzos -= cantidad;
 
                         }
                         else if (opcion == 3)
                         {
-                            cenasC = cantidad;
+                            cenasC += cantidad;
                             cenas -= cantidad;
                         }
 

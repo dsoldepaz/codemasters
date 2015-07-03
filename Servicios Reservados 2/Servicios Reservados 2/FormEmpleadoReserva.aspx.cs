@@ -16,7 +16,8 @@ namespace Servicios_Reservados_2
         private ControladoraEmpleadoReserva controladora = new ControladoraEmpleadoReserva();
         private static EntidadServicios seleccionado = null;
         public static EntidadComidaCampo comidaCampoConsultada;
-        public static EntidadComidaEmpleado comidaEmpleadoSeleccionado; 
+        public static EntidadComidaEmpleado comidaEmpleadoSeleccionado;
+        private static DataTable todos;
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
@@ -34,7 +35,7 @@ namespace Servicios_Reservados_2
                 cargarComidas();
                 deshabilitarBotones();
             }
-            obtenerNotificaciones();
+            //obtenerNotificaciones();//en recepcion no son urgentes las notificaciones
         }
 
         protected void llenarCampos()
@@ -115,7 +116,8 @@ namespace Servicios_Reservados_2
 
                 tabla.Rows.Add(datos);
             }
-           
+            todos = tabla;
+            GridComidasReservadas.DataSource = todos;
             GridComidasReservadas.DataBind();
         }
         /**
@@ -168,6 +170,7 @@ namespace Servicios_Reservados_2
         protected void btnVer_Click(object sender, EventArgs e)
         {
             seleccionarComida(obtenerIndex(sender, e));
+
             GridViewRow row = GridComidasReservadas.SelectedRow;
             String tipo = row.Cells[5].Text;
             if (tipo.Contains("Comida regular"))
@@ -265,11 +268,22 @@ namespace Servicios_Reservados_2
             }
         }
         /*
+        *  Requiere: Controladores de eventos de la interfaz.
+        *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
+        *  Retrona:  N/A
+        */
+        protected void PageIndexChanging(Object sender, GridViewPageEventArgs e)
+        {
+            GridComidasReservadas.PageIndex = e.NewPageIndex;
+            GridComidasReservadas.DataSource = todos;
+            GridComidasReservadas.DataBind();
+        }
+
+        /*
          * Requiere:Argumentos de eventos de la GUI
          * Efectua :Pone visible el panel de botones para poder trabajar sobre la fila selecconada.
          * Retorna :N/A
          */
-
         protected void seleccionarComida(int index)
         {
             GridComidasReservadas.SelectedIndex = index;
@@ -341,7 +355,7 @@ namespace Servicios_Reservados_2
         {
 
             GridComidasReservadas.PageIndex = e.NewPageIndex;
-            GridComidasReservadas.DataSource = Session["tablaa"];
+            GridComidasReservadas.DataSource = todos;
             GridComidasReservadas.DataBind();
 
         }

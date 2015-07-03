@@ -16,7 +16,7 @@ namespace Servicios_Reservados_2
         static DataTable tipo;//contiene los diferentes tipos de comida extra
 
         private static ControladoraComidaExtra controladora = new ControladoraComidaExtra();//instancia de la controladora de comida extra
-        EntidadComidaExtra entidadConsultada = controladora.servicioSeleccionados();//buscamos el servicio consultado en la controladora
+        private static EntidadComidaExtra entidadConsultada;//buscamos el servicio consultado en la controladora
         public static EntidadReservaciones reservConsultada = controladora.reservacionSeleccionada();
 
         private static String[] idReservacion = FormReservaciones.ids;
@@ -46,6 +46,7 @@ namespace Servicios_Reservados_2
         */
         void cargarDatos()
         {
+            entidadConsultada = controladora.servicioSeleccionados();//buscamos el servicio consultado en la controladora
             modo = FormServicios.modo;
             llenarInfoServicio();
             llenarComboBoxTipo();
@@ -135,14 +136,10 @@ namespace Servicios_Reservados_2
         protected Boolean agregarServicioExtra()
         {
             Boolean res = true;
-            DateTime fechaInicio = DateTime.Parse(reservConsultada.FechaInicio.ToString());
-            fechaInicio = fechaInicio.AddHours(6);
-            DateTime fechaFin = DateTime.Parse(reservConsultada.FechaSalida.ToString());
-            fechaFin = fechaFin.AddHours(23);
-            DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;
-            string [] hora = cbxHora.Value.ToString().Split(':');
-            fechaSelect = fechaSelect.AddHours(int.Parse(hora[0]));
-            DateTime fechaActual = DateTime.Now;
+            DateTime fechaInicio = DateTime.Parse(reservConsultada.FechaInicio.ToString());//fecha de inicio e la reservación
+            DateTime fechaFin = DateTime.Parse(reservConsultada.FechaSalida.ToString());//fecha en la que finaliza la reservación
+            DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;//fecha seleccionada en el calendario
+            DateTime fechaActual = DateTime.Today;//la fecha del día de hoy
 
             if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect < fechaActual)
             {
@@ -156,7 +153,7 @@ namespace Servicios_Reservados_2
 
                 nuevoServicio[0] = controladora.informacionServicio().Id;//recuperamos el id de la reservación
                 //en adelante se extrae la información de cada uno de los componentes de la interfaz.
-                int indice = cbxTipo.SelectedIndex - 1;
+                int indice = cbxTipo.SelectedIndex;
                 nuevoServicio[1] = tipo.Rows[indice][0];
                 nuevoServicio[2] = textFecha.Value;
                 nuevoServicio[3] = "Activo";
@@ -186,14 +183,10 @@ namespace Servicios_Reservados_2
         {
             Boolean res = true;
 
-            DateTime fechaInicio = DateTime.Parse(reservConsultada.FechaInicio.ToString());
-            fechaInicio = fechaInicio.AddHours(6);
-            DateTime fechaFin = DateTime.Parse(reservConsultada.FechaSalida.ToString());
-            fechaFin = fechaFin.AddHours(23);
-            DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;
-            string[] hora = cbxHora.Value.ToString().Split(':');
-            fechaSelect = fechaSelect.AddHours(int.Parse(hora[0]));
-            DateTime fechaActual = DateTime.Now;
+            DateTime fechaInicio = DateTime.Parse(reservConsultada.FechaInicio.ToString());//fecha de inicio e la reservación
+            DateTime fechaFin = DateTime.Parse(reservConsultada.FechaSalida.ToString());//fecha en la que finaliza la reservación
+            DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;//fecha seleccionada en el calendario
+            DateTime fechaActual = DateTime.Today;//la fecha del día de hoy
 
             if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect < fechaActual)
             {
@@ -205,7 +198,7 @@ namespace Servicios_Reservados_2
                 Object[] nuevoServicio = new Object[9];// objeto en el que se almacenan los datos para enviar a encapsular.
                 nuevoServicio[0] = controladora.informacionServicio().Id;//recuperamos el id de la reservación.
                 //en adelante se extrae la información de cada uno de los componentes de la interfaz.
-                int indice = cbxTipo.SelectedIndex - 1;
+                int indice = cbxTipo.SelectedIndex;
                 nuevoServicio[1] = tipo.Rows[indice][0];
                 nuevoServicio[2] = textFecha.Value;
                 nuevoServicio[3] = "Activo";
@@ -289,14 +282,20 @@ namespace Servicios_Reservados_2
                     break;
                 case 1://agregar
                     txtPax.Value = controladora.paxConsultado(reservConsultada.Numero);
-                    fechaDeEntradaCalendario.SelectedDate = DateTime.Today;
-                    textFecha.Value = DateTime.Today.ToString("MM/dd/yyyy");
+                    DateTime fechIni = DateTime.Parse(reservConsultada.FechaInicio.ToString());
+                    if (fechIni <= DateTime.Today)
+                    {
+                        fechIni = DateTime.Today;
+                    }
+                    fechaDeEntradaCalendario.SelectedDate = fechIni;
+                    textFecha.Value = fechIni.ToString("MM/dd/yyyy");
                     btnAnular.Disabled = true;
                     btnEditar.Disabled = true;
                     btnAnular.Visible = false;
                     btnEditar.Visible = false;
                     break;
-                case 2://modificarcbxHora.Disabled = true;
+                case 2://modificar
+                    cbxHora.Disabled = false;
                     txtPax.Disabled = false;
                     txaNotas.Disabled = false;
                     textFecha.Disabled = false;
@@ -364,17 +363,17 @@ namespace Servicios_Reservados_2
                 inicio = 6;
                 fin = 9;
             }
-            if (cbxTipo.Text == "Almuerzo")
+            else if (cbxTipo.Text == "Almuerzo")
             {
                 inicio = 11;
                 fin = 14;
             }
-            if (cbxTipo.Text == "Cena")
+            else if (cbxTipo.Text == "Cena")
             {
                 inicio = 18;
                 fin = 21;
             }
-            if (cbxTipo.Text == "Cafe" || cbxTipo.Text == "Queque")
+            else
             {
                 inicio = 9;
                 fin = 21;

@@ -3,7 +3,15 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
     <link rel="stylesheet" href="Content/ComidasExtra.css" />
-
+   <nav>
+        <ul>
+            <li class="item-navegacion"><a href="Default.aspx" title="Página principal"><i class="glyphicon glyphicon-home"></i></a></li>
+            <li class="item-navegacion"><a href="FormReservaciones.aspx">Reservaciones</a></li>
+            <li class="item-navegacion"><a href="FormEmpleado.aspx">Empleados</a></li>
+            <li class="item-navegacion"><a href="FormReportes.aspx" title="Reportes">Reportes</a></li>
+            <li class="item-navegacion"><a href="Notificaciones.aspx" title="Notificaciones">Notificaciones <span class="notificacion" id="contador" runat="server">0</span></a></li>
+        </ul>
+    </nav>
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -41,9 +49,11 @@
                          <td>
                              <input id="txtSolicitante" runat="server" style="width: 280px" />
                          </td>
+                        <div runat="server" id="infoReservacion">
                         <td>Número de Reservación:</td>
                         <!--<asp:label id="txtIdSolicitante" runat="server" Text="Numero de Reservación:" visible="false"/>-->
-                        <td>
+                        
+                             <td>
                             <input id="txtNumReservacion" runat="server" style="width: 200px" />
                         </td>
                         <td>
@@ -56,6 +66,8 @@
                             <td>
                                 <input id="textFechaFinal" runat="server" style="width: 150px" />
                             </td>
+                        </div>
+                       
                     </tr>
                 </table>
                 <tr>

@@ -3,7 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+    <nav>
+        <ul>
+            <li class="item-navegacion"><a href="Default.aspx" title="Página principal"><i class="glyphicon glyphicon-home"></i></a></li>           
+            <li class="item-navegacion"><a href="Notificaciones.aspx" title="Notificaciones" class="seleccionado">Notificaciones <span class="notificacion" id="contador" runat="server">0</span></a></li>
+        </ul>
+    </nav>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <table>
