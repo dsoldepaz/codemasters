@@ -401,7 +401,7 @@ namespace Servicios_Reservados_2
         }
 
 
-
+        //Este método se utiliza para desplegar los distintos tipos de errores que se pueden presentar.
         protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
         {
             alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
