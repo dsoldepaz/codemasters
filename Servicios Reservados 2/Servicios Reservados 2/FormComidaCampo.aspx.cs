@@ -485,7 +485,11 @@ namespace Servicios_Reservados_2
             }
             return tipo;
         }
-
+        /**
+       * Requiere: n/a
+       * Efectua: llena la lista de adicionales con los adicionales seleccionados
+       * retorna:  lista con los adicionales seleccionados en el grid
+       */
         protected List<String> listaAdicionales()
         {
             List<String> lista = new List<String>();
@@ -523,7 +527,11 @@ namespace Servicios_Reservados_2
             }
             return lista;
         }
-                
+        /**
+       * Requiere: n/a
+       * Efectua: Revisa si la fecha digitada es valida o no
+       * retorna: falso si la fecha no es valida o verdadero si es una fecha valida
+       */       
         protected Boolean revisarFechas()
         {
             
@@ -566,7 +574,11 @@ namespace Servicios_Reservados_2
             return correcta;
 
         }
-
+        /**
+       * Requiere: n/a
+       * Efectua: inserta una comida de campo en la BD
+       * retorna:  N/A
+       */
         protected Boolean agregarComidaCampo()
         {
             Boolean res = true;
@@ -681,7 +693,11 @@ namespace Servicios_Reservados_2
             }
             return res;
         }
-
+        /**
+       * Requiere: n/a
+       * Efectua: Guarda los cambios efectuados en una comida de campo en la base de datos
+       * retorna:  N/A
+       */
         protected Boolean modificarComidaCampo()
         {
             Boolean res = true;
@@ -867,6 +883,12 @@ namespace Servicios_Reservados_2
                     break;
             }
         }
+
+        /**
+       * Requiere: n/a
+       * Efectua: Retorna a la pagina anterior (empleado -> formEmpleadoReserva, reservaciones->formServicios)
+       * retorna:  N/A
+       */
         protected void clickCancelar(object sender, EventArgs e)
         {
             switch (tipoComidaCampo)
@@ -886,7 +908,11 @@ namespace Servicios_Reservados_2
             fechaDeEntradaCalendario.Visible = false;
         }
 
-
+        /**
+       * Requiere: n/a
+       * Efectua: Obtiene los datos de una comida de campo de la base de datos para mostrarlos en pantalla
+       * retorna:  N/A
+       */
         protected void consultarComidaCampo()
         {
 
@@ -972,6 +998,11 @@ namespace Servicios_Reservados_2
             }
         }
 
+        /**
+       * Requiere: n/a
+       * Efectua: Marca la opcion del tipo de sandwich que consulto de la base de datos
+       * retorna:  N/A
+       */
         protected void tipoSandwich()
         {
             if (entidadConsultada.Pan == "Pan Blanco")
@@ -1012,6 +1043,11 @@ namespace Servicios_Reservados_2
             }
         }
 
+        /**
+       * Requiere: n/a
+       * Efectua: Selecciona los adicionales consultados de la base de datos en el grid
+       * retorna:  N/A
+       */
         protected void consultarAdicionales()
         {
             if (entidadConsultada.Adicionales.Contains("Ensalada"))
