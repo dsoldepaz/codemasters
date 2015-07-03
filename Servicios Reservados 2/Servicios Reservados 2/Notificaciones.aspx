@@ -33,7 +33,7 @@
             <div class="well">
                 <asp:GridView ID="GridNotificaciones" Class="Gridcontenedor" runat="server" Width="80%">
                 </asp:GridView>
-                <input type="button" value="Volver" class="btn btn-danger"  onclick="history.go(-1);"  />
+                <input type="button" value="Cancelar" class="btn btn-danger"  onclick="history.go(-1);"  />
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
