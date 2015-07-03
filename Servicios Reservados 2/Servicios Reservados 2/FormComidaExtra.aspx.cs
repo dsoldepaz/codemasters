@@ -135,15 +135,24 @@ namespace Servicios_Reservados_2
         */
         protected Boolean agregarServicioExtra()
         {
-            Boolean res = true;
-            DateTime fechaInicio = DateTime.Parse(reservConsultada.FechaInicio.ToString());//fecha de inicio e la reservación
+            /*DateTime fechaInicio = DateTime.Parse(reservConsultada.FechaInicio.ToString());//fecha de inicio e la reservación
             DateTime fechaFin = DateTime.Parse(reservConsultada.FechaSalida.ToString());//fecha en la que finaliza la reservación
             DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;//fecha seleccionada en el calendario
             DateTime fechaActual = DateTime.Today;//la fecha del día de hoy
+            */
+            Boolean res = true;
+            DateTime fechaInicio = DateTime.Parse(reservConsultada.FechaInicio.ToString());
+            fechaInicio = fechaInicio.AddHours(6);
+            DateTime fechaFin = DateTime.Parse(reservConsultada.FechaSalida.ToString());
+            fechaFin = fechaFin.AddHours(23);
+            DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;
+            string[] hora = cbxHora.Value.ToString().Split(':');
+            fechaSelect = fechaSelect.AddHours(int.Parse(hora[0]));
+            DateTime fechaActual = DateTime.Now;
 
             if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect < fechaActual)
             {
-                mostrarMensaje("danger", "Error:", "Revise la fecha seleccionada, debe estar dentro de la reservación y solo puede reservar de hoy en adelante");
+                mostrarMensaje("danger", "Error:", "Revise la fecha y hora seleccionadas, debe estar dentro de la reservación y despúes de la hora actual.");
                 res = false;
             }
             else
@@ -182,15 +191,18 @@ namespace Servicios_Reservados_2
         protected Boolean modificarServicioExtra()
         {
             Boolean res = true;
-
-            DateTime fechaInicio = DateTime.Parse(reservConsultada.FechaInicio.ToString());//fecha de inicio e la reservación
-            DateTime fechaFin = DateTime.Parse(reservConsultada.FechaSalida.ToString());//fecha en la que finaliza la reservación
-            DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;//fecha seleccionada en el calendario
-            DateTime fechaActual = DateTime.Today;//la fecha del día de hoy
+            DateTime fechaInicio = DateTime.Parse(reservConsultada.FechaInicio.ToString());
+            fechaInicio = fechaInicio.AddHours(6);
+            DateTime fechaFin = DateTime.Parse(reservConsultada.FechaSalida.ToString());
+            fechaFin = fechaFin.AddHours(23);
+            DateTime fechaSelect = fechaDeEntradaCalendario.SelectedDate;
+            string[] hora = cbxHora.Value.ToString().Split(':');
+            fechaSelect = fechaSelect.AddHours(int.Parse(hora[0]));
+            DateTime fechaActual = DateTime.Now;
 
             if (fechaSelect < fechaInicio || fechaSelect > fechaFin || fechaSelect < fechaActual)
             {
-                mostrarMensaje("danger", "Error:", "Revise la fecha seleccionada, debe estar dentro de la reservación y solo puede reservar de hoy en adelante");
+                mostrarMensaje("danger", "Error:", "Revise la fecha y hora seleccionadas, debe estar dentro de la reservación y despúes de la hora actual.");
                 res = false;
             }
             else
@@ -310,7 +322,22 @@ namespace Servicios_Reservados_2
                     btnEditar.Disabled = true;
                     btnAnular.Visible = true;
                     btnEditar.Visible = true;
-                    break;
+                    int i = 0;
+                    bool bandera = false;
+                    while (i < tipo.Rows.Count && bandera==false)
+                    {
+                        if (tipo.Rows[i][0].ToString().Equals(entidadConsultada.IdServiciosExtras.ToString()))
+                        {
+                            bandera = true;
+                        }
+                        else
+                        {
+                            i++;
+                        }
+                    }
+                    AdaptarHora(tipo.Rows[i][1].ToString());
+
+                        break;
             }
         }
 
@@ -356,19 +383,30 @@ namespace Servicios_Reservados_2
         */
         protected void clickAdaptarHora(object sender, EventArgs e)
         {
+            AdaptarHora(cbxTipo.Text);
+        }
+
+        /*
+         * Efecto: filtra las horas de acuerdo al tipo de comida.
+         * Requiere: presionar el cbxTipo.
+         * Modifica: el estado del cbxHora.
+        */
+        protected void AdaptarHora(String tipo)
+        {
             int inicio = 0;
             int fin = 0;
-            if (cbxTipo.Text == "Desayuno")
+
+            if (tipo == "Desayuno")
             {
                 inicio = 6;
                 fin = 9;
             }
-            else if (cbxTipo.Text == "Almuerzo")
+            else if (tipo == "Almuerzo")
             {
                 inicio = 11;
                 fin = 14;
             }
-            else if (cbxTipo.Text == "Cena")
+            else if (tipo == "Cena")
             {
                 inicio = 18;
                 fin = 21;
