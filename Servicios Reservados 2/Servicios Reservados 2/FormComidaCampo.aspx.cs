@@ -39,6 +39,13 @@ namespace Servicios_Reservados_2
                 cambiarModo();
             }
         }
+
+
+        /*
+     * Efecto: rellena los campos de la interfaz con la información de la reservaciòn seleccionada
+     * Requiere: saber a cúal tipo se esta utilizando, de una reservación o de un empleado
+     * Modifica: los campos en la interfaz.
+    */
         void llenarInfoServicio() {
             
             if(tipoComidaCampo==0){//reservacion
@@ -66,6 +73,12 @@ namespace Servicios_Reservados_2
 
         }
 
+
+        /*
+     * Efecto: se utiliza para manejar los campos que se habilitan o deshabilitan de acuerdo al botón presionado.
+     * Requiere: La opción del botón seleccionado.
+     * Modifica: los campos y botones de la interfaz. 
+    */
         protected void cambiarModo()
         {
             txtPax.Value = "1";
@@ -193,9 +206,14 @@ namespace Servicios_Reservados_2
                 btnAnular.Visible = true;
                 btnEditar.Visible = true;
             }
-
-            
         }
+
+
+        /*
+     * Efecto: se encarga de deshabilitar los campos en la interfaz de acuerdo a la opción selecionada.
+     * Requiere: la opción seleccionada.
+     * Modifica: los campos en la interfaz. 
+    */
         protected void limpiarCamposOpcion2()
         {
             limpiarComidas();
@@ -208,6 +226,11 @@ namespace Servicios_Reservados_2
             
         }
 
+           /*
+     * Efecto: se encarga de deshabilitar los campos en la interfaz de acuerdo a la opción selecionada.
+     * Requiere: la opción seleccionada.
+     * Modifica: los campos en la interfaz. 
+    */
         protected void limpiarCamposOpcion1(){
 
             limpiarComidas();
@@ -224,6 +247,11 @@ namespace Servicios_Reservados_2
             cmbHoraGalloPinto.Items.Clear();
         }
 
+               /*
+     * Efecto: se encarga de deshabilitar los campos en la interfaz de acuerdo a la opción selecionada.
+     * Requiere: la opción seleccionada.
+     * Modifica: los campos en la interfaz. 
+    */
         protected void limpiarCamposOpcion3()
         {
             limpiarComidas();
@@ -243,6 +271,11 @@ namespace Servicios_Reservados_2
             cbxHoraOpcion1.Items.Clear();
         }
 
+           /*
+     * Efecto: se encarga de deshabilitar los campos en la interfaz de acuerdo a la opción selecionada.
+     * Requiere: la opción seleccionada.
+     * Modifica: los campos en la interfaz. 
+    */
         protected void limpiarComidas()
         {
             radioDesayuno.Enabled = false;
@@ -268,6 +301,11 @@ namespace Servicios_Reservados_2
             cbxHoraOpcion1.Disabled = true;
         }
 
+           /*
+     * Efecto: se encarga de llenar el combo box de hora de acuerdo a la opción seleccionada.
+     * Requiere: la opción seleccionada.
+     * Modifica: el combo box de hora. 
+    */
         protected void llenarHora()
         {
             int inicio = 6;
@@ -279,6 +317,11 @@ namespace Servicios_Reservados_2
             }  
         }
 
+             /*
+     * Efecto: se encarga de llenar el combo box de hora de acuerdo a la opción seleccionada.
+     * Requiere: la opción seleccionada.
+     * Modifica: el combo box de hora. 
+    */
         protected void llenarHoraOpcion3() {
             int inicio = 6;
             int fin = 21;
@@ -290,6 +333,11 @@ namespace Servicios_Reservados_2
         
         }
 
+             /*
+     * Efecto: se encarga de llenar el combo box de hora de acuerdo a la opción seleccionada.
+     * Requiere: la opción seleccionada.
+     * Modifica: el combo box de hora. 
+    */
         protected void cambiarFechaD(object sender, EventArgs e)
         {
             cbxHoraOpcion1.Items.Clear();
@@ -301,6 +349,11 @@ namespace Servicios_Reservados_2
             }       
         }
 
+             /*
+     * Efecto: se encarga de llenar el combo box de hora de acuerdo a la opción seleccionada.
+     * Requiere: la opción seleccionada.
+     * Modifica: el combo box de hora. 
+    */
         protected void cambiarFechaA(object sender, EventArgs e)
         {
             cbxHoraOpcion1.Items.Clear();
@@ -312,6 +365,12 @@ namespace Servicios_Reservados_2
                 cbxHoraOpcion1.Items.Add(horas);
             }       
         }
+
+     /*
+     * Efecto: se encarga de llenar el combo box de hora de acuerdo a la opción seleccionada.
+     * Requiere: la opción seleccionada.
+     * Modifica: el combo box de hora. 
+    */
         protected void cambiarFechaC(object sender, EventArgs e)
         {
             cbxHoraOpcion1.Items.Clear();
@@ -323,6 +382,12 @@ namespace Servicios_Reservados_2
                 cbxHoraOpcion1.Items.Add(horas);
             }  
         }
+
+      /*
+     * Efecto: se habilitan y deshabilitan campos dependiendo de la opción a agregar
+     * Requiere: la opción a seleccionar.
+     * Modifica: los campos a habilitar/deshabilitar en la interfaz 
+    */
         protected void checkedO1(object sender, EventArgs e)
         {
             limpiarCamposOpcion1();
@@ -359,6 +424,11 @@ namespace Servicios_Reservados_2
             
         }
 
+        /*
+    * Efecto: se habilitan y deshabilitan campos dependiendo de la opción a agregar
+    * Requiere: la opción a seleccionar.
+    * Modifica: los campos a habilitar/deshabilitar en la interfaz 
+   */
         protected void checkbebida(object sender, EventArgs e)
         {
             if (CheckboxBebida.Checked)
@@ -376,6 +446,11 @@ namespace Servicios_Reservados_2
             }
         }
 
+     /*
+    * Efecto: se habilitan y deshabilitan campos dependiendo de la opción a agregar
+    * Requiere: la opción a seleccionar.
+    * Modifica: los campos a habilitar/deshabilitar en la interfaz 
+   */
         protected void checkedO3(object sender, EventArgs e)
         {
             limpiarCamposOpcion3();
@@ -400,6 +475,12 @@ namespace Servicios_Reservados_2
             
             }
         }
+
+      /*
+    * Efecto: se habilitan y deshabilitan campos dependiendo de la opción a agregar
+    * Requiere: la opción a seleccionar.
+    * Modifica: los campos a habilitar/deshabilitar en la interfaz 
+   */
         protected void checkedO2(object sender, EventArgs e)
         {
             limpiarCamposOpcion2();
@@ -436,6 +517,12 @@ namespace Servicios_Reservados_2
             }
         }
 
+
+           /*
+    * Efecto: Seleeciona el tipo de pan.
+    * Requiere: la opción de pan.
+    * Modifica: el string con el valor del pan seleccionado. 
+   */
         protected String getPan()
         {
             String pan = "";
@@ -455,6 +542,11 @@ namespace Servicios_Reservados_2
 
         }
 
+     /*
+    * Efecto: retorna el tipo de sandwich seleccionado.
+    * Requiere: la opción de sandwich.
+    * Modifica: el string de tipo.
+   */
         protected String getTipoSandwich()
         {
             String tipo = "";
@@ -486,6 +578,12 @@ namespace Servicios_Reservados_2
             return tipo;
         }
 
+
+        /*
+       * Efecto: retorna la lista con todos los adiccionales seleccionados.
+       * Requiere: las opciones .
+       * Modifica: la lista con de adicionales.
+      */
         protected List<String> listaAdicionales()
         {
             List<String> lista = new List<String>();
@@ -523,7 +621,13 @@ namespace Servicios_Reservados_2
             }
             return lista;
         }
-                
+
+
+        /*
+       * Efecto: se encarga de verificar las fechas de la reservación a insertar.
+       * Requiere: las fechas seleccionadas.
+       * Modifica: las fechas a insertar.
+      */
         protected Boolean revisarFechas()
         {
             
@@ -824,8 +928,6 @@ namespace Servicios_Reservados_2
                         {
                         Response.Redirect("FormEmpleadoReserva");
                         }
-                        
-
                     }
                     else
                     {
@@ -834,10 +936,7 @@ namespace Servicios_Reservados_2
                         {
                             Response.Redirect("FormServicios");
                         }
-
-
                     }
-
 
                     break;
                 case 2://modificar
@@ -867,6 +966,7 @@ namespace Servicios_Reservados_2
                     break;
             }
         }
+
         protected void clickCancelar(object sender, EventArgs e)
         {
             switch (tipoComidaCampo)
