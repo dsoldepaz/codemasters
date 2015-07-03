@@ -111,7 +111,7 @@ namespace Servicios_Reservados_2
         protected void clickAgregar(object sender, EventArgs e)
         {
             String[] error = controladora.activarTiquete(int.Parse(numTiquete.Value));// se le pide a la controladora que lo inserte
-            if ("La informacion ingresada ya existe".Equals(error[2]))
+            if ("danger".Equals(error[0]))
             {
                 mostrarMensaje(error[0], error[1], "Este tiquete ya se encuentra asociado a un servicio"); // se muestra el resultado     
 
