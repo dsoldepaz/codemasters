@@ -626,7 +626,7 @@ namespace Servicios_Reservados_2
         /*
        * Efecto: se encarga de verificar las fechas de la reservación a insertar.
        * Requiere: las fechas seleccionadas.
-       * Modifica: las fechas a insertar.
+       * Modifica: la variable booleana correcta.
       */
         protected Boolean revisarFechas()
         {
@@ -668,9 +668,13 @@ namespace Servicios_Reservados_2
             }
 
             return correcta;
-
         }
 
+        /*
+       * Efecto: se utiliza para insertar la comida de campo deseada. 
+       * Requiere: seleccionar las opciones del tipo de comida de campo.
+       * Modifica: insertar la comida a la base de datos.
+      */
         protected Boolean agregarComidaCampo()
         {
             Boolean res = true;
@@ -786,6 +790,12 @@ namespace Servicios_Reservados_2
             return res;
         }
 
+
+        /*
+       * Efecto: se utiliza para modificar una comida de campo deseada. 
+       * Requiere: seleccionar las opciones del tipo de comida de campo.
+       * Modifica: insertar la comida a la base de datos.
+      */
         protected Boolean modificarComidaCampo()
         {
             Boolean res = true;

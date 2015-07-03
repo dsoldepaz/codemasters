@@ -62,6 +62,7 @@ namespace Servicios_Reservados_2
             }
             catch (OracleException e)
             {
+                adaptador.Close();
                 int r = e.ErrorCode;
 
                 if (r == -2147217873)
