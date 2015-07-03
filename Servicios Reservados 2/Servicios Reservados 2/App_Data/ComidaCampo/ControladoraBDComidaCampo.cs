@@ -139,7 +139,7 @@ namespace Servicios_Reservados_2
          */
         internal DataTable getBebidas(String estacion, String fechaInicio, String fechaFinal)
         {
-            String consultaSQL = "select hora,bebida,pax from servicios_reservados.comida_campo where estado ='Activo' and estacion= '" + estacion + "' and fecha >= '" + fechaInicio+"' and fecha <= '" + fechaFinal + "'";
+            String consultaSQL = "select hora,bebida,pax from servicios_reservados.comida_campo where estado ='Activo' and bebida is not null and estacion= '" + estacion + "' and fecha >= '" + fechaInicio+"' and fecha <= '" + fechaFinal + "'";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }

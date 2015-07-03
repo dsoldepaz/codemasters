@@ -118,7 +118,7 @@ namespace Servicios_Reservados_2
         {
 
             GridViewSnacks.PageIndex = e.NewPageIndex;
-            GridViewSnacks.DataSource = Session["snacks"];
+            GridViewSnacks.DataSource = snacks;
             GridViewSnacks.DataBind();
 
         }
@@ -127,7 +127,7 @@ namespace Servicios_Reservados_2
         {
 
             GridViewBebidas.PageIndex = e.NewPageIndex;
-            GridViewBebidas.DataSource = Session["bebidas"];
+            GridViewBebidas.DataSource = bebidas;
             GridViewBebidas.DataBind();
 
         }
@@ -260,7 +260,9 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
-        /**
+
+       
+     /**
    * Requiere: n/a
    * Efectua: Llena la tabla  GridTotal
    * retorna:  N/A
@@ -740,8 +742,9 @@ namespace Servicios_Reservados_2
 
                         }
                         tabla.Rows.Add(datos);
+                        
                     }
-             
+                
                     
                 }
 
@@ -758,6 +761,7 @@ namespace Servicios_Reservados_2
                             datos[2] = fila[2].ToString();
                             datos[3] = fila[3].ToString();
                             tabla.Rows.Add(datos);
+                            
                         }
                    
                     }
@@ -766,10 +770,10 @@ namespace Servicios_Reservados_2
           fechaDia = fechaDia.AddDays(1);
 
           }
-            Session["snacks"] = tabla;
-            GridViewSnacks.DataSource = tabla;
+            snacks = tabla;
+            GridViewSnacks.DataSource = snacks;
             GridViewSnacks.DataBind();
-
+           
 
 
         }
@@ -780,7 +784,7 @@ namespace Servicios_Reservados_2
         */
         protected void llenarGridBebidas()
         {
-            DataTable tabla = crearTablaSnacks();
+            DataTable tabla = crearTablaBebidas();
             String descripcion = "";
             Object[] datos = new Object[4];
             fechaDia = fechaInicioConsulta;
@@ -825,8 +829,8 @@ namespace Servicios_Reservados_2
             fechaDia = fechaDia.AddDays(1);
 
          }
-            Session["bebidas"] = tabla;
-            GridViewBebidas.DataSource = tabla;
+           bebidas = tabla;
+           GridViewBebidas.DataSource = bebidas;
            GridViewBebidas.DataBind();
         }
         /**
