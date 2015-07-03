@@ -94,7 +94,7 @@
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:LinkButton ID="btnCancelar" runat="server" CommandName="cancelar" class="btn btn-default" ToolTip="Desactivar" OnClick="seleccionarDesactivar"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+                                <asp:LinkButton ID="btnCancelar" runat="server" CommandName="cancelar" class="btn btn-default" <!--ToolTip="Desactivar" OnClick="seleccionarDesactivar"-->><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
                                 <!-- Modal -->
                                 <div class="modal fade" id="modalDesactivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                     <div class="modal-dialog" role="document">

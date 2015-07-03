@@ -18,6 +18,8 @@ namespace Servicios_Reservados_2
         public static EntidadComidaCampo comidaCampoConsultada;
         public static EntidadComidaEmpleado comidaEmpleadoSeleccionado;
         private static DataTable todos;
+        private static int indice = -1;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
@@ -249,7 +251,7 @@ namespace Servicios_Reservados_2
          */
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            seleccionarComida(obtenerIndex(sender, e));
+            seleccionarComida(indice);
             GridViewRow row = GridComidasReservadas.SelectedRow;
             String tipo = row.Cells[5].Text;
             String[] mensaje;
@@ -371,6 +373,16 @@ namespace Servicios_Reservados_2
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('tiene " + numNotificaciones + " notificaciones nuevas');", true);
             }
+        }
+        /*
+         * Requiere:
+         * 
+         * 
+          */
+        protected void seleccionarCancelar(object sender, EventArgs e)
+        {
+            indice = obtenerIndex(sender, e) + (GridComidasReservadas.PageIndex * 10);//se obtiene la cedula a consultar
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>$('#modalcancelar').modal('show');</script>", false);
         }
 
     }
