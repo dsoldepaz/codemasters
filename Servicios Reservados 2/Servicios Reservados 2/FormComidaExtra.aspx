@@ -34,7 +34,7 @@
 
             <div class="well bs-component">
 
-                <legend style="color: #7BC143">Información del servicio</legend>
+                <legend style="color: #7BC143">Información de la reservación</legend>
                 <ul>
                     <li class="itemContenedor">Estación:<input id="txtEstacion" runat="server" style="width: 100px" disabled /></li>
                     <li class="itemContenedor">Anfitriona:<input id="txtAnfitriona" runat="server" style="width: 100px" disabled /></li>
@@ -75,6 +75,7 @@
                 </table>
             </div>
             <div class="well bs-component">
+                  <legend style="color: #7BC143">Información del servicio</legend>
                 <ul>
                     <li class="itemContenedor">Fecha:<input runat="server" id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
                         <input id="fechaDeEntrada" class="selectorDeFecha" type="button" runat="server" onserverclick="fechaDeEntrada_ServerClick" />

@@ -41,7 +41,7 @@
 
             <div class="well bs-component">
 
-                <legend style="color: #7BC143">Información del servicio</legend>
+                <legend style="color: #7BC143">Información del solicitante</legend>
                 <table>
                     <tr>
                         <td>
@@ -82,7 +82,7 @@
             </div>
             <div class="well bs-component">
 
-                <legend style="color: #7BC143">Selección de fecha</legend>
+                <legend style="color: #7BC143">Información del servicio </legend>
                 <ul>
                     <li class="itemContenedor">Fecha:<input runat="server" id="textFecha" onselect="fechaDeEntradaCalendario_SelectionChanged" disabled />
                         <input id="fechaDeEntrada" class="selectorDeFecha" type="button" runat="server" onserverclick="fechaDeEntrada_ServerClick" />
