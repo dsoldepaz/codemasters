@@ -14,7 +14,7 @@ h3{
     padding-bottom: 15px;
     border-bottom:solid 3px;
     border-bottom-color: #7BC143;
-    color: #7BC143;
+   color: #7BC143;
 }
 section{
    border-color:#c8c5c5;
@@ -81,4 +81,7 @@ ul>li>input.tiempo{
 }
 input#MainContent_fechaDeEntrada {
   height: 18px;
+}
+.h3Sincolor{
+    color:black;
 }
