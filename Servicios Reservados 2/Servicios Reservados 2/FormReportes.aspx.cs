@@ -422,10 +422,10 @@ namespace Servicios_Reservados_2
         }
 
         /* 
-         * Efecto: consultas para ejecutar el filtro  por los parámetros de Estación, Anfitriona y Fecha.
-         * Requiere: 
-         * Modifica: 
-         */
+        * Efecto: devuelve la consulta con los filtros de estación, anfitriona y fechas
+        * Requiere: selección de los filtros de fechas, anfitriona y estación
+        * Modifica: el grid de detalle.
+        */
         protected void filtroEstacionAnfitrionaFecha(String fechaInicio, String fechaFinal)
         {
             DataTable comidaCampoReservDesayuno = verificarDataTable(controladora.obtenerComidaPax(estacion, 1, anfitriona, fechaInicio, fechaFinal));
@@ -479,6 +479,11 @@ namespace Servicios_Reservados_2
 
         }
 
+        /* 
+       * Efecto: devuelve la consulta con los filtros de estación y fechas
+       * Requiere: selección de los filtros de fechas y estación
+       * Modifica: el grid de detalle.
+       */
         protected void filtroEstacionFecha(String fechaInicio, String fechaFinal)
         {
 
@@ -516,6 +521,11 @@ namespace Servicios_Reservados_2
 
         }
 
+        /* 
+       * Efecto: devuelve la consulta con los filtros de fechas y anfitriona.
+       * Requiere: selección de los filtros de fechas y anfitriona.
+       * Modifica: el grid de detalle.
+       */
         protected void filtroAnfitrionaFecha(String fechaInicio, String fechaFinal)
         {
 
@@ -570,6 +580,11 @@ namespace Servicios_Reservados_2
 
         }
 
+        /* 
+       * Efecto: devuelve la consulta con los filtros de fechas
+       * Requiere: selección de los filtros de fechas
+       * Modifica: el grid de detalle.
+       */
         protected void filtroFechas(String fechaInicio, String fechaFinal)
         {
 
@@ -607,6 +622,12 @@ namespace Servicios_Reservados_2
 
         }
 
+
+        /* 
+      * Efecto: verifica que el DataTable devuelve tuplas y sino se agrega una fila
+      * Requiere: DataTable
+      * Modifica: el DataTable que retorna
+      */
         protected DataTable verificarDataTable(DataTable datos)
         {
             DataTable resultante = datos;
@@ -623,6 +644,11 @@ namespace Servicios_Reservados_2
             return resultante;
         }
 
+        /* 
+      * Efecto: verifica que el DataTable para las consultas de empleado devuelve tuplas y sino se agrega una fila
+      * Requiere: DataTable
+      * Modifica: el DataTable que retorna
+      */
         protected DataTable verificarDataTableEmp(DataTable datos)
         {
             DataTable resultante = datos;
@@ -639,6 +665,12 @@ namespace Servicios_Reservados_2
             return resultante;
         }
 
+
+        /* 
+       * Efecto: verifica que el DataTable para las consultas de una reservación devuelve tuplas y sino se agrega una fila
+       * Requiere: DataTable
+       * Modifica: el DataTable que retorna
+       */
         protected DataTable verificarComidasReservaciones(DataTable datos)
         {
             DataTable resultante = datos;
@@ -656,7 +688,7 @@ namespace Servicios_Reservados_2
         /*
         * Requiere: N/A
         * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
-        * Retoirna: N/A
+        * Retorna: N/A
         */
         private void obtenerNotificaciones()
         {
