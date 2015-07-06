@@ -141,10 +141,11 @@ namespace Servicios_Reservados_2
         }
 
 
-        /*Efecto: Crea la tabla de servicios
+        /*
+         * Efecto: Crea la tabla de servicios
          * Requiere: NA
          * Modifica: la tabla servicios, si la reservacion tiene servicios asociados
-         * */
+         */
         void llenarGridReportes(String fecha, DataTable tabla)
         {
 
@@ -176,7 +177,6 @@ namespace Servicios_Reservados_2
             }
             catch (Exception e)
             {
-                //Debug.WriteLine("No se pudo cargar las reservaciones");
             }
         }
 
@@ -190,21 +190,21 @@ namespace Servicios_Reservados_2
         protected void mostrarFechas(object sender, EventArgs e)
         {
             int indice = cbxFecha.SelectedIndex;
-            switch (indice)
+            switch (indice)//dependiendo de la opción de filtro de horas seleccionada se modifican valores en la interfaz
             {
-                case (0):
+                case (0)://día
                     dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
                     dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
                     break;
-                case (1):
+                case (1)://semana
                     dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
                     dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(7));
                     break;
-                case (2):
+                case (2)://mes
                     dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
                     dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddMonths(1));
                     break;
-                case (3):
+                case (3)://año fiscal
                     int mes = DateTime.Today.Month;
                     DateTime inicFecha = new DateTime();
                     DateTime finFecha = new DateTime();
@@ -222,7 +222,7 @@ namespace Servicios_Reservados_2
                     dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", inicFecha);
                     dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", finFecha);  //año fiscal
                     break;
-                case (4):
+                case (4)://predeterminado
                     dateFechaInicio.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
                     dateFechaFin.Value = String.Format("{0:yyyy-MM-dd}", DateTime.Today);
                     dateFechaFin.Disabled = false;
@@ -234,16 +234,16 @@ namespace Servicios_Reservados_2
         }
 
 
-        /**
+    /*
+     * Efecto: Crea el DataTable para desplegar.
      * Requiere: n/a
-     * Efectua: Crea la DataTable para desplegar.
-     * retorna:  un dato del tipo DataTable con la estructura para consultar.
+     * Modifica:  un dato del tipo DataTable con la estructura para consultar en la interfaz.
      */
         protected DataTable crearTablaServicios()//consultar
         {
             DataTable tabla = new DataTable();
             DataColumn columna;
-
+            // a continuación se crean cada una de las columnas
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
             columna.ColumnName = "Día";
@@ -315,6 +315,12 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
+
+        /* 
+         * Efecto: llena los campos de la interfaz dependiendo de la opción seleccionada para el filtrado.
+         * Requiere: que sean seleccionados los valores del filtro.
+         * Modifica: la interfaz.
+         */
         protected void llenarDatos()
         {
             if (listAnfitriona.SelectedValue != "Seleccionar")
@@ -337,13 +343,18 @@ namespace Servicios_Reservados_2
             txtFechaFinal.Value = fechaFin;
         }
 
+        /* 
+         * Efecto: realiza el filtro y verifica las fechas seleccionadas en el filtro.
+         * Requiere: que se precione el botón generar filtro.
+         * Modifica: NA.
+         */
         protected void BotonGenerar_Click(object sender, EventArgs e)
         {
-            if (DateTime.Parse(dateFechaFin.Value) < DateTime.Parse(dateFechaInicio.Value))
+            if (DateTime.Parse(dateFechaFin.Value) < DateTime.Parse(dateFechaInicio.Value))//si la fecha de inicio es mayor que la de fin, envía un error
             {
                 mostrarMensaje("danger", "Error:", "Revise las fechas seleccionadas, la fecha final debe ser mayor que la inicial.");
             }
-            else
+            else//sino realiza la consulta
             {
                 GridViewReportes.DataSource = null;
                 GridViewReportes.DataBind();
@@ -353,7 +364,11 @@ namespace Servicios_Reservados_2
             }
         }
 
-
+        /* 
+         * Efecto: realiza las consultas a la base de datos para generar los reportes.
+         * Requiere: selección de los parámetros de filtrado.
+         * Modifica: el grid de detalle.
+         */
         protected void cicloFechas()
         {
             DataTable tabla = crearTablaServicios();
@@ -406,9 +421,13 @@ namespace Servicios_Reservados_2
 
         }
 
+        /* 
+        * Efecto: devuelve la consulta con los filtros de estación, anfitriona y fechas
+        * Requiere: selección de los filtros de fechas, anfitriona y estación
+        * Modifica: el grid de detalle.
+        */
         protected void filtroEstacionAnfitrionaFecha(String fechaInicio, String fechaFinal)
         {
-
             DataTable comidaCampoReservDesayuno = verificarDataTable(controladora.obtenerComidaPax(estacion, 1, anfitriona, fechaInicio, fechaFinal));
             DataTable comidaCampoReservAlmuerzo = verificarDataTable(controladora.obtenerComidaPax(estacion, 2, anfitriona, fechaInicio, fechaFinal)); //almuerzo de comidaCampo reservado
             DataTable comidaCampoReservCena = verificarDataTable(controladora.obtenerComidaPax(estacion, 3, anfitriona, fechaInicio, fechaFinal)); //cena de comidaCampo reservado
@@ -460,6 +479,11 @@ namespace Servicios_Reservados_2
 
         }
 
+        /* 
+       * Efecto: devuelve la consulta con los filtros de estación y fechas
+       * Requiere: selección de los filtros de fechas y estación
+       * Modifica: el grid de detalle.
+       */
         protected void filtroEstacionFecha(String fechaInicio, String fechaFinal)
         {
 
@@ -497,6 +521,11 @@ namespace Servicios_Reservados_2
 
         }
 
+        /* 
+       * Efecto: devuelve la consulta con los filtros de fechas y anfitriona.
+       * Requiere: selección de los filtros de fechas y anfitriona.
+       * Modifica: el grid de detalle.
+       */
         protected void filtroAnfitrionaFecha(String fechaInicio, String fechaFinal)
         {
 
@@ -551,6 +580,11 @@ namespace Servicios_Reservados_2
 
         }
 
+        /* 
+       * Efecto: devuelve la consulta con los filtros de fechas
+       * Requiere: selección de los filtros de fechas
+       * Modifica: el grid de detalle.
+       */
         protected void filtroFechas(String fechaInicio, String fechaFinal)
         {
 
@@ -588,6 +622,12 @@ namespace Servicios_Reservados_2
 
         }
 
+
+        /* 
+      * Efecto: verifica que el DataTable devuelve tuplas y sino se agrega una fila
+      * Requiere: DataTable
+      * Modifica: el DataTable que retorna
+      */
         protected DataTable verificarDataTable(DataTable datos)
         {
             DataTable resultante = datos;
@@ -604,6 +644,11 @@ namespace Servicios_Reservados_2
             return resultante;
         }
 
+        /* 
+      * Efecto: verifica que el DataTable para las consultas de empleado devuelve tuplas y sino se agrega una fila
+      * Requiere: DataTable
+      * Modifica: el DataTable que retorna
+      */
         protected DataTable verificarDataTableEmp(DataTable datos)
         {
             DataTable resultante = datos;
@@ -620,6 +665,12 @@ namespace Servicios_Reservados_2
             return resultante;
         }
 
+
+        /* 
+       * Efecto: verifica que el DataTable para las consultas de una reservación devuelve tuplas y sino se agrega una fila
+       * Requiere: DataTable
+       * Modifica: el DataTable que retorna
+       */
         protected DataTable verificarComidasReservaciones(DataTable datos)
         {
             DataTable resultante = datos;
@@ -635,9 +686,9 @@ namespace Servicios_Reservados_2
         }
 
         /*
+        * Efecto : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
         * Requiere: N/A
-        * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
-        * Retoirna: N/A
+        * Modifica: N/A
         */
         private void obtenerNotificaciones()
         {
@@ -646,9 +697,9 @@ namespace Servicios_Reservados_2
         }
 
         /*
+        *  Efecto:  Cambia el contenido de la tabla al índice seleccionado.
         *  Requiere: Controladores de eventos de la interfaz.
-        *  Efectúa:  Cambia el contenido de la tabla al índice seleccionado.
-        *  Retrona:  N/A
+        *  Modifica:  las dimnensiones del grid en la interfaz.
         */
         protected void GridViewReporte_PageIndexChanging(Object sender, GridViewPageEventArgs e)
         {
@@ -659,16 +710,21 @@ namespace Servicios_Reservados_2
 
         }
 
+       /*
+        *  Efecto:  cancelar la operación y redirecciona a la página default..
+        *  Requiere: presione el botón cancelar.
+        *  Modifica:  NA
+        */
         protected void clickCancelar(object sender, EventArgs e)
         {
             Response.Redirect("Default");
         }
 
 
-        /*
-        * Requiere: N/A
-        * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
-        * Retoirna: N/A
+       /*
+        * Efecto : realiza las consultas para onbtener el número de comidas filtrando por estación y fechas.
+        * Requiere: la entrada de los parámetros para realizar el filtro.
+        * Modifica: variables globales para realizar el conteo general.
         */
         private void obtenerServiciosReservacionesEstacionFecha(String fechaInicio, String fechaFinal)
         {
@@ -770,9 +826,9 @@ namespace Servicios_Reservados_2
         }
 
         /*
-        * Requiere: N/A
-        * Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
-        * Retoirna: N/A
+        * Efecto : realiza las consultas para onbtener el número de comidas filtrando por anfitriona y fechas.
+        * Requiere: la entrada de los parámetros para realizar el filtro.
+        * Modifica: variables globales para realizar el conteo general.
         */
         private void obtenerServiciosReservacionesAnfitrionaFecha(String fechaInicio, String fechaFinal)
         {
@@ -858,10 +914,10 @@ namespace Servicios_Reservados_2
         }
 
         /*
-* Requiere: N/A
-* Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
-* Retoirna: N/A
-*/
+        * Efecto : realiza las consultas para onbtener el número de comidas filtrando por estación, anfitriona y fechas.
+        * Requiere: la entrada de los parámetros para realizar el filtro.
+        * Modifica: variables globales para realizar el conteo general.
+        */
         private void obtenerServiciosReservacionesEstacionAnfitrionaFecha(String fechaInicio, String fechaFinal)
         {
             string sigla;
@@ -958,10 +1014,10 @@ namespace Servicios_Reservados_2
         }
 
         /*
-* Requiere: N/A
-* Efectua : Pide el numero de notificaciones a la controladora y lo actualiza en la interfaz grafica
-* Retoirna: N/A
-*/
+        * Efecto : realiza las consultas para onbtener el número de comidas filtrando por fechas.
+        * Requiere: la entrada de los parámetros para realizar el filtro.
+        * Modifica: variables globales para realizar el conteo general.
+        */
         private void obtenerServiciosReservacionesFecha(String fechaInicio, String fechaFinal)
         {
 
@@ -1042,7 +1098,7 @@ namespace Servicios_Reservados_2
         /*
          * Efecto: mostrar en pantalla los mensajes del sistema, ya sean de error o de éxito.
          * Requiere: que se inicie el FormComidaExtra y se active alguna de las funcionalidades.
-         * Modifica: 
+         * Modifica: NA
         */
         protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
         {

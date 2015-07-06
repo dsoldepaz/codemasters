@@ -27,6 +27,12 @@ namespace Servicios_Reservados_2
 
         }
 
+
+          /*
+          * Efecto: envia a encapsular la comida de campo seleccionada
+          * Requiere: el id de la comida de campo y la reservación a la que pertenece
+          * Modifica: la entidadConsultada
+          */
         public EntidadComidaCampo guardarComidaSeleccionada(String id, String idServ)
         {
             DataTable comidaCampo = controladoraBD.seleccionarComidaCampo(id, idServ);
@@ -64,6 +70,7 @@ namespace Servicios_Reservados_2
             comidaCampoConsultada = new EntidadComidaCampo(nuevoComidaC, adicionales);
             return comidaCampoConsultada;
         }
+
 
         public EntidadComidaCampo consultarComidaCampoSeleccionada(String id, String idServicio)
         {

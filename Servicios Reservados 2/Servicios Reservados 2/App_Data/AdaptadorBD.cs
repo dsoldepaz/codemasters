@@ -14,7 +14,7 @@ namespace Servicios_Reservados_2
         DataTable dt;
 
         /*
-         * Requiere: N/A
+         * Requiere: que exista la base de datos especificada en el string de conexiones.
          * Efectúa : Crea la hilera de conección con la base de datos.
          * Retorna : N/A
          */

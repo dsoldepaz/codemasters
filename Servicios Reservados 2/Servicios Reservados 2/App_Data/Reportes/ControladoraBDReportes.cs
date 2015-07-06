@@ -11,9 +11,9 @@ namespace Servicios_Reservados_2
         AdaptadorBD adaptador = new AdaptadorBD();
 
         /* 
-         * Efecto: 
-         * Requiere: 
-         * Modifica : 
+         * Efecto: Consulta todas las estaciones que se encuentran en la base de datos
+         * Requiere: n/a
+         * Modifica: el DataTable que retorna 
          */
         internal DataTable cargarEstaciones()
         {
@@ -25,8 +25,8 @@ namespace Servicios_Reservados_2
 
         /* 
          * Efecto: crea consulta para una comida campo de una reservacion utilizando todos los filtros.
-         * Requiere: 
-         * Modifica : 
+         * Requiere: los filtros de estación, anfitriona  y fechas.
+         * Modifica : el DataTable que retorna 
          */
         internal DataTable obtenerComidaPax(String estacion, int opcion, int anfitriona, String fecha, String fechaFinal) //comida campo con todo reservacin
         {
@@ -39,8 +39,8 @@ namespace Servicios_Reservados_2
 
         /* 
       * Efecto: crea consulta para una comida campo de una reservacion utilizando el filtro de estacion y fechas.
-      * Requiere: 
-      * Modifica : 
+      * Requiere: los parametros de estación y fechas.
+      * Modifica : el DataTable que retorna 
       */
         internal DataTable obtenerComidaPaxEstacionFecha(String estacion, int opcion, String fecha, String fechaFinal) //comida campo con todo reservacin
         {
@@ -53,8 +53,8 @@ namespace Servicios_Reservados_2
 
         /* 
       * Efecto: crea consulta para una comida campo de una reservacion utilizando filtro de anfitriona y fechas.
-      * Requiere: 
-      * Modifica : 
+      * Requiere: los parametros de anfitriona y fechas
+      * Modifica : el DataTable que retorna 
       */
         internal DataTable obtenerComidaPaxAnfitrionaFecha(int opcion, int anfitriona, String fecha, String fechaFinal) //comida campo reservacion con anfitriona y fechas
         {
@@ -67,8 +67,8 @@ namespace Servicios_Reservados_2
 
         /* 
    * Efecto: crea consulta para una comida campo de una reservacion utilizando filtro solo de fechas.
-   * Requiere: 
-   * Modifica : 
+   * Requiere: el parametros de fechas
+   * Modifica : el DataTable que retorna 
    */
         internal DataTable obtenerComidaPaxFechas(int opcion, String fecha, String fechaFinal)
         { //comida campo reservacion con solo fechas.
@@ -80,9 +80,9 @@ namespace Servicios_Reservados_2
         }
 
         /* 
-         * Efecto: 
-         * Requiere: 
-         * Modifica : 
+         * Efecto: crea consulta para una comida de campo de un empleado utilizando filtros de estación y fechas
+         * Requiere: los parametros de estación y fechas
+         * Modifica : el DataTable que retorna 
          */
         internal DataTable obtenerComidaPaxEmp(String estacion, int opcion, String fecha, String fechaFinal) //comida campo con todo empleado o solo con estacion y fecha porque anfitriones siempre ESINTRO
         {
@@ -93,6 +93,11 @@ namespace Servicios_Reservados_2
             return comidaCampoEmp;
         }
 
+        /* 
+         * Efecto: crea consulta para una comida de campo de un empleado utilizando filtros de fechas
+         * Requiere: parametro de fechas
+         * Modifica : el DataTable que retorna 
+         */
         internal DataTable obtenerComidaPaxEmpFechas(int opcion, String fecha, String fechaFinal) //comida campo empleado con solo fechas o con anfitriona, pero siempre es ESINTRO.
         {
             DataTable comidaCampoEmp;
@@ -103,9 +108,9 @@ namespace Servicios_Reservados_2
         }
 
         /* 
-         * Efecto: 
-         * Requiere: 
-         * Modifica: 
+         * Efecto: crea consulta para una comida de un empleado utilizando filtros de estación y fechas
+         * Requiere: los paremtros de estación y fechas
+         * Modifica: el DataTable que retorna 
          */
         internal DataTable obtenerComidaEmp(String estacion, String opcion, String fecha, String fechaFinal) //comida campo empleado con todo o con solo estacion y fechas.
         {
@@ -115,11 +120,13 @@ namespace Servicios_Reservados_2
             comidaCampoEmp = adaptador.consultar(consultaSQL);
             return comidaCampoEmp;
         }
-        /* 
-      * Efecto: 
-      * Requiere: 
-      * Modifica: 
-      */
+
+
+       /* 
+         * Efecto: crea consulta para una comida de un empleado utilizando filtros de fechas
+         * Requiere: los paremtros de fechas
+         * Modifica: el DataTable que retorna 
+         */
         internal DataTable obtenerComidaEmpFechas(String opcion, String fecha, String fechaFinal) //comida campo empleado con fechas o solo con anfitriona y fechas porque anfitriona = ESINTRO.
         {
             DataTable comidaCampoEmp;
@@ -132,7 +139,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: crea la consulta que filtra comida extra por un rango de fecha.
          * Requiere: la entrada de las variables que realizan el filtrado.
-         * Modifica : N/A
+         * Modifica : el DataTable que retorna 
          */
         internal DataTable obtenerComidaExtraFechas(String opcion, String fecha, String fechaFinal, int consulta)
         {
@@ -157,7 +164,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: crea la consulta que filtra comida extra por anfitriona, estación y fecha.
          * Requiere: la entrada de las variables que realizan el filtrado.
-         * Modifica : N/A
+         * Modifica : el DataTable que retorna 
          */
         internal DataTable obtenerComidaExtraEstacionAnfitrionaFecha(String estacion, String opcion, int anfitriona, String fecha, String fechaFinal, int consulta)
         {
@@ -182,7 +189,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: crea la consulta que filtra comida extra por estaciòn y fecha.
          * Requiere: la entrada de las variables que realizan el filtrado.
-         * Modifica : N/A
+         * Modifica : el DataTable que retorna 
          */
         internal DataTable obtenerComidaExtraEstacionFecha(String estacion, String opcion, String fecha, String fechaFinal, int consulta)
         {
@@ -207,7 +214,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: crea la consulta que filtra comida extra por anfitriona y fecha.
          * Requiere: la entrada de las variables que realizan el filtrado.
-         * Modifica : N/A
+         * Modifica : el DataTable que retorna 
          */
         internal DataTable obtenerComidaExtraAnfitrionaFecha(String opcion, int anfitriona, String fecha, String fechaFinal, int consulta)
         {
@@ -234,7 +241,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: 
          * Requiere: 
-         * Modifica: 
+         * Modifica: el DataTable que retorna 
          */
         internal DataTable solicitarTurnoDiaTresComidasEstacionFecha(String sigla, String inicio, String final)
         {
@@ -247,7 +254,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: 
          * Requiere: 
-         * Modifica: 
+         * Modifica: el DataTable que retorna 
          */
         internal DataTable reservaEntranteEstacionFecha(String sigla, String inicio, String final)
         {
@@ -268,7 +275,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: 
          * Requiere: 
-         * Modifica: 
+         * Modifica: el DataTable que retorna 
          */
         internal DataTable solicitarTurnoDiaDosComidasEstacionFecha(String sigla, String inicio, String final)
         {
@@ -283,7 +290,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: 
          * Requiere: 
-         * Modifica: 
+         * Modifica: el DataTable que retorna 
          */
         internal DataTable solicitarTurnoDiaTresComidasAnfitrionaFecha(int anfitriona, String inicio, String final)
         {
@@ -296,7 +303,7 @@ namespace Servicios_Reservados_2
         /* 
  * Efecto: 
  * Requiere: 
- * Modifica: 
+ * Modifica: el DataTable que retorna 
  */
         internal DataTable reservaEntranteAnfitrionaFecha(int anfitriona, String inicio, String final)
         {
@@ -317,7 +324,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: 
          * Requiere: 
-         * Modifica: 
+         * Modifica: el DataTable que retorna 
          */
         internal DataTable solicitarTurnoDiaDosComidasAnfitrionaFecha(int anfitriona, String inicio, String final)
         {
@@ -332,7 +339,7 @@ namespace Servicios_Reservados_2
         /* 
  * Efecto: 
  * Requiere: 
- * Modifica: 
+ * Modifica: el DataTable que retorna 
  */
         internal DataTable solicitarTurnoDiaTresComidasEstacionAnfitrionaFecha(String sigla, String inicio, String final, int anfitriona)
         {
@@ -345,7 +352,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: 
          * Requiere: 
-         * Modifica: 
+         * Modifica: el DataTable que retorna 
          */
         internal DataTable reservaEntranteEstacionAnfitrionaFecha(String sigla, String inicio, String final, int anfitriona)
         {
@@ -366,7 +373,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: 
          * Requiere: 
-         * Modifica: 
+         * Modifica: el DataTable que retorna 
          */
         internal DataTable solicitarTurnoDiaDosComidasEstacionAnfitrionaFecha(String sigla, String inicio, String final, int anfitriona)
         {
@@ -381,7 +388,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: 
          * Requiere: 
-         * Modifica: 
+         * Modifica: el DataTable que retorna 
          */
         internal DataTable solicitarTurnoDiaTresComidasFecha(String inicio, String final)
         {
@@ -394,7 +401,7 @@ namespace Servicios_Reservados_2
         /* 
  * Efecto: 
  * Requiere: 
- * Modifica: 
+ * Modifica: el DataTable que retorna 
  */
         internal DataTable reservaEntranteFecha(String inicio, String final)
         {
@@ -415,7 +422,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: 
          * Requiere: 
-         * Modifica: 
+         * Modifica: el DataTable que retorna 
          */
         internal DataTable solicitarTurnoDiaDosComidasFecha(String inicio, String final)
         {
