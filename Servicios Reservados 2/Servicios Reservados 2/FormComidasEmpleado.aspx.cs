@@ -143,13 +143,27 @@ namespace Servicios_Reservados_2
         }
         /*
          * Requiere: Parametros de eventos de la GUI
+         * Efectua : limpia la interfaz y retorna a la interfaz anterior
+         * Retorna : N/A
+         */
+        protected void clickAnular(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>$('#modalcancelar').modal('show');</script>", false);
+
+        }
+
+
+        /*
+         * Requiere: Parametros de eventos de la GUI
          * Efectua : envia los datos seleccionados a la controladora para ser eliminada.
          * Retorna : N/A
          */
         protected void clickEliminar(object sender, EventArgs e)
         {
             EntidadComidaEmpleado aCancelar = new EntidadComidaEmpleado(seleccionada.IdEmpleado, seleccionada.Estacion, seleccionada.Fechas, seleccionada.Turnos, seleccionada.Pagado, seleccionada.Notas, seleccionada.IdComida);
-            controladora.eliminar(aCancelar);
+            String[] resultado=controladora.eliminar(aCancelar);
+            mostrarMensaje(resultado[0], resultado[1], resultado[2]);//String tipoAlerta, String alerta, String mensaje
+
         }
         /*
          * Requiere: Parametros de eventos de la GUI
@@ -194,6 +208,7 @@ namespace Servicios_Reservados_2
                 Turnos[1] = (this.checkboxAlmuerzo.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
                 Turnos[2] = (this.checkboxCena.Checked) ? 'R' : 'N';//R = Reservado C= Consumido N=No reservado X=Cancelado
                 String[] resultado = controladora.agregar(identificacionEmpleado, estacion, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
+                mostrarMensaje("success", "Exito: ", "Se han agregado con éxito las reservaciones para el empleado.");//String tipoAlerta, String alerta, String mensaje
                 modo = 5;
                 ponerModo();
             }
@@ -237,7 +252,9 @@ namespace Servicios_Reservados_2
                 valor = (seleccionada.Turnos[1] == 'N') ? 'N' : 'X';//Si estaba consumida, reservada o cancelada, los errores los manejaran las controladoras e informaran.
             }
             Turnos[2] = valor;
-            controladora.modificar(seleccionada, empleadoSeleccionado.Id, estacion, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
+            String [] resultado =controladora.modificar(seleccionada, empleadoSeleccionado.Id, estacion, list, Turnos, tipodePago.SelectedIndex == 1, notas.Value);
+            mostrarMensaje(resultado[0],resultado[1],resultado[2]);//String tipoAlerta, String alerta, String mensaje
+
         }
         /* Requiere: N/A
          * Efectua : pide los datos a la controladora y los coloca en su posicion en la GUI.
@@ -362,13 +379,14 @@ namespace Servicios_Reservados_2
                     datos[0] = String.Format("{0:MM-dd-yyyy}", dt);          // "03/09/2008"
 
                     tabla.Rows.Add(datos);
-                }/*else{
+                }
                 //deberia de enviar un error
-            }*/
+            }else{
+                mostrarMensaje("danger","Precaucion: ","No se pueden agregar fechas antes de la fecha actual o del mismo dia");//String tipoAlerta, String alerta, String mensaje
+            }
                 GridFechasReservadas.DataBind();
                 list.Add(MyDateTime);
                 btnAceptar.Disabled = false;
-            }
         }
         /**
          * Requiere: n/a
@@ -388,6 +406,19 @@ namespace Servicios_Reservados_2
             GridFechasReservadas.DataBind();
 
             return tabla;
+        }        
+        /*
+         * Efecto: mostrar en pantalla los mensajes del sistema, ya sean de error o de éxito.
+         * Requiere: que se inicie y se active alguna de las funcionalidades.
+         * Modifica: 
+        */
+        protected void mostrarMensaje(String tipoAlerta, String alerta, String mensaje)
+        {
+            alertAlerta.Attributes["class"] = "alert alert-" + tipoAlerta + " alert-dismissable fade in";
+            labelTipoAlerta.Text = alerta + " ";
+            labelAlerta.Text = mensaje;
+            alertAlerta.Attributes.Remove("hidden");
+            this.SetFocus(alertAlerta);
         }
 
     }

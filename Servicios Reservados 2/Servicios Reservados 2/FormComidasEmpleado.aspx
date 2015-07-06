@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="Comida de Empleado" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormComidasEmpleado.aspx.cs" Inherits="Servicios_Reservados_2.FormComidasEmpleado" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="Content/ComidaEmpleado.css" />
 </asp:Content>
 
@@ -15,13 +18,18 @@
             
         </ul>
     </nav>
-
+    <a href="">
+        <div id="Div1" class="alert alert-danger fade in" runat="server" hidden="hidden">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>
+             <asp:Label ID="label1" runat="server" Text="Alerta! "></asp:Label></strong><asp:Label ID="label2" runat="server" Text="Mensaje de alerta"></asp:Label>
+        </div>
+    </a>
     <table>
         <tr>
             <td>
-                <legend>
                     <h2>Comida de Empleado</h2>
-                </legend>
+               
             </td>
             <td>
                 <a href="">
@@ -58,7 +66,24 @@
                     <input id="btnEditar" type="button" value="Editar" runat="server" onserverclick="clickModificar" />
                 </td>
                 <td>
-                    <input id="btnAnular" type="button" value="Anular" runat="server" onserverclick="clickEliminar" />
+                    <input id="btnAnular" type="button" value="Anular" runat="server" data-toggle="modal" data-target="#modalcancelar" />
+                    <!-- Modal -->
+                                <div class="modal fade" id="modalcancelar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel">Cancelar Reservacion</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>¿Desea Cancelar la reservacion? Es una operacion irreversible</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success" runat="server" onserverclick="clickEliminar" data-dismiss="modal">Aceptar</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                 </td>
             </tr>
         </table>

@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" Title="Servicio para empleados" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="FormEmpleadoReserva.aspx.cs" Inherits="Servicios_Reservados_2.FormEmpleadoReserva" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="Content/EmpleadoReserva.css" />
     <nav>
         <ul>
@@ -85,7 +88,24 @@
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:LinkButton ID="btnCancelar" runat="server" class="btn btn-default" OnClick="btnCancelar_Click" ToolTip="Anular"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+                                <asp:LinkButton ID="btnCancelar" runat="server" class="btn btn-default"  OnClick="seleccionarCancelar" ToolTip="Anular"><i  class="glyphicon glyphicon-remove"></i></asp:LinkButton>
+                                                    <!-- Modal -->
+                                <div class="modal fade" id="modalcancelar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel">Cancelar Reservacion</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>¿Desea Cancelar la reservacion? Es una operacion irreversible</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success" runat="server" onserverclick="btnCancelar_Click" data-dismiss="modal">Aceptar</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

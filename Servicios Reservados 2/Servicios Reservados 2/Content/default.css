@@ -1,5 +1,6 @@
 ﻿.well {
-      height: 200px;
+        height: 250px;
+        padding-bottom: 30px;
 }/*
 a:hover {
   -webkit-transition: width 2s, height 4s;
