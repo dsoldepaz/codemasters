@@ -27,6 +27,12 @@ namespace Servicios_Reservados_2
 
         }
 
+
+          /*
+          * Efecto: envia a encapsular la comida de campo a insertar
+          * Requiere: el id de la comida de campo y la reservación a la que pertenece
+          * Modifica: la entidadConsultada
+          */
         public EntidadComidaCampo guardarComidaSeleccionada(String id, String idServ)
         {
             DataTable comidaCampo = controladoraBD.seleccionarComidaCampo(id, idServ);
@@ -65,6 +71,11 @@ namespace Servicios_Reservados_2
             return comidaCampoConsultada;
         }
 
+        /*
+        * Efecto: encapsula la comida de campo a consultar
+        * Requiere: el id de la comida de campo y la reservación a la que pertenece
+        * Modifica: la entidadConsultada
+        */
         public EntidadComidaCampo consultarComidaCampoSeleccionada(String id, String idServicio)
         {
             DataTable comidaCampo = controladoraBD.seleccionarComidaCampoEmpleado(id, idServicio);
@@ -102,11 +113,24 @@ namespace Servicios_Reservados_2
             comidaCampoConsultada = new EntidadComidaCampo(nuevoComidaC, adicionales);
             return comidaCampoConsultada;
         }
+
+
+        /*
+        * Efecto: solicita la información de las comidas de campo empleado
+        * Requiere: el id del empleado
+        * Modifica: el DataTable que retorna
+        */
         public DataTable getComidaEmpleado(String id)
         {
             DataTable dt = controladoraBD.getComidaEmpleado(id);
             return dt;
         }
+
+        /*
+        * Efecto: se encarga de agregar una comida de campo 
+        * Requiere: la información de la comida a agregar más la lista de adicionales
+        * Modifica: la entidadComidaCampo
+        */
         public String[] agregarComidaCampo(Object[] dato, List<String> lista)
         {
             EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato, lista);
@@ -114,6 +138,11 @@ namespace Servicios_Reservados_2
             return resultado;
         }
 
+        /*
+        * Efecto: se encarga de modificar una comida de campo 
+        * Requiere: la información de la comida a modificar, la lista de adicionales y la entidadConsultada
+        * Modifica: la entidadComidaCampo
+        */
         public String[] modificarComidaCampo(Object[] dato, List<String> lista, EntidadComidaCampo entidadConsultada)
         {
             EntidadComidaCampo nuevaComidaCampo = new EntidadComidaCampo(dato, lista);
@@ -121,6 +150,11 @@ namespace Servicios_Reservados_2
             return resultado;
         }
 
+        /*
+        * Efecto: encapsula la comida de campo seleccionada 
+        * Requiere: n/a
+        * Modifica: la entidadComidaCampo
+        */
         public EntidadComidaCampo entidadSeleccionada()
         {
             return comidaCampoConsultada;
@@ -129,7 +163,7 @@ namespace Servicios_Reservados_2
         /*
          * Efecto: recibe el id de la comida de campo y lo manda a cancelar a la controladora de BD.
          * Requiere: el id.
-         * Modifica:
+         * Modifica: la tabla de comida_campo.
          */
         internal String[] cancelarComidaCampo(String id)
         {
@@ -137,30 +171,68 @@ namespace Servicios_Reservados_2
             return resultado;
         }
 
+        /*
+         * Efecto: recibe el id de la comida de campo y lo manda a cancelar a la controladora de BD.
+         * Requiere: el id.
+         * Modifica: la tabla de comida_campo.
+         */
         public EntidadReservaciones reservConsultada()
         {
             return controladoraReserv.getReservacionSeleccionada();
         }
 
+
+        /*
+         * Efecto: solicita la cantidad de personas en una reservación
+         * Requiere: el id de la reservación
+         * Modifica: el string PAX
+         */
         public String paxReserv(String id)
         {
             String pax = controladoraReserv.obtenerPax(id);
             return pax;
 
         }
+
+        /*
+         * Efecto: solicita la cantidad de veces que se ha consumido un servicio
+         * Requiere: el id del servicio
+         * Modifica: el DataTable que retorna
+         */
         internal DataTable solicitarVecesConsumido(string idServicio)
         {
             return controladoraBD.vecesConsumido(idServicio);
         }
+
+
+        /*
+         * Efecto: actualiza la cantidad de veces que se ha consumido un servicio
+         * Requiere: el id del servicio y la cantidad de veces consumido
+         * Modifica: el DataTable que retorna
+         */
         internal void actualizarVecesConsumido(string idServicio, int vecesConsumido)
         {
             controladoraBD.actualizarVecesConsumido(idServicio, vecesConsumido);
         }
+
+
+        /*
+         * Efecto: solicita la entidad de la reservacion consultada
+         * Requiere:n/a
+         * Modifica: la entidad de reservaciones
+         */
         internal EntidadReservaciones infoServicioRes()
         {
             return controladoraReserv.getReservacionSeleccionada();
 
         }
+
+
+        /*
+         * Efecto: solicita la entidad de empleado consultado
+         * Requiere: n/a
+         * Modifica: la entidad de empleado
+         */
         internal EntidadEmpleado infoServicioEmp()
         {
             return controladoraEmp.getEmpleadoSeleccionado();

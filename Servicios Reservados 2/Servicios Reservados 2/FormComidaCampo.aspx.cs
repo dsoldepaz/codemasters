@@ -1008,6 +1008,11 @@ namespace Servicios_Reservados_2
         }
 
 
+      /*
+      * Efecto: se consulta una comida seleccionada.
+      * Requiere: la comida de campo seleccionada.
+      * Modifica: n/a
+     */
         protected void consultarComidaCampo()
         {
 
@@ -1093,6 +1098,11 @@ namespace Servicios_Reservados_2
             }
         }
 
+       /*
+      * Efecto: se consulta el tipo de sandwich seleccionado
+      * Requiere: la información del tipo de sandwich seleccionado.
+      * Modifica: n/a
+     */
         protected void tipoSandwich()
         {
             if (entidadConsultada.Pan == "Pan Blanco")
@@ -1133,6 +1143,12 @@ namespace Servicios_Reservados_2
             }
         }
 
+
+        /*
+     * Efecto: se consultan los adicionales de una comida seleccionada.
+     * Requiere: la información de la comida selecionada
+     * Modifica: n/a
+    */
         protected void consultarAdicionales()
         {
             if (entidadConsultada.Adicionales.Contains("Ensalada"))
@@ -1169,7 +1185,11 @@ namespace Servicios_Reservados_2
             }
         }
 
-
+        /*
+     * Efecto: se encarga de habilitar campo para modificar una comida de campo
+     * Requiere: n/a
+     * Modifica: el modo.
+    */
         protected void clickModificar(object sender, EventArgs e)
         {
             modo = 2;

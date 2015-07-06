@@ -103,7 +103,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: envía a la BD los valores para realizar el filtro en un rango de fechas, anfitriona y estación.
          * Requiere: la entrada de los atributos.
-         * Modifica : 
+         * Modifica : n/a
          */
         internal DataTable obtenerComidaExtraEstacionAnfitrionaFecha(String estacion, String opcion, int anfitriona, String fecha, String fechaFinal, int consulta)
         {
@@ -113,7 +113,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: envía a la BD los valores para realizar el filtro en un rango de fechas y por anfitriona.
          * Requiere: la entrada de los atributos.
-         * Modifica : 
+         * Modifica : n/a
          */
         internal DataTable obtenerComidaExtraAnfitrionaFecha(String opcion, int anfitriona, String fecha, String fechaFinal, int consulta)
         {
@@ -123,7 +123,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: envía a la BD los valores para realizar el filtro en un rango de fechas y por estación.
          * Requiere: la entrada de los atributos.
-         * Modifica : 
+         * Modifica : n/a
          */
         internal DataTable obtenerComidaExtraEstacionFecha(String estacion, String opcion, String fecha, String fechaFinal, int consulta)
         {
@@ -133,7 +133,7 @@ namespace Servicios_Reservados_2
         /* 
          * Efecto: envía a la BD los valores para realizar el filtro en un rango de fechas.
          * Requiere: la entrada de los atributos.
-         * Modifica : 
+         * Modifica: n/a
          */
         internal DataTable obtenerComidaExtraFechas(String opcion, String fecha, String fechaFinal, int consulta)
         {
@@ -141,9 +141,9 @@ namespace Servicios_Reservados_2
         }
 
         /* 
-         * Efecto: 
-         * Requiere: 
-         * Modifica: 
+         * Efecto: obtiene el número de notificaciones. 
+         * Requiere: n/a
+         * Modifica: n/a
          */
         internal int getNotificaciones()
         {
