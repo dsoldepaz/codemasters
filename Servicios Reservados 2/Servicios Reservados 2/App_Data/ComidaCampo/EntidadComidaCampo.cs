@@ -24,7 +24,8 @@ namespace Servicios_Reservados_2
         private String estacion;
         private List<String> adicionales;
 
-        public EntidadComidaCampo(Object[] datos, List<String>lista)
+        /*se encarga de encapsular los datos y la lista de adicionales*/
+        public EntidadComidaCampo(Object[] datos, List<String>lista) 
         {
             this.idComidaCampo = datos[0].ToString();
             this.idEmpleado = datos[1].ToString();
@@ -42,7 +43,8 @@ namespace Servicios_Reservados_2
             adicionales = lista;
         }
 
-        public String IdComidaCampo
+        /*Metodo que retorna los atributos de la entidad*/
+        public String IdComidaCampo 
         {
             get { return idComidaCampo; }
             set { IdComidaCampo = value; }

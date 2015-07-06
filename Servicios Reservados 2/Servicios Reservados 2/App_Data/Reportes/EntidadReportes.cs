@@ -13,6 +13,7 @@ namespace Servicios_Reservados_2
         String fechaInicial;
         String fechaFinal;
 
+        /*Se encarga de encapsular los datos*/
         public EntidadReportes(Object[] datos)
         {
             this.estacion = datos[0].ToString();
@@ -22,6 +23,7 @@ namespace Servicios_Reservados_2
             this.fechaFinal = datos[4].ToString();
         }
 
+   /*Metodos que retorna los atributos de la entidad*/
         public String IdReservacion
         {
             get { return idReservacion; }
