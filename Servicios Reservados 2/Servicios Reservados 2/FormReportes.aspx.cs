@@ -234,9 +234,9 @@ namespace Servicios_Reservados_2
         }
 
 
-        /**
-     * Requiere: n/a
+    /*
      * Efectua: Crea la DataTable para desplegar.
+     * Requiere: n/a
      * retorna:  un dato del tipo DataTable con la estructura para consultar.
      */
         protected DataTable crearTablaServicios()//consultar
@@ -315,6 +315,12 @@ namespace Servicios_Reservados_2
 
             return tabla;
         }
+
+        /* 
+         * Efecto: llena los campos de la interfaz dependiendo de la opción seleccionada para el filtrado.
+         * Requiere: que sean seleccionados los valores del filtro.
+         * Modifica: la interfaz.
+         */
         protected void llenarDatos()
         {
             if (listAnfitriona.SelectedValue != "Seleccionar")
@@ -337,6 +343,11 @@ namespace Servicios_Reservados_2
             txtFechaFinal.Value = fechaFin;
         }
 
+        /* 
+         * Efecto: realiza el filtro y verifica las fechas seleccionadas en el filtro.
+         * Requiere: que se precione el botón generar filtro.
+         * Modifica: NA.
+         */
         protected void BotonGenerar_Click(object sender, EventArgs e)
         {
             if (DateTime.Parse(dateFechaFin.Value) < DateTime.Parse(dateFechaInicio.Value))
@@ -353,7 +364,11 @@ namespace Servicios_Reservados_2
             }
         }
 
-
+        /* 
+         * Efecto: realiza las consultas a la base de datos para generar los reportes.
+         * Requiere: selección de los parámetros de filtrado.
+         * Modifica: el grid de detalle.
+         */
         protected void cicloFechas()
         {
             DataTable tabla = crearTablaServicios();
@@ -406,9 +421,13 @@ namespace Servicios_Reservados_2
 
         }
 
+        /* 
+         * Efecto: consultas para ejecutar el filtro  por los parámetros de Estación, Anfitriona y Fecha.
+         * Requiere: 
+         * Modifica: 
+         */
         protected void filtroEstacionAnfitrionaFecha(String fechaInicio, String fechaFinal)
         {
-
             DataTable comidaCampoReservDesayuno = verificarDataTable(controladora.obtenerComidaPax(estacion, 1, anfitriona, fechaInicio, fechaFinal));
             DataTable comidaCampoReservAlmuerzo = verificarDataTable(controladora.obtenerComidaPax(estacion, 2, anfitriona, fechaInicio, fechaFinal)); //almuerzo de comidaCampo reservado
             DataTable comidaCampoReservCena = verificarDataTable(controladora.obtenerComidaPax(estacion, 3, anfitriona, fechaInicio, fechaFinal)); //cena de comidaCampo reservado
