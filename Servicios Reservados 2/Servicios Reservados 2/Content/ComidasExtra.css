@@ -82,4 +82,6 @@ ul>li>input.tiempo{
 input#MainContent_fechaDeEntrada {
   height: 18px;
 }
-
+.h3Sincolor{
+    color:black;
+}
