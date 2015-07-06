@@ -949,7 +949,11 @@ namespace Servicios_Reservados_2
             }
             
         }
-                     
+        /*
+      * Requiere: N/A
+      * Efectua : hace las consultas con las fechas especificadas
+      * Retorna :  N/A.
+      */             
         protected void clickBuscar(object sender, EventArgs e)
         {
                 Boolean correcta = true;
@@ -1037,6 +1041,11 @@ namespace Servicios_Reservados_2
             
             
         }
+        /*
+      * Requiere: N/A
+      * Efectua : Revisa que las fechas ingresadas sean correctas 
+      * Retorna :  verdadero si son fechas validas, falso si no
+      */
         protected Boolean fechaValida()
         {
             Boolean valido = true;
