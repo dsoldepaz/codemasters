@@ -15,7 +15,11 @@ namespace Servicios_Reservados_2
         public static String[] ids;
         private static int indice = -1;
         private static DataTable todos;
-
+        /*
+        * Efecto: inicializa las variables de la clase
+        * Requiere: nada
+        * Modifica: nada
+        */
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList listaRoles = (ArrayList)Session["Roles"];
@@ -35,7 +39,11 @@ namespace Servicios_Reservados_2
                 llenarEstaciones();
             }
         }
-
+        /*
+        * Efecto: carga la inorfmacion de los usuarios
+        * Requiere: nada
+        * Modifica: interfaz
+        */
         private void llenarGridUsuarios()
         {
             DataTable tabla = crearTablaUsuarios();
@@ -74,6 +82,11 @@ namespace Servicios_Reservados_2
                 GridUsuarios.DataBind();
             }
         }
+        /*
+        * Efecto: carga la informacion de estaciones
+        * Requiere: nada
+        * Modifica: interfaz
+        */
         private void llenarEstaciones()
         {
             cbxEstacion.Items.Add("Todas");
@@ -83,7 +96,11 @@ namespace Servicios_Reservados_2
             cbxEstacion.Items.Add("North American Offices");
             cbxEstacion.Items.Add("Costa Rican Offices");            
         }
-
+        /*
+        * Efecto: crea la tabla para almacenar la informacion de usuarios
+        * Requiere: nada
+        * Modifica: nada
+        */
         private DataTable crearTablaUsuarios()
         {
             DataTable tabla = new DataTable();
@@ -121,10 +138,10 @@ namespace Servicios_Reservados_2
             return tabla;
         }
         /*
-     * Efecto: capta el evento del botón para agregar
-     * Requiere: presionar el botón.
-     * Modifica: el seleccionado.
-     */
+        * Efecto: capta el evento del botón para agregar
+        * Requiere: presionar el botón.
+        * Modifica: el seleccionado.
+        */
         protected void clickAgregar(object sender, EventArgs e)
         {
             FormRegistro.usernameSeleccionado = "";
@@ -143,7 +160,11 @@ namespace Servicios_Reservados_2
             FormRegistro.modo = 0;
             Response.Redirect("FormRegistro");
         }
-
+        /*
+        * Efecto: obtiene el indice del usuario seleccionado
+        * Requiere: seleccion en la interfaz
+        * Modifica: nada
+        */
         protected int obtenerIndex(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
@@ -164,6 +185,11 @@ namespace Servicios_Reservados_2
             GridUsuarios.DataSource = todos;
             GridUsuarios.DataBind();
         }
+        /*
+        * Efecto: aplica los filtros seleccionados por el usuario
+        * Requiere: nada
+        * Modifica: interfaz
+        */
         protected void clickBuscar(object sender, EventArgs e)
         {
             String estacion = "";
@@ -218,6 +244,11 @@ namespace Servicios_Reservados_2
                 GridUsuarios.DataBind();
             }
         }
+        /*
+        * Efecto: redirige a la interfaz de modificacion de ususarios
+        * Requiere: seleccion de un usuario desde la interfaz
+        * Modifica: interfaz
+        */
         protected void clickModificar(object sender, EventArgs e)
         {
             indice = obtenerIndex(sender, e) + (GridUsuarios.PageIndex * 10);//se obtiene la cedula a consultar
@@ -225,6 +256,11 @@ namespace Servicios_Reservados_2
             FormRegistro.modo = 2;
             Response.Redirect("FormRegistro");
         }
+        /*
+        * Efecto: desactiva un usuario
+        * Requiere: nada
+        * Modifica: interfaz
+        */
         protected void clickDesactivar(object sender, EventArgs e)
         {
             String[] error= controladora.desactivarUsuario(ids[indice]);
@@ -237,7 +273,11 @@ namespace Servicios_Reservados_2
                 mostrarMensaje(error[0], error[1], "Se ha deasactivado correctamente"); // se muestra el resultado
             }     
         }
-
+        /*
+        * Efecto: selecciona el usuario a desactivar
+        * Requiere: seleccion de un usuario desde la interfaz
+        * Modifica: interfaz
+        */
         protected void seleccionarDesactivar(object sender, EventArgs e)
         {
             indice = obtenerIndex(sender, e) + (GridUsuarios.PageIndex * 10);//se obtiene la cedula a consultar
