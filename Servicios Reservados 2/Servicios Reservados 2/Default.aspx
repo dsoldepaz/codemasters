@@ -29,7 +29,7 @@
                         <a href="FormEmpleado.aspx">Empleados</a>
                     </h4>
                     <h4>
-                        <a href="FormReportes.aspx">Reportes general</a>
+                        <a href="FormReportes.aspx">Reportes generales</a>
                     </h4>
 
                 </div>
@@ -45,7 +45,7 @@
                         <a href="FormReporteCocina.aspx">Reportes de cocina</a>
                     </h4>
                     <h4>
-                        <a href="FormReportes.aspx">Reportes general</a>
+                        <a id="reportesGenerales" runat="server" href="FormReportes.aspx">Reportes generales</a>
                     </h4>
                 </div>
             </td>
@@ -54,7 +54,7 @@
                     <h2>Administración</h2>
                     <p>Consulte información que ayudará en la toma de decisiones</p>
                     <h4>
-                        <a href="FormReportes.aspx">Reportes general</a>
+                        <a href="FormReportes.aspx">Reportes generales</a>
                     </h4>
                 </div>
             </td>

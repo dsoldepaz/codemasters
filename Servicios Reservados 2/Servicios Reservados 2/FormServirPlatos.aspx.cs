@@ -25,7 +25,7 @@ namespace Servicios_Reservados_2
                 if (userid == "" || userid == null)
                 {
                     Response.Redirect("~/Ingresar.aspx");
-                } if (!listaRoles.Contains("administrador sistema") && !listaRoles.Contains("encargado cocina"))
+                } if (!listaRoles.Contains("administrador sistema") && !listaRoles.Contains("encargado cocina") && !listaRoles.Contains("cocinero"))
                 {
                     Response.Redirect("ErrorPermiso.aspx");
                 }
