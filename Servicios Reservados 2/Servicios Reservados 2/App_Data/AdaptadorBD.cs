@@ -83,6 +83,12 @@ namespace Servicios_Reservados_2
             }
             return respuesta;
         }
+
+        /*
+         * Efecto: replica la consultaSQL en la base de datos.
+         * Requiere: la entrada de la consulta.
+         * Modifica: la base de datos.
+         */
         private void replicar(String consultaSQL)
         {
             dt = new DataTable();

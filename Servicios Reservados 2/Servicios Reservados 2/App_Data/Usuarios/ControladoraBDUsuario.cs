@@ -22,23 +22,23 @@ namespace Servicios_Reservados_2
             adaptador = new AdaptadorBD();
             dt = new DataTable();
         }
-
-        internal DataTable obtenerRolesDisponibles()
-        {
-            dt = new DataTable();
-            String consultaSQL = "select nombre from rol";
-            dt = adaptador.consultar(consultaSQL);
-            return dt;
-        }
-
-        internal DataTable obtenerRolesAsignados()
+        /*
+         * Requiere: N/A
+         * Efectúa : selecciona los roles asignados
+         * retorna : N/A
+         */
+        internal DataTable obtenerRoles()
         {
             dt = new DataTable();
             String consultaSQL = "select rol from usuariorol";
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
-
+        /*
+        * Requiere: N/A
+        * Efectúa : selecciona la informacion de todos los usuarios
+        * retorna : N/A
+        */
         internal DataTable consultarUsuarios()
         {
             dt = new DataTable();
@@ -46,7 +46,11 @@ namespace Servicios_Reservados_2
             dt = adaptador.consultar(consultaSQL);
             return dt;
         }
-
+        /*
+     * Requiere: N/A
+     * Efectúa : selecciona la informacion de todos los roles
+     * retorna : N/A
+     */
         internal DataTable consultarTodosRoles()
         {
             dt = new DataTable();
@@ -83,20 +87,33 @@ namespace Servicios_Reservados_2
             return respuesta;
         }
 
-
+        /*
+        * Efecto: consulta la informacion de un usuario
+        * Requiere: seleccion de un usuario
+        * Modifica: nada
+       */
         internal DataTable consultarUsuario(string usernameSeleccionado)
         {
             dt = new DataTable();
             String consultaSQL = "select username, Nombre, email, activo, estacion from usuario where username='" + usernameSeleccionado + "'";
             return adaptador.consultar(consultaSQL);
         }
+        /*
+        * Efecto: consulta los roles de un usuario
+        * Requiere: seleccion de un usuario
+        * Modifica: nada
+       */
         internal DataTable consultarUsuarioRol(string usernameSeleccionado)
         {
             dt = new DataTable();
             String consultaSQL = "select rol from usuariorol where usuario='" + usernameSeleccionado + "'";
             return adaptador.consultar(consultaSQL);
         }
-
+        /*
+        * Efecto: modifica la informacion de un usuario
+        * Requiere: seleccion de un usuario
+        * Modifica: la tabla de usuarios
+        */
         internal string[] modificarUsuario(EntidadUsuario entidad)
         {
             String[] respuesta = new String[3];
@@ -105,7 +122,11 @@ namespace Servicios_Reservados_2
             respuesta = adaptador.insertar(consultaSQL);
             return respuesta;
         }
-
+        /*
+        * Efecto: borra todos los roles de un usuario
+        * Requiere: seleccion de un usuario
+        * Modifica: la tabla de roles de usuario
+        */
         internal string[] limpiarRoles(string usernameSeleccionado)
         {
             String[] respuesta = new String[3];
@@ -113,7 +134,11 @@ namespace Servicios_Reservados_2
             respuesta = adaptador.insertar(consultaSQL);
             return respuesta;
         }
-
+        /*
+        * Efecto: desactiva un usuario
+        * Requiere: seleccion de un usuario
+        * Modifica: la tabla de usuarios
+        */
         internal string[] desactivarUsuario(string username)
         {
             String[] respuesta = new String[3];
@@ -122,6 +147,11 @@ namespace Servicios_Reservados_2
             return respuesta;
         }
 
+        /*
+        * Efecto: actualiza la contrase;a de un usuario
+        * Requiere: seleccion de un usuario, nueva contrse;a
+        * Modifica: la tabla usuario
+        */
         internal string[] actualizarContrasena(string username, string contrasena)
         {
             String[] respuesta = new String[3];
@@ -129,6 +159,11 @@ namespace Servicios_Reservados_2
             respuesta = adaptador.insertar(consultaSQL);
             return respuesta;
         }
+        /*
+        * Efecto: reestablece la contrase;a de un usuario
+        * Requiere: seleccion de un usuario, contrase;a 
+        * Modifica: la tabla usuario
+        */
         internal string[] reestablecerContrasena(string username, string contrasena)
         {
             String[] respuesta = new String[3];

@@ -27,7 +27,7 @@ namespace Servicios_Reservados_2
 
         internal DataTable solicitarRolesAsignados()
         {
-            return controladoraBD.obtenerRolesAsignados();
+            return controladoraBD.obtenerRoles();
         }
 
         internal DataTable solicitarUsuarios()
