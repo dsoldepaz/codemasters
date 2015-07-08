@@ -16,25 +16,35 @@ namespace Servicios_Reservados_2
         /*
          * Requiere: N/A
          * Efectúa : Inicializa las variables globales de la clase. 
-         * Retorna : N/A
+         * Modifica : N/A
          */
         public ControladoraUsuario()
         {
             controladoraBD = new ControladoraBDUsuario();
         }
-
-
-
+        /*
+         * Requiere: N/A
+         * Efectúa : devuelve los roles asignados
+         * Modifica : N/A
+         */
         internal DataTable solicitarRolesAsignados()
         {
             return controladoraBD.obtenerRoles();
         }
-
+        /*
+         * Requiere: N/A
+         * Efectúa : devuelve la lista de usuarios
+         * Modifica : N/A
+         */
         internal DataTable solicitarUsuarios()
         {
             return controladoraBD.consultarUsuarios();
         }
-
+        /*
+         * Requiere: N/A
+         * Efectúa : devuelve la lista de todos los roles
+         * Modifica : N/A
+         */
         internal DataTable solicitarTodosRoles()
         {
             return controladoraBD.consultarTodosRoles();
@@ -56,10 +66,10 @@ namespace Servicios_Reservados_2
             return resultado;
         }
         /*
-      * Efecto: Solicita a la base de datos el usuario seleccionado
-      * Requiere: username
-      * Modifica: nada
-     */
+        * Efecto: Solicita a la base de datos el usuario seleccionado
+        * Requiere: username
+        * Modifica: nada
+        */
         internal EntidadUsuario solicitarUsuario(string usernameSeleccionado)
         {
              DataTable tablaUsuario =controladoraBD.consultarUsuario(usernameSeleccionado);
@@ -98,23 +108,40 @@ namespace Servicios_Reservados_2
             }
             return resultado;
         }
-
+        /*
+        * Efecto: desactiva el usuario seleccionado
+        * Requiere: username
+        * Modifica: nada
+        */
         internal string[] desactivarUsuario(string username)        {
 
             return controladoraBD.desactivarUsuario(username); 
         }
-
+        /*
+        * Efecto: reestablece la contrase;a del usuario seleccionado
+        * Requiere: username, nueva contrase;a
+        * Modifica: nada
+        */
         internal string[] reestablecerContrasena(String username, String contrasena)
         {
             string hashContrasena = LoginService.EncodePassword(string.Concat(username, contrasena));
             return controladoraBD.reestablecerContrasena(username, hashContrasena);
         }
+        /*
+        * Efecto: actualiza la contrase;a del usuario seleccionado
+        * Requiere: username, nueva contrase;a
+        * Modifica: nada
+        */
         internal string[] actualizarContrasena(String username, String contrasena)
         {
             string hashContrasena = LoginService.EncodePassword(string.Concat(username, contrasena));
             return controladoraBD.actualizarContrasena(username, hashContrasena);
         }
-
+        /*
+        * Efecto: devuelve la lista de los usuarios basandose en el filtro seleccionado
+        * Requiere: la estacion, el username y el nombre de la persona 
+        * Modifica: nada
+        */
         internal DataTable solicitarUsuariosFiltro(string estacion, string nombreUsuario, string nombre)
         {
             return controladoraBD.seleccionarUsuariosFiltro(estacion, nombreUsuario, nombre);
