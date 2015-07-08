@@ -10,6 +10,7 @@ namespace Servicios_Reservados_2
     public class ControladoraUsuario
     {
         EntidadUsuario entidadSeleccionada = null;
+        public static String usuarioActual;
 
         private static ControladoraBDUsuario controladoraBD;
         /*
