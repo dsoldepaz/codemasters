@@ -54,6 +54,7 @@ namespace Servicios_Reservados_2
                 adaptador.Open();
                 OracleCommand comando = new OracleCommand(consultaSQL, adaptador);
                 comando.ExecuteNonQuery();
+                replicar(consultaSQL);
                 adaptador.Close();
 
                 respuesta[0] = "success";
@@ -81,6 +82,28 @@ namespace Servicios_Reservados_2
                 }
             }
             return respuesta;
+        }
+
+        /*
+         * Efecto: replica la consultaSQL en la base de datos.
+         * Requiere: la entrada de la consulta.
+         * Modifica: la base de datos.
+         */
+        private void replicar(String consultaSQL)
+        {
+            dt = new DataTable();
+            OracleCommand comando = adaptador.CreateCommand();
+            comando.CommandText = "Select nombre from servidores where REPLICAR = 'Y'";
+            OracleDataReader reader = comando.ExecuteReader();
+            dt.Load(reader);
+
+            consultaSQL=consultaSQL.Replace("'", "''");
+            foreach (DataRow server in dt.Rows)
+            {
+                String aux = "INSERT INTO REPLICA_SALIDA ( TIRA_SQL, Estado, FECHA, Usuario, SERVER ) VALUES ( '" + consultaSQL + "', 'N', sysdate, '" + ControladoraUsuario.usuarioActual + "', '" + server[0].ToString() +"')";
+                comando = new OracleCommand(aux, adaptador);
+                comando.ExecuteNonQuery();
+            }
 
         }
     }

@@ -31,7 +31,7 @@ namespace Servicios_Reservados_2
                 DataTable tblUsuario = login.prConsultaUsuario(usuario, contraseña);
                 //se declara y se le da el valor a la variable de sesión
                 Session["username"] = tblUsuario.Rows[0]["username"].ToString();
-
+                ControladoraUsuario.usuarioActual = tblUsuario.Rows[0]["username"].ToString();
                 DataTable roles = login.rolesUsuario(usuario);
                 ArrayList listaRoles = new ArrayList();
                 foreach (DataRow rol in roles.Rows)

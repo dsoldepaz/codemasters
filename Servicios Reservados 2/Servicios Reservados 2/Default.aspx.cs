@@ -18,6 +18,7 @@ namespace Servicios_Reservados_2
             Cocina.Visible=false;
             Financiero.Visible = false;
             Usuario.Visible = false;
+            reportesGenerales.Visible = false;
 
             string userid = (string)Session["username"];
             ArrayList listaRoles = (ArrayList)Session["Roles"];
@@ -36,6 +37,11 @@ namespace Servicios_Reservados_2
                 if (listaRoles.Contains("administrador sistema") || listaRoles.Contains("encargado cocina") || listaRoles.Contains("cocinero"))
                 {
                     Cocina.Visible = true;
+                    reportesGenerales.Visible = true;
+                    if (listaRoles.Contains("cocinero"))
+                    {
+                        reportesGenerales.Visible = false;
+                    }
                 }
                 if (listaRoles.Contains("administrador sistema") || listaRoles.Contains("administrador local") || listaRoles.Contains("administrador global"))
                 {

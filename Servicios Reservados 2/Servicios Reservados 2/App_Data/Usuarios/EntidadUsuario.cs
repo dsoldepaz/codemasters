@@ -13,7 +13,11 @@ namespace Servicios_Reservados_2
         private int estado;
         private String estacion;
         List<string> rol;
-        
+        /*
+        * Efecto: crea una entidad usuario
+        * Requiere: arreglo con los datos del usuario
+        * Modifica: nada
+        */
         public EntidadUsuario(Object[] datos)
         {
             this.username = datos[0].ToString();
@@ -28,6 +32,7 @@ namespace Servicios_Reservados_2
             this.rol = (List<string>)datos[5];                     
         }
 
+        //metodos get / set
         public String Username
         {
             get { return username; }
