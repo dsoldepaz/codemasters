@@ -91,8 +91,13 @@ namespace Servicios_Reservados_2
 
             if (modo == 1)//insertar
             {
-                fechaDeEntradaCalendario.SelectedDate = DateTime.Today; //ver al insertar fecha
-                textFecha.Value = DateTime.Today.ToString("MM/dd/yyyy");
+                DateTime fechIni = DateTime.Parse(reservacionConsultada.FechaInicio.ToString());
+                if (fechIni <= DateTime.Today)
+                {
+                    fechIni = DateTime.Today;
+                }
+                fechaDeEntradaCalendario.SelectedDate = fechIni;
+                textFecha.Value = fechIni.ToString("MM/dd/yyyy");
                 radioDesayuno.Enabled = false;
                 radioAlmuerzo.Enabled = false;
                 radioCena.Enabled = false;

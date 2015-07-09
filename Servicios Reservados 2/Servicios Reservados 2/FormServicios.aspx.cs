@@ -70,8 +70,8 @@ namespace Servicios_Reservados_2
             txtAnfitriona.Value = controladora.informacionServicio().Anfitriona;
             txtEstacion.Value = controladora.informacionServicio().Estacion;
             txtNombre.Value = controladora.informacionServicio().Solicitante;
-            fechaInicio.Value = controladora.informacionServicio().FechaInicio.ToString("dd/MM/yyyy");
-            fechaFinal.Value = controladora.informacionServicio().FechaSalida.ToString("dd/MM/yyyy");
+            fechaInicio.Value = controladora.informacionServicio().FechaInicio.ToString("MM/dd/yyyy");
+            fechaFinal.Value = controladora.informacionServicio().FechaSalida.ToString("MM/dd/yyyy");
             txtPax.Value = controladora.paxReserv(controladora.idNumSelected());
             txtAnfitriona.Disabled = true;
             txtEstacion.Disabled = true;
