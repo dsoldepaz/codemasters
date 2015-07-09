@@ -5,7 +5,7 @@
         <ul>
             <li class="item-navegacion"><a href="Default.aspx" title="Página principal"><i class="glyphicon glyphicon-home"></i></a></li>
             <li class="item-navegacion"><a href="FormServirPlatos.aspx" title="Servir platos" class="seleccionado">Servir platos</a></li>
-            <li class="item-navegacion"><a href="FormReportesCocina.aspx" title="Reportes" >Reportes de cocina</a></li>
+            <li class="item-navegacion"><a href="FormReporteCocina.aspx" title="Reportes" >Reportes de cocina</a></li>
             <li class="item-navegacion"><a href="Notificaciones.aspx" title="Notificaciones">Notificaciones <span class="notificacion" id="contador" runat="server">0</span></a></li>
         </ul>
     </nav>

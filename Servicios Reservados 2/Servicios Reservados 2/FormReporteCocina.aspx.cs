@@ -45,17 +45,16 @@ namespace Servicios_Reservados_2
                 if (listaRoles.Contains("cocinero"))
                 {
                     cargarDatos(0);
-                }
-                else if (listaRoles.Contains("administrador sistema"))
-                {
-                    cargarDatos(1);
-                    
-                }
-                else if (listaRoles.Contains("encargado cocina") || listaRoles.Contains("administrador global"))
+                }               
+                if (listaRoles.Contains("encargado cocina") || listaRoles.Contains("administrador global"))
                 {
                     cargarDatos(2);
                 }
-                
+                if (listaRoles.Contains("administrador sistema"))
+                {
+                    cargarDatos(1);
+
+                }
                 
             }
         }
