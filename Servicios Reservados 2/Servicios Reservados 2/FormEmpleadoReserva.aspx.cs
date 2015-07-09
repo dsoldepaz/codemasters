@@ -325,6 +325,8 @@ namespace Servicios_Reservados_2
         }
         private void deshabilitarBotones()
         {
+            txtApellido.Disabled = true;
+            txtNombre.Disabled = true;
            // btnVer.Disabled = true;
            // btnEditar.Disabled = true;
            // btnCancelar.Disabled = true;
