@@ -45,7 +45,7 @@
 
     <div class="well bs-component">
 
-        <legend style="color: #7BC143">Información del servicio</legend>
+        <legend style="color: #7BC143">Información del empleado</legend>
         <table>
             <tr>
                 <td>
@@ -90,6 +90,7 @@
     </div>
 
     <div id="ContenedorManejoDeHorario" runat="server" class="well bs-component">
+          <legend style="color: #7BC143">Información del servicio</legend>
         <div id="selectorDeHorario" runat="server" title="Seleccione el horario de comida">
             <input type="checkbox" id="checkboxDesayuno" runat="server" value="Desayuno" />Desayuno
                         <input type="checkbox" id="checkboxAlmuerzo" runat="server" value="Almuerzo" />Almuerzo

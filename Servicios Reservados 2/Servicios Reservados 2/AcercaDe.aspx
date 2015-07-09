@@ -29,8 +29,7 @@
         <legend>Sistema de servicios reservados</legend>
 
         <p>
-            El control de servicios de alimentación para clientes y empleados se basa en la asignación previa 
-            Con estas reservaciones se 
+            Este sistema fue desarrollado entre marzo y julio del 2015 por el siguiente equipo de estudiantes de la carrera de ciencias de la computación e informatica de la universidad de Costa Rica:
         </p>
 
         <h3>Diseñado e implementado por Code Masters en colaboracion con la Universidad de Costa Rica para OET</h3>
@@ -41,6 +40,8 @@
             <li>David Solís De la Paz</li>
             <li>Dalila Vásquez Barrantes</li>
         </ul>
-
+        <p>
+            Dirigido por la profesora Gabriela Salazar en el curso de Ingenieria de software II
+        </p>
     </div>
 </asp:Content>
